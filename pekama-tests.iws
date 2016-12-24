@@ -1,149 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2fcdccdc-4d95-4ab7-8153-9ec9d616e50f" name="Default" comment="initial commits">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/00_BeforeTests.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/00_Production_tests" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/00_VAR.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/00_global_VARs.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/01_TestSuite_PublicPages" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/02_TestSuite_Regression" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/03_TestSuite_TechnicalTest" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ConversationDeleteMessage.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ConversationEmailParameters.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ConversationTaskFromMessage.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/CreateDeleteProject.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/CreateProject.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/Dashboard.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/DashboardCheckout.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/DashboardLogout.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/DeploymentTests/01_Create_project_trademark.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/DeploymentTests/02_Create_templates_and_deploy.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/DeploymentTests/03_Deploy_precreated_templates_and_messages.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/DeploymentTests/04_Deploy_templates_conversation.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/DeploymentTests/05_Edit_objects_project.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/DeploymentTests/06_BOXtests_Pekama_to_BOX_sync.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/DeploymentTests/07_Community_Requester.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/DeploymentTests/08_Community_Expert.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/DeploymentTests/09_Community_CreateCaseFromPekama.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/DraftXpath" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/EventsBasicFilters.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ExtBOXconnect.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ExtBoxSyncFormBOX.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ExtBoxSyncToBOX.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ExtXeroConnectAndVerifyBill.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/JsonDraft.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/MwNewContact.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/MwNewProject.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/MwTimeTracker.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/OldTests/ConversationExternal.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/OldTests/CreateDeleteProject_AddContact.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/OldTests/CreateDeleteProject_AddDocs.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/OldTests/CreateDeleteProject_AddFinacial.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/OldTests/CreateDeleteProject_AddNumber.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/OldTests/CreateDeleteProject_AddTask.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/OldTests/DeployDocTemplate.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/OldTests/DeployExcelTemplate.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/OldTests/DeployMessageTemplate.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/OldTests/ProjectAdd1Contact.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/OldTests/ProjectAddCollaborator.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/OldTests/ProjectDocTemplateLoop.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/OldTests/ProjectTasks.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/OldTests/TeamSettingsEventTemplateSet.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PekamaIcons" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PekamaLog.csv.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PersonalSettings.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PersonalSettings_LoginSecurity.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PersonalSettings_Notifications.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PersonalSettings_Personaldetails.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PersonalSettings_SecurityTab.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PersonalSettings_Signature.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ProjectAddContacts.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ProjectAddNumber.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ProjectBulkDeleteFiles.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ProjectCheckFileRename.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ProjectCheckRename.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ProjectContactTab.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ProjectCreateFolder.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ProjectDeleteFileMenu.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ProjectFamily.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ProjectFinancials.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ProjectNewConversation.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ProjectPlusButton.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ProjectPlusButtonContact.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ProjectPlusButtonEvent.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ProjectPlusButtonNumber.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ProjectPlusEvent.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ProjectTasksTemplate.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ProjectUploadFile.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ProjectsConversationPinUnpin.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/GmailCheckEmail.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/GmailLogout.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/LandingPage.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/LinkedinLogout.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/LoginAllChecks.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/LoginBadLogin.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/LoginBadPassword.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/LoginForgotPassword.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/LoginGmail.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/LoginLinkedin.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/LoginMailRu.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/LoginOnly.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/SignUpPage.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/SignUpPageEmailValidation.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/SignUpPageFindTeam.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/SignUpPageFollowInviteLink.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/SignUpPageInviteMembers.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/SignUpPageJoinToCompany.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/SignUpPageJoinToTeam.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/SignUpPageNewUser.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/SignUpValidCreateTeam.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/StagingLogin.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ReportsContacts.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ReportsFinBasicFilters.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ReportsProjectBasicFilters.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ReportsProjectDeleteAllCreatedToday.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ReportsTasksBasicFilters.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/Selenium-IDE.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TeamSettings.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TeamSettingsDefaultStorage.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TeamSettingsDocumentTemplate.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TeamSettingsEventTemplate.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TeamSettingsMessageTemplate.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TeamSettingsNewMember.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TeamSettingsPlaceholders.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TeamSettingsProjectTemplates.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TeamSettingsSelectTeam.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TeamSettingsTaskTemplate.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TeamSettingsValues.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TeamSettingsValuesTaskStatus.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/AddContactLoop1000.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/AddContactLoop1000Person.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/CPP_deleteEventTimeline_loop.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/CompanyList.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/ConatcNameSurnameEmail.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/CreateManyProjects.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/DashboardDeployTemplateLoop.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/DatapickerSetDateLogic.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/DeleteUserFromAdminPanel.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/MsgLoadTest.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/MyLinkedin.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/PlusEventLoopDays.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/ProjectTaskLoop2.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/ProjectTasksLoop.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/RollupTest.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/TestRunner.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/modalBuyProjectValidationLoop.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/modalDraftLoop.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/data.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/datadriven.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/gui_map.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/randomgenerator.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/rollup-rules.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/testDate.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/test_case_results" />
+    <list default="true" id="2fcdccdc-4d95-4ab7-8153-9ec9d616e50f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pekama-tests.iws" afterPath="$PROJECT_DIR$/pekama-tests.iws" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -993,7 +851,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1482598213028</updated>
-      <workItem from="1482598215333" duration="1470000" />
+      <workItem from="1482598215333" duration="1951000" />
     </task>
     <task id="LOCAL-00001" summary="initial commits">
       <created>1482598292342</created>
@@ -1016,7 +874,14 @@
       <option name="project" value="LOCAL" />
       <updated>1482599127865</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="initial commits">
+      <created>1482599691319</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1482599691319</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1028,7 +893,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1470000" />
+    <option name="totallyTimeSpent" value="1951000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
