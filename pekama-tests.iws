@@ -2,6 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2fcdccdc-4d95-4ab7-8153-9ec9d616e50f" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/OldTests/ConversationExternal.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/OldTests/CreateDeleteProject_AddContact.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/OldTests/CreateDeleteProject_AddDocs.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/OldTests/CreateDeleteProject_AddFinacial.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/OldTests/CreateDeleteProject_AddNumber.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/OldTests/CreateDeleteProject_AddTask.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/OldTests/DeployDocTemplate.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/OldTests/DeployExcelTemplate.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/OldTests/DeployMessageTemplate.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/OldTests/ProjectAdd1Contact.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/OldTests/ProjectAddCollaborator.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/OldTests/ProjectDocTemplateLoop.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/OldTests/ProjectTasks.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/OldTests/TeamSettingsEventTemplateSet.html" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pekama-tests.iws" afterPath="$PROJECT_DIR$/pekama-tests.iws" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -354,6 +368,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pekama-tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pekama-tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HTML-tests" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -851,7 +883,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1482598213028</updated>
-      <workItem from="1482598215333" duration="1951000" />
+      <workItem from="1482598215333" duration="1995000" />
     </task>
     <task id="LOCAL-00001" summary="initial commits">
       <created>1482598292342</created>
@@ -881,7 +913,14 @@
       <option name="project" value="LOCAL" />
       <updated>1482599691319</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="initial commits">
+      <created>1482600174867</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1482600174867</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -893,7 +932,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1951000" />
+    <option name="totallyTimeSpent" value="1995000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -918,10 +957,10 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32914045" sideWeight="0.50665927" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32914045" sideWeight="0.50221974" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914045" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32914045" sideWeight="0.49334073" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32914045" sideWeight="0.49778023" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914045" sideWeight="0.49334073" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
