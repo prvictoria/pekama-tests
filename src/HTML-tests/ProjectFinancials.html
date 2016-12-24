@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>ProjectFinancials</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">ProjectFinancials</td></tr>
+</thead><tbody>
+<tr>
+	<td>forJson</td>
+	<td>${JsonPath}</td>
+	<td></td>
+</tr>
+<!--Go to Financials tab-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${projectTabFin}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${projectTabFin}</td>
+	<td></td>
+</tr>
+<!--Create fiancial -->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>id=file-controls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=file-controls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Create financial</td>
+	<td></td>
+</tr>
+<!--Add new fiancial modal window-->
+<tr>
+	<td>waitForText</td>
+	<td>${modalGenericTitle}</td>
+	<td>Add new financial</td>
+</tr>
+<tr>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=a.ui-select-choices-row-inner &gt; div.ng-binding.ng-scope</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=a.ui-select-choices-row-inner &gt; div.ng-binding.ng-scope</td>
+	<td></td>
+</tr>
+<!--Submit to verify mandratory fields validation-->
+<tr>
+	<td>click</td>
+	<td>//button[@type='submit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=span.help-block.error</td>
+	<td>This field is required.</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[3]/div[2]/span</td>
+	<td>This field is required.</td>
+</tr>
+<!--Select "TYPE"-->
+<tr>
+	<td>click</td>
+	<td>//pkm-values-dropdown/div/div/span/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[6]/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[6]/a/span</td>
+	<td></td>
+</tr>
+<!--Select "Currency"-->
+<tr>
+	<td>click</td>
+	<td>//div[3]/div[2]/pkm-values-dropdown/div/div/span/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=GBP</td>
+	<td></td>
+</tr>
+<!--Set price-->
+<tr>
+	<td>type</td>
+	<td>name=price</td>
+	<td>100</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.modal-body.organizations-long-title</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//input[@value='100.00']</td>
+	<td></td>
+</tr>
+<!--Submit all-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//button[@type='submit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//button[@type='submit']</td>
+	<td></td>
+</tr>
+<!--Verify elements in Financial ROW-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div[2]/div[2]/div/ui-view/div[3]/div/div/ng-include/div/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=span.name.ng-binding</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//a[contains(text(),'LA')]</td>
+	<td>LA</td>
+</tr>
+<!--Expand Financial-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div[2]/div[2]/div/ui-view/div[3]/div/div/ng-include/div/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div[2]/div[2]/div/ui-view/div[3]/div/div/ng-include/div/a/span</td>
+	<td></td>
+</tr>
+<!--Verify content in expanded Financial-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>name=formController</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=span.ui-select-match-text.pull-left &gt; span.ng-binding.ng-scope</td>
+	<td>Test03 Lama (LAMA)</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//pkm-financial-fields/div/div/label</td>
+	<td>exact:From:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=span.ui-select-match-text.pull-left &gt; span.ng-binding.ng-scope</td>
+	<td>Test03 Lama (LAMA)</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[2]/label</td>
+	<td>exact:To:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[3]/label</td>
+	<td>exact:By:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[3]/div/div/span/span[2]/span</td>
+	<td>Karlson Roof</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//pkm-financial-fields/div[2]/div/label</td>
+	<td>exact:Status:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div[2]/div[2]/div/ui-view/div[2]/div/div[2]/form/pkm-financial-fields/div[2]/div/div/div/span/span[2]/span</td>
+	<td>Billed</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[2]/div[2]/label</td>
+	<td>exact:Type:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//pkm-values-dropdown/div/div/span/span[2]/span</td>
+	<td>Direct expenses</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[2]/div[3]/label</td>
+	<td>Due date:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//pkm-financial-fields/div[3]/div/label</td>
+	<td>exact:Item:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[3]/div[2]/label</td>
+	<td>exact:Currency:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[3]/div[2]/pkm-values-dropdown/div/div/span</td>
+	<td>Select currency... GBP</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[4]/div/div/label</td>
+	<td>exact:Qty:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[5]/div/div/label</td>
+	<td>exact:Price:</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>//input[@value='100.00']</td>
+	<td>100.00</td>
+</tr>
+<!--Collapse Financial - Expand-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=div.info-holder.ng-scope</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.info-holder.ng-scope</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.clearfix.clickable</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Back to all finances</td>
+	<td>Back to all finances</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Back to all finances</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=i.icon-checkbox</td>
+	<td></td>
+</tr>
+<!--Delete Financial-->
+<tr>
+	<td>click</td>
+	<td>xpath=(//input[@type='checkbox'])[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>link=Delete</td>
+	<td>Delete</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Delete</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=div.modal-footer.ng-scope &gt; button.btn.btn-primary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.modal-footer.ng-scope &gt; button.btn.btn-primary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>link=Delete</td>
+	<td>Delete</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Delete</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=div.modal-footer.ng-scope &gt; button.btn.btn-primary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.modal-footer.ng-scope &gt; button.btn.btn-primary</td>
+	<td></td>
+</tr>
+<!--BUG with delete-->
+<tr>
+	<td>verifyTextPresent</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div[2]/div[2]/div/ui-view/div[4]/div[2]</td>
+	<td>Empty list.</td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div[2]/div[2]/div/ui-view/div[4]/div[2]</td>
+	<td>Empty list.</td>
+</tr>
+<!--Finish-->
+<tr>
+	<td>endForJson</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='ui-select-choices-row-5-1']/a/span</td>
+	<td>GBP</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='ui-select-choices-row'][0]</td>
+	<td>GBP</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>link=GBP</td>
+	<td>GBP</td>
+</tr>
+</tbody></table>
+</body>
+</html>

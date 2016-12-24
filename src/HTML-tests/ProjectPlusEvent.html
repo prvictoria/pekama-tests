@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>PlusEvent</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">PlusEvent</td></tr>
+</thead><tbody>
+<tr>
+	<td>clearLog</td>
+	<td></td>
+	<td></td>
+</tr>
+<!--SCRIPT 02-->
+<tr>
+	<td>setSpeed</td>
+	<td>100</td>
+	<td></td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>START</td>
+	<td></td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>storedVars['EVENT03']=='Sub Matter Created'</td>
+	<td>END</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${ProjectButtonPlus}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${ProjectButtonPlus}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=New Event</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=New Event</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${ModalGenericBody}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${ModalEventInfoField}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${ModalEventSelectTypeField}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//*[@class='ng-binding ng-scope'][contains(.,'Application Filed')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${EventTypeApplicationFiled}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${ModalGenericDatepickerField}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${CalendarBody}</td>
+	<td></td>
+</tr>
+<tr>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<!---->
+<!--SCRIPT 02-->
+<tr>
+	<td>setSpeed</td>
+	<td>100</td>
+	<td></td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>START</td>
+	<td></td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>storedVars['EVENT03']=='Sub Matter Created'</td>
+	<td>END</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${ProjectButtonPlus}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${ProjectButtonPlus}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=New Event</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=New Event</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${ModalGenericBody}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${ModalGenericDatepickerField}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${DatepickerToday}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${DatepickerToday}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${ModalEventInfoField}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${ModalEventSelectTypeField}</td>
+	<td></td>
+</tr>
+<!--IF-->
+<tr>
+	<td>gotoIf</td>
+	<td>storedVars['EVENT01']!=='Application Filed'</td>
+	<td>EVENT_01</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>storedVars['EVENT02']!=='Application published'</td>
+	<td>EVENT_02</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>storedVars['EVENT03']!=='Sub Matter Created'</td>
+	<td>EVENT_03</td>
+</tr>
+<!--EVENT_01-->
+<tr>
+	<td>label</td>
+	<td>EVENT_01</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${EventTypeApplicationFiled}</td>
+	<td>Application Filed</td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>${EventTypeApplicationFiled}</td>
+	<td>EVENT01</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${EventTypeApplicationFiled}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${ModalGenericSaveButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>${ModalGenericBody}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>link=Application Filed</td>
+	<td>Application Filed</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${TimelineCheckboxShrinkedEventsView}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>gotolabel</td>
+	<td>START</td>
+	<td></td>
+</tr>
+<!--EVENT_02-->
+<tr>
+	<td>label</td>
+	<td>EVENT_02</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${EventTypeApplicationPublished}</td>
+	<td>Application published</td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>${EventTypeApplicationPublished}</td>
+	<td>EVENT02</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${EventTypeApplicationPublished}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${ModalGenericSaveButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>${ModalGenericBody}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>link=Application published</td>
+	<td>Application published</td>
+</tr>
+<tr>
+	<td>gotoLabel</td>
+	<td>START</td>
+	<td></td>
+</tr>
+<!--EVENT_03-->
+<tr>
+	<td>verifyText</td>
+	<td>${EventTypeSubMatterCreated}</td>
+	<td>Sub Matter Created</td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>${EventTypeSubMatterCreated}</td>
+	<td>EVENT03</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${EventTypeSubMatterCreated}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${ModalGenericSaveButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>${ModalGenericBody}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>link=Sub Matter Created</td>
+	<td>Sub Matter Created</td>
+</tr>
+<tr>
+	<td>gotoLabel</td>
+	<td>START</td>
+	<td></td>
+</tr>
+<!--EVENT_04-->
+<!--EVENT_05-->
+<!--EVENT_06-->
+<!--EVENT_07-->
+<!--EVENT_08-->
+<!--Finish loop-->
+<tr>
+	<td>label</td>
+	<td></td>
+	<td>END</td>
+</tr>
+</tbody></table>
+</body>
+</html>

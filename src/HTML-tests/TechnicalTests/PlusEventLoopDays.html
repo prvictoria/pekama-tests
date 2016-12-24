@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>PlusEventLoopDays</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">PlusEventLoopDays</td></tr>
+</thead><tbody>
+<tr>
+	<td>forJson</td>
+	<td>${JsonPath}</td>
+	<td></td>
+</tr>
+<!--SCRIPT-->
+<tr>
+	<td>setSpeed</td>
+	<td>20</td>
+	<td></td>
+</tr>
+<!--Loop#1-->
+<tr>
+	<td>store</td>
+	<td>0</td>
+	<td>MyVar</td>
+</tr>
+<tr>
+	<td>while</td>
+	<td>storedVars.MyVar &lt;= 100</td>
+	<td></td>
+</tr>
+<tr>
+	<td>gotoLabel</td>
+	<td>START</td>
+	<td></td>
+</tr>
+<!--Execute-->
+<tr>
+	<td>label</td>
+	<td>START</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${projectButtonPlus}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${projectButtonPlus}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=New Event</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=New Event</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${modalGenericBody}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${modalEventInfoField}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${modalEventSelectTypeField}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//*[@class='ui-select-choices-row-inner'][contains(.,'Application Filed')]</td>
+	<td>Application Filed</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//*[@class='ui-select-choices-row-inner'][contains(.,'Application Filed')]</td>
+	<td>Application Filed</td>
+</tr>
+<!--Set Date-->
+<tr>
+	<td>label</td>
+	<td>DAY01</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${modalGenericDatepickerField}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${datepickerToday}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${datepickerToday}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>javascript{storedVars.MyVar++;}</td>
+	<td></td>
+</tr>
+<!--Save-->
+<tr>
+	<td>click</td>
+	<td>${modalGenericSaveButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>${modalGenericBody}</td>
+	<td></td>
+</tr>
+<!--END-->
+<tr>
+	<td>endWhile</td>
+	<td></td>
+	<td></td>
+</tr>
+<!---->
+<!--Loop#2-->
+<tr>
+	<td>store</td>
+	<td>0</td>
+	<td>MyVar</td>
+</tr>
+<tr>
+	<td>while</td>
+	<td>storedVars.MyVar &lt;= 100</td>
+	<td></td>
+</tr>
+<!--Execute-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${projectButtonPlus}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${projectButtonPlus}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=New Event</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=New Event</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${modalGenericBody}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${modalEventInfoField}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${modalEventSelectTypeField}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//*[@class='ui-select-choices-row-inner'][contains(.,'Application Filed')]</td>
+	<td>Application Filed</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//*[@class='ui-select-choices-row-inner'][contains(.,'Application Filed')]</td>
+	<td>Application Filed</td>
+</tr>
+<!--Set Date-->
+<tr>
+	<td>label</td>
+	<td>DAY01</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${modalGenericDatepickerField}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${datepickerToday}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${datepickerToday}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>xpath=(//input[@type='text'])[13]</td>
+	<td>01-Jul-2016</td>
+</tr>
+<tr>
+	<td>storeValue</td>
+	<td>${dueDateInputField}</td>
+	<td>SelectedDate</td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>${SelectedDate}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${dueDateInputField}</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>javascript{storedVars.MyVar++;}</td>
+	<td></td>
+</tr>
+<!--Save-->
+<tr>
+	<td>click</td>
+	<td>${modalGenericSaveButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>${modalGenericBody}</td>
+	<td></td>
+</tr>
+<!--END-->
+<tr>
+	<td>endWhile</td>
+	<td></td>
+	<td></td>
+</tr>
+<!---->
+<!--Loop#3-->
+<tr>
+	<td>store</td>
+	<td>0</td>
+	<td>MyVar</td>
+</tr>
+<tr>
+	<td>while</td>
+	<td>storedVars.MyVar &lt;= 100</td>
+	<td></td>
+</tr>
+<!--Execute-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${projectButtonPlus}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${projectButtonPlus}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=New Event</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=New Event</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${modalGenericBody}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${modalEventInfoField}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${modalEventSelectTypeField}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//*[@class='ui-select-choices-row-inner'][contains(.,'Application Filed')]</td>
+	<td>Application Filed</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//*[@class='ui-select-choices-row-inner'][contains(.,'Application Filed')]</td>
+	<td>Application Filed</td>
+</tr>
+<!--Set Date-->
+<tr>
+	<td>label</td>
+	<td>DAY01</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${modalGenericDatepickerField}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${datepickerToday}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${datepickerToday}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>xpath=(//input[@type='text'])[13]</td>
+	<td>01-Jul-2016</td>
+</tr>
+<tr>
+	<td>storeValue</td>
+	<td>${dueDateInputField}</td>
+	<td>SelectedDate</td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>${SelectedDate}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${dueDateInputField}</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>javascript{storedVars.MyVar++;}</td>
+	<td></td>
+</tr>
+<!--Save-->
+<tr>
+	<td>click</td>
+	<td>${modalGenericSaveButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>${modalGenericBody}</td>
+	<td></td>
+</tr>
+<!--END-->
+<tr>
+	<td>endWhile</td>
+	<td></td>
+	<td></td>
+</tr>
+<!---->
+<!--Loop#4-->
+<tr>
+	<td>store</td>
+	<td>0</td>
+	<td>MyVar</td>
+</tr>
+<tr>
+	<td>while</td>
+	<td>storedVars.MyVar &lt;= 100</td>
+	<td></td>
+</tr>
+<!--Execute-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${projectButtonPlus}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${projectButtonPlus}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=New Event</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=New Event</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${modalGenericBody}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${modalEventInfoField}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${modalEventSelectTypeField}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//*[@class='ui-select-choices-row-inner'][contains(.,'Application Filed')]</td>
+	<td>Application Filed</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//*[@class='ui-select-choices-row-inner'][contains(.,'Application Filed')]</td>
+	<td>Application Filed</td>
+</tr>
+<!--Set Date-->
+<tr>
+	<td>label</td>
+	<td>DAY01</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${modalGenericDatepickerField}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${datepickerToday}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${datepickerToday}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeValue</td>
+	<td>${dueDateInputField}</td>
+	<td>SelectedDate</td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>${SelectedDate}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${dueDateInputField}</td>
+	<td>25</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>javascript{storedVars.MyVar++;}</td>
+	<td></td>
+</tr>
+<!--Save-->
+<tr>
+	<td>click</td>
+	<td>${modalGenericSaveButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>${modalGenericBody}</td>
+	<td></td>
+</tr>
+<!--END-->
+<tr>
+	<td>endWhile</td>
+	<td></td>
+	<td></td>
+</tr>
+<!---->
+<tr>
+	<td>endForJson</td>
+	<td></td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>ProjectPlusButtonEvent</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">ProjectPlusButtonEvent</td></tr>
+</thead><tbody>
+<tr>
+	<td>label</td>
+	<td></td>
+	<td></td>
+</tr>
+<!--Create new contact in Project [+] via add old  from Contact book-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div/div/button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div/div/button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=New Event</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=New Event</td>
+	<td></td>
+</tr>
+<!--Modal "Event"-->
+<tr>
+	<td>waitForText</td>
+	<td>//ng-include/div/div/label</td>
+	<td>Date</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[2]/label</td>
+	<td>Event Type</td>
+</tr>
+<!--Event type-->
+<tr>
+	<td>click</td>
+	<td>//div/div[2]/pkm-values-dropdown/div/div/span/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[3]/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[3]/a/span</td>
+	<td>Application Filed</td>
+</tr>
+<!--Date-->
+<tr>
+	<td>type</td>
+	<td>name=number</td>
+	<td>Event 001</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div/div/div/span/i</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//ng-include/div/div/div/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//th[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//tr[4]/td</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//tr[4]/td[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//tr[4]/td[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//tr[4]/td[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//tr[4]/td[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//tr[4]/td[6]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//tr[4]/td[7]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=number</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAt</td>
+	<td>//div/div/h3</td>
+	<td>Event</td>
+</tr>
+<!--SAVE-->
+<tr>
+	<td>waitForText</td>
+	<td>//form/div[2]/button</td>
+	<td>Save</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//form/div[2]/button</td>
+	<td>Save</td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>//div[4]/div/div/div</td>
+	<td></td>
+</tr>
+<!--No date Event-->
+<!--Create new contact in Project [+] via add old  from Contact book-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div/div/button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div/div/button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=New Event</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=New Event</td>
+	<td></td>
+</tr>
+<!--Modal "Event"-->
+<tr>
+	<td>waitForText</td>
+	<td>//ng-include/div/div/label</td>
+	<td>Date</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[2]/label</td>
+	<td>Event Type</td>
+</tr>
+<!--Event type-->
+<tr>
+	<td>click</td>
+	<td>//div/div[2]/pkm-values-dropdown/div/div/span/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[3]/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[3]/a/span</td>
+	<td>Application Filed</td>
+</tr>
+<!--Date-->
+<tr>
+	<td>type</td>
+	<td>name=number</td>
+	<td>Event 001</td>
+</tr>
+<!--SAVE-->
+<tr>
+	<td>waitForText</td>
+	<td>//form/div[2]/button</td>
+	<td>Save</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//form/div[2]/button</td>
+	<td>Save</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=span.help-block.error</td>
+	<td>This field is required.</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=span.help-block.error</td>
+	<td>This field is required.</td>
+</tr>
+<!--Set date-->
+<tr>
+	<td>click</td>
+	<td>//ng-include/div/div/div/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//tr[4]/td[7]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[4]/td[7]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//form/div[2]/button</td>
+	<td>Save</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//form/div[2]/button</td>
+	<td>Save</td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>//div[4]/div/div/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>gotoLabel</td>
+	<td></td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

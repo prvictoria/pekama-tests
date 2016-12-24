@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>AddContactLoop1000</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">AddContactLoop1000</td></tr>
+</thead><tbody>
+<tr>
+	<td>setSpeed</td>
+	<td>10</td>
+	<td></td>
+</tr>
+<!--SignUp-->
+<tr>
+	<td>forJson</td>
+	<td>${JsonPath}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Contacts</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>company500list.length;</td>
+	<td>length</td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>${length}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>0</td>
+	<td>MyVar</td>
+</tr>
+<!--Start LOOP-->
+<tr>
+	<td>while</td>
+	<td>storedVars.MyVar &lt; storedVars.length</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>company500list[storedVars.MyVar]</td>
+	<td>VALUE</td>
+</tr>
+<!--ckick Add Contact button-->
+<tr>
+	<td>click</td>
+	<td>//button[@type='button']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//h3</td>
+	<td>Contact</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//h3</td>
+	<td>Contact</td>
+</tr>
+<!--Select "Company"-->
+<tr>
+	<td>select</td>
+	<td>//select[@name='type']</td>
+	<td>label=Company</td>
+</tr>
+<!--Fill "Legal entirty" field from array-->
+<tr>
+	<td>type</td>
+	<td>//input[@name='legal_entity_name']</td>
+	<td>${VALUE}</td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>${VALUE}</td>
+	<td></td>
+</tr>
+<!--Submit form-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//form/div[2]/button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//form/div[2]/button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>//h3</td>
+	<td>Contact</td>
+</tr>
+<!--Increment var++-->
+<tr>
+	<td>store</td>
+	<td>javascript{storedVars.MyVar++;}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>${MyVar}</td>
+	<td></td>
+</tr>
+<!--Finish-->
+<tr>
+	<td>endWhile</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>0</td>
+	<td>length</td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>${length}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>endForJson</td>
+	<td></td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

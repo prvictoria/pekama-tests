@@ -1,0 +1,607 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>02_Create_templates_and_deploy</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">02_Create_templates_and_deploy</td></tr>
+</thead><tbody>
+<tr>
+	<td>rollup</td>
+	<td>login as USER03 - testqweeco003@gmail.com</td>
+	<td></td>
+</tr>
+<tr>
+	<td>setSpeed</td>
+	<td>1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>qwertyu</td>
+	<td>NameOfProject1</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>asdfghj</td>
+	<td>NameOfProject2</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>zxcvbnm</td>
+	<td>NameOfProject3</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>12345</td>
+	<td>NameOfNumber1</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>123456poi</td>
+	<td>NameOfNumber2</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>1234567890</td>
+	<td>NameOfNumber3</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>Reference Number</td>
+	<td>NameOfNumberType</td>
+</tr>
+<!--Login as user-->
+<tr>
+	<td>forJson</td>
+	<td>${JsonPath}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>setSpeed</td>
+	<td>150</td>
+	<td></td>
+</tr>
+<tr>
+	<td>goto</td>
+	<td>check_search</td>
+	<td></td>
+</tr>
+<!--Deploy from reports/projects - #1-->
+<tr>
+	<td>open</td>
+	<td>${urlReportsProjects}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${dashboardSelectProjectTemplatesButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>${dashboardSelectProjectTemplatesButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${dashboardSelectProjectTemplatesButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${dashboardSelectProjectTemplatesTemplate01}</td>
+	<td>${nameProjectTemplateTM}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${dashboardSelectProjectTemplatesTemplate01}</td>
+	<td></td>
+</tr>
+<!--Redirect to Project and check results-->
+<tr>
+	<td>waitForText</td>
+	<td>${projectTabMore_ProjectTitle}</td>
+	<td>${nameProjectTemporary}</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${projectTabMore_ProjectTitle}</td>
+	<td>${nameProjectTemporary}</td>
+</tr>
+<!--Rename project-->
+<tr>
+	<td>click</td>
+	<td>${projectTabMore_TitleEditButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${projectTabMore_TitleInput}</td>
+	<td>${NameOfProject1}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${projectTabMore_TitleSave}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>${projectTabMore_TitleSave}</td>
+	<td></td>
+</tr>
+<!--TEST SUITE - Create Number-->
+<tr>
+	<td>waitForText</td>
+	<td>${projectTabMore_NumberNoNumbers}</td>
+	<td>${placeholderNoNumbers}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${projectTabMore_NumberNewSelect}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${projectTabMore_NumberNewField}</td>
+	<td>${NameOfNumberType}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${genericSelectHighlighted}</td>
+	<td>${NameOfNumberType}</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${projectTabMore_NumberReferenceField}</td>
+	<td>${NameOfNumber1}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${projectTabMore_NumberAdd}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${projectTabMore_NumberRow01Type}</td>
+	<td>${NameOfNumberType}</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${projectTabMore_NumberRow01Number}</td>
+	<td>${NameOfNumber1}</td>
+</tr>
+<!---->
+<!--Deploy from reports/projects - #2-->
+<tr>
+	<td>open</td>
+	<td>${urlReportsProjects}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${dashboardSelectProjectTemplatesButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>${dashboardSelectProjectTemplatesButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${dashboardSelectProjectTemplatesButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${dashboardSelectProjectTemplatesTemplate01}</td>
+	<td>${nameProjectTemplateTM}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${dashboardSelectProjectTemplatesTemplate01}</td>
+	<td></td>
+</tr>
+<!--Redirect to Project and check results-->
+<tr>
+	<td>waitForText</td>
+	<td>${projectTabMore_ProjectTitle}</td>
+	<td>${nameProjectTemporary}</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${projectTabMore_ProjectTitle}</td>
+	<td>${nameProjectTemporary}</td>
+</tr>
+<!--Rename project-->
+<tr>
+	<td>click</td>
+	<td>${projectTabMore_TitleEditButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${projectTabMore_TitleInput}</td>
+	<td>${NameOfProject2}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${projectTabMore_TitleSave}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>${projectTabMore_TitleSave}</td>
+	<td></td>
+</tr>
+<!--TEST SUITE - Create Number-->
+<tr>
+	<td>waitForText</td>
+	<td>${projectTabMore_NumberNoNumbers}</td>
+	<td>${placeholderNoNumbers}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${projectTabMore_NumberNewSelect}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${projectTabMore_NumberNewField}</td>
+	<td>${NameOfNumberType}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${genericSelectHighlighted}</td>
+	<td>${NameOfNumberType}</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${projectTabMore_NumberReferenceField}</td>
+	<td>${NameOfNumber2}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${projectTabMore_NumberAdd}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${projectTabMore_NumberRow01Type}</td>
+	<td>${NameOfNumberType}</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${projectTabMore_NumberRow01Number}</td>
+	<td>${NameOfNumber2}</td>
+</tr>
+<!---->
+<!--Deploy from reports/projects - #3-->
+<tr>
+	<td>open</td>
+	<td>${urlReportsProjects}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${dashboardSelectProjectTemplatesButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>${dashboardSelectProjectTemplatesButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${dashboardSelectProjectTemplatesButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${dashboardSelectProjectTemplatesTemplate01}</td>
+	<td>${nameProjectTemplateTM}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${dashboardSelectProjectTemplatesTemplate01}</td>
+	<td></td>
+</tr>
+<!--Redirect to Project and check results-->
+<tr>
+	<td>waitForText</td>
+	<td>${projectTabMore_ProjectTitle}</td>
+	<td>${nameProjectTemporary}</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${projectTabMore_ProjectTitle}</td>
+	<td>${nameProjectTemporary}</td>
+</tr>
+<!--Rename project-->
+<tr>
+	<td>click</td>
+	<td>${projectTabMore_TitleEditButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${projectTabMore_TitleInput}</td>
+	<td>${NameOfProject3}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${projectTabMore_TitleSave}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>${projectTabMore_TitleSave}</td>
+	<td></td>
+</tr>
+<!--TEST SUITE - Create Number-->
+<tr>
+	<td>waitForText</td>
+	<td>${projectTabMore_NumberNoNumbers}</td>
+	<td>${placeholderNoNumbers}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${projectTabMore_NumberNewSelect}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${projectTabMore_NumberNewField}</td>
+	<td>${NameOfNumberType}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${genericSelectHighlighted}</td>
+	<td>${NameOfNumberType}</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${projectTabMore_NumberReferenceField}</td>
+	<td>${NameOfNumber3}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${projectTabMore_NumberAdd}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${projectTabMore_NumberRow01Type}</td>
+	<td>${NameOfNumberType}</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${projectTabMore_NumberRow01Number}</td>
+	<td>${NameOfNumber3}</td>
+</tr>
+<!---->
+<tr>
+	<td>label</td>
+	<td>check_search</td>
+	<td></td>
+</tr>
+<!--SEARCH TESTS - Free text Project names-->
+<tr>
+	<td>open</td>
+	<td>${urlReportsProjects}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>rollup</td>
+	<td>waitForPageSpinner not Present</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${reportsFiltersFreeText}</td>
+	<td>${NameOfProject1}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${reportsFiltersButtonSearch}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=span.highlighted</td>
+	<td>exact:${NameOfProject1}</td>
+</tr>
+<!---->
+<tr>
+	<td>type</td>
+	<td>${reportsFiltersFreeText}</td>
+	<td>${NameOfProject2}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${reportsFiltersButtonSearch}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForNotVisible</td>
+	<td>${reportsSpinner}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=span.highlighted</td>
+	<td>exact:${NameOfProject2}</td>
+</tr>
+<!---->
+<tr>
+	<td>type</td>
+	<td>${reportsFiltersFreeText}</td>
+	<td>${NameOfProject3}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${reportsFiltersButtonSearch}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForNotVisible</td>
+	<td>${reportsSpinner}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=span.highlighted</td>
+	<td>exact:${NameOfProject3}</td>
+</tr>
+<!--Search Free text  Ref numbers - relevant results-->
+<tr>
+	<td>type</td>
+	<td>${reportsFiltersFreeText}</td>
+	<td>${NameOfNumber1}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${reportsFiltersButtonSearch}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForNotVisible</td>
+	<td>${reportsSpinner}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=span.highlighted</td>
+	<td>exact:${NameOfNumber1}</td>
+</tr>
+<!---->
+<tr>
+	<td>type</td>
+	<td>${reportsFiltersFreeText}</td>
+	<td>${NameOfNumber2}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${reportsFiltersButtonSearch}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForNotVisible</td>
+	<td>${reportsSpinner}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=span.highlighted</td>
+	<td>exact:${NameOfNumber2}</td>
+</tr>
+<!---->
+<tr>
+	<td>type</td>
+	<td>${reportsFiltersFreeText}</td>
+	<td>${NameOfNumber3}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${reportsFiltersButtonSearch}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForNotVisible</td>
+	<td>${reportsSpinner}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=span.highlighted</td>
+	<td>exact:${NameOfNumber3}</td>
+</tr>
+<!---->
+<tr>
+	<td>goto</td>
+	<td>end</td>
+	<td></td>
+</tr>
+<!--Delete All projects-->
+<tr>
+	<td>click</td>
+	<td>${reportsFiltersButtonClear}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${reportsAllCheckbox}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyChecked</td>
+	<td>${reportsAllCheckbox}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>300</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>${reportsBulkDelete}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${reportsBulkDelete}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>rollup</td>
+	<td>modalConfirmAction</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${reportsNoData}</td>
+	<td>${placeholderNoData}</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${reportsNoData}</td>
+	<td>${placeholderNoData}</td>
+</tr>
+<!---->
+<tr>
+	<td>label</td>
+	<td>end</td>
+	<td></td>
+</tr>
+<!--Logout-->
+<tr>
+	<td>open</td>
+	<td>${urlLogput}</td>
+	<td></td>
+</tr>
+<!--Finish-->
+<tr>
+	<td>endForJson</td>
+	<td></td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>LoginOnly</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">LoginOnly</td></tr>
+</thead><tbody>
+<tr>
+	<td>forJson</td>
+	<td>${JsonPath}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>${personalSettings}</td>
+	<td></td>
+</tr>
+<!--Check state by default-->
+<tr>
+	<td>rollup</td>
+	<td>verify value Personal settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='login-security']/div/form/fieldset/h4</td>
+	<td>Change Password</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='login-security']/div/form/fieldset/div[2]/div/label</td>
+	<td>Current password:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='login-security']/div/form/fieldset/div[3]/div/label</td>
+	<td>New password:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='login-security']/div/form/fieldset/div[4]/div/label</td>
+	<td>Confirm new password:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${personalSettingsSaveButton}</td>
+	<td>Save</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='login-security']/div/fieldset/h4</td>
+	<td>2-step verification</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='login-security']/div/fieldset/div/div/p[2]/span[3]</td>
+	<td>Disabled</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${personalSettingsEnableButton}</td>
+	<td>Enable</td>
+</tr>
+<!--Change Password - validation empty-->
+<tr>
+	<td>rollup</td>
+	<td>verify value Personal settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${personalSettingsCurrentPassword}</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${personalSettingsCurrentPassword}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${personalSettingsSaveButton}</td>
+	<td>Save</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='login-security']/div/form/fieldset/div[2]/div/span</td>
+	<td>This field may not be blank.</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='login-security']/div/form/fieldset/div[2]/div/span</td>
+	<td>This field may not be blank.</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='login-security']/div/form/fieldset/div[3]/div/span</td>
+	<td>This field is required.</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='login-security']/div/form/fieldset/div[4]/div/span</td>
+	<td>This field is required.</td>
+</tr>
+<!--Change Password - validation empty New password & Confirm-->
+<tr>
+	<td>rollup</td>
+	<td>verify value Personal settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${personalSettingsCurrentPassword}</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${personalSettingsSaveButton}</td>
+	<td>Save</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='login-security']/div/form/fieldset/div[3]/div/span</td>
+	<td>This field is required.</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='login-security']/div/form/fieldset/div[4]/div/span</td>
+	<td>This field is required.</td>
+</tr>
+<!--Change Password - validation empty Current & Confirm / BUG validation-->
+<tr>
+	<td>rollup</td>
+	<td>verify value Personal settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${personalSettingsNewPassword}</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${personalSettingsSaveButton}</td>
+	<td>Save</td>
+</tr>
+<tr>
+	<td>expectError</td>
+	<td>/not found/</td>
+	<td>This field may not be blank.</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='login-security']/div/form/fieldset/div[2]/div/span</td>
+	<td>This field may not be blank.</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='login-security']/div/form/fieldset/div[4]/div/span</td>
+	<td>This field is required.</td>
+</tr>
+<!--Change Password - validation empty Current & New / BUG validation-->
+<tr>
+	<td>rollup</td>
+	<td>verify value Personal settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${personalSettingsConfirmPassword}</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${personalSettingsSaveButton}</td>
+	<td>Save</td>
+</tr>
+<tr>
+	<td>expectError</td>
+	<td>/not found/</td>
+	<td>This field may not be blank.</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='login-security']/div/form/fieldset/div[2]/div/span</td>
+	<td>This field may not be blank.</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='login-security']/div/form/fieldset/div[3]/div/span</td>
+	<td>This field is required.</td>
+</tr>
+<tr>
+	<td>captureEntirePageScreenshot</td>
+	<td>C:\Users\slava\Google Диск\JavaLang\PekamaSeleniumIDE_tests\2.jpg</td>
+	<td></td>
+</tr>
+<!---->
+<!--Change Password - no Current password - BUG noValidation Current password MAJOR-->
+<tr>
+	<td>rollup</td>
+	<td>verify value Personal settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${personalSettingsNewPassword}</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${personalSettingsConfirmPassword}</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${personalSettingsSaveButton}</td>
+	<td>Save</td>
+</tr>
+<tr>
+	<td>expectError</td>
+	<td>/not found/</td>
+	<td>This field may not be blank.</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='login-security']/div/form/fieldset/div[2]/div/span</td>
+	<td>This field may not be blank.</td>
+</tr>
+<!--Change Password - no New password-->
+<tr>
+	<td>rollup</td>
+	<td>verify value Personal settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${personalSettingsCurrentPassword}</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${personalSettingsNewPassword}</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${personalSettingsSaveButton}</td>
+	<td>Save</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='login-security']/div/form/fieldset/div[4]/div/span</td>
+	<td>This field is required.</td>
+</tr>
+<!--Change Password - no Confirm password-->
+<tr>
+	<td>rollup</td>
+	<td>verify value Personal settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${personalSettingsCurrentPassword}</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${personalSettingsConfirmPassword}</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${personalSettingsSaveButton}</td>
+	<td>Save</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='login-security']/div/form/fieldset/div[3]/div/span</td>
+	<td>This field is required.</td>
+</tr>
+<!--Change Password - not Sane new and confirm-->
+<tr>
+	<td>rollup</td>
+	<td>verify value Personal settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${personalSettingsNewPassword}</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${personalSettingsConfirmPassword}</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${personalSettingsSaveButton}</td>
+	<td>Save</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='login-security']/div/form/fieldset/div</td>
+	<td>Passwords do not match</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='login-security']/div/form/fieldset/div</td>
+	<td>Passwords do not match</td>
+</tr>
+<!---->
+<!--Enable 2-step verification-->
+<tr>
+	<td>rollup</td>
+	<td>verify value Personal settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${personalSettingsEnableButton}</td>
+	<td></td>
+</tr>
+<!--Modal - Enable 2-Step Verification-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${modalGenericBody}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${mwEnableVerificationTitle}</td>
+	<td>Enable 2-Step Verification</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=div.form-group &gt; label</td>
+	<td>Enter your phone number, please:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${mwEnableVerificationClose}</td>
+	<td>Close</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${mwEnableVerificationNext}</td>
+	<td>Next</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${mwEnableVerificationCountrySelect}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForValue</td>
+	<td>${mwEnableVerificationCoutryField}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${mwEnableVerificationCoutryField}</td>
+	<td>bela</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>link=Belarus</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Belarus</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=span.input-group-addon.ng-binding</td>
+	<td>+375</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>name=phone</td>
+	<td></td>
+</tr>
+<!--Modal - Enable 2-Step Verification/ validate incorrect number-->
+<tr>
+	<td>type</td>
+	<td>name=phone</td>
+	<td>123</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${mwEnableVerificationNext}</td>
+	<td>Next</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[2]/form/div</td>
+	<td>exact:21211: The 'To' number 375123 is not a valid phone number.</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[2]/form/div</td>
+	<td>exact:21211: The 'To' number 375123 is not a valid phone number.</td>
+</tr>
+<!--Modal - Enable 2-Step Verification/ validate CORRECT number-->
+<tr>
+	<td>type</td>
+	<td>name=phone</td>
+	<td>291200656</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${mwEnableVerificationNext}</td>
+	<td>Next</td>
+</tr>
+<!--Modal - Enable 2-Step Verification/ validate Invalid code number-->
+<tr>
+	<td>waitForText</td>
+	<td>//div[2]/div[2]/div/p</td>
+	<td>We sent a confirmation code to your phone. Please enter it in the field below.</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[2]/div[2]/div/p</td>
+	<td>We sent a confirmation code to your phone. Please enter it in the field below.</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>${mwEnableVerificationConfirmCodeField}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${mwEnableVerificationConfirmCodeField}</td>
+	<td>12345678901234567890</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${mwEnableVerificationNext}</td>
+	<td>Next</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[2]/div[2]/div/span</td>
+	<td>Wrong confirmation code format. It must be a number between 100000 and 999999</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[2]/div[2]/div/span</td>
+	<td>Wrong confirmation code format. It must be a number between 100000 and 999999</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${mwEnableVerificationConfirmCodeField}</td>
+	<td>qwerty</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${mwEnableVerificationNext}</td>
+	<td>Next</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[2]/div[2]/div/span</td>
+	<td>Wrong confirmation code format. It must be a number between 100000 and 999999</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[2]/div[2]/div/span</td>
+	<td>Wrong confirmation code format. It must be a number between 100000 and 999999</td>
+</tr>
+<!--Modal - Enable 2-Step Verification/ validate WRONG code number-->
+<tr>
+	<td>type</td>
+	<td>${mwEnableVerificationConfirmCodeField}</td>
+	<td>100000 </td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${mwEnableVerificationNext}</td>
+	<td>Next</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[2]/div[2]/div/span</td>
+	<td>Wrong confirmation code. Attempts left: 2.</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[2]/div[2]/div/span</td>
+	<td>Wrong confirmation code. Attempts left: 2.</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${mwEnableVerificationConfirmCodeField}</td>
+	<td>999999</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${mwEnableVerificationNext}</td>
+	<td>Next</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[2]/div[2]/div/span</td>
+	<td>Wrong confirmation code. Attempts left: 1.</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[2]/div[2]/div/span</td>
+	<td>Wrong confirmation code. Attempts left: 1.</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${mwEnableVerificationConfirmCodeField}</td>
+	<td>123123</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${mwEnableVerificationNext}</td>
+	<td>Next</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//form/div[2]/div/p</td>
+	<td>You're out of attempts, please request a new confirmation code.</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//form/div[2]/div/p</td>
+	<td>You're out of attempts, please request a new confirmation code.</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${mwEnableVerificationClose}</td>
+	<td>Close</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${mwEnableVerificationClose}</td>
+	<td>Close</td>
+</tr>
+<!--END-->
+<tr>
+	<td>endForJson</td>
+	<td></td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

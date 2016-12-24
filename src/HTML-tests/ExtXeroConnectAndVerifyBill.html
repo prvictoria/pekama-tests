@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>XeroConnectAndVerifyBill</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">XeroConnectAndVerifyBill</td></tr>
+</thead><tbody>
+<tr>
+	<td>setSpeed</td>
+	<td>50</td>
+	<td></td>
+</tr>
+<tr>
+	<td>forJson</td>
+	<td>${JsonPath}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>rollup</td>
+	<td>login as USER03 - testqweeco003@gmail.com</td>
+	<td></td>
+</tr>
+<!--open project-->
+<tr>
+	<td>open</td>
+	<td>${urlDashboard}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${dashboardProjectList01}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${dashboardProjectList01}</td>
+	<td></td>
+</tr>
+<!--Check bill row-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${projectTabFin}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${projectTabFin}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${projectTabFin_01Type}</td>
+	<td>Service Charges</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${projectTabFin_01Total}</td>
+	<td>1,000.00 GBP</td>
+</tr>
+<!---->
+<!--Connect to Xero-->
+<!--Xero connect-->
+<tr>
+	<td>click</td>
+	<td>${projectTabTask_BulkSelectAll}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${projectTabFin_ToXero}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${projectTabFin_ToXero}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>rollup</td>
+	<td>waitForPageSpinner not Present</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<!---->
+<!--If modal "Invoice created" displayed-->
+<tr>
+	<td>storeElementPresent</td>
+	<td>${genericButtonYes}</td>
+	<td>InvoiceCreated</td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>${InvoiceCreated}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${InvoiceCreated}==true</td>
+	<td>check_invoice</td>
+</tr>
+<!--If LOGIN XERO displayed-->
+<tr>
+	<td>storeElementPresent</td>
+	<td>${extXeroLogin}</td>
+	<td>xeroLogin</td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>${xeroLogin}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${xeroLogin}==true</td>
+	<td>login_xero</td>
+</tr>
+<!--If Confirm access page present-->
+<tr>
+	<td>storeElementPresent</td>
+	<td>id=submit-button</td>
+	<td>AllowButton</td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>${AllowButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${AllowButton}==true</td>
+	<td>xeroAccept</td>
+</tr>
+<!---->
+<!--Login XERO-->
+<tr>
+	<td>label</td>
+	<td>login_xero</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${extXeroLogin}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${extXeroEmail}</td>
+	<td>${gmailTest03}</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${extXeroPassword}</td>
+	<td>${gmailTestGenericPass}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${extXeroLogin}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>${extXeroLogin}</td>
+	<td></td>
+</tr>
+<!--If Confirm access page present-->
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementPresent</td>
+	<td>${extXeroAccept}</td>
+	<td>AllowButton</td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>${AllowButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${AllowButton}==true</td>
+	<td>xeroAccept</td>
+</tr>
+<!--If LOGIN XERO displayed-->
+<tr>
+	<td>storeElementPresent</td>
+	<td>${genericButtonYes}</td>
+	<td>InvoiceCreated</td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>${InvoiceCreated}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${InvoiceCreated}==true</td>
+	<td>check_invoice</td>
+</tr>
+<!--Xero Confirm access page - Allow-->
+<tr>
+	<td>label</td>
+	<td>xeroAccept</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${extXeroAccept}</td>
+	<td>XeroAccceptButton</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${extXeroAccept}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>${extXeroAccept}</td>
+	<td></td>
+</tr>
+<!---->
+<!--IF token valid - wait for - modal "Invoice created" displayed-->
+<tr>
+	<td>label</td>
+	<td>check_invoice</td>
+	<td></td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${genericButtonYes}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${genericButtonYes}</td>
+	<td>Yes</td>
+</tr>
+<!--Check created Xero invoice-->
+<tr>
+	<td>selectPopUpAndWait</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementPresent</td>
+	<td>${extXeroLogin}</td>
+	<td>xeroLogin1</td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>${xeroLogin1}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${xeroLogin1}==false</td>
+	<td>xeroCheckBill</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${extXeroLogin}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${extXeroEmail}</td>
+	<td>${gmailTest03}</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${extXeroPassword}</td>
+	<td>${gmailTestGenericPass}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${extXeroLogin}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>${extXeroLogin}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>xeroCheckBill</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${extXeroBillTotal}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>${extXeroBillTotal}</td>
+	<td>1,000.00</td>
+</tr>
+<tr>
+	<td>close</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${projectTabFin_01Type}</td>
+	<td>Service Charges</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${projectTabFin_01Total}</td>
+	<td>1,000.00 GBP</td>
+</tr>
+<!---->
+<tr>
+	<td>open</td>
+	<td>${urlLogput}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>endForJson</td>
+	<td></td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

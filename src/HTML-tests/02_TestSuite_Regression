@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+  <title>Test Suite</title>
+</head>
+<body>
+<table id="suiteTable" cellpadding="1" cellspacing="1" border="1" class="selenium"><tbody>
+<tr><td><b>Test Suite</b></td></tr>
+<tr><td><a href="00_BeforeTests.html">00_BeforeTests</a></td></tr>
+<tr><td><a href="DeploymentTests/03_Deploy_templates_conversation.html">03_Deploy_templates_conversation</a></td></tr>
+<tr><td><a href="ConversationEmailParameters.html">ConversationEmailParameters</a></td></tr>
+<tr><td><a href="CreateDeleteProject.html">CreateDeleteProject</a></td></tr>
+<tr><td><a href="CreateProject.html">CreateProject</a></td></tr>
+<tr><td><a href="Dashboard.html">Dashboard</a></td></tr>
+<tr><td><a href="DashboardCheckout.html">DashboardCheckout</a></td></tr>
+<tr><td><a href="DashboardLogout.html">DashboardLogout</a></td></tr>
+<tr><td><a href="DeployMessageTemplate.html">DeployMessageTemplate</a></td></tr>
+<tr><td><a href="EventsBasicFilters.html">EventsBasicFilters</a></td></tr>
+<tr><td><a href="ExtBOXconnect.html">ExtBOXconnect</a></td></tr>
+<tr><td><a href="ExtXeroConnectAndVerifyBill.html">ExtXeroConnectAndVerifyBill</a></td></tr>
+<tr><td><a href="MwNewContact.html">MwNewContact</a></td></tr>
+<tr><td><a href="MwNewProject.html">MwNewProject</a></td></tr>
+<tr><td><a href="MwTimeTracker.html">MwTimeTracker</a></td></tr>
+<tr><td><a href="PersonalSettings.html">PersonalSettings</a></td></tr>
+<tr><td><a href="PersonalSettings_LoginSecurity.html">PersonalSettings_LoginSecurity</a></td></tr>
+<tr><td><a href="PersonalSettings_Notifications.html">PersonalSettings_Notifications</a></td></tr>
+<tr><td><a href="PersonalSettings_Personaldetails.html">PersonalSettings_Personaldetails</a></td></tr>
+<tr><td><a href="PersonalSettings_SecurityTab.html">PersonalSettings_SecurityTab</a></td></tr>
+<tr><td><a href="PersonalSettings_Signature.html">PersonalSettings_Signature</a></td></tr>
+<tr><td><a href="ProjectAddCollaborator.html">ProjectAddCollaborator</a></td></tr>
+<tr><td><a href="ProjectAddContacts.html">ProjectAddContacts</a></td></tr>
+<tr><td><a href="ProjectAddNumber.html">ProjectAddNumber</a></td></tr>
+<tr><td><a href="ProjectBulkDeleteFiles.html">ProjectBulkDeleteFiles</a></td></tr>
+<tr><td><a href="ProjectCheckFileRename.html">ProjectCheckFileRename</a></td></tr>
+<tr><td><a href="ProjectCheckRename.html">ProjectCheckRename</a></td></tr>
+<tr><td><a href="ProjectContactTab.html">ProjectContactTab</a></td></tr>
+<tr><td><a href="ProjectCreateFolder.html">ProjectCreateFolder</a></td></tr>
+<tr><td><a href="ProjectDeleteFileMenu.html">ProjectDeleteFileMenu</a></td></tr>
+<tr><td><a href="ProjectFamily.html">ProjectFamily</a></td></tr>
+<tr><td><a href="ProjectFinancials.html">ProjectFinancials</a></td></tr>
+<tr><td><a href="ProjectNewConversation.html">ProjectNewConversation</a></td></tr>
+<tr><td><a href="ProjectPlusButton.html">ProjectPlusButton</a></td></tr>
+<tr><td><a href="ProjectPlusButtonContact.html">ProjectPlusButtonContact</a></td></tr>
+<tr><td><a href="ProjectPlusButtonEvent.html">ProjectPlusButtonEvent</a></td></tr>
+<tr><td><a href="ProjectPlusButtonNumber.html">ProjectPlusButtonNumber</a></td></tr>
+<tr><td><a href="ProjectPlusEvent.html">ProjectPlusEvent</a></td></tr>
+<tr><td><a href="ProjectsConversationPinUnpin.html">ProjectsConversationPinUnpin</a></td></tr>
+<tr><td><a href="ProjectUploadFile.html">ProjectUploadFile</a></td></tr>
+<tr><td><a href="ReportsContacts.html">ReportsContacts</a></td></tr>
+<tr><td><a href="ReportsFinBasicFilters.html">ReportsFinBasicFilters</a></td></tr>
+<tr><td><a href="ReportsProjectBasicFilters.html">ReportsProjectBasicFilters</a></td></tr>
+<tr><td><a href="ReportsProjectDeleteAllCreatedToday.html">ReportsProjectDeleteAllCreatedToday</a></td></tr>
+<tr><td><a href="ReportsTasksBasicFilters.html">ReportsTasksBasicFilters</a></td></tr>
+<tr><td><a href="TeamSettings.html">TeamSettings</a></td></tr>
+<tr><td><a href="TeamSettingsDefaultStorage.html">TeamSettingsDefaultStorage</a></td></tr>
+<tr><td><a href="TeamSettingsDocumentTemplate.html">TeamSettingsDocumentTemplate</a></td></tr>
+<tr><td><a href="TeamSettingsEventTemplate.html">TeamSettingsEventTemplate</a></td></tr>
+<tr><td><a href="TeamSettingsMessageTemplate.html">TeamSettingsMessageTemplate</a></td></tr>
+<tr><td><a href="TeamSettingsPlaceholders.html">TeamSettingsPlaceholders</a></td></tr>
+<tr><td><a href="TeamSettingsProjectTemplates.html">TeamSettingsProjectTemplates</a></td></tr>
+<tr><td><a href="TeamSettingsSelectTeam.html">TeamSettingsSelectTeam</a></td></tr>
+<tr><td><a href="TeamSettingsTaskTemplate.html">TeamSettingsTaskTemplate</a></td></tr>
+<tr><td><a href="TeamSettingsValues.html">TeamSettingsValues</a></td></tr>
+<tr><td><a href="TeamSettingsValuesTaskStatus.html">TeamSettingsValuesTaskStatus</a></td></tr>
+<tr><td><a href="DeploymentTests/01_Create_project_trademark.html">01_Create_project_trademark</a></td></tr>
+<tr><td><a href="DeploymentTests/02_Create_templates_and_deploy.html">02_Create_templates_and_deploy</a></td></tr>
+<tr><td><a href="DeploymentTests/03_Deploy_precreated_templates_and_messages.html">03_Deploy_precreated_templates_and_messages</a></td></tr>
+<tr><td><a href="DeploymentTests/04_Edit_objects_project.html">04_Edit_objects_project</a></td></tr>
+<tr><td><a href="DeploymentTests/06_BOX_tests.html">06_BOX_tests</a></td></tr>
+</tbody></table>
+</body>
+</html>

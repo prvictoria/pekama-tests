@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>PersonalSettings_Signature</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">PersonalSettings_Signature</td></tr>
+</thead><tbody>
+<tr>
+	<td>forJson</td>
+	<td>${JsonPath}</td>
+	<td></td>
+</tr>
+<!--Start-->
+<tr>
+	<td>open</td>
+	<td>${personalSettings}</td>
+	<td></td>
+</tr>
+<!--Emails tab-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${personalSettingsTabSignature}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${personalSettingsTabSignature}</td>
+	<td>E-mail signature</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${personalSettingsTabSignature}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='signature']/div/form/fieldset/h4</td>
+	<td>Edit Signature</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='signature']/div/form/fieldset/div[3]/button[2]</td>
+	<td>Save</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>xpath=(//button[@type='button'])[16]</td>
+	<td>Delete</td>
+</tr>
+<!--Check the elements-->
+<!--Finish-->
+<tr>
+	<td>endForJson</td>
+	<td></td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

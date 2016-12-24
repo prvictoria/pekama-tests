@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>ModalNewProject</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">ModalNewProject</td></tr>
+</thead><tbody>
+<!--Validation fields Test-->
+<tr>
+	<td>forJson</td>
+	<td>${JsonPath}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>setSpeed</td>
+	<td>70</td>
+	<td></td>
+</tr>
+<!--Verify present elements-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${modalGenericBody}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${modalGenericTitle}</td>
+	<td>New Project</td>
+</tr>
+<!--Validation req.fields - Type and Title-->
+<tr>
+	<td>waitForText</td>
+	<td>${modalNewProjectFinishButton}</td>
+	<td>FINISH</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${modalNewProjectFinishButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//fieldset/div/span</td>
+	<td>This field is required.</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//fieldset/div[2]/span</td>
+	<td>This field is required.</td>
+</tr>
+<!--Validation req.fields - Defining and Title-->
+<tr>
+	<td>click</td>
+	<td>//fieldset/div/div/div/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[3]/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[3]/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${modalNewProjectFinishButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//fieldset/div[2]/span</td>
+	<td>This field may not be null.</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//fieldset/div[3]/span</td>
+	<td>This field is required.</td>
+</tr>
+<!--Validation req.fields - Title-->
+<tr>
+	<td>click</td>
+	<td>//fieldset/div[2]/div/div/span/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[3]/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[3]/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${modalNewProjectFinishButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//fieldset/div[3]/span</td>
+	<td>This field is required.</td>
+</tr>
+<!--Validation req.fields - Defining -->
+<tr>
+	<td>click</td>
+	<td>//fieldset/div/div/div/span/span[2]/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[4]/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[4]/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@name='title']</td>
+	<td>Test title</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${modalNewProjectFinishButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//fieldset/div[2]/span</td>
+	<td>This field may not be null.</td>
+</tr>
+<tr>
+	<td>endForJson</td>
+	<td></td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

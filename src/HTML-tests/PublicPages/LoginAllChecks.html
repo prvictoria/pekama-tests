@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>LoginAllChecks</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">LoginAllChecks</td></tr>
+</thead><tbody>
+<!--Bad login-->
+<!--Open login page-->
+<tr>
+	<td>open</td>
+	<td>/accounts/login/?next=/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=loginPassword</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=loginEmail</td>
+	<td>zzkarlson@gmail.com123</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=button.btn.btn-default</td>
+	<td></td>
+</tr>
+<!--Check result-->
+<tr>
+	<td>waitForText</td>
+	<td>css=button.btn.btn-default</td>
+	<td>Login</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=ul.errorlist.nonfield &gt; li</td>
+	<td>Please enter a correct email address and password. Note that both fields may be case-sensitive.</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=label.control-label</td>
+	<td>exact:Email:</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=log in</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=log in</td>
+	<td>log in</td>
+</tr>
+<!--Bad password-->
+<!--Open login page-->
+<tr>
+	<td>open</td>
+	<td>/accounts/login/?next=/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=loginPassword</td>
+	<td>12345678</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=loginEmail</td>
+	<td>zzkarlson@gmail.com</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=button.btn.btn-default</td>
+	<td></td>
+</tr>
+<!--Check result-->
+<tr>
+	<td>waitForText</td>
+	<td>css=button.btn.btn-default</td>
+	<td>Login</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=ul.errorlist.nonfield &gt; li</td>
+	<td>Please enter a correct email address and password. Note that both fields may be case-sensitive.</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=label.control-label</td>
+	<td>exact:Email:</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[3]/label</td>
+	<td>exact:Password:</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=log in</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=log in</td>
+	<td>log in</td>
+</tr>
+<!---->
+<!--Forgot password-->
+<!--Open login page-->
+<tr>
+	<td>open</td>
+	<td>/accounts/login/?next=/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>link=exact:Forgot your password?</td>
+	<td>exact:Forgot your password?</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=exact:Forgot your password?</td>
+	<td>exact:Forgot your password?</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=exact:Forgot your password?</td>
+	<td></td>
+</tr>
+<!--Reset password page-->
+<tr>
+	<td>waitForText</td>
+	<td>//div[3]/div/div</td>
+	<td>Reset Password</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[3]/div/div</td>
+	<td>Reset Password</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//label</td>
+	<td>E-mail address:</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>name=email</td>
+	<td></td>
+</tr>
+<!--Not email-->
+<tr>
+	<td>type</td>
+	<td>name=email</td>
+	<td>123456789</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[2]/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[2]/input</td>
+	<td></td>
+</tr>
+<!--Invalid email-->
+<tr>
+	<td>type</td>
+	<td>name=email</td>
+	<td>12@123456789</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//div[2]/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//span/ul/li</td>
+	<td>Enter a valid email address.</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//span/ul/li</td>
+	<td>Enter a valid email address.</td>
+</tr>
+<!--Reset password-->
+<tr>
+	<td>type</td>
+	<td>name=email</td>
+	<td>V375291200656@gmail.com</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//div[2]/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[3]/div/div</td>
+	<td>Password reset successful</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[3]/div/div</td>
+	<td>Password reset successful</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[3]/div/div[2]</td>
+	<td>You've been sent an email with password restoration instructions.</td>
+</tr>
+<!--Check gmail-->
+<!--Finish-->
+</tbody></table>
+</body>
+</html>

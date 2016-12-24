@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>Dashboard</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Dashboard</td></tr>
+</thead><tbody>
+<tr>
+	<td>forJson</td>
+	<td>${JsonPath}</td>
+	<td></td>
+</tr>
+<!--Dashboard-->
+<tr>
+	<td>rollup</td>
+	<td>login as USER03 zzkarlson</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Dashboard</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=Dashboard</td>
+	<td></td>
+</tr>
+<!--Check present elements-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//img</td>
+	<td>TeamLogo</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>//input[@type='text']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@type='text']</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//button</td>
+	<td></td>
+</tr>
+<!--Check search page-->
+<tr>
+	<td>waitForText</td>
+	<td>//div/div/div/span/span</td>
+	<td>Any</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div/div/div/span/span</td>
+	<td>Any</td>
+</tr>
+<tr>
+	<td>waitForValue</td>
+	<td>xpath=(//input[@type='text'])[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Project</td>
+	<td>Project</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Reference Number</td>
+	<td>Reference Number</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Contact</td>
+	<td>Contact</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Event</td>
+	<td>Event</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Task</td>
+	<td>Task</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Conversation</td>
+	<td>Conversation</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Financial</td>
+	<td>Financial</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=File</td>
+	<td>File</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Classification</td>
+	<td>Classification</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Classification</td>
+	<td>Classification</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Dashboard</td>
+	<td></td>
+</tr>
+<!--Nex dashboard checks-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//a/img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Dashboard</td>
+	<td>Dashboard</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Projects</td>
+	<td>Projects</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Tasks</td>
+	<td>Tasks</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Events</td>
+	<td>Events</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Financials</td>
+	<td>Financials</td>
+</tr>
+<!--Projects-->
+<tr>
+	<td>verifyText</td>
+	<td>${dashboardProjectsTitle}</td>
+	<td>Projects</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${dashboardNewProject}</td>
+	<td>+ NEW</td>
+</tr>
+<!--Your Profile And Team-->
+<tr>
+	<td>verifyText</td>
+	<td>${dashboardYourProfileTitle}</td>
+	<td>Your Profile And Team</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=img.user-photo-img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[2]/div/div/h4</td>
+	<td>User name</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Your Settings</td>
+	<td>Your Settings</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/div/div/div/div[2]/pkm-dashboard-account/div/div[2]/div/div[2]/ul/li/div</td>
+	<td>Your Teams</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/div/div/div/div[2]/pkm-dashboard-account/div/div[2]/div/div[2]/ul/li[2]/div</td>
+	<td>Project Memoboxes Left</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//span/span[2]/span</td>
+	<td>Test03 Lama</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//span/span[2]/span</td>
+	<td>Test03 Lama</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${dashboardInvite}</td>
+	<td>+ INVITE</td>
+</tr>
+<!--UPCOMING-->
+<tr>
+	<td>verifyText</td>
+	<td>${dashboardUpcomingTitle}</td>
+	<td>UPCOMING</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>xpath=(//button[@type='button'])[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>xpath=(//button[@type='button'])[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${dashboardUpcomingToday}</td>
+	<td>exact:today</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${dashboardUpcomingMonth}</td>
+	<td>exact:month</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${dashboardUpcomingWeek}</td>
+	<td>exact:week</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${dashboardUpcomingDay}</td>
+	<td>exact:day</td>
+</tr>
+<!--UPCOMING - filters check select every-->
+<tr>
+	<td>verifyText</td>
+	<td>${dashboardUpcomingMyDeadlines}</td>
+	<td>My Deadlines</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${dashboardUpcomingMyDeadlinesSelected}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${dashboardUpcomingAllDeadlines}</td>
+	<td>All Deadlines</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${dashboardUpcomingAllDeadlines}</td>
+	<td>All Deadlines</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${dashboardUpcomingAllDeadlinesSelected}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${dashboardUpcomingMyTasks}</td>
+	<td>My Tasks</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${dashboardUpcomingMyTasks}</td>
+	<td>My Tasks</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${dashboardUpcomingMyTasksSelected}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${dashboardUpcomingAllTasks}</td>
+	<td>All Tasks</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${dashboardUpcomingAllTasks}</td>
+	<td>All Tasks</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${dashboardUpcomingAllTasksSelected}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${dashboardUpcomingMyDeadlines}</td>
+	<td>My Deadlines</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${dashboardUpcomingMyDeadlinesSelected}</td>
+	<td></td>
+</tr>
+<!--TASKS-->
+<tr>
+	<td>verifyText</td>
+	<td>${dashboardTasksTitle}</td>
+	<td>Tasks</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=To Do</td>
+	<td>To Do</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Doing</td>
+	<td>Doing</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Doing</td>
+	<td>Doing</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='tasks_scroll_container']/div/div/div[2]</td>
+	<td>No tasks yet. You can create new tasks from projects</td>
+</tr>
+<!--Check Contacts-->
+<!--Your Profile And Team-->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${dashboardAvailableProjectCount}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${dashboardBuyProjects}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${dashboardBuyProjects}</td>
+	<td></td>
+</tr>
+<!--modal BuyMore-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${modalGenericBody}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//h4[contains(.,'Buy Projects')]</td>
+	<td>Buy Projects</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${modalBuyProjectBuyProjects}</td>
+	<td>Buy Projects</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>${modalBuyProjectInputQTY}</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${modalBuyProjectTotalPrice}</td>
+	<td>$245</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${modalBuyProjectTotalPrice}</td>
+	<td>$245</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${modalBuyProjectDiscount}</td>
+	<td>Your Discount 0%</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${modalBuyProjectInputQTY}</td>
+	<td>9</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${modalBuyProjectTotalPrice}</td>
+	<td>$441</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${modalBuyProjectDiscount}</td>
+	<td>Your Discount 0%</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${modalBuyProjectInputQTY}</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${modalBuyProjectTotalPrice}</td>
+	<td>$390</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${modalBuyProjectDiscount}</td>
+	<td>Your Discount 20%</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${modalBuyProjectInputQTY}</td>
+	<td>99</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${modalBuyProjectTotalPrice}</td>
+	<td>$3861</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${modalBuyProjectDiscount}</td>
+	<td>Your Discount 20%</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${modalBuyProjectInputQTY}</td>
+	<td>100</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${modalBuyProjectTotalPrice}</td>
+	<td>$2900</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${modalBuyProjectDiscount}</td>
+	<td>Your Discount 41%</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${modalBuyProjectInputQTY}</td>
+	<td>999</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${modalBuyProjectTotalPrice}</td>
+	<td>$28971</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${modalBuyProjectDiscount}</td>
+	<td>Your Discount 41%</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${modalBuyProjectInputQTY}</td>
+	<td>1000</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${modalBuyProjectTotalPrice}</td>
+	<td>$19000</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${modalBuyProjectDiscount}</td>
+	<td>Your Discount 61%</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${modalBuyProjectBuyProjects}</td>
+	<td>Buy Projects</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${modalGenericCancelButton2}</td>
+	<td></td>
+</tr>
+<!--Check Invite-->
+<tr>
+	<td>waitForText</td>
+	<td>link=+ INVITE</td>
+	<td>+ INVITE</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=+ INVITE</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//h3</td>
+	<td>Members</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//label</td>
+	<td>E-mail</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>name=email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[3]/label</td>
+	<td>Message</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>name=message</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[4]/div/div/div/button</td>
+	<td></td>
+</tr>
+<!--Check Sidebar-->
+<tr>
+	<td>click</td>
+	<td>//div[@id='logo-box']/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>link=All</td>
+	<td>All</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=All</td>
+	<td>All</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Unread</td>
+	<td>Unread</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Pinned</td>
+	<td>Pinned</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=By Date</td>
+	<td>By Date</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=By Date</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='logo-box']/a</td>
+	<td></td>
+</tr>
+<!--Check-->
+<tr>
+	<td>endForJson</td>
+	<td></td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

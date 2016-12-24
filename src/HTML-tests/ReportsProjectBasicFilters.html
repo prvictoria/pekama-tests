@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>MattersBasicFilters</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">MattersBasicFilters</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/a/reports/projects</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/div/h4</td>
+	<td>Search by</td>
+</tr>
+<!--Matter Type - General-->
+<tr>
+	<td>waitForText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div/ng-include/label</td>
+	<td>Project Type</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div/ng-include/label</td>
+	<td>Project Type</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div/div/div/div/div/span/span</td>
+	<td>Pick one...</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div/ng-include/div/div[2]/div/div/div/div/div/span/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//a/span</td>
+	<td>General</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/div/button[2]</td>
+	<td></td>
+</tr>
+<!--Check result-->
+<tr>
+	<td>waitForText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div/div/ul/li[2]/ul/ng-include/li/a/div[2]/h4</td>
+	<td>General TEST - GEN.WW.026676</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div/div/ul/li[2]/ul/ng-include/li/a</td>
+	<td>General TEST - GEN.WW.026676 General<br /> All Countries</td>
+</tr>
+<!--Clear-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/div/button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/div/button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div/ng-include/div/div[2]/div/div/div/div/div/span</td>
+	<td>Pick one...</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div/ng-include/div/div[2]/div/div/div/div/div/span</td>
+	<td>Pick one...</td>
+</tr>
+<!---->
+<!--Country - European Union (CTM)-->
+<tr>
+	<td>waitForText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div[2]/ng-include/label</td>
+	<td>Country</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div[2]/ng-include/div/div[2]/div/div/div/div/div/span/span</td>
+	<td>Pick one...</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div[2]/ng-include/div/div[2]/div/div/div/div/div/span/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div[2]/ng-include/div/div[2]/div/div/div/div/div/span/span[2]/span</td>
+	<td>European Union (CTM)</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div[2]/ng-include/div/div[2]/div/div/div/div/div/span/span[2]/span</td>
+	<td>European Union (CTM)</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/div/button[2]</td>
+	<td></td>
+</tr>
+<!--Check result-->
+<tr>
+	<td>waitForText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div/div/ul/li[2]/ul/ng-include/li/a/div[2]/h4</td>
+	<td>Trademark TEST - TM.EM.026682</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div/div/ul/li[2]/ul/ng-include/li/a/div[2]/h4</td>
+	<td>Trademark TEST - TM.EM.026682</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div/div/ul/li[2]/ul/ng-include/li/a/div[2]/ul/li[2]</td>
+	<td>European Union (CTM)</td>
+</tr>
+<!--Clear-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/div/button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/div/button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div/ng-include/div/div[2]/div/div/div/div/div/span</td>
+	<td>Pick one...</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div/ng-include/div/div[2]/div/div/div/div/div/span</td>
+	<td>Pick one...</td>
+</tr>
+<!---->
+<!--Contact --->
+<tr>
+	<td>waitForText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div[3]/ng-include/label</td>
+	<td>Contact</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div[3]/ng-include/div/div[2]/div/div/div/div/div/span/span[2]</td>
+	<td>Any</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div[3]/ng-include/div/div[2]/div[2]/div/div/div/div/span/span</td>
+	<td>Pick one...</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div[3]/ng-include/div/div[2]/div/div/div/div/div/span/span[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Any</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div[3]/ng-include/div/div[2]/div[2]/div/div/div/div/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div[3]/ng-include/div</td>
+	<td></td>
+</tr>
+<!---->
+<!--Type - -->
+<tr>
+	<td>waitForText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div[4]/ng-include/label</td>
+	<td>Type</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div[4]/ng-include/div/div[2]/div/div/div/div/div/span/span</td>
+	<td>Pick one...</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div[4]/ng-include/div/div[2]/div/div/div/div/div/span/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering</td>
+	<td></td>
+</tr>
+<!--Status --->
+<tr>
+	<td>click</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div[5]/ng-include/label</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div[5]/ng-include/label</td>
+	<td>Status</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div[5]/ng-include/div/div[2]/div/div/div/div/div/span/span</td>
+	<td>Pick one...</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div[5]/ng-include/div/div[2]/div/div/div/div/div/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

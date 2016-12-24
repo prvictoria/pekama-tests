@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>CreateDeleteProject_AddDocs</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">CreateDeleteProject_AddDocs</td></tr>
+</thead><tbody>
+<!--Precondition and login-->
+<tr>
+	<td>open</td>
+	<td>/accounts/login/?next=/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=loginPassword</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=loginEmail</td>
+	<td>zzkarlson@gmail.com</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=button.btn.btn-default</td>
+	<td></td>
+</tr>
+<!--Create Project-->
+<tr>
+	<td>click</td>
+	<td>//section[@id='page']/div[2]/div/div/div[2]/button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=div.modal-body</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//fieldset/div/div/div/span/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[2]/div/div/span/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//li/div[7]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=title</td>
+	<td>Test General Project</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=number</td>
+	<td>1234567/2016</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=div.buttons-holder.text-right &gt; button.btn.btn-primary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.buttons-holder.text-right &gt; button.btn.btn-primary</td>
+	<td></td>
+</tr>
+<!--Go to Docs tab-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=i.icon.memobox-icon-documents-square</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div[2]/div/nav/ul/li[2]/a/i</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>id=file-controls</td>
+	<td></td>
+</tr>
+<!--Create folder in Creator Zone-->
+<tr>
+	<td>click</td>
+	<td>id=file-controls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Add Folder</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=name</td>
+	<td>test folder Creator Zone</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>document.form.elements[3]</td>
+	<td></td>
+</tr>
+<!--Create duplicate same name  folder in Creator Zone-->
+<tr>
+	<td>click</td>
+	<td>id=file-controls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Add Folder</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=name</td>
+	<td>test folder Creator Zone</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>document.form.elements[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//form/div/div</td>
+	<td>Folder with this Parent and Name already exists.</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=button.btn.btn-secondary</td>
+	<td></td>
+</tr>
+<!--Create folder in All Zone-->
+<tr>
+	<td>click</td>
+	<td>id=file-controls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Add Folder</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=name</td>
+	<td>test folder All Zone</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//input[@type='checkbox'])[6]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>document.form.elements[3]</td>
+	<td></td>
+</tr>
+<!--Call Upload file modal window-->
+<tr>
+	<td>click</td>
+	<td>id=file-controls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Upload</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h4.modal-title</td>
+	<td>Files upload</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=h4.modal-title</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=upload_element</td>
+	<td>C:\Users\slava\Desktop\IMG for tests\01.jpg</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=button.close</td>
+	<td></td>
+</tr>
+<!--Delete Project-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div/div/div[2]/button[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div/div/div[2]/button[2]</td>
+	<td></td>
+</tr>
+<!--Confirm delete Project in modal-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=div.modal-footer.ng-scope &gt; button.btn.btn-primary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.modal-footer.ng-scope &gt; button.btn.btn-primary</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

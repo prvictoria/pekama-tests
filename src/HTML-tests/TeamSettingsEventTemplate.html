@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>CreateEventTemplate</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">CreateEventTemplate</td></tr>
+</thead><tbody>
+<tr>
+	<td>rollup</td>
+	<td>login as USER02 - testqweeco002@gmail.com</td>
+	<td></td>
+</tr>
+<tr>
+	<td>forJson</td>
+	<td>${JsonPath}</td>
+	<td></td>
+</tr>
+<!--START-->
+<tr>
+	<td>open</td>
+	<td>${teamSettingsEventTemplatesTab}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${teamSettingsTaskTemplatesTab_TM}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${teamSettingsTaskTemplatesTab_TM}</td>
+	<td>Trademark</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Add</td>
+	<td></td>
+</tr>
+<tr>
+	<td>setSpeed</td>
+	<td>50</td>
+	<td></td>
+</tr>
+<!--Task set modal-->
+<tr>
+	<td>waitForText</td>
+	<td>${modalGenericTitle}</td>
+	<td>Event Template Set</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${mwTaskTemplateSet_FieldTitle}</td>
+	<td>${nameEventTemplateSet_inTM}</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${mwTaskTemplateSet_FieldTitle}</td>
+	<td>${nameEventTemplateSet_inTM}</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${mwTaskTemplateSet_FieldDefining}</td>
+	<td>${nameDefiningTM}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${genericSelectHighlighted}</td>
+	<td>${nameDefiningTM}</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>200</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${mwTaskTemplateSet_FieldType}</td>
+	<td>${nameTypeTM}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${genericSelectHighlighted}</td>
+	<td>${nameTypeTM}</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>200</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${mwTaskTemplateSet_FieldEvent}</td>
+	<td>${nameEventTypeTM}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${genericSelectHighlighted}</td>
+	<td>${nameEventTypeTM}</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>200</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${modalGenericOkButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${templatesRow001}</td>
+	<td>${nameEventTemplateSet_inTM}</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${templatesRow001}</td>
+	<td>${nameEventTemplateSet_inTM}</td>
+</tr>
+<!--Expand row-->
+<tr>
+	<td>click</td>
+	<td>//section[@id='page']/div[2]/div/div/ui-view/ui-view/ui-view/div[2]/div/div[3]/ul/li/div/div</td>
+	<td></td>
+</tr>
+<!--Template-->
+<tr>
+	<td>waitForText</td>
+	<td>//div[2]/div/div/button</td>
+	<td>Add</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[2]/div/div/button</td>
+	<td>Add</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${modalGenericTitle}</td>
+	<td>Event Template</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${mwEventTemplate_EventType}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${mwEventTemplate_Input}</td>
+	<td>${nameEventTemplate_inTM}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${genericSelectHighlighted}</td>
+	<td>${nameEventTemplate_inTM}</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>${mwEventTemplate_AdditionalInfo}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${mwEventTemplate_AdditionalInfo}</td>
+	<td>note for EVENT- created for auto-test</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>name=date_offset</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=date_offset</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>name=date_unit</td>
+	<td>? undefined:undefined ?</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=date_unit</td>
+	<td>label=Days</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=date_unit</td>
+	<td>label=Weeks</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=date_unit</td>
+	<td>label=Months</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>name=date_unit</td>
+	<td>Months</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${modalGenericOkButton}</td>
+	<td></td>
+</tr>
+<!---->
+<!--Delete task-->
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${templatesIconCancel}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${templatesIconCancel}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>rollup</td>
+	<td>modalConfirmAction</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>${templatesRow001}</td>
+	<td>EVENT template set in Patent - United Kingdom + Paris Convention + Trademark Registered</td>
+</tr>
+<!---->
+<!--FINISH-->
+<tr>
+	<td>open</td>
+	<td>${urlLogput}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>endForJson</td>
+	<td></td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

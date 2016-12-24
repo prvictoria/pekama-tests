@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>DeployExcelTemplate</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">DeployExcelTemplate</td></tr>
+</thead><tbody>
+<!--Open Docs-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=i.icon.memobox-icon-documents-square</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=i.icon.memobox-icon-documents-square</td>
+	<td></td>
+</tr>
+<!--ADD-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>id=file-controls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=file-controls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=Deploy template</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Deploy template</td>
+	<td></td>
+</tr>
+<!--Excel template-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//li[2]/label</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//li[2]/label</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>css=div.add-doc-files &gt; div &gt; input[name=&quot;name&quot;]</td>
+	<td>New Excel sheet.xlsx</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>css=div.add-doc-files &gt; div &gt; input[name=&quot;name&quot;]</td>
+	<td>Test rename default Excel template.docx</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.modal-footer &gt; button.btn.btn-primary</td>
+	<td></td>
+</tr>
+<!--Check created file-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=Test rename default Excel template.docx</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Test rename default Excel template.docx</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=h5.ng-binding</td>
+	<td>Test rename default Excel template.docx</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h5.ng-binding</td>
+	<td>Test rename default Excel template.docx</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=Open</td>
+	<td></td>
+</tr>
+<!--Delete files-->
+<!--Finish-->
+</tbody></table>
+</body>
+</html>

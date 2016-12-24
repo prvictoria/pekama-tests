@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>GmailCheckEmail</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">GmailCheckEmail</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>https://mail.google.com/mail/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>name=Email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=Email</td>
+	<td>testqweeco001@gmail.com</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=signIn</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>name=Passwd</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=Passwd</td>
+	<td>123456789qasw1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=signIn</td>
+	<td></td>
+</tr>
+<!--Inbox-->
+<tr>
+	<td>click</td>
+	<td>//tr[@id=':2l']/td[4]/div[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>link=Confirm Account</td>
+	<td>Confirm Account</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Confirm Account</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForPopUp</td>
+	<td>selenium_blank56800</td>
+	<td>30000</td>
+</tr>
+<tr>
+	<td>waitForValue</td>
+	<td>name=username</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>name=username</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=username</td>
+	<td>testqweeco001@gmail.com</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>name=password</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=password</td>
+	<td>0</td>
+</tr>
+<!--1st LOGIN-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[2]/button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//div[2]/button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=Dashboard</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//img[@alt='First name = Test Last name = SignUp']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[2]/div/div/a/span</td>
+	<td>1 Members</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//a/span</td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>close</td>
+	<td></td>
+	<td></td>
+</tr>
+<!--Out-->
+<tr>
+	<td>click</td>
+	<td>//div[@id='gb']/div/div/div[2]/div[4]/div/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=Sign out</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Sign out</td>
+	<td></td>
+</tr>
+<!--Clear login-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=Sign in with a different account</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Sign in with a different account</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=Remove</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Remove</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=Email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//form[@id='gaia_loginform']/ol/li</td>
+	<td>You've removed all accounts.</td>
+</tr>
+<!--Finish-->
+</tbody></table>
+</body>
+</html>

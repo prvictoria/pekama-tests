@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>forJson</td>
+	<td>${JsonPath}</td>
+	<td></td>
+</tr>
+<!--Available velocity = 100%-->
+<!--Pekama production!!!!!!!!!!!!!!!!! Staging not woks-->
+<tr>
+	<td>open</td>
+	<td>${urlLogIn}</td>
+	<td></td>
+</tr>
+<!--Open login page-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=Login with Google</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=a.google-link &gt; img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=a.google-link &gt; span</td>
+	<td>Login with Google</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=a.google-link &gt; span</td>
+	<td></td>
+</tr>
+<!--Goodle window-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>id=Email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>id=Email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>id=next</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=Email</td>
+	<td>zzkarlson@gmail.com</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=next</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>name=Passwd</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=Passwd</td>
+	<td>ergseg845jsdfli256sdfhsd1</td>
+</tr>
+<tr>
+	<td>storeChecked</td>
+	<td>//input[@id='PersistentCookie']</td>
+	<td>CHECKBOX_STATE</td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>${CHECKBOX_STATE}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${CHECKBOX_STATE}==false</td>
+	<td>LOGIN_GMAIL</td>
+</tr>
+<tr>
+	<td>waitForValue</td>
+	<td>//input[@id='PersistentCookie']</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[@id='PersistentCookie']</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>waitForValue</td>
+	<td>//input[@id='PersistentCookie']</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>LOGIN_GMAIL</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=signIn</td>
+	<td></td>
+</tr>
+<!--Check result-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=Dashboard</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=Dashboard</td>
+	<td>Dashboard</td>
+</tr>
+<!--Log out-->
+<tr>
+	<td>open</td>
+	<td>${urlLogput}</td>
+	<td></td>
+</tr>
+<!--Check log out-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=log in</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>link=log in</td>
+	<td>log in</td>
+</tr>
+<!--Google sign out-->
+<tr>
+	<td>open</td>
+	<td>https://mail.google.com/mail/</td>
+	<td></td>
+</tr>
+<!--Exit Gmail-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>id=gb_71</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=gb_71</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=h1</td>
+	<td>One account. All of Google.</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>//input[@id='Email']</td>
+	<td></td>
+</tr>
+<!--END-->
+<tr>
+	<td>endForJson</td>
+	<td></td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,2896 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<style>
+.failed {color: red; background-color: #ffcccc;}
+.passed {color: green; background-color: #ccffcc;}
+.done {color: #404040; background-color: #ccffcc;}
+.comment {color: #404040; background-color: #d0d0d0;}
+body, table { font-family: Verdana, Arial, sans-serif; font-size: 12pt; }
+table { border-collapse: collapse; border: 1px solid #ccc; }
+th, td { padding-left: 0.3em; padding-right: 0.3em; border: 1px solid #ccc; }
+#suiteSummaryTable thead { font-size: 14pt; font-weight: 800; }
+.test_case thead { font-size: 14pt; font-weight: 400; }
+</style>
+</head>
+<body>
+<table id="suiteSummaryTable" class="selenium">
+<thead><tr class="failed"><td>Test Suite: 03_TestSuite_TechnicalTest</td></tr></thead>
+<tbody>
+<tr><td>Test cases: 13 total / <span class="passed">0</span> passed / <span class="failed">13</span> failed</td></tr>
+<tr><td>Commands: 420 total / <span class="passed">4</span> passed / <span class="failed">1</span> failed / <span class="skipped">415</span> skipped</td></tr>
+</tbody></table><br>
+<table id="suiteTable" class="selenium">
+<thead><tr><td>Index of test cases</td></tr></thead>
+<tbody>
+<tr class="failed"><td><a href="#test0">00_BeforeTests</a></td></tr>
+<tr class=""><td><a href="#test1">AddContactLoop1000</a></td></tr>
+<tr class=""><td><a href="#test2">AddContactLoop1000Person</a></td></tr>
+<tr class=""><td><a href="#test3">CPP_deleteEventTimeline_loop</a></td></tr>
+<tr class=""><td><a href="#test4">DashboardDeployTemplateLoop</a></td></tr>
+<tr class=""><td><a href="#test5">modalBuyProjectValidationLoop</a></td></tr>
+<tr class=""><td><a href="#test6">modalDraftLoop</a></td></tr>
+<tr class=""><td><a href="#test7">MsgLoadTest</a></td></tr>
+<tr class=""><td><a href="#test8">PlusEventLoopDays</a></td></tr>
+<tr class=""><td><a href="#test9">ProjectTaskLoop2</a></td></tr>
+<tr class=""><td><a href="#test10">RollupTest</a></td></tr>
+<tr class=""><td><a href="#test11">PersonalSettings_SecurityTab</a></td></tr>
+<tr class=""><td><a href="#test12">SignUpPageEmailValidation</a></td></tr>
+
+</tbody></table>
+
+<br><hr><br><a name="test0"></a><table class="test_case"><thead><tr><td colspan="4">Test case: 00_BeforeTests</td></tr></thead><tbody><tr class="comment">
+	<td colspan="4">USER testqweeco001 - Create project suite</td>
+</tr>
+<tr class="comment">
+	<td colspan="4">USER testqweeco002 - Create templates tests</td>
+</tr>
+<tr class="comment">
+	<td colspan="4">USER testqweeco003 - Edit proejct, Deploy Templates tests</td>
+</tr>
+<tr class="done">
+	<td>setSpeed</td>
+	<td>1</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">PreTest</td>
+</tr>
+<tr class="done">
+	<td>storeExpression</td>
+	<td>file://D://GithubRep//ProjectSel//00_VAR.json</td>
+	<td>JsonPath</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>storeExpression</td>
+	<td>https://pekama.com/</td>
+	<td>urlBASE</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>echo</td>
+	<td>${JsonPath}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">DDT test template</td>
+</tr>
+<tr class="failed">
+	<td>forJson</td>
+	<td>${JsonPath}</td>
+	<td></td>
+	<td>Command execution failure. Please search the user group at https://groups.google.com/forum/#!forum/selenium-users for error details from the log window.  The error message is: Error while fetching URL 'file://D://GithubRep//ProjectSel//00_VAR.json':: [Exception... "Failure"  nsresult: "0x80004005 (NS_ERROR_FAILURE)"  location: "JS frame :: chrome://selblocksseleexten/content/extensions/data-reader.js?1473516460710 :: FileReader.prototype.getDocumentSynchronous :: line 269"  data: no]</td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Start</td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Finish</td>
+</tr>
+<tr class="">
+	<td>endForJson</td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4"></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Label template</td>
+</tr>
+<tr class="">
+	<td>goto</td>
+	<td>END1</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>open</td>
+	<td>http://qweeco:qw33coStudi0@staging.pekama.com</td>
+	<td>http://qweeco:qw33coStudi0@staging.pekama.com</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>rollup</td>
+	<td>modalConfirmAction</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>rollup</td>
+	<td>verify value Personal settings</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>rollup</td>
+	<td>login as USER01 - testqweeco001@gmail.com</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>rollup</td>
+	<td>login as USER02 - testqweeco002@gmail.com</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>rollup</td>
+	<td>login as USER03 - testqweeco003@gmail.com</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>rollup</td>
+	<td>Submitt cookie if displayed</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>rollup</td>
+	<td>Delete project via button [DELETE}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>rollup</td>
+	<td>select All Team checkbox</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>rollup</td>
+	<td>DEselect All Team checkbox</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>getAlert</td>
+	<td>isAlertPresent</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>label</td>
+	<td>END1</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4"></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Cookie consent</td>
+</tr>
+<tr class="">
+	<td>open</td>
+	<td>/</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForElementPresent</td>
+	<td>link=log in</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyElementPresent</td>
+	<td>link=log in</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>storeElementPresent</td>
+	<td>link=Got it!</td>
+	<td>CookieButton</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>echo</td>
+	<td>${CookieButton}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>gotoIf</td>
+	<td>${CookieButton}==false</td>
+	<td>END</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForText</td>
+	<td>link=Got it!</td>
+	<td>Got it!</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyElementPresent</td>
+	<td>link=Got it!</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyText</td>
+	<td>css=p.cc_message</td>
+	<td>This website uses cookies to ensure you get the best experience on our website</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>storeAttribute</td>
+	<td>link=Got it!@target</td>
+	<td>window_ID</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>echo</td>
+	<td>${window_ID}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>setSpeed</td>
+	<td>1000</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>link=Got it!</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>selectWindow</td>
+	<td>${window_ID}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>close</td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Links</td>
+</tr>
+<tr class="">
+	<td>label</td>
+	<td>END</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>setSpeed</td>
+	<td>150</td>
+	<td></td>
+	<td></td>
+</tr>
+
+</tbody></table>
+
+<br><hr><br><a name="test1"></a><table class="test_case"><thead><tr><td colspan="4">Test case: AddContactLoop1000</td></tr></thead><tbody><tr class="">
+	<td>setSpeed</td>
+	<td>25</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">SignUp</td>
+</tr>
+<tr class="">
+	<td>forJson</td>
+	<td>${JsonPath}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>link=Contacts</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>storeEval</td>
+	<td>contactEmail.length;</td>
+	<td>length</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>store</td>
+	<td>0</td>
+	<td>counter</td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Start LOOP</td>
+</tr>
+<tr class="">
+	<td>while</td>
+	<td>storedVars.counter &lt; storedVars.length</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>storeEval</td>
+	<td>contactName[storedVars.counter]</td>
+	<td>NAME</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>storeEval</td>
+	<td>contactSurname[storedVars.counter]</td>
+	<td>SURNAME</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>storeEval</td>
+	<td>contactEmail[storedVars.counter]</td>
+	<td>EMAIL</td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">ckick Add Contact button</td>
+</tr>
+<tr class="">
+	<td>rollup</td>
+	<td>Click ADD contact and wait for MW</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Type First Name, Last Name, email</td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>name=first_name</td>
+	<td>${NAME}</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>name=last_name</td>
+	<td>${SURNAME}</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>name=email</td>
+	<td>${EMAIL}</td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Select country</td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${mwContact_SelectCountry}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>${mwContact_InputCountry}</td>
+	<td>United Kingdom</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${genericSelectHighlighted}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForText</td>
+	<td>${mwContact_SelectCountryName}</td>
+	<td>United Kingdom</td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4"></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Submit form</td>
+</tr>
+<tr class="">
+	<td>waitForElementPresent</td>
+	<td>${mwGenericButtonOk}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${mwGenericButtonOk}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForElementNotPresent</td>
+	<td>${mwGenericButtonOk}</td>
+	<td>OK</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForElementNotPresent</td>
+	<td>${mwGenericTitleSimple}</td>
+	<td>Contact</td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Increment var++</td>
+</tr>
+<tr class="">
+	<td>store</td>
+	<td>javascript{storedVars.counter++;}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>echo</td>
+	<td>${counter}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Finish</td>
+</tr>
+<tr class="">
+	<td>endWhile</td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>endForJson</td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+
+</tbody></table>
+
+<br><hr><br><a name="test2"></a><table class="test_case"><thead><tr><td colspan="4">Test case: AddContactLoop1000Person</td></tr></thead><tbody><tr class="">
+	<td>setSpeed</td>
+	<td>25</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">SignUp</td>
+</tr>
+<tr class="">
+	<td>forJson</td>
+	<td>${JsonPath}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>link=Contacts</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>storeEval</td>
+	<td>contactEmail.length;</td>
+	<td>length</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>store</td>
+	<td>0</td>
+	<td>counter</td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Start LOOP</td>
+</tr>
+<tr class="">
+	<td>while</td>
+	<td>storedVars.counter &lt; storedVars.length</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>storeEval</td>
+	<td>contactName[storedVars.counter]</td>
+	<td>NAME</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>storeEval</td>
+	<td>contactSurname[storedVars.counter]</td>
+	<td>SURNAME</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>storeEval</td>
+	<td>contactEmail[storedVars.counter]</td>
+	<td>EMAIL</td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">ckick Add Contact button</td>
+</tr>
+<tr class="">
+	<td>rollup</td>
+	<td>Click ADD contact and wait for MW</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Type First Name, Last Name, email</td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>name=first_name</td>
+	<td>${NAME}</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>name=last_name</td>
+	<td>${SURNAME}</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>name=email</td>
+	<td>${EMAIL}</td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Select country</td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${mwContact_SelectCountry}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>${mwContact_InputCountry}</td>
+	<td>United Kingdom</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${genericSelectHighlighted}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForText</td>
+	<td>${mwContact_SelectCountryName}</td>
+	<td>United Kingdom</td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4"></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Submit form</td>
+</tr>
+<tr class="">
+	<td>waitForElementPresent</td>
+	<td>${mwGenericButtonOk}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${mwGenericButtonOk}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForElementNotPresent</td>
+	<td>${mwGenericButtonOk}</td>
+	<td>OK</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForElementNotPresent</td>
+	<td>${mwGenericTitleSimple}</td>
+	<td>Contact</td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Increment var++</td>
+</tr>
+<tr class="">
+	<td>store</td>
+	<td>javascript{storedVars.counter++;}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>echo</td>
+	<td>${counter}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Finish</td>
+</tr>
+<tr class="">
+	<td>endWhile</td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>endForJson</td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+
+</tbody></table>
+
+<br><hr><br><a name="test3"></a><table class="test_case"><thead><tr><td colspan="4">Test case: CPP_deleteEventTimeline_loop</td></tr></thead><tbody><tr class="">
+	<td>setSpeed</td>
+	<td>50</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>label</td>
+	<td></td>
+	<td>start</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForElementPresent</td>
+	<td>css=a.delete.ng-scope</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>css=a.delete.ng-scope</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>rollup</td>
+	<td>modalConfirmAction</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>gotoLabel</td>
+	<td></td>
+	<td>start</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+
+<br><hr><br><a name="test4"></a><table class="test_case"><thead><tr><td colspan="4">Test case: DashboardDeployTemplateLoop</td></tr></thead><tbody><tr class="">
+	<td>label</td>
+	<td>start</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[2]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForElementPresent</td>
+	<td>link=Trademark template</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>link=Trademark template</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div[2]/div/div/div/div/pkm-editable-title/div/div/h4</td>
+	<td>New project (temporary name)</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>link=Dashboard</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>goto</td>
+	<td>start</td>
+	<td></td>
+	<td></td>
+</tr>
+
+</tbody></table>
+
+<br><hr><br><a name="test5"></a><table class="test_case"><thead><tr><td colspan="4">Test case: modalBuyProjectValidationLoop</td></tr></thead><tbody><tr class="">
+	<td>setSpeed</td>
+	<td>10</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">SignUp</td>
+</tr>
+<tr class="">
+	<td>forJson</td>
+	<td>${JsonPath}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>storeEval</td>
+	<td>numericField.length;</td>
+	<td>length</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>echo</td>
+	<td>${length}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>store</td>
+	<td>0</td>
+	<td>MyVar</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>while</td>
+	<td>storedVars.MyVar &lt; storedVars.length</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>storeEval</td>
+	<td>numericField[storedVars.MyVar]</td>
+	<td>VALUE</td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Body</td>
+</tr>
+<tr class="">
+	<td>waitForElementPresent</td>
+	<td>${modalGenericBody}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyText</td>
+	<td>//h4[contains(.,'Buy Projects')]</td>
+	<td>Buy Projects</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>${modalBuyProjectInputQTY}</td>
+	<td>${VALUE}</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>echo</td>
+	<td>${VALUE}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">end body</td>
+</tr>
+<tr class="">
+	<td>store</td>
+	<td>javascript{storedVars.MyVar++;}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>echo</td>
+	<td>${MyVar}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>endWhile</td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>store</td>
+	<td>0</td>
+	<td>length</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>echo</td>
+	<td>${length}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>endForJson</td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+
+</tbody></table>
+
+<br><hr><br><a name="test6"></a><table class="test_case"><thead><tr><td colspan="4">Test case: modalDraftLoop</td></tr></thead><tbody><tr class="">
+	<td>setSpeed</td>
+	<td>10</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">SignUp</td>
+</tr>
+<tr class="">
+	<td>forJson</td>
+	<td>${JsonPath}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>storeEval</td>
+	<td>numericField.length;</td>
+	<td>length</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>echo</td>
+	<td>${length}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>store</td>
+	<td>0</td>
+	<td>MyVar</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>while</td>
+	<td>storedVars.MyVar &lt; storedVars.length</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>storeEval</td>
+	<td>numericField[storedVars.MyVar]</td>
+	<td>VALUE</td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Body</td>
+</tr>
+<tr class="">
+	<td>waitForElementPresent</td>
+	<td>${modalGenericBody}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyText</td>
+	<td>//h4[contains(.,'Buy Projects')]</td>
+	<td>Buy Projects</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>${modalBuyProjectInputQTY}</td>
+	<td>${VALUE}</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>echo</td>
+	<td>${VALUE}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">end body</td>
+</tr>
+<tr class="">
+	<td>store</td>
+	<td>javascript{storedVars.MyVar++;}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>echo</td>
+	<td>${MyVar}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>endWhile</td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>store</td>
+	<td>0</td>
+	<td>length</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>echo</td>
+	<td>${length}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>endForJson</td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+
+</tbody></table>
+
+<br><hr><br><a name="test7"></a><table class="test_case"><thead><tr><td colspan="4">Test case: MsgLoadTest</td></tr></thead><tbody><tr class="">
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>label</td>
+	<td></td>
+	<td>start</td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Template icon</td>
+</tr>
+<tr class="">
+	<td>waitForElementPresent</td>
+	<td>css=i.fa.fa-file-text-o</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>css=i.fa.fa-file-text-o</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Modal "Templates"</td>
+</tr>
+<tr class="">
+	<td>waitForElementPresent</td>
+	<td>css=div.modal-body.ng-scope</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForText</td>
+	<td>css=div.form-group.col-sm-12 &gt; label</td>
+	<td>Pick a template:</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyText</td>
+	<td>css=div.form-group.col-sm-12 &gt; label</td>
+	<td>Pick a template:</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForText</td>
+	<td>css=p.ng-binding</td>
+	<td>Load test</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyText</td>
+	<td>css=p.ng-binding</td>
+	<td>Load test</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>css=p.ng-binding</td>
+	<td>Load test</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForText</td>
+	<td>//div[3]/button</td>
+	<td>OK</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyElementPresent</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/section[2]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>assertElementPresent</td>
+	<td>//div[3]/button</td>
+	<td>OK</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>//div[3]/button</td>
+	<td>OK</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForElementNotPresent</td>
+	<td>css=div.modal-body.ng-scope</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Check result</td>
+</tr>
+<tr class="">
+	<td>waitForElementPresent</td>
+	<td>//text-angular/div[2]/div[3]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Post</td>
+</tr>
+<tr class="">
+	<td>waitForElementPresent</td>
+	<td>link=Post</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>link=Post</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>gotolabel</td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Check result</td>
+</tr>
+<tr class="">
+	<td>waitForElementPresent</td>
+	<td>link=You</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>assertText</td>
+	<td>link=You</td>
+	<td>You</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div/pkm-conversations/div/div[3]/pkm-conversation/div[2]/div[3]/ul/li/div[2]/div/div/div[2]/p</td>
+	<td>Test MESSAGE TEMPLATE for automation</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>assertText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div/pkm-conversations/div/div[3]/pkm-conversation/div[2]/div[3]/ul/li/div[2]/div/div/div[2]/p</td>
+	<td>Test MESSAGE TEMPLATE for automation</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+
+<br><hr><br><a name="test8"></a><table class="test_case"><thead><tr><td colspan="4">Test case: PlusEventLoopDays</td></tr></thead><tbody><tr class="">
+	<td>forJson</td>
+	<td>${JsonPath}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">SCRIPT</td>
+</tr>
+<tr class="">
+	<td>setSpeed</td>
+	<td>20</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Loop#1</td>
+</tr>
+<tr class="">
+	<td>store</td>
+	<td>0</td>
+	<td>MyVar</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>while</td>
+	<td>storedVars.MyVar &lt;= 100</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>gotoLabel</td>
+	<td>START</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Execute</td>
+</tr>
+<tr class="">
+	<td>label</td>
+	<td>START</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForElementPresent</td>
+	<td>${projectButtonPlus}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${projectButtonPlus}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForElementPresent</td>
+	<td>link=New Event</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>link=New Event</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForElementPresent</td>
+	<td>${modalGenericBody}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>${modalEventInfoField}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${modalEventSelectTypeField}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForElementPresent</td>
+	<td>//*[@class='ui-select-choices-row-inner'][contains(.,'Application Filed')]</td>
+	<td>Application Filed</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>//*[@class='ui-select-choices-row-inner'][contains(.,'Application Filed')]</td>
+	<td>Application Filed</td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Set Date</td>
+</tr>
+<tr class="">
+	<td>label</td>
+	<td>DAY01</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${modalGenericDatepickerField}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyElementPresent</td>
+	<td>${datepickerToday}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${datepickerToday}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>store</td>
+	<td>javascript{storedVars.MyVar++;}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Save</td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${modalGenericSaveButton}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForElementNotPresent</td>
+	<td>${modalGenericBody}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">END</td>
+</tr>
+<tr class="">
+	<td>endWhile</td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4"></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Loop#2</td>
+</tr>
+<tr class="">
+	<td>store</td>
+	<td>0</td>
+	<td>MyVar</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>while</td>
+	<td>storedVars.MyVar &lt;= 100</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Execute</td>
+</tr>
+<tr class="">
+	<td>waitForElementPresent</td>
+	<td>${projectButtonPlus}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${projectButtonPlus}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForElementPresent</td>
+	<td>link=New Event</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>link=New Event</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForElementPresent</td>
+	<td>${modalGenericBody}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>${modalEventInfoField}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${modalEventSelectTypeField}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForElementPresent</td>
+	<td>//*[@class='ui-select-choices-row-inner'][contains(.,'Application Filed')]</td>
+	<td>Application Filed</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>//*[@class='ui-select-choices-row-inner'][contains(.,'Application Filed')]</td>
+	<td>Application Filed</td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Set Date</td>
+</tr>
+<tr class="">
+	<td>label</td>
+	<td>DAY01</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${modalGenericDatepickerField}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyElementPresent</td>
+	<td>${datepickerToday}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${datepickerToday}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyValue</td>
+	<td>xpath=(//input[@type='text'])[13]</td>
+	<td>01-Jul-2016</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>storeValue</td>
+	<td>${dueDateInputField}</td>
+	<td>SelectedDate</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>echo</td>
+	<td>${SelectedDate}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>${dueDateInputField}</td>
+	<td>10</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>store</td>
+	<td>javascript{storedVars.MyVar++;}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Save</td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${modalGenericSaveButton}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForElementNotPresent</td>
+	<td>${modalGenericBody}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">END</td>
+</tr>
+<tr class="">
+	<td>endWhile</td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4"></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Loop#3</td>
+</tr>
+<tr class="">
+	<td>store</td>
+	<td>0</td>
+	<td>MyVar</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>while</td>
+	<td>storedVars.MyVar &lt;= 100</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Execute</td>
+</tr>
+<tr class="">
+	<td>waitForElementPresent</td>
+	<td>${projectButtonPlus}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${projectButtonPlus}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForElementPresent</td>
+	<td>link=New Event</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>link=New Event</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForElementPresent</td>
+	<td>${modalGenericBody}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>${modalEventInfoField}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${modalEventSelectTypeField}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForElementPresent</td>
+	<td>//*[@class='ui-select-choices-row-inner'][contains(.,'Application Filed')]</td>
+	<td>Application Filed</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>//*[@class='ui-select-choices-row-inner'][contains(.,'Application Filed')]</td>
+	<td>Application Filed</td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Set Date</td>
+</tr>
+<tr class="">
+	<td>label</td>
+	<td>DAY01</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${modalGenericDatepickerField}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyElementPresent</td>
+	<td>${datepickerToday}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${datepickerToday}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyValue</td>
+	<td>xpath=(//input[@type='text'])[13]</td>
+	<td>01-Jul-2016</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>storeValue</td>
+	<td>${dueDateInputField}</td>
+	<td>SelectedDate</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>echo</td>
+	<td>${SelectedDate}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>${dueDateInputField}</td>
+	<td>20</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>store</td>
+	<td>javascript{storedVars.MyVar++;}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Save</td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${modalGenericSaveButton}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForElementNotPresent</td>
+	<td>${modalGenericBody}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">END</td>
+</tr>
+<tr class="">
+	<td>endWhile</td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4"></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Loop#4</td>
+</tr>
+<tr class="">
+	<td>store</td>
+	<td>0</td>
+	<td>MyVar</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>while</td>
+	<td>storedVars.MyVar &lt;= 100</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Execute</td>
+</tr>
+<tr class="">
+	<td>waitForElementPresent</td>
+	<td>${projectButtonPlus}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${projectButtonPlus}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForElementPresent</td>
+	<td>link=New Event</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>link=New Event</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForElementPresent</td>
+	<td>${modalGenericBody}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>${modalEventInfoField}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${modalEventSelectTypeField}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForElementPresent</td>
+	<td>//*[@class='ui-select-choices-row-inner'][contains(.,'Application Filed')]</td>
+	<td>Application Filed</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>//*[@class='ui-select-choices-row-inner'][contains(.,'Application Filed')]</td>
+	<td>Application Filed</td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Set Date</td>
+</tr>
+<tr class="">
+	<td>label</td>
+	<td>DAY01</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${modalGenericDatepickerField}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyElementPresent</td>
+	<td>${datepickerToday}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${datepickerToday}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>storeValue</td>
+	<td>${dueDateInputField}</td>
+	<td>SelectedDate</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>echo</td>
+	<td>${SelectedDate}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>${dueDateInputField}</td>
+	<td>25</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>store</td>
+	<td>javascript{storedVars.MyVar++;}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Save</td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${modalGenericSaveButton}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForElementNotPresent</td>
+	<td>${modalGenericBody}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">END</td>
+</tr>
+<tr class="">
+	<td>endWhile</td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4"></td>
+</tr>
+<tr class="">
+	<td>endForJson</td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+
+</tbody></table>
+
+<br><hr><br><a name="test9"></a><table class="test_case"><thead><tr><td colspan="4">Test case: ProjectTaskLoop2</td></tr></thead><tbody><tr class="">
+	<td>label</td>
+	<td>start</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>//button[@id='file-controls']</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>link=Create task</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>//input[@name='title']</td>
+	<td>1</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>//button[@type='submit']</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForElementNotPresent</td>
+	<td>css=button.btn.btn-warning</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>goto</td>
+	<td>start</td>
+	<td></td>
+	<td></td>
+</tr>
+
+</tbody></table>
+
+<br><hr><br><a name="test10"></a><table class="test_case"><thead><tr><td colspan="4">Test case: RollupTest</td></tr></thead><tbody><tr class="">
+	<td>rollup</td>
+	<td>login as USER01 - Viachaslau 375291200656</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>rollup</td>
+	<td>login as USER02 Viachaslau Qweeco</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>rollup</td>
+	<td>login as USER03 zzkarlson</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>rollup</td>
+	<td>login as USER04 vaclav.tour</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>rollup</td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>rollup</td>
+	<td>modalConfirmAction</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>rollup</td>
+	<td>generic verify text</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>rollup</td>
+	<td>Login Gmail as...User03</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>rollup</td>
+	<td>LogOut Gmail as...User03</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>open</td>
+	<td>accounts/logout/</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4"></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">DDT test template</td>
+</tr>
+<tr class="">
+	<td>forJson</td>
+	<td>${JsonPath}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Start</td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Finish</td>
+</tr>
+<tr class="">
+	<td>endForJson</td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4"></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Label template</td>
+</tr>
+<tr class="">
+	<td>gotoLabel</td>
+	<td>END</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>label</td>
+	<td>END</td>
+	<td></td>
+	<td></td>
+</tr>
+
+</tbody></table>
+
+<br><hr><br><a name="test11"></a><table class="test_case"><thead><tr><td colspan="4">Test case: PersonalSettings_SecurityTab</td></tr></thead><tbody><tr class="">
+	<td>forJson</td>
+	<td>${JsonPath}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>open</td>
+	<td>${personalSettings}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Check state by default</td>
+</tr>
+<tr class="">
+	<td>rollup</td>
+	<td>verify value Personal settings</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForText</td>
+	<td>//div[@id='login-security']/div/form/fieldset/h4</td>
+	<td>Change Password</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyText</td>
+	<td>//div[@id='login-security']/div/form/fieldset/div[2]/div/label</td>
+	<td>Current password:</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyText</td>
+	<td>//div[@id='login-security']/div/form/fieldset/div[3]/div/label</td>
+	<td>New password:</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyText</td>
+	<td>//div[@id='login-security']/div/form/fieldset/div[4]/div/label</td>
+	<td>Confirm new password:</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyText</td>
+	<td>${personalSettingsSaveButton}</td>
+	<td>Save</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyText</td>
+	<td>//div[@id='login-security']/div/fieldset/h4</td>
+	<td>2-step verification</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyText</td>
+	<td>//div[@id='login-security']/div/fieldset/div/div/p[2]/span[3]</td>
+	<td>Disabled</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyText</td>
+	<td>${personalSettingsEnableButton}</td>
+	<td>Enable</td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Change Password - validation empty</td>
+</tr>
+<tr class="">
+	<td>rollup</td>
+	<td>verify value Personal settings</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>${personalSettingsCurrentPassword}</td>
+	<td>0</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>${personalSettingsCurrentPassword}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${personalSettingsSaveButton}</td>
+	<td>Save</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForText</td>
+	<td>//div[@id='login-security']/div/form/fieldset/div[2]/div/span</td>
+	<td>This field may not be blank.</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyText</td>
+	<td>//div[@id='login-security']/div/form/fieldset/div[2]/div/span</td>
+	<td>This field may not be blank.</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyText</td>
+	<td>//div[@id='login-security']/div/form/fieldset/div[3]/div/span</td>
+	<td>This field is required.</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyText</td>
+	<td>//div[@id='login-security']/div/form/fieldset/div[4]/div/span</td>
+	<td>This field is required.</td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Change Password - validation empty New password & Confirm</td>
+</tr>
+<tr class="">
+	<td>rollup</td>
+	<td>verify value Personal settings</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>${personalSettingsCurrentPassword}</td>
+	<td>0</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${personalSettingsSaveButton}</td>
+	<td>Save</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyText</td>
+	<td>//div[@id='login-security']/div/form/fieldset/div[3]/div/span</td>
+	<td>This field is required.</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyText</td>
+	<td>//div[@id='login-security']/div/form/fieldset/div[4]/div/span</td>
+	<td>This field is required.</td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Change Password - validation empty Current & Confirm / BUG validation</td>
+</tr>
+<tr class="">
+	<td>rollup</td>
+	<td>verify value Personal settings</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>${personalSettingsNewPassword}</td>
+	<td>0</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${personalSettingsSaveButton}</td>
+	<td>Save</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>expectError</td>
+	<td>/not found/</td>
+	<td>This field may not be blank.</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyText</td>
+	<td>//div[@id='login-security']/div/form/fieldset/div[2]/div/span</td>
+	<td>This field may not be blank.</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyText</td>
+	<td>//div[@id='login-security']/div/form/fieldset/div[4]/div/span</td>
+	<td>This field is required.</td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Change Password - validation empty Current & New / BUG validation</td>
+</tr>
+<tr class="">
+	<td>rollup</td>
+	<td>verify value Personal settings</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>${personalSettingsConfirmPassword}</td>
+	<td>0</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${personalSettingsSaveButton}</td>
+	<td>Save</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>expectError</td>
+	<td>/not found/</td>
+	<td>This field may not be blank.</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyText</td>
+	<td>//div[@id='login-security']/div/form/fieldset/div[2]/div/span</td>
+	<td>This field may not be blank.</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyText</td>
+	<td>//div[@id='login-security']/div/form/fieldset/div[3]/div/span</td>
+	<td>This field is required.</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>captureEntirePageScreenshot</td>
+	<td>C:\Users\slava\Google Диск\JavaLang\PekamaSeleniumIDE_tests\2.jpg</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4"></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Change Password - no Current password - BUG noValidation Current password MAJOR</td>
+</tr>
+<tr class="">
+	<td>rollup</td>
+	<td>verify value Personal settings</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>${personalSettingsNewPassword}</td>
+	<td>0</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>${personalSettingsConfirmPassword}</td>
+	<td>0</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${personalSettingsSaveButton}</td>
+	<td>Save</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>expectError</td>
+	<td>/not found/</td>
+	<td>This field may not be blank.</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyText</td>
+	<td>//div[@id='login-security']/div/form/fieldset/div[2]/div/span</td>
+	<td>This field may not be blank.</td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Change Password - no New password</td>
+</tr>
+<tr class="">
+	<td>rollup</td>
+	<td>verify value Personal settings</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>${personalSettingsCurrentPassword}</td>
+	<td>0</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>${personalSettingsNewPassword}</td>
+	<td>0</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${personalSettingsSaveButton}</td>
+	<td>Save</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyText</td>
+	<td>//div[@id='login-security']/div/form/fieldset/div[4]/div/span</td>
+	<td>This field is required.</td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Change Password - no Confirm password</td>
+</tr>
+<tr class="">
+	<td>rollup</td>
+	<td>verify value Personal settings</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>${personalSettingsCurrentPassword}</td>
+	<td>0</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>${personalSettingsConfirmPassword}</td>
+	<td>0</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${personalSettingsSaveButton}</td>
+	<td>Save</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyText</td>
+	<td>//div[@id='login-security']/div/form/fieldset/div[3]/div/span</td>
+	<td>This field is required.</td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Change Password - not Sane new and confirm</td>
+</tr>
+<tr class="">
+	<td>rollup</td>
+	<td>verify value Personal settings</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>${personalSettingsNewPassword}</td>
+	<td>1</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>${personalSettingsConfirmPassword}</td>
+	<td>0</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${personalSettingsSaveButton}</td>
+	<td>Save</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForText</td>
+	<td>//div[@id='login-security']/div/form/fieldset/div</td>
+	<td>Passwords do not match</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyText</td>
+	<td>//div[@id='login-security']/div/form/fieldset/div</td>
+	<td>Passwords do not match</td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4"></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Enable 2-step verification</td>
+</tr>
+<tr class="">
+	<td>rollup</td>
+	<td>verify value Personal settings</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${personalSettingsEnableButton}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Modal - Enable 2-Step Verification</td>
+</tr>
+<tr class="">
+	<td>waitForElementPresent</td>
+	<td>${modalGenericBody}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyText</td>
+	<td>${mwEnableVerificationTitle}</td>
+	<td>Enable 2-Step Verification</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyText</td>
+	<td>css=div.form-group &gt; label</td>
+	<td>Enter your phone number, please:</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyText</td>
+	<td>${mwEnableVerificationClose}</td>
+	<td>Close</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyText</td>
+	<td>${mwEnableVerificationNext}</td>
+	<td>Next</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${mwEnableVerificationCountrySelect}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForValue</td>
+	<td>${mwEnableVerificationCoutryField}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>${mwEnableVerificationCoutryField}</td>
+	<td>bela</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyElementPresent</td>
+	<td>link=Belarus</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>link=Belarus</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyText</td>
+	<td>css=span.input-group-addon.ng-binding</td>
+	<td>+375</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyValue</td>
+	<td>name=phone</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Modal - Enable 2-Step Verification/ validate incorrect number</td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>name=phone</td>
+	<td>123</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${mwEnableVerificationNext}</td>
+	<td>Next</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForText</td>
+	<td>//div[2]/form/div</td>
+	<td>exact:21211: The 'To' number 375123 is not a valid phone number.</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyText</td>
+	<td>//div[2]/form/div</td>
+	<td>exact:21211: The 'To' number 375123 is not a valid phone number.</td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Modal - Enable 2-Step Verification/ validate CORRECT number</td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>name=phone</td>
+	<td>291200656</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${mwEnableVerificationNext}</td>
+	<td>Next</td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Modal - Enable 2-Step Verification/ validate Invalid code number</td>
+</tr>
+<tr class="">
+	<td>waitForText</td>
+	<td>//div[2]/div[2]/div/p</td>
+	<td>We sent a confirmation code to your phone. Please enter it in the field below.</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyText</td>
+	<td>//div[2]/div[2]/div/p</td>
+	<td>We sent a confirmation code to your phone. Please enter it in the field below.</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyValue</td>
+	<td>${mwEnableVerificationConfirmCodeField}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>${mwEnableVerificationConfirmCodeField}</td>
+	<td>12345678901234567890</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${mwEnableVerificationNext}</td>
+	<td>Next</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForText</td>
+	<td>//div[2]/div[2]/div/span</td>
+	<td>Wrong confirmation code format. It must be a number between 100000 and 999999</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyText</td>
+	<td>//div[2]/div[2]/div/span</td>
+	<td>Wrong confirmation code format. It must be a number between 100000 and 999999</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>${mwEnableVerificationConfirmCodeField}</td>
+	<td>qwerty</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${mwEnableVerificationNext}</td>
+	<td>Next</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForText</td>
+	<td>//div[2]/div[2]/div/span</td>
+	<td>Wrong confirmation code format. It must be a number between 100000 and 999999</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyText</td>
+	<td>//div[2]/div[2]/div/span</td>
+	<td>Wrong confirmation code format. It must be a number between 100000 and 999999</td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Modal - Enable 2-Step Verification/ validate WRONG code number</td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>${mwEnableVerificationConfirmCodeField}</td>
+	<td>100000 </td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${mwEnableVerificationNext}</td>
+	<td>Next</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForText</td>
+	<td>//div[2]/div[2]/div/span</td>
+	<td>Wrong confirmation code. Attempts left: 2.</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyText</td>
+	<td>//div[2]/div[2]/div/span</td>
+	<td>Wrong confirmation code. Attempts left: 2.</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>${mwEnableVerificationConfirmCodeField}</td>
+	<td>999999</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${mwEnableVerificationNext}</td>
+	<td>Next</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForText</td>
+	<td>//div[2]/div[2]/div/span</td>
+	<td>Wrong confirmation code. Attempts left: 1.</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyText</td>
+	<td>//div[2]/div[2]/div/span</td>
+	<td>Wrong confirmation code. Attempts left: 1.</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>${mwEnableVerificationConfirmCodeField}</td>
+	<td>123123</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${mwEnableVerificationNext}</td>
+	<td>Next</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForText</td>
+	<td>//form/div[2]/div/p</td>
+	<td>You're out of attempts, please request a new confirmation code.</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyText</td>
+	<td>//form/div[2]/div/p</td>
+	<td>You're out of attempts, please request a new confirmation code.</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyElementPresent</td>
+	<td>${mwEnableVerificationClose}</td>
+	<td>Close</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>${mwEnableVerificationClose}</td>
+	<td>Close</td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">END</td>
+</tr>
+<tr class="">
+	<td>endForJson</td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+
+</tbody></table>
+
+<br><hr><br><a name="test12"></a><table class="test_case"><thead><tr><td colspan="4">Test case: SignUpPageEmailValidation</td></tr></thead><tbody><tr class="comment">
+	<td colspan="4">SignUp - Invalid email validation</td>
+</tr>
+<tr class="">
+	<td>forJson</td>
+	<td>${JsonPath}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>storeEval</td>
+	<td>emailInvalid.length;</td>
+	<td>length</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>echo</td>
+	<td>${length}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>store</td>
+	<td>0</td>
+	<td>MyVar</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>while</td>
+	<td>storedVars.MyVar &lt; storedVars.length</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>storeEval</td>
+	<td>emailInvalid[storedVars.MyVar]</td>
+	<td>carname</td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Body</td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>name=user_info-email</td>
+	<td>${carname}</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>echo</td>
+	<td>${carname}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>//input[@id='signup-firstname']</td>
+	<td>firstname</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>//input[@id='signup-lastname']</td>
+	<td>lastname</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForValue</td>
+	<td>//input[@id='agree_to_tou']</td>
+	<td>off</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>id=agree_to_tou</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyValue</td>
+	<td>id=agree_to_tou</td>
+	<td>on</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyValue</td>
+	<td>id=agree_to_tou</td>
+	<td>on</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>//input[@id='inputCompany']</td>
+	<td>Valid Company</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>//input[@id='inputPassword']</td>
+	<td>0</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>clickAndWait</td>
+	<td>id=next-button</td>
+	<td>Next Step</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForText</td>
+	<td>css=li</td>
+	<td>Enter a valid email address.</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>assertText</td>
+	<td>css=li</td>
+	<td>Enter a valid email address.</td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">end body</td>
+</tr>
+<tr class="">
+	<td>store</td>
+	<td>javascript{storedVars.MyVar++;}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>echo</td>
+	<td>${MyVar}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>endWhile</td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>store</td>
+	<td>0</td>
+	<td>length</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>echo</td>
+	<td>${length}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4"></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">SignUp - Invalid email validation</td>
+</tr>
+<tr class="">
+	<td>storeEval</td>
+	<td>invalidPassword.length;</td>
+	<td>length</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>store</td>
+	<td>0</td>
+	<td>MyVar</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>while</td>
+	<td>storedVars.MyVar &lt; storedVars.length</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>storeEval</td>
+	<td>invalidPassword[storedVars.MyVar]</td>
+	<td>carname</td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Body</td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>name=user_info-email</td>
+	<td>11111111@gmail.com</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>echo</td>
+	<td>${carname}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>//input[@id='signup-firstname']</td>
+	<td>firstname</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>//input[@id='signup-lastname']</td>
+	<td>lastname</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForValue</td>
+	<td>//input[@id='agree_to_tou']</td>
+	<td>off</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>click</td>
+	<td>id=agree_to_tou</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyValue</td>
+	<td>id=agree_to_tou</td>
+	<td>on</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>verifyValue</td>
+	<td>id=agree_to_tou</td>
+	<td>on</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>//input[@id='inputCompany']</td>
+	<td>Valid Company</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>type</td>
+	<td>//input[@id='inputPassword']</td>
+	<td>${carname}</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>clickAndWait</td>
+	<td>id=next-button</td>
+	<td>Next Step</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>waitForText</td>
+	<td>//form[@id='signup-form']/div/div[3]/div/div[3]/div[2]/div/ul/li</td>
+	<td>This password is too short. It must contain at least 8 characters.</td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>assertText</td>
+	<td>//form[@id='signup-form']/div/div[3]/div/div[3]/div[2]/div/ul/li</td>
+	<td>This password is too short. It must contain at least 8 characters.</td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">end body</td>
+</tr>
+<tr class="">
+	<td>store</td>
+	<td>javascript{storedVars.MyVar++;}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>echo</td>
+	<td>${MyVar}</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>endWhile</td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="">
+	<td>store</td>
+	<td>0</td>
+	<td>length</td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">FINISH</td>
+</tr>
+<tr class="">
+	<td>endForJson</td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+
+</tbody></table>
+
+</body></html>

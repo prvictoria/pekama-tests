@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>Test_PinUnpin</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Test_PinUnpin</td></tr>
+</thead><tbody>
+<tr>
+	<td>setSpeed</td>
+	<td>50</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//div[@id='logo-box']/a</td>
+	<td>OpenSidebarButton</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//*[@pkm-spinner-action='togglePin(activeConversation)'][contains(.,'Unpin')]</td>
+	<td>conversationButtonUnpin</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//*[@pkm-spinner-action='togglePin(activeConversation)'][contains(.,'Pin')]</td>
+	<td>conversationButtonPin</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//*[@class='memobox-icon-pinned']</td>
+	<td>sidebarButtonUnPinned</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//*[@class='pin active']</td>
+	<td>sidebarButtonPinned</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>xpath=(//input[@type='text'])[2]</td>
+	<td>sidebarSearchConversation</td>
+</tr>
+<!--OpenSidebar-->
+<tr>
+	<td>click</td>
+	<td>${OpenSidebarButton}</td>
+	<td></td>
+</tr>
+<!--Sidebar Pin/Unpin-->
+<!--1st round-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${sidebarButtonUnPinned}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${sidebarButtonUnPinned}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${sidebarButtonUnPinned}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyNotVisible</td>
+	<td>${sidebarButtonUnPinned}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${sidebarButtonPinned}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${conversationButtonUnpin}</td>
+	<td>Unpin</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${sidebarButtonPinned}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>${sidebarButtonPinned}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyNotVisible</td>
+	<td>${sidebarButtonPinned}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${conversationButtonPin}</td>
+	<td>Pin</td>
+</tr>
+<!--2nd round-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${sidebarButtonUnPinned}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${sidebarButtonUnPinned}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${sidebarButtonUnPinned}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyNotVisible</td>
+	<td>${sidebarButtonUnPinned}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${sidebarButtonPinned}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${conversationButtonUnpin}</td>
+	<td>Unpin</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${sidebarButtonPinned}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>${sidebarButtonPinned}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyNotVisible</td>
+	<td>${sidebarButtonPinned}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${conversationButtonPin}</td>
+	<td>Pin</td>
+</tr>
+<!--Conversation Pin/Unpin-->
+<tr>
+	<td>waitForText</td>
+	<td>${conversationButtonPin}</td>
+	<td>Pin</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${conversationButtonPin}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>${conversationButtonPin}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${conversationButtonUnpin}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${conversationButtonUnpin}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>${conversationButtonUnpin}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${conversationButtonPin}</td>
+	<td>Pin</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${conversationButtonPin}</td>
+	<td>Pin</td>
+</tr>
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>SignUpPageInviteMembers</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SignUpPageInviteMembers</td></tr>
+</thead><tbody>
+<tr>
+	<td>forJson</td>
+	<td>${JsonPath}</td>
+	<td></td>
+</tr>
+<!--Invite your team members-->
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='organization-info']/div/div/label</td>
+	<td>Add the email addresses of your team members:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//form[@id='signup-form']/div/div</td>
+	<td>Invite your team members</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='signup-organization-members_addTag']/input</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='team-members-list']/div</td>
+	<td>Your Team</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='no-members-placeholder']/span</td>
+	<td>no members</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id='organization-info']/div[2]/div/button</td>
+	<td></td>
+</tr>
+<!--Invite-->
+<tr>
+	<td>type</td>
+	<td>//div[@id='signup-organization-members_addTag']/input</td>
+	<td>zzkarlson@gmail.com</td>
+</tr>
+<tr>
+	<td>endForJson</td>
+	<td></td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

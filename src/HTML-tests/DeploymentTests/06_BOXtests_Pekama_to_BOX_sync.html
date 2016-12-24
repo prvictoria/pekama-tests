@@ -1,0 +1,792 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="https://pekama.com/" />
+<title>06_BOX_tests</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">06_BOX_tests</td></tr>
+</thead><tbody>
+<tr>
+	<td>rollup</td>
+	<td>login as USER01 - testqweeco001@gmail.com</td>
+	<td></td>
+</tr>
+<tr>
+	<td>setSpeed</td>
+	<td>100</td>
+	<td></td>
+</tr>
+<tr>
+	<td>forJson</td>
+	<td>${JsonPath}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>Folder created before connect</td>
+	<td>FolderNameBeforeConnect</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>Folder created after connect</td>
+	<td>FolderNameAfterConnect</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>File created before connect</td>
+	<td>FileNameBeforeConnect</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>File created after connect</td>
+	<td>FileNameAfterConnect</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td></td>
+	<td></td>
+</tr>
+<!--Start-->
+<!--Create Peoject-->
+<!--Deploy Project Template-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${dashboardSelectProjectTemplatesButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>${dashboardSelectProjectTemplatesButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${dashboardSelectProjectTemplatesButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>link=${nameProjectTemplateGeneral}</td>
+	<td>${nameProjectTemplateGeneral}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=${nameProjectTemplateGeneral}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${projectTabMore_ProjectTitle}</td>
+	<td>${nameProjectTemporary}</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${projectTabMore_ProjectTitle}</td>
+	<td>${nameProjectTemporary}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${projectTabMore_TitleEditButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${projectTabMore_TitleInput}</td>
+	<td>${nameProjectBOX}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${projectTabMore_TitleSave}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>${projectTabMore_TitleSave}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${projectTabMore_ProjectTitle}</td>
+	<td>${nameProjectBOX}</td>
+</tr>
+<!--Create files and folders-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${projectTabDocs}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${projectTabDocs}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${projectTabNoContentPlaceholder}</td>
+	<td>${placeholderNoFiles}</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${projectTabNoContentPlaceholder}</td>
+	<td>${placeholderNoFiles}</td>
+</tr>
+<tr>
+	<td>storeLocation</td>
+	<td>project_path</td>
+	<td></td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>${project_path}</td>
+	<td></td>
+</tr>
+<!--Create folder-->
+<tr>
+	<td>click</td>
+	<td>id=file-controls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Add Folder</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${modalGenericTitle}</td>
+	<td>${mwTitleNewFolder}</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=name</td>
+	<td>${FolderNameBeforeConnect}</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${modalGenericSaveButton}</td>
+	<td>Save</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${modalGenericSaveButton}</td>
+	<td>Save</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${projectTabDocs_Row}${1}${projectTabDocs_RowName}</td>
+	<td>glob:${FolderNameBeforeConnect}*</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${projectTabDocs_Row}${1}${projectTabDocs_RowName}</td>
+	<td>glob:${FolderNameBeforeConnect}*</td>
+</tr>
+<!--Create file-->
+<tr>
+	<td>click</td>
+	<td>id=file-controls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=New document</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${modalGenericBody}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${mwDeployDoc_01TemplateWord}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=name</td>
+	<td>${FileNameBeforeConnect}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${mwDeployDoc_ButtonCreate}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${projectTabDocs_Row}${1}${projectTabDocs_RowName}</td>
+	<td>glob:${FileNameBeforeConnect}*</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${projectTabDocs_Row}${1}${projectTabDocs_RowName}</td>
+	<td>glob:${FileNameBeforeConnect}*</td>
+</tr>
+<!---->
+<!--Connect Project and If-Else logic-->
+<tr>
+	<td>storeLocation</td>
+	<td>ProjectFilesPath</td>
+	<td></td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>${ProjectFilesPath}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeTextPresent</td>
+	<td>Connect Box</td>
+	<td>ButtonConnect</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${ButtonConnect}==false</td>
+	<td>BOXisConnected</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${boxConnectProjectButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${boxConnectProjectButton}</td>
+	<td>Connect Box</td>
+</tr>
+<tr>
+	<td>storeTextPresent</td>
+	<td>Connect Box</td>
+	<td>ButtonConnect</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${boxConnectProjectButton}</td>
+	<td>Connect Box</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>4000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeTextPresent</td>
+	<td>Connect Box</td>
+	<td>ButtonConnect</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${ButtonConnect}==false</td>
+	<td>BOXisConnected</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${boxConnectProjectButton}</td>
+	<td>Connect Box</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>6000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeTextPresent</td>
+	<td>Connect Box</td>
+	<td>ButtonConnect</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${ButtonConnect}==false</td>
+	<td>BOXisConnected</td>
+</tr>
+<!--Auth2.0-->
+<tr>
+	<td>selectPopUp</td>
+	<td></td>
+	<td>20000</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${boxWindowSubmit}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${boxWindowEmail}</td>
+	<td>${gmailTest01}</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${boxWindowPassword}</td>
+	<td>${boxPasswUser}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${boxWindowSubmit}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${boxWindowAccept}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${boxWindowAccept}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>${boxWindowAccept}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td></td>
+	<td></td>
+</tr>
+<!--Create files and folders-->
+<!--Create folder-->
+<tr>
+	<td>label</td>
+	<td>BOXisConnected</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>3000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=file-controls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Add Folder</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${modalGenericTitle}</td>
+	<td>${mwTitleNewFolder}</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=name</td>
+	<td>${FolderNameAfterConnect}</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${modalGenericSaveButton}</td>
+	<td>Save</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${modalGenericSaveButton}</td>
+	<td>Save</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${projectTabDocs_Row}${1}${projectTabDocs_RowName}</td>
+	<td>glob:${FolderNameAfterConnect}*</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${projectTabDocs_Row}${1}${projectTabDocs_RowName}</td>
+	<td>glob:${FolderNameAfterConnect}*</td>
+</tr>
+<!--Create file-->
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=file-controls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=New document</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${modalGenericBody}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${mwDeployDoc_01TemplateWord}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=name</td>
+	<td>${FileNameAfterConnect}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${mwDeployDoc_ButtonCreate}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${projectTabDocs_Row}${1}${projectTabDocs_RowName}</td>
+	<td>glob:${FileNameAfterConnect}*</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${projectTabDocs_Row}${1}${projectTabDocs_RowName}</td>
+	<td>glob:${FileNameAfterConnect}*</td>
+</tr>
+<!---->
+<!--Check Pekama->BOX after connect-->
+<tr>
+	<td>open</td>
+	<td>${boxFilesURL}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>4000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeTextPresent</td>
+	<td>Upload</td>
+	<td>BOX_User_is_Logged_in</td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>${BOX_User_is_Logged_in}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${BOX_User_is_Logged_in}==true</td>
+	<td>CheckBOXContent</td>
+</tr>
+<!---->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${boxSubmit}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${boxWindowEmail}</td>
+	<td>${gmailTest01}</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${boxWindowPassword}</td>
+	<td>${boxPasswUser}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${boxSubmit}</td>
+	<td></td>
+</tr>
+<!---->
+<tr>
+	<td>label</td>
+	<td>CheckBOXContent</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>4000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${boxList}${boxItemName}</td>
+	<td>${boxNameFolderTeam1}</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${boxList}${boxItemName}</td>
+	<td>${boxNameFolderTeam1}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${boxList}${boxItemName}</td>
+	<td>${boxNameFolderTeam1}</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>4000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeLocation</td>
+	<td>BOXteamURL</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${boxList}${boxItemName}</td>
+	<td>glob:*${nameProjectBOX}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${boxList}${boxItemName}</td>
+	<td>glob:*${nameProjectBOX}</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>4000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>refreshAndWait</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${boxList}${1}${boxItemName}</td>
+	<td>${FolderNameAfterConnect}</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${boxList}${1}${boxItemName}</td>
+	<td>${FolderNameAfterConnect}</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${boxList}${2}${boxItemName}</td>
+	<td>${FolderNameBeforeConnect}</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${boxList}${2}${boxItemName}</td>
+	<td>${FolderNameBeforeConnect}</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${boxList}${3}${boxItemName}</td>
+	<td>${FileNameAfterConnect}</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${boxList}${3}${boxItemName}</td>
+	<td>${FileNameAfterConnect}</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${boxList}${4}${boxItemName}</td>
+	<td>${FileNameBeforeConnect}</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${boxList}${4}${boxItemName}</td>
+	<td>${FileNameBeforeConnect}</td>
+</tr>
+<tr>
+	<td>storeLocation</td>
+	<td>BOXprojectURL</td>
+	<td></td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>${BOXprojectURL}</td>
+	<td></td>
+</tr>
+<!--Return to Pekama - deleted All files-->
+<tr>
+	<td>open</td>
+	<td>${project_path}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>${project_path}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${projectAllCheckbox}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${projectAllCheckbox}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Delete</td>
+	<td></td>
+</tr>
+<tr>
+	<td>rollup</td>
+	<td>modalConfirmAction</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${projectTabNoContentPlaceholder}</td>
+	<td>${placeholderNoFiles}</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<!--Check BOX if files were deleted-->
+<tr>
+	<td>open</td>
+	<td>${BOXprojectURL}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeTextPresent</td>
+	<td>${boxNoFilesPlaceholder}</td>
+	<td>EmptyBox</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${EmptyBox}==true</td>
+	<td>BOX_is_empty</td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>BOX_is_full</td>
+	<td></td>
+</tr>
+<tr>
+	<td>refreshAndWait</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>3000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeTextPresent</td>
+	<td>${boxNoFilesPlaceholder}</td>
+	<td>EmptyBox</td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>BOX_is_empty</td>
+	<td></td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>${EmptyBox}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${EmptyBox}==false</td>
+	<td>BOX_is_full</td>
+</tr>
+<!--Return to Pekama - delete Project-->
+<tr>
+	<td>open</td>
+	<td>${project_path}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${genericButtonDelete}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>rollup</td>
+	<td>Delete project via button [DELETE}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${dashboardSelectProjectTemplatesButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>${dashboardSelectProjectTemplatesButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>${urlLogput}</td>
+	<td></td>
+</tr>
+<!--Check BOX if Project folder was deleted-->
+<tr>
+	<td>open</td>
+	<td>${BOXteamURL}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeTextPresent</td>
+	<td>${boxNoFilesPlaceholder}</td>
+	<td>EmptyBox</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${EmptyBox}==true</td>
+	<td>BOX_project_is_empty</td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>BOX_project_is_full</td>
+	<td></td>
+</tr>
+<tr>
+	<td>refreshAndWait</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>3000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeTextPresent</td>
+	<td>${boxNoFilesPlaceholder}</td>
+	<td>EmptyBox</td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>BOX_project_is_empty</td>
+	<td></td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>${EmptyBox}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${EmptyBox}==false</td>
+	<td>BOX_project_is_full</td>
+</tr>
+<!--Finish-->
+<tr>
+	<td>open</td>
+	<td>${boxLogoutURL}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>endForJson</td>
+	<td></td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

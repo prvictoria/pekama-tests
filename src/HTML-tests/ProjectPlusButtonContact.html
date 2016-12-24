@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>ProjectPlusButtonContact</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">ProjectPlusButtonContact</td></tr>
+</thead><tbody>
+<!--Create new contact in Project [+] via add old  from Contact book-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div/div/button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div/div/button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=New Contact</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=New Contact</td>
+	<td></td>
+</tr>
+<!--Modal "Contact Book"-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div/div[2]/div[2]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div/div[2]/div[2]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=div.modal-dialog.modal- &gt; div.modal-content &gt; div.modal-header.ng-scope &gt; h3.modal-title</td>
+	<td>Contact Relation</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.form-group.col-md-4 &gt; label</td>
+	<td>exact:Relation*</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.form-group.col-md-8 &gt; label</td>
+	<td>Ownership percentage</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=pkm-contact-fields.ng-isolate-scope &gt; div.row &gt; div.form-group.col-md-4 &gt; label</td>
+	<td>Type</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>name=contact.type</td>
+	<td>Person Company</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=pkm-contact-fields.ng-isolate-scope &gt; div.row &gt; div.form-group.col-md-8 &gt; label</td>
+	<td>exact:Legal Entity*</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.form-group.col-sm-6 &gt; label</td>
+	<td>exact:First Name*</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//pkm-contact-fields/div[2]/div[2]/label</td>
+	<td>exact:Last Name*</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=div.form-group.col-sm-12 &gt; label</td>
+	<td>Company</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.form-group.col-sm-12 &gt; label</td>
+	<td>Company</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[3]/div/div/div/span</td>
+	<td>---</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.form-group.col-md-6 &gt; label</td>
+	<td>Email</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[4]/div[2]/label</td>
+	<td>Phone #</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[5]/div/label</td>
+	<td>Fax #</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[5]/div[2]/label</td>
+	<td>Mobile #</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[6]/div/label</td>
+	<td>Street Address</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[6]/div[2]/label</td>
+	<td>Postal Code</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[7]/div/label</td>
+	<td>City</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[7]/div[2]/label</td>
+	<td>State/Region</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[3]/label</td>
+	<td>Country</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=button.btn.btn-secondary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=button.btn.btn-secondary</td>
+	<td></td>
+</tr>
+<!--Pages in Contact book-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[3]/nav/ul/li/a/i</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[3]/nav/ul/li/a/i</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=button.close</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=button.close</td>
+	<td></td>
+</tr>
+<!--Finish-->
+</tbody></table>
+</body>
+</html>

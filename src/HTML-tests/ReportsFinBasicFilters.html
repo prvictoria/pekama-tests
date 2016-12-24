@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>FinBasicFilters</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">FinBasicFilters</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/a/reports/financials</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/div/h4</td>
+	<td>Search by</td>
+</tr>
+<!--Check default state-->
+<!--Billing Organization-->
+<tr>
+	<td>waitForText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div/ng-include/label</td>
+	<td>Billing Organization</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div/ng-include/div/div/div/div/span/span[2]</td>
+	<td>Is</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div/ng-include/div/div[2]/div/div/div/div/div/span/span</td>
+	<td>Pick one...</td>
+</tr>
+<!--Billed Organization-->
+<tr>
+	<td>waitForText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div[2]/ng-include/label</td>
+	<td>Billed Organization</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div[2]/ng-include/div/div/div/div/span/span[2]</td>
+	<td>Is</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div[2]/ng-include/div/div[2]/div/div/div/div/div/span</td>
+	<td>Pick one...</td>
+</tr>
+<!--Status-->
+<tr>
+	<td>waitForText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div[3]/ng-include/label</td>
+	<td>Status</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div[3]/ng-include/div/div/div/div/span/span[2]</td>
+	<td>Is</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div[3]/ng-include/div/div[2]/div/div/div/div/div/span/span</td>
+	<td>Pick one...</td>
+</tr>
+<!--Contact-->
+<tr>
+	<td>waitForText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div[4]/ng-include/label</td>
+	<td>Contact</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div[4]/ng-include/div/div/div/div/span/span[2]</td>
+	<td>Is</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div[4]/ng-include/div/div[2]/div/div/div/div/div/span/span[2]</td>
+	<td>Any</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div[4]/ng-include/div/div[2]/div[2]/div/div/div/div/span/span</td>
+	<td>Pick one...</td>
+</tr>
+<!--Project Type-->
+<tr>
+	<td>waitForText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div[5]/ng-include/label</td>
+	<td>Project Type</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div[5]/ng-include/div/div/div/div/span</td>
+	<td>Pick one... Is</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/pkm-filtering/div[5]/ng-include/div/div[2]/div/div/div/div/div/span</td>
+	<td>Pick one...</td>
+</tr>
+<!--Bottom side - searches-->
+<tr>
+	<td>verifyText</td>
+	<td>//a/span</td>
+	<td>Advanced filters...</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/div/button</td>
+	<td>Clear</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/form/div/button[2]</td>
+	<td>Search</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Save search...</td>
+	<td>Save search...</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/div[2]/div[2]/div/div[2]/ul/div/div[2]</td>
+	<td>No data available.</td>
+</tr>
+<!--Check Actions-->
+</tbody></table>
+</body>
+</html>

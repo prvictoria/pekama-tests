@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Draft01</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Draft01</td></tr>
+</thead><tbody>
+<!--USER testqweeco001 - Create project suite-->
+<!--USER testqweeco002 - Create templates tests-->
+<!--USER testqweeco003 - Edit proejct, Deploy Templates tests-->
+<tr>
+	<td>setSpeed</td>
+	<td>1</td>
+	<td></td>
+</tr>
+<!--PreTest-->
+<tr>
+	<td>storeExpression</td>
+	<td>file://D://GithubRep//ProjectSel//00_VAR.json</td>
+	<td>JsonPath1</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>file://C://03_Files//GitHub//ProjectSel//00_VAR.json</td>
+	<td>JsonPath2</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>${JsonPath2}</td>
+	<td>JsonPath</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>https://communitystaging.pekama.com/</td>
+	<td>HostCommunityStaging</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>https://community.pekama.com/</td>
+	<td>HostCommunityProduction</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>${HostCommunityProduction}</td>
+	<td>HostCommunity</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>https://staging.pekama.com/</td>
+	<td>HostPekamaStaging</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>https://docketing.pekama.com/</td>
+	<td>HostPekamaProduction</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>${HostPekamaProduction}</td>
+	<td>HostPekama</td>
+</tr>
+<!--DDT test template-->
+<tr>
+	<td>forJson</td>
+	<td>${JsonPath}</td>
+	<td></td>
+</tr>
+<!--Start-->
+<!--Finish-->
+<tr>
+	<td>open</td>
+	<td>${HostPekama}${urlLogput}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>endForJson</td>
+	<td></td>
+	<td></td>
+</tr>
+<!---->
+<!--Label template-->
+<tr>
+	<td>goto</td>
+	<td>END1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>http://qweeco:qw33coStudi0@staging.pekama.com</td>
+	<td>http://qweeco:qw33coStudi0@staging.pekama.com</td>
+</tr>
+<tr>
+	<td>rollup</td>
+	<td>modalConfirmAction</td>
+	<td></td>
+</tr>
+<tr>
+	<td>rollup</td>
+	<td>verify value Personal settings</td>
+	<td></td>
+</tr>
+<tr>
+	<td>rollup</td>
+	<td>login as USER01 - testqweeco001@gmail.com</td>
+	<td></td>
+</tr>
+<tr>
+	<td>rollup</td>
+	<td>login as USER02 - testqweeco002@gmail.com</td>
+	<td></td>
+</tr>
+<tr>
+	<td>rollup</td>
+	<td>login as USER03 - testqweeco003@gmail.com</td>
+	<td></td>
+</tr>
+<tr>
+	<td>rollup</td>
+	<td>Submitt cookie if displayed</td>
+	<td></td>
+</tr>
+<tr>
+	<td>rollup</td>
+	<td>Click Cookie and submit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>rollup</td>
+	<td>Delete project via button [DELETE}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>rollup</td>
+	<td>select All Team checkbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>rollup</td>
+	<td>DEselect All Team checkbox</td>
+	<td></td>
+</tr>
+<tr>
+	<td>getAlert</td>
+	<td>isAlertPresent</td>
+	<td></td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>END1</td>
+	<td></td>
+</tr>
+<!---->
+<!--Cookie consent-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>link=log in</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>link=log in</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>300</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementPresent</td>
+	<td>link=Got it!</td>
+	<td>CookieButton</td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>${CookieButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>${CookieButton}==false</td>
+	<td>END</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>link=Got it!</td>
+	<td>Got it!</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>link=Got it!</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=p.cc_message</td>
+	<td>This website uses cookies to ensure you get the best experience on our website</td>
+</tr>
+<tr>
+	<td>storeAttribute</td>
+	<td>link=Got it!@target</td>
+	<td>window_ID</td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>${window_ID}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>setSpeed</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Got it!</td>
+	<td></td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td>${window_ID}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>close</td>
+	<td></td>
+	<td></td>
+</tr>
+<!--Links-->
+<tr>
+	<td>label</td>
+	<td>END</td>
+	<td></td>
+</tr>
+<tr>
+	<td>setSpeed</td>
+	<td>150</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

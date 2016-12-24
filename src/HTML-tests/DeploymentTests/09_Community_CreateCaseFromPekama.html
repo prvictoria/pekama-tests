@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="https://staging.pekama.com/" />
+<title>09_Community_CreateCaseFromPekama</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">09_Community_CreateCaseFromPekama</td></tr>
+</thead><tbody>
+<tr>
+	<td>storeExpression</td>
+	<td></td>
+	<td>ProjectLocation</td>
+</tr>
+<tr>
+	<td>forJson</td>
+	<td>${JsonPath}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>setSpeed</td>
+	<td>75</td>
+	<td></td>
+</tr>
+<!--Start-->
+<tr>
+	<td>open</td>
+	<td>${urlLogput}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>${HostPekama}${urlDashboard}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${loginField_Email}</td>
+	<td>${gmailTest01}</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${loginField_Password}</td>
+	<td>${gmailTestGenericPass}</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>${loginButton_Login}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${dashboardSelectProjectTemplatesButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>${dashboardSelectProjectTemplatesButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${dashboardSelectProjectTemplatesButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>link=Trademark project template</td>
+	<td>Trademark project template</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Trademark project template</td>
+	<td></td>
+</tr>
+<!--Verify Community block-->
+<tr>
+	<td>waitForText</td>
+	<td>${projectTabMore_CommunityBtnNewCase}</td>
+	<td>+ START NEW</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${projectTabMore_CommunityModule}</td>
+	<td>Services from the Pekama IP Community</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${projectTabMore_CommunityBtnNewCase}</td>
+	<td>+ START NEW</td>
+</tr>
+<tr>
+	<td>selectPopUp</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${communityLabelCollaborator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${communityLabelExpertTeam}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${communityBtnStartConversation}</td>
+	<td>WasCase</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>${communityBtnStartConversation}</td>
+	<td>WasCase</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${communityFirstMsgBody}</td>
+	<td>${communityPresenterMsg1}</td>
+</tr>
+<!---->
+<!--Return to Pekama-->
+<tr>
+	<td>close</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>refreshAndWait</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${communityFirstMsgBody}</td>
+	<td>${communityPresenterMsg1}</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${communityFirstMsgBody}</td>
+	<td>${communityPresenterMsg1}</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${projectTabMore_CommunityCasesList}${1}${communityCaseName}</td>
+	<td>glob:*Trademark in United Kingdom</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${projectTabMore_CommunityCasesList}${1}${projectTabMore_CommunityCaseDefining}</td>
+	<td>glob:*Trademark</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${projectTabMore_CommunityCasesList}${1}${projectTabMore_CommunityCaseStatus}</td>
+	<td>${communityStatusDraft}</td>
+</tr>
+<tr>
+	<td>storeLocation</td>
+	<td>ProjectLocation</td>
+	<td></td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>${ProjectLocation}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.name &gt; h3.ng-binding</td>
+	<td></td>
+</tr>
+<!---->
+<tr>
+	<td>waitForPopUp</td>
+	<td></td>
+	<td>30000</td>
+</tr>
+<tr>
+	<td>selectPopUp</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${communityBtnSendInstructions}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${communityBtnSendInstructions}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${communityBtnInstruct}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>${communityBtnInstruct}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${communityCaseList}${1}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${communityCaseList}${1}${communityCaseIcon}</td>
+	<td>Test03 QA</td>
+</tr>
+<tr>
+	<td>verifyAttribute</td>
+	<td>${communityCaseList}${1}${communityCaseIcon}@alt</td>
+	<td>Test03 QA</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${communityCaseList}${1}${communityCaseName}</td>
+	<td>glob:*Trademark in United Kingdom</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${communityCaseDefiningFirst}</td>
+	<td>glob:*Trademark</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${communityCaseList}${1}${communityCaseStatusOut}</td>
+	<td>${communityStatusSent}</td>
+</tr>
+<tr>
+	<td>close</td>
+	<td></td>
+	<td></td>
+</tr>
+<!---->
+<tr>
+	<td>selectWindow</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>${ProjectLocation}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${projectTabMore_CommunityCasesList}${1}${projectTabMore_CommunityCaseStatus}</td>
+	<td>${communityStatusSent}</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${projectTabMore_CommunityCasesList}${1}${projectTabMore_CommunityCaseStatus}</td>
+	<td>${communityStatusSent}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${communityBtnWithdraw}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${communityMwbody}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${communityMwTitle}</td>
+	<td>Are you sure you want to withdraw instructions for this case?</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${communityMwText}</td>
+	<td>We will immediately send a message asking Test03 QA not to proceed</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${communityMwYes}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>${communityBtnWithdraw}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${projectTabMore_CommunityCasesList}${1}${projectTabMore_CommunityCaseStatus}</td>
+	<td>${communityStatusCancelled}</td>
+</tr>
+<!--Finish-->
+<tr>
+	<td>open</td>
+	<td>${urlLogput}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>endForJson</td>
+	<td></td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>PersonalSettings_Notifications</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">PersonalSettings_Notifications</td></tr>
+</thead><tbody>
+<tr>
+	<td>forJson</td>
+	<td>${JsonPath}</td>
+	<td></td>
+</tr>
+<!--Available velocity = 100%-->
+<tr>
+	<td>open</td>
+	<td>${personalSettings}</td>
+	<td></td>
+</tr>
+<!--Emails tab-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${personalSettingsTabEmails}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${personalSettingsTabEmails}</td>
+	<td>Emails</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${personalSettingsTabEmails}</td>
+	<td></td>
+</tr>
+<!--Check the elements-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=div.radio</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=div.radio &gt; label</td>
+	<td>Always</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>name=19</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//label[2]</td>
+	<td>When I'm offline</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>name=20</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='emails']/div/form/fieldset/div/div/label</td>
+	<td>Receive attachments</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>//input[@type='checkbox']</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//fieldset/div[2]/label</td>
+	<td>No email notifications</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>name=21</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//fieldset[2]/div/label</td>
+	<td>Send me a copy of emails I send from Pekama</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>xpath=(//input[@type='checkbox'])[2]</td>
+	<td>on</td>
+</tr>
+<!--Finish-->
+<tr>
+	<td>endForJson</td>
+	<td></td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

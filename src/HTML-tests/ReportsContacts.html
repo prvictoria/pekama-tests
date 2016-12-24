@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>ReportsContacts</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">ReportsContacts</td></tr>
+</thead><tbody>
+<tr>
+	<td>rollup</td>
+	<td>login as USER02 - testqweeco002@gmail.com</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>${urlReportsContacts}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${reportsNoData}</td>
+	<td>${placeholderNoData}</td>
+</tr>
+<!--Start-->
+<tr>
+	<td>storeExpression</td>
+	<td>email01@new.test</td>
+	<td>ContactEmail1</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>email02@new.test</td>
+	<td>ContactEmail2</td>
+</tr>
+<tr>
+	<td>forJson</td>
+	<td>${JsonPath}</td>
+	<td></td>
+</tr>
+<!--ADD Contact 1 - ckick Add Contact button-->
+<tr>
+	<td>rollup</td>
+	<td>Click ADD contact and wait for MW</td>
+	<td></td>
+</tr>
+<!--Type First Name, Last Name, email-->
+<tr>
+	<td>type</td>
+	<td>name=first_name</td>
+	<td>${nameContactName}1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=last_name</td>
+	<td>${nameContactSurname}1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=email</td>
+	<td>${ContactEmail1}</td>
+</tr>
+<!--Select country-->
+<tr>
+	<td>click</td>
+	<td>${mwContact_SelectCountry}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${mwContact_InputCountry}</td>
+	<td>${nameCountryUK}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${genericSelectHighlighted}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${mwContact_SelectCountryName}</td>
+	<td>${nameCountryUK}</td>
+</tr>
+<!---->
+<!--Submit form-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${mwGenericButtonOk}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${mwGenericButtonOk}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>${mwGenericButtonOk}</td>
+	<td>OK</td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>${mwGenericTitleSimple}</td>
+	<td>Contact</td>
+</tr>
+<!--Check results-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${reportsListRow01}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${reportsListRow01}${reportsContactEmail}</td>
+	<td>${ContactEmail1}</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${reportsListRow01}${reportsContactCountry}</td>
+	<td>${nameCountryUK}</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${reportsListRow01}${reportsContactProjects}</td>
+	<td>no projects</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${reportsListRow01}${reportsContactCharges}</td>
+	<td>no charges</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${reportsListRow01}${reportsContactName}</td>
+	<td>${nameContactName}1 ${nameContactSurname}1</td>
+</tr>
+<!---->
+<!--ADD Contact 2 - ckick Add Contact button-->
+<tr>
+	<td>rollup</td>
+	<td>Click ADD contact and wait for MW</td>
+	<td></td>
+</tr>
+<!--Type First Name, Last Name, email-->
+<tr>
+	<td>type</td>
+	<td>name=first_name</td>
+	<td>${nameContactName}2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=last_name</td>
+	<td>${nameContactSurname}2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=email</td>
+	<td>${ContactEmail2}</td>
+</tr>
+<!--Select country-->
+<tr>
+	<td>click</td>
+	<td>${mwContact_SelectCountry}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${mwContact_InputCountry}</td>
+	<td>${nameCountryIreland}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${genericSelectHighlighted}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${mwContact_SelectCountryName}</td>
+	<td>${nameCountryIreland}</td>
+</tr>
+<!---->
+<!--Submit form-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${mwGenericButtonOk}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${mwGenericButtonOk}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>${mwGenericButtonOk}</td>
+	<td>OK</td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>${mwGenericTitleSimple}</td>
+	<td>Contact</td>
+</tr>
+<!--Check results-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${reportsListRow02}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${reportsListRow02}${reportsContactEmail}</td>
+	<td>${ContactEmail2}</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${reportsListRow02}${reportsContactCountry}</td>
+	<td>${nameCountryIreland}</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${reportsListRow02}${reportsContactProjects}</td>
+	<td>no projects</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${reportsListRow02}${reportsContactCharges}</td>
+	<td>no charges</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${reportsListRow02}${reportsContactName}</td>
+	<td>${nameContactName}2 ${nameContactSurname}2</td>
+</tr>
+<!---->
+<!--Merge contacts-->
+<tr>
+	<td>click</td>
+	<td>${reportsAllCheckbox}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>${reportsBulkMerge}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${reportsBulkMerge}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${mwGenericTitleSimple}</td>
+	<td>Merge Contacts</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${mwMergeContact_Select}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${mwMergeContact_Input}</td>
+	<td>${nameContactName}1 ${nameContactSurname}1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${genericSelectHighlighted}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${mwGenericButtonOk}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${mwGenericButtonOk}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>${mwGenericButtonOk}</td>
+	<td>OK</td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>${mwGenericTitleSimple}</td>
+	<td>Merge Contacts</td>
+</tr>
+<!--Check results-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${reportsListRow01}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${reportsListRow01}${reportsContactEmail}</td>
+	<td>${ContactEmail1}</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${reportsListRow01}${reportsContactCountry}</td>
+	<td>${nameCountryUK}</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${reportsListRow01}${reportsContactProjects}</td>
+	<td>no projects</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${reportsListRow01}${reportsContactCharges}</td>
+	<td>no charges</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${reportsListRow01}${reportsContactName}</td>
+	<td>${nameContactName}1 ${nameContactSurname}1</td>
+</tr>
+<!---->
+<!--Delete contact-->
+<tr>
+	<td>click</td>
+	<td>${reportsAllCheckbox}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>${reportsBulkDelete}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${reportsBulkDelete}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>rollup</td>
+	<td>modalConfirmAction</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${reportsNoData}</td>
+	<td>${placeholderNoData}</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>200</td>
+	<td></td>
+</tr>
+<!---->
+<!--Logout-->
+<tr>
+	<td>open</td>
+	<td>${urlLogput}</td>
+	<td></td>
+</tr>
+<!--Finish-->
+<tr>
+	<td>endForJson</td>
+	<td></td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

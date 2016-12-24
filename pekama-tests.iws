@@ -1,8 +1,149 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2fcdccdc-4d95-4ab7-8153-9ec9d616e50f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/InitialTests.java" />
+    <list default="true" id="2fcdccdc-4d95-4ab7-8153-9ec9d616e50f" name="Default" comment="initial commits">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/00_BeforeTests.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/00_Production_tests" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/00_VAR.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/00_global_VARs.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/01_TestSuite_PublicPages" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/02_TestSuite_Regression" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/03_TestSuite_TechnicalTest" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ConversationDeleteMessage.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ConversationEmailParameters.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ConversationTaskFromMessage.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/CreateDeleteProject.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/CreateProject.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/Dashboard.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/DashboardCheckout.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/DashboardLogout.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/DeploymentTests/01_Create_project_trademark.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/DeploymentTests/02_Create_templates_and_deploy.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/DeploymentTests/03_Deploy_precreated_templates_and_messages.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/DeploymentTests/04_Deploy_templates_conversation.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/DeploymentTests/05_Edit_objects_project.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/DeploymentTests/06_BOXtests_Pekama_to_BOX_sync.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/DeploymentTests/07_Community_Requester.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/DeploymentTests/08_Community_Expert.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/DeploymentTests/09_Community_CreateCaseFromPekama.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/DraftXpath" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/EventsBasicFilters.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ExtBOXconnect.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ExtBoxSyncFormBOX.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ExtBoxSyncToBOX.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ExtXeroConnectAndVerifyBill.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/JsonDraft.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/MwNewContact.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/MwNewProject.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/MwTimeTracker.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/OldTests/ConversationExternal.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/OldTests/CreateDeleteProject_AddContact.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/OldTests/CreateDeleteProject_AddDocs.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/OldTests/CreateDeleteProject_AddFinacial.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/OldTests/CreateDeleteProject_AddNumber.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/OldTests/CreateDeleteProject_AddTask.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/OldTests/DeployDocTemplate.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/OldTests/DeployExcelTemplate.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/OldTests/DeployMessageTemplate.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/OldTests/ProjectAdd1Contact.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/OldTests/ProjectAddCollaborator.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/OldTests/ProjectDocTemplateLoop.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/OldTests/ProjectTasks.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/OldTests/TeamSettingsEventTemplateSet.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PekamaIcons" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PekamaLog.csv.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PersonalSettings.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PersonalSettings_LoginSecurity.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PersonalSettings_Notifications.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PersonalSettings_Personaldetails.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PersonalSettings_SecurityTab.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PersonalSettings_Signature.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ProjectAddContacts.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ProjectAddNumber.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ProjectBulkDeleteFiles.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ProjectCheckFileRename.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ProjectCheckRename.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ProjectContactTab.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ProjectCreateFolder.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ProjectDeleteFileMenu.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ProjectFamily.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ProjectFinancials.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ProjectNewConversation.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ProjectPlusButton.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ProjectPlusButtonContact.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ProjectPlusButtonEvent.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ProjectPlusButtonNumber.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ProjectPlusEvent.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ProjectTasksTemplate.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ProjectUploadFile.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ProjectsConversationPinUnpin.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/GmailCheckEmail.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/GmailLogout.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/LandingPage.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/LinkedinLogout.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/LoginAllChecks.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/LoginBadLogin.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/LoginBadPassword.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/LoginForgotPassword.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/LoginGmail.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/LoginLinkedin.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/LoginMailRu.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/LoginOnly.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/SignUpPage.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/SignUpPageEmailValidation.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/SignUpPageFindTeam.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/SignUpPageFollowInviteLink.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/SignUpPageInviteMembers.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/SignUpPageJoinToCompany.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/SignUpPageJoinToTeam.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/SignUpPageNewUser.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/SignUpValidCreateTeam.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/PublicPages/StagingLogin.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ReportsContacts.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ReportsFinBasicFilters.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ReportsProjectBasicFilters.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ReportsProjectDeleteAllCreatedToday.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/ReportsTasksBasicFilters.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/Selenium-IDE.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TeamSettings.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TeamSettingsDefaultStorage.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TeamSettingsDocumentTemplate.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TeamSettingsEventTemplate.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TeamSettingsMessageTemplate.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TeamSettingsNewMember.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TeamSettingsPlaceholders.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TeamSettingsProjectTemplates.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TeamSettingsSelectTeam.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TeamSettingsTaskTemplate.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TeamSettingsValues.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TeamSettingsValuesTaskStatus.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/AddContactLoop1000.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/AddContactLoop1000Person.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/CPP_deleteEventTimeline_loop.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/CompanyList.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/ConatcNameSurnameEmail.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/CreateManyProjects.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/DashboardDeployTemplateLoop.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/DatapickerSetDateLogic.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/DeleteUserFromAdminPanel.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/MsgLoadTest.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/MyLinkedin.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/PlusEventLoopDays.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/ProjectTaskLoop2.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/ProjectTasksLoop.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/RollupTest.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/TestRunner.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/modalBuyProjectValidationLoop.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/modalDraftLoop.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/data.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/datadriven.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/gui_map.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/randomgenerator.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/rollup-rules.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/testDate.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HTML-tests/test_case_results" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pekama-tests.iws" afterPath="$PROJECT_DIR$/pekama-tests.iws" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -186,8 +327,8 @@
       <file leaf-file-name="InitialTests.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/InitialTests.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+            <state relative-caret-position="102">
+              <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#167#168#0" expanded="true" />
@@ -340,19 +481,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
+              <option name="myItemId" value="target" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -395,7 +524,7 @@
     <property name="js.eslint.eslintPackage" value="" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
   </component>
-  <component name="RunManager" selected="JUnit.InitialTests">
+  <component name="RunManager" selected="JUnit.AppTest">
     <configuration default="false" name="InitialTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -408,6 +537,32 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.pekama.app" />
       <option name="MAIN_CLASS_NAME" value="com.pekama.app.InitialTests" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="wholeProject" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="AppTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.pekama.app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="pekama-tests" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.pekama.app" />
+      <option name="MAIN_CLASS_NAME" value="com.pekama.app.AppTest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" />
@@ -788,12 +943,14 @@
     <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
       <method />
     </configuration>
-    <list size="1">
+    <list size="2">
       <item index="0" class="java.lang.String" itemvalue="JUnit.InitialTests" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.AppTest" />
     </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.InitialTests" />
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="JUnit.AppTest" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.InitialTests" />
       </list>
     </recent_temporary>
   </component>
@@ -836,7 +993,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1482598213028</updated>
-      <workItem from="1482598215333" duration="905000" />
+      <workItem from="1482598215333" duration="1470000" />
     </task>
     <task id="LOCAL-00001" summary="initial commits">
       <created>1482598292342</created>
@@ -852,16 +1009,26 @@
       <option name="project" value="LOCAL" />
       <updated>1482598607004</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="initial commits">
+      <created>1482599127865</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1482599127865</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TestHistory">
+    <history-entry file="AppTest - 2016.12.24 at 20h 10m 31s.xml">
+      <configuration name="AppTest" configurationId="JUnit" />
+    </history-entry>
     <history-entry file="InitialTests - 2016.12.24 at 20h 05m 00s.xml">
       <configuration name="InitialTests" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="905000" />
+    <option name="totallyTimeSpent" value="1470000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -877,24 +1044,24 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="0" width="1862" height="1087" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914045" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914045" sideWeight="0.49778023" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32914045" sideWeight="0.50443953" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32914045" sideWeight="0.50665927" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914045" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32914045" sideWeight="0.4955605" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32914045" sideWeight="0.49334073" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24972253" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24972253" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -987,14 +1154,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/AppTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/InitilalTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1011,10 +1170,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/AppTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/InitialTests.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+        <state relative-caret-position="102">
+          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#167#168#0" expanded="true" />

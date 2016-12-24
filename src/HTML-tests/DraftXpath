@@ -1,0 +1,71 @@
+${}
+//li[@type="result-name ng-binding"]
+//i[@class="pkm-icon-cancel"]
+//div[@class='loading-indicator ng-isolate-scope']
+//div[@placeholder="Choose importance..."]
+//div[@placeholder="Choose status..."]
+//div[@ng-repeat='member in organization.members']
+//*[@class='ng-binding'][contains(.,'Vatslau Africa')]
+//*[@class='btn btn-primary ng-isolate-scope'][contains(.,'OK')]
+//*[@class='help-block error'][@class='help-block error'][contains(.,'This field is required.')]
+//*[@class='icon memobox-icon-pinned'][contains(.,'Unpin')]
+//*[@class='alert alert-epmty text-center ng-scope'][contains(.,'Contact Book')]
+//*[@class='search-field'][contains(.,'Name or E-mail...')]
+//a[contains(text(),'General')]
+//li[@class='item matter ng-scope']
+xpath=(//button[@class='icon memobox-icon-pinned'])
+waitForElementPresent
+waitForElementNotPresent
+waitForElementPresent
+
+name="country"
+111
+//*[@class='search-field']//*[@type="text"]
+//div/ng-include/div/a[@class="link-task"]
+//*[@popover-title="Notes"]
+.row-controls-holder>a
+
+xpath=//img[@alt='The image alt text']
+xpath=//table[@id='table1']//tr[4]/td[2]
+xpath=//a[contains(@href,'#id1')]
+xpath=//a[contains(@href,'#id1')]/@class
+xpath=(//table[@class='stylee'])//th[text()='theHeaderText']/../td
+xpath=//input[@name='name2' and @value='yes']
+xpath=//*[text()="right"]
+xpath=.//div/button[2]
+xpath=//button[text()='Create']
+xpath=//input[@type='checkbox' and @ng-change='selectionService.toggleAll(selectionService.all)']
+//i[@class='btn btn-small start']/span[contains(.,'All')]
+//input[@type="checkbox"] - все инпуты чекбоксы
+button class="btn-link" pkm-confirm-click="bulkDelete()"
+Delete</button>
+//button[@pkm-confirm-click="bulkDelete()"]
+//input[@type="text"]/pkm-financial-fields
+.//*[@class='list-doc-icon']/div/ul/li/span[text()='All']
+.//button[@class='btn btn-small start'][contains(.,"Create")]
+//button[@class='btn btn-small start'and position()=2] [contains(.,"No data available.") ]
+.//*[@class='ui-select-choices-row-inner']/span[text()='New']
+.//label
+[text()='No data available.']
+//span[@class='ui-select-placeholder text-muted ng-binding']
+//div[[@class='modal-body'] and span[@class='btn btn-default form-control ui-select-toggle']
+//div[@name='relation']/span[@class = 'btn btn-default form-control ui-select-toggle']
+/span[@class = 'ui-select-placeholder text-muted ng-binding']
+
+//i[@class='pkm-icon-spinner icon-spin']
+//button[@class="btn-link"][contains(.,'Update Status')]
+<button class="btn-link" ng-click="bulkUpdate('status')">Update Status
+//span[text()=='Deadline']
+
+//*[@class='ng-binding ng-scope'][contains(.,'New')]
+//*[@class='ng-binding ng-scope'][contains(.,'USD')]
+//*[@class='ng-binding ng-scope']/span
+//*[@class='ng-binding ng-scope']
+//input[@placeholder='Select an event...']
+[starts-with(@id, 'username-')]
+//input[starts-with(@id, 'username-')]
+//div[starts-with(@class, 'checkbox-holder')]//input
+//div[@class='project-content-body ng-scope']//div[starts-with(@class, 'alert')]
+//li[starts-with(@ng-repeat, 'contactRelation')]
+//input[text()="Write Something"]
+span[@class='ng-binding'][1]

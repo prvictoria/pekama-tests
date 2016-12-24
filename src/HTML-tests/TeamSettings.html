@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>TeamSettings</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">TeamSettings</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/a/settings/team/profile</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//section[@id='page']/div[2]/div/div/ul/li[2]/a</td>
+	<td>Team settings</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/div/div/ul/li[2]/a</td>
+	<td>Team settings</td>
+</tr>
+<!--Check present elements-->
+<tr>
+	<td>verifyText</td>
+	<td>link=Profile</td>
+	<td>Profile</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Members</td>
+	<td>Members</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Values</td>
+	<td>Values</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Task Templates</td>
+	<td>Task Templates</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Message Templates</td>
+	<td>Message Templates</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Event Templates</td>
+	<td>Event Templates</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Document Templates</td>
+	<td>Document Templates</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Storage</td>
+	<td>Storage</td>
+</tr>
+<!--Profile-->
+<tr>
+	<td>waitForText</td>
+	<td>//section[@id='page']/div[2]/div/div/ui-view/ui-view/div/div/form/fieldset/h4</td>
+	<td>Team details</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/div/div/ui-view/ui-view/div/div/form/fieldset/div/div/label</td>
+	<td>exact:Title:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/div/div/ui-view/ui-view/div/div/form/fieldset/div/div[2]/label</td>
+	<td>exact:Code:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/div/div/ui-view/ui-view/div/div/form/fieldset/div[2]/div/label</td>
+	<td>Organization type:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/div/div/ui-view/ui-view/div/div/form/fieldset/div[3]/div/label</td>
+	<td>This organization is:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/div/div/ui-view/ui-view/div/div/form/fieldset/div[4]/label</td>
+	<td>exact:Email:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/div/div/ui-view/ui-view/div/div/form/fieldset/div[4]/div/span</td>
+	<td>@organizations.pekama.com</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/div/div/ui-view/ui-view/div/div/form/fieldset[2]/h4</td>
+	<td>Additional Info</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/div/div/ui-view/ui-view/div/div/form/fieldset[2]/div/div/label</td>
+	<td>Street address:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/div/div/ui-view/ui-view/div/div/form/fieldset[2]/div/div[2]/label</td>
+	<td>Post code:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/div/div/ui-view/ui-view/div/div/form/fieldset[2]/div[2]/div/label</td>
+	<td>exact:City:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/div/div/ui-view/ui-view/div/div/form/fieldset[2]/div[2]/div[2]/label</td>
+	<td>State/Region</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/div/div/ui-view/ui-view/div/div/form/fieldset[2]/div[2]/div[3]/label</td>
+	<td>exact:Country:</td>
+</tr>
+<!--Members-->
+<tr>
+	<td>waitForText</td>
+	<td>link=Members</td>
+	<td>Members</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Members</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>link=Add</td>
+	<td>Add</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Add</td>
+	<td>Add</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=span.color-dark.ng-binding</td>
+	<td>Karlson Roof</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=span.color-dark.ng-binding</td>
+	<td>Karlson Roof</td>
+</tr>
+<!--Add member-->
+<tr>
+	<td>waitForText</td>
+	<td>link=Add</td>
+	<td>Add</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Add</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForValue</td>
+	<td>name=email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=email</td>
+	<td>v375291200656@gmail.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=message</td>
+	<td>Hi men!</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[2]/button</td>
+	<td>OK</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[2]/button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//section[@id='page']/div[2]/div/div/ui-view/ui-view/div/div/div[3]/ul/li[3]/div/div/span</td>
+	<td>Viachaslau QA Test_01</td>
+</tr>
+<!--Add same user-->
+<tr>
+	<td>waitForText</td>
+	<td>link=Add</td>
+	<td>Add</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Add</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForValue</td>
+	<td>name=email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=email</td>
+	<td>v375291200656@gmail.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=message</td>
+	<td>Hi men!</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[2]/button</td>
+	<td>OK</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[2]/button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=span.help-block.error</td>
+	<td>Already a member</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=span.help-block.error</td>
+	<td>Already a member</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=button.btn.btn-warning</td>
+	<td></td>
+</tr>
+<!--Delete member-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=i.memobox-icon-cancel</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//section[@id='page']/div[2]/div/div/ui-view/ui-view/div/div/div[3]/ul/li[3]/div/div[2]/div/a/i</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[4]/div/div/div[2]/span</td>
+	<td>exact:Are you sure?</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[3]/button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>//div[3]/button</td>
+	<td></td>
+</tr>
+<!--Values-->
+<tr>
+	<td>waitForText</td>
+	<td>link=Values</td>
+	<td>Values</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Values</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>link=Immigration</td>
+	<td>Immigration</td>
+</tr>
+<!--Check present elements-->
+<tr>
+	<td>verifyText</td>
+	<td>link=Conference</td>
+	<td>Conference</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Client Relation (CRM)</td>
+	<td>Client Relation (CRM)</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Corporate</td>
+	<td>Corporate</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Design</td>
+	<td>Design</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Domain Name</td>
+	<td>Domain Name</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Immigration</td>
+	<td>Immigration</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Company</td>
+	<td>Company</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Copyright</td>
+	<td>Copyright</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Dispute</td>
+	<td>Dispute</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=General</td>
+	<td>General</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Litigation</td>
+	<td>Litigation</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Opposition</td>
+	<td>Opposition</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Patent</td>
+	<td>Patent</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=TeamWork Channel</td>
+	<td>TeamWork Channel</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Trademark</td>
+	<td>Trademark</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/div/div/ui-view/ui-view/div/ul/li[16]/a</td>
+	<td>Tasks</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/div/div/ui-view/ui-view/div/ul/li[17]/a</td>
+	<td>Financials</td>
+</tr>
+<!--Task Templates-->
+<tr>
+	<td>waitForText</td>
+	<td>link=Task Templates</td>
+	<td>Task Templates</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Task Templates</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//section[@id='page']/div[2]/div/div/ui-view/ui-view/ui-view/div[2]/div/div/h4</td>
+	<td>Task Templates</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=General</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=label.ng-binding</td>
+	<td>Sub Matter</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[2]/div/div/div/div/div/span/span</td>
+	<td>Any</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/div/div/ui-view/ui-view/ui-view/div[2]/div/div[2]/div/div/div[2]/label</td>
+	<td>Sub Matter Type</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/div/div/ui-view/ui-view/ui-view/div[2]/div/div[2]/div/div/div[2]/div/div/span</td>
+	<td>Any</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/div/div/ui-view/ui-view/ui-view/div[2]/div/div[2]/div/div/div[3]/label</td>
+	<td>Event Type:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/div/div/ui-view/ui-view/ui-view/div[2]/div/div[2]/div/div/div[3]/div/div/span/span</td>
+	<td>Any</td>
+</tr>
+<!--Message Templates-->
+<tr>
+	<td>waitForText</td>
+	<td>link=Message Templates</td>
+	<td>Message Templates</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Message Templates</td>
+	<td></td>
+</tr>
+<!--Event Templates-->
+<tr>
+	<td>waitForText</td>
+	<td>link=Event Templates</td>
+	<td>Event Templates</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Event Templates</td>
+	<td></td>
+</tr>
+<!--Document Templates-->
+<tr>
+	<td>waitForText</td>
+	<td>link=Document Templates</td>
+	<td>Document Templates</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Document Templates</td>
+	<td></td>
+</tr>
+<!--Storage-->
+<tr>
+	<td>waitForText</td>
+	<td>link=Storage</td>
+	<td>Storage</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Storage</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//section[@id='page']/div[2]/div/div/ui-view/ui-view/div/div/form/fieldset/h4</td>
+	<td>Choose your default storage for new project Memoboxes:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/div/div/ui-view/ui-view/div/div/form/fieldset/div/div/label[3]</td>
+	<td>Pekama + Box</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//section[@id='page']/div[2]/div/div/ui-view/ui-view/div/div/form/fieldset/div/div/label[2]</td>
+	<td>Pekama only</td>
+</tr>
+</tbody></table>
+</body>
+</html>

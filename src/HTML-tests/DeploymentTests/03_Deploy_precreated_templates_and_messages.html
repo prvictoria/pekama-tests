@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>03_Deploy_precreated_templates_and_messages</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">03_Deploy_precreated_templates_and_messages</td></tr>
+</thead><tbody>
+<!--Login as user-->
+<tr>
+	<td>rollup</td>
+	<td>login as USER03 - testqweeco003@gmail.com</td>
+	<td></td>
+</tr>
+<tr>
+	<td>setSpeed</td>
+	<td>150</td>
+	<td></td>
+</tr>
+<tr>
+	<td>forJson</td>
+	<td>${JsonPath}</td>
+	<td></td>
+</tr>
+<!--Deploy Project Template-->
+<tr>
+	<td>waitForText</td>
+	<td>link=Dashboard</td>
+	<td>Dashboard</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Dashboard</td>
+	<td>Dashboard</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${dashboardSelectProjectTemplatesButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>${dashboardSelectProjectTemplatesButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${dashboardSelectProjectTemplatesButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>link=Trademark Temaplate for auto-tests</td>
+	<td>Trademark Temaplate for auto-tests</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Trademark Temaplate for auto-tests</td>
+	<td></td>
+</tr>
+<!--Document delete and deploy Template-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${projectTabDocs}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${projectTabDocs}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${projectAllCheckbox}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Delete</td>
+	<td>Delete</td>
+</tr>
+<tr>
+	<td>rollup</td>
+	<td>modalConfirmAction</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>css=strong</td>
+	<td>No files found.</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>css=strong</td>
+	<td>No files found.</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=file-controls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=New document</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${mwDeployDoc_Title}</td>
+	<td>ADD DOCUMENT</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>${mwDeployDoc_FileName}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${mwDeployDoc_01TemplateWord}</td>
+	<td>New Word document</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${mwDeployDoc_02TemplateExcel}</td>
+	<td>New Excel sheet</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${mwDeployDoc_03TemplateCustom}</td>
+	<td>Trademark Template auto.txt</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${mwDeployDoc_03TemplateCustom}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${mwDeployDoc_ButtonCreate}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${projectTabDocs_01Row}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${projectTabDocs_01RowNameExpanded}</td>
+	<td>Template_auto.txt</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${projectTabDocs_01RowNameExpanded}</td>
+	<td>Template_auto.txt</td>
+</tr>
+<!---->
+<!--Task delete and deploy Template-->
+<tr>
+	<td>click</td>
+	<td>${projectTabTasks}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${projectTabTask_ListActive}</td>
+	<td>Active</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${projectTabTask_ListAll}</td>
+	<td>All</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${projectTabTask_ListAll}</td>
+	<td>All</td>
+</tr>
+<tr>
+	<td>setSpeed</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${projectTabTask_BulkSelectAll}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>setSpeed</td>
+	<td>150</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${projectTabTask_BulkDelete}</td>
+	<td>Delete</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${projectTabTask_BulkDelete}</td>
+	<td>Delete</td>
+</tr>
+<tr>
+	<td>rollup</td>
+	<td>modalConfirmAction</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${projectTabNoContentPlaceholder}</td>
+	<td>${placeholderEmptyList}</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${projectTabNoContentPlaceholder}</td>
+	<td>${placeholderEmptyList}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=file-controls</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Deploy template</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//h3</td>
+	<td>Task Templates</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${mwDeployTask_SelectEvent}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${mwDeployTask_InputEvent}</td>
+	<td> Mark Created</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${genericSelectHighlighted}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${mwDeployTask_01Template}</td>
+	<td>Trademark Task Template Set</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${mwDeployTask_Apply}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>link=Test Task Template - auto-deploy</td>
+	<td>Test Task Template - auto-deploy</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>link=Test Task Template - auto-deploy</td>
+	<td>Test Task Template - auto-deploy</td>
+</tr>
+<!---->
+<!--Event delete and deploy-->
+<tr>
+	<td>verifyText</td>
+	<td>${projectTimeline_EventToday}</td>
+	<td>Trademark Registered</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${projectTimeline_DeleteEvent}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>rollup</td>
+	<td>modalConfirmAction</td>
+	<td></td>
+</tr>
+<!--BUG!!!!-->
+<tr>
+	<td>goto</td>
+	<td>Workaround_Event_bug</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${projectTimeline_CheckboxLessImportant}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${projectTimeline_EventToday}</td>
+	<td>Mark Created</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${projectTimeline_EventToday}</td>
+	<td>Mark Created</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${projectTimeline_DeleteEvent}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>rollup</td>
+	<td>modalConfirmAction</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextNotPresent</td>
+	<td>${projectTimeline_EventToday}</td>
+	<td>Mark Created</td>
+</tr>
+<!---->
+<tr>
+	<td>click</td>
+	<td>${projectButtonPlus}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=New Event</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${modalGenericTitle}</td>
+	<td>Event</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${modalGenericDatepickerField}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>${modalGenericDatepickerField}</td>
+	<td>${KEY_ESCAPE}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${wmEvent_SelectType}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${mwEventTemplate_Input}</td>
+	<td>Mark Created</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${genericSelectHighlighted}</td>
+	<td>Mark Created</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${wmEvent_FieldInfo}</td>
+	<td>test info</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${genericButtonSave}</td>
+	<td>SAVE</td>
+</tr>
+<!--Check Timeline-->
+<tr>
+	<td>click</td>
+	<td>${projectTimeline_ShowHide}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${projectTimeline_EventToday}</td>
+	<td>Trademark Registered</td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>Workaround_Event_bug</td>
+	<td></td>
+</tr>
+<!---->
+<!---->
+<!--Delete project-->
+<tr>
+	<td>rollup</td>
+	<td>Delete project via button [DELETE}</td>
+	<td></td>
+</tr>
+<!--Logout-->
+<tr>
+	<td>open</td>
+	<td>${urlLogput}</td>
+	<td></td>
+</tr>
+<!--Finish-->
+<tr>
+	<td>endForJson</td>
+	<td></td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

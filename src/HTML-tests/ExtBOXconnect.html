@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>BOXconnect</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">BOXconnect</td></tr>
+</thead><tbody>
+<tr>
+	<td>forJson</td>
+	<td>${JsonPath}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>setSpeed</td>
+	<td>150</td>
+	<td></td>
+</tr>
+<tr>
+	<td>rollup</td>
+	<td>login as USER06 test Qweeeco gmail</td>
+	<td></td>
+</tr>
+<!---->
+<!--Connect BOX from Proejcts reports  - via link - need 1 project to display-->
+<tr>
+	<td>open</td>
+	<td>${urlReportsProjects}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${reportsAllCheckbox}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${reports1Row}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${reportsAllCheckbox}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${boxConnectStorageButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${boxConnectStorageButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>rollup</td>
+	<td>modalConfirmAction</td>
+	<td></td>
+</tr>
+<tr>
+	<td>selectPopUp</td>
+	<td></td>
+	<td>20000</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${boxWindowSubmit}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>close</td>
+	<td></td>
+	<td></td>
+</tr>
+<!---->
+<!--Connect BOX from current Project  - via button-->
+<tr>
+	<td>open</td>
+	<td>${urlReportsProjects}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${reports1Row}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${reports1Row}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${docsTab}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${docsTab}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${boxConnectProjectButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${boxConnectProjectButton}</td>
+	<td>Connect Box</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${boxConnectProjectButton}</td>
+	<td>Connect Box</td>
+</tr>
+<tr>
+	<td>selectPopUp</td>
+	<td></td>
+	<td>20000</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${boxWindowSubmit}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>close</td>
+	<td></td>
+	<td></td>
+</tr>
+<!---->
+<!---->
+<!--Connect BOX from Team Settings  - via button-->
+<tr>
+	<td>open</td>
+	<td>${teamSettingsStorageTab}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${boxConnectStorageButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${boxConnectStorageButton}</td>
+	<td>Connect Box</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${boxConnectStorageButton}</td>
+	<td>Connect Box</td>
+</tr>
+<tr>
+	<td>selectPopUp</td>
+	<td></td>
+	<td>20000</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${boxWindowSubmit}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>close</td>
+	<td></td>
+	<td></td>
+</tr>
+<!---->
+<!--Connect BOX from Team Settings change Storage - via radio and pop-up-->
+<tr>
+	<td>open</td>
+	<td>a/settings/team/storage</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${boxConnectStorageButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${boxConnectStorageButton}</td>
+	<td>Connect Box</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>${teamSettingsStorageTabPekama}</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>${teamSettingsStorageTabBOX}</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${teamSettingsStorageTabBOX}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>selectPopUp</td>
+	<td></td>
+	<td>20000</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${boxWindowSubmit}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>close</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td></td>
+	<td>20000</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${boxConnectStorageButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>${teamSettingsStorageTabBOX}</td>
+	<td>on</td>
+</tr>
+<!---->
+<!--Validation test connection to BOX-->
+<!--Connect BOX from Dashboard - via button-->
+<tr>
+	<td>open</td>
+	<td>${urlDashboard}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>label</td>
+	<td>START</td>
+	<td></td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td></td>
+	<td>20000</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${boxConnectDashboardButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${boxConnectDashboardButton}</td>
+	<td>boost my document management</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${boxConnectDashboardButton}</td>
+	<td></td>
+</tr>
+<!--Select BOX window and fill credentials-->
+<tr>
+	<td>selectPopUp</td>
+	<td></td>
+	<td>20000</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${boxWindowEmail}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${boxWindowPassword}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${boxWindowSubmit}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>storedVars['Step01']!=='Authorization code not received!'</td>
+	<td>Step01</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>storedVars['Step02']!=='Oops, something went wrong!'</td>
+	<td>Step02</td>
+</tr>
+<tr>
+	<td>gotoIf</td>
+	<td>storedVars['Step03']!=='Authorization code not received!'</td>
+	<td>Step03</td>
+</tr>
+<!--Deny BOX connect-->
+<tr>
+	<td>label</td>
+	<td>Step01</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${boxWindowEmail}</td>
+	<td>${userGmail06}</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${boxWindowPassword}</td>
+	<td>${boxPasswUser}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${boxWindowSubmit}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${boxWindowAccept}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${boxWindowAccept}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${boxWindowReject}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${boxWindowReject}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//body</td>
+	<td>Authorization code not received!</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//body</td>
+	<td>Authorization code not received!</td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>//body</td>
+	<td>Step01</td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>${Step01}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>close</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>goto</td>
+	<td>START</td>
+	<td></td>
+</tr>
+<!--BOX account is allready connected-->
+<tr>
+	<td>label</td>
+	<td>Step02</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${boxWindowEmail}</td>
+	<td>${userGmail01}</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${boxWindowPassword}</td>
+	<td>${boxPasswUser}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${boxWindowSubmit}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${boxWindowAccept}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${boxWindowAccept}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${boxWindowAccept}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//h1</td>
+	<td>Oops, something went wrong!</td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>//h1</td>
+	<td>Step02</td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>${Step02}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>close</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>goto</td>
+	<td>START</td>
+	<td></td>
+</tr>
+<!--Connect to BOX - valid-->
+<tr>
+	<td>label</td>
+	<td>Step03</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${boxWindowEmail}</td>
+	<td>${userGmail06}</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${boxWindowPassword}</td>
+	<td>${boxPasswUser}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${boxWindowSubmit}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${boxWindowAccept}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${boxWindowAccept}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${boxWindowAccept}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>${boxWindowAccept}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementNotPresent</td>
+	<td>${boxConnectDashboardButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td></td>
+	<td>Step03</td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>${Step03}</td>
+	<td></td>
+</tr>
+<!--Check that buttons Connect to box not present-->
+<!---->
+<!--Reconnect box-->
+<!--Finish-->
+<tr>
+	<td>endForJson</td>
+	<td></td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

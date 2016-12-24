@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>ProjectEditContact</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">ProjectEditContact</td></tr>
+</thead><tbody>
+<!--Go to info tab-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=i.icon.memobox-icon-info-square</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=i.icon.memobox-icon-info-square</td>
+	<td></td>
+</tr>
+<!--Edit contact-->
+<tr>
+	<td>waitForText</td>
+	<td>css=span.type.ng-binding</td>
+	<td>Contact Person</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div[2]/div[2]/div/div[3]/pkm-contact-relations/table/tbody/tr/td</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div[2]/div[2]/div/div[3]/pkm-contact-relations/table/tbody/tr/td</td>
+	<td>John Galt Contact Person</td>
+</tr>
+<!--Edit button-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=i.memobox-icon-edit.icon</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=i.memobox-icon-edit.icon</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.form-group.col-sm-12</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.form-group.col-sm-12</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=contact.email</td>
+	<td>new@email.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=contact.phone_number</td>
+	<td>12-00-33-55</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=contact.fax_number</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=contact.fax_number</td>
+	<td>22-33-77-22</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=contact.cellphone_number</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=contact.cellphone_number</td>
+	<td>78-95-626-456</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=contact.street_address</td>
+	<td>17th Avenue</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=contact.postal_code</td>
+	<td>7895/12</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=contact.city</td>
+	<td>NewCity</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=contact.region</td>
+	<td>New State</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[3]/div/div/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[35]/a/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//form/div[2]/button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//form/div[2]/button</td>
+	<td></td>
+</tr>
+<!--Delete Contact from Matter-->
+<tr>
+	<td>waitForText</td>
+	<td>css=td.ng-binding</td>
+	<td>John Galt Contact Person</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=i.memobox-icon-cancel.icon</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=i.memobox-icon-cancel.icon</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div/div/h3</td>
+	<td>Confirm action</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[3]/button</td>
+	<td>Yes</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[3]/button</td>
+	<td>Yes</td>
+</tr>
+<!--Delete Contact from Book-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div[2]/div[2]/div/div[3]/pkm-contact-relations/div/a/i</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div[2]/div[2]/div/div[3]/pkm-contact-relations/div/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[@name='full_name']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@name='full_name']</td>
+	<td>Galt</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//tr[3]/td[2]</td>
+	<td>John Galt</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//tr[3]/td[2]</td>
+	<td>John Galt</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//tr[3]/td/a[2]/i</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=div.modal-footer.ng-scope &gt; button.btn.btn-primary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.modal-footer.ng-scope &gt; button.btn.btn-primary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=button.close</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=button.close</td>
+	<td></td>
+</tr>
+<!--Check dlete in contact book-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div[2]/div[2]/div/div[3]/pkm-contact-relations/div/a/i</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div[2]/div[2]/div/div[3]/pkm-contact-relations/div/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[@name='full_name']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@name='full_name']</td>
+	<td>Galt</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//td/div/div[2]</td>
+	<td>No data available.</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//td/div/div[2]</td>
+	<td>No data available.</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=.close</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//section[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div[2]/div/nav/ul/li/a/i</td>
+	<td></td>
+</tr>
+<!--Finish-->
+</tbody></table>
+</body>
+</html>
