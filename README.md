@@ -1,1 +1,1 @@
-# pekama-test
+# pekama-tests
