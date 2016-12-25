@@ -5,10 +5,13 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.appears;
+import static com.codeborne.selenide.Condition.attribute;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
+import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
+import static org.junit.Assert.assertThat;
 
 /**
  * Created by VatslauX on 25-Dec-16.
@@ -26,10 +29,13 @@ public class LoginGmail {
         //$(byTitle("Inbox - testqweeco001@gmail.com - Gmail")).waitUntil(appears, 10000); //visible element
         //$(byTitle("Inbox - testqweeco001@gmail.com - Gmail")).should(exist);
         //assertEquals("Inbox - testqweeco001@gmail.com - Gmail", title());
-        $(By.xpath("//a[@href='https://accounts.google.com/SignOutOptions?hl=en&continue=https://mail.google.com/mail&service=mail']")).waitUntil(appears, 10000); //visible element
-        //$(By.xpath("//a[@href='https://accounts.google.com/SignOutOptions?hl=en&continue=https://mail.google.com/mail&service=mail']")).shouldHave(attribute("title", "Google Account: Test Account (testqweeco001@gmail.com)"));
-        $(By.xpath("//a[@title='Google Account: Test Account (testqweeco001@gmail.com)']")).click();
-        //assertTrue(true, $(By.xpath("//a[@title='Google Account: Test Account (testqweeco001@gmail.com')"));
+        String title = new String("");
+        $(By.xpath("//a[@class='gb_b gb_db gb_R']")).waitUntil(appears, 10000).getAttribute("title"); //visible element
+
+        System.out.println($(By.xpath("//a[@class='gb_b gb_db gb_R']")).waitUntil(appears, 10000).getAttribute("title"));
+
+        //assertEquals(attribute("title", "Google Account: Test Account (testqweeco001@gmail.com)"), $(By.xpath("//a[@class='gb_b gb_db gb_R']")).waitUntil(appears, 10000).getAttribute("title"));
+        assertThat(attribute("title", "Google Account: Test Account (testqweeco001@gmail.com)").isIn($(By.xpath("//a[@class='gb_b gb_db gb_R']")).waitUntil(appears, 10000).getAttribute("title")));
 
     };
 }
