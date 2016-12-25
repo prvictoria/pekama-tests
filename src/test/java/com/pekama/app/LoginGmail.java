@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.title;
 
 /**
  * Created by VatslauX on 25-Dec-16.
@@ -18,6 +19,9 @@ public class LoginGmail {
         $(By.name("signIn")).click();
         $(By.id("Passwd")).shouldBe(Condition.visible).sendKeys("123456789qasw1");
         $(By.id("signIn")).shouldBe(Condition.visible).click();
+        //$(By.xpath("//")).title().is(Condition.text("Inbox - testqweeco001@gmail.com - Gmail"));
+
+        //$(title()).shouldBe(Condition.visible).shouldHave(Condition.text("Inbox - testqweeco001@gmail.com - Gmail"));
 
     };
 }
