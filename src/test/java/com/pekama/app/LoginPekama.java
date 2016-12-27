@@ -22,17 +22,17 @@ import static org.junit.Assert.assertTrue;
 
 
 public class LoginPekama {
-    String email = "qweeco";
-    String password = "qw33coStudi0";
-    String hostProduction = "https://docketing.pekama.com";
-    String hostStaging = "http://qweeco:qw33coStudi0@staging.pekama.com";
-    String host = hostProduction;
-    String urlLogin = "https://pekama.com/accounts/login/";
-    String urlLogout = "https://pekama.com/accounts/logout/";
-    String btnLogin = "//a[@href='/accounts/login/']";
-    String btnSignup = "//a[@href='/signup/']";
-    String loginError = "//ul[@class='errorlist nonfield']/li";
-    String loginErrorMsg = "Please enter a correct email address and password. Note that both fields may be case-sensitive.";
+    public static final String hostEmail = "qweeco";
+    public static final String hostPassword = "qw33coStudi0";
+    public static final String hostProduction = "https://docketing.pekama.com";
+    public static final String hostStaging = "http://qweeco:qw33coStudi0@staging.pekama.com";
+    public static final String host = hostProduction;
+    public static final String urlLogin = host+"/accounts/login/";
+    public static final String urlLogout = host+"/accounts/logout/";
+    public static final String btnLogin = "//a[@href='/accounts/login/']";
+    public static final String btnSignup = "//a[@href='/signup/']";
+    public static final String loginError = "//ul[@class='errorlist nonfield']/li";
+    public static final String loginErrorMsg = "Please enter a correct email address and password. Note that both fields may be case-sensitive.";
 
     @Before
     public void openUrlLogin() {
@@ -78,7 +78,7 @@ public class LoginPekama {
         $(By.xpath(btnSignup)).shouldBe(visible);
     }
     @Test
-    public void invalideLoginAndPassword() {
+    public void invalidLoginAndPassword() {
         $("#loginEmail").sendKeys("teastaaaqweeco001@gmail.com");
         $("#loginPassword").sendKeys("asui2132367we34");
         $(By.xpath("//button[@type='submit']")).click();
