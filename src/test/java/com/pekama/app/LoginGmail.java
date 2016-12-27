@@ -15,7 +15,7 @@ import static com.codeborne.selenide.Selenide.open;
  * Created by VatslauX on 25-Dec-16.
  */
 public class LoginGmail {
-    
+
     private static Logger LOG = LoggerFactory.getLogger(LoginGmail.class);
     @Test
     public void open_page() {
@@ -31,6 +31,7 @@ public class LoginGmail {
         String title = new String("");
         $(By.xpath("//a[@class='gb_b gb_db gb_R']")).waitUntil(appears, 10000).getAttribute("title"); //visible element
         System.out.println($(By.xpath("//a[@class='gb_b gb_db gb_R']")).waitUntil(appears, 10000).getAttribute("title"));
+        //assertEquals("Inbox -ххххххххххххх@gmail.com - Gmail", title());
 
     };
 }
