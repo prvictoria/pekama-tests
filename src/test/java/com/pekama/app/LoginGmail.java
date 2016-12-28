@@ -23,7 +23,7 @@ public class LoginGmail {
         LOG.debug("Start browser");
         open("https://mail.google.com/mail/u/0/#inbox");
 
-        LOG.info("Find email");
+        LOG.info("Type email");
         $(By.name("Email")).sendKeys("testqweeco001@gmail.com");
 
         LOG.warn("Submit email");
