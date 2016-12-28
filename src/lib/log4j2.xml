@@ -21,7 +21,7 @@
     <Loggers>
         <!-- Корневой логгер -->
         <Root level="trace">
-            <AppenderRef ref="file" level="DEBUG"/>
+            <AppenderRef ref="file" level="INFO"/>
         </Root>
         <!-- Логгер нашего класса -->
         <Logger name="logging.log4j.LoggingLog4j" level="info" additivity="false">
