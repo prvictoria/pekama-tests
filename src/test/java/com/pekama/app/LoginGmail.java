@@ -15,23 +15,23 @@ import static com.codeborne.selenide.Selenide.open;
  */
 public class LoginGmail {
 
-    static final Logger LOG = LogManager.getLogger(LoginGmail.class);
+    static final Logger logging = LogManager.getLogger(LoginGmail.class);
     //DOMConfigurator.configure("log4j2.xml");
 
     @Test
     public void open_page() {
-        LOG.info("Start browser");
+        logging.info("Start browser");
         open("https://mail.google.com/mail/u/0/#inbox");
 
-        LOG.info("Type email");
+        logging.info("Type email");
         $(By.name("Email")).sendKeys("testqweeco001@gmail.com");
 
-        LOG.info("Submit email");
+        logging.info("Submit email");
         $(By.name("signIn")).click();
 
-        LOG.info("Type password");
+        logging.info("Type password");
         $(By.id("Passwd")).shouldBe(Condition.visible).sendKeys("123456789qasw1");
-        LOG.info("Submit password");
+        logging.info("Submit password");
         $(By.id("signIn")).shouldBe(Condition.visible).click();
 
         String title = new String("");
