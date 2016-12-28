@@ -1,5 +1,6 @@
 package com.pekama.app;
 
+import com.codeborne.selenide.Condition;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -33,9 +34,12 @@ public class SignUpValidation {
     public static final String signupMsg_RequiredField = "This field is required.";
     public static final String signupMsg_InvalidEmail = "Enter a valid email address.";
     public static final String signupMsg_InvalidPassword = "Your password must contain at least one lowercase, one uppercase and one special character (! \" # $ % & ' ( ) * + , - . / : ; < = > ? @ [ \\ ] ^ _ ` { | } ~).";
+    public static final String signupMsg_CommonPassword = "This password is too short. It must contain at least 8 characters.";
+    public static final String signupMsg_ShortPassword = "This password is too common.";
+
     public static final String[] arrayInvalidEmails = {"\"ab\"c@flxmd.by","ab\"c\"@flxmd.by","abc\"@flxmd.by", "\"ab\"c\"@flxmd.by", "事件王@flxmd.by", "ÀÇÈ@flxmd.by", "! # $ % * / ? | ^ { } ` ~ & ' + - =@flxmd.by", "abc@@eflxmd.by", "abcflxmd.by", "@abc@flxmd.by", "abc@", "@", "abc@flxmd..by", "abc@!#$%*/?|^{}`~&'+=com", "abc@fl\"xmd.by", "abc@ 事件|王.com", "abc@flx md.by"};
 //    not validated "bc@flxmd123.by",  "abc@flxmd-flxmd.by", "abc@ÀÇÈ.com",
-    public static final String[] arrayInvalidPasswords = {"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",};
+    public static final String[] arrayInvalidPasswords = {"1234567", "abcdefg", "1234567890", "qwertyuiop", "QWERTYUIOP", "!\"#$%&()*+-,./:;<=>?[]{}~'", "1234567890qwertyuiop", "1234567890QWERTYUIOP", "1234567890#", "qwertyuiopQWERTYUIOP", "qwertyuiop#", "QWERTYUIOP#", "1#qQ"};
 
 //    public void openUrlSignup() {
 //        open(urlSignup);
@@ -122,4 +126,19 @@ public class SignUpValidation {
             }
     }
 //Password rules validation
+//    @Test
+//    public void validationPassword() {
+//
+//        for (int arrayLength = 0; arrayLength < arrayInvalidPasswords.length; arrayLength++) {
+//            $(signupPassword).sendKeys(arrayInvalidPasswords[arrayLength]);
+//            $(signupNext).shouldBe(visible).shouldNot(disabled).click();
+//            $(By.xpath(signupErrorPassword)).shouldHave(text(signupMsg_InvalidPassword));
+//
+//            refresh();
+//
+//            $(signupAgree).shouldBe(visible).shouldNot(selected);
+//            $(signupNext).shouldBe(visible).shouldBe(disabled);
+//            $(signupAgree).setSelected(true).shouldBe(selected);
+//        }
+//    }
 }
