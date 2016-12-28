@@ -54,10 +54,7 @@ Selenium.prototype.doClick = function(locator) {
     this.page().clickElement(element);
 };
 
-/**
- * Overwrite the text in the located text element.
- * TODO fail if it can't be typed into.
- */
+
 Selenium.prototype.doType = function(locator, newText) {
     var element = this.page().findElement(locator);
     this.page().replaceText(element, newText);
@@ -398,9 +395,7 @@ Selenium.prototype.getEffectiveStyle = function(element) {
     if (element.currentStyle) {
         // non-standard IE alternative
         return element.currentStyle;
-        // TODO: this won't really work in a general sense, as
-        //   currentStyle is not identical to getComputedStyle()
-        //   ... but it's good enough for "visibility"
+
     }
     throw new SeleniumError("cannot determine effective stylesheet in this browser");
 };
@@ -579,12 +574,7 @@ OptionLocatorFactory.prototype.fromLocatorString = function(locatorString) {
     throw new SeleniumError("Unkown option locator type: " + locatorType);
 };
 
-/**
- * To allow for easy extension, all of the option locators are found by
- * searching for all methods of OptionLocatorFactory.prototype that start
- * with "OptionLocatorBy".
- * TODO: Consider using the term "Option Specifier" instead of "Option Locator".
- */
+
 OptionLocatorFactory.prototype.registerOptionLocators = function() {
     this.optionLocators={};
     for (var functionName in this) {

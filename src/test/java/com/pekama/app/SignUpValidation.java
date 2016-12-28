@@ -98,5 +98,6 @@ public class SignUpValidation {
         $(signupError).shouldHave(text(signupMsg_RequiredField));
     }
 //Email Validation
+
 //Password rules validation
 }

@@ -1,11 +1,10 @@
 package com.pekama.app;
 
 import com.codeborne.selenide.Condition;
-import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import static com.codeborne.selenide.Condition.appears;
 import static com.codeborne.selenide.Selenide.$;
@@ -16,14 +15,18 @@ import static com.codeborne.selenide.Selenide.open;
  */
 public class LoginGmail {
 
-    private static Logger LOG = LoggerFactory.getLogger(LoginGmail.class);
+    static final Logger LOG = LogManager.getLogger(LoginGmail.class);
+    //DOMConfigurator.configure("log4j2.xml");
+
     @Test
     public void open_page() {
         LOG.debug("Start browser");
         open("https://mail.google.com/mail/u/0/#inbox");
-        LOG.debug("Find email");
+
+        LOG.info("Find email");
         $(By.name("Email")).sendKeys("testqweeco001@gmail.com");
-        LOG.debug("Submit email");
+
+        LOG.warn("Submit email");
         $(By.name("signIn")).click();
         $(By.id("Passwd")).shouldBe(Condition.visible).sendKeys("123456789qasw1");
         $(By.id("signIn")).shouldBe(Condition.visible).click();
