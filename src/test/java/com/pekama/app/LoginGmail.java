@@ -20,15 +20,18 @@ public class LoginGmail {
 
     @Test
     public void open_page() {
-        LOG.debug("Start browser");
+        LOG.info("Start browser");
         open("https://mail.google.com/mail/u/0/#inbox");
 
         LOG.info("Type email");
         $(By.name("Email")).sendKeys("testqweeco001@gmail.com");
 
-        LOG.warn("Submit email");
+        LOG.info("Submit email");
         $(By.name("signIn")).click();
+
+        LOG.info("Type password");
         $(By.id("Passwd")).shouldBe(Condition.visible).sendKeys("123456789qasw1");
+        LOG.info("Submit password");
         $(By.id("signIn")).shouldBe(Condition.visible).click();
 
         String title = new String("");
