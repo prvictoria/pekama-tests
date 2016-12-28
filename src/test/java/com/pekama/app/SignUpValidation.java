@@ -28,13 +28,20 @@ public class SignUpValidation {
     public static final String signupTerms = "//a[@href='/accounts/terms_of_use/']";
     public static final String signupNext = "#next-button";
     public static final String signupError = ".list-unstyled.error-list>li";
+    public static final String signupErrorEmail = "//div[@class='signup-details']//div[@class='row'][1]//li";
+    public static final String signupErrorPassword = "//div[@class='signup-details']//div[@class='row'][3]//li[2]";
     public static final String signupMsg_RequiredField = "This field is required.";
+    public static final String signupMsg_InvalidEmail = "Enter a valid email address.";
+    public static final String signupMsg_InvalidPassword = "Your password must contain at least one lowercase, one uppercase and one special character (! \" # $ % & ' ( ) * + , - . / : ; < = > ? @ [ \\ ] ^ _ ` { | } ~).";
+    public static final String[] arrayInvalidEmails = {"\"ab\"c@flxmd.by","ab\"c\"@flxmd.by","abc\"@flxmd.by", "\"ab\"c\"@flxmd.by", "事件王@flxmd.by", "ÀÇÈ@flxmd.by", "! # $ % * / ? | ^ { } ` ~ & ' + - =@flxmd.by", "abc@@eflxmd.by", "abcflxmd.by", "@abc@flxmd.by", "abc@", "@", "abc@flxmd..by", "abc@!#$%*/?|^{}`~&'+=com", "abc@fl\"xmd.by", "abc@ 事件|王.com", "abc@flx md.by"};
+//    not validated "bc@flxmd123.by",  "abc@flxmd-flxmd.by", "abc@ÀÇÈ.com",
+    public static final String[] arrayInvalidPasswords = {"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",};
 
 //    public void openUrlSignup() {
 //        open(urlSignup);
 //    }
     @Before
-    public void selectArggeCheckbox() {
+    public void selectAgreeCheckbox() {
         open(urlSignup);
         $(signupAgree).shouldBe(visible).shouldNot(selected);
         $(signupNext).shouldBe(visible).shouldBe(disabled);
@@ -98,6 +105,21 @@ public class SignUpValidation {
         $(signupError).shouldHave(text(signupMsg_RequiredField));
     }
 //Email Validation
+    @Test
+    public void validationEmail() {
 
+        for (int arrayLength = 0; arrayLength < arrayInvalidEmails.length; arrayLength++) {
+                $(signupEmail).sendKeys(arrayInvalidEmails[arrayLength]);
+                $(signupNext).shouldBe(visible).shouldNot(disabled).click();
+                $$(By.xpath(signupErrorEmail)).shouldHave(size(1));
+                $(By.xpath(signupErrorEmail)).shouldHave(text(signupMsg_InvalidEmail));
+
+                refresh();
+
+                $(signupAgree).shouldBe(visible).shouldNot(selected);
+                $(signupNext).shouldBe(visible).shouldBe(disabled);
+                $(signupAgree).setSelected(true).shouldBe(selected);
+            }
+    }
 //Password rules validation
 }
