@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 
+import static Page.RunConfig.*;
 import static com.codeborne.selenide.Condition.empty;
 import static com.codeborne.selenide.Condition.value;
 import static com.codeborne.selenide.Condition.visible;
@@ -59,6 +60,11 @@ public class LoginPekama {
 //        //open("http://www.staging.pekama.com\\qweeco:qw33coStudi0@staging.pekama.com");
 //        //open("https://staging.pekama.com", "www.staging.pekama.com", "qweeco" , "qw33coStudi0");
 //    };
+    @Test
+    public void testEnviroment() {
+        open(TEST_ENVIROMENT_PEKAMA);
+        open(TEST_ENVIROMENT_COMMUNITY);
+    }
     @Test
     public void invalidPassword() {
         $("#loginEmail").sendKeys("testqweeco001@gmail.com");
