@@ -12,13 +12,13 @@
 <tr><td rowspan="1" colspan="3">CreateEventTemplate</td></tr>
 </thead><tbody>
 <tr>
-	<td>rollup</td>
-	<td>login as USER02 - testqweeco002@gmail.com</td>
+	<td>forJson</td>
+	<td>${JsonPath}</td>
 	<td></td>
 </tr>
 <tr>
-	<td>forJson</td>
-	<td>${JsonPath}</td>
+	<td>rollup</td>
+	<td>login as USER02 - testqweeco002@gmail.com</td>
 	<td></td>
 </tr>
 <!--START-->
@@ -126,7 +126,7 @@
 <!--Expand row-->
 <tr>
 	<td>click</td>
-	<td>//section[@id='page']/div[2]/div/div/ui-view/ui-view/ui-view/div[2]/div/div[3]/ul/li/div/div</td>
+	<td>${templatesTable}${templateRow}</td>
 	<td></td>
 </tr>
 <!--Template-->
@@ -219,12 +219,12 @@
 </tr>
 <tr>
 	<td>waitForElementPresent</td>
-	<td>${templatesIconCancel}</td>
+	<td>${templatesTable}${templatesIconCancel}</td>
 	<td></td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>${templatesIconCancel}</td>
+	<td>${templatesTable}${templatesIconCancel}</td>
 	<td></td>
 </tr>
 <tr>
