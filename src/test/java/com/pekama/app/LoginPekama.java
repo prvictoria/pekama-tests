@@ -6,13 +6,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 
+import static Page.PekamaLogin.*;
 import static Page.RunConfig.*;
-import static com.codeborne.selenide.Condition.empty;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Condition.value;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
-import static com.thoughtworks.selenium.SeleneseTestNgHelper.assertEquals;
-import static org.hamcrest.core.IsEqual.equalTo;
+import static com.thoughtworks.selenium.SeleneseTestNgHelper.*;
+import static org.hamcrest.core.IsEqual.*;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
@@ -23,17 +24,7 @@ import static org.junit.Assert.assertTrue;
 
 
 public class LoginPekama {
-    public static final String hostEmail = "qweeco";
-    public static final String hostPassword = "qw33coStudi0";
-    public static final String hostProduction = "https://docketing.pekama.com";
-    public static final String hostStaging = "http://qweeco:qw33coStudi0@staging.pekama.com";
-    public static final String host = hostProduction;
-    public static final String urlLogin = host+"/accounts/login/";
-    public static final String urlLogout = host+"/accounts/logout/";
-    public static final String btnLogin = "//a[@href='/accounts/login/']";
-    public static final String btnSignup = "//a[@href='/signup/']";
-    public static final String loginError = "//ul[@class='errorlist nonfield']/li";
-    public static final String loginErrorMsg = "Please enter a correct email address and password. Note that both fields may be case-sensitive.";
+
 
     @Before
     public void openUrlLogin() {
@@ -95,11 +86,11 @@ public class LoginPekama {
     @Test
     public void blankLoginPassword() {
         $("#loginEmail").getAttribute("required");
-        assertTrue( $("#loginEmail").getAttribute("required"), true);
+        assertTrue($("#loginEmail").getAttribute("required"), true);
         //assertThat("Required attribute present", $("#loginEmail").getAttribute("required"), equalTo(true));
         //assertEquals("Inbox -ххххххххххххх@gmail.com - Gmail", title());
         $("#loginPassword").getAttribute("required");
-        assertTrue( $("#loginPassword").getAttribute("required"), true);
+        assertTrue($("#loginPassword").getAttribute("required"), true);
 
         //Case login only
         $("#loginPassword").sendKeys("asusdsdsdsi67we34");

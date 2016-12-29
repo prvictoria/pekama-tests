@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2fcdccdc-4d95-4ab7-8153-9ec9d616e50f" name="Default" comment="initial commits">
+    <list default="true" id="2fcdccdc-4d95-4ab7-8153-9ec9d616e50f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pekama-tests.iws" afterPath="$PROJECT_DIR$/pekama-tests.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/RunConfig.java" afterPath="$PROJECT_DIR$/src/main/java/Page/RunConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/DemoTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/DemoTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/PekamaLogin.java" afterPath="$PROJECT_DIR$/src/main/java/Page/PekamaLogin.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/LoginPekama.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/LoginPekama.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -176,14 +175,24 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SignUpValidation.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SignUpValidation.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/SignUpValidation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
+            <state relative-caret-position="1530">
               <caret line="102" column="5" lean-forward="true" selection-start-line="96" selection-start-column="3" selection-end-line="102" selection-end-column="5" />
               <folding>
                 <element signature="docComment;class#SignUpValidation#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PekamaLogin.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Page/PekamaLogin.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="24" column="145" lean-forward="false" selection-start-line="24" selection-start-column="145" selection-end-line="24" selection-end-column="145" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -198,13 +207,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LoginPekama.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="LoginPekama.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/LoginPekama.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="986">
-              <caret line="64" column="13" lean-forward="false" selection-start-line="64" selection-start-column="13" selection-end-line="64" selection-end-column="13" />
+            <state relative-caret-position="119">
+              <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
               <folding>
-                <element signature="imports" expanded="true" />
                 <element signature="docComment;class#LoginPekama#0" expanded="false" />
               </folding>
             </state>
@@ -266,16 +274,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="144">
               <caret line="207" column="75" lean-forward="false" selection-start-line="207" selection-start-column="75" selection-end-line="207" selection-end-column="75" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Box.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Page/Box.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -348,7 +346,6 @@
         <option value="$PROJECT_DIR$/src/main/java/Page/CommunityDashboard.java" />
         <option value="$PROJECT_DIR$/src/main/java/Page/DirectLinks.java" />
         <option value="$PROJECT_DIR$/src/main/java/Page/PekamaLanding.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Page/PekamaLogin.java" />
         <option value="$PROJECT_DIR$/src/main/java/Page/PekamaSignUp.java" />
         <option value="$PROJECT_DIR$/src/main/java/Page/PekamaHeader.java" />
         <option value="$PROJECT_DIR$/src/main/java/Page/PekamaDashboard.java" />
@@ -364,9 +361,10 @@
         <option value="$PROJECT_DIR$/src/main/java/Page/Strings.java" />
         <option value="$PROJECT_DIR$/src/main/java/Page/ModalWindows.java" />
         <option value="$PROJECT_DIR$/src/main/java/Page/Locators.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/LoginPekama.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/DemoTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/Page/RunConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Page/PekamaLogin.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/LoginPekama.java" />
       </list>
     </option>
   </component>
@@ -1173,7 +1171,7 @@
       <workItem from="1482613905499" duration="10005000" />
       <workItem from="1482687604531" duration="10647000" />
       <workItem from="1482767577605" duration="38288000" />
-      <workItem from="1483035445855" duration="7550000" />
+      <workItem from="1483035445855" duration="7812000" />
     </task>
     <task id="LOCAL-00001" summary="initial commits">
       <created>1482598292342</created>
@@ -1364,7 +1362,14 @@
       <option name="project" value="LOCAL" />
       <updated>1483043403174</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="initial commits">
+      <created>1483044432589</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1483044432589</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1400,7 +1405,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70781000" />
+    <option name="totallyTimeSpent" value="71043000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1774,14 +1779,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Page/PekamaLogin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="80" lean-forward="false" selection-start-line="12" selection-start-column="80" selection-end-line="12" selection-end-column="80" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Page/PekamaSignUp.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -1950,23 +1947,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/LoginPekama.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/SignUpValidation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="986">
-          <caret line="64" column="13" lean-forward="false" selection-start-line="64" selection-start-column="13" selection-end-line="64" selection-end-column="13" />
+        <state relative-caret-position="1530">
+          <caret line="102" column="5" lean-forward="true" selection-start-line="96" selection-start-column="3" selection-end-line="102" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;class#LoginPekama#0" expanded="false" />
+            <element signature="docComment;class#SignUpValidation#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/SignUpValidation.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Page/PekamaLogin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="102" column="5" lean-forward="true" selection-start-line="96" selection-start-column="3" selection-end-line="102" selection-end-column="5" />
+        <state relative-caret-position="408">
+          <caret line="24" column="145" lean-forward="false" selection-start-line="24" selection-start-column="145" selection-end-line="24" selection-end-column="145" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/LoginPekama.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding>
-            <element signature="docComment;class#SignUpValidation#0" expanded="false" />
+            <element signature="docComment;class#LoginPekama#0" expanded="false" />
           </folding>
         </state>
       </provider>
