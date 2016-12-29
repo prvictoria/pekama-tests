@@ -19,14 +19,14 @@ public class Steps {
     public Steps() {
         this.driver = new FirefoxDriver();
     }
-    public void loginGitHub(String USER_NAME_GITHUB, String USER_PASSWORD_GITHUB) {
+    public void loginGitHub() {
         PageGitHubLogin page = new PageGitHubLogin(driver);
         page.openPage();
         page.login();
 
     }
 
-    public boolean isUserLoggedIn(String userNameGithub) {
+    public boolean isUserLoggedIn() {
         PageGitHubDashboard startPage = new PageGitHubDashboard(driver);
         String actuaUserName = startPage.getLoggedInUserName();
         return actuaUserName.equals(USER_NAME_ATR_GITHUB);
