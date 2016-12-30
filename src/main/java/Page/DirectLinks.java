@@ -17,7 +17,7 @@ public class DirectLinks {
     public static final String urlReportsProjects = PEKAMA+DOMAIN+"a/reports/projects";
     public static final String urlReportsTasks = PEKAMA+DOMAIN+"a/reports/tasks";
     public static final String urlReportsEvents = PEKAMA+DOMAIN+"a/reports/events";
-    public static final String urlReportsFin = PEKAMA+DOMAIN+"a/reports/financials";
+    public static final String urlReportsCharges = PEKAMA+DOMAIN+"a/reports/financials";
     public static final String urlReportsContacts = PEKAMA+DOMAIN+"a/reports/contacts";
 
     public static final String urlPersonalSettings = PEKAMA+DOMAIN+"a/settings/profile";
