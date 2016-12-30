@@ -126,19 +126,22 @@ public class SignUpValidation {
             }
     }
 //Password rules validation
-//    @Test
-//    public void validationPassword() {
-//
-//        for (int arrayLength = 0; arrayLength < arrayInvalidPasswords.length; arrayLength++) {
-//            $(signupPassword).sendKeys(arrayInvalidPasswords[arrayLength]);
-//            $(signupNext).shouldBe(visible).shouldNot(disabled).click();
-//            $(By.xpath(signupErrorPassword)).shouldHave(text(signupMsg_InvalidPassword));
-//
-//            refresh();
-//
-//            $(signupAgree).shouldBe(visible).shouldNot(selected);
-//            $(signupNext).shouldBe(visible).shouldBe(disabled);
-//            $(signupAgree).setSelected(true).shouldBe(selected);
-//        }
-//    }
+    @Test
+    public void validationPassword() {
+
+        for (int arrayLength = 0; arrayLength < arrayInvalidPasswords.length; arrayLength++) {
+            $(signupPassword).sendKeys(arrayInvalidPasswords[arrayLength]);
+            $(signupNext).shouldBe(visible).shouldNot(disabled).click();
+
+            if ()
+            ;
+            $(By.xpath(signupErrorPassword)).shouldHave(text(signupMsg_InvalidPassword));
+
+            refresh();
+
+            $(signupAgree).shouldBe(visible).shouldNot(selected);
+            $(signupNext).shouldBe(visible).shouldBe(disabled);
+            $(signupAgree).setSelected(true).shouldBe(selected);
+        }
+    }
 }
