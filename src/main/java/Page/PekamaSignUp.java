@@ -32,6 +32,7 @@ public class PekamaSignUp {
     public static final String signupErrorPassword = "//div[@class='signup-details']//div[@class='row'][3]//li[2]";
     public static final String signupMsg_RequiredField = "This field is required.";
     public static final String signupMsg_InvalidEmail = "Enter a valid email address.";
+    public static final String signupMsg_UsedEmail = "This email address is already taken";
 
     public static final String SIGNUP_ERROR_SHORT_PASSWORD = "//div[@class='signup-details']//li[contains(.,'This password is too common.')]";
     public static final String SIGNUP_ERROR_COMMON_PASSWORD = "//div[@class='signup-details']//li[contains(.,'This password is too short. It must contain at least 8 characters.')]";
@@ -39,8 +40,8 @@ public class PekamaSignUp {
 
     public static final String[] arrayInvalidEmails = {"\"ab\"c@flxmd.by","ab\"c\"@flxmd.by","abc\"@flxmd.by", "\"ab\"c\"@flxmd.by", "事件王@flxmd.by", "ÀÇÈ@flxmd.by", "! # $ % * / ? | ^ { } ` ~ & ' + - =@flxmd.by", "abc@@eflxmd.by", "abcflxmd.by", "@abc@flxmd.by", "abc@", "@", "abc@flxmd..by", "abc@!#$%*/?|^{}`~&'+=com", "abc@fl\"xmd.by", "abc@ 事件|王.com", "abc@flx md.by"};
     //    not validated "bc@flxmd123.by",  "abc@flxmd-flxmd.by", "abc@ÀÇÈ.com",
-    public static final String[] arrayShortPasswords = {"1234567", "abcdefg", "1#qQ"};
-    public static final String[] arrayCommonPasswords = {"1234567", "abcdefg", "1234567890", "qwertyuiop", "QWERTYUIOP", "!\"#$%&()*+-,./:;<=>?[]{}~'", "1234567890qwertyuiop", "1234567890QWERTYUIOP", "1234567890#", "qwertyuiopQWERTYUIOP", "qwertyuiop#", "QWERTYUIOP#", "1#qQ"};
-    public static final String[] arrayInvalidPasswords = {"1234567", "abcdefg", "1234567890", "qwertyuiop", "QWERTYUIOP", "!\"#$%&()*+-,./:;<=>?[]{}~'", "1234567890qwertyuiop", "1234567890QWERTYUIOP", "1234567890#", "qwertyuiopQWERTYUIOP", "qwertyuiop#", "QWERTYUIOP#", "1#qQ"};
+    //public static final String[] arrayShortPasswords = {"1234567", "abcdefg", "1#qQ"};
+    //public static final String[] arrayCommonPasswords = {"1234567", "abcdefg", "1234567890", "qwertyuiop", "QWERTYUIOP", "!\"#$%&()*+-,./:;<=>?[]{}~'", "1234567890qwertyuiop", "1234567890QWERTYUIOP", "1234567890#", "qwertyuiopQWERTYUIOP", "qwertyuiop#", "QWERTYUIOP#", "1#qQ"};
+    public static final String[] arrayInvalidPasswords = {"1234567", "abcdefg", "1234567890", "qwertyuiop", "QWERTYUIOP", "!\"#$%&()*+-,./:;<=>?[]{}~'", "1234567890qwertyuiop", "1234567890QWERTYUIOP", "1234567890#", "qwertyuiopQWERTYUIOP", "qwertyuiop#", "QWERTYUIOP#", "1#qQ", "1#qQ 1#qQ 1#qQ 1#qQ"};
 
 }

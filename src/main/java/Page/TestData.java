@@ -16,6 +16,19 @@ public class TestData {
     public static final String linkedinLogin_user04 = "vatslav.realt@gmail.com";
     public static final String linkedinPassword_user04 = "123456789qasw";
 
+    public static final String VALID_PASSWORD = "123456789qaswQ!";
+    public static final String VALID_EMAIL = "12345@mail.com";
+    public static final String VALID_NAME = "NAME";
+    public static final String VALID_SURNAME = "SURNAME";
+    public static final String VALID_COMPANY = "COMPANY";
+    public static final String EXIST_USER = "testqweeco001@gmail.com";
+//    public static final String VALID_ = "";
+//    public static final String VALID_ = "";
+//    public static final String VALID_ = "";
+//    public static final String VALID_ = "";
+//    public static final String VALID_ = "";
+//    public static final String VALID_ = "";
+
 //     public static final String 1 = "[1]";
 //     public static final String 2 = "[2]";
 //     public static final String 3 = "[3]";

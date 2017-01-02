@@ -1,11 +1,13 @@
 package com.pekama.app;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 
 import static Page.DirectLinks.*;
 import static Page.PekamaSignUp.*;
+import static Page.TestData.*;
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
@@ -16,12 +18,10 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by VatslauX on 27-Dec-16.
  */
-public class SignUpValidation {
-
+public class PekamaSignUp {
     private String passwordFieldValue = "";
-//    public void openUrlSignup() {
-//        open(urlSignup);
-//    }
+
+
     @Before
     public void selectAgreeCheckbox() {
         open(urlSingUp);
@@ -30,9 +30,15 @@ public class SignUpValidation {
         $(signupAgree).setSelected(true).shouldBe(selected);
     }
 
+    @Ignore
+    @Test
+    public void openUrlSignup() {
+        open(urlSingUp);
+    }
+
     @Test
     public void allFieldsEmpty() {
-//check default form state
+    //check default form state
         $(signupEmail).shouldBe(visible).shouldBe(empty);
         $(signupName).shouldBe(visible).shouldBe(empty);
         $(signupSurname).shouldBe(visible).shouldBe(empty);
@@ -40,54 +46,54 @@ public class SignUpValidation {
         $(signupPassword).shouldBe(visible).shouldBe(empty);
         $(signupUpload).shouldBe(visible).shouldBe();
         $(By.name(signupSubcribeNews)).shouldBe(visible).shouldBe(selected);
-//        $(signupAgree).shouldBe(visible).shouldNot(selected);
+    //        $(signupAgree).shouldBe(visible).shouldNot(selected);
         $(By.xpath(signupTerms)).shouldBe(visible);
-//        $(signupNext).shouldBe(visible).shouldBe(disabled);
-//Test if all fields are blank
+    //  $(signupNext).shouldBe(visible).shouldBe(disabled);
+    //Test if all fields are blank
         $(signupAgree).setSelected(true).shouldBe(selected);
         $(signupNext).shouldBe(visible).shouldNot(disabled).click();
         $$(signupError).shouldHave(size(5));
         $(signupError).shouldHave(text(signupMsg_RequiredField));
         $(signupAgree).shouldBe(visible).shouldNot(selected);
-//Tests if 1 fields is blank
+    //Tests if 1 fields is blank
     }
     @Test
     public void onlyEmailSubmitted() {
-        $(signupEmail).sendKeys("1234567890@email.com");
+        $(signupEmail).sendKeys(VALID_EMAIL);
         $(signupNext).shouldBe(visible).shouldNot(disabled).click();
         $$(signupError).shouldHave(size(4));
         $(signupError).shouldHave(text(signupMsg_RequiredField));
     }
     @Test
     public void onlyNameSubmitted() {
-        $(signupName).sendKeys("1234567890@email.com");
+        $(signupName).sendKeys(VALID_NAME);
         $(signupNext).shouldBe(visible).shouldNot(disabled).click();
         $$(signupError).shouldHave(size(4));
         $(signupError).shouldHave(text(signupMsg_RequiredField));
     }
     @Test
     public void onlySurnameSubmitted() {
-        $(signupSurname).sendKeys("1234567890@email.com");
+        $(signupSurname).sendKeys(VALID_SURNAME);
         $(signupNext).shouldBe(visible).shouldNot(disabled).click();
         $$(signupError).shouldHave(size(4));
         $(signupError).shouldHave(text(signupMsg_RequiredField));
     }
     @Test
     public void onlyCompanySubmitted() {
-        $(signupCompany).sendKeys("1234567890@email.com");
+        $(signupCompany).sendKeys(VALID_COMPANY);
         $(signupNext).shouldBe(visible).shouldNot(disabled).click();
         $$(signupError).shouldHave(size(4));
         $(signupError).shouldHave(text(signupMsg_RequiredField));
     }
     @Test
     public void onlyPasswordSubmitted() {
-        $(signupPassword).sendKeys("1234567890@Email.com");
+        $(signupPassword).sendKeys(VALID_PASSWORD);
         $(signupNext).shouldBe(visible).shouldNot(disabled).click();
         $$(signupError).shouldHave(size(4));
         $(signupError).shouldHave(text(signupMsg_RequiredField));
     }
-//Email Validation
-    @Test
+
+    @Test  //Email Validation
     public void validationEmail() {
 
         for (int arrayLength = 0; arrayLength < arrayInvalidEmails.length; arrayLength++) {
@@ -103,26 +109,63 @@ public class SignUpValidation {
                 $(signupAgree).setSelected(true).shouldBe(selected);
             }
     }
-//Password rules validation
-    @Test
+
+    @Test //Password rules validation
     public void validationPassword() {
 
         for (int arrayLength = 0; arrayLength < arrayInvalidPasswords.length; arrayLength++) {
-
-            $(signupPassword).sendKeys(arrayInvalidPasswords[arrayLength]);
-            passwordFieldValue = $(signupPassword).getValue();
-            System.out.println(passwordFieldValue);
+            $(signupEmail).shouldBe(visible).sendKeys(VALID_EMAIL);
+            $(signupName).shouldBe(visible).sendKeys(VALID_NAME);
+            $(signupSurname).shouldBe(visible).sendKeys(VALID_SURNAME);
+            $(signupCompany).shouldBe(visible).sendKeys(VALID_COMPANY);
+            $(signupPassword).shouldBe(visible).sendKeys(arrayInvalidPasswords[arrayLength]);
             $(signupNext).shouldBe(visible).shouldNot(disabled).click();
+            sleep(1500);
+            $(signupError).shouldBe(visible);
+            $(signupNext).shouldBe(disabled);
 
-            $(By.xpath(signupError)).shouldBe(visible);
-            $(signupNext).shouldBe(visible).shouldBe(disabled);
-
-            }
-            
             refresh();
             $(signupAgree).shouldBe(visible).shouldNot(selected);
             $(signupNext).shouldBe(visible).shouldBe(disabled);
             $(signupAgree).setSelected(true).shouldBe(selected);
+        }
+
     }
+
+    @Test //Exist user - check by email
+    public void userExist() {
+            $(signupEmail).shouldBe(visible).sendKeys(EXIST_USER);
+            $(signupName).shouldBe(visible).sendKeys(VALID_NAME);
+            $(signupSurname).shouldBe(visible).sendKeys(VALID_SURNAME);
+            $(signupCompany).shouldBe(visible).sendKeys(VALID_COMPANY);
+            $(signupPassword).shouldBe(visible).sendKeys(VALID_PASSWORD);
+            $(signupNext).shouldBe(visible).shouldNot(disabled).click();
+            sleep(1500);
+            $(By.xpath(signupErrorEmail)).shouldBe(visible).shouldHave(text(signupMsg_UsedEmail));
+            $(signupNext).shouldBe(disabled);
+    }
+
+//    @Ignore("not ready")
+//    @Test //Exist user - check by email+some
+//    public void userExistAlias() {
+//
+//    for (int arrayLength = 0; arrayLength < arrayInvalidPasswords.length; arrayLength++) {
+//        $(signupEmail).shouldBe(visible).sendKeys(VALID_EMAIL);
+//        $(signupName).shouldBe(visible).sendKeys(VALID_NAME);
+//        $(signupSurname).shouldBe(visible).sendKeys(VALID_SURNAME);
+//        $(signupCompany).shouldBe(visible).sendKeys(VALID_COMPANY);
+//        $(signupPassword).shouldBe(visible).sendKeys(arrayInvalidPasswords[arrayLength]);
+//        $(signupNext).shouldBe(visible).shouldNot(disabled).click();
+//        sleep(1500);
+//        $(signupError).shouldBe(visible);
+//        $(signupNext).shouldBe(disabled);
+//
+//        refresh();
+//        $(signupAgree).shouldBe(visible).shouldNot(selected);
+//        $(signupNext).shouldBe(visible).shouldBe(disabled);
+//        $(signupAgree).setSelected(true).shouldBe(selected);
+//    }
+//
+//}
 }
 
