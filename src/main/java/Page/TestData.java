@@ -4,10 +4,10 @@ package Page;
  * Created by VatslauX on 29-Dec-16.
  */
 public class TestData {
-    public static final String gmailTest01 = "testqweeco001@gmail.com";
-    public static final String gmailTest02 = "testqweeco002@gmail.com";
-    public static final String gmailTest03 = "testqweeco003@gmail.com";
-    public static final String gmailTestGenericPass = "asui67we34";
+    public static final String USER_EMAIL_01 = "testqweeco001@gmail.com";
+    public static final String USER_EMAIL_02 = "testqweeco002@gmail.com";
+    public static final String USER_EMAIL_03 = "testqweeco003@gmail.com";
+    public static final String USER_PEKAMA_PASSWORD = "asui67we34";
     public static final String teamTest01 = "Qweeco01 (QT01)";
     public static final String teamTest02 = "Qweeco02 (QT02)";
     public static final String teamTest03 = "Qweeco03 (QT03)";

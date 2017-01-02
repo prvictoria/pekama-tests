@@ -5,7 +5,9 @@ package Page;
  */
 public class PekamaSignUp {
     public static final String signup = "//form[@id='signup-form']";
-    public static final String signupTitle = "";
+    public static final String SIGN_UP_TITLE = "//*[@class='details-title']";
+    public static final String SIGN_UP_TITLE_TEXT = "Your Details";
+
     public static final String signupNewButtonDisabled = "//form[@id='signup-form']//*[@class='btn btn-primary disabled']//*[contains(text(),'Next Step')]";
     public static final String signupNewButtonEnabled = "//*[@class='btn btn-primary']//*[contains(text(),'Next Step')]";
     public static final String signupPasswordEmptyAlert = "";

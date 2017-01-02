@@ -8,6 +8,8 @@ import org.openqa.selenium.By;
 
 import static Page.PekamaLogin.*;
 import static Page.RunConfig.*;
+import static Page.TestData.USER_EMAIL_01;
+import static Page.TestData.USER_PEKAMA_PASSWORD;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Condition.value;
 import static com.codeborne.selenide.Condition.*;
@@ -58,67 +60,67 @@ public class PekamaLogin {
     }
     @Test
     public void invalidPassword() {
-        $("#loginEmail").sendKeys("testqweeco001@gmail.com");
-        $("#loginPassword").sendKeys("12345");
-        $(By.xpath("//button[@type='submit']")).click();
+        $(loginField_Email).sendKeys("testqweeco001@gmail.com");
+        $(loginField_Password).sendKeys("12345");
+        $(By.xpath(loginButton_Login)).click();
         $(By.xpath(loginError)).shouldHave(Condition.exactText(loginErrorMsg));
         $(By.xpath(btnLogin)).shouldBe(visible);
         $(By.xpath(btnSignup)).shouldBe(visible);
     }
     @Test
     public void invalidLogin() {
-        $("#loginEmail").sendKeys("1a2a3a12aa31231@gmail.com");
-        $("#loginPassword").sendKeys("asui67we34");
-        $(By.xpath("//button[@type='submit']")).click();
+        $(loginField_Email).sendKeys("1a2a3a12aa31231@gmail.com");
+        $(loginField_Password).sendKeys("asui67we34");
+        $(By.xpath(loginButton_Login)).click();
         $(By.xpath(loginError)).shouldHave(Condition.exactText(loginErrorMsg));
         $(By.xpath(btnLogin)).shouldBe(visible);
         $(By.xpath(btnSignup)).shouldBe(visible);
     }
     @Test
     public void invalidLoginAndPassword() {
-        $("#loginEmail").sendKeys("teastaaaqweeco001@gmail.com");
-        $("#loginPassword").sendKeys("asui2132367we34");
-        $(By.xpath("//button[@type='submit']")).click();
+        $(loginField_Email).sendKeys("teastaaaqweeco001@gmail.com");
+        $(loginField_Password).sendKeys("asui2132367we34");
+        $(By.xpath(loginButton_Login)).click();
         $(By.xpath(loginError)).shouldHave(Condition.exactText(loginErrorMsg));
         $(By.xpath(btnLogin)).shouldBe(visible);
         $(By.xpath(btnSignup)).shouldBe(visible);
     }
     @Test
     public void blankLoginPassword() {
-        $("#loginEmail").getAttribute("required");
-        assertTrue($("#loginEmail").getAttribute("required"), true);
-        //assertThat("Required attribute present", $("#loginEmail").getAttribute("required"), equalTo(true));
+        $(loginField_Email).getAttribute("required");
+        assertTrue($(loginField_Email).getAttribute("required"), true);
+        //assertThat("Required attribute present", $(loginField_Email).getAttribute("required"), equalTo(true));
         //assertEquals("Inbox -ххххххххххххх@gmail.com - Gmail", title());
-        $("#loginPassword").getAttribute("required");
-        assertTrue($("#loginPassword").getAttribute("required"), true);
+        $(loginField_Password).getAttribute("required");
+        assertTrue($(loginField_Password).getAttribute("required"), true);
 
         //Case login only
-        $("#loginPassword").sendKeys("asusdsdsdsi67we34");
-        $(By.xpath("//button[@type='submit']")).click();
+        $(loginField_Password).sendKeys("asusdsdsdsi67we34");
+        $(By.xpath(loginButton_Login)).click();
         $(By.xpath(btnLogin)).shouldBe(visible);
         $(By.xpath(btnSignup)).shouldBe(visible);
-        $("#loginPassword").clear();
-        $("#loginPassword").shouldBe(empty);
+        $(loginField_Password).clear();
+        $(loginField_Password).shouldBe(empty);
         //Case password only
-        $("#loginEmail").sendKeys("testsdsdsds001@gmail.com");
-        $(By.xpath("//button[@type='submit']")).click();
-        $("#loginEmail").clear();
-        $("#loginEmail").shouldBe(empty);
+        $(loginField_Email).sendKeys("testsdsdsds001@gmail.com");
+        $(By.xpath(loginButton_Login)).click();
+        $(loginField_Email).clear();
+        $(loginField_Email).shouldBe(empty);
         $(By.xpath(btnLogin)).shouldBe(visible);
         $(By.xpath(btnSignup)).shouldBe(visible);
         //Case all blank
-        $("#loginPassword").clear();
-        $("#loginEmail").clear();
-        $(By.xpath("//button[@type='submit']")).click();
+        $(loginField_Password).clear();
+        $(loginField_Email).clear();
+        $(By.xpath(loginButton_Login)).click();
         $(By.xpath(btnLogin)).shouldBe(visible);
         $(By.xpath(btnSignup)).shouldBe(visible);
 
     }
     @Test
     public void validCredentials() {
-        $("#loginEmail").sendKeys("testqweeco001@gmail.com");
-        $("#loginPassword").sendKeys("asui67we34");
-        $(By.xpath("//button[@type='submit']")).click();
+        $(loginField_Email).sendKeys(USER_EMAIL_01);
+        $(loginField_Password).sendKeys(USER_PEKAMA_PASSWORD);
+        $(By.xpath(loginButton_Login)).click();
         $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));
         $(By.xpath(btnSignup)).shouldBe(Condition.not(visible));
     }
