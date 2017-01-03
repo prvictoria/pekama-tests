@@ -26,6 +26,6 @@ public class PekamaLogin {
     public static final String btnSignup = "//a[@href='/signup/']";
     public static final String loginError = "//ul[@class='errorlist nonfield']/li";
     public static final String loginErrorMsg = "Please enter a correct email address and password. Note that both fields may be case-sensitive.";
-
+    public static final String LINK_FORGOT_PASSWORD = "//a[contains(@href, '/accounts/password/reset/')]";
 
 }

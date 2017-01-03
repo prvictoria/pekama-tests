@@ -7,9 +7,10 @@ import static Page.RunConfig.*;
  */
 public class DirectLinks {
 
-
-    public static final String urlLogIn = SELECT_HOST+DOMAIN+"accounts/login";
-    public static final String urlSingUp = SELECT_HOST+DOMAIN+"/signup";
+    public static final String urlLogIn = SELECT_HOST+DOMAIN+"/accounts/login/";
+    public static final String urlResetPassword = SELECT_HOST+DOMAIN+"/accounts/password/reset/";
+    public static final String urlResetPasswordSuccess = SELECT_HOST+DOMAIN+"/accounts/password/reset/done/";
+    public static final String urlSingUp = SELECT_HOST+DOMAIN+"/signup/";
     public static final String urlLogput = SELECT_HOST+DOMAIN+"/accounts/logout";
     public static final String urlLanding = SELECT_HOST+DOMAIN+"/";
     public static final String urlDashboard = SELECT_HOST+DOMAIN+"/a";
