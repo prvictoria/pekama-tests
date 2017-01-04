@@ -29,15 +29,15 @@ public class TestData {
 //    public static final String VALID_ = "";
 //    public static final String VALID_ = "";
 
-//     public static final String 1 = "[1]";
-//     public static final String 2 = "[2]";
-//     public static final String 3 = "[3]";
-//     public static final String 4 = "[4]";
-//     public static final String 5 = "[5]";
-//     public static final String 6 = "[6]";
-//     public static final String 7 = "[7]";
-//     public static final String 8 = "[8]";
-//     public static final String 9 = "[9]";
-//     public static final String 10 = "[10]";
+     public static final String ROW1 = "[1]";
+     public static final String ROW2 = "[2]";
+     public static final String ROW3 = "[3]";
+     public static final String ROW4 = "[4]";
+     public static final String ROW5 = "[5]";
+     public static final String ROW6 = "[6]";
+     public static final String ROW7 = "[7]";
+     public static final String ROW8 = "[8]";
+     public static final String ROW9 = "[9]";
+     public static final String ROW10 = "[10]";
 
 }
