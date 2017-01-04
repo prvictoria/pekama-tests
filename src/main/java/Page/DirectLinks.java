@@ -25,7 +25,7 @@ public class DirectLinks {
     public static final String urlTeamSettings = PEKAMA+DOMAIN+"a/settings/team";
     public static final String urlTS_Members = PEKAMA+DOMAIN+"a/settings/team/members";
 
-    public static final String COMMUNITY_PATH = COMMUNITY+"";
+    public static final String COMMUNITY_PATH = COMMUNITY;
     public static final String COMMUNITY_DASHBOARD = COMMUNITY+"/a";
     public static final String COMMUNITY_WIZARD = COMMUNITY+DOMAIN+"/a/community/wizard";
     public static final String COMMUNITY_OUTGOING = COMMUNITY+DOMAIN+"/a/community/outgoing";

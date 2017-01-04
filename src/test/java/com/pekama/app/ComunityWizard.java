@@ -19,7 +19,7 @@ public class ComunityWizard {
     @Before
     public void before() {
         open("");
-    }
+       }
 
     @After
     public void after() {
@@ -32,5 +32,6 @@ public class ComunityWizard {
         $(By.xpath("")).sendKeys("");
         $(By.xpath("")).shouldBe(Condition.visible);
         $(By.xpath("")).click();
+        rootLogger.info("");
     }
 }

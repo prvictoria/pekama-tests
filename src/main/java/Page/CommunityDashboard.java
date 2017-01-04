@@ -1,10 +1,19 @@
 package Page;
-
 /**
  * Created by Viachaslau_Balashevi on 12/29/2016.
  */
 public class CommunityDashboard {
     public static final String COMMENT_COMMUNITY = "COMMUNITY";
+    public static final String COMMUNITY_DASHBOARD_ = "";
+    public static final String COMMUNITY_DASHBOARD_LOGO = "//header//*[@class='logo']";
+    public static final String COMMUNITY_DASHBOARD_MANAGEMENT = "//header//*[@href='https://pekama.com/a/']";
+    public static final String COMMUNITY_DASHBOARD_SIGNUP = "//header//*[@href='/signup/?next=%2Fa%2Fcommunity%2Fwizard']";
+    public static final String COMMUNITY_DASHBOARD_LOGIN = "//header//*[@href='/accounts/login/?next=%2Fa%2Fcommunity%2Fwizard']";
+//    public static final String COMMUNITY_DASHBOARD_ = "";
+//    public static final String COMMUNITY_DASHBOARD_ = "";
+//    public static final String COMMUNITY_DASHBOARD_ = "";
+//    public static final String COMMUNITY_DASHBOARD_ = "";
+
     public static final String communityBtnExplore = "link=Explore the community";
     public static final String communityBtnSignUp = "//a[@type='button' and contains(.,'Sign up')]";
     public static final String communityBtnLogin = "//a[@type='button' and contains(.,'Login')]";
