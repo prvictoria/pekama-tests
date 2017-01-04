@@ -1,6 +1,7 @@
 package com.pekama.app;
-
 import com.codeborne.selenide.Condition;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,14 +19,11 @@ import static com.thoughtworks.selenium.SeleneseTestNgHelper.*;
 import static org.hamcrest.core.IsEqual.*;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
-
-
 /**
  * Created by VatslauX on 26-Dec-16.
  */
-
-
 public class PekamaLogin {
+    static final Logger rootLogger = LogManager.getRootLogger();
 
 
     @Before
@@ -123,6 +121,10 @@ public class PekamaLogin {
         $(By.xpath(loginButton_Login)).click();
         $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));
         $(By.xpath(btnSignup)).shouldBe(Condition.not(visible));
+        rootLogger.info("Valid Credentials were submitted");
+        String url = getCurrentUrl();
+        rootLogger.info("Dashboard is opened");
+
     }
 
 }

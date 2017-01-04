@@ -39,10 +39,10 @@ public class LoggerTest {
 //        open(TEST_ENVIROMENT_COMMUNITY);
 //        userLogger.fatal("fatal");
 //    }
-//    @Test
-//    public void test5() {
-//        open(TEST_ENVIROMENT_COMMUNITY);
-//        userLogger.warn("WARN");
-//    }
+    @Test
+    public void test5() {
+        open(TEST_ENVIROMENT_COMMUNITY);
+        rootLogger.warn("root-warn");
+    }
 
 }
