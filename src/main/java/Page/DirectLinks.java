@@ -13,7 +13,7 @@ public class DirectLinks {
     public static final String urlSingUp = SELECT_HOST+DOMAIN+"/signup/";
     public static final String urlLogput = SELECT_HOST+DOMAIN+"/accounts/logout";
     public static final String urlLanding = SELECT_HOST+DOMAIN+"/";
-    public static final String urlDashboard = SELECT_HOST+DOMAIN+"/a";
+    public static final String urlDashboard = SELECT_HOST+DOMAIN+"/a/dashboard/";
 
     public static final String urlReportsProjects = PEKAMA+DOMAIN+"a/reports/projects";
     public static final String urlReportsTasks = PEKAMA+DOMAIN+"a/reports/tasks";

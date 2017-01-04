@@ -1,7 +1,4 @@
 package Page;
-
-import org.testng.annotations.Test;
-
 /**
  * Created by VatslauX on 29-Dec-16.
  */

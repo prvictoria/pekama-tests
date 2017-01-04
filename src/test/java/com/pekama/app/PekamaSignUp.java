@@ -5,14 +5,12 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 
-import static Page.DirectLinks.*;
+import static Page.DirectLinks.urlSingUp;
 import static Page.PekamaSignUp.*;
 import static Page.TestData.*;
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 
 /**

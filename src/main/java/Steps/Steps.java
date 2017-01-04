@@ -3,7 +3,7 @@ import Page.PageGitHubDashboard;
 import Page.PageGitHubLogin;
 import com.pekama.app.*;
 
-import org.testng.Assert;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;

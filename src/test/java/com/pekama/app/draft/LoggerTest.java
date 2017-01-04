@@ -1,5 +1,6 @@
-package com.pekama.app;
+package com.pekama.app.draft;
 
+import com.codeborne.selenide.Selenide;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
@@ -18,7 +19,7 @@ public class LoggerTest {
 
     @Test
     public void test1() {
-        open(TEST_ENVIROMENT_COMMUNITY);
+        Selenide.open(TEST_ENVIROMENT_COMMUNITY);
 //        userLogger.info("info");
         rootLogger.info("root-info");
     }
@@ -41,7 +42,7 @@ public class LoggerTest {
 //    }
     @Test
     public void test5() {
-        open(TEST_ENVIROMENT_COMMUNITY);
+        Selenide.open(TEST_ENVIROMENT_COMMUNITY);
         rootLogger.warn("root-warn");
     }
 

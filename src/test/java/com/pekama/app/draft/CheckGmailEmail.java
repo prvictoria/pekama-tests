@@ -1,4 +1,4 @@
-package com.pekama.app;
+package com.pekama.app.draft;
 
 import com.codeborne.selenide.Condition;
 import org.junit.Test;

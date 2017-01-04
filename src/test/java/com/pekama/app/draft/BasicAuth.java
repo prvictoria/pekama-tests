@@ -1,11 +1,4 @@
-package com.pekama.app;
-
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
-import org.openqa.selenium.firefox.internal.ProfilesIni;
-
-import java.io.File;
+package com.pekama.app.draft;
 
 /**
  * Created by VatslauX on 27-Dec-16.

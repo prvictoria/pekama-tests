@@ -1,4 +1,4 @@
-package com.pekama.app;
+package com.pekama.app.draft;
 
 import org.junit.Test;
 

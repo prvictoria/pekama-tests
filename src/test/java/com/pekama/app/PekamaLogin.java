@@ -8,25 +8,21 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 
 import static Page.PekamaLogin.*;
-import static Page.RunConfig.*;
+import static Page.RunConfig.TEST_ENVIROMENT_COMMUNITY;
+import static Page.RunConfig.TEST_ENVIROMENT_PEKAMA;
 import static Page.TestData.USER_EMAIL_01;
 import static Page.TestData.USER_PEKAMA_PASSWORD;
-import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Condition.value;
-import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Condition.empty;
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.url;
-import static com.thoughtworks.selenium.SeleneseTestNgHelper.*;
-import static org.hamcrest.core.IsEqual.*;
-import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 /**
  * Created by VatslauX on 26-Dec-16.
  */
 public class PekamaLogin {
     static final Logger rootLogger = LogManager.getRootLogger();
-
-
     @Before
     public void openUrlLogin() {
         open(urlLogin);
@@ -124,7 +120,7 @@ public class PekamaLogin {
         $(By.xpath(btnSignup)).shouldBe(Condition.not(visible));
         rootLogger.info("Valid Credentials were submitted");
         String testUrl = url();
-
+        assertTrue(testUrl == loginField_Password);
         rootLogger.info(url()+"Dashboard is opened");
 
     }

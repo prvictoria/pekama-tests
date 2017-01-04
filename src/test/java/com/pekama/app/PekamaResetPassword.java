@@ -1,24 +1,25 @@
 package com.pekama.app;
 
 import com.codeborne.selenide.Condition;
-import org.junit.Before;
+import com.pekama.app.draft.LoginGmail;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
-import static Page.DirectLinks.*;
+import static Page.DirectLinks.urlResetPassword;
 import static Page.PekamaLogin.*;
 import static Page.PekamaResetPassword.*;
-import static Page.RunConfig.*;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.Selenide.sleep;
+import static Page.RunConfig.PEKAMA;
+import static com.codeborne.selenide.Selenide.*;
 
 /**
  * Created by Viachaslau_Balashevi on 1/3/2017.
  */
 public class PekamaResetPassword {
     public static String SELECT_HOST = PEKAMA;
-
+    static final Logger logging = LogManager.getLogger(LoginGmail.class);
+    //DOMConfigurator.configure("log4j2.xml");
     @Test
     public void openResetPassword() {
         open(urlLogin);
