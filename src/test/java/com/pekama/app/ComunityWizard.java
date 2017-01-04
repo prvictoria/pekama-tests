@@ -1,7 +1,6 @@
-/**
- * Created by VatslauX on 29-Dec-16.
+package com.pekama.app;/**
+ * Created by VatslauX on 04-Jan-17.
  */
-package com.pekama.app;
 
 import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.LogManager;
@@ -10,15 +9,18 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class CommunityDashboard {
+public class ComunityWizard {
     static final Logger rootLogger = LogManager.getRootLogger();
+
     @Before
     public void before() {
         open("");
     }
+
     @After
     public void after() {
         open("");

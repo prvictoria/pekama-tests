@@ -4,8 +4,9 @@ import com.codeborne.selenide.Condition;
 import com.pekama.app.draft.LoginGmail;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.Test;
 import org.openqa.selenium.By;
-import org.testng.annotations.Test;
+
 
 import static Page.DirectLinks.urlResetPassword;
 import static Page.PekamaLogin.*;
