@@ -15,6 +15,7 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Condition.value;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.url;
 import static com.thoughtworks.selenium.SeleneseTestNgHelper.*;
 import static org.hamcrest.core.IsEqual.*;
 import static org.junit.Assert.assertThat;
@@ -122,8 +123,9 @@ public class PekamaLogin {
         $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));
         $(By.xpath(btnSignup)).shouldBe(Condition.not(visible));
         rootLogger.info("Valid Credentials were submitted");
-        String url = getCurrentUrl();
-        rootLogger.info("Dashboard is opened");
+        String testUrl = url();
+
+        rootLogger.info(url()+"Dashboard is opened");
 
     }
 
