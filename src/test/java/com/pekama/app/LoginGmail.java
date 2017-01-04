@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 import org.openqa.selenium.By;
 
+import static Page.PekamaEmails.*;
 import static com.codeborne.selenide.Condition.appears;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -21,20 +22,19 @@ public class LoginGmail {
     @Test
     public void open_page() {
         logging.info("Start browser");
-        open("https://mail.google.com/mail/u/0/#inbox");
+        open(GMAIL_URL);
 
         logging.info("Type email");
-        $(By.name("Email")).sendKeys("testqweeco001@gmail.com");
-
+        $(By.name(GMAIL_LOGIN_FIELD)).sendKeys(GMAIL_LOGIN);
         logging.info("Submit email");
-        $(By.name("signIn")).click();
+        $(GMAIL_NEXT_BTN).click();
 
         logging.info("Type password");
-        $(By.id("Passwd")).shouldBe(Condition.visible).sendKeys("123456789qasw1");
+        $(GMAIL_PASSWORD_FIELD).shouldBe(Condition.visible).sendKeys(GMAIL_PASSWORD);
         logging.info("Submit password");
-        $(By.id("signIn")).shouldBe(Condition.visible).click();
+        $(GMAIL_SIGNIN_BTN).shouldBe(Condition.visible).click();
 
-        String title = new String("");
+
         $(By.xpath("//a[@class='gb_b gb_db gb_R']")).waitUntil(appears, 10000).getAttribute("title"); //visible element
         System.out.println($(By.xpath("//a[@class='gb_b gb_db gb_R']")).waitUntil(appears, 10000).getAttribute("title"));
         //assertEquals("Inbox -ххххххххххххх@gmail.com - Gmail", title());
