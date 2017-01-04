@@ -19,6 +19,9 @@ public class PekamaEmails {
     public static final String GMAIL_PASSWORD_FIELD = "#Passwd";
     public static final String GMAIL_SIGNIN_BTN = "#signIn";
     public static final String GMAIL_NEXT_BTN = "#next";
+    public static final String GMAIL_EMAIL_LIST_SUBJECT = "/td[@id and @tabindex]//span[@id]";
+    public static final String GMAIL_EMAIL_LIST = "//tbody/tr";
+    public static final String GMAIL_ROW_NUMBER = "[1]";
 
     public static final String OUTLOOK_URL = "https://outlook.live.com/owa/?path=/mail/inbox";
     public static final String OUTLOOK_INBOX_LIST = "//div[@role='listbox']//div[@data-convid][2]/*[@role='option']";
