@@ -27,6 +27,7 @@ public class DirectLinks {
 
     public static final String COMMUNITY_PATH = COMMUNITY;
     public static final String COMMUNITY_DASHBOARD = COMMUNITY+"/a";
+    public static final String COMMUNITY_LOGOUT = COMMUNITY+"/accounts/logout";
     public static final String COMMUNITY_WIZARD = COMMUNITY+DOMAIN+"/a/community/wizard";
     public static final String COMMUNITY_OUTGOING = COMMUNITY+DOMAIN+"/a/community/outgoing";
     public static final String COMMUNITY_INCOMING = COMMUNITY+DOMAIN+"/a/community/incoming";

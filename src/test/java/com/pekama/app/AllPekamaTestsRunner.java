@@ -9,5 +9,5 @@ import org.junit.runners.Suite;
         PekamaResetPassword.class,
         Page.PekamaSignUp.class
 })
-public class PekamaTestRunner {
+public class AllPekamaTestsRunner {
 }

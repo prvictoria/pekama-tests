@@ -5,9 +5,8 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         CommunityDashboard.class,
-        CommunityLoginRedirectBack.class,
         CommynityLanding.class,
         ComunityWizard.class
 })
-public class CommunityTestRunner {
+public class AllCommunityTestsRunner {
 }

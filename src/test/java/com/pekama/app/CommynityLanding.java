@@ -63,14 +63,14 @@ public class CommynityLanding {
     public void clickExploreUpper() {
         $(By.xpath(LANDING_EXPLORE_UPPER)).shouldBe(Condition.visible).click();
         sleep(2000);
-        $(By.xpath(COMMUNITY_DASHBOARD_MANAGEMENT)).shouldBe(visible);
+        $(By.xpath(COMMUNITY_HEADER_MANAGEMENT)).shouldBe(visible);
         rootLogger.info("Community Wizard page was opened");
     }
     @Test
     public void clickExploreFooter() {
         $(By.xpath(LANDING_EXPLORE_FOOTER)).shouldBe(Condition.visible).click();
         sleep(2000);
-        $(By.xpath(COMMUNITY_DASHBOARD_MANAGEMENT)).shouldBe(visible);
+        $(By.xpath(COMMUNITY_HEADER_MANAGEMENT)).shouldBe(visible);
         rootLogger.info("Community Wizard page was opened");
     }
 }

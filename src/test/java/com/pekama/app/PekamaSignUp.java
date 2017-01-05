@@ -1,5 +1,7 @@
 package com.pekama.app;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -17,6 +19,7 @@ import static com.codeborne.selenide.Selenide.*;
  * Created by VatslauX on 27-Dec-16.
  */
 public class PekamaSignUp {
+    static final Logger rootLogger = LogManager.getRootLogger();
     private String passwordFieldValue = "";
 
 
@@ -26,6 +29,7 @@ public class PekamaSignUp {
         $(signupAgree).shouldBe(visible).shouldNot(selected);
         $(signupNext).shouldBe(visible).shouldBe(disabled);
         $(signupAgree).setSelected(true).shouldBe(selected);
+        rootLogger.info("");
     }
 
     @Ignore
@@ -53,6 +57,7 @@ public class PekamaSignUp {
         $$(signupError).shouldHave(size(5));
         $(signupError).shouldHave(text(signupMsg_RequiredField));
         $(signupAgree).shouldBe(visible).shouldNot(selected);
+        rootLogger.info("");
     //Tests if 1 fields is blank
     }
     @Test
@@ -61,6 +66,7 @@ public class PekamaSignUp {
         $(signupNext).shouldBe(visible).shouldNot(disabled).click();
         $$(signupError).shouldHave(size(4));
         $(signupError).shouldHave(text(signupMsg_RequiredField));
+        rootLogger.info("");
     }
     @Test
     public void onlyNameSubmitted() {
@@ -68,6 +74,7 @@ public class PekamaSignUp {
         $(signupNext).shouldBe(visible).shouldNot(disabled).click();
         $$(signupError).shouldHave(size(4));
         $(signupError).shouldHave(text(signupMsg_RequiredField));
+        rootLogger.info("");
     }
     @Test
     public void onlySurnameSubmitted() {
@@ -75,6 +82,7 @@ public class PekamaSignUp {
         $(signupNext).shouldBe(visible).shouldNot(disabled).click();
         $$(signupError).shouldHave(size(4));
         $(signupError).shouldHave(text(signupMsg_RequiredField));
+        rootLogger.info("");
     }
     @Test
     public void onlyCompanySubmitted() {
@@ -82,6 +90,7 @@ public class PekamaSignUp {
         $(signupNext).shouldBe(visible).shouldNot(disabled).click();
         $$(signupError).shouldHave(size(4));
         $(signupError).shouldHave(text(signupMsg_RequiredField));
+        rootLogger.info("");
     }
     @Test
     public void onlyPasswordSubmitted() {
@@ -89,6 +98,7 @@ public class PekamaSignUp {
         $(signupNext).shouldBe(visible).shouldNot(disabled).click();
         $$(signupError).shouldHave(size(4));
         $(signupError).shouldHave(text(signupMsg_RequiredField));
+        rootLogger.info("");
     }
 
     @Test  //Email Validation
@@ -106,6 +116,7 @@ public class PekamaSignUp {
                 $(signupNext).shouldBe(visible).shouldBe(disabled);
                 $(signupAgree).setSelected(true).shouldBe(selected);
             }
+        rootLogger.info("");
     }
 
     @Test //Password rules validation
@@ -127,6 +138,7 @@ public class PekamaSignUp {
             $(signupNext).shouldBe(visible).shouldBe(disabled);
             $(signupAgree).setSelected(true).shouldBe(selected);
         }
+        rootLogger.info("");
 
     }
 
@@ -141,6 +153,7 @@ public class PekamaSignUp {
             sleep(1500);
             $(By.xpath(signupErrorEmail)).shouldBe(visible).shouldHave(text(signupMsg_UsedEmail));
             $(signupNext).shouldBe(disabled);
+            rootLogger.info("");
     }
 
 //    @Ignore("not ready")
