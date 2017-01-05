@@ -4,13 +4,7 @@
     <list default="true" id="2fcdccdc-4d95-4ab7-8153-9ec9d616e50f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pekama-tests.iws" afterPath="$PROJECT_DIR$/pekama-tests.iws" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/CommunityDashboard.java" afterPath="$PROJECT_DIR$/src/main/java/Page/CommunityDashboard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/CommunityLanding.java" afterPath="$PROJECT_DIR$/src/main/java/Page/CommunityLanding.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/DirectLinks.java" afterPath="$PROJECT_DIR$/src/main/java/Page/DirectLinks.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/ModalWindows.java" afterPath="$PROJECT_DIR$/src/main/java/Page/ModalWindows.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/PekamaHeader.java" afterPath="$PROJECT_DIR$/src/main/java/Page/PekamaHeader.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/CommunityDashboard.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/CommunityDashboard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaLanding.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaLanding.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaLogin.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaLogin.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="build/reports/" />
@@ -199,8 +193,8 @@
           <file leaf-file-name="CommunityDashboard.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/CommunityDashboard.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="366">
-                  <caret line="71" column="38" lean-forward="true" selection-start-line="71" selection-start-column="38" selection-end-line="71" selection-end-column="38" />
+                <state relative-caret-position="437">
+                  <caret line="170" column="1" lean-forward="true" selection-start-line="170" selection-start-column="1" selection-end-line="170" selection-end-column="1" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#1145#1157#0" expanded="false" />
@@ -224,8 +218,8 @@
           <file leaf-file-name="DirectLinks.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/Page/DirectLinks.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="425">
-                  <caret line="33" column="61" lean-forward="false" selection-start-line="33" selection-start-column="61" selection-end-line="33" selection-end-column="61" />
+                <state relative-caret-position="493">
+                  <caret line="37" column="92" lean-forward="false" selection-start-line="37" selection-start-column="92" selection-end-line="37" selection-end-column="92" />
                   <folding>
                     <element signature="docComment;class#DirectLinks#0" expanded="false" />
                   </folding>
@@ -240,8 +234,8 @@
           <file leaf-file-name="CommunityDashboard.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/Page/CommunityDashboard.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="204">
-                  <caret line="14" column="109" lean-forward="false" selection-start-line="14" selection-start-column="109" selection-end-line="14" selection-end-column="109" />
+                <state relative-caret-position="289">
+                  <caret line="19" column="53" lean-forward="false" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="53" />
                   <folding>
                     <element signature="docComment;class#CommunityDashboard#0" expanded="false" />
                   </folding>
@@ -384,8 +378,8 @@
         <option value="$PROJECT_DIR$/src/main/java/Page/CommunityLanding.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaLanding.java" />
         <option value="$PROJECT_DIR$/src/main/java/Page/ModalWindows.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Page/DirectLinks.java" />
         <option value="$PROJECT_DIR$/src/main/java/Page/PekamaHeader.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Page/DirectLinks.java" />
         <option value="$PROJECT_DIR$/src/main/java/Page/CommunityDashboard.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/CommunityDashboard.java" />
       </list>
@@ -940,59 +934,7 @@
       </FILE-GROUP>
     </UpdatedFiles>
   </component>
-  <component name="RunManager" selected="JUnit.CommunityDashboard.redirectBackFromHeaderLogin">
-    <configuration default="false" name="CommynityLanding.clickExploreFooter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.pekama.app.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="pekama-tests" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.pekama.app" />
-      <option name="MAIN_CLASS_NAME" value="com.pekama.app.CommynityLanding" />
-      <option name="METHOD_NAME" value="clickExploreFooter" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="wholeProject" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="CommynityLanding.clickExploreUpper" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.pekama.app.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="pekama-tests" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.pekama.app" />
-      <option name="MAIN_CLASS_NAME" value="com.pekama.app.CommynityLanding" />
-      <option name="METHOD_NAME" value="clickExploreUpper" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="wholeProject" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="JUnit.CommunityDashboard.checkProfileLoginRedirect">
     <configuration default="false" name="CommynityLanding" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -1058,6 +1000,58 @@
       <option name="PACKAGE_NAME" value="com.pekama.app" />
       <option name="MAIN_CLASS_NAME" value="com.pekama.app.CommunityDashboard" />
       <option name="METHOD_NAME" value="redirectBackFromHeaderLogin" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="wholeProject" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="CommunityDashboard.checkOutgoingRedirect" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.pekama.app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="pekama-tests" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.pekama.app" />
+      <option name="MAIN_CLASS_NAME" value="com.pekama.app.CommunityDashboard" />
+      <option name="METHOD_NAME" value="checkOutgoingRedirect" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="wholeProject" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="CommunityDashboard.checkProfileLoginRedirect" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.pekama.app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="pekama-tests" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.pekama.app" />
+      <option name="MAIN_CLASS_NAME" value="com.pekama.app.CommunityDashboard" />
+      <option name="METHOD_NAME" value="checkProfileLoginRedirect" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" />
       <option name="PARAMETERS" />
@@ -1445,19 +1439,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.CommynityLanding.clickExploreFooter" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.CommynityLanding.clickExploreUpper" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.CommynityLanding" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.CommunityDashboard.checkDashboardGui" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.CommunityDashboard.redirectBackFromHeaderLogin" />
+      <item index="0" class="java.lang.String" itemvalue="JUnit.CommynityLanding" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.CommunityDashboard.checkDashboardGui" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.CommunityDashboard.redirectBackFromHeaderLogin" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.CommunityDashboard.checkOutgoingRedirect" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.CommunityDashboard.checkProfileLoginRedirect" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.CommunityDashboard.redirectBackFromHeaderLogin" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.CommunityDashboard.checkDashboardGui" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.CommynityLanding" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.CommynityLanding.clickExploreUpper" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.CommynityLanding.clickExploreFooter" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.CommunityDashboard.checkProfileLoginRedirect" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.CommunityDashboard.checkOutgoingRedirect" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.CommunityDashboard.redirectBackFromHeaderLogin" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.CommunityDashboard.checkDashboardGui" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.CommynityLanding" />
       </list>
     </recent_temporary>
   </component>
@@ -1503,7 +1497,7 @@
       <workItem from="1483121783911" duration="11364000" />
       <workItem from="1483373761243" duration="6566000" />
       <workItem from="1483544484306" duration="11025000" />
-      <workItem from="1483635601121" duration="7318000" />
+      <workItem from="1483635601121" duration="9000000" />
     </task>
     <task id="LOCAL-00001" summary="initial commits">
       <created>1482598292342</created>
@@ -1785,18 +1779,28 @@
       <option name="project" value="LOCAL" />
       <updated>1483639365241</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Community dashboard">
+      <created>1483643129438</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1483643129438</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="CommunityDashboard_checkDashboardGui - 2017.01.05 at 20h 56m 37s.xml">
-      <configuration name="CommunityDashboard.checkDashboardGui" configurationId="JUnit" />
+    <history-entry file="CommunityDashboard_checkOutgoingRedirect - 2017.01.05 at 22h 24m 13s.xml">
+      <configuration name="CommunityDashboard.checkOutgoingRedirect" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CommunityDashboard_redirectBackFromHeaderLogin - 2017.01.05 at 21h 33m 44s.xml">
-      <configuration name="CommunityDashboard.redirectBackFromHeaderLogin" configurationId="JUnit" />
+    <history-entry file="CommunityDashboard_checkOutgoingRedirect - 2017.01.05 at 22h 27m 02s.xml">
+      <configuration name="CommunityDashboard.checkOutgoingRedirect" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CommunityDashboard_redirectBackFromHeaderLogin - 2017.01.05 at 21h 36m 26s.xml">
-      <configuration name="CommunityDashboard.redirectBackFromHeaderLogin" configurationId="JUnit" />
+    <history-entry file="CommunityDashboard_checkOutgoingRedirect - 2017.01.05 at 22h 29m 37s.xml">
+      <configuration name="CommunityDashboard.checkOutgoingRedirect" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CommunityDashboard_checkProfileLoginRedirect - 2017.01.05 at 22h 32m 54s.xml">
+      <configuration name="CommunityDashboard.checkProfileLoginRedirect" configurationId="JUnit" />
     </history-entry>
     <history-entry file="CommunityDashboard_redirectBackFromHeaderLogin - 2017.01.05 at 21h 47m 20s.xml">
       <configuration name="CommunityDashboard.redirectBackFromHeaderLogin" configurationId="JUnit" />
@@ -1816,12 +1820,9 @@
     <history-entry file="CommunityDashboard_redirectBackFromHeaderLogin - 2017.01.05 at 22h 05m 02s.xml">
       <configuration name="CommunityDashboard.redirectBackFromHeaderLogin" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CommynityLanding - 2017.01.05 at 20h 05m 59s.xml">
-      <configuration name="CommynityLanding" configurationId="JUnit" />
-    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="107316000" />
+    <option name="totallyTimeSpent" value="108998000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1921,7 +1922,8 @@
     <MESSAGE value="page objects" />
     <MESSAGE value="root logger" />
     <MESSAGE value="Test runners" />
-    <option name="LAST_COMMIT_MESSAGE" value="Test runners" />
+    <MESSAGE value="Community dashboard" />
+    <option name="LAST_COMMIT_MESSAGE" value="Community dashboard" />
   </component>
   <component name="VssConfiguration">
     <CheckoutOptions>
@@ -1977,7 +1979,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="30" />
+      <option name="time" value="32" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -2367,30 +2369,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Page/CommunityDashboard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="14" column="109" lean-forward="false" selection-start-line="14" selection-start-column="109" selection-end-line="14" selection-end-column="109" />
-          <folding>
-            <element signature="docComment;class#CommunityDashboard#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Page/DirectLinks.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="33" column="61" lean-forward="false" selection-start-line="33" selection-start-column="61" selection-end-line="33" selection-end-column="61" />
+        <state relative-caret-position="493">
+          <caret line="37" column="92" lean-forward="false" selection-start-line="37" selection-start-column="92" selection-end-line="37" selection-end-column="92" />
           <folding>
             <element signature="docComment;class#DirectLinks#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Page/CommunityDashboard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="19" column="53" lean-forward="false" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="53" />
+          <folding>
+            <element signature="docComment;class#CommunityDashboard#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/CommunityDashboard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="71" column="38" lean-forward="true" selection-start-line="71" selection-start-column="38" selection-end-line="71" selection-end-column="38" />
+        <state relative-caret-position="437">
+          <caret line="170" column="1" lean-forward="true" selection-start-line="170" selection-start-column="1" selection-end-line="170" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1145#1157#0" expanded="false" />

@@ -73,5 +73,99 @@ public class CommunityDashboard {
         rootLogger.info(urlAfterLogout);
         assertEquals(COMMUNITY+"/", urlAfterLogout);
         rootLogger.info("User logged out");
+        rootLogger.info("Test Passed");
+    }
+    @Test
+    public void checkOutgoingLoginRedirect() {
+        $(By.xpath(COMMUNITY_HEADER_LOGIN)).shouldBe(Condition.visible);
+        $(By.xpath(COMMUNITY_TAB_Outgoing)).shouldBe(Condition.visible).shouldHave(Condition.text("outgoing cases")).click();
+        $(By.xpath(COMMUNITY_INNRER_BTN_SIGNUP)).shouldBe(Condition.visible);
+        $(By.xpath(COMMUNITY_INNRER_BTN_LOGIN)).shouldBe(Condition.visible);
+        rootLogger.info("All elements in Outgoing Tab displayed for Guest user");
+
+        $(By.xpath(COMMUNITY_INNRER_BTN_LOGIN)).click();
+        sleep(1500);
+        $(loginField_Email).sendKeys(USER_EMAIL_01);
+        $(loginField_Password).sendKeys(USER_PEKAMA_PASSWORD);
+        $(By.xpath(loginButton_Login)).click();
+        $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));
+        $(By.xpath(btnSignup)).shouldBe(Condition.not(visible));
+        rootLogger.info("Valid Credentials were submitted");
+        sleep(1500);
+        String urlAfterLogin = url();
+        rootLogger.info(urlAfterLogin);
+        assertEquals(COMMUNITY_OUTGOING, urlAfterLogin);
+        rootLogger.info("User redirected back to Incoming");
+        $(By.xpath(COMMUNITY_HEADER_UserDropdown)).click();
+        $(By.xpath(COMMUNITY_HEADER_LogOut)).shouldBe(Condition.visible).click();
+        sleep(1500);
+        String urlAfterLogout = url();
+        rootLogger.info(urlAfterLogout);
+        assertEquals(COMMUNITY+"/", urlAfterLogout);
+        rootLogger.info("User logged out");
+        rootLogger.info("Test Passed");
+
+    }
+    @Test
+    public void checkIncomingLoginRedirect() {
+        $(By.xpath(COMMUNITY_HEADER_LOGIN)).shouldBe(Condition.visible);
+        $(By.xpath(COMMUNITY_TAB_Incoming)).shouldBe(Condition.visible).shouldHave(Condition.text("incoming cases")).click();
+        $(By.xpath(COMMUNITY_INNRER_BTN_SIGNUP)).shouldBe(Condition.visible);
+        $(By.xpath(COMMUNITY_INNRER_BTN_LOGIN)).shouldBe(Condition.visible);
+        rootLogger.info("All elements in Incoming Tab displayed for Guest user");
+
+        $(By.xpath(COMMUNITY_INNRER_BTN_LOGIN)).click();
+        sleep(1500);
+        $(loginField_Email).sendKeys(USER_EMAIL_01);
+        $(loginField_Password).sendKeys(USER_PEKAMA_PASSWORD);
+        $(By.xpath(loginButton_Login)).click();
+        $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));
+        $(By.xpath(btnSignup)).shouldBe(Condition.not(visible));
+        rootLogger.info("Valid Credentials were submitted");
+        sleep(1500);
+        String urlAfterLogin = url();
+        rootLogger.info(urlAfterLogin);
+        assertEquals(COMMUNITY_INCOMING, urlAfterLogin);
+        rootLogger.info("User redirected back to Incoming");
+        $(By.xpath(COMMUNITY_HEADER_UserDropdown)).click();
+        $(By.xpath(COMMUNITY_HEADER_LogOut)).shouldBe(Condition.visible).click();
+        sleep(1500);
+        String urlAfterLogout = url();
+        rootLogger.info(urlAfterLogout);
+        assertEquals(COMMUNITY+"/", urlAfterLogout);
+        rootLogger.info("User logged out");
+        rootLogger.info("Test Passed");
+
+    }
+    @Test
+    public void checkProfileLoginRedirect() {
+        $(By.xpath(COMMUNITY_HEADER_LOGIN)).shouldBe(Condition.visible);
+        $(By.xpath(COMMUNITY_TAB_Profile)).shouldBe(Condition.visible).shouldHave(Condition.text("become a supplier")).click();
+        $(By.xpath(COMMUNITY_INNRER_BTN_SIGNUP)).shouldBe(Condition.visible);
+        $(By.xpath(COMMUNITY_INNRER_BTN_LOGIN)).shouldBe(Condition.visible);
+        rootLogger.info("All elements in Profile Tab displayed for Guest user");
+
+        $(By.xpath(COMMUNITY_INNRER_BTN_LOGIN)).click();
+        sleep(1500);
+        $(loginField_Email).sendKeys(USER_EMAIL_01);
+        $(loginField_Password).sendKeys(USER_PEKAMA_PASSWORD);
+        $(By.xpath(loginButton_Login)).click();
+        $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));
+        $(By.xpath(btnSignup)).shouldBe(Condition.not(visible));
+        rootLogger.info("Valid Credentials were submitted");
+        sleep(1500);
+        String urlAfterLogin = url();
+        rootLogger.info(urlAfterLogin);
+        assertEquals(COMMUNITY_PROFILE, urlAfterLogin);
+        rootLogger.info("User redirected back to Incoming");
+        $(By.xpath(COMMUNITY_HEADER_UserDropdown)).click();
+        $(By.xpath(COMMUNITY_HEADER_LogOut)).shouldBe(Condition.visible).click();
+        sleep(1500);
+        String urlAfterLogout = url();
+        rootLogger.info(urlAfterLogout);
+        assertEquals(COMMUNITY+"/", urlAfterLogout);
+        rootLogger.info("User logged out");
+        rootLogger.info("Test Passed");
+
     }
 }
