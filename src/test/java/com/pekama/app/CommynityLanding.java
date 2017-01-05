@@ -9,6 +9,7 @@ import org.openqa.selenium.By;
 
 import static Page.CommunityDashboard.*;
 import static Page.CommunityLanding.*;
+import static Page.PekamaLogin.loginButton_Login;
 import static Page.PekamaSignUp.*;
 import static Page.RunConfig.*;
 import static com.codeborne.selenide.Condition.disabled;
@@ -27,10 +28,10 @@ public class CommynityLanding {
     public void before() {
         open(COMMUNITY);
     }
-    @After
-    public void after() {
-        open("");
-    }
+//    @After
+//    public void after() {
+//        open("");
+//    }
 
     @Test
     public void checkGui() {
@@ -41,10 +42,7 @@ public class CommynityLanding {
         $(By.xpath(LANDING_LOGIN)).shouldBe(Condition.visible);
         $(By.xpath(LANDING_EXPLORE_UPPER)).shouldBe(Condition.visible);
         $(By.xpath(LANDING_EXPLORE_FOOTER)).shouldBe(Condition.visible);
-        $(By.xpath("")).sendKeys("");
-        $(By.xpath("")).shouldBe(Condition.visible);
-        $(By.xpath("")).click();
-        rootLogger.info("");
+        rootLogger.info("Community landing elements checked and present");
     }
     @Test
     public void openSingUp() {
@@ -58,8 +56,7 @@ public class CommynityLanding {
     public void openLogIn() {
         $(By.xpath(LANDING_LOGIN)).shouldBe(Condition.visible).click();
         sleep(2000);
-        $(signupAgree).shouldBe(visible).shouldNot(selected);
-        $(signupNext).shouldBe(visible).shouldBe(disabled);
+        $(By.xpath(loginButton_Login)).shouldBe(visible);
         rootLogger.info("Login page was opened");
     }
     @Test
