@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 
+import static Page.DirectLinks.urlDashboard;
 import static Page.PekamaLogin.*;
 import static Page.RunConfig.TEST_ENVIROMENT_COMMUNITY;
 import static Page.RunConfig.TEST_ENVIROMENT_PEKAMA;
@@ -16,6 +17,7 @@ import static com.codeborne.selenide.Condition.empty;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.sleep;
 import static com.codeborne.selenide.WebDriverRunner.url;
 import static org.junit.Assert.assertTrue;
 /**
@@ -119,8 +121,9 @@ public class PekamaLogin {
         $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));
         $(By.xpath(btnSignup)).shouldBe(Condition.not(visible));
         rootLogger.info("Valid Credentials were submitted");
+        sleep(1000);
         String testUrl = url();
-        assertTrue(testUrl == loginField_Password);
+        assertTrue(testUrl == urlDashboard);
         rootLogger.info(url()+"Dashboard is opened");
 
     }

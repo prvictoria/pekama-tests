@@ -9,9 +9,12 @@ public class CommunityDashboard {
     public static final String COMMUNITY_HEADER_MANAGEMENT = "//header//*[@href='https://pekama.com/a/']";
     public static final String COMMUNITY_HEADER_SIGNUP = "//header//*[@href='/signup/?next=%2Fa%2Fcommunity%2Fwizard']";
     public static final String COMMUNITY_HEADER_LOGIN = "//header//*[@href='/accounts/login/?next=%2Fa%2Fcommunity%2Fwizard']";
-//    public static final String COMMUNITY_DASHBOARD_ = "";
-//    public static final String COMMUNITY_DASHBOARD_ = "";
-//    public static final String COMMUNITY_DASHBOARD_ = "";
+
+    public static final String COMMUNITY_HEADER_UserDropdown = "//*[@class='pkm-icon-down-open']";
+    public static final String COMMUNITY_HEADER_PersonalSettings = "//ul[@role='menu']//*[text()='Personal settings']";
+    public static final String COMMUNITY_HEADER_TeamSettings = "//ul[@role='menu']//*[text()='Team settings']";
+    public static final String COMMUNITY_HEADER_LogOut = "//ul[@role='menu']//*[@ng-click='logout()']";
+
 //    public static final String COMMUNITY_DASHBOARD_ = "";
     public static final String COMMUNITY_TAB_Supplier = "//a[contains(@href, '/a/community/wizard')]";
     public static final String COMMUNITY_TAB_Incoming = "//a[contains(@href, '/a/community/incoming')]";
@@ -21,7 +24,7 @@ public class CommunityDashboard {
 //    public static final String COMMUNITY_BTN_HeaderSignUp = "//header//a[@type='button' and contains(.,'Sign up')]";
 //    public static final String COMMUNITY_BTN_ = "//button[contains(text(),'Get Started')]";
 
-    public static final String COMMUNITY_BTN_Explore = "link=Explore the community";
+//    public static final String COMMUNITY_BTN_Explore = "link=Explore the community";
     public static final String COMMUNITY_BTN_SignUp = "//a[@type='button' and contains(.,'Sign up')]";
     public static final String COMMUNITY_BTN_Login = "//a[@type='button' and contains(.,'Login')]";
     public static final String COMMUNITY_BTN_GetStarted = "//button[contains(text(),'Get Started')]";
@@ -54,18 +57,7 @@ public class CommunityDashboard {
     public static final String COMMUNITY_STATUS_Completed = "completed";
     public static final String COMMUNITY_STATUS_Cancelled = "withdrawn";
 
-    public static final String COMMUNITY_MW_body = "//div[@class='modal-content']";
-    public static final String COMMUNITY_MW_Title = "//div[@class='modal-content']//h2";
-    public static final String COMMUNITY_MW_Text = "//div[@class='modal-content']//p";
-    public static final String COMMUNITY_MW_Link = "//div[@class='modal-community-footer ng-scope']/div[@class='link']";
-    public static final String COMMUNITY_MW_No = "//div[@class='modal-content']//button[contains(text(),'No')]";
-    public static final String COMMUNITY_MW_Yes = "//div[@class='modal-content']//button[contains(text(),'Yes')]";
-    public static final String COMMUNITY_MW_LinkTextNoSendEmail = "I already asked the expert not to proceed";
-    public static final String COMMUNITY_MW_Text1 = "Please DO NOT proceed with this filing. Kindly confirm immediately.";
-    public static final String COMMUNITY_MW_Text2 = "Thank you for all the information. Please consider this as instructions to proceed with this case as discussed.";
-    public static final String COMMUNITY_MW_Text3 = "Thank you for all the information. Please consider this as instructions to proceed with this case as discussed.";
-    public static final String COMMUNITY_MW_Text4 = "Thank you for all the information. Please consider this as instructions to proceed with this case as discussed.";
-    public static final String COMMUNITY_MW_Text5 = "Thank you for all the information. Please consider this as instructions to proceed with this case as discussed.";
+
 
 
 

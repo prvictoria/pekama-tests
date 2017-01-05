@@ -28,10 +28,10 @@ public class DirectLinks {
     public static final String COMMUNITY_PATH = COMMUNITY;
     public static final String COMMUNITY_DASHBOARD = COMMUNITY+"/a";
     public static final String COMMUNITY_LOGOUT = COMMUNITY+"/accounts/logout";
-    public static final String COMMUNITY_WIZARD = COMMUNITY+DOMAIN+"/a/community/wizard";
-    public static final String COMMUNITY_OUTGOING = COMMUNITY+DOMAIN+"/a/community/outgoing";
-    public static final String COMMUNITY_INCOMING = COMMUNITY+DOMAIN+"/a/community/incoming";
-    public static final String COMMUNITY_PROFILE = COMMUNITY+DOMAIN+"/a/community/profile";
+    public static final String COMMUNITY_WIZARD = COMMUNITY+"/a/community/wizard";
+    public static final String COMMUNITY_OUTGOING = COMMUNITY+"/a/community/outgoing";
+    public static final String COMMUNITY_INCOMING = COMMUNITY+"/a/community/incoming";
+    public static final String COMMUNITY_PROFILE = COMMUNITY+"/a/community/profile";
 
     public static final String BACK_QUERY_COMMUNITY = "/?next=%2Fa%2Fcommunity%2F";
     public static final String BACK_TO_WIZARD = COMMUNITY+BACK_QUERY_COMMUNITY+"wizard";

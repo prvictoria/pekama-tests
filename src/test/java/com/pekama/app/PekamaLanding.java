@@ -1,5 +1,4 @@
 package com.pekama.app;
-
 import com.codeborne.selenide.Condition;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +12,6 @@ import static Page.TestData.USER_EMAIL_01;
 import static Page.TestData.USER_PEKAMA_PASSWORD;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
-
 /**
  * Created by VatslauX on 27-Dec-16.
  */

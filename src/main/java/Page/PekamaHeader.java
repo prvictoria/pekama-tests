@@ -18,9 +18,9 @@ public class PekamaHeader {
     public static final String HEADER_Username = "//ul[@role='menu']//*[@class='username ng-binding']";
     public static final String HEADER_Teamname = "//ul[@role='menu']//*[@class='ng-binding']";
 
-    public static final String HEADER_UserDropdown = HEADER+"//*[@class='pkm-icon-down-open']";
-    public static final String headerTeamAvatar = "";
-    public static final String headerPersonalSettingsLink = "//ul[@role='menu']//*[@href='/a/settings/profile']";
-    public static final String headerTeamSettingsLink = "//ul[@role='menu']//*[@href='/a/settings/team']";
-    public static final String headerLogOutLink = "//ul[@role='menu']//*[@pkm-confirm-click='logout()']";
+    public static final String HEADER_UserDropdown = "//*[@class='pkm-icon-down-open']";
+    public static final String HEADER_TeamAvatar = "";
+    public static final String HEADER_PersonalSettings = "//ul[@role='menu']//*[@href='/a/settings/profile']";
+    public static final String HEADER_TeamSettings = "//ul[@role='menu']//*[@href='/a/settings/team']";
+    public static final String HEADER_LogOut = "//ul[@role='menu']//*[@pkm-confirm-click='logout()']";
 }
