@@ -6,7 +6,7 @@ public class CommunityDashboard {
     public static final String COMMENT_COMMUNITY = "COMMUNITY";
     public static final String COMMUNITY_DASHBOARD_ = "";
     public static final String COMMUNITY_HEADER_LOGO = "//header//*[@class='logo']";
-    public static final String COMMUNITY_HEADER_MANAGEMENT = "//header//*[@href='https://pekama.com/a/']";
+    public static final String COMMUNITY_HEADER_MANAGEMENT = "//header//*[@href and contains(.,'management')]";
     public static final String COMMUNITY_HEADER_SIGNUP = "//header//*[@href='/signup/?next=%2Fa%2Fcommunity%2Fwizard']";
     public static final String COMMUNITY_HEADER_LOGIN = "//header//*[@href='/accounts/login/?next=%2Fa%2Fcommunity%2Fwizard']";
 
@@ -15,19 +15,14 @@ public class CommunityDashboard {
     public static final String COMMUNITY_HEADER_TeamSettings = "//ul[@role='menu']//*[text()='Team settings']";
     public static final String COMMUNITY_HEADER_LogOut = "//ul[@role='menu']//*[@ng-click='logout()']";
 
-//    public static final String COMMUNITY_DASHBOARD_ = "";
     public static final String COMMUNITY_TAB_Supplier = "//a[contains(@href, '/a/community/wizard')]";
     public static final String COMMUNITY_TAB_Outgoing = "//a[contains(@href, '/a/community/outgoing')]";
     public static final String COMMUNITY_TAB_Incoming = "//a[contains(@href, '/a/community/incoming')]";
     public static final String COMMUNITY_TAB_Profile = "//a[contains(@href, '/a/community/profile')]";
-//    public static final String COMMUNITY_BTN_HeaderLogin = "//header//a[@type='button' and contains(.,'Login')]";
-//    public static final String COMMUNITY_BTN_HeaderSignUp = "//header//a[@type='button' and contains(.,'Sign up')]";
-//    public static final String COMMUNITY_BTN_ = "//button[contains(text(),'Get Started')]";
-
-//    public static final String COMMUNITY_BTN_Explore = "link=Explore the community";
     public static final String COMMUNITY_INNRER_BTN_SIGNUP = "//a[@type='button' and contains(.,'Sign up')]";
     public static final String COMMUNITY_INNRER_BTN_LOGIN = "//a[@type='button' and contains(.,'Login')]";
-    public static final String COMMUNITY_BTN_GetStarted = "//button[contains(text(),'Get Started')]";
+
+
     public static final String COMMUNITY_BTN_StartConversation = "//button[contains(text(),'start new conversation')]";
     public static final String COMMUNITY_BTN_StartRequestInstruction = "//button[contains(text(),'request introductions')]";
     public static final String COMMUNITY_BTN_BoostProfile = "//button[contains(text(),'Boost Your Profile')]";

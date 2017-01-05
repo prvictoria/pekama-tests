@@ -28,7 +28,7 @@ public class ModalWindows {
     public static final String genericButtonAdd = "//button[contains(.,'add')]";
     public static final String genericButtonDelete = "//button[contains(.,'Delete')]";
     public static final String genericButtonCancel = "//button[contains(.,'Cancel')]";
-    public static final String genericSelectHighlighted = "css=span.ui-select-highlight";
+    public static final String genericSelectHighlighted = "span.ui-select-highlight";
     public static final String MW_GenericBody = "//div[@class='modal-content']";
     public static final String MW_GenericButtonOk = "//button[text()='OK']";
     public static final String MW_GenericTitleSimple = "//h3[@class='modal-title']";
