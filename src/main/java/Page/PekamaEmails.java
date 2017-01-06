@@ -27,12 +27,19 @@ public class PekamaEmails {
     public static final String OUTLOOK_URL = "https://outlook.live.com/owa/?path=/mail/inbox";
     public static final String OUTLOOK_INBOX_LIST = "//div[@role='listbox']//div[@data-convid][2]/*[@role='option']";
     public static final String OUTLOOK_INBOX_EMAIL_SUNJECT = "//tbody/tr[1]//b[1]";
-    public static final String EMAIL_SUBJECT_LastWeekReport = "Pekama Report \"Last week's Events\"";
-    public static final String EMAIL_SUBJECT_ResetPassword = "";
+
+    public static final String EMAIL_SUBJECT_RESET_PASSWORD = "Password Restoration [Pekama]";
     public static final String EMAIL_SUBJECT_InviteInTeam = "";
     public static final String EMAIL_SUBJECT_ConfirmRegistration = "";
     public static final String EMAIL_SUBJECT_ForAdmin = "";
-    public static final String EMAIL_SUBJECT_6 = "";
-    public static final String EMAIL_SUBJECT_7 = "";
-    public static final String EMAIL_SUBJECT_8 = "";
+    public static final String EMAIL_SUBJECT_Report_LastWeek = "Pekama Report \"Last week's Events\"";
+    public static final String EMAIL_SUBJECT_Report_6 = "Pekama Report \"My Recent and Approaching Tasks\"";
+    public static final String EMAIL_SUBJECT_Report_7 = "Pekama Report \"Report Financials - All\"";
+    public static final String EMAIL_SUBJECT_Report_8 = "";
+    public static final String EMAIL_SUBJECT_Report_9 = "";
+    public static final String EMAIL_SUBJECT_Report_10 = "";
+    public static final String EMAIL_SUBJECT_11 = "Ready to confirm instructions in Pekama?";
+    public static final String EMAIL_SUBJECT_12 = "Ready to confirm completion in Pekama?";
+    public static final String EMAIL_SUBJECT_13 = "";
+    public static final String EMAIL_SUBJECT_EXPIRED_BOX_TOKEN = "Your Box.com token has expired";
 }

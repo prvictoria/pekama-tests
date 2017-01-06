@@ -13,6 +13,7 @@ import static Page.DirectLinks.urlLogIn;
 import static Page.DirectLinks.urlResetPassword;
 import static Page.PekamaLogin.*;
 import static Page.PekamaResetPassword.*;
+import static Page.TestsCredentials.USER_EMAIL_01;
 import static Page.TestsUrlConfiguration.PEKAMA;
 import static com.codeborne.selenide.Selenide.*;
 import static org.junit.Assert.assertThat;
@@ -50,7 +51,7 @@ public class PekamaResetPassword {
         open(urlResetPassword);
         sleep(1000);
         $(By.xpath(RESET_PAGE_TITLE)).shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_TITLE_TEXT));
-        $(By.xpath(RESET_PAGE_EMAIL)).sendKeys("123@123.com");
+        $(By.xpath(RESET_PAGE_EMAIL)).sendKeys(USER_EMAIL_01);
         $(By.xpath(RESET_PAGE_RESET_BTN)).click();
         sleep(1000);
         $(By.xpath(RESET_PAGE_SUCCESS)).shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_SUCCESS_MSG));
