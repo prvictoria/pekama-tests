@@ -127,7 +127,7 @@ public class PekamaLogin {
         rootLogger.info("Valid Credentials were submitted");
         sleep(1000);
         String testDashboardUrl = url();
-        assertEquals(urlDashboard+"/", testDashboardUrl);
+        assertEquals(urlDashboard, testDashboardUrl);
         rootLogger.info(url()+"Dashboard is opened");
 
     }

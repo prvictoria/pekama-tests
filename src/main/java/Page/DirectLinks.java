@@ -12,7 +12,7 @@ public class DirectLinks {
     public static final String urlResetPassword = SELECT_HOST+"/accounts/password/reset/";
     public static final String urlResetPasswordSuccess = SELECT_HOST+"/accounts/password/reset/done/";
     public static final String urlLanding = SELECT_HOST+"/";
-    public static final String urlDashboard = SELECT_HOST+"/a/dashboard/";
+    public static final String urlDashboard = SELECT_HOST+"/a/dashboard";
 
     public static final String urlReportsProjects = PEKAMA+DOMAIN+"a/reports/projects";
     public static final String urlReportsTasks = PEKAMA+DOMAIN+"a/reports/tasks";
