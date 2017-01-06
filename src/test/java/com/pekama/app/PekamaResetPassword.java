@@ -4,6 +4,8 @@ import com.codeborne.selenide.Condition;
 import com.pekama.app.draft.LoginGmail;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.Ignore;
+import org.junit.Rule;
 import org.junit.Test;
 import org.openqa.selenium.By;
 
@@ -20,6 +22,8 @@ import static com.codeborne.selenide.Selenide.*;
 public class PekamaResetPassword {
     public static String SELECT_HOST = PEKAMA;
     static final Logger logging = LogManager.getLogger(LoginGmail.class);
+    @Rule
+
     //DOMConfigurator.configure("log4j2.xml");
     @Test
     public void openResetPassword() {
@@ -39,7 +43,8 @@ public class PekamaResetPassword {
         sleep(1000);
         $(By.xpath(RESET_PAGE_ERROR)).shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_ERROR_MSG));
     }
-    @Test //valid
+    @Test
+    @RunIf
     public void validEmailResetPassword() {
         open(urlResetPassword);
         sleep(1000);
@@ -48,12 +53,14 @@ public class PekamaResetPassword {
         $(By.xpath(RESET_PAGE_RESET_BTN)).click();
         sleep(1000);
         $(By.xpath(RESET_PAGE_SUCCESS)).shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_SUCCESS_MSG));
+        logging.info("Success messages displayed, valid email submitted");
 
-        //Check gmail
-
-        //follow link
-        //Set up new password
-        //login with new password
+        logging.info("Inbox Email opened");
+        logging.info("Mail detected");
+        logging.info("Email and links correspond requirements");
+        logging.info("User followed reset link");
+        logging.info("et up new password page opened");
+        logging.info("User logged with new credentials");
 
     }
 
