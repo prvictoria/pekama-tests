@@ -3,7 +3,7 @@ package Page;
 /**
  * Created by VatslauX on 29-Dec-16.
  */
-public class Strings {
+public class TestsStrings {
     public static final String NAMES = "USER DATA";
     // public static final String name = "";
     public static final String nameProjectInTM = "AUTOMATED TEST TRADEMARK";
@@ -87,8 +87,6 @@ public class Strings {
     public static final String errorMsg = "";
     public static final String errorDuplicatedFolder = "Folder with this Parent and Name already exists.";
     public static final String error = "";
-// public static final String error = "";
-// public static final String error = "";
-// public static final String error = "";
+
 
 }

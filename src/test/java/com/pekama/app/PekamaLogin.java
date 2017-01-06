@@ -7,27 +7,29 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 
-import static Page.DirectLinks.urlDashboard;
+import static Page.DirectLinks.*;
 import static Page.PekamaLogin.*;
-import static Page.RunConfig.TEST_ENVIROMENT_COMMUNITY;
-import static Page.RunConfig.TEST_ENVIROMENT_PEKAMA;
-import static Page.TestData.USER_EMAIL_01;
-import static Page.TestData.USER_PEKAMA_PASSWORD;
+import static Page.TestsUrlConfiguration.TEST_ENVIROMENT_COMMUNITY;
+import static Page.TestsUrlConfiguration.TEST_ENVIROMENT_PEKAMA;
+import static Page.TestsCredentials.USER_EMAIL_01;
+import static Page.TestsCredentials.USER_PEKAMA_PASSWORD;
 import static com.codeborne.selenide.Condition.empty;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.sleep;
 import static com.codeborne.selenide.WebDriverRunner.url;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 /**
  * Created by VatslauX on 26-Dec-16.
  */
 public class PekamaLogin {
+    String testDashboardUrl = "";
     static final Logger rootLogger = LogManager.getRootLogger();
     @Before
     public void openUrlLogin() {
-        open(urlLogin);
+        open(urlLogIn);
     }
     @After
     public void openUrlLogout() {
@@ -53,7 +55,9 @@ public class PekamaLogin {
     @Test
     public void testEnviroment() {
         open(TEST_ENVIROMENT_PEKAMA);
+        rootLogger.info(TEST_ENVIROMENT_PEKAMA+ "opened");
         open(TEST_ENVIROMENT_COMMUNITY);
+        rootLogger.info(TEST_ENVIROMENT_COMMUNITY+ "opened");
     }
     @Test
     public void invalidPassword() {
@@ -122,8 +126,8 @@ public class PekamaLogin {
         $(By.xpath(btnSignup)).shouldBe(Condition.not(visible));
         rootLogger.info("Valid Credentials were submitted");
         sleep(1000);
-        String testUrl = url();
-        assertTrue(testUrl == urlDashboard);
+        String testDashboardUrl = url();
+        assertEquals(urlDashboard+"/", testDashboardUrl);
         rootLogger.info(url()+"Dashboard is opened");
 
     }

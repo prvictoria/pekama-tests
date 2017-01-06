@@ -6,7 +6,6 @@ import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 
@@ -15,8 +14,8 @@ import static Page.CommunityWizard.*;
 import static Page.DirectLinks.*;
 import static Page.ModalWindows.genericSelectHighlighted;
 import static Page.PekamaLogin.*;
-import static Page.RunConfig.*;
-import static Page.TestData.*;
+import static Page.TestsUrlConfiguration.*;
+import static Page.TestsCredentials.*;
 import static com.codeborne.selenide.Condition.disabled;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;

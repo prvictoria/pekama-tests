@@ -18,7 +18,6 @@ public class PekamaSignUp {
     public static final String signupgGenericEmptyAlert = "//form[@id='signup-form']//li[contains(.,'Please fill out this field.')]";
     public static final String signupResetPassw = "";
 
-
     public static final String signupEmail = "#signup-email";
     public static final String signupName = "#signup-firstname";
     public static final String signupSurname = "#signup-lastname";

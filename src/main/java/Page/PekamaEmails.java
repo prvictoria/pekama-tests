@@ -13,8 +13,6 @@ public class PekamaEmails {
     public static final String EMAIL_COMMUNITY = "";
 
     public static final String GMAIL_URL = "https://mail.google.com/mail/u/0/#inbox";
-    public static final String GMAIL_LOGIN = "testqweeco001@gmail.com";
-    public static final String GMAIL_PASSWORD = "123456789qasw1";
     public static final String GMAIL_LOGIN_FIELD = "Email";
     public static final String GMAIL_PASSWORD_FIELD = "#Passwd";
     public static final String GMAIL_SIGNIN_BTN = "#signIn";

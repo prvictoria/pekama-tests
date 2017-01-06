@@ -7,9 +7,9 @@ import org.openqa.selenium.By;
 import static Page.PekamaLanding.*;
 import static Page.PekamaLogin.*;
 import static Page.PekamaSignUp.*;
-import static Page.RunConfig.PEKAMA;
-import static Page.TestData.USER_EMAIL_01;
-import static Page.TestData.USER_PEKAMA_PASSWORD;
+import static Page.TestsUrlConfiguration.PEKAMA;
+import static Page.TestsCredentials.USER_EMAIL_01;
+import static Page.TestsCredentials.USER_PEKAMA_PASSWORD;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 /**

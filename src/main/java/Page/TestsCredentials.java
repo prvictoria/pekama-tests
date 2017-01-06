@@ -3,11 +3,12 @@ package Page;
 /**
  * Created by VatslauX on 29-Dec-16.
  */
-public class TestData {
+public class TestsCredentials {
     public static final String USER_EMAIL_01 = "testqweeco001@gmail.com";
     public static final String USER_EMAIL_02 = "testqweeco002@gmail.com";
     public static final String USER_EMAIL_03 = "testqweeco003@gmail.com";
     public static final String USER_PEKAMA_PASSWORD = "asui67we34";
+    public static final String USER_GMAIL_PASSWORD = "123456789qasw1";
     public static final String teamTest01 = "Qweeco01 (QT01)";
     public static final String teamTest02 = "Qweeco02 (QT02)";
     public static final String teamTest03 = "Qweeco03 (QT03)";
@@ -16,12 +17,16 @@ public class TestData {
     public static final String linkedinLogin_user04 = "vatslav.realt@gmail.com";
     public static final String linkedinPassword_user04 = "123456789qasw";
 
+    public static final String hostEmail = "qweeco";
+    public static final String hostPassword = "qw33coStudi0";
+
+
     public static final String VALID_PASSWORD = "123456789qaswQ!";
     public static final String VALID_EMAIL = "12345@mail.com";
     public static final String VALID_NAME = "NAME";
     public static final String VALID_SURNAME = "SURNAME";
     public static final String VALID_COMPANY = "COMPANY";
-    public static final String EXIST_USER = "testqweeco001@gmail.com";
+
 //    public static final String VALID_ = "";
 //    public static final String VALID_ = "";
 //    public static final String VALID_ = "";

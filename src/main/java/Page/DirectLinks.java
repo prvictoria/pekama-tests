@@ -1,17 +1,16 @@
 package Page;
 
-import static Page.RunConfig.*;
+import static Page.TestsUrlConfiguration.*;
 
 /**
  * Created by VatslauX on 29-Dec-16.
  */
 public class DirectLinks {
-
+    public static final String urlSingUp = SELECT_HOST+"/signup/";
     public static final String urlLogIn = SELECT_HOST+"/accounts/login/";
+    public static final String urlLogout = SELECT_HOST+"/accounts/logout";
     public static final String urlResetPassword = SELECT_HOST+"/accounts/password/reset/";
     public static final String urlResetPasswordSuccess = SELECT_HOST+"/accounts/password/reset/done/";
-    public static final String urlSingUp = SELECT_HOST+"/signup/";
-    public static final String urlLogput = SELECT_HOST+"/accounts/logout";
     public static final String urlLanding = SELECT_HOST+"/";
     public static final String urlDashboard = SELECT_HOST+"/a/dashboard/";
 
@@ -38,6 +37,8 @@ public class DirectLinks {
     public static final String BACK_TO_OUTGOING = COMMUNITY+BACK_QUERY_COMMUNITY+"outgoing";
     public static final String BACK_TO_INCOMING = COMMUNITY+BACK_QUERY_COMMUNITY+"incoming";
     public static final String BACK_TO_PROFILE = COMMUNITY+BACK_QUERY_COMMUNITY+"profile";
+
+
 
 
 

@@ -9,10 +9,11 @@ import org.junit.runners.MethodSorters;
 import org.openqa.selenium.By;
 
 
+import static Page.DirectLinks.urlLogIn;
 import static Page.DirectLinks.urlResetPassword;
 import static Page.PekamaLogin.*;
 import static Page.PekamaResetPassword.*;
-import static Page.RunConfig.PEKAMA;
+import static Page.TestsUrlConfiguration.PEKAMA;
 import static com.codeborne.selenide.Selenide.*;
 import static org.junit.Assert.assertThat;
 
@@ -27,7 +28,7 @@ public class PekamaResetPassword {
 
     @Test
     public void openResetPassword() {
-        open(urlLogin);
+        open(urlLogIn);
         sleep(1000);
         $(By.xpath(lOGIN_TITLE)).shouldBe(Condition.visible).shouldHave(Condition.text(lOGIN_TITLE_TEXT));
         $(By.xpath(LINK_FORGOT_PASSWORD)).click();
@@ -64,12 +65,14 @@ public class PekamaResetPassword {
         logging.info("User logged with new credentials");
 
     }
+    @Ignore
     @Test
     public void testFailed() {
 
 
         logging.info("Test obove failed");
     }
+    @Ignore
     @Test
     public void testPassed() {
 
