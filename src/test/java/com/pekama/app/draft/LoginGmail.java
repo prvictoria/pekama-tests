@@ -58,8 +58,7 @@ public class LoginGmail {
 //        $(byAttribute("selector", "none")).shouldBe(visible);
 //        $(byAttribute("selector", "read")).shouldBe(visible);
 //        $(byAttribute("selector", "unread")).shouldBe(visible).click();
-        sleep(2000);
-
+        sleep(500);
 
         String actualEmailSubject = $(byXpath(EMAIL_SUBJECT_RESET_PASSWORD)).getText();
         logging.info("Target full email subject - " +actualEmailSubject);
@@ -70,8 +69,9 @@ public class LoginGmail {
         String actualBackLink = $(By.xpath(EMAIL_BACKLINK_RESET_PASSWORD)).getAttribute("href");
         logging.info("Backlink to Pekama - " +actualBackLink);
 
-
 //        $(byXpath(GMAIL_ARCHIVE_BTN)).click();
+//        open(actualBackLink);
+
 //        $(byAttribute("selector", "starred")).shouldBe(visible);
 //        $(byAttribute("selector", "unstarred")).shouldBe(visible);
 

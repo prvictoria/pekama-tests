@@ -1,5 +1,7 @@
 package Page;
 
+import static Page.TestsUrlConfiguration.SELECT_HOST;
+
 /**
  * Created by Viachaslau_Balashevi on 12/29/2016.
  */
@@ -29,7 +31,7 @@ public class PekamaEmails {
     public static final String OUTLOOK_INBOX_EMAIL_SUNJECT = "//tbody/tr[1]//b[1]";
 
     public static final String EMAIL_SUBJECT_RESET_PASSWORD = "//span[contains(.,'Password Restoration [Pekama]')]";
-    public static final String EMAIL_BACKLINK_RESET_PASSWORD = "//td/a[contains(@href, 'https://docketing.pekama.com/accounts/password/reset/')]";
+    public static final String EMAIL_BACKLINK_RESET_PASSWORD = "//td/a[contains(@href, '"+SELECT_HOST+"/accounts/password/reset/')]";
     public static final String EMAIL_SUBJECT_InviteInTeam = "//span[contains(.,'Password Restoration [Pekama]')]";
     public static final String EMAIL_SUBJECT_ConfirmRegistration = "";
     public static final String EMAIL_SUBJECT_ForAdmin = "";
