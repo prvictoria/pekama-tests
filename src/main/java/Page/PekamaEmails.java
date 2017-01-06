@@ -28,8 +28,9 @@ public class PekamaEmails {
     public static final String OUTLOOK_INBOX_LIST = "//div[@role='listbox']//div[@data-convid][2]/*[@role='option']";
     public static final String OUTLOOK_INBOX_EMAIL_SUNJECT = "//tbody/tr[1]//b[1]";
 
-    public static final String EMAIL_SUBJECT_RESET_PASSWORD = "Password Restoration [Pekama]";
-    public static final String EMAIL_SUBJECT_InviteInTeam = "";
+    public static final String EMAIL_SUBJECT_RESET_PASSWORD = "//span[contains(.,'Password Restoration [Pekama]')]";
+    public static final String EMAIL_BACKLINK_RESET_PASSWORD = "//td/a[contains(@href, 'https://docketing.pekama.com/accounts/password/reset/')]";
+    public static final String EMAIL_SUBJECT_InviteInTeam = "//span[contains(.,'Password Restoration [Pekama]')]";
     public static final String EMAIL_SUBJECT_ConfirmRegistration = "";
     public static final String EMAIL_SUBJECT_ForAdmin = "";
     public static final String EMAIL_SUBJECT_Report_LastWeek = "Pekama Report \"Last week's Events\"";
