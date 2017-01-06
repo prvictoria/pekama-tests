@@ -14,7 +14,7 @@ public class CommunityWizard {
     public static final String WIZARD_BTN_GetStarted = "//button[contains(text(),'Get Started')]";
     public static final String WIZARD_BTN_NEXT = "//button[contains(text(),'Next')]";
 
-    public static final String WIZARD_BTN_YES = WIZARD_STEP2+"//*[@name='provideDetails' and @value='true']";
-    public static final String WIZARD_BTN_NO = WIZARD_STEP2+"//*[@name='provideDetails' and @value='false']";
+    public static final String WIZARD_BTN_YES = WIZARD_STEP2+"//div[@ class='toggle-group mb-3']/label[1]";
+    public static final String WIZARD_BTN_NO = WIZARD_STEP2+"//div[@ class='toggle-group mb-3']/label[2]";
 
 }
