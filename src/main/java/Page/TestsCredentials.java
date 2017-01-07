@@ -1,9 +1,26 @@
 package Page;
 
+import org.junit.Test;
+
 /**
  * Created by VatslauX on 29-Dec-16.
  */
 public class TestsCredentials {
+
+    public enum User1 {
+        GMAIL_EMAIL("foo"), GMAIL_PASSWORD("bar");
+        private String value;
+        User1(String value) {
+            this.value = value;
+        }
+        public String getValue() {
+            return value;
+        }
+    }
+    @Test
+    public  void enumTest() {
+            System.out.println(User1.GMAIL_EMAIL);
+        }
 
 
     public static final String USER_01_EMAIL = "testqweeco001@gmail.com";
