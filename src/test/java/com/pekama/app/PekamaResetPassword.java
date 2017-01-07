@@ -59,10 +59,11 @@ public class PekamaResetPassword {
         logging.info(testSuccessMsg+ " displayed, valid email submitted");
 
         logging.info("Inbox Email opened");
-        logging.info("Mail detected");
+        logging.info("Reset Mail detected");
         logging.info("Email and links correspond requirements");
         logging.info("User followed reset link");
-        logging.info("et up new password page opened");
+        logging.info("Set up new password page opened");
+        logging.info("Set up new password page - contain all elements");
         logging.info("User logged with new credentials");
 
     }

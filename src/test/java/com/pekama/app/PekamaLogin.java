@@ -35,23 +35,7 @@ public class PekamaLogin {
     public void openUrlLogout() {
         open(urlLogout);
     }
-//    @Test
-//    public void template() {
-//        open(login);
-//        $("").sendKeys("");
-//        $(By.xpath("")).sendKeys("");
-//        $(By.xpath("")).click();
-//    }
-//    @Test
-//    public void openLogin() {
-//        open(host);
-//        //open("http://.pekama.com");
-//
-//        //open("http://qweeco:qw33coStudi0@staging.pekama.com");
-//        //switchTo().alert().authenticateUsing("qweeco", login);
-//        //open("http://www.staging.pekama.com\\qweeco:qw33coStudi0@staging.pekama.com");
-//        //open("https://staging.pekama.com", "www.staging.pekama.com", "qweeco" , "qw33coStudi0");
-//    };
+
     @Test
     public void testEnviroment() {
         open(TEST_ENVIROMENT_PEKAMA);
