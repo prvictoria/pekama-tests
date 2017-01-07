@@ -11,7 +11,7 @@ import static Page.DirectLinks.*;
 import static Page.PekamaLogin.*;
 import static Page.TestsUrlConfiguration.TEST_ENVIROMENT_COMMUNITY;
 import static Page.TestsUrlConfiguration.TEST_ENVIROMENT_PEKAMA;
-import static Page.TestsCredentials.USER_EMAIL_01;
+import static Page.TestsCredentials.USER_01_EMAIL;
 import static Page.TestsCredentials.USER_PEKAMA_PASSWORD;
 import static com.codeborne.selenide.Condition.empty;
 import static com.codeborne.selenide.Condition.visible;
@@ -103,7 +103,7 @@ public class PekamaLogin {
     }
     @Test
     public void validCredentials() {
-        $(loginField_Email).sendKeys(USER_EMAIL_01);
+        $(loginField_Email).sendKeys(USER_01_EMAIL);
         $(loginField_Password).sendKeys(USER_PEKAMA_PASSWORD);
         $(By.xpath(loginButton_Login)).click();
         $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));

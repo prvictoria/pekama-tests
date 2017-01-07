@@ -21,7 +21,7 @@ import static com.codeborne.selenide.Selenide.*;
 public class PekamaSignUp {
     static final Logger rootLogger = LogManager.getRootLogger();
     public String passwordFieldValue = "";
-    public String EXIST_USER = USER_EMAIL_01;
+    public String EXIST_USER = USER_01_EMAIL;
 
 
     @Before

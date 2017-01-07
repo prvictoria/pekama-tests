@@ -1,4 +1,4 @@
-package Page;
+package com.pekama.app.draft;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

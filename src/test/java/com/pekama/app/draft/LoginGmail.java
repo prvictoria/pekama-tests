@@ -9,7 +9,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 
 import static Page.PekamaEmails.*;
-import static Page.TestsCredentials.USER_EMAIL_01;
+import static Page.TestsCredentials.USER_01_EMAIL;
 import static Page.TestsCredentials.USER_GMAIL_PASSWORD;
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.visible;
@@ -21,7 +21,7 @@ import static com.codeborne.selenide.Selenide.*;
  */
 public class LoginGmail {
     static final Logger logging = LogManager.getLogger(LoginGmail.class);
-    String GMAIL_LOGIN = USER_EMAIL_01;
+    String GMAIL_LOGIN = USER_01_EMAIL;
     String GMAIL_PASSWORD = USER_GMAIL_PASSWORD;
     String EMAIL_SUBJECT = EMAIL_RESET_PASSWORD_SUBJECT;
     String EMAIL_TITLE = EMAIL_RESET_PASSWORD_TITLE;

@@ -4,11 +4,13 @@ package Page;
  * Created by VatslauX on 29-Dec-16.
  */
 public class TestsCredentials {
-    public static final String USER_EMAIL_01 = "testqweeco001@gmail.com";
-    public static final String USER_EMAIL_02 = "testqweeco002@gmail.com";
-    public static final String USER_EMAIL_03 = "testqweeco003@gmail.com";
-    public static final String USER_EMAIL_04 = "testqweeco004@gmail.com"; //for password restoration tests
-    public static final String USER_EMAIL_05 = "testqweeco005@gmail.com"; //Unregistered for SignUp links tests
+
+
+    public static final String USER_01_EMAIL = "testqweeco001@gmail.com";
+    public static final String USER_02_EMAIL = "testqweeco002@gmail.com";
+    public static final String USER_03_EMAIL = "testqweeco003@gmail.com";
+    public static final String USER_04_EMAIL = "testqweeco004@gmail.com"; //for password restoration tests
+    public static final String USER_05_EMAIL = "testqweeco005@gmail.com"; //Unregistered for SignUp links tests
 
     public static final String USER_PEKAMA_PASSWORD = "asui67we34";
     public static final String USER_GMAIL_PASSWORD = "123456789qasw1";

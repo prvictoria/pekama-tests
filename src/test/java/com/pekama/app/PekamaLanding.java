@@ -8,7 +8,7 @@ import static Page.PekamaLanding.*;
 import static Page.PekamaLogin.*;
 import static Page.PekamaSignUp.*;
 import static Page.TestsUrlConfiguration.PEKAMA;
-import static Page.TestsCredentials.USER_EMAIL_01;
+import static Page.TestsCredentials.USER_01_EMAIL;
 import static Page.TestsCredentials.USER_PEKAMA_PASSWORD;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
@@ -56,7 +56,7 @@ public class PekamaLanding {
         $(By.xpath(BTN_LOGIN)).shouldBe(Condition.visible).click();
         sleep(1000);
         $(By.xpath(lOGIN_TITLE)).shouldBe(Condition.visible).shouldHave(Condition.text(lOGIN_TITLE_TEXT));
-        $(loginField_Email).sendKeys(USER_EMAIL_01);
+        $(loginField_Email).sendKeys(USER_01_EMAIL);
         $(loginField_Password).sendKeys(USER_PEKAMA_PASSWORD);
         $(By.xpath(loginButton_Login)).click();
         $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));
