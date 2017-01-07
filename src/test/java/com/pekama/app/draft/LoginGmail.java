@@ -101,7 +101,11 @@ public class LoginGmail {
         $$(byText(EMAIL_RESET_PASSWORD_BTN)).filter(visible).shouldHave(size(1));
         String actualBackLink = $(By.xpath(EMAIL_RESET_PASSWORD_BACKLINK)).getAttribute("href");
         logging.info("Back link to Pekama - " +actualBackLink);
-//        $(byXpath(INBOX_BTN_DONE)).waitUntil(visible, 10000).click();
+        $(byXpath(INBOX_BTN_DONE)).click();
+        open(actualBackLink);
+
+
+
 
     }
 }
