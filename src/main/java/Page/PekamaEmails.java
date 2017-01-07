@@ -23,6 +23,7 @@ public class PekamaEmails {
     public static final String INBOX_URL = "https://www.google.com/inbox/";
     public static final String INBOX_SIGNIN = "//a[contains(text(),'Sign in')]";
     public static final String INBOX_BTN_DONE = "//*[@title='Mark done']";
+    public static final String INBOX_BTN_INBOX = "//nav[@id]/div/ul//span[contains(.,'Inbox')]";
 
     public static final String GMAIL_URL = "https://mail.google.com/mail/u/0/#inbox";
     public static final String GMAIL_LOGIN_FIELD = "Email";

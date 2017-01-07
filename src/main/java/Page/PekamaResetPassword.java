@@ -19,6 +19,6 @@ public class PekamaResetPassword {
 
     public static final String NEWPASSWORD_PAGE_NEW_PASSWORD = "//*[@name='new_password1'] ";
     public static final String NEWPASSWORD_PAGE_CONFIRM_PASSWORD = "//*[@name='new_password2'] ";
-    public static final String NEWPASSWORD_PAGE_SUBMIT_PASSWORD = "//*[@value='Restore'] ";
+    public static final String NEWPASSWORD_PAGE_RESTORE_BTN = "//*[@value='Restore'] ";
 
 }

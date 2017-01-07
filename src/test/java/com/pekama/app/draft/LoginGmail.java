@@ -1,5 +1,6 @@
 package com.pekama.app.draft;
 
+import Steps.ExternalSteps;
 import com.codeborne.selenide.Configuration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,8 +23,12 @@ public class LoginGmail {
     static final Logger logging = LogManager.getLogger(LoginGmail.class);
     String GMAIL_LOGIN = USER_EMAIL_01;
     String GMAIL_PASSWORD = USER_GMAIL_PASSWORD;
-    String testEmailSubject = EMAIL_RESET_PASSWORD_SUBJECT;
-
+    String EMAIL_SUBJECT = EMAIL_RESET_PASSWORD_SUBJECT;
+    String EMAIL_TITLE = EMAIL_RESET_PASSWORD_TITLE;
+    String EMAIL_TEXT = EMAIL_RESET_PASSWORD_TEXT;
+    String EMAIL_BTN = EMAIL_RESET_PASSWORD_BTN;
+    String EMAIL_REDIRECT_LINK = EMAIL_RESET_PASSWORD_BACKLINK;
+    @Ignore
     @Test
     public void canOpenChromeApps() {
         System.setProperty("webdriver.chrome.driver","C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe");
@@ -32,7 +37,6 @@ public class LoginGmail {
         open(GMAIL_URL);
         sleep(10000);
     }
-
     @Ignore
     @Test
     public void open_page() {
@@ -88,13 +92,12 @@ public class LoginGmail {
         $(By.name(GMAIL_LOGIN_FIELD)).sendKeys(GMAIL_LOGIN);
         logging.info("Submit email");
         $(GMAIL_NEXT_BTN).click();
-
         logging.info("Type password");
         $(GMAIL_PASSWORD_FIELD).shouldBe(visible).sendKeys(GMAIL_PASSWORD);
         logging.info("Submit password");
         $(GMAIL_SIGNIN_BTN).shouldBe(visible).click();
-        $(byXpath(EMAIL_RESET_PASSWORD_SUBJECT)).waitUntil(visible, 10000).click();
 
+        $(byXpath(EMAIL_RESET_PASSWORD_SUBJECT)).waitUntil(visible, 10000).click();
         $(byXpath(INBOX_BTN_DONE)).waitUntil(visible, 10000);
         $$(byText(EMAIL_RESET_PASSWORD_TITLE)).filter(visible).shouldHave(size(1));
         $$(byText(EMAIL_RESET_PASSWORD_TEXT)).filter(visible).shouldHave(size(1));
@@ -103,9 +106,13 @@ public class LoginGmail {
         logging.info("Back link to Pekama - " +actualBackLink);
         $(byXpath(INBOX_BTN_DONE)).click();
         open(actualBackLink);
+    }
 
-
-
+    @Test
+    public void loginGmailTest(){
+        ExternalSteps loginGmailInboxApp = new ExternalSteps();
+        loginGmailInboxApp.signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
+        loginGmailInboxApp.checkInboxEmail(EMAIL_TITLE, EMAIL_TEXT, EMAIL_BTN, EMAIL_REDIRECT_LINK, EMAIL_SUBJECT);
 
     }
 }
