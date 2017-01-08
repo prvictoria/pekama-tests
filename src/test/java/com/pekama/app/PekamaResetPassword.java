@@ -9,16 +9,15 @@ import org.junit.*;
 import org.junit.runners.MethodSorters;
 
 
-import static Page.DirectLinks.urlLogIn;
-import static Page.DirectLinks.urlResetPassword;
+import static Page.DirectLinks.*;
 import static Page.PekamaEmails.*;
-import static Page.PekamaEmails.EMAIL_RESET_PASSWORD_BACKLINK;
 import static Page.PekamaLogin.*;
 import static Page.PekamaResetPassword.*;
-import static Page.TestsCredentials.USER_01_EMAIL;
-import static Page.TestsCredentials.USER_GMAIL_PASSWORD;
-import static Page.TestsUrlConfiguration.PEKAMA;
+import static Page.TestsCredentials.*;
+import static Page.TestsStrings.*;
+import static Page.TestsUrlConfiguration.*;
 import static com.codeborne.selenide.CollectionCondition.size;
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.value;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
@@ -51,7 +50,7 @@ public class PekamaResetPassword {
         $(byXpath(RESET_PAGE_EMAIL)).sendKeys("123@123");
         $(byXpath(RESET_PAGE_RESET_BTN)).click();
         sleep(1000);
-        $(byXpath(RESET_PAGE_ERROR)).shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_ERROR_MSG));
+        $(byXpath(RESET_PAGE_ERROR)).shouldBe(Condition.visible).shouldHave(Condition.text(ERROR_MSG_INVALID_EMAIL));
     }
     @Test
     public void validEmailResetPassword() {
@@ -87,15 +86,38 @@ public class PekamaResetPassword {
         $(byXpath(NEWPASSWORD_PAGE_CONFIRM_PASSWORD)).shouldBe(Condition.visible).shouldHave(value(""));
         $(byXpath(NEWPASSWORD_PAGE_RESTORE_BTN)).shouldBe(Condition.visible);
         logging.info("Set up new password page - contain all elements");
+
+        logging.info("Validation test");
         $(byXpath(NEWPASSWORD_PAGE_RESTORE_BTN)).click();
         $$(byXpath(RESET_PAGE_ERROR)).filter(visible).shouldHave(size(2));
-        logging.info("User submitted blank form");
-//
+        $(byText(ERROR_MSG_REQUIRED_FIELD)).shouldBe(visible);
+        logging.info("User submitted blank form - "+ERROR_MSG_REQUIRED_FIELD);
+
+        logging.info("Validation test");
+        $(byXpath(NEWPASSWORD_PAGE_NEW_PASSWORD)).shouldBe(Condition.visible).sendKeys("12345");
+        $(byXpath(NEWPASSWORD_PAGE_CONFIRM_PASSWORD)).shouldBe(Condition.visible).sendKeys("67890");
+        $(byXpath(NEWPASSWORD_PAGE_RESTORE_BTN)).click();
+        $$(byXpath(RESET_PAGE_ERROR)).filter(visible).shouldHave(size(1));
+        $(byText(ERROR_MSG_NOT_MATCHED_PASSWORD)).shouldBe(visible);
+        logging.info("User submitted different passwords - "+ERROR_MSG_NOT_MATCHED_PASSWORD);
+
+        logging.info("Validation test");
+        $(byXpath(NEWPASSWORD_PAGE_NEW_PASSWORD)).shouldBe(Condition.visible).sendKeys(User1.GMAIL_EMAIL.getValue());
+        $(byXpath(NEWPASSWORD_PAGE_CONFIRM_PASSWORD)).shouldBe(Condition.visible).sendKeys(User1.GMAIL_EMAIL.getValue());
+        $(byXpath(NEWPASSWORD_PAGE_RESTORE_BTN)).click();
+        $$(byXpath(RESET_PAGE_ERROR)).filter(visible).shouldHave(size(2));
+        $(byText(ERROR_MSG_FAMILIAR_TO_EMAIL_PASSWORD)).shouldBe(visible);
+        $(byText(ERROR_MSG_WEAK_PASSWORD)).shouldBe(visible);
+        logging.info("User submitted familiar to email passwords - "+ERROR_MSG_FAMILIAR_TO_EMAIL_PASSWORD);
+
+        logging.info("Validation test");
 //        logging.info("User submitted invalid credentials");
-//
+        logging.info("Positive test");
 //        logging.info("User submitted valid credentials");
 //
 //        logging.info("User logged with new credentials");
+        logging.info("Validation test - link was used");
+//        logging.info("Restoration password link expired");
 
     }
     @Ignore

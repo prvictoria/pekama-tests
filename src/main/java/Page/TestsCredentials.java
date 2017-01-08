@@ -1,14 +1,20 @@
 package Page;
-
 import org.junit.Test;
 
 /**
  * Created by VatslauX on 29-Dec-16.
  */
 public class TestsCredentials {
-
     public enum User1 {
-        GMAIL_EMAIL("foo"), GMAIL_PASSWORD("bar");
+        GMAIL_EMAIL("testqweeco001@gmail.com"),
+        GMAIL_PASSWORD("123456789qasw1"),
+        PEKAMA_PASSWORD("asui67we34"),
+        LINKEDIN_PASSWORD("123456789qasw"),
+        NAME("test001"),
+        SURNAME("qweeco001"),
+        TEAM_NAME("Qweeco01"),
+        TEAM_CODE("QT01"),
+        FULL_TEAM_NAME("Qweeco01 (QT01)");
         private String value;
         User1(String value) {
             this.value = value;
@@ -17,11 +23,33 @@ public class TestsCredentials {
             return value;
         }
     }
+    public enum User4 {
+        GMAIL_EMAIL("testqweeco004@gmail.com"),
+        GMAIL_PASSWORD("123456789qasw1"),
+        PEKAMA_PASSWORD("asui67we34"),
+        LINKEDIN_PASSWORD("123456789qasw"),
+        NAME("test001"),
+        SURNAME("qweeco001"),
+        TEAM_NAME("Qweeco01"),
+        TEAM_CODE("QT01"),
+        FULL_TEAM_NAME("Qweeco01 (QT01)");
+        private String value;
+        User4(String value) {
+            this.value = value;
+        }
+        public String getValue() {
+            return value;
+        }
+    }
     @Test
     public  void enumTest() {
-            System.out.println(User1.GMAIL_EMAIL);
-        }
+        System.out.println(User1.GMAIL_EMAIL.value);
+        System.out.println(User1.FULL_TEAM_NAME.value);
+        System.out.println(User1.GMAIL_PASSWORD.value);
+        System.out.println(User1.TEAM_CODE.value);
+        System.out.println(User1.FULL_TEAM_NAME.value);
 
+    }
 
     public static final String USER_01_EMAIL = "testqweeco001@gmail.com";
     public static final String USER_02_EMAIL = "testqweeco002@gmail.com";
@@ -37,13 +65,11 @@ public class TestsCredentials {
     public static final String teamTest01 = "Qweeco01 (QT01)";
     public static final String teamTest02 = "Qweeco02 (QT02)";
     public static final String teamTest03 = "Qweeco03 (QT03)";
-    public static final String linkedinLogin_user01 = "v375291200656@gmail.com";
-    public static final String linkedinPassword_user01 = "37823akk10ajqlpq128dnwuao9";
     public static final String linkedinLogin_user04 = "vatslav.realt@gmail.com";
     public static final String linkedinPassword_user04 = "123456789qasw";
 
-    public static final String hostEmail = "qweeco";
-    public static final String hostPassword = "qw33coStudi0";
+    public static final String HTTP_AUTH_EMAIL = "qweeco";
+    public static final String HTTP_AUTH_PASSWORD = "qw33coStudi0";
 
 
     public static final String VALID_PASSWORD = "123456789qaswQ!";
@@ -51,13 +77,6 @@ public class TestsCredentials {
     public static final String VALID_NAME = "NAME";
     public static final String VALID_SURNAME = "SURNAME";
     public static final String VALID_COMPANY = "COMPANY";
-
-//    public static final String VALID_ = "";
-//    public static final String VALID_ = "";
-//    public static final String VALID_ = "";
-//    public static final String VALID_ = "";
-//    public static final String VALID_ = "";
-//    public static final String VALID_ = "";
 
      public static final String ROW1 = "[1]";
      public static final String ROW2 = "[2]";

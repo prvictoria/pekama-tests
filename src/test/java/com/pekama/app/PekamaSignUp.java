@@ -7,9 +7,10 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 
-import static Page.DirectLinks.urlSingUp;
+import static Page.DirectLinks.*;
 import static Page.PekamaSignUp.*;
 import static Page.TestsCredentials.*;
+import static Page.TestsStrings.*;
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
@@ -56,7 +57,7 @@ public class PekamaSignUp {
         $(signupAgree).setSelected(true).shouldBe(selected);
         $(signupNext).shouldBe(visible).shouldNot(disabled).click();
         $$(signupError).shouldHave(size(5));
-        $(signupError).shouldHave(text(signupMsg_RequiredField));
+        $(signupError).shouldHave(text(ERROR_MSG_REQUIRED_FIELD));
         $(signupAgree).shouldBe(visible).shouldNot(selected);
         rootLogger.info("");
     //Tests if 1 fields is blank
@@ -66,7 +67,7 @@ public class PekamaSignUp {
         $(signupEmail).sendKeys(VALID_EMAIL);
         $(signupNext).shouldBe(visible).shouldNot(disabled).click();
         $$(signupError).shouldHave(size(4));
-        $(signupError).shouldHave(text(signupMsg_RequiredField));
+        $(signupError).shouldHave(text(ERROR_MSG_REQUIRED_FIELD));
         rootLogger.info("");
     }
     @Test
@@ -74,7 +75,7 @@ public class PekamaSignUp {
         $(signupName).sendKeys(VALID_NAME);
         $(signupNext).shouldBe(visible).shouldNot(disabled).click();
         $$(signupError).shouldHave(size(4));
-        $(signupError).shouldHave(text(signupMsg_RequiredField));
+        $(signupError).shouldHave(text(ERROR_MSG_REQUIRED_FIELD));
         rootLogger.info("");
     }
     @Test
@@ -82,7 +83,7 @@ public class PekamaSignUp {
         $(signupSurname).sendKeys(VALID_SURNAME);
         $(signupNext).shouldBe(visible).shouldNot(disabled).click();
         $$(signupError).shouldHave(size(4));
-        $(signupError).shouldHave(text(signupMsg_RequiredField));
+        $(signupError).shouldHave(text(ERROR_MSG_REQUIRED_FIELD));
         rootLogger.info("");
     }
     @Test
@@ -90,7 +91,7 @@ public class PekamaSignUp {
         $(signupCompany).sendKeys(VALID_COMPANY);
         $(signupNext).shouldBe(visible).shouldNot(disabled).click();
         $$(signupError).shouldHave(size(4));
-        $(signupError).shouldHave(text(signupMsg_RequiredField));
+        $(signupError).shouldHave(text(ERROR_MSG_REQUIRED_FIELD));
         rootLogger.info("");
     }
     @Test
@@ -98,7 +99,7 @@ public class PekamaSignUp {
         $(signupPassword).sendKeys(VALID_PASSWORD);
         $(signupNext).shouldBe(visible).shouldNot(disabled).click();
         $$(signupError).shouldHave(size(4));
-        $(signupError).shouldHave(text(signupMsg_RequiredField));
+        $(signupError).shouldHave(text(ERROR_MSG_REQUIRED_FIELD));
         rootLogger.info("");
     }
 
@@ -109,7 +110,7 @@ public class PekamaSignUp {
                 $(signupEmail).sendKeys(arrayInvalidEmails[arrayLength]);
                 $(signupNext).shouldBe(visible).shouldNot(disabled).click();
                 $$(By.xpath(signupErrorEmail)).shouldHave(size(1));
-                $(By.xpath(signupErrorEmail)).shouldHave(text(signupMsg_InvalidEmail));
+                $(By.xpath(signupErrorEmail)).shouldHave(text(ERROR_MSG_INVALID_EMAIL));
 
                 refresh();
 
@@ -152,7 +153,7 @@ public class PekamaSignUp {
             $(signupPassword).shouldBe(visible).sendKeys(VALID_PASSWORD);
             $(signupNext).shouldBe(visible).shouldNot(disabled).click();
             sleep(1500);
-            $(By.xpath(signupErrorEmail)).shouldBe(visible).shouldHave(text(signupMsg_UsedEmail));
+            $(By.xpath(signupErrorEmail)).shouldBe(visible).shouldHave(text(ERROR_MSG_EMAIL_IS_USED));
             $(signupNext).shouldBe(disabled);
             rootLogger.info("");
     }

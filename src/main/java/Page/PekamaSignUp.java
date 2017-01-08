@@ -31,9 +31,6 @@ public class PekamaSignUp {
     public static final String signupError = ".list-unstyled.error-list>li";
     public static final String signupErrorEmail = "//div[@class='signup-details']//div[@class='row'][1]//li";
     public static final String signupErrorPassword = "//div[@class='signup-details']//div[@class='row'][3]//li[2]";
-    public static final String signupMsg_RequiredField = "This field is required.";
-    public static final String signupMsg_InvalidEmail = "Enter a valid email address.";
-    public static final String signupMsg_UsedEmail = "This email address is already taken";
 
     public static final String SIGNUP_ERROR_SHORT_PASSWORD = "//div[@class='signup-details']//li[contains(.,'This password is too common.')]";
     public static final String SIGNUP_ERROR_COMMON_PASSWORD = "//div[@class='signup-details']//li[contains(.,'This password is too short. It must contain at least 8 characters.')]";
