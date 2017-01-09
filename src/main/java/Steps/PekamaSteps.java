@@ -19,7 +19,7 @@ import static com.codeborne.selenide.Selenide.open;
 public class PekamaSteps {
     static final Logger logging = LogManager.getLogger(PekamaSteps.class);
 
-    public void  loginIntoPekamaByUrl(String PEKAMA_USER_EMAIL){
+    public void  loginIntoPekamaByUrl(String PEKAMA_USER_EMAIL, String urlLogIn){
         open(urlLogIn); //HOST define PEKAMA or COMMUNITY redirect after login
         logging.info(urlLogIn+ "opened");
         $(loginField_Email).sendKeys(PEKAMA_USER_EMAIL);
@@ -29,5 +29,17 @@ public class PekamaSteps {
         $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));
         $(By.xpath(btnSignup)).shouldBe(Condition.not(visible));
         logging.info("Valid Credentials were submitted");
+    }
+    public void  submitLoginCredentials(String PEKAMA_USER_EMAIL){
+        $(loginField_Email).sendKeys(PEKAMA_USER_EMAIL);
+        logging.info(PEKAMA_USER_EMAIL+ " - login selected");
+        $(loginField_Password).sendKeys(USER_PEKAMA_PASSWORD);
+        $(By.xpath(loginButton_Login)).click();
+        $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));
+        logging.info("Valid Credentials were submitted");
+    }
+    public void  submitCookie(String PEKAMA_USER_EMAIL){
+
+        logging.info("cookie were submitted");
     }
 }
