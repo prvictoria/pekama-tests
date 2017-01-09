@@ -13,11 +13,11 @@ import org.junit.runners.MethodSorters;
 import org.openqa.selenium.By;
 
 import static Page.CommunityDashboard.COMMUNITY_HEADER_LOGIN;
-import static Page.CommunityDashboard.COMMUNITY_TAB_Profile;
-import static Page.CommunityLanding.LANDING_LOGIN;
+import static Page.CommunityDashboard.*;
+import static Page.CommunityLanding.*;
 import static Page.DirectLinks.*;
 import static Page.PekamaLogin.*;
-import static Page.TestsUrlConfiguration.COMMUNITY;
+import static Page.TestsUrlConfiguration.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -25,7 +25,7 @@ import static com.codeborne.selenide.Selenide.open;
 public class CommunityProfile {
     static final Logger log = LogManager.getLogger(CommunityProfile.class);
     public static String SELECT_HOST = COMMUNITY;
-    String PEKAMA_USER_EMAIL = TestsCredentials.User1.GMAIL_EMAIL.getValue();
+    String PEKAMA_USER_EMAIL = TestsCredentials.User3.GMAIL_EMAIL.getValue();
     @Before
     public void openUrlLogin() {
 
