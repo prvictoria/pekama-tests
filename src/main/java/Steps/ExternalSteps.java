@@ -36,7 +36,7 @@ public class ExternalSteps {
         logging.info("Inbox opened");
         $(byXpath(INBOX_BTN_INBOX)).waitUntil(visible, 5000);
     }
-    public String checkInboxEmail(String EMAIL_TITLE, String EMAIL_TEXT, String EMAIL_BTN, String EMAIL_REDIRECT_LINK, String EMAIL_SUBJECT){
+    public static String checkInboxEmail(String EMAIL_TITLE, String EMAIL_TEXT, String EMAIL_BTN, String EMAIL_REDIRECT_LINK, String EMAIL_SUBJECT){
         $(byXpath(EMAIL_SUBJECT)).waitUntil(visible, 10000).click();
         $(byXpath(INBOX_BTN_DONE)).waitUntil(visible, 10000);
         logging.info("Email present");

@@ -21,4 +21,7 @@ public class PekamaResetPassword {
     public static final String NEWPASSWORD_PAGE_CONFIRM_PASSWORD = "//*[@name='new_password2'] ";
     public static final String NEWPASSWORD_PAGE_RESTORE_BTN = "//*[@value='Restore'] ";
 
+    public static final String FAILED_RESET_TITLE = "//*[@class='small-title']";
+    public static final String FAILED_RESET_TITLE_TEXT = "Password restoration";
+    public static final String FAILED_RESET_TEXT = "The password reset link was invalid, \\n possibly because it has already been used. \\n Please request a new password reset.";
 }

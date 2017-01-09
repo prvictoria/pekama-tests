@@ -101,8 +101,8 @@ public class TestsStrings {
     public static final String ERROR_MSG_SHORT_PASSWORD = "This password is too short. It must contain at least 8 characters";
     public static final String ERROR_MSG_COMMON_PASSWORD = "This password is too common.";
     public static final String ERROR_MSG_PASSWORD_RULES = "Your password must contain at least one lowercase, one uppercase and one special character";
-
-
+//test result strings
+    public static String URL = "";
 
 
 }
