@@ -9,7 +9,7 @@ import org.junit.*;
 import org.junit.runners.MethodSorters;
 
 
-import static Page.DirectLinks.*;
+import static Page.TestsUrl.*;
 import static Page.PekamaEmails.*;
 import static Page.PekamaLogin.*;
 import static Page.PekamaResetPassword.*;

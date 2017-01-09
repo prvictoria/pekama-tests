@@ -25,7 +25,7 @@ public class CommunityProfile {
     public static final String PROFILE_BTN_SAVE_DESCRIPTION = "//*[@class='clearfix ng-scope']//button[contains(.,'Save')]"; //disabled="disabled"
 
     public static final String PROFILE_MEMBERS = "";
-    public static final String PROFILE_MEMBERS_COUNT = ""; //reditect to /a/settings/team/members
+    public static final String PROFILE_MEMBERS_COUNT = "//*[@class='members-link ng-binding'][@href]"; //reditect to /a/settings/team/members
     public static final String PROFILE_MEMBERS_ROW = "";
 
     public static final String PROFILE_PLEDGE_1 = "//*[@name='pledge-1']";

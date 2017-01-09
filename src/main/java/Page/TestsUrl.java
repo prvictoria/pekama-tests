@@ -5,7 +5,7 @@ import static Page.TestsUrlConfiguration.*;
 /**
  * Created by VatslauX on 29-Dec-16.
  */
-public class DirectLinks {
+public class TestsUrl {
     public static final String urlSingUp = SELECT_HOST+"/signup/";
     public static final String urlLogIn = SELECT_HOST+"/accounts/login/";
     public static final String urlLogout = SELECT_HOST+"/accounts/logout";
@@ -14,15 +14,15 @@ public class DirectLinks {
     public static final String urlLanding = SELECT_HOST+"/";
     public static final String urlDashboard = SELECT_HOST+"/a/dashboard";
 
-    public static final String urlReportsProjects = PEKAMA+DOMAIN+"a/reports/projects";
-    public static final String urlReportsTasks = PEKAMA+DOMAIN+"a/reports/tasks";
-    public static final String urlReportsEvents = PEKAMA+DOMAIN+"a/reports/events";
-    public static final String urlReportsCharges = PEKAMA+DOMAIN+"a/reports/financials";
-    public static final String urlReportsContacts = PEKAMA+DOMAIN+"a/reports/contacts";
+    public static final String urlReportsProjects = PEKAMA+"/a/reports/projects";
+    public static final String urlReportsTasks = PEKAMA+"/a/reports/tasks";
+    public static final String urlReportsEvents = PEKAMA+"/a/reports/events";
+    public static final String urlReportsCharges = PEKAMA+"/a/reports/financials";
+    public static final String urlReportsContacts = PEKAMA+"/a/reports/contacts";
 
-    public static final String urlPersonalSettings = PEKAMA+DOMAIN+"a/settings/profile";
-    public static final String urlTeamSettings = PEKAMA+DOMAIN+"a/settings/team";
-    public static final String urlTS_Members = PEKAMA+DOMAIN+"a/settings/team/members";
+    public static final String urlPersonalSettings = PEKAMA+"/a/settings/profile";
+    public static final String urlTeamSettings = PEKAMA+"/a/settings/team";
+    public static final String urlTSMembers = PEKAMA+"/a/settings/team/members";
 
     public static final String COMMUNITY_PATH = COMMUNITY;
     public static final String COMMUNITY_DASHBOARD = COMMUNITY+"/a";

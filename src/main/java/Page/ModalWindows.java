@@ -5,7 +5,11 @@ package Page;
  */
 public class ModalWindows {
     public static final String MW_ = "";
-    public static final String MW_BODY = "//div[@class='modal-content']";
+    public static final String MW = "//div[@class='modal-content']";
+    public static final String MW_BTN_SUBMIT = MW+"//button[@submit]";
+    public static final String MW_INPUT_NEW_MEMEBER_EMAIL = MW+"//*[@id='newFollowerEmail']";
+
+
     public static final String MW_GENERIC_Body = "css=.modal-content";
     public static final String MW_GENERIC_Title = "//*[@class='modal-title']";
     public static final String MW_GENERIC_DatepickerField = "css=input.form-control.date-box";

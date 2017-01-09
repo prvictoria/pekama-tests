@@ -11,7 +11,7 @@ import org.openqa.selenium.By;
 
 import static Page.CommunityDashboard.*;
 import static Page.CommunityWizard.*;
-import static Page.DirectLinks.*;
+import static Page.TestsUrl.*;
 import static Page.ModalWindows.genericSelectHighlighted;
 import static Page.PekamaLogin.*;
 import static Page.TestsUrlConfiguration.*;
@@ -69,7 +69,7 @@ public class CommunityDashboard {
         rootLogger.info("User logged out");
         rootLogger.info("Test Passed");
     }
-//    @Ignore
+
     @Test
     public void checkWizardLoginRedirect() {
         $(By.xpath(COMMUNITY_HEADER_LOGIN)).shouldBe(Condition.visible);

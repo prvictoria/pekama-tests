@@ -12,7 +12,7 @@ public class TestsUrlConfiguration {
     public static final String PROD_PEKAMA = "https://docketing.pekama.com";
     public static final String PROD_COMMUNITY = "https://community.pekama.com";
 
-    public static final String PEKAMA = PROD_PEKAMA;
+    public static final String PEKAMA = STAGING_PEKAMA;
     public static final String COMMUNITY = STAGING_COMMUNITY;
     public static String SELECT_HOST = PEKAMA;
 

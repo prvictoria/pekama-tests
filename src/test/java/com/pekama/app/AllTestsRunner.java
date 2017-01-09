@@ -7,6 +7,7 @@ import org.junit.runners.Suite;
         CommunityDashboard.class,
         CommynityLanding.class,
         ComunityWizard.class,
+        CommunityProfile.class,
 
         PekamaLanding.class,
         PekamaLogin.class,

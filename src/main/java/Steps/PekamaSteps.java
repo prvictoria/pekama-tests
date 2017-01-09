@@ -5,7 +5,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 
-import static Page.DirectLinks.urlLogIn;
 import static Page.PekamaLogin.*;
 import static Page.PekamaLogin.btnSignup;
 import static Page.TestsCredentials.USER_PEKAMA_PASSWORD;

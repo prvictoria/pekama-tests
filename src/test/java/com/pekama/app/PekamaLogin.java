@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 
-import static Page.DirectLinks.*;
+import static Page.TestsUrl.*;
 import static Page.PekamaLogin.*;
 import static Page.TestsUrlConfiguration.TEST_ENVIROMENT_COMMUNITY;
 import static Page.TestsUrlConfiguration.TEST_ENVIROMENT_PEKAMA;

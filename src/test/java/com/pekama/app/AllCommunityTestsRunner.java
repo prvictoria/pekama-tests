@@ -6,7 +6,8 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
         CommunityDashboard.class,
         CommynityLanding.class,
-        ComunityWizard.class
+        ComunityWizard.class,
+        CommunityProfile.class
 })
 public class AllCommunityTestsRunner {
 }
