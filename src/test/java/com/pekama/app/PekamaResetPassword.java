@@ -64,16 +64,16 @@ public class PekamaResetPassword {
         String EMAIL_TEXT = EMAIL_RESET_PASSWORD_TEXT;
         String EMAIL_BTN = EMAIL_RESET_PASSWORD_BTN;
         String EMAIL_REDIRECT_LINK = EMAIL_RESET_PASSWORD_BACKLINK;
-//        logging.info("Open URL - "+urlResetPassword);
-//        open(urlResetPassword);
-//        sleep(1000);
-//        $(byXpath(RESET_PAGE_TITLE)).shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_TITLE_TEXT));
-//        $(byXpath(RESET_PAGE_EMAIL)).sendKeys(USER_01_EMAIL);
-//        $(byXpath(RESET_PAGE_RESET_BTN)).click();
-//        sleep(1000);
-//        $(byXpath(RESET_PAGE_SUCCESS)).shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_SUCCESS_MSG));
-//        String testSuccessMsg = $(byXpath(RESET_PAGE_SUCCESS)).getText();
-//        logging.info(testSuccessMsg+ " displayed, valid email submitted");
+        logging.info("Open URL - "+urlResetPassword);
+        open(urlResetPassword);
+        sleep(1000);
+        $(byXpath(RESET_PAGE_TITLE)).shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_TITLE_TEXT));
+        $(byXpath(RESET_PAGE_EMAIL)).sendKeys(USER_01_EMAIL);
+        $(byXpath(RESET_PAGE_RESET_BTN)).click();
+        sleep(1000);
+        $(byXpath(RESET_PAGE_SUCCESS)).shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_SUCCESS_MSG));
+        String testSuccessMsg = $(byXpath(RESET_PAGE_SUCCESS)).getText();
+        logging.info(testSuccessMsg+ " displayed, valid email submitted");
 
         ExternalSteps loginGmailInboxApp = new ExternalSteps();
         loginGmailInboxApp.signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
