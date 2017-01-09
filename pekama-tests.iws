@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2fcdccdc-4d95-4ab7-8153-9ec9d616e50f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pekama-tests.iws" afterPath="$PROJECT_DIR$/pekama-tests.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/PekamaResetPassword.java" afterPath="$PROJECT_DIR$/src/main/java/Page/PekamaResetPassword.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/TestsStrings.java" afterPath="$PROJECT_DIR$/src/main/java/Page/TestsStrings.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Steps/ExternalSteps.java" afterPath="$PROJECT_DIR$/src/main/java/Steps/ExternalSteps.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaResetPassword.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaResetPassword.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -195,8 +192,8 @@
       <file leaf-file-name="PekamaResetPassword.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaResetPassword.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="748">
-              <caret line="147" column="37" lean-forward="false" selection-start-line="147" selection-start-column="37" selection-end-line="147" selection-end-column="37" />
+            <state relative-caret-position="990">
+              <caret line="92" column="80" lean-forward="false" selection-start-line="92" selection-start-column="80" selection-end-line="92" selection-end-column="80" />
               <folding />
             </state>
           </provider>
@@ -1330,13 +1327,6 @@
       <workItem from="1483715511979" duration="4817000" />
       <workItem from="1483723053931" duration="40494000" />
     </task>
-    <task id="LOCAL-00005" summary="initial commits">
-      <created>1482600174867</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1482600174867</updated>
-    </task>
     <task id="LOCAL-00006" summary="initial commits">
       <created>1482600220397</created>
       <option name="number" value="00006" />
@@ -1673,7 +1663,14 @@
       <option name="project" value="LOCAL" />
       <updated>1483948701836</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="AutoIt">
+      <created>1483953936058</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1483953936058</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -2244,8 +2241,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaResetPassword.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="147" column="37" lean-forward="false" selection-start-line="147" selection-start-column="37" selection-end-line="147" selection-end-column="37" />
+        <state relative-caret-position="990">
+          <caret line="92" column="80" lean-forward="false" selection-start-line="92" selection-start-column="80" selection-end-line="92" selection-end-column="80" />
           <folding />
         </state>
       </provider>

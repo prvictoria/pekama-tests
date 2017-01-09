@@ -128,11 +128,11 @@ public class PekamaResetPassword {
 //            logging.info("User submitted valid credentials");
 //            logging.info("User logged with new credentials");
 
-            logging.info("Validation test - link was used");
-            open(actualBackLink);
-            $(byText(FAILED_RESET_TITLE_TEXT)).shouldBe(visible);
-            $(byText(FAILED_RESET_TEXT)).shouldBe(visible);
-            logging.info("Restoration password link expired - Title "+FAILED_RESET_TITLE_TEXT);
+//            logging.info("Validation test - link was used");
+//            open(actualBackLink);
+//            $(byText(FAILED_RESET_TITLE_TEXT)).shouldBe(visible);
+//            $(byText(FAILED_RESET_TEXT)).shouldBe(visible);
+//            logging.info("Restoration password link expired - Title "+FAILED_RESET_TITLE_TEXT);
         }
         else Assert.fail("Redirect Link not found");
     }
