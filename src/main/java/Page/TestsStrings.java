@@ -93,7 +93,7 @@ public class TestsStrings {
     public static final String ERROR_MSG_FAMILIAR_TO_SURNAME_PASSWORD = "";
     public static final String ERROR_MSG_FAMILIAR_TO_COMPANY_PASSWORD = "";
     public static final String ERROR_MSG_WEAK_PASSWORD = "Your password must contain at least one lowercase, one uppercase and one special character (! \" # $ % & ' ( ) * + , - . / : ; < = > ? @ [ \\ ] ^ _ ` { | } ~).";
-    public static final String ERROR_MSG_BLANK_FIELD = "";
+    public static final String ERROR_MSG_BLANK_FIELD = "This field may not be blank.";
     public static final String ERROR_MSG_REQUIRED_FIELD = "This field is required.";
     public static final String ERROR_MSG_INVALID_EMAIL = "Enter a valid email address.";
     public static final String ERROR_MSG_EMAIL_IS_USED = "This email address is already taken";
