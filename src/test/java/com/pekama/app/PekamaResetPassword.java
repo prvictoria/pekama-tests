@@ -1,5 +1,6 @@
 package com.pekama.app;
 import Steps.ExternalSteps;
+import Utils.Utils;
 import com.codeborne.selenide.Condition;
 import com.pekama.app.draft.LoginGmail;
 import org.apache.logging.log4j.LogManager;
@@ -120,13 +121,14 @@ public class PekamaResetPassword {
             logging.info("Validation test");
             logging.info("User submitted invalid credentials");
 
-//            logging.info("Positive test");
-//            //need random passwrord +constant
-//            $(byXpath(NEWPASSWORD_PAGE_NEW_PASSWORD)).shouldBe(Condition.visible).sendKeys(VALID_PASSWORD+RANDON_8_LETTER);
-//            $(byXpath(NEWPASSWORD_PAGE_CONFIRM_PASSWORD)).shouldBe(Condition.visible).sendKeys(VALID_PASSWORD+RANDON_8_LETTER);
-//            $(byXpath(NEWPASSWORD_PAGE_RESTORE_BTN)).click();
-//            logging.info("User submitted valid credentials");
-//            logging.info("User logged with new credentials");
+            logging.info("Positive test");
+            //need random passwrord +constant
+            String RANDOM_8_LETTER = Utils.getRandomString(8);
+            $(byXpath(NEWPASSWORD_PAGE_NEW_PASSWORD)).shouldBe(Condition.visible).sendKeys(VALID_PASSWORD+RANDOM_8_LETTER);
+            $(byXpath(NEWPASSWORD_PAGE_CONFIRM_PASSWORD)).shouldBe(Condition.visible).sendKeys(VALID_PASSWORD+RANDOM_8_LETTER);
+            $(byXpath(NEWPASSWORD_PAGE_RESTORE_BTN)).click();
+            logging.info("User submitted valid credentials");
+            logging.info("User logged with new credentials");
 
 //            logging.info("Validation test - link was used");
 //            open(actualBackLink);
@@ -153,8 +155,9 @@ public class PekamaResetPassword {
     @Ignore
     @Test
     public void testPassed() {
-        System.out.println(actualBackLink);
-        logging.info("Test obove passed");
+        String RANDOM_8_LETTER = Utils.getRandomString(8);
+        System.out.println(RANDOM_8_LETTER);
+        logging.info("Test obove passed - "+RANDOM_8_LETTER);
     }
 
 }

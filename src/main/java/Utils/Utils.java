@@ -1,10 +1,6 @@
 package Utils;
-import org.junit.Test;
-
 import java.util.Random;
-/**
- * Created by Viachaslau_Balashevi on 1/9/2017.
- */
+
 public class Utils {
     private static final String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static Random rnd = new Random();
