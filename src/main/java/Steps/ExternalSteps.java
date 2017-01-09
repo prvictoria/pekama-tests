@@ -19,6 +19,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class ExternalSteps {
     static final Logger logging = LogManager.getLogger(ExternalSteps.class);
+    private String actualBackLink;
 
     public void signInGmailInbox(String GMAIL_LOGIN, String GMAIL_PASSWORD) {
         logging.info("Start browser");
@@ -35,7 +36,7 @@ public class ExternalSteps {
         logging.info("Inbox opened");
         $(byXpath(INBOX_BTN_INBOX)).waitUntil(visible, 5000);
     }
-    public void checkInboxEmail(String EMAIL_TITLE, String EMAIL_TEXT, String EMAIL_BTN, String EMAIL_REDIRECT_LINK, String EMAIL_SUBJECT){
+    public String checkInboxEmail(String EMAIL_TITLE, String EMAIL_TEXT, String EMAIL_BTN, String EMAIL_REDIRECT_LINK, String EMAIL_SUBJECT){
         $(byXpath(EMAIL_SUBJECT)).waitUntil(visible, 10000).click();
         $(byXpath(INBOX_BTN_DONE)).waitUntil(visible, 10000);
         logging.info("Email present");
@@ -47,11 +48,13 @@ public class ExternalSteps {
         logging.info("Back link to Pekama - " +actualBackLink);
 //        $(byXpath(INBOX_BTN_DONE)).click();
 //        $(byXpath(INBOX_BTN_DONE)).shouldBe(disappear);
-        logging.info("Email archived");
-        if (EMAIL_SUBJECT.equals(EMAIL_RESET_PASSWORD_SUBJECT)){
-            open(actualBackLink);
-            logging.info("Open reset password link");
-        }
+//        logging.info("Email archived");
+
+//        if (EMAIL_SUBJECT.equals(EMAIL_RESET_PASSWORD_SUBJECT)){
+//            open(actualBackLink);
+//            logging.info("Open reset password link");
+//        }
+        return actualBackLink;
 
     }
 

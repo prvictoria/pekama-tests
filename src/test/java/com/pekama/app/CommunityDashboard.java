@@ -91,8 +91,8 @@ public class CommunityDashboard {
         sleep(2000);
 //        $(By.xpath(COMMUNITY_INNRER_BTN_SIGNUP)).shouldBe(Condition.visible);
 //        $(By.xpath(COMMUNITY_INNRER_BTN_LOGIN)).shouldBe(Condition.visible);
-//        rootLogger.info("All elements in STEP 3 displayed for Guest user");
-//        rootLogger.info("All elements in Wizard Tab displayed for Guest user");
+        rootLogger.info("All elements in STEP 3 displayed for Guest user");
+        rootLogger.info("All elements in Wizard Tab displayed for Guest user");
 
         $(By.xpath(COMMUNITY_INNRER_BTN_LOGIN)).click();
         sleep(1500);
