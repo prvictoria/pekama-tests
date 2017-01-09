@@ -18,7 +18,6 @@ public class HttpAuth {
         sleep(250);
 
    }
-   @Test
    public void httpAuthStgingCommunity() {
         assumeTrue(isFirefox());
         Selenide.open("https://communitystaging.pekama.com/",
