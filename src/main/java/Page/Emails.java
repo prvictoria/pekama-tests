@@ -1,10 +1,8 @@
 package Page;
 
+import static Page.PekamaReports.*;
 import static Page.TestsUrlConfiguration.SELECT_HOST;
 
-/**
- * Created by Viachaslau_Balashevi on 12/29/2016.
- */
 public class Emails {
     public static final String EMAIL_RESET_PASSWORD = "";
     public static final String EMAIL_RESET_PASSWORD_TITLE = "Password Restoration";
@@ -20,11 +18,17 @@ public class Emails {
     public static final String EMAIL_CONFIRM_REGISTRATION_BTN = "Confirm Account";
     public static final String EMAIL_CONFIRM_REGISTRATION_BACKLINK = "//td/a[contains(@href, '"+SELECT_HOST+"/accounts/confirm/')]";
 
+    public static final String EMAIL_REPORT = "";
+    public static final String EMAIL_REPORT_SUBJECT = "//span[contains(.,'"+REPORT_NAME+"')]";
+    public static final String EMAIL_REPORT_TITLE = "";
+    public static final String EMAIL_REPORT_TEXT = "This is the report that you configured in Pekama.";
+    public static final String EMAIL_REPORT_ATTACHMENT = "//*[@title='Report \"1\" - 2017-01-10.csv']"; //name+date
+    public static final String EMAIL_REPORT_BACKLINK = "//a[contains(@href, '"+SELECT_HOST+"/filters/mailinglist/edit/')]";
+
 //    public static final String EMAIL_SUBJ_CONFIRM_REGISTRATION = "";
 //    public static final String EMAIL_SUBJ_IVITE_IN_PEKAMA = "";
 //    public static final String EMAIL_SUBJ_INVITE_IN_PROJECT = "";
 //    public static final String EMAIL_SUBJ_TO_TEAM_ADMIN = "";
-//    public static final String EMAIL_SUBJ_REPORT = "";
 //    public static final String EMAIL_SUBJ_COMMUNITY = "";
 
     public static final String INBOX_URL = "https://www.google.com/inbox/";
