@@ -197,7 +197,7 @@ public class PekamaSignUp {
         $(signupAgree).setSelected(true).shouldBe(selected);
         }
     }
-    @Test //Exist user - check by email
+    @Test
     public void sendSignUpEmail() {
         String GMAIL_LOGIN = User5.GMAIL_EMAIL.getValue();
         String GMAIL_PASSWORD = User5.GMAIL_PASSWORD.getValue();
@@ -206,7 +206,7 @@ public class PekamaSignUp {
         String EMAIL_TEXT = EMAIL_CONFIRM_REGISTRATION_TEXT;
         String EMAIL_BTN = EMAIL_CONFIRM_REGISTRATION_BTN;
         String EMAIL_REDIRECT_LINK = EMAIL_CONFIRM_REGISTRATION_BACKLINK;
-
+        rootLogger.info("Check signUp email");
         $(signupEmail).shouldBe(visible).sendKeys(NEW_USER);
         $(signupName).shouldBe(visible).sendKeys(VALID_NAME);
         $(signupSurname).shouldBe(visible).sendKeys(VALID_SURNAME);
@@ -219,14 +219,12 @@ public class PekamaSignUp {
         rootLogger.info(ERROR_MSG_EMAIL_IS_USED);
         ExternalSteps loginGmailInboxApp = new ExternalSteps();
         loginGmailInboxApp.signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
-        actualBackLink = loginGmailInboxApp.checkInboxEmail(EMAIL_TITLE, EMAIL_TEXT, EMAIL_BTN, EMAIL_REDIRECT_LINK, EMAIL_SUBJECT);
+        actualBackLink = loginGmailInboxApp.checkInboxEmail(EMAIL_SUBJECT, EMAIL_TITLE, EMAIL_TEXT, EMAIL_BTN, EMAIL_REDIRECT_LINK);
             if (actualBackLink == null) {
                 rootLogger.info("User followed reset link");
                 Assert.fail("Redirect Link not found");
             }
-        rootLogger.info("Confirm link present in mail - "+actualBackLink);
     }
-
 
 }
 

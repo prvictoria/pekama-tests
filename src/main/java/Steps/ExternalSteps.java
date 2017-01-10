@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.CollectionCondition.size;
+import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
@@ -32,10 +33,11 @@ public class ExternalSteps {
         logging.info("Submit password");
         $(GMAIL_SIGNIN_BTN).shouldBe(visible).click();
         logging.info("Inbox opened");
-        $(byXpath(INBOX_BTN_INBOX)).waitUntil(visible, 5000);
+        //      $(byXpath(INBOX_BTN_INBOX)).waitUntil(visible, 5000);
     }
     public static String checkInboxEmail(String EMAIL_SUBJECT, String EMAIL_TITLE, String EMAIL_TEXT, String EMAIL_BTN, String EMAIL_REDIRECT_LINK){
         $(byXpath(EMAIL_SUBJECT)).waitUntil(visible, 10000).click();
+        logging.info("Email by subject found");
         $(byXpath(INBOX_BTN_DONE)).waitUntil(visible, 10000);
         logging.info("Email present");
         $$(byText(EMAIL_TITLE)).filter(visible).shouldHave(size(1));
@@ -43,10 +45,10 @@ public class ExternalSteps {
         $$(byText(EMAIL_BTN)).filter(visible).shouldHave(size(1));
         logging.info(EMAIL_TITLE+ "- email present");
         String actualBackLink = $(By.xpath(EMAIL_REDIRECT_LINK)).getAttribute("href");
-        logging.info("Back link to Pekama - " +actualBackLink);
-//        $(byXpath(INBOX_BTN_DONE)).click();
-//        $(byXpath(INBOX_BTN_DONE)).shouldBe(disappear);
-//        logging.info("Email archived");
+        logging.info("This link present in mail - " +actualBackLink);
+        $(byXpath(INBOX_BTN_DONE)).click();
+        $(byXpath(INBOX_BTN_DONE)).shouldBe(disappear);
+        logging.info("Email archived");
 
 //        if (EMAIL_SUBJECT.equals(EMAIL_RESET_PASSWORD_SUBJECT)){
 //            open(actualBackLink);
