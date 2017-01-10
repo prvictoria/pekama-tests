@@ -46,9 +46,17 @@ public class PekamaReports {
         String REPORT_NAME = THIS_ML_NAME;
         $(byXpath(REPORTS_MAILING_LISTS_BTN_CALL_ML)).click();
         $(byXpath(MW)).shouldBe(visible);
-        $(byText("Members")).shouldNotBe(Condition.visible);
+        $(byText("Mailing List")).shouldNotBe(Condition.visible);
+
+        rootLogger.info("Set checkbox");
+        $(byXpath(MW_MAILING_1USER_SELECT)).click();
+        rootLogger.info("Set interval");
+        $(byXpath(MW_MAILING_1USER_INTERVAL)).sendKeys("999");
+
         rootLogger.info("Send Project report");
-        $(byXpath(MW_BTN_SUBMIT)).click();
+        $(byXpath(MW_MAILING_LIST_BTN_SEND_NOW)).click();
+
+
         rootLogger.info("Check email - report");
         //todo use gmail step + add assertions
         rootLogger.info("Email - report present in inbox");

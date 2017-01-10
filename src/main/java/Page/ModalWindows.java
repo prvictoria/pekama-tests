@@ -9,35 +9,44 @@ public class ModalWindows {
     public static final String MW_BTN_SUBMIT = MW+"//button[@submit]";
     public static final String MW_INPUT_NEW_MEMBER_EMAIL = MW+"//*[@id='newFollowerEmail']";
 
+//reports
+//mailing list
+    public static final String MW_MAILING_LIST_BTN_ACTIVATE = MW+"//*[contains(.,'Activate')]";
+    public static final String MW_MAILING_LIST_BTN_SEND_NOW = MW+"//*[contains(.,'Send Now')]";
+    public static final String MW_MAILING_LIST_CHECKBOX_ALL = MW+"//input[@ng-model='all']";
+    public static final String MW_MAILING_1USER_SELECT = MW+"//ul//li[2]//input[@type='checkbox']";
+    public static final String MW_MAILING_1USER_INTERVAL = MW+"//ul//li[2]//input[@type='number']";
 
-    public static final String MW_GENERIC_Body = "css=.modal-content";
+
+    public static final String MW_BTN_SAVE = MW+"//*[contains(.,'Save')]";
+    public static final String MW_BTN_CANCEL = MW+"//*[contains(.,'Cancel')]";
+    public static final String MW_BTN_ADD = MW+"//*[contains(.,'Add')]";
+
     public static final String MW_GENERIC_Title = "//*[@class='modal-title']";
     public static final String MW_GENERIC_DatepickerField = "css=input.form-control.date-box";
     public static final String MW_GENERIC_DatepickerIcon = "css=.memobox-icon-calendar";
-    public static final String MW_GENERIC_OkButton = "//*[@class='btn btn-primary ng-isolate-scope'][contains(.,'OK')]";
-    public static final String MW_GENERIC_YesButton = "//*[@class='btn btn-primary'][contains .,'Yes' ]";
-    public static final String MW_GENERIC_CrossButoon = "//*[@aria-label='Close']";
-    public static final String MW_GENERIC_SaveButton = "//button[@submit][contains(.,'Save')]";
-    public static final String MW_GENERIC_CancelButton = "//*[@class='btn btn-secondary'][contains .,'Cancel']";
-    public static final String MW_GENERIC_CancelButton2 = "//button[@type='button']//*[@class='memobox-icon-cancel']";
-    public static final String MW_GENERIC_CloseButton = "//*[@class='btn btn-primary'][contains .,'Close' ]";
+    public static final String MW_BTN_OK = "//*[contains(.,'OK')]";
+    public static final String MW_BTN_YES = "//*[contains .,'Yes' ]";
+    public static final String MW_ICON_CLOSE = "//*[@aria-label='Close']";
+    public static final String MW_BTN_CLOSE = "//*[contains .,'Close' ]";
     public static final String MW_GENERIC_ErrorMsg = "css=.help-block.error";
     public static final String MW_GENERIC_SpecificTeam = "//*[@pkm-team-colored-box='chosenOrganization']";
     public static final String MW_GENERIC_TeamsCheckbox = "//*[@pkm-team-colored-box='chosenOrganization']";
     public static final String MW_GENERIC_SelectHighlighted = "css=span.ui-select-highlight";
     public static final String BTN_WITH_TEXT = "//button[contains(.,'')]";
+
     public static final String genericButtonSave = "//button[contains(.,'Save')]";
     public static final String genericButtonOk = "//button[contains(.,'Ok')]";
     public static final String genericButtonYes = "//button[contains(.,'Yes')]";
     public static final String genericButtonAdd = "//button[contains(.,'add')]";
     public static final String genericButtonDelete = "//button[contains(.,'Delete')]";
     public static final String genericButtonCancel = "//button[contains(.,'Cancel')]";
-    public static final String genericSelectHighlighted = "span.ui-select-highlight";
-    public static final String MW_GenericBody = "//div[@class='modal-content']";
+    public static final String CSS_SelectHighlighted = "span.ui-select-highlight";
+
     public static final String MW_GenericButtonOk = "//button[text()='OK']";
     public static final String MW_GenericTitleSimple = "//h3[@class='modal-title']";
 
-
+// buy projects
     public static final String MW_BuyProject = "sic!";
     public static final String MW_BuyProjectInputQTY = "//input[@type='number']";
     public static final String MW_BuyProjectTotalPrice = "//span[@class='your-price ng-binding']";
@@ -49,7 +58,7 @@ public class ModalWindows {
     public static final String MW_checkoutCardCVV = "";
     public static final String MW_checkoutSubmit = "";
 
-
+// 2 step verifcation
     public static final String MW_EnableVerificationTitle = "//h3";
     public static final String MW_EnableVerificationClose = "//button[@type='button'][contains(.,'Close')]";
     public static final String MW_EnableVerificationNext = "//button[@type='submit'][contains(.,'Next')]";
@@ -58,7 +67,7 @@ public class ModalWindows {
     public static final String MW_EnableVerificationCoutryField = "//div/div/div/div/input";
     public static final String MW_EnableVerificationConfirmCodeField = "name=two_factor_code";
     public static final String MW_EnableVerificationErrorArea = "//div[2]/form/div";
-
+//templates
     public static final String MW_TaskTemplateSet = "";
     public static final String MW_TaskTemplateSet_FieldTitle = "//div[@class='modal-body']//input[@name]";
     public static final String MW_TaskTemplateSet_FieldDefining = "//div[@class='modal-body']/div[3]//input";
@@ -76,8 +85,7 @@ public class ModalWindows {
     public static final String MW_EventTemplate_AdditionalInfo = "//textarea";
     public static final String MW_EventTemplate_Input = "//div[@name='event_type']/input[1]";
 
-    // public static final String COMMENT_006 = "MODAL WINDOWS";
-
+// new project
     public static final String MW_ProjectTitle = "NEW_PROJECT";
     public static final String buttonNewProject = "//div[2]/div/button";
     public static final String field_ProjectType = "//fieldset/div/div/div/span";
@@ -97,7 +105,7 @@ public class ModalWindows {
     public static final String modalTemplatesSubMatterType = "//div[3]/div/div/div/span/span";
     public static final String modalTemplatesEventType = "//div[4]/div/div/div/span/span";
     public static final String modalTemplatesMsgTemplate = "//a/div/div/p";
-
+//conversation
     public static final String MW_Conversation = "//div[@class='modal-content']";
     public static final String MW_ConversationInputSubject = "//div[@class='modal-content']//input[@name='subject']";
     public static final String MW_ConversationInputFollower = "//div[@class='modal-content']//pkm-followers-picker//input";
@@ -126,7 +134,7 @@ public class ModalWindows {
     public static final String MW_Project_Reference = "//input[@name='number']";
 
     public static final String modalMembersOkButton = "//div[2]/button";
-
+//deploy doc templates
     public static final String MW_DeployDoc_Title = "css=h3.modal-title";
     public static final String MW_DeployDoc_FileName = "//input[@name='name']";
     public static final String MW_DeployDoc_01TemplateWord = "//li/label[text()='New Word document']";
@@ -241,9 +249,6 @@ public class ModalWindows {
     public static final String MW_TaskStatusApproved = "//span[text()='Approved']";
     public static final String MW_TaskStatusRejected = "//span[text()='Rejected']";
     public static final String MW_TaskStatusCancelled = "//span[text()='Cancelled']";
-
-    public static final String MW_MAILING_LIST = "";
-
 
     public static final String MW_COMMUNITY_body = "//div[@class='modal-content']";
     public static final String MW_COMMUNITY_Title = "//div[@class='modal-content']//h2";

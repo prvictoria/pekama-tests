@@ -12,7 +12,7 @@ import org.openqa.selenium.By;
 import static Page.CommunityDashboard.*;
 import static Page.CommunityWizard.*;
 import static Page.TestsUrl.*;
-import static Page.ModalWindows.genericSelectHighlighted;
+import static Page.ModalWindows.CSS_SelectHighlighted;
 import static Page.PekamaLogin.*;
 import static Page.TestsUrlConfiguration.*;
 import static Page.TestsCredentials.*;
@@ -77,10 +77,10 @@ public class CommunityDashboard {
         $(By.xpath(WIZARD_BTN_GetStarted)).shouldBe(visible).shouldBe(disabled);
         $(By.xpath(COMMUNITY_SELECT_CaseType)).click();
         $(By.xpath(COMMUNITY_INPUT_CaseType)).sendKeys("patent");
-        $(genericSelectHighlighted).click();
+        $(CSS_SelectHighlighted).click();
         $(By.xpath(COMMUNITY_SELECT_Defining)).click();
         $(By.xpath(COMMUNITY_INPUT_Defining)).sendKeys("united kingdom");
-        $(genericSelectHighlighted).click();
+        $(CSS_SelectHighlighted).click();
         $(By.xpath(WIZARD_BTN_GetStarted)).click();
         rootLogger.info("All elements in STEP 1 displayed for Guest user");
         //Refactor Xpath
