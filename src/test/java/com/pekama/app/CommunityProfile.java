@@ -33,10 +33,9 @@ public class CommunityProfile {
     String NEW_MEMBER = "qazwsx@qaz.com";
     @Before
     public void openUrlLogin() {
-
         log.info("Open host");
         HttpAuth openHost = new HttpAuth();
-        openHost.httpAuthStgingCommunity();
+        openHost.httpAuthStagingCommunity();
         $(By.xpath(LANDING_LOGIN)).shouldBe(Condition.visible).click();
         PekamaSteps login = new PekamaSteps();
         login.submitLoginCredentials(PEKAMA_USER_EMAIL);
@@ -121,6 +120,7 @@ public class CommunityProfile {
         $(byText(NEW_MEMBER+" (inactive)")).shouldBe(Condition.visible);
         log.info("New Memeber is displayed");
     }
+    @Ignore
     @Test
     public void testB_deleteMember() {
         log.info("Check QTY and redirect to Pekama");

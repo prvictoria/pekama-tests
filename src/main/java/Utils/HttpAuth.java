@@ -18,9 +18,18 @@ public class HttpAuth {
         sleep(250);
 
    }
-   public void httpAuthStgingCommunity() {
+   public void httpAuthStagingCommunity() {
         assumeTrue(isFirefox());
         Selenide.open("https://communitystaging.pekama.com/",
+                "",
+                "qweeco",
+                "qw33coStudi0");
+        sleep(250);
+
+    }
+    public void httpAuthWhithCustomLink(String AUTH_URL) {
+        assumeTrue(isFirefox());
+        Selenide.open(AUTH_URL,
                 "",
                 "qweeco",
                 "qw33coStudi0");

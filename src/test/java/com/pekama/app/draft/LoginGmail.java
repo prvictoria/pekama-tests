@@ -8,7 +8,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 
-import static Page.PekamaEmails.*;
+import static Page.Emails.*;
 import static Page.TestsCredentials.USER_01_EMAIL;
 import static Page.TestsCredentials.USER_GMAIL_PASSWORD;
 import static com.codeborne.selenide.CollectionCondition.size;

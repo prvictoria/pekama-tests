@@ -10,7 +10,7 @@ import org.junit.runners.MethodSorters;
 
 
 import static Page.TestsUrl.*;
-import static Page.PekamaEmails.*;
+import static Page.Emails.*;
 import static Page.PekamaLogin.*;
 import static Page.PekamaResetPassword.*;
 import static Page.TestsCredentials.*;
@@ -55,8 +55,8 @@ public class PekamaResetPassword {
     }
     @Test
     public void validEmailResetPassword_A() {
-        String GMAIL_LOGIN = USER_01_EMAIL;
-        String GMAIL_PASSWORD = USER_GMAIL_PASSWORD;
+        String GMAIL_LOGIN = User1.GMAIL_EMAIL.getValue();
+        String GMAIL_PASSWORD = User1.GMAIL_PASSWORD.getValue();
         String EMAIL_SUBJECT = EMAIL_RESET_PASSWORD_SUBJECT;
         String EMAIL_TITLE = EMAIL_RESET_PASSWORD_TITLE;
         String EMAIL_TEXT = EMAIL_RESET_PASSWORD_TEXT;

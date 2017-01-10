@@ -5,7 +5,7 @@ import static Page.TestsUrlConfiguration.SELECT_HOST;
 /**
  * Created by Viachaslau_Balashevi on 12/29/2016.
  */
-public class PekamaEmails {
+public class Emails {
     public static final String EMAIL_RESET_PASSWORD = "";
     public static final String EMAIL_RESET_PASSWORD_TITLE = "Password Restoration";
     public static final String EMAIL_RESET_PASSWORD_TEXT = "You've received this e-mail because you requested to reset the password for your user account. Press the button bellow to complete restoration.";
@@ -14,11 +14,18 @@ public class PekamaEmails {
     public static final String EMAIL_RESET_PASSWORD_BACKLINK = "//td/a[contains(@href, '"+SELECT_HOST+"/accounts/password/reset/')]";
 
     public static final String EMAIL_CONFIRM_REGISTRATION = "";
-    public static final String EMAIL_IVITE_IN_PEKAMA = "";
-    public static final String EMAIL_INVITE_IN_PROJECT = "";
-    public static final String EMAIL_TO_TEAM_ADMIN = "";
-    public static final String EMAIL_REPORT = "";
-    public static final String EMAIL_COMMUNITY = "";
+    public static final String EMAIL_CONFIRM_REGISTRATION_SUBJECT = "//span[contains(.,'Confirm Registration [Pekama]')]";
+    public static final String EMAIL_CONFIRM_REGISTRATION_TITLE = "Registration Complete";
+    public static final String EMAIL_CONFIRM_REGISTRATION_TEXT = "To finish registration, please confirm your account.";
+    public static final String EMAIL_CONFIRM_REGISTRATION_BTN = "Confirm Account";
+    public static final String EMAIL_CONFIRM_REGISTRATION_BACKLINK = "//td/a[contains(@href, '"+SELECT_HOST+"/accounts/confirm/')]";
+
+//    public static final String EMAIL_SUBJ_CONFIRM_REGISTRATION = "";
+//    public static final String EMAIL_SUBJ_IVITE_IN_PEKAMA = "";
+//    public static final String EMAIL_SUBJ_INVITE_IN_PROJECT = "";
+//    public static final String EMAIL_SUBJ_TO_TEAM_ADMIN = "";
+//    public static final String EMAIL_SUBJ_REPORT = "";
+//    public static final String EMAIL_SUBJ_COMMUNITY = "";
 
     public static final String INBOX_URL = "https://www.google.com/inbox/";
     public static final String INBOX_SIGNIN = "//a[contains(text(),'Sign in')]";
@@ -44,7 +51,6 @@ public class PekamaEmails {
 //    public static final String OUTLOOK_INBOX_EMAIL_SUNJECT = "//tbody/tr[1]//b[1]";
 
     public static final String EMAIL_SUBJECT_InviteInTeam = "//span[contains(.,'')]";
-    public static final String EMAIL_SUBJECT_ConfirmRegistration = "//span[contains(.,'Confirm Registration [Pekama]')]";
     public static final String EMAIL_SUBJECT_ForAdmin = "";
     public static final String EMAIL_SUBJECT_Report_LastWeek = "Pekama Report \"Last week's Events\"";
     public static final String EMAIL_SUBJECT_Report_6 = "Pekama Report \"My Recent and Approaching Tasks\"";

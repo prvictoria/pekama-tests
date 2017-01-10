@@ -8,7 +8,7 @@ import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
-import static Page.PekamaEmails.*;
+import static Page.Emails.*;
 import static org.junit.Assert.assertEquals;
 
 
@@ -34,7 +34,7 @@ public class ExternalSteps {
         logging.info("Inbox opened");
         $(byXpath(INBOX_BTN_INBOX)).waitUntil(visible, 5000);
     }
-    public static String checkInboxEmail(String EMAIL_TITLE, String EMAIL_TEXT, String EMAIL_BTN, String EMAIL_REDIRECT_LINK, String EMAIL_SUBJECT){
+    public static String checkInboxEmail(String EMAIL_SUBJECT, String EMAIL_TITLE, String EMAIL_TEXT, String EMAIL_BTN, String EMAIL_REDIRECT_LINK){
         $(byXpath(EMAIL_SUBJECT)).waitUntil(visible, 10000).click();
         $(byXpath(INBOX_BTN_DONE)).waitUntil(visible, 10000);
         logging.info("Email present");

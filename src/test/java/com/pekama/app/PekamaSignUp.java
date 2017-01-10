@@ -1,18 +1,25 @@
 package com.pekama.app;
 
+import Steps.ExternalSteps;
+import Utils.HttpAuth;
+import com.codeborne.selenide.Selectors;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 
+import static Page.Emails.*;
 import static Page.TestsUrl.*;
 import static Page.PekamaSignUp.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
+import static Page.TestsUrlConfiguration.COMMUNITY;
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 
@@ -23,14 +30,25 @@ public class PekamaSignUp {
     static final Logger rootLogger = LogManager.getRootLogger();
     public String passwordFieldValue = "";
     public String EXIST_USER = USER_01_EMAIL;
+    private String NEW_USER = User5.GMAIL_EMAIL.getValue();
+    String actualBackLink;
+    String EMAIL_SUBJECT = EMAIL_CONFIRM_REGISTRATION_SUBJECT;
+    String EMAIL_TITLE = EMAIL_CONFIRM_REGISTRATION_TITLE;
+    String EMAIL_TEXT = EMAIL_CONFIRM_REGISTRATION_TEXT;
+    String EMAIL_BTN = EMAIL_CONFIRM_REGISTRATION_BTN;
+    String EMAIL_REDIRECT_LINK = EMAIL_CONFIRM_REGISTRATION_BACKLINK;
+
+
 
 
     @Before
     public void selectAgreeCheckbox() {
-        open(urlSingUp);
-        $(signupAgree).shouldBe(visible).shouldNot(selected);
-        $(signupNext).shouldBe(visible).shouldBe(disabled);
-        $(signupAgree).setSelected(true).shouldBe(selected);
+        rootLogger.info("Open host");
+        HttpAuth openHost = new HttpAuth();
+        String AUTH_URL = urlSingUp;
+        openHost.httpAuthWhithCustomLink(AUTH_URL);
+        $(signupNext).shouldBe(visible).shouldNotBe(disabled);
+        $(signupAgree).shouldBe(selected);
         rootLogger.info("");
     }
 
@@ -140,7 +158,7 @@ public class PekamaSignUp {
             $(signupNext).shouldBe(visible).shouldBe(disabled);
             $(signupAgree).setSelected(true).shouldBe(selected);
         }
-        rootLogger.info("");
+        rootLogger.info("P  ASSWORD VALIDATION RULES TESTS LOOP");
 
     }
 
@@ -155,30 +173,60 @@ public class PekamaSignUp {
             sleep(1500);
             $(By.xpath(signupErrorEmail)).shouldBe(visible).shouldHave(text(ERROR_MSG_EMAIL_IS_USED));
             $(signupNext).shouldBe(disabled);
-            rootLogger.info("");
+            rootLogger.info(ERROR_MSG_EMAIL_IS_USED);
     }
 
-//    @Ignore("not ready")
-//    @Test //Exist user - check by email+some
-//    public void userExistAlias() {
-//
-//    for (int arrayLength = 0; arrayLength < arrayInvalidPasswords.length; arrayLength++) {
-//        $(signupEmail).shouldBe(visible).sendKeys(VALID_EMAIL);
-//        $(signupName).shouldBe(visible).sendKeys(VALID_NAME);
-//        $(signupSurname).shouldBe(visible).sendKeys(VALID_SURNAME);
-//        $(signupCompany).shouldBe(visible).sendKeys(VALID_COMPANY);
-//        $(signupPassword).shouldBe(visible).sendKeys(arrayInvalidPasswords[arrayLength]);
-//        $(signupNext).shouldBe(visible).shouldNot(disabled).click();
-//        sleep(1500);
-//        $(signupError).shouldBe(visible);
-//        $(signupNext).shouldBe(disabled);
-//
-//        refresh();
-//        $(signupAgree).shouldBe(visible).shouldNot(selected);
-//        $(signupNext).shouldBe(visible).shouldBe(disabled);
-//        $(signupAgree).setSelected(true).shouldBe(selected);
-//    }
-//
-//}
+    @Ignore("not implemented")
+    @Test //Exist user - check by email+some
+    public void userExistAlias() {
+
+    for (int arrayLength = 0; arrayLength < arrayInvalidPasswords.length; arrayLength++) {
+        $(signupEmail).shouldBe(visible).sendKeys(VALID_EMAIL);
+        $(signupName).shouldBe(visible).sendKeys(VALID_NAME);
+        $(signupSurname).shouldBe(visible).sendKeys(VALID_SURNAME);
+        $(signupCompany).shouldBe(visible).sendKeys(VALID_COMPANY);
+        $(signupPassword).shouldBe(visible).sendKeys(arrayInvalidPasswords[arrayLength]);
+        $(signupNext).shouldBe(visible).shouldNot(disabled).click();
+        sleep(1500);
+        $(signupError).shouldBe(visible);
+        $(signupNext).shouldBe(disabled);
+
+        refresh();
+        $(signupAgree).shouldBe(visible).shouldNot(selected);
+        $(signupNext).shouldBe(visible).shouldBe(disabled);
+        $(signupAgree).setSelected(true).shouldBe(selected);
+        }
+    }
+    @Test //Exist user - check by email
+    public void sendSignUpEmail() {
+        String GMAIL_LOGIN = User5.GMAIL_EMAIL.getValue();
+        String GMAIL_PASSWORD = User5.GMAIL_PASSWORD.getValue();
+        String EMAIL_SUBJECT = EMAIL_CONFIRM_REGISTRATION_SUBJECT;
+        String EMAIL_TITLE = EMAIL_CONFIRM_REGISTRATION_TITLE;
+        String EMAIL_TEXT = EMAIL_CONFIRM_REGISTRATION_TEXT;
+        String EMAIL_BTN = EMAIL_CONFIRM_REGISTRATION_BTN;
+        String EMAIL_REDIRECT_LINK = EMAIL_CONFIRM_REGISTRATION_BACKLINK;
+
+        $(signupEmail).shouldBe(visible).sendKeys(NEW_USER);
+        $(signupName).shouldBe(visible).sendKeys(VALID_NAME);
+        $(signupSurname).shouldBe(visible).sendKeys(VALID_SURNAME);
+        $(signupCompany).shouldBe(visible).sendKeys(VALID_COMPANY);
+        $(signupPassword).shouldBe(visible).sendKeys(VALID_PASSWORD);
+        $(signupNext).shouldBe(visible).shouldNot(disabled).click();
+        sleep(1000);
+        $(byText("Confirm your Account")).shouldBe(visible);
+        $(byText("You were sent an email message with the account activation link. Please check your inbox.")).shouldBe(visible);
+        rootLogger.info(ERROR_MSG_EMAIL_IS_USED);
+        ExternalSteps loginGmailInboxApp = new ExternalSteps();
+        loginGmailInboxApp.signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
+        actualBackLink = loginGmailInboxApp.checkInboxEmail(EMAIL_TITLE, EMAIL_TEXT, EMAIL_BTN, EMAIL_REDIRECT_LINK, EMAIL_SUBJECT);
+            if (actualBackLink == null) {
+                rootLogger.info("User followed reset link");
+                Assert.fail("Redirect Link not found");
+            }
+        rootLogger.info("Confirm link present in mail - "+actualBackLink);
+    }
+
+
 }
 
