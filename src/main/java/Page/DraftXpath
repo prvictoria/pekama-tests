@@ -18,12 +18,11 @@ waitForElementPresent
 waitForElementNotPresent
 waitForElementPresent
 
-name="country"
-111
+//bookshelf[cathegory/@name][.//translator/text()]
+It selects a bookshelf for which there is a cathegory child with a
+name attribute, and which hash a non-empty translator descendant.
 //*[@class='search-field']//*[@type="text"]
 //div/ng-include/div/a[@class="link-task"]
-//*[@popover-title="Notes"]
-.row-controls-holder>a
 
 xpath=//img[@alt='The image alt text']
 xpath=//table[@id='table1']//tr[4]/td[2]

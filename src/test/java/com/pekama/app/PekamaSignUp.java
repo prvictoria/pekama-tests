@@ -43,13 +43,13 @@ public class PekamaSignUp {
 
     @Before
     public void selectAgreeCheckbox() {
-        rootLogger.info("Open host");
+        rootLogger.info("Open URL - "+urlSingUp);
         HttpAuth openHost = new HttpAuth();
         String AUTH_URL = urlSingUp;
         openHost.httpAuthWhithCustomLink(AUTH_URL);
         $(signupNext).shouldBe(visible).shouldNotBe(disabled);
         $(signupAgree).shouldBe(selected);
-        rootLogger.info("");
+        rootLogger.info("Opened - " +urlSingUp);
     }
 
     @Ignore

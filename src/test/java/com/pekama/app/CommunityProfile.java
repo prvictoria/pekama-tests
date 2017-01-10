@@ -113,7 +113,7 @@ public class CommunityProfile {
         $(byXpath(MW_BTN_SUBMIT)).click();
         $(byText(ERROR_MSG_BLANK_FIELD)).shouldBe(Condition.visible);
         log.info("Validation for empty EMAIL field present");
-        $(byXpath(MW_INPUT_NEW_MEMEBER_EMAIL)).sendKeys(NEW_MEMBER);
+        $(byXpath(MW_INPUT_NEW_MEMBER_EMAIL)).sendKeys(NEW_MEMBER);
         log.info("Add memeber");
         $(byXpath(MW_BTN_SUBMIT)).click();
         $(byXpath(MW)).waitUntil(not(visible), 15000);

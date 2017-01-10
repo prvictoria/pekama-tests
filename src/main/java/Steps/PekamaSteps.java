@@ -16,29 +16,29 @@ import static com.codeborne.selenide.Selenide.open;
  * Created by VatslauX on 03-Jan-17.
  */
 public class PekamaSteps {
-    static final Logger logging = LogManager.getLogger(PekamaSteps.class);
+    static final Logger rootLogger = LogManager.getRootLogger();
 
     public void  loginIntoPekamaByUrl(String PEKAMA_USER_EMAIL, String urlLogIn){
         open(urlLogIn); //HOST define PEKAMA or COMMUNITY redirect after login
-        logging.info(urlLogIn+ "opened");
+        rootLogger.info(urlLogIn+ "opened");
         $(loginField_Email).sendKeys(PEKAMA_USER_EMAIL);
-        logging.info(PEKAMA_USER_EMAIL+ " - login selected");
+        rootLogger.info(PEKAMA_USER_EMAIL+ " - login selected");
         $(loginField_Password).sendKeys(USER_PEKAMA_PASSWORD);
         $(By.xpath(loginButton_Login)).click();
         $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));
         $(By.xpath(btnSignup)).shouldBe(Condition.not(visible));
-        logging.info("Valid Credentials were submitted");
+        rootLogger.info("Valid Credentials were submitted");
     }
     public void  submitLoginCredentials(String PEKAMA_USER_EMAIL){
         $(loginField_Email).sendKeys(PEKAMA_USER_EMAIL);
-        logging.info(PEKAMA_USER_EMAIL+ " - login selected");
+        rootLogger.info(PEKAMA_USER_EMAIL+ " - login selected");
         $(loginField_Password).sendKeys(USER_PEKAMA_PASSWORD);
         $(By.xpath(loginButton_Login)).click();
         $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));
-        logging.info("Valid Credentials were submitted");
+        rootLogger.info("Valid Credentials were submitted");
     }
-    public void  submitCookie(String PEKAMA_USER_EMAIL){
+    public void  submitCookie(){
 
-        logging.info("cookie were submitted");
+        rootLogger.info("cookie were submitted");
     }
 }

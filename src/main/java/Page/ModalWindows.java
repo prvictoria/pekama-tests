@@ -7,7 +7,7 @@ public class ModalWindows {
     public static final String MW_ = "";
     public static final String MW = "//div[@class='modal-content']";
     public static final String MW_BTN_SUBMIT = MW+"//button[@submit]";
-    public static final String MW_INPUT_NEW_MEMEBER_EMAIL = MW+"//*[@id='newFollowerEmail']";
+    public static final String MW_INPUT_NEW_MEMBER_EMAIL = MW+"//*[@id='newFollowerEmail']";
 
 
     public static final String MW_GENERIC_Body = "css=.modal-content";
@@ -241,6 +241,9 @@ public class ModalWindows {
     public static final String MW_TaskStatusApproved = "//span[text()='Approved']";
     public static final String MW_TaskStatusRejected = "//span[text()='Rejected']";
     public static final String MW_TaskStatusCancelled = "//span[text()='Cancelled']";
+
+    public static final String MW_MAILING_LIST = "";
+
 
     public static final String MW_COMMUNITY_body = "//div[@class='modal-content']";
     public static final String MW_COMMUNITY_Title = "//div[@class='modal-content']//h2";
