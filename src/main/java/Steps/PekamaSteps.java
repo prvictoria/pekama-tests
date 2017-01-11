@@ -116,14 +116,20 @@ public class PekamaSteps {
         $(byXpath(MW)).shouldBe(visible);
         $(byText("Mailing List")).shouldBe(Condition.visible);
         rootLogger.info("Set checkbox");
-        $(byXpath(MW_MAILING_1USER_SELECT)).waitUntil(visible, 2000).click();
+        if ( $(byXpath(MW_MAILING_1USER_SELECT)).is(not(checked))) {
+            $(byXpath(MW_MAILING_1USER_SELECT)).waitUntil(visible, 2000).click();
+        }
         rootLogger.info("Set interval");
-        $(byXpath(MW_MAILING_1USER_INTERVAL)).sendKeys("999");
-
+        if ( $(byXpath(MW_MAILING_1USER_INTERVAL)).is(not(empty))) {
+            $(byXpath(MW_MAILING_1USER_INTERVAL)).clear();
+            $(byXpath(MW_MAILING_1USER_INTERVAL)).sendKeys("999");
+        }
         rootLogger.info("Send Project report");
-        $(byXpath(MW_MAILING_LIST_BTN_SAVE_AND_SEND_NOW)).waitUntil(enabled, 10000).submit();
+        sleep(500);
+        // todo why not changed button state
+        $(byXpath(MW_MAILING_LIST_BTN_SAVE_AND_SEND_NOW)).waitUntil(enabled, 10000).click();
         $(byXpath(MW_MAILING_LIST_BTN_SAVE_AND_SEND_NOW)).waitUntil(hidden, 20000);
-        sleep(1000);
+        sleep(5000);
         $(byXpath(MW_MAILING_LIST_BTN_SEND_NOW)).waitUntil(visible, 10000).waitUntil(enabled, 10000);
         sleep(500);
         rootLogger.info("Report was sent");
