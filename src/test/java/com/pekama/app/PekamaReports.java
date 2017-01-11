@@ -2,12 +2,15 @@ package com.pekama.app;
 import Page.TestsCredentials.*;
 import Steps.*;
 import Utils.*;
+import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.*;
 import org.junit.*;
+import org.openqa.selenium.By;
 
 import static Page.PekamaReports.*;
 import static Page.TestsUrl.*;
 import static Steps.PekamaSteps.*;
+import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 
 public class PekamaReports {
@@ -23,13 +26,15 @@ public class PekamaReports {
         PekamaSteps login = new PekamaSteps();
         login.submitLoginCredentials(PEKAMA_USER_EMAIL);
         rootLogger.info("Redirect after login to - "+urlDashboard);
+        sleep(100);
+
     }
     @Test
     public void sendProjectReport() {
         String thisMailingListName = "Projects Report Mailing List";
         rootLogger.info("Open Project reports, opened URL - "+urlReportsProjects);
         open(urlReportsProjects);
-        $("div.overlay.jx_ui_Widget").click();
+        sleep(3000);
       //  waitForSpinnerNotPresent();
         rootLogger.info("Open Dropdown and create new mailing list");
         PekamaSteps mailingList = new PekamaSteps();

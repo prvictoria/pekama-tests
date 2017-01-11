@@ -26,6 +26,14 @@ public class PekamaSteps {
         $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));
         $(By.xpath(btnSignup)).shouldBe(Condition.not(visible));
         rootLogger.info("Valid Credentials were submitted");
+        if($(byXpath("//div[@title='Minimize']"))!= null) {
+            $(byXpath("//div[@title='Minimize']")).hover().click();
+            rootLogger.info("null");
+        }
+        if($(byXpath("//div[@title='Minimize']")).hover().isDisplayed()) {
+            $(byXpath("//div[@title='Minimize']")).hover().click();
+            rootLogger.info("displayed");
+        }
     }
     public void  submitLoginCredentials(String PEKAMA_USER_EMAIL){
         $(loginField_Email).sendKeys(PEKAMA_USER_EMAIL);
@@ -34,6 +42,7 @@ public class PekamaSteps {
         $(By.xpath(loginButton_Login)).click();
         $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));
         rootLogger.info("Valid Credentials were submitted");
+
     }
     public void  submitCookie(){
         rootLogger.info("Check if cookie present");
