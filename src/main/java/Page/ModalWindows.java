@@ -12,8 +12,8 @@ public class ModalWindows {
 //reports
 //mailing list
     public static final String MW_MAILING_LIST_BTN_ACTIVATE = MW+"//*[contains(.,'Activate')]";
-    public static final String MW_MAILING_LIST_BTN_SAVE_AND_SEND_NOW = MW+"//*[contains(.,'Save & Send Now')]";
-    public static final String MW_MAILING_LIST_BTN_SEND_NOW = MW+"//*[contains(.,'Send Now')]";
+    public static final String MW_MAILING_LIST_BTN_SAVE_AND_SEND_NOW = MW+"//button[contains(.,'Save & Send Now')]";
+    public static final String MW_MAILING_LIST_BTN_SEND_NOW = MW+"//button[contains(.,'Send Now')]";
     public static final String MW_MAILING_LIST_CHECKBOX_ALL = MW+"//input[@ng-model='all']";
     public static final String MW_MAILING_1USER_SELECT = MW+"//ul//li[2]//input[@type='checkbox']";
     public static final String MW_MAILING_1USER_INTERVAL = MW+"//ul//li[2]//input[@type='number']";
@@ -22,10 +22,10 @@ public class ModalWindows {
     public static final String MW_BTN_SAVE = MW+"//*[contains(.,'Save')]";
     public static final String MW_BTN_CANCEL = MW+"//*[contains(.,'Cancel')]";
     public static final String MW_BTN_ADD = MW+"//*[contains(.,'Add')]";
-    public static final String MW_BTN_OK = "//*[contains(.,'OK')]";
-    public static final String MW_BTN_YES = "//*[contains .,'Yes' ]";
-    public static final String MW_ICON_CLOSE = "//*[@aria-label='Close']";
-    public static final String MW_BTN_CLOSE = "//*[contains .,'Close' ]";
+    public static final String MW_BTN_OK = MW+"//*[contains(.,'OK')]";
+    public static final String MW_BTN_YES = MW+"//button[contains(.,'Yes')]";
+    public static final String MW_ICON_CLOSE = MW+"//*[@aria-label='Close']";
+    public static final String MW_BTN_CLOSE = MW+"//*[contains .,'Close' ]";
 
     public static final String MW_GENERIC_Title = "//*[@class='modal-title']";
     public static final String MW_GENERIC_DatepickerField = "css=input.form-control.date-box";

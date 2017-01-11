@@ -64,9 +64,8 @@ public class ExternalSteps {
             logging.info(EMAIL_TITLE + "- email present");
             actualBackLink = $(By.xpath(EMAIL_REDIRECT_LINK)).getAttribute("href");
             logging.info("This link present in mail - " + actualBackLink);
-            $(byXpath(INBOX_BTN_DONE)).waitUntil(visible, 10000).click();
-
-            //           $(byXpath(INBOX_BTN_DONE)).waitUntil(not(visible), 10000);
+            $(byXpath(INBOX_BTN_DELETE)).waitUntil(visible, 10000).click();
+            $(byXpath(INBOX_BTN_DELETE)).waitUntil(not(visible), 10000);
             if (actualBackLink == null) {
                 Assert.fail("Redirect Link not found");
             }
@@ -84,13 +83,13 @@ public class ExternalSteps {
     public static String checkInboxEmailReport(String EMAIL_SUBJECT, String EMAIL_TITLE, String EMAIL_TEXT, String EMAIL_BTN, String EMAIL_REDIRECT_LINK){
         $(byXpath(EMAIL_SUBJECT)).waitUntil(visible, 10000).click();
         logging.info("Email by subject found");
-        $(byXpath(INBOX_BTN_DONE)).waitUntil(visible, 10000);
+        $(byXpath(INBOX_BTN_DELETE)).waitUntil(visible, 10000);
         $$(byText(EMAIL_TEXT)).filter(visible).shouldHave(size(1));
         logging.info(EMAIL_TITLE+ "- email present");
         String actualBackLink = $(By.xpath(EMAIL_REDIRECT_LINK)).getAttribute("href");
         logging.info("This link present in mail - " +actualBackLink);
-        $(byXpath(INBOX_BTN_DONE)).click();
-        $(byXpath(INBOX_BTN_DONE)).shouldBe(disappear);
+        $(byXpath(INBOX_BTN_DELETE)).click();
+        $(byXpath(INBOX_BTN_DELETE)).shouldBe(disappear);
         logging.info("Email archived");
             if (actualBackLink == null) {
                 Assert.fail("Redirect Link not found");
@@ -101,13 +100,13 @@ public class ExternalSteps {
     public static String checkEmailReportAttachment(String EMAIL_SUBJECT, String EMAIL_TITLE, String EMAIL_TEXT, String EMAIL_BTN, String EMAIL_REDIRECT_LINK){
         $(byXpath(EMAIL_SUBJECT)).waitUntil(visible, 10000).click();
         logging.info("Email by subject found");
-        $(byXpath(INBOX_BTN_DONE)).waitUntil(visible, 10000);
+        $(byXpath(INBOX_BTN_DELETE)).waitUntil(visible, 10000);
         $$(byText(EMAIL_TEXT)).filter(visible).shouldHave(size(1));
         logging.info(EMAIL_TITLE+ "- email present");
         String actualBackLink = $(By.xpath(EMAIL_REDIRECT_LINK)).getAttribute("href");
         logging.info("This link present in mail - " +actualBackLink);
-        $(byXpath(INBOX_BTN_DONE)).click();
-        $(byXpath(INBOX_BTN_DONE)).shouldBe(disappear);
+        $(byXpath(INBOX_BTN_DELETE)).click();
+        $(byXpath(INBOX_BTN_DELETE)).shouldBe(disappear);
         logging.info("Email archived");
         if (actualBackLink == null) {
             Assert.fail("Redirect Link not found");

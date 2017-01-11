@@ -36,11 +36,11 @@ public class PekamaReports {
         rootLogger.info("Open Project reports, opened URL - "+urlReportsProjects);
         open(urlReportsProjects);
         sleep(3000);
-      //  waitForSpinnerNotPresent();
+        waitForSpinnerNotPresent();
         rootLogger.info("Open Dropdown and create new mailing list");
         PekamaSteps mailingList = new PekamaSteps();
-        mailingList.mailingListCreateNew(thisMailingListName);
-        rootLogger.info("Send report");
+//        mailingList.mailingListCreateNew(thisMailingListName);
+//        rootLogger.info("Send report");
         mailingList.mailingListSendReport(thisMailingListName);
         rootLogger.info("Delete mailing list");
         mailingList.mailingListDeleteReport(thisMailingListName);
@@ -72,7 +72,7 @@ public class PekamaReports {
 
     @Test
     public void sendContactsReport() {
-        rootLogger.info("Open Project reports");
-
+        rootLogger.info("Open Contacts reports");
+        open(urlReportsContacts);
     }
 }

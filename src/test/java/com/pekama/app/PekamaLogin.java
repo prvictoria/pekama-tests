@@ -1,4 +1,5 @@
 package com.pekama.app;
+import Utils.HttpAuth;
 import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,7 +30,9 @@ public class PekamaLogin {
     static final Logger rootLogger = LogManager.getRootLogger();
     @Before
     public void openUrlLogin() {
-        open(urlLogIn);
+        HttpAuth openHost = new HttpAuth();
+        String AUTH_URL = urlLogIn;
+        openHost.httpAuthWhithCustomLink(AUTH_URL);
     }
     @After
     public void openUrlLogout() {

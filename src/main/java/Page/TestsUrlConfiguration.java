@@ -16,8 +16,8 @@ public class TestsUrlConfiguration {
     public static final String COMMUNITY = STAGING_COMMUNITY;
     public static String SELECT_HOST = PEKAMA;
 
-    public static final String TEST_ENVIROMENT_PEKAMA = PROD_PEKAMA+DOMAIN;
-    public static final String TEST_ENVIROMENT_COMMUNITY = PROD_PEKAMA+DOMAIN;
+    public static final String TEST_ENVIROMENT_PEKAMA = PROD_PEKAMA;
+    public static final String TEST_ENVIROMENT_COMMUNITY = PROD_COMMUNITY;
 
     //users and passwords
 
