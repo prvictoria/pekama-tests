@@ -29,7 +29,8 @@ public class PekamaReports {
         String thisMailingListName = "Projects Report Mailing List";
         rootLogger.info("Open Project reports, opened URL - "+urlReportsProjects);
         open(urlReportsProjects);
-        waitForSpinnerNotPresent();
+        $("div.overlay.jx_ui_Widget").click();
+      //  waitForSpinnerNotPresent();
         rootLogger.info("Open Dropdown and create new mailing list");
         PekamaSteps mailingList = new PekamaSteps();
         mailingList.mailingListCreateNew(thisMailingListName);

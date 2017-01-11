@@ -12,9 +12,7 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byLinkText;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.byXpath;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.Selenide.sleep;
+import static com.codeborne.selenide.Selenide.*;
 
 public class PekamaSteps {
     static final Logger rootLogger = LogManager.getRootLogger();
@@ -54,16 +52,29 @@ public class PekamaSteps {
         sleep(500);
         $(byXpath(MW)).shouldNotBe(visible);
     }
+    public static void collapseChatWidget(){
+        sleep(500);
+        $(byXpath(MW)).shouldBe(visible);
+        $(byText("Are you sure?")).shouldBe(Condition.visible);
+        rootLogger.info("Confirm action modal window opened");
+        $(byXpath(MW_BTN_YES)).shouldBe(visible).click();
+        sleep(500);
+        $(byXpath(MW)).shouldNotBe(visible);
+    }
 
     public String mailingListCreateNew(String thisMailingListName){
-        $(byXpath(REPORTS_MAILING_SAVE_SEARCH)).click();
-        $(byXpath(REPORTS_MAILING_SAVE_SEARCH_DROPDOWN)).shouldBe(visible);
-        $(byXpath(REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_SAVE)).shouldBe(visible);
+        rootLogger.info("click"+REPORTS_MAILING_SAVE_SEARCH);
+        $(byXpath(REPORTS_MAILING_SAVE_SEARCH)).waitUntil(visible, 5000).click();
+        sleep(3000);
+        $(byXpath(REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_SAVE)).shouldBe(disabled, visible);
+        rootLogger.info("type"+thisMailingListName);
         $(byXpath(REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_INPUT)).sendKeys(thisMailingListName);
+        rootLogger.info("click"+REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_SAVE);
         $(byXpath(REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_SAVE)).click();
-        sleep(300);
+        sleep(3000);
+        $$(byText(thisMailingListName)).shouldHaveSize(2);
         $(byXpath(REPORTS_MAILING_SAVE_SEARCH_DROPDOWN)).pressEscape();
-        $(byText(thisMailingListName)).shouldBe(visible);
+
         rootLogger.info("Mailing List was created - "+ thisMailingListName);
         return thisMailingListName;
     }
