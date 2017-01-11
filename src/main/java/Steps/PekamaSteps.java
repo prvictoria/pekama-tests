@@ -58,7 +58,7 @@ public class PekamaSteps {
     public String mailingListCreateNew(String thisMailingListName){
         $(byXpath(REPORTS_MAILING_SAVE_SEARCH)).click();
         $(byXpath(REPORTS_MAILING_SAVE_SEARCH_DROPDOWN)).shouldBe(visible);
-        $(byXpath(REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_SAVE)).shouldBe(disabled);
+        $(byXpath(REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_SAVE)).shouldBe(visible);
         $(byXpath(REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_INPUT)).sendKeys(thisMailingListName);
         $(byXpath(REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_SAVE)).click();
         sleep(300);
