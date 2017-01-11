@@ -13,6 +13,10 @@ import static com.codeborne.selenide.Selectors.byLinkText;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.url;
+import static junit.framework.TestCase.fail;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class PekamaSteps {
     static final Logger rootLogger = LogManager.getRootLogger();
@@ -26,6 +30,8 @@ public class PekamaSteps {
         $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));
         $(By.xpath(btnSignup)).shouldBe(Condition.not(visible));
         rootLogger.info("Valid Credentials were submitted");
+    }
+    public void  submitLoginCredentials(String PEKAMA_USER_EMAIL){
         if($(byXpath("//div[@title='Minimize']"))!= null) {
             $(byXpath("//div[@title='Minimize']")).hover().click();
             rootLogger.info("null");
@@ -34,8 +40,7 @@ public class PekamaSteps {
             $(byXpath("//div[@title='Minimize']")).hover().click();
             rootLogger.info("displayed");
         }
-    }
-    public void  submitLoginCredentials(String PEKAMA_USER_EMAIL){
+        submitCookie();
         $(loginField_Email).sendKeys(PEKAMA_USER_EMAIL);
         rootLogger.info(PEKAMA_USER_EMAIL+ " - login selected");
         $(loginField_Password).sendKeys(USER_PEKAMA_PASSWORD);
@@ -46,7 +51,17 @@ public class PekamaSteps {
     }
     public void  submitCookie(){
         rootLogger.info("Check if cookie present");
-        rootLogger.info("cookie were submitted");
+        sleep(1000);
+        if ($(byText("Got it!")).isDisplayed()){
+            $(byText("Got it!")).click();
+            sleep(500);
+/*
+switchTo().window("_blank");
+sleep(500);
+close();
+*/
+            rootLogger.info("cookie were submitted");
+        }
     }
     public static void waitForSpinnerNotPresent(){
         $(byXpath("//*[@id='progress-indicator']/span")).waitUntil(not(visible), 5000);

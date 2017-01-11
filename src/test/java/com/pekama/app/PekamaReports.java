@@ -29,6 +29,7 @@ public class PekamaReports {
         sleep(100);
 
     }
+    @Ignore
     @Test
     public void sendProjectReport() {
         String thisMailingListName = "Projects Report Mailing List";
@@ -50,21 +51,25 @@ public class PekamaReports {
         //todo use gmail step + add assertions
         rootLogger.info("Email - report present in inbox");
     }
+    @Ignore
     @Test
     public void sendTasksReport() {
         rootLogger.info("Open Project reports");
 
     }
+    @Ignore
     @Test
     public void sendEventsReport() {
         rootLogger.info("Open Project reports");
 
     }
+    @Ignore
     @Test
     public void sendChargesReport() {
         rootLogger.info("Open Project reports");
 
     }
+
     @Test
     public void sendContactsReport() {
         rootLogger.info("Open Project reports");
