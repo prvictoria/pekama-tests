@@ -12,6 +12,7 @@ public class ModalWindows {
 //reports
 //mailing list
     public static final String MW_MAILING_LIST_BTN_ACTIVATE = MW+"//*[contains(.,'Activate')]";
+    public static final String MW_MAILING_LIST_BTN_SAVE_AND_SEND_NOW = MW+"//*[contains(.,'Save & Send Now')]";
     public static final String MW_MAILING_LIST_BTN_SEND_NOW = MW+"//*[contains(.,'Send Now')]";
     public static final String MW_MAILING_LIST_CHECKBOX_ALL = MW+"//input[@ng-model='all']";
     public static final String MW_MAILING_1USER_SELECT = MW+"//ul//li[2]//input[@type='checkbox']";

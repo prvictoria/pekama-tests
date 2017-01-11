@@ -7,7 +7,6 @@
     <list default="true" id="2fcdccdc-4d95-4ab7-8153-9ec9d616e50f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pekama-tests.iws" afterPath="$PROJECT_DIR$/pekama-tests.iws" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/ModalWindows.java" afterPath="$PROJECT_DIR$/src/main/java/Page/ModalWindows.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/PekamaReports.java" afterPath="$PROJECT_DIR$/src/main/java/Page/PekamaReports.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Steps/PekamaSteps.java" afterPath="$PROJECT_DIR$/src/main/java/Steps/PekamaSteps.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaReports.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaReports.java" />
     </list>
@@ -187,7 +186,7 @@
     </favorites_list>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.45852017">
+    <splitter split-orientation="horizontal" split-proportion="0.5005605">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="CommunityProfile.java" pinned="false" current-in-tab="false">
@@ -219,8 +218,8 @@
           <file leaf-file-name="PekamaReports.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaReports.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="132">
-                  <caret line="28" column="66" lean-forward="false" selection-start-line="28" selection-start-column="38" selection-end-line="28" selection-end-column="66" />
+                <state relative-caret-position="502">
+                  <caret line="32" column="22" lean-forward="true" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -311,8 +310,8 @@
           <file leaf-file-name="PekamaSteps.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/Steps/PekamaSteps.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="718">
-                  <caret line="105" column="0" lean-forward="true" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
+                <state relative-caret-position="344">
+                  <caret line="86" column="52" lean-forward="false" selection-start-line="86" selection-start-column="52" selection-end-line="86" selection-end-column="52" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="method#loginIntoPekamaByUrl#0;class#PekamaSteps#0" expanded="false" />
@@ -342,8 +341,8 @@
           <file leaf-file-name="ModalWindows.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/Page/ModalWindows.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="154">
-                  <caret line="7" column="31" lean-forward="false" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
+                <state relative-caret-position="308">
+                  <caret line="14" column="68" lean-forward="false" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="68" />
                   <folding />
                 </state>
               </provider>
@@ -414,8 +413,8 @@
       <find>maling</find>
       <find>CONFIRM_REGISTRATION</find>
       <find>reports</find>
-      <find>YES</find>
       <find>spinn</find>
+      <find>YES</find>
     </findStrings>
     <replaceStrings>
       <replace>p[ublic</replace>
@@ -500,9 +499,9 @@
         <option value="$PROJECT_DIR$/src/main/java/Steps/ExternalSteps.java" />
         <option value="$PROJECT_DIR$/src/main/java/Page/Emails.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaResetPassword.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Page/ModalWindows.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaReports.java" />
         <option value="$PROJECT_DIR$/src/main/java/Page/PekamaReports.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaReports.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Page/ModalWindows.java" />
         <option value="$PROJECT_DIR$/src/main/java/Steps/PekamaSteps.java" />
       </list>
     </option>
@@ -1484,13 +1483,6 @@
       <workItem from="1483715511979" duration="4817000" />
       <workItem from="1483723053931" duration="40494000" />
     </task>
-    <task id="LOCAL-00024" summary="initial commits">
-      <created>1482948154699</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1482948154699</updated>
-    </task>
     <task id="LOCAL-00025" summary="initial commits">
       <created>1483015742939</created>
       <option name="number" value="00025" />
@@ -1827,15 +1819,22 @@
       <option name="project" value="LOCAL" />
       <updated>1484120550374</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="Mailing lists test UI and logic">
+      <created>1484129271510</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1484129271510</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TestHistory">
     <history-entry file="PekamaReports_sendProjectReport - 2017.01.11 at 09h 40m 23s.xml">
       <configuration name="PekamaReports.sendProjectReport" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PekamaSignUp_sendSignUpEmail - 2017.01.10 at 10h 29m 20s.xml">
-      <configuration name="PekamaSignUp.sendSignUpEmail" configurationId="JUnit" />
+    <history-entry file="PekamaReports_sendProjectReport - 2017.01.11 at 13h 56m 26s.xml">
+      <configuration name="PekamaReports.sendProjectReport" configurationId="JUnit" />
     </history-entry>
     <history-entry file="PekamaSignUp_sendSignUpEmail - 2017.01.10 at 10h 32m 27s.xml">
       <configuration name="PekamaSignUp.sendSignUpEmail" configurationId="JUnit" />
@@ -1881,14 +1880,14 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32939914" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.227224" sideWeight="0.34550563" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.227224" sideWeight="0.34550563" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42765275" sideWeight="0.39775282" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32690248" sideWeight="0.49778023" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4529148" sideWeight="0.6022472" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34641257" sideWeight="0.6022472" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32690248" sideWeight="0.49778023" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1999,7 +1998,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="73" />
+      <option name="time" value="78" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -2366,28 +2365,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Page/ModalWindows.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="31" lean-forward="false" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Steps/ExternalSteps.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="472">
           <caret line="85" column="51" lean-forward="false" selection-start-line="85" selection-start-column="51" selection-end-line="85" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaReports.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="28" column="66" lean-forward="false" selection-start-line="28" selection-start-column="38" selection-end-line="28" selection-end-column="66" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -2418,10 +2399,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaReports.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="502">
+          <caret line="32" column="22" lean-forward="true" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Page/ModalWindows.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="14" column="68" lean-forward="false" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Steps/PekamaSteps.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="718">
-          <caret line="105" column="0" lean-forward="true" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
+        <state relative-caret-position="344">
+          <caret line="86" column="52" lean-forward="false" selection-start-line="86" selection-start-column="52" selection-end-line="86" selection-end-column="52" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#loginIntoPekamaByUrl#0;class#PekamaSteps#0" expanded="false" />

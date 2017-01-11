@@ -29,6 +29,7 @@ public class PekamaReports {
         String thisMailingListName = "Projects Report Mailing List";
         rootLogger.info("Open Project reports, opened URL - "+urlReportsProjects);
         open(urlReportsProjects);
+        waitForSpinnerNotPresent();
         rootLogger.info("Open Dropdown and create new mailing list");
         PekamaSteps mailingList = new PekamaSteps();
         mailingList.mailingListCreateNew(thisMailingListName);
@@ -36,7 +37,6 @@ public class PekamaReports {
         mailingList.mailingListSendReport(thisMailingListName);
         rootLogger.info("Delete mailing list");
         mailingList.mailingListDeleteReport(thisMailingListName);
-
         rootLogger.info("Open Mailing list");
 
 
