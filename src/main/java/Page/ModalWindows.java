@@ -21,14 +21,15 @@ public class ModalWindows {
     public static final String MW_BTN_SAVE = MW+"//*[contains(.,'Save')]";
     public static final String MW_BTN_CANCEL = MW+"//*[contains(.,'Cancel')]";
     public static final String MW_BTN_ADD = MW+"//*[contains(.,'Add')]";
-
-    public static final String MW_GENERIC_Title = "//*[@class='modal-title']";
-    public static final String MW_GENERIC_DatepickerField = "css=input.form-control.date-box";
-    public static final String MW_GENERIC_DatepickerIcon = "css=.memobox-icon-calendar";
     public static final String MW_BTN_OK = "//*[contains(.,'OK')]";
     public static final String MW_BTN_YES = "//*[contains .,'Yes' ]";
     public static final String MW_ICON_CLOSE = "//*[@aria-label='Close']";
     public static final String MW_BTN_CLOSE = "//*[contains .,'Close' ]";
+
+    public static final String MW_GENERIC_Title = "//*[@class='modal-title']";
+    public static final String MW_GENERIC_DatepickerField = "css=input.form-control.date-box";
+    public static final String MW_GENERIC_DatepickerIcon = "css=.memobox-icon-calendar";
+
     public static final String MW_GENERIC_ErrorMsg = "css=.help-block.error";
     public static final String MW_GENERIC_SpecificTeam = "//*[@pkm-team-colored-box='chosenOrganization']";
     public static final String MW_GENERIC_TeamsCheckbox = "//*[@pkm-team-colored-box='chosenOrganization']";

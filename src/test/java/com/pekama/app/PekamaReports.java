@@ -2,17 +2,12 @@ package com.pekama.app;
 import Page.TestsCredentials.*;
 import Steps.*;
 import Utils.*;
-import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.*;
 import org.junit.*;
 
-import static Page.ModalWindows.*;
 import static Page.PekamaReports.*;
 import static Page.TestsUrl.*;
-import static com.codeborne.selenide.Condition.disabled;
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selectors.byXpath;
+import static Steps.PekamaSteps.*;
 import static com.codeborne.selenide.Selenide.*;
 
 public class PekamaReports {
@@ -31,27 +26,18 @@ public class PekamaReports {
     }
     @Test
     public void sendProjectReport() {
-        String THIS_ML_NAME = "Projects_ML";
-        String REPORT_NAME = THIS_ML_NAME;
+        String thisMailingListName = "Projects Report Mailing List";
         rootLogger.info("Open Project reports, opened URL - "+urlReportsProjects);
         open(urlReportsProjects);
-        rootLogger.info("Open Dropdown and save new mailing list");
+        rootLogger.info("Open Dropdown and create new mailing list");
         PekamaSteps mailingList = new PekamaSteps();
-        mailingList.mailingListCreateNew(THIS_ML_NAME);
-        //todo step
+        mailingList.mailingListCreateNew(thisMailingListName);
+        rootLogger.info("Send report");
+        mailingList.mailingListSendReport(thisMailingListName);
+        rootLogger.info("Delete mailing list");
+        mailingList.mailingListDeleteReport(thisMailingListName);
+
         rootLogger.info("Open Mailing list");
-
-        $(byXpath(REPORTS_MAILING_LISTS_BTN_CALL_ML)).click();
-        $(byXpath(MW)).shouldBe(visible);
-        $(byText("Mailing List")).shouldNotBe(Condition.visible);
-
-        rootLogger.info("Set checkbox");
-        $(byXpath(MW_MAILING_1USER_SELECT)).click();
-        rootLogger.info("Set interval");
-        $(byXpath(MW_MAILING_1USER_INTERVAL)).sendKeys("999");
-
-        rootLogger.info("Send Project report");
-        $(byXpath(MW_MAILING_LIST_BTN_SEND_NOW)).click();
 
 
         rootLogger.info("Check email - report");

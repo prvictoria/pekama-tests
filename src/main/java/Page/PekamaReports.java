@@ -41,7 +41,8 @@ public class PekamaReports {
     public static String REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME = "//li[//a[contains(.,'"+ reportName +"')]]"; //ML+
     public static String REPORTS_MAILING_LISTS_BTN_UPDATE = "//button[contains(.,'Update')]"; //REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME+
     public static String REPORTS_MAILING_LISTS_BTN_CALL_ML = "//button[@uib-dropdown-toggle]"; //REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME+
-
+    public static String REPORTS_MAILING_LISTS_CALL_MW = "Mailing List";
+    public static String REPORTS_MAILING_LISTS_DELETE_MW = "Delete";
 
     public static final String REPORTS_MAILING_SAVE_SEARCH_DROPDOWN = "//*[@class='save-search-dropdown']";
     public static final String REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_INPUT = REPORTS_MAILING_SAVE_SEARCH_DROPDOWN+"//input";
