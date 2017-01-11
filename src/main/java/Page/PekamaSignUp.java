@@ -40,6 +40,12 @@ public class PekamaSignUp {
     //    not validated "bc@flxmd123.by",  "abc@flxmd-flxmd.by", "abc@ÀÇÈ.com",
     //public static final String[] arrayShortPasswords = {"1234567", "abcdefg", "1#qQ"};
     //public static final String[] arrayCommonPasswords = {"1234567", "abcdefg", "1234567890", "qwertyuiop", "QWERTYUIOP", "!\"#$%&()*+-,./:;<=>?[]{}~'", "1234567890qwertyuiop", "1234567890QWERTYUIOP", "1234567890#", "qwertyuiopQWERTYUIOP", "qwertyuiop#", "QWERTYUIOP#", "1#qQ"};
-    public static final String[] arrayInvalidPasswords = {"1234567", "abcdefg", "1234567890", "qwertyuiop", "QWERTYUIOP", "!\"#$%&()*+-,./:;<=>?[]{}~'", "1234567890qwertyuiop", "1234567890QWERTYUIOP", "1234567890#", "qwertyuiopQWERTYUIOP", "qwertyuiop#", "QWERTYUIOP#", "1#qQ", "1#qQ 1#qQ 1#qQ 1#qQ"};
+    public static final String[] arrayInvalidPasswords = {"1234567", "abcdefg", "1234567890", "qwertyuiop", "QWERTYUIOP", "!\"#$%&()*+-,./:;<=>?[]{}~'", "1234567890qwertyuiop", "1234567890QWERTYUIOP", "1234567890#", "qwertyuiopQWERTYUIOP", "qwertyuiop#", "QWERTYUIOP#", "1#qQ"}; //1#qQ 1#qQ 1#qQ 1#qQ - no empty space validation
 
+    public static final String SIGN_UP_JOIN_PAGE_TITLE = "Teams on Your Domain";
+    public static final String SIGN_UP_JOIN_PAGE_TEXT = "We found some existing teams on your domain.";
+    public static final String SIGN_UP_JOIN_PAGE_TEAM_SECTION_TITLE = "Please mark a Team you belong to";
+    public static final String SIGN_UP_JOIN_PAGE_DEFAULT_RADIO = "//label[contains(.,\"I don't belong to any of these Teams\")]/input";
+    public static final String SIGN_UP_JOIN_PAGE_DEFAULT_RADIO_TEXT = "I don't belong to any of these Teams";
+    public static final String SIGN_UP_JOIN_PAGE_FINISH_BTN = "//*[@id='finish-button']";
 }
