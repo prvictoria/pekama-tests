@@ -1,10 +1,5 @@
 package Page;
-
-/**
- * Created by Viachaslau_Balashevi on 12/29/2016.
- */
 public class PekamaReports {
-
 
     public static final String REPORTS_AllCheckbox = "//li[@class='items-header clearfix clearfix']//input[@type='checkbox']";
     public static final String REPORTS_BulkDelete = "//button[@class='btn-link'][contains(.,'Delete')]";
@@ -42,10 +37,10 @@ public class PekamaReports {
     public static final String REPORTS_MAILING_AREA = "//*[@class='saved']";
     public static final String REPORTS_MAILING_SAVE_SEARCH = "//*[@type='button' and contains(.,'Save search...')]";
     public static final String REPORTS_MAILING_LISTS = "//*[@class='search-list']";
-    public static String REPORT_NAME;
-    public static String REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME = REPORTS_MAILING_LISTS+"//li[//a[contains(.,'"+REPORT_NAME+"')]]";
-    public static String REPORTS_MAILING_LISTS_BTN_UPDATE = REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME+"//button[contains(.,'Update')]";
-    public static String REPORTS_MAILING_LISTS_BTN_CALL_ML = REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME+"//button[@uib-dropdown-toggle]";
+    public static String reportName;
+    public static String REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME = "//li[//a[contains(.,'"+ reportName +"')]]"; //ML+
+    public static String REPORTS_MAILING_LISTS_BTN_UPDATE = "//button[contains(.,'Update')]"; //REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME+
+    public static String REPORTS_MAILING_LISTS_BTN_CALL_ML = "//button[@uib-dropdown-toggle]"; //REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME+
 
 
     public static final String REPORTS_MAILING_SAVE_SEARCH_DROPDOWN = "//*[@class='save-search-dropdown']";

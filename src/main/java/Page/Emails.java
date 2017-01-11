@@ -19,7 +19,7 @@ public class Emails {
     public static final String EMAIL_CONFIRM_REGISTRATION_BACKLINK = "//td/a[contains(@href, '"+SELECT_HOST+"/accounts/confirm/')]";
 
     public static final String EMAIL_REPORT = "";
-    public static final String EMAIL_REPORT_SUBJECT = "//span[contains(.,'"+REPORT_NAME+"')]";
+    public static final String EMAIL_REPORT_SUBJECT = "//span[contains(.,'"+ reportName +"')]";
     public static final String EMAIL_REPORT_TITLE = "";
     public static final String EMAIL_REPORT_TEXT = "This is the report that you configured in Pekama.";
     public static final String EMAIL_REPORT_ATTACHMENT = "//*[@title='Report \"1\" - 2017-01-10.csv']"; //name+date

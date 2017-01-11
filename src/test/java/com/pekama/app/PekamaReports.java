@@ -31,19 +31,16 @@ public class PekamaReports {
     }
     @Test
     public void sendProjectReport() {
+        String THIS_ML_NAME = "Projects_ML";
+        String REPORT_NAME = THIS_ML_NAME;
         rootLogger.info("Open Project reports, opened URL - "+urlReportsProjects);
         open(urlReportsProjects);
-        $(byXpath(REPORTS_MAILING_SAVE_SEARCH)).click();
-        //todo step
         rootLogger.info("Open Dropdown and save new mailing list");
-        $(byXpath(REPORTS_MAILING_SAVE_SEARCH_DROPDOWN)).shouldBe(visible);
-        $(byXpath(REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_SAVE)).shouldBe(disabled);
-        String THIS_ML_NAME = "Projects_ML";
-        $(byXpath(REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_INPUT)).sendKeys(THIS_ML_NAME);
-        $(byXpath(REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_SAVE)).click();
+        PekamaSteps mailingList = new PekamaSteps();
+        mailingList.mailingListCreateNew(THIS_ML_NAME);
         //todo step
         rootLogger.info("Open Mailing list");
-        String REPORT_NAME = THIS_ML_NAME;
+
         $(byXpath(REPORTS_MAILING_LISTS_BTN_CALL_ML)).click();
         $(byXpath(MW)).shouldBe(visible);
         $(byText("Mailing List")).shouldNotBe(Condition.visible);

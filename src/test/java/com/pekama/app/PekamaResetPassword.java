@@ -125,6 +125,7 @@ public class PekamaResetPassword {
             $(byXpath(NEWPASSWORD_PAGE_CONFIRM_PASSWORD)).shouldBe(Condition.visible).sendKeys(VALID_PASSWORD+RANDOM_8_LETTER);
             $(byXpath(NEWPASSWORD_PAGE_RESTORE_BTN)).click();
             log.info("User submitted valid credentials");
+            //dashboard
             log.info("User logged with new credentials");
 
 //            log.info("Validation test - link was used");
