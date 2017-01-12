@@ -4,11 +4,8 @@
     <bookmark url="file://$PROJECT_DIR$/src/main/java/Page/TestsStrings.java" line="102" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2fcdccdc-4d95-4ab7-8153-9ec9d616e50f" name="Default" comment="">
+    <list default="true" id="2fcdccdc-4d95-4ab7-8153-9ec9d616e50f" name="Default" comment="Check attachment present Mailing list test - refactoring">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pekama-tests.iws" afterPath="$PROJECT_DIR$/pekama-tests.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/Emails.java" afterPath="$PROJECT_DIR$/src/main/java/Page/Emails.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Steps/ExternalSteps.java" afterPath="$PROJECT_DIR$/src/main/java/Steps/ExternalSteps.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaReports.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaReports.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="build/reports/" />
@@ -1073,13 +1070,6 @@
       <workItem from="1483723053931" duration="40494000" />
       <workItem from="1484153364668" duration="19211000" />
     </task>
-    <task id="LOCAL-00035" summary="root logger">
-      <created>1483537793677</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1483537793677</updated>
-    </task>
     <task id="LOCAL-00036" summary="root logger">
       <created>1483540234514</created>
       <option name="number" value="00036" />
@@ -1416,7 +1406,14 @@
       <option name="project" value="LOCAL" />
       <updated>1484214946212</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="Check attachment present Mailing list test - refactoring">
+      <created>1484215702133</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1484215702133</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1533,7 +1530,8 @@
     <MESSAGE value="Test check UI Join to Team page" />
     <MESSAGE value="@Fix - Mailing list test" />
     <MESSAGE value="Check attachment presnt Mailing list test" />
-    <option name="LAST_COMMIT_MESSAGE" value="Check attachment presnt Mailing list test" />
+    <MESSAGE value="Check attachment present Mailing list test - refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="Check attachment present Mailing list test - refactoring" />
   </component>
   <component name="VssConfiguration">
     <CheckoutOptions>
