@@ -86,7 +86,6 @@ public class PekamaSteps {
         sleep(500);
         $(byXpath(MW)).shouldNotBe(visible);
     }
-
     public String mailingListCreateNew(String thisMailingListName){
         rootLogger.info("click"+REPORTS_MAILING_SAVE_SEARCH);
         $(byXpath(REPORTS_MAILING_SAVE_SEARCH)).waitUntil(visible, 5000).click();
@@ -104,7 +103,6 @@ public class PekamaSteps {
         rootLogger.info("Mailing List was created - "+ thisMailingListName);
         return thisMailingListName;
     }
-
     public static String mailingListSendReport(String thisMailingListName){
         $(byLinkText(thisMailingListName)).click();
         String REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME = "//li[//a[contains(.,'"+ thisMailingListName +"')]]";
