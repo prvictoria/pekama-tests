@@ -1,4 +1,5 @@
 package com.pekama.app;
+import Page.TestsCredentials;
 import com.codeborne.selenide.Condition;
 import org.junit.Before;
 import org.junit.Test;
@@ -7,14 +8,11 @@ import org.openqa.selenium.By;
 import static Page.PekamaLanding.*;
 import static Page.PekamaLogin.*;
 import static Page.PekamaSignUp.*;
-import static Page.TestsUrlConfiguration.PEKAMA;
-import static Page.TestsCredentials.USER_01_EMAIL;
-import static Page.TestsCredentials.USER_PEKAMA_PASSWORD;
+import static Page.TestsUrlConfiguration.*;
+import static Page.TestsCredentials.*;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
-/**
- * Created by VatslauX on 27-Dec-16.
- */
+
 public class PekamaLanding {
     @Before
     public void openUrlLogin() {
@@ -56,7 +54,7 @@ public class PekamaLanding {
         $(By.xpath(BTN_LOGIN)).shouldBe(Condition.visible).click();
         sleep(1000);
         $(By.xpath(lOGIN_TITLE)).shouldBe(Condition.visible).shouldHave(Condition.text(lOGIN_TITLE_TEXT));
-        $(loginField_Email).sendKeys(USER_01_EMAIL);
+        $(loginField_Email).sendKeys(User1.GMAIL_EMAIL.getValue());
         $(loginField_Password).sendKeys(USER_PEKAMA_PASSWORD);
         $(By.xpath(loginButton_Login)).click();
         $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));

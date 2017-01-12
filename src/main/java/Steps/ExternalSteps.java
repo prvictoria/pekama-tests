@@ -15,12 +15,10 @@ import static org.junit.Assert.assertEquals;
 import static org.openqa.selenium.support.ui.ExpectedConditions.alertIsPresent;
 
 
-/**
- * Created by VatslauX on 03-Jan-17.
- */
+
 public class ExternalSteps {
     static final Logger logging = LogManager.getLogger(ExternalSteps.class);
-
+    public static String REDIRECT_LINK;
 
     public void signInGmailInbox(String GMAIL_LOGIN, String GMAIL_PASSWORD) {
         logging.info("Start browser");
@@ -38,6 +36,7 @@ public class ExternalSteps {
         //      $(byXpath(INBOX_BTN_INBOX)).waitUntil(visible, 5000);
     }
     public static String checkInboxEmail(String EMAIL_SUBJECT, String EMAIL_TITLE, String EMAIL_TEXT, String EMAIL_BTN, String EMAIL_REDIRECT_LINK) {
+        REDIRECT_LINK = null;
         if ($(byXpath(EMAIL_SUBJECT)).exists() == false) {
             int count = 1;
             do {
@@ -48,9 +47,8 @@ public class ExternalSteps {
                 if ($(byXpath(EMAIL_SUBJECT)).exists() == true) {
                     break;
                 }
-            } while (count < 2);
+            } while (count < 10);
         }
-        String actualBackLink = null;
         if ($(byXpath(EMAIL_SUBJECT)).exists() == true) {
             $(byXpath(EMAIL_SUBJECT)).waitUntil(visible, 10000).click();
             logging.info("Email by subject found");
@@ -61,11 +59,12 @@ public class ExternalSteps {
             $$(byText(EMAIL_TEXT)).filter(visible);
             $$(byText(EMAIL_BTN)).filter(visible);
             logging.info(EMAIL_TITLE + "- email present");
-            actualBackLink = $(By.xpath(EMAIL_REDIRECT_LINK)).getAttribute("href");
-            logging.info("This link present in mail - " + actualBackLink);
+            REDIRECT_LINK = $(By.xpath(EMAIL_REDIRECT_LINK)).getAttribute("href");
+            logging.info("This link present in mail - " + REDIRECT_LINK);
             $(byXpath(INBOX_BTN_DELETE)).waitUntil(visible, 10000).click();
+            sleep(500);
             $(byXpath(INBOX_BTN_DELETE)).waitUntil(not(visible), 10000);
-            if (actualBackLink == null) {
+            if (REDIRECT_LINK == null) {
                 Assert.fail("Redirect Link not found");
             }
             logging.info("Email deleted");
@@ -73,11 +72,7 @@ public class ExternalSteps {
 //            confirm();
 //            }
         }
-//        if (EMAIL_SUBJECT.equals(EMAIL_RESET_PASSWORD_SUBJECT)){
-//            open(actualBackLink);
-//            logging.info("Open reset password link");
-//        }
-        return actualBackLink;
+       return REDIRECT_LINK;
     }
     public static String checkInboxEmailReport(String EMAIL_TEXT, String thisMailingListName){
         if ($(byXpath(EMAIL_REPORT_SUBJECT)).exists() == false) {

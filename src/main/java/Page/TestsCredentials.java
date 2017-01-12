@@ -1,9 +1,6 @@
 package Page;
 import org.junit.Test;
 
-/**
- * Created by VatslauX on 29-Dec-16.
- */
 public class TestsCredentials {
     public enum User1 {
         GMAIL_EMAIL("testqweeco001@gmail.com"),
@@ -76,7 +73,7 @@ public class TestsCredentials {
         public String getValue() {
             return value;
         }
-    }
+    }//for password restoration tests
     public enum User5 {
         GMAIL_EMAIL("testqweeco005@gmail.com"),
         GMAIL_PASSWORD("123456789qasw1"),
@@ -94,7 +91,7 @@ public class TestsCredentials {
         public String getValue() {
             return value;
         }
-    }
+    }//Unregistered for SignUp links tests
     @Test
     public  void enumTest() {
         System.out.println(User1.GMAIL_EMAIL.value);
@@ -104,13 +101,6 @@ public class TestsCredentials {
         System.out.println(User1.FULL_TEAM_NAME.value);
 
     }
-
-    public static final String USER_01_EMAIL = "testqweeco001@gmail.com";
-    public static final String USER_02_EMAIL = "testqweeco002@gmail.com";
-    public static final String USER_03_EMAIL = "testqweeco003@gmail.com";
-    public static final String USER_04_EMAIL = "testqweeco004@gmail.com"; //for password restoration tests
-    public static final String USER_05_EMAIL = "testqweeco005@gmail.com"; //Unregistered for SignUp links tests
-
     public static final String USER_PEKAMA_PASSWORD = "asui67we34";
     public static final String USER_GMAIL_PASSWORD = "123456789qasw1";
     public static final String GMAIL_LOGIN = "";
