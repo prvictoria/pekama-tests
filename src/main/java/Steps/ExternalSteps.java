@@ -7,9 +7,7 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.CollectionCondition.size;
-import static com.codeborne.selenide.Condition.disappear;
-import static com.codeborne.selenide.Condition.not;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static Page.Emails.*;
@@ -39,24 +37,25 @@ public class ExternalSteps {
         logging.info("Inbox opened");
         //      $(byXpath(INBOX_BTN_INBOX)).waitUntil(visible, 5000);
     }
-    public String checkInboxEmail(String EMAIL_SUBJECT, String EMAIL_TITLE, String EMAIL_TEXT, String EMAIL_BTN, String EMAIL_REDIRECT_LINK) {
+    public static String checkInboxEmail(String EMAIL_SUBJECT, String EMAIL_TITLE, String EMAIL_TEXT, String EMAIL_BTN, String EMAIL_REDIRECT_LINK) {
         if ($(byXpath(EMAIL_SUBJECT)).exists() == false) {
             int count = 1;
             do {
-                sleep(10000);
+                sleep(15000);
                 refresh();
                 count++;
                 logging.info("Email by subject NOT found loop"+count);
                 if ($(byXpath(EMAIL_SUBJECT)).exists() == true) {
                     break;
                 }
-            } while (count < 10);
+            } while (count < 2);
         }
         String actualBackLink = null;
         if ($(byXpath(EMAIL_SUBJECT)).exists() == true) {
             $(byXpath(EMAIL_SUBJECT)).waitUntil(visible, 10000).click();
             logging.info("Email by subject found");
-            $(byXpath(INBOX_BTN_DONE)).waitUntil(visible, 10000);
+            sleep(1500);
+            $(byXpath(INBOX_BTN_DELETE)).waitUntil(visible, 10000);
             logging.info("Email present");
             $$(byText(EMAIL_TITLE)).filter(visible);
             $$(byText(EMAIL_TEXT)).filter(visible);
@@ -69,7 +68,7 @@ public class ExternalSteps {
             if (actualBackLink == null) {
                 Assert.fail("Redirect Link not found");
             }
-            logging.info("Email archived");
+            logging.info("Email deleted");
 //            if ((alertIsPresent() != null)) {
 //            confirm();
 //            }
@@ -80,34 +79,57 @@ public class ExternalSteps {
 //        }
         return actualBackLink;
     }
-    public static String checkInboxEmailReport(String EMAIL_SUBJECT, String EMAIL_TITLE, String EMAIL_TEXT, String EMAIL_BTN, String EMAIL_REDIRECT_LINK){
+    public static String checkInboxEmailReport(String EMAIL_SUBJECT, String EMAIL_TEXT, String EMAIL_BACKLINK, String EMAIL_ATTACHMENT_PATH, String thisMailingListName){
+        if ($(byXpath(EMAIL_SUBJECT)).exists() == false) {
+            int count = 1;
+            do {
+                sleep(15000);
+                refresh();
+                count++;
+                logging.info("Email by subject NOT found loop"+count);
+                if ($(byXpath(EMAIL_SUBJECT)).exists() == true) {
+                    break;
+                }
+            } while (count < 10);
+        }
         $(byXpath(EMAIL_SUBJECT)).waitUntil(visible, 10000).click();
         logging.info("Email by subject found");
+        sleep(1500);
         $(byXpath(INBOX_BTN_DELETE)).waitUntil(visible, 10000);
-        $$(byText(EMAIL_TEXT)).filter(visible).shouldHave(size(1));
+        String EMAIL_TITLE = EMAIL_REPORT+" "+"\""+thisMailingListName+"\"";
+        $$(byText(EMAIL_TITLE)).filter(visible).getTexts(); //get whole test
+        $$(byText(EMAIL_TEXT)).filter(visible);
         logging.info(EMAIL_TITLE+ "- email present");
-        String actualBackLink = $(By.xpath(EMAIL_REDIRECT_LINK)).getAttribute("href");
-        logging.info("This link present in mail - " +actualBackLink);
-        $(byXpath(INBOX_BTN_DELETE)).click();
-        $(byXpath(INBOX_BTN_DELETE)).shouldBe(disappear);
-        logging.info("Email archived");
-            if (actualBackLink == null) {
-                Assert.fail("Redirect Link not found");
-            }
-        return actualBackLink;
+
+        String backLink = $(By.xpath(EMAIL_BACKLINK)).getAttribute("href");
+        logging.info("Link to pekama reports present - " +backLink);
+        if (backLink == null) {
+            Assert.fail("Link not found");
+        }
+//        String attachmentPath = "//div[@title][contains(.,'Projects Report Mailing List')][contains(.,'csv')]";
+        String attachmentFullTitle = $(byXpath(EMAIL_REPORT_ATTACHMENT)).getAttribute("title");
+        logging.info("This attachment present in mail - " +attachmentFullTitle);
+        //        $(byXpath(INBOX_BTN_DELETE)).click();
+//        $(byXpath(INBOX_BTN_DELETE)).shouldBe(disappear);
+//        logging.info("Email deleted");
+        return attachmentFullTitle;
     }
     // todo - check attachment logic
-    public static String checkEmailReportAttachment(String EMAIL_SUBJECT, String EMAIL_TITLE, String EMAIL_TEXT, String EMAIL_BTN, String EMAIL_REDIRECT_LINK){
+    public static String checkEmailReportAttachment(String EMAIL_SUBJECT, String EMAIL_TITLE, String EMAIL_TEXT, String EMAIL_BACKLINK, String EMAIL_ATTACHMENT_PATH){
+
+
+
+
         $(byXpath(EMAIL_SUBJECT)).waitUntil(visible, 10000).click();
         logging.info("Email by subject found");
         $(byXpath(INBOX_BTN_DELETE)).waitUntil(visible, 10000);
         $$(byText(EMAIL_TEXT)).filter(visible).shouldHave(size(1));
         logging.info(EMAIL_TITLE+ "- email present");
-        String actualBackLink = $(By.xpath(EMAIL_REDIRECT_LINK)).getAttribute("href");
+        String actualBackLink = $(By.xpath(EMAIL_BACKLINK)).getAttribute("href");
         logging.info("This link present in mail - " +actualBackLink);
         $(byXpath(INBOX_BTN_DELETE)).click();
         $(byXpath(INBOX_BTN_DELETE)).shouldBe(disappear);
-        logging.info("Email archived");
+        logging.info("Email deleted");
         if (actualBackLink == null) {
             Assert.fail("Redirect Link not found");
         }

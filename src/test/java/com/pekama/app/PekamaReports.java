@@ -7,7 +7,9 @@ import org.apache.logging.log4j.*;
 import org.junit.*;
 import org.openqa.selenium.By;
 
+import static Page.Emails.*;
 import static Page.PekamaReports.*;
+import static Page.TestsCredentials.*;
 import static Page.TestsUrl.*;
 import static Steps.PekamaSteps.*;
 import static com.codeborne.selenide.Selectors.*;
@@ -16,8 +18,9 @@ import static com.codeborne.selenide.Selenide.*;
 public class PekamaReports {
     static final Logger rootLogger = LogManager.getRootLogger();
     private String PEKAMA_USER_EMAIL = User3.GMAIL_EMAIL.getValue();
+    String thisMailingListName = "Projects Report Mailing List";
 
-    @Before
+    @Test
     public void selectAgreeCheckbox() {
         rootLogger.info("Open URL - " +urlDashboard);
         HttpAuth openHost = new HttpAuth();
@@ -32,7 +35,7 @@ public class PekamaReports {
     @Ignore
     @Test
     public void sendProjectReport() {
-        String thisMailingListName = "Projects Report Mailing List";
+
         rootLogger.info("Open Project reports, opened URL - "+urlReportsProjects);
         open(urlReportsProjects);
         sleep(3000);
@@ -54,18 +57,29 @@ public class PekamaReports {
     @Ignore
     @Test
     public void sendTasksReport() {
+  //      open(urlReportsTasks);
         rootLogger.info("Open Project reports");
-
+        ExternalSteps loginGmailInboxApp = new ExternalSteps();
+        String GMAIL_LOGIN = User3.GMAIL_EMAIL.getValue();
+        loginGmailInboxApp.signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
+        String EMAIL_SUBJECT = EMAIL_REPORT_SUBJECT;
+        String EMAIL_TEXT = EMAIL_REPORT_TEXT;
+        String EMAIL_BACKLINK = EMAIL_REPORT_BACKLINK;
+        String EMAIL_ATTACHMENT_PATH = EMAIL_REPORT_ATTACHMENT;
+        loginGmailInboxApp.checkInboxEmailReport(EMAIL_SUBJECT, EMAIL_TEXT, EMAIL_BACKLINK, EMAIL_ATTACHMENT_PATH, thisMailingListName);
+        rootLogger.info("attachment");
     }
     @Ignore
     @Test
     public void sendEventsReport() {
+        open(urlReportsEvents);
         rootLogger.info("Open Project reports");
 
     }
     @Ignore
     @Test
     public void sendChargesReport() {
+        open(urlReportsCharges);
         rootLogger.info("Open Project reports");
 
     }

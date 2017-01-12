@@ -114,7 +114,7 @@ public class TestsCredentials {
     public static final String USER_PEKAMA_PASSWORD = "asui67we34";
     public static final String USER_GMAIL_PASSWORD = "123456789qasw1";
     public static final String GMAIL_LOGIN = "";
-    public static final String GMAIL_PASSWORD = "";
+    public static final String GMAIL_PASSWORD = "123456789qasw1";
 
     public static final String teamTest01 = "Qweeco01 (QT01)";
     public static final String teamTest02 = "Qweeco02 (QT02)";

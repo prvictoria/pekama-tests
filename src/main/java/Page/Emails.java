@@ -18,11 +18,12 @@ public class Emails {
     public static final String EMAIL_CONFIRM_REGISTRATION_BTN = "Confirm Account";
     public static final String EMAIL_CONFIRM_REGISTRATION_BACKLINK = "//td/a[contains(@href, '"+SELECT_HOST+"/accounts/confirm/')]";
 
-    public static final String EMAIL_REPORT = "";
-    public static final String EMAIL_REPORT_SUBJECT = "//span[contains(.,'"+ reportName +"')]";
+    public static final String EMAIL_REPORT = "Pekama Report";
+    public static final String EMAIL_REPORT_SUBJECT = "//span[contains(.,'Pekama Report')]";
     public static final String EMAIL_REPORT_TITLE = "";
-    public static final String EMAIL_REPORT_TEXT = "This is the report that you configured in Pekama.";
-    public static final String EMAIL_REPORT_ATTACHMENT = "//*[@title='Report \"1\" - 2017-01-10.csv']"; //name+date
+    public static final String EMAIL_REPORT_TEXT = "This is the report that you configured in Pekama. You will get it every 999 days.";
+    public static final String EMAIL_REPORT_ATTACHMENT = "//div[@title][contains(.,'csv')]";
+    public static final String EMAIL_REPORT_ATTACHMENT_ABSOLUTE_PATH = "//div[@title][contains(.,'Projects Report Mailing List')][contains(.,'csv')]";
     public static final String EMAIL_REPORT_BACKLINK = "//a[contains(@href, '"+SELECT_HOST+"/filters/mailinglist/edit/')]";
 
 //    public static final String EMAIL_SUBJ_CONFIRM_REGISTRATION = "";
