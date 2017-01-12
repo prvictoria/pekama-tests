@@ -36,7 +36,9 @@ public class Emails {
     public static final String INBOX_SIGNIN = "//a[contains(text(),'Sign in')]";
     public static final String INBOX_BTN_DONE = "//*[@title='Mark done']";
     public static final String INBOX_BTN_INBOX = "//nav[@id]/div/ul//span[contains(.,'Inbox')]";
-    final static public String INBOX_BTN_DELETE = "//div[@jsaction='global.none']/ul/li[3][@role='button' and @title='Delete']";
+    public static final String INBOX_BTN_DELETE = "//div[@jsaction='global.none']/ul/li[3][@role='button' and @title='Delete']";
+    public static final String INBOX_MENU_REPLY = "//div[@role='button'][@title='Reply, Forward & more']";
+    public static final String INBOX_MENU_SHOW_ORIGINAL = "//span[@class='do'][@title='Show original']";
 
     public static final String GMAIL_URL = "https://mail.google.com/mail/u/0/#inbox";
     public static final String GMAIL_LOGIN_FIELD = "Email";
@@ -44,8 +46,8 @@ public class Emails {
     public static final String GMAIL_SIGNIN_BTN = "#signIn";
     public static final String GMAIL_NEXT_BTN = "#next";
     public static final String GMAIL_INBOX_BTN = "//div[@role='navigation']";
-    final static public String GMAIL_SELECT_MENU = "//*[@data-tooltip='Select']/div[1]/div";
-    final static public String GMAIL_ARCHIVE_BTN = "//*[@data-tooltip='Archive']";
+    public static final String GMAIL_SELECT_MENU = "//*[@data-tooltip='Select']/div[1]/div";
+    public static final String GMAIL_ARCHIVE_BTN = "//*[@data-tooltip='Archive']";
 
 //    public static final String GMAIL_EMAIL_LIST = "//div[@role='main']//table/tbody/tr";
 //    public static final String GMAIL_EMAIL_LIST_SUBJECT = "//div[@role='link']//span[@id]";

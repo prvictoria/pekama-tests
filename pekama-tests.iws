@@ -7,7 +7,6 @@
     <list default="true" id="2fcdccdc-4d95-4ab7-8153-9ec9d616e50f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pekama-tests.iws" afterPath="$PROJECT_DIR$/pekama-tests.iws" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/Emails.java" afterPath="$PROJECT_DIR$/src/main/java/Page/Emails.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/TestsCredentials.java" afterPath="$PROJECT_DIR$/src/main/java/Page/TestsCredentials.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Steps/ExternalSteps.java" afterPath="$PROJECT_DIR$/src/main/java/Steps/ExternalSteps.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaReports.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaReports.java" />
     </list>
@@ -192,14 +191,14 @@
     </favorites_list>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.38565022">
+    <splitter split-orientation="horizontal" split-proportion="0.47085202">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="PekamaReports.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaReports.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="281">
-                  <caret line="68" column="0" lean-forward="false" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+                <state relative-caret-position="290">
+                  <caret line="64" column="5" lean-forward="false" selection-start-line="64" selection-start-column="5" selection-end-line="64" selection-end-column="5" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -260,15 +259,15 @@
           <file leaf-file-name="ExternalSteps.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/Steps/ExternalSteps.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="429">
-                  <caret line="108" column="2" lean-forward="false" selection-start-line="108" selection-start-column="2" selection-end-line="108" selection-end-column="2" />
+                <state relative-caret-position="362">
+                  <caret line="82" column="0" lean-forward="false" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#3012#3059#0" expanded="false" />
                     <element signature="e#3111#3177#0" expanded="false" />
                     <element signature="method#checkEmailReportAttachment#0;class#ExternalSteps#0" expanded="false" />
-                    <marker date="1484214930294" expanded="true" signature="1567:1976" ph="..." />
-                    <marker date="1484214930294" expanded="false" signature="3489:3899" ph="..." />
+                    <marker date="1484215687462" expanded="true" signature="1567:1976" ph="..." />
+                    <marker date="1484215687462" expanded="false" signature="3414:3838" ph="..." />
                   </folding>
                 </state>
               </provider>
@@ -299,8 +298,8 @@
           <file leaf-file-name="Emails.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/Page/Emails.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="528">
-                  <caret line="24" column="54" lean-forward="false" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="54" />
+                <state relative-caret-position="506">
+                  <caret line="45" column="60" lean-forward="true" selection-start-line="45" selection-start-column="60" selection-end-line="45" selection-end-column="60" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -482,8 +481,8 @@
         <option value="$PROJECT_DIR$/src/main/java/Page/ModalWindows.java" />
         <option value="$PROJECT_DIR$/src/main/java/Steps/PekamaSteps.java" />
         <option value="$PROJECT_DIR$/src/main/java/Page/TestsCredentials.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaReports.java" />
         <option value="$PROJECT_DIR$/src/main/java/Page/Emails.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaReports.java" />
         <option value="$PROJECT_DIR$/src/main/java/Steps/ExternalSteps.java" />
       </list>
     </option>
@@ -1074,13 +1073,6 @@
       <workItem from="1483723053931" duration="40494000" />
       <workItem from="1484153364668" duration="19211000" />
     </task>
-    <task id="LOCAL-00034" summary="page objects">
-      <created>1483531000064</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1483531000064</updated>
-    </task>
     <task id="LOCAL-00035" summary="root logger">
       <created>1483537793677</created>
       <option name="number" value="00035" />
@@ -1417,7 +1409,14 @@
       <option name="project" value="LOCAL" />
       <updated>1484208533947</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="Check attachment presnt Mailing list test">
+      <created>1484214946212</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1484214946212</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1533,7 +1532,8 @@
     <MESSAGE value="Mailing lists test UI and logic" />
     <MESSAGE value="Test check UI Join to Team page" />
     <MESSAGE value="@Fix - Mailing list test" />
-    <option name="LAST_COMMIT_MESSAGE" value="@Fix - Mailing list test" />
+    <MESSAGE value="Check attachment presnt Mailing list test" />
+    <option name="LAST_COMMIT_MESSAGE" value="Check attachment presnt Mailing list test" />
   </component>
   <component name="VssConfiguration">
     <CheckoutOptions>
@@ -1589,14 +1589,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaReports.java</url>
-          <line>89</line>
-          <properties />
-          <option name="timeStamp" value="107" />
-        </line-breakpoint>
-      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
@@ -1963,16 +1955,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaReports.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="68" column="0" lean-forward="false" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/com/codeborne/selenide/3.11/selenide-3.11-sources.jar!/com/codeborne/selenide/ElementsCollection.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="282">
@@ -1980,16 +1962,6 @@
           <folding>
             <element signature="e#5262#5263#0" expanded="false" />
             <element signature="e#5308#5309#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Page/Emails.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="24" column="54" lean-forward="false" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="54" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2014,17 +1986,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Page/Emails.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="45" column="60" lean-forward="true" selection-start-line="45" selection-start-column="60" selection-end-line="45" selection-end-column="60" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaReports.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="64" column="5" lean-forward="false" selection-start-line="64" selection-start-column="5" selection-end-line="64" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Steps/ExternalSteps.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="108" column="2" lean-forward="false" selection-start-line="108" selection-start-column="2" selection-end-line="108" selection-end-column="2" />
+        <state relative-caret-position="362">
+          <caret line="82" column="0" lean-forward="false" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#3012#3059#0" expanded="false" />
             <element signature="e#3111#3177#0" expanded="false" />
             <element signature="method#checkEmailReportAttachment#0;class#ExternalSteps#0" expanded="false" />
-            <marker date="1484214930294" expanded="true" signature="1567:1976" ph="..." />
-            <marker date="1484214930294" expanded="false" signature="3489:3899" ph="..." />
+            <marker date="1484215687462" expanded="true" signature="1567:1976" ph="..." />
+            <marker date="1484215687462" expanded="false" signature="3414:3838" ph="..." />
           </folding>
         </state>
       </provider>

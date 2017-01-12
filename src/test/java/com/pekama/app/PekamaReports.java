@@ -62,11 +62,8 @@ public class PekamaReports {
         ExternalSteps loginGmailInboxApp = new ExternalSteps();
         String GMAIL_LOGIN = User3.GMAIL_EMAIL.getValue();
         loginGmailInboxApp.signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
-        String EMAIL_SUBJECT = EMAIL_REPORT_SUBJECT;
         String EMAIL_TEXT = EMAIL_REPORT_TEXT;
-        String EMAIL_BACKLINK = EMAIL_REPORT_BACKLINK;
-        String EMAIL_ATTACHMENT_PATH = EMAIL_REPORT_ATTACHMENT;
-        loginGmailInboxApp.checkInboxEmailReport(EMAIL_SUBJECT, EMAIL_TEXT, EMAIL_BACKLINK, EMAIL_ATTACHMENT_PATH, thisMailingListName);
+        loginGmailInboxApp.checkInboxEmailReport(EMAIL_TEXT, thisMailingListName);
         rootLogger.info("attachment");
     }
     @Ignore

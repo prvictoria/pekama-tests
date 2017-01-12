@@ -79,20 +79,20 @@ public class ExternalSteps {
 //        }
         return actualBackLink;
     }
-    public static String checkInboxEmailReport(String EMAIL_SUBJECT, String EMAIL_TEXT, String EMAIL_BACKLINK, String EMAIL_ATTACHMENT_PATH, String thisMailingListName){
-        if ($(byXpath(EMAIL_SUBJECT)).exists() == false) {
+    public static String checkInboxEmailReport(String EMAIL_TEXT, String thisMailingListName){
+        if ($(byXpath(EMAIL_REPORT_SUBJECT)).exists() == false) {
             int count = 1;
             do {
                 sleep(15000);
                 refresh();
                 count++;
                 logging.info("Email by subject NOT found loop"+count);
-                if ($(byXpath(EMAIL_SUBJECT)).exists() == true) {
+                if ($(byXpath(EMAIL_REPORT_SUBJECT)).exists() == true) {
                     break;
                 }
             } while (count < 10);
         }
-        $(byXpath(EMAIL_SUBJECT)).waitUntil(visible, 10000).click();
+        $(byXpath(EMAIL_REPORT_SUBJECT)).waitUntil(visible, 10000).click();
         logging.info("Email by subject found");
         sleep(1500);
         $(byXpath(INBOX_BTN_DELETE)).waitUntil(visible, 10000);
@@ -101,10 +101,10 @@ public class ExternalSteps {
         $$(byText(EMAIL_TEXT)).filter(visible);
         logging.info(EMAIL_TITLE+ "- email present");
 
-        String backLink = $(By.xpath(EMAIL_BACKLINK)).getAttribute("href");
+        String backLink = $(By.xpath(EMAIL_REPORT_BACKLINK)).getAttribute("href");
         logging.info("Link to pekama reports present - " +backLink);
         if (backLink == null) {
-            Assert.fail("Link not found");
+            Assert.fail("Link to pekama reports not found");
         }
 //        String attachmentPath = "//div[@title][contains(.,'Projects Report Mailing List')][contains(.,'csv')]";
         String attachmentFullTitle = $(byXpath(EMAIL_REPORT_ATTACHMENT)).getAttribute("title");
