@@ -24,9 +24,6 @@ import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.*;
 import static org.junit.Assert.assertThat;
 
-/**
- * Created by Viachaslau_Balashevi on 1/3/2017.
- */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PekamaResetPassword {
     private String RANDON_8_LETTER = "";
@@ -152,7 +149,7 @@ public class PekamaResetPassword {
     }
     @Ignore
     @Test
-    public void testPassed() {
+    public void submitNewValidPassword() {
         String RANDOM_8_LETTER = Utils.getRandomString(8);
         System.out.println(RANDOM_8_LETTER);
         log.info("Test obove passed - "+RANDOM_8_LETTER);
