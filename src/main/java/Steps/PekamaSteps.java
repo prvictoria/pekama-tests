@@ -1,6 +1,5 @@
 package Steps;
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -14,7 +13,6 @@ import static com.codeborne.selenide.Selectors.byLinkText;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.url;
 import static junit.framework.TestCase.fail;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -102,6 +100,7 @@ public class PekamaSteps {
         $$(byText(thisMailingListName));
         $(byLinkText(thisMailingListName)).waitUntil(visible, 10000);
         $(byXpath(REPORTS_MAILING_SAVE_SEARCH_DROPDOWN)).pressEscape();
+        sleep(500);
         rootLogger.info("Mailing List was created - "+ thisMailingListName);
         return thisMailingListName;
     }
@@ -109,43 +108,54 @@ public class PekamaSteps {
     public static String mailingListSendReport(String thisMailingListName){
         $(byLinkText(thisMailingListName)).click();
         String REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME = "//li[//a[contains(.,'"+ thisMailingListName +"')]]";
-        $(byXpath(REPORTS_MAILING_LISTS+REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME+REPORTS_MAILING_LISTS_BTN_CALL_ML)).click();
+        String pathToReport = REPORTS_MAILING_LISTS+REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME+REPORTS_MAILING_LISTS_BTN_CALL_ML;
+        $(byXpath(pathToReport)).click();
         String actualMailingListRow = REPORTS_MAILING_LISTS+REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME;
         $(byLinkText(REPORTS_MAILING_LISTS_CALL_MW)).click();
 
         $(byXpath(MW)).shouldBe(visible);
         $(byText("Mailing List")).shouldBe(Condition.visible);
-        rootLogger.info("Set checkbox");
+        rootLogger.info("Set checkbox and Set interval - new ML");
         if ( $(byXpath(MW_MAILING_1USER_SELECT)).is(not(checked))) {
             $(byXpath(MW_MAILING_1USER_SELECT)).waitUntil(visible, 2000).click();
+
         }
-        rootLogger.info("Set interval");
+        rootLogger.info("Set checkbox and Set interval - old ML");
         if ( $(byXpath(MW_MAILING_1USER_INTERVAL)).is(not(empty))) {
+            rootLogger.info("Send Project report - old report");
             $(byXpath(MW_MAILING_1USER_INTERVAL)).clear();
             $(byXpath(MW_MAILING_1USER_INTERVAL)).sendKeys("999");
+            $(byXpath(MW_MAILING_LIST_BTN_SEND_NOW)).waitUntil(visible, 10000).waitUntil(enabled, 10000).click();
+            sleep(5000);
         }
-        rootLogger.info("Send Project report");
-        sleep(500);
-        // todo why not changed button state
-        $(byXpath(MW_MAILING_LIST_BTN_SAVE_AND_SEND_NOW)).waitUntil(enabled, 10000).click();
-        $(byXpath(MW_MAILING_LIST_BTN_SAVE_AND_SEND_NOW)).waitUntil(hidden, 20000);
-        sleep(5000);
-        $(byXpath(MW_MAILING_LIST_BTN_SEND_NOW)).waitUntil(visible, 10000).waitUntil(enabled, 10000);
-        sleep(500);
+            else {
+            $(byXpath(MW_MAILING_1USER_INTERVAL)).sendKeys("999");
+            rootLogger.info("Send Project report - new report");
+            sleep(500);
+            $(byXpath(MW_MAILING_LIST_BTN_SAVE_AND_SEND_NOW)).waitUntil(enabled, 10000).click();
+            $(byXpath(MW_MAILING_LIST_BTN_SAVE_AND_SEND_NOW)).waitUntil(hidden, 20000);
+            sleep(5000);
+            $(byXpath(MW_MAILING_LIST_BTN_SEND_NOW)).waitUntil(visible, 10000).waitUntil(enabled, 10000);
+            sleep(1000);
+        }
         rootLogger.info("Report was sent");
         $(byXpath(MW)).pressEscape();
         $(byText("Mailing List")).shouldNotBe(Condition.visible);
+        sleep(500);
+
         return actualMailingListRow;
     }
     public static void mailingListDeleteReport(String thisMailingListName){
         String REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME = "//li[//a[contains(.,'"+ thisMailingListName +"')]]";
-        $(byLinkText(thisMailingListName)).click();
-        sleep(1000);
-//        $(byLinkText(thisMailingListName)).find(byXpath(REPORTS_MAILING_LISTS_BTN_CALL_ML)).click();
-        $(byXpath(REPORTS_MAILING_LISTS+REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME+REPORTS_MAILING_LISTS_BTN_CALL_ML)).click();
-        String actualMailingListRow = REPORTS_MAILING_LISTS+REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME;
+        String pathToReportRowMenu = REPORTS_MAILING_LISTS+REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME+REPORTS_MAILING_LISTS_BTN_CALL_ML;
+        if ($(byXpath(pathToReportRowMenu)).is(not(visible))) {
+            $(byLinkText(thisMailingListName)).waitUntil(visible, 10000).click();
+            sleep(1000);
+        }
+        $(byXpath(pathToReportRowMenu)).click();
         rootLogger.info("Delete list");
         $(byLinkText(REPORTS_MAILING_LISTS_DELETE_MW)).click();
+        sleep(500);
         submitConfirmAction();
  //       $(byText(thisMailingListName)).shouldNotBe(Condition.visible);
     }

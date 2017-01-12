@@ -39,11 +39,11 @@ public class PekamaReports {
         waitForSpinnerNotPresent();
         rootLogger.info("Open Dropdown and create new mailing list");
         PekamaSteps mailingList = new PekamaSteps();
-//        mailingList.mailingListCreateNew(thisMailingListName);
-//        rootLogger.info("Send report");
-        mailingList.mailingListSendReport(thisMailingListName);
+        mailingList.mailingListCreateNew(thisMailingListName);
+        rootLogger.info("Send report");
+        mailingListSendReport(thisMailingListName);
         rootLogger.info("Delete mailing list");
-        mailingList.mailingListDeleteReport(thisMailingListName);
+        mailingListDeleteReport(thisMailingListName);
         rootLogger.info("Open Mailing list");
 
 
