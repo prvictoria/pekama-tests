@@ -1,5 +1,6 @@
 package com.pekama.app;
 import Steps.ExternalSteps;
+import Steps.PekamaSteps;
 import Utils.*;
 import com.codeborne.selenide.Condition;
 import com.pekama.app.draft.LoginGmail;
@@ -159,9 +160,13 @@ public class PekamaResetPassword {
             rootLogger.info("Start test - "+"User submitted invalid password");
             rootLogger.info("Open URL - " +REDIRECT_LINK);
             HttpAuth openHost = new HttpAuth();
-            String AUTH_URL = REDIRECT_LINK;
+            String AUTH_URL = urlLogIn;
             openHost.httpAuthWhithCustomLink(AUTH_URL);
             sleep(1000);
+            PekamaSteps loginWithNewPAssword = new PekamaSteps();
+            String USER_PEKAMA_PASSWORD = NEW_PASSWORD;
+            String PEKAMA_USER_EMAIL = User4.GMAIL_EMAIL.getValue();
+            loginWithNewPAssword.submitLoginCredentials(PEKAMA_USER_EMAIL,USER_PEKAMA_PASSWORD);
             rootLogger.info("Validation test");
             $(byXpath(NEWPASSWORD_PAGE_NEW_PASSWORD)).waitUntil(visible, 10000).sendKeys(User1.GMAIL_EMAIL.getValue());
             $(byXpath(NEWPASSWORD_PAGE_CONFIRM_PASSWORD)).shouldBe(Condition.visible).sendKeys(User1.GMAIL_EMAIL.getValue());
