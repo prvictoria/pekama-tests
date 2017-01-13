@@ -1,5 +1,4 @@
 package com.pekama.app;
-import Page.TestsCredentials;
 import com.codeborne.selenide.Condition;
 import org.junit.Before;
 import org.junit.Test;
@@ -55,7 +54,7 @@ public class PekamaLanding {
         sleep(1000);
         $(By.xpath(lOGIN_TITLE)).shouldBe(Condition.visible).shouldHave(Condition.text(lOGIN_TITLE_TEXT));
         $(loginField_Email).sendKeys(User1.GMAIL_EMAIL.getValue());
-        $(loginField_Password).sendKeys(USER_PEKAMA_PASSWORD);
+        $(loginField_Password).sendKeys(GENERIC_PEKAMA_PASSWORD);
         $(By.xpath(loginButton_Login)).click();
         $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));
         $(By.xpath(btnSignup)).shouldBe(Condition.not(visible));

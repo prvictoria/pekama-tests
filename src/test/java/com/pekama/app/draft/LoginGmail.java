@@ -22,7 +22,7 @@ import static com.codeborne.selenide.Selenide.*;
 public class LoginGmail {
     static final Logger logging = LogManager.getLogger(LoginGmail.class);
     String GMAIL_LOGIN = User1.GMAIL_EMAIL.getValue();
-    String GMAIL_PASSWORD = USER_GMAIL_PASSWORD;
+    String GMAIL_PASSWORD = User1.GMAIL_PASSWORD.getValue();
     String EMAIL_SUBJECT = EMAIL_RESET_PASSWORD_SUBJECT;
     String EMAIL_TITLE = EMAIL_RESET_PASSWORD_TITLE;
     String EMAIL_TEXT = EMAIL_RESET_PASSWORD_TEXT;

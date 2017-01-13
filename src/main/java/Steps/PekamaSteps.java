@@ -25,13 +25,50 @@ public class PekamaSteps {
         rootLogger.info(urlLogIn+ "opened");
         $(loginField_Email).sendKeys(PEKAMA_USER_EMAIL);
         rootLogger.info(PEKAMA_USER_EMAIL+ " - login selected");
+        $(loginField_Password).sendKeys(GENERIC_PEKAMA_PASSWORD);
+        $(By.xpath(loginButton_Login)).click();
+        $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));
+        $(By.xpath(btnSignup)).shouldBe(Condition.not(visible));
+        rootLogger.info("Valid Credentials were submitted");
+    }
+    public void  loginIntoPekamaByUrl(String PEKAMA_USER_EMAIL, String USER_PEKAMA_PASSWORD, String urlLogIn){
+        open(urlLogIn); //HOST define PEKAMA or COMMUNITY redirect after login
+        rootLogger.info(urlLogIn+ "opened");
+        $(loginField_Email).sendKeys(PEKAMA_USER_EMAIL);
+        rootLogger.info(PEKAMA_USER_EMAIL+ " - login selected");
         $(loginField_Password).sendKeys(USER_PEKAMA_PASSWORD);
         $(By.xpath(loginButton_Login)).click();
         $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));
         $(By.xpath(btnSignup)).shouldBe(Condition.not(visible));
         rootLogger.info("Valid Credentials were submitted");
     }
+
+
     public void  submitLoginCredentials(String PEKAMA_USER_EMAIL){
+        submitCookie();
+//        String index = $(byXpath("//body/div[2]/iframe")).getAttribute("z-index");
+//        rootLogger.info("z-index "+index);
+//        Wait().until(frameToBeAvailableAndSwitchToIt(byXpath("//body/div[2]/iframe")));
+//        switchTo().frame($(byXpath("//body/div[2]/iframe"))); // z-index: 16000003
+//        $(byXpath("//div[@title='Minimize']"));
+//        if($(byXpath("//div[@title='Minimize']"))!= null) {
+//            $(byXpath("//div[@title='Minimize']")).hover().click();
+//            rootLogger.info("null");
+//        }
+//        if($(byXpath("//div[@title='Minimize']")).hover().isDisplayed()) {
+//            $(byXpath("//div[@title='Minimize']")).hover().click();
+//            rootLogger.info("displayed");
+//        }
+        $(loginField_Email).sendKeys(PEKAMA_USER_EMAIL);
+        rootLogger.info(PEKAMA_USER_EMAIL+ " - login selected");
+        $(loginField_Password).sendKeys(GENERIC_PEKAMA_PASSWORD);
+        $(By.xpath(loginButton_Login)).click();
+        $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));
+        sleep(1000);
+        rootLogger.info("Valid Credentials were submitted");
+
+    }
+    public void  submitLoginCredentials(String PEKAMA_USER_EMAIL, String USER_PEKAMA_PASSWORD){
         submitCookie();
 //        String index = $(byXpath("//body/div[2]/iframe")).getAttribute("z-index");
 //        rootLogger.info("z-index "+index);
@@ -55,6 +92,7 @@ public class PekamaSteps {
         rootLogger.info("Valid Credentials were submitted");
 
     }
+
     public void  submitCookie(){
         rootLogger.info("Check if cookie present");
         sleep(500);

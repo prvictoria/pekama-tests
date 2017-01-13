@@ -101,9 +101,10 @@ public class TestsCredentials {
         System.out.println(User1.FULL_TEAM_NAME.value);
 
     }
-    public static final String USER_PEKAMA_PASSWORD = "asui67we34";
-    public static final String USER_GMAIL_PASSWORD = "123456789qasw1";
-    public static final String GMAIL_LOGIN = "";
+
+    public static final String GENERIC_PEKAMA_PASSWORD = "asui67we34";
+    public static final String GENERIC_GMAIL_PASSWORD = "123456789qasw1";
+    public static final String GENERIC_GMAIL_LOGIN = "123456789@gmail.com";
     public static final String GMAIL_PASSWORD = "123456789qasw1";
 
     public static final String teamTest01 = "Qweeco01 (QT01)";

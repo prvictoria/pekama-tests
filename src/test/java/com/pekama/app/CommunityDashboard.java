@@ -50,7 +50,7 @@ public class CommunityDashboard {
         $(By.xpath(COMMUNITY_HEADER_LOGIN)).shouldBe(Condition.visible).click();
         sleep(1500);
         $(loginField_Email).sendKeys(User1.GMAIL_EMAIL.getValue());
-        $(loginField_Password).sendKeys(USER_PEKAMA_PASSWORD);
+        $(loginField_Password).sendKeys(GENERIC_PEKAMA_PASSWORD);
         $(By.xpath(loginButton_Login)).click();
         $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));
         $(By.xpath(btnSignup)).shouldBe(Condition.not(visible));
@@ -97,7 +97,7 @@ public class CommunityDashboard {
         $(By.xpath(COMMUNITY_INNRER_BTN_LOGIN)).click();
         sleep(1500);
         $(loginField_Email).sendKeys(User1.GMAIL_EMAIL.getValue());
-        $(loginField_Password).sendKeys(USER_PEKAMA_PASSWORD);
+        $(loginField_Password).sendKeys(GENERIC_PEKAMA_PASSWORD);
         $(By.xpath(loginButton_Login)).click();
         $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));
         $(By.xpath(btnSignup)).shouldBe(Condition.not(visible));
@@ -128,7 +128,7 @@ public class CommunityDashboard {
         $(By.xpath(COMMUNITY_INNRER_BTN_LOGIN)).click();
         sleep(1500);
         $(loginField_Email).sendKeys(User1.GMAIL_EMAIL.getValue());
-        $(loginField_Password).sendKeys(USER_PEKAMA_PASSWORD);
+        $(loginField_Password).sendKeys(GENERIC_PEKAMA_PASSWORD);
         $(By.xpath(loginButton_Login)).click();
         $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));
         $(By.xpath(btnSignup)).shouldBe(Condition.not(visible));
@@ -159,7 +159,7 @@ public class CommunityDashboard {
         $(By.xpath(COMMUNITY_INNRER_BTN_LOGIN)).click();
         sleep(1500);
         $(loginField_Email).sendKeys(User1.GMAIL_EMAIL.getValue());
-        $(loginField_Password).sendKeys(USER_PEKAMA_PASSWORD);
+        $(loginField_Password).sendKeys(GENERIC_PEKAMA_PASSWORD);
         $(By.xpath(loginButton_Login)).click();
         $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));
         $(By.xpath(btnSignup)).shouldBe(Condition.not(visible));
@@ -190,7 +190,7 @@ public class CommunityDashboard {
         $(By.xpath(COMMUNITY_INNRER_BTN_LOGIN)).click();
         sleep(1500);
         $(loginField_Email).sendKeys(User1.GMAIL_EMAIL.getValue());
-        $(loginField_Password).sendKeys(USER_PEKAMA_PASSWORD);
+        $(loginField_Password).sendKeys(GENERIC_PEKAMA_PASSWORD);
         $(By.xpath(loginButton_Login)).click();
         $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));
         $(By.xpath(btnSignup)).shouldBe(Condition.not(visible));
