@@ -11,6 +11,7 @@ public class TestsUrl {
     public static final String urlLogout = SELECT_HOST+"/accounts/logout";
     public static final String urlResetPassword = SELECT_HOST+"/accounts/password/reset/";
     public static final String urlResetPasswordSuccess = SELECT_HOST+"/accounts/password/reset/done/";
+    public static final String urlResetPasswordComplete = SELECT_HOST+"/accounts/password/reset/complete/";
     public static final String urlLanding = SELECT_HOST+"/";
     public static final String urlDashboard = SELECT_HOST+"/a/dashboard";
 

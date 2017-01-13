@@ -64,6 +64,7 @@ public class ExternalSteps {
             $(byXpath(INBOX_BTN_DELETE)).waitUntil(visible, 10000).click();
             sleep(500);
             $(byXpath(INBOX_BTN_DELETE)).waitUntil(not(visible), 10000);
+            ExternalSteps.inboxEmptyTrash();
             if (REDIRECT_LINK == null) {
                 Assert.fail("Redirect Link not found");
             }
@@ -116,17 +117,16 @@ public class ExternalSteps {
     }
     public static void inboxEmptyTrash(){
         sleep(1000);
-        $(byXpath(INBOX_BTN_TRASH)).waitUntil(visible, 10000).click();
-        $(byXpath(INBOX_BTN_EMPTY_TRASH)).waitUntil(visible, 10000).click();
-        $(byXpath(INBOX_BTN_TRASH)).waitUntil(visible, 10000).click();
+        $(byText(INBOX_BTN_TRASH)).waitUntil(visible, 10000).click();
+        sleep(1000);
+        $(byText(INBOX_BTN_EMPTY_TRASH)).waitUntil(visible, 10000).click();
+        sleep(1000);
+        $(byText(INBOX_BTN_TRASH)).waitUntil(visible, 10000).click();
         sleep(1000);
         $(byText("Nothing in Trash")).waitUntil(visible, 10000);
         logging.info("Trash cleared");
             if ($(byText("Nothing in Trash")) == null) {
                 Assert.fail("Trash NOT cleared");
             }
-
     }
-
-
 }

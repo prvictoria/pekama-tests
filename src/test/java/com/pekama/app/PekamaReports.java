@@ -57,7 +57,7 @@ public class PekamaReports {
     @Ignore
     @Test
     public void sendTasksReport() {
-  //      open(urlReportsTasks);
+//        open(urlReportsTasks);
         rootLogger.info("Open Project reports");
         ExternalSteps loginGmailInboxApp = new ExternalSteps();
         String GMAIL_LOGIN = User3.GMAIL_EMAIL.getValue();
@@ -80,7 +80,7 @@ public class PekamaReports {
         rootLogger.info("Open Project reports");
 
     }
-
+    @Ignore
     @Test
     public void sendContactsReport() {
         rootLogger.info("Open Contacts reports");
