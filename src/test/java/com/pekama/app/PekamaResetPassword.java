@@ -24,6 +24,8 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.url;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -160,13 +162,10 @@ public class PekamaResetPassword {
             rootLogger.info("Start test - "+"User submitted invalid password");
             rootLogger.info("Open URL - " +REDIRECT_LINK);
             HttpAuth openHost = new HttpAuth();
-            String AUTH_URL = urlLogIn;
+            String AUTH_URL = REDIRECT_LINK;
             openHost.httpAuthWhithCustomLink(AUTH_URL);
             sleep(1000);
-            PekamaSteps loginWithNewPAssword = new PekamaSteps();
-            String USER_PEKAMA_PASSWORD = NEW_PASSWORD;
-            String PEKAMA_USER_EMAIL = User4.GMAIL_EMAIL.getValue();
-            loginWithNewPAssword.submitLoginCredentials(PEKAMA_USER_EMAIL,USER_PEKAMA_PASSWORD);
+
             rootLogger.info("Validation test");
             $(byXpath(NEWPASSWORD_PAGE_NEW_PASSWORD)).waitUntil(visible, 10000).sendKeys(User1.GMAIL_EMAIL.getValue());
             $(byXpath(NEWPASSWORD_PAGE_CONFIRM_PASSWORD)).shouldBe(Condition.visible).sendKeys(User1.GMAIL_EMAIL.getValue());
@@ -200,15 +199,23 @@ public class PekamaResetPassword {
     @Ignore
     @Test
     public void resetPassword_Q() {
-        if (REDIRECT_LINK != null) {
-            rootLogger.info("Open URL - " +REDIRECT_LINK);
+        if (NEW_PASSWORD != null) {
+            rootLogger.info("Open URL - " +urlDashboard);
             HttpAuth openHost = new HttpAuth();
-            String AUTH_URL = REDIRECT_LINK;
+            String AUTH_URL = urlDashboard;
             openHost.httpAuthWhithCustomLink(AUTH_URL);
             sleep(1000);
-            //todo - override arg in login
-        rootLogger.info("Login into Pekama with valid credentials");
+
+            PekamaSteps loginWithNewPAssword = new PekamaSteps();
+            String USER_PEKAMA_PASSWORD = NEW_PASSWORD;
+            String PEKAMA_USER_EMAIL = User4.GMAIL_EMAIL.getValue();
+            loginWithNewPAssword.submitLoginCredentials(PEKAMA_USER_EMAIL,USER_PEKAMA_PASSWORD);
+            sleep(1000);
+                String thisUrl = url();
+                assertEquals(thisUrl, urlDashboard);
+        rootLogger.info("Login into Pekama with NEW valid credentials");
         }
+        else Assert.fail("password - "+NEW_PASSWORD);
     }
     @Ignore
     @Test
@@ -239,7 +246,9 @@ public class PekamaResetPassword {
             $(byText("")).waitUntil(visible, 10000); //todo
             rootLogger.info("Validation old password present");
         }
+        else Assert.fail("password - "+NEW_PASSWORD);
     }
+
 
     @Test
     public void resetPassword_Z() {
