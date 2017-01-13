@@ -30,8 +30,8 @@ import static org.junit.Assert.assertThat;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PekamaResetPassword {
-    public static String SELECT_HOST = PEKAMA;
     static final Logger rootLogger = LogManager.getLogger(LoginGmail.class);
+    public static String SELECT_HOST = PEKAMA;
     public static String NEW_PASSWORD = null;
     String GMAIL_LOGIN = User4.GMAIL_EMAIL.getValue();
     String GMAIL_PASSWORD = User4.GMAIL_PASSWORD.getValue();

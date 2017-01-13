@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2fcdccdc-4d95-4ab7-8153-9ec9d616e50f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pekama-tests.iws" afterPath="$PROJECT_DIR$/pekama-tests.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/Emails.java" afterPath="$PROJECT_DIR$/src/main/java/Page/Emails.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Steps/ExternalSteps.java" afterPath="$PROJECT_DIR$/src/main/java/Steps/ExternalSteps.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaResetPassword.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaResetPassword.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -225,8 +223,8 @@
       <file leaf-file-name="PekamaResetPassword.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaResetPassword.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
-              <caret line="245" column="67" lean-forward="true" selection-start-line="245" selection-start-column="67" selection-end-line="245" selection-end-column="67" />
+            <state relative-caret-position="550">
+              <caret line="36" column="60" lean-forward="true" selection-start-line="36" selection-start-column="60" selection-end-line="36" selection-end-column="60" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1164,13 +1162,6 @@
       <workItem from="1484153364668" duration="19211000" />
       <workItem from="1484243545877" duration="7375000" />
     </task>
-    <task id="LOCAL-00042" summary="Community dashboard">
-      <created>1483644802681</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1483644802681</updated>
-    </task>
     <task id="LOCAL-00043" summary="Community dashboard">
       <created>1483686902087</created>
       <option name="number" value="00043" />
@@ -1507,7 +1498,14 @@
       <option name="project" value="LOCAL" />
       <updated>1484308523998</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="Reuse password validation test">
+      <created>1484313894040</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1484313894040</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1629,7 +1627,8 @@
     <MESSAGE value="Overide args for login reset password tests&#10;static var for NEW_PASSWORD" />
     <MESSAGE value="Overload signature in login" />
     <MESSAGE value="Fix Inbox empty trash" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix Inbox empty trash" />
+    <MESSAGE value="Reuse password validation test" />
+    <option name="LAST_COMMIT_MESSAGE" value="Reuse password validation test" />
   </component>
   <component name="VssConfiguration">
     <CheckoutOptions>
@@ -2101,8 +2100,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaResetPassword.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="245" column="67" lean-forward="true" selection-start-line="245" selection-start-column="67" selection-end-line="245" selection-end-column="67" />
+        <state relative-caret-position="550">
+          <caret line="36" column="60" lean-forward="true" selection-start-line="36" selection-start-column="60" selection-end-line="36" selection-end-column="60" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
