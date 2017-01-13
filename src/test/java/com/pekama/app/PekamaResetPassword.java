@@ -30,6 +30,14 @@ public class PekamaResetPassword {
     private String RANDON_8_LETTER = "";
     public static String SELECT_HOST = PEKAMA;
     static final Logger rootLogger = LogManager.getLogger(LoginGmail.class);
+    public static String NEW_PASSWORD = null;
+    String GMAIL_LOGIN = User4.GMAIL_EMAIL.getValue();
+    String GMAIL_PASSWORD = User4.GMAIL_PASSWORD.getValue();
+    String EMAIL_SUBJECT = EMAIL_RESET_PASSWORD_SUBJECT;
+    String EMAIL_TITLE = EMAIL_RESET_PASSWORD_TITLE;
+    String EMAIL_TEXT = EMAIL_RESET_PASSWORD_TEXT;
+    String EMAIL_BTN = EMAIL_RESET_PASSWORD_BTN;
+    String EMAIL_REDIRECT_LINK = EMAIL_RESET_PASSWORD_BACKLINK;
 
     @Test
     public void openResetPassword() {
@@ -59,13 +67,6 @@ public class PekamaResetPassword {
     @Test
     public void resetPassword_A() {
         REDIRECT_LINK = null;
-        String GMAIL_LOGIN = User4.GMAIL_EMAIL.getValue();
-        String GMAIL_PASSWORD = User4.GMAIL_PASSWORD.getValue();
-        String EMAIL_SUBJECT = EMAIL_RESET_PASSWORD_SUBJECT;
-        String EMAIL_TITLE = EMAIL_RESET_PASSWORD_TITLE;
-        String EMAIL_TEXT = EMAIL_RESET_PASSWORD_TEXT;
-        String EMAIL_BTN = EMAIL_RESET_PASSWORD_BTN;
-        String EMAIL_REDIRECT_LINK = EMAIL_RESET_PASSWORD_BACKLINK;
         rootLogger.info("Open URL - " + urlResetPassword);
         HttpAuth openHost = new HttpAuth();
         String AUTH_URL = urlResetPassword;
@@ -78,12 +79,10 @@ public class PekamaResetPassword {
         $(byXpath(RESET_PAGE_SUCCESS)).shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_SUCCESS_MSG));
         String testSuccessMsg = $(byXpath(RESET_PAGE_SUCCESS)).getText();
         rootLogger.info(testSuccessMsg + " displayed, valid email submitted");
-
         ExternalSteps loginGmailInboxApp = new ExternalSteps();
         loginGmailInboxApp.signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
         rootLogger.info("Inbox Email opened");
         loginGmailInboxApp.checkInboxEmail(EMAIL_SUBJECT, EMAIL_TITLE, EMAIL_TEXT, EMAIL_BTN, EMAIL_REDIRECT_LINK);
-        rootLogger.info("Reset Mail detected");
         rootLogger.info("Email and links correspond requirements");
     }
     @Test
@@ -157,6 +156,7 @@ public class PekamaResetPassword {
     @Test
     public void resetPassword_F() {
         if (REDIRECT_LINK != null) {
+            rootLogger.info("Start test - "+"User submitted invalid password");
             rootLogger.info("Open URL - " +REDIRECT_LINK);
             HttpAuth openHost = new HttpAuth();
             String AUTH_URL = REDIRECT_LINK;
@@ -169,12 +169,11 @@ public class PekamaResetPassword {
             $$(byXpath(RESET_PAGE_ERROR)).filter(visible).shouldHave(size(2));
             $(byText(ERROR_MSG_FAMILIAR_TO_EMAIL_PASSWORD)).shouldBe(visible);
             $(byText(ERROR_MSG_WEAK_PASSWORD)).shouldBe(visible);
-            rootLogger.info("Validation test");
             rootLogger.info("User submitted invalid password");
         }
     }
     @Test
-    public void resetPassword_X() {
+    public void resetPassword_P() {
         if (REDIRECT_LINK != null) {
             rootLogger.info("Open URL - " +REDIRECT_LINK);
             HttpAuth openHost = new HttpAuth();
@@ -184,26 +183,59 @@ public class PekamaResetPassword {
             rootLogger.info("Positive test");
             //need random passwrord +constant
             String RANDOM_8_LETTER = Utils.getRandomString(8);
-            $(byXpath(NEWPASSWORD_PAGE_NEW_PASSWORD)).shouldBe(Condition.visible).sendKeys(VALID_PASSWORD+RANDOM_8_LETTER);
-            $(byXpath(NEWPASSWORD_PAGE_CONFIRM_PASSWORD)).shouldBe(Condition.visible).sendKeys(VALID_PASSWORD+RANDOM_8_LETTER);
+            NEW_PASSWORD = VALID_PASSWORD+RANDOM_8_LETTER;
+            $(byXpath(NEWPASSWORD_PAGE_NEW_PASSWORD)).shouldBe(Condition.visible).sendKeys(NEW_PASSWORD);
+            $(byXpath(NEWPASSWORD_PAGE_CONFIRM_PASSWORD)).shouldBe(Condition.visible).sendKeys(NEW_PASSWORD);
             $(byXpath(NEWPASSWORD_PAGE_RESTORE_BTN)).click();
-            $(byText("")).waitUntil(visible, 10000);
+            $(byText("")).waitUntil(visible, 10000); //todo
             rootLogger.info("User submitted valid credentials");
         }
         else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
     }
     @Ignore
     @Test
-    public void resetPassword_Y() {
+    public void resetPassword_Q() {
         if (REDIRECT_LINK != null) {
             rootLogger.info("Open URL - " +REDIRECT_LINK);
             HttpAuth openHost = new HttpAuth();
             String AUTH_URL = REDIRECT_LINK;
             openHost.httpAuthWhithCustomLink(AUTH_URL);
             sleep(1000);
+            //todo - override arg in login
         rootLogger.info("Login into Pekama with valid credentials");
         }
     }
+    @Ignore
+    @Test
+    public void resetPassword_S() {
+        if (NEW_PASSWORD != null) {
+            rootLogger.info("User password - " +NEW_PASSWORD);
+            HttpAuth openHost = new HttpAuth();
+            String AUTH_URL = urlResetPassword;
+            openHost.httpAuthWhithCustomLink(AUTH_URL);
+            sleep(1000);
+            $(byXpath(RESET_PAGE_TITLE)).shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_TITLE_TEXT));
+            $(byXpath(RESET_PAGE_EMAIL)).sendKeys(User4.GMAIL_EMAIL.getValue());
+            $(byXpath(RESET_PAGE_RESET_BTN)).click();
+            sleep(1000);
+            $(byXpath(RESET_PAGE_SUCCESS)).shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_SUCCESS_MSG));
+            String testSuccessMsg = $(byXpath(RESET_PAGE_SUCCESS)).getText();
+            rootLogger.info(testSuccessMsg + " displayed, valid email submitted");
+            ExternalSteps loginGmailInboxApp = new ExternalSteps();
+            loginGmailInboxApp.signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
+            rootLogger.info("Inbox Email opened");
+            loginGmailInboxApp.checkInboxEmail(EMAIL_SUBJECT, EMAIL_TITLE, EMAIL_TEXT, EMAIL_BTN, EMAIL_REDIRECT_LINK);
+            rootLogger.info("Email and links correspond requirements");
+
+            open(REDIRECT_LINK);
+            $(byXpath(NEWPASSWORD_PAGE_NEW_PASSWORD)).waitUntil(visible, 10000).sendKeys(NEW_PASSWORD);
+            $(byXpath(NEWPASSWORD_PAGE_CONFIRM_PASSWORD)).shouldBe(Condition.visible).sendKeys(NEW_PASSWORD);
+            $(byXpath(NEWPASSWORD_PAGE_RESTORE_BTN)).click();
+            $(byText("")).waitUntil(visible, 10000); //todo
+            rootLogger.info("Validation old password present");
+        }
+    }
+
     @Test
     public void resetPassword_Z() {
         if (REDIRECT_LINK != null) {
@@ -218,6 +250,7 @@ public class PekamaResetPassword {
             rootLogger.info(REDIRECT_LINK);
         }
         else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
+
     }
 
 

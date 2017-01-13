@@ -31,6 +31,8 @@ public class PekamaSteps {
         $(By.xpath(btnSignup)).shouldBe(Condition.not(visible));
         rootLogger.info("Valid Credentials were submitted");
     }
+
+
     public void  submitLoginCredentials(String PEKAMA_USER_EMAIL){
         submitCookie();
 //        String index = $(byXpath("//body/div[2]/iframe")).getAttribute("z-index");

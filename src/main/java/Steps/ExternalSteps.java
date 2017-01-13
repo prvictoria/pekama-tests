@@ -101,34 +101,32 @@ public class ExternalSteps {
         if (backLink == null) {
             Assert.fail("Link to pekama reports not found");
         }
-//        String attachmentPath = "//div[@title][contains(.,'Projects Report Mailing List')][contains(.,'csv')]";
+        ExternalSteps.checkEmailReportAttachment();
+        ExternalSteps.inboxEmptyTrash();
+        return backLink;
+    }
+
+    public static String checkEmailReportAttachment(){
         String attachmentFullTitle = $(byXpath(EMAIL_REPORT_ATTACHMENT)).getAttribute("title");
         logging.info("This attachment present in mail - " +attachmentFullTitle);
-        //        $(byXpath(INBOX_BTN_DELETE)).click();
-//        $(byXpath(INBOX_BTN_DELETE)).shouldBe(disappear);
-//        logging.info("Email deleted");
-        return attachmentFullTitle;
-    }
-    // todo - check attachment logic
-    public static String checkEmailReportAttachment(String EMAIL_SUBJECT, String EMAIL_TITLE, String EMAIL_TEXT, String EMAIL_BACKLINK, String EMAIL_ATTACHMENT_PATH){
-
-
-
-
-        $(byXpath(EMAIL_SUBJECT)).waitUntil(visible, 10000).click();
-        logging.info("Email by subject found");
-        $(byXpath(INBOX_BTN_DELETE)).waitUntil(visible, 10000);
-        $$(byText(EMAIL_TEXT)).filter(visible).shouldHave(size(1));
-        logging.info(EMAIL_TITLE+ "- email present");
-        String actualBackLink = $(By.xpath(EMAIL_BACKLINK)).getAttribute("href");
-        logging.info("This link present in mail - " +actualBackLink);
-        $(byXpath(INBOX_BTN_DELETE)).click();
-        $(byXpath(INBOX_BTN_DELETE)).shouldBe(disappear);
-        logging.info("Email deleted");
-        if (actualBackLink == null) {
+        if (attachmentFullTitle == null) {
             Assert.fail("Redirect Link not found");
         }
-        return actualBackLink;
+        return attachmentFullTitle;
     }
+    public static void inboxEmptyTrash(){
+        sleep(1000);
+        $(byXpath(INBOX_BTN_TRASH)).waitUntil(visible, 10000).click();
+        $(byXpath(INBOX_BTN_EMPTY_TRASH)).waitUntil(visible, 10000).click();
+        $(byXpath(INBOX_BTN_TRASH)).waitUntil(visible, 10000).click();
+        sleep(1000);
+        $(byText("Nothing in Trash")).waitUntil(visible, 10000);
+        logging.info("Trash cleared");
+            if ($(byText("Nothing in Trash")) == null) {
+                Assert.fail("Trash NOT cleared");
+            }
+
+    }
+
 
 }

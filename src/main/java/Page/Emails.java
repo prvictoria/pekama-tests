@@ -39,6 +39,9 @@ public class Emails {
     public static final String INBOX_BTN_DELETE = "//div[@jsaction='global.none']/ul/li[3][@role='button' and @title='Delete']";
     public static final String INBOX_MENU_REPLY = "//div[@role='button'][@title='Reply, Forward & more']";
     public static final String INBOX_MENU_SHOW_ORIGINAL = "//span[@class='do'][@title='Show original']";
+    public static final String INBOX_BTN_TRASH = "//span[@title='Trash']";
+    public static final String INBOX_BTN_EMPTY_TRASH = "//button[contains(.,'EMPTY TRASH NOW')]";
+    public static final String INBOX_CONFIRM_EMPTY_TRASH = "//div[@role='dialog']//div/div[contains(.,'OK')]";
 
     public static final String GMAIL_URL = "https://mail.google.com/mail/u/0/#inbox";
     public static final String GMAIL_LOGIN_FIELD = "Email";
