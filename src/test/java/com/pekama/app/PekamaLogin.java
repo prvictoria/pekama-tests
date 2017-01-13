@@ -81,27 +81,28 @@ public class PekamaLogin {
         $(loginField_Password).getAttribute("required");
         assertTrue($(loginField_Password).getAttribute("required"), true);
 
-        //Case login only
         $(loginField_Password).sendKeys("asusdsdsdsi67we34");
         $(By.xpath(loginButton_Login)).click();
         $(By.xpath(btnLogin)).shouldBe(visible);
         $(By.xpath(btnSignup)).shouldBe(visible);
         $(loginField_Password).clear();
         $(loginField_Password).shouldBe(empty);
-        //Case password only
+        rootLogger.info("Login only was submitted");
+
         $(loginField_Email).sendKeys("testsdsdsds001@gmail.com");
         $(By.xpath(loginButton_Login)).click();
         $(loginField_Email).clear();
         $(loginField_Email).shouldBe(empty);
         $(By.xpath(btnLogin)).shouldBe(visible);
         $(By.xpath(btnSignup)).shouldBe(visible);
-        //Case all blank
+        rootLogger.info("Password only was submitted");
+
         $(loginField_Password).clear();
         $(loginField_Email).clear();
         $(By.xpath(loginButton_Login)).click();
         $(By.xpath(btnLogin)).shouldBe(visible);
         $(By.xpath(btnSignup)).shouldBe(visible);
-
+        rootLogger.info("Blank Credentials were submitted");
     }
     @Test
     public void validCredentials() {

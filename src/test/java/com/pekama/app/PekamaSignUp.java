@@ -15,6 +15,7 @@ import static Page.PekamaSignUp.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.TestsUrlConfiguration.*;
+import static Steps.ExternalSteps.checkInboxEmail;
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
@@ -190,9 +191,7 @@ public class PekamaSignUp {
         $(byText("Confirm your Account")).shouldBe(visible);
         $(byText("You were sent an email message with the account activation link. Please check your inbox.")).shouldBe(visible);
         rootLogger.info(ERROR_MSG_EMAIL_IS_USED);
-        ExternalSteps loginGmailInboxApp = new ExternalSteps();
-        loginGmailInboxApp.signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
-        actualBackLink = loginGmailInboxApp.checkInboxEmail(EMAIL_SUBJECT, EMAIL_TITLE, EMAIL_TEXT, EMAIL_BTN, EMAIL_REDIRECT_LINK);
+        actualBackLink = checkInboxEmail(GMAIL_LOGIN, GMAIL_PASSWORD,EMAIL_SUBJECT, EMAIL_TITLE, EMAIL_TEXT, EMAIL_BTN, EMAIL_REDIRECT_LINK);
             if (actualBackLink == null) {
                 rootLogger.info("User followed reset link");
                 Assert.fail("Redirect Link not found");

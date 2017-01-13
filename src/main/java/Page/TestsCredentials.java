@@ -9,7 +9,7 @@ public class TestsCredentials {
         LINKEDIN_PASSWORD("123456789qasw"),
         NAME("test001"),
         SURNAME("qweeco001"),
-        TEAM_NAME("Qweeco01"),
+        TEAM_NAME("QweecoTeam01"),
         TEAM_CODE("QT01"),
         FULL_TEAM_NAME("Qweeco01 (QT01)");
         private String value;
@@ -27,7 +27,7 @@ public class TestsCredentials {
         LINKEDIN_PASSWORD("123456789qasw"),
         NAME("test002"),
         SURNAME("qweeco002"),
-        TEAM_NAME("Qweeco02"),
+        TEAM_NAME("QweecoTeam02"),
         TEAM_CODE("QT02"),
         FULL_TEAM_NAME("Qweeco02 (QT02)");
         private String value;
@@ -45,7 +45,7 @@ public class TestsCredentials {
         LINKEDIN_PASSWORD("123456789qasw"),
         NAME("test003"),
         SURNAME("qweeco003"),
-        TEAM_NAME("Qweeco03"),
+        TEAM_NAME("QweecoTeam03"),
         TEAM_CODE("QT03"),
         FULL_TEAM_NAME("Qweeco03 (QT03)");
         private String value;
@@ -62,10 +62,10 @@ public class TestsCredentials {
         PEKAMA_PASSWORD("asui67we34"),
         LINKEDIN_PASSWORD("123456789qasw"),
         NAME("test004"),
-        SURNAME("qweeco001"),
-        TEAM_NAME("Qweeco01"),
-        TEAM_CODE("QT01"),
-        FULL_TEAM_NAME("Qweeco01 (QT01)");
+        SURNAME("qweeco004"),
+        TEAM_NAME("QweecoTeam04"),
+        TEAM_CODE("QT04"),
+        FULL_TEAM_NAME("Qweeco04 (QT04)");
         private String value;
         User4(String value) {
             this.value = value;
@@ -77,13 +77,13 @@ public class TestsCredentials {
     public enum User5 {
         GMAIL_EMAIL("testqweeco005@gmail.com"),
         GMAIL_PASSWORD("123456789qasw1"),
-        PEKAMA_PASSWORD("asui67we34"),
-        LINKEDIN_PASSWORD("123456789qasw"),
-        NAME("test005"),
-        SURNAME("qweeco005"),
-        TEAM_NAME("Qweeco05"),
-        TEAM_CODE("QT05"),
-        FULL_TEAM_NAME("Qweeco05 (QT05)");
+        PEKAMA_PASSWORD(""),
+        LINKEDIN_PASSWORD(""),
+        NAME(""),
+        SURNAME(""),
+        TEAM_NAME(""),
+        TEAM_CODE(""),
+        FULL_TEAM_NAME("");
         private String value;
         User5(String value) {
             this.value = value;

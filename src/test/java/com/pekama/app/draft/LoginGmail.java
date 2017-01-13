@@ -110,9 +110,9 @@ public class LoginGmail {
 
     @Test
     public void loginGmailTest(){
-        ExternalSteps loginGmailInboxApp = new ExternalSteps();
-        loginGmailInboxApp.signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
-        loginGmailInboxApp.checkInboxEmail(EMAIL_TITLE, EMAIL_TEXT, EMAIL_BTN, EMAIL_REDIRECT_LINK, EMAIL_SUBJECT);
+//        ExternalSteps loginGmailInboxApp = new ExternalSteps();
+//        loginGmailInboxApp.signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
+//        loginGmailInboxApp.checkInboxEmail(EMAIL_TITLE, EMAIL_TEXT, EMAIL_BTN, EMAIL_REDIRECT_LINK, EMAIL_SUBJECT);
 
     }
 }
