@@ -1,11 +1,17 @@
 package Steps;
 
+import Page.TestsCredentials;
+import Utils.HttpAuth;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
+import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 
+import static Page.PekamaResetPassword.FAILED_RESET_TITLE_TEXT;
+import static Page.TestsCredentials.GENERIC_GMAIL_PASSWORD;
+import static Page.TestsCredentials.GMAIL_PASSWORD;
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
@@ -117,16 +123,26 @@ public class ExternalSteps {
     }
     public static void inboxEmptyTrash(){
         sleep(1000);
-        $(byText(INBOX_BTN_TRASH)).waitUntil(visible, 10000).click();
+        $(byXpath(INBOX_BTN_TRASH)).waitUntil(visible, 10000).click();
         sleep(1000);
-        $(byText(INBOX_BTN_EMPTY_TRASH)).waitUntil(visible, 10000).click();
+        $(byXpath(INBOX_BTN_EMPTY_TRASH)).waitUntil(visible, 10000).click();
         sleep(1000);
-        $(byText(INBOX_BTN_TRASH)).waitUntil(visible, 10000).click();
+        $(byXpath(INBOX_CONFIRM_EMPTY_TRASH)).waitUntil(visible, 10000).click();
         sleep(1000);
         $(byText("Nothing in Trash")).waitUntil(visible, 10000);
         logging.info("Trash cleared");
             if ($(byText("Nothing in Trash")) == null) {
                 Assert.fail("Trash NOT cleared");
             }
+    }
+    @Test
+    public void externalTestDebug() {
+
+            ExternalSteps loginGmailInboxApp = new ExternalSteps();
+            String GMAIL_LOGIN = TestsCredentials.User4.GMAIL_EMAIL.getValue();
+            loginGmailInboxApp.signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
+            loginGmailInboxApp.inboxEmptyTrash();
+
+
     }
 }

@@ -24,7 +24,6 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.isHtmlUnit;
 import static com.codeborne.selenide.WebDriverRunner.url;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -44,6 +43,7 @@ public class PekamaResetPassword {
     String EMAIL_REDIRECT_LINK = EMAIL_RESET_PASSWORD_BACKLINK;
     String PEKAMA_USER_EMAIL = User4.GMAIL_EMAIL.getValue();
 
+    @Ignore
     @Test
     public void openResetPassword() {
         rootLogger.info("Open URL - " +urlLogIn);
@@ -55,7 +55,7 @@ public class PekamaResetPassword {
         $(byXpath(LINK_FORGOT_PASSWORD)).click();
         sleep(1000);
     }
-
+    @Ignore
     @Test
     public void invalidEmailResetPassword() {
         rootLogger.info("Open URL - " +urlResetPassword);
@@ -199,12 +199,11 @@ public class PekamaResetPassword {
             $(byXpath(RESET_PAGE_FINISHED_BTN_LOGIN)).shouldBe(visible);
             String thisUrl = url();
             assertEquals(thisUrl, urlResetPasswordComplete);
-            //https://staging.pekama.com/accounts/password/reset/complete/
             rootLogger.info("User submitted valid credentials");
         }
         else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
     }
-    @Ignore
+
     @Test
     public void resetPassword_Q() {
         if (NEW_PASSWORD != null) {
@@ -214,9 +213,9 @@ public class PekamaResetPassword {
             openHost.httpAuthWhithCustomLink(AUTH_URL);
             sleep(1000);
 
-            PekamaSteps loginWithNewPAssword = new PekamaSteps();
+            PekamaSteps loginWithNewPassword = new PekamaSteps();
             String USER_PEKAMA_PASSWORD = NEW_PASSWORD;
-            loginWithNewPAssword.submitLoginCredentials(PEKAMA_USER_EMAIL,USER_PEKAMA_PASSWORD);
+            loginWithNewPassword.submitLoginCredentials(PEKAMA_USER_EMAIL,USER_PEKAMA_PASSWORD);
                 sleep(1000);
                 String thisUrl = url();
                 assertEquals(thisUrl, urlDashboard);
@@ -255,8 +254,7 @@ public class PekamaResetPassword {
         }
         else Assert.fail("password - "+NEW_PASSWORD);
     }
-
-
+    @Ignore("stub")
     @Test
     public void resetPassword_Z() {
         if (REDIRECT_LINK != null) {
