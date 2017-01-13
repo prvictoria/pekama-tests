@@ -25,21 +25,43 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.alertIsPresent;
 public class ExternalSteps {
     static final Logger logging = LogManager.getLogger(ExternalSteps.class);
     public static String REDIRECT_LINK;
-
+    public void checkEmail(){
+        logging.info("Login");
+        logging.info("Detect email");
+        logging.info("Open email");
+        logging.info("Check title");
+        logging.info("Check Text");
+        logging.info("Check Button");
+        logging.info("Check Link");
+        logging.info("SignOut");
+    }; //todo - implement sub-steps
     public void signInGmailInbox(String GMAIL_LOGIN, String GMAIL_PASSWORD) {
         logging.info("Start browser");
         open(INBOX_URL);
         $(byXpath(INBOX_SIGNIN)).waitUntil(visible, 10000).click();
         logging.info("Type email");
-        $(By.name(GMAIL_LOGIN_FIELD)).sendKeys(GMAIL_LOGIN);
-        logging.info("Submit email");
-        $(GMAIL_NEXT_BTN).click();
-        logging.info("Type password");
-        $(GMAIL_PASSWORD_FIELD).shouldBe(visible).sendKeys(GMAIL_PASSWORD);
-        logging.info("Submit password");
-        $(GMAIL_SIGNIN_BTN).shouldBe(visible).click();
-        logging.info("Inbox opened");
-        //      $(byXpath(INBOX_BTN_INBOX)).waitUntil(visible, 5000);
+        sleep(3000);
+        if ($(byXpath(INBOX_BTN_TRASH)).is(visible) == true){
+            logging.info("User is logged in and inbox is opened");
+        }
+        if ($(GMAIL_PASSWORD_FIELD).is(visible) == true){
+            logging.info("Type password");
+            $(GMAIL_PASSWORD_FIELD).shouldBe(visible).sendKeys(GMAIL_PASSWORD);
+            logging.info("Submit password");
+            $(GMAIL_SIGNIN_BTN).shouldBe(visible).click();
+            logging.info("Inbox opened");;
+        }
+        else {
+
+                $(By.name(GMAIL_LOGIN_FIELD)).sendKeys(GMAIL_LOGIN);
+                logging.info("Submit email");
+                $(GMAIL_NEXT_BTN).click();
+                logging.info("Type password");
+                $(GMAIL_PASSWORD_FIELD).shouldBe(visible).sendKeys(GMAIL_PASSWORD);
+                logging.info("Submit password");
+                $(GMAIL_SIGNIN_BTN).shouldBe(visible).click();
+                logging.info("Inbox opened");
+        }
     }
     public static String checkInboxEmail(String EMAIL_SUBJECT, String EMAIL_TITLE, String EMAIL_TEXT, String EMAIL_BTN, String EMAIL_REDIRECT_LINK) {
         REDIRECT_LINK = null;
@@ -78,6 +100,7 @@ public class ExternalSteps {
 //            if ((alertIsPresent() != null)) {
 //            confirm();
 //            }
+            //open(GMAIL_URL_SIGN_OUT);
         }
        return REDIRECT_LINK;
     }
@@ -110,9 +133,9 @@ public class ExternalSteps {
         }
         ExternalSteps.checkEmailReportAttachment();
         ExternalSteps.inboxEmptyTrash();
+        open(GMAIL_URL_SIGN_OUT);
         return backLink;
     }
-
     public static String checkEmailReportAttachment(){
         String attachmentFullTitle = $(byXpath(EMAIL_REPORT_ATTACHMENT)).getAttribute("title");
         logging.info("This attachment present in mail - " +attachmentFullTitle);
