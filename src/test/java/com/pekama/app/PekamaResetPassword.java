@@ -42,7 +42,7 @@ public class PekamaResetPassword {
     String EMAIL_REDIRECT_LINK = EMAIL_RESET_PASSWORD_BACKLINK;
     String PEKAMA_USER_EMAIL = User4.GMAIL_EMAIL.getValue();
 
-    @Ignore
+
     @Test
     public void openResetPassword() {
         rootLogger.info("Open URL - " +urlLogIn);
@@ -54,7 +54,7 @@ public class PekamaResetPassword {
         $(byXpath(LINK_FORGOT_PASSWORD)).click();
         sleep(1000);
     }
-    @Ignore
+
     @Test
     public void invalidEmailResetPassword() {
         rootLogger.info("Open URL - " +urlResetPassword);

@@ -1,18 +1,13 @@
 package Steps;
 
 import Page.TestsCredentials;
-import Utils.HttpAuth;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Test;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 
-import static Page.PekamaResetPassword.FAILED_RESET_TITLE_TEXT;
-import static Page.TestsCredentials.GENERIC_GMAIL_PASSWORD;
 import static Page.TestsCredentials.GMAIL_PASSWORD;
-import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
@@ -25,21 +20,80 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.alertIsPresent;
 public class ExternalSteps {
     static final Logger logging = LogManager.getLogger(ExternalSteps.class);
     public static String REDIRECT_LINK;
-    public void checkEmail(){
+    public static String checkReportBackLink;
+
+    public static void checkEmailGeneric(String GMAIL_LOGIN, String GMAIL_PASSWORD, String EMAIL_SUBJECT, String EMAIL_TITLE, String EMAIL_TEXT, String EMAIL_BTN, String EMAIL_REDIRECT_LINK, String thisMailingListName){
         logging.info("Login");
+        signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
         logging.info("Detect email");
+        detectEmail(EMAIL_SUBJECT);
         logging.info("Open email");
+        openEmail(EMAIL_SUBJECT);
         logging.info("Check title");
+        checkEmailTitle(EMAIL_TITLE);
         logging.info("Check Text");
+        checkEmailText(EMAIL_TEXT);
         logging.info("Check Button");
-        logging.info("Check Link");
-        logging.info("SignOut");
-    }; //todo - implement sub-steps
-    public void signInGmailInbox(String GMAIL_LOGIN, String GMAIL_PASSWORD) {
+        checkEmailButton(EMAIL_BTN);
+        logging.info("Check redirect Link");
+        checkRedirectLink(EMAIL_REDIRECT_LINK);
+        logging.info("Check report back Link");
+        checkReportTitleAndBackLink(EMAIL_TEXT, thisMailingListName);
+        logging.info("Check attachment");
+        checkEmailReportAttachment();
+        logging.info("Delete email");
+        deleteEmail();
+        logging.info("Empty trash");
+        inboxEmptyTrash();
+        logging.info("Email deleted");
+    };
+    public static String checkInboxEmail(String GMAIL_LOGIN, String GMAIL_PASSWORD, String EMAIL_SUBJECT, String EMAIL_TITLE, String EMAIL_TEXT, String EMAIL_BTN, String EMAIL_REDIRECT_LINK) {
+        logging.info("Login");
+        signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
+        detectEmail(EMAIL_SUBJECT);
+        logging.info("Open email");
+        openEmail(EMAIL_SUBJECT);
+        logging.info("Check title");
+        checkEmailTitle(EMAIL_TITLE);
+        logging.info("Check Text");
+        checkEmailText(EMAIL_TEXT);
+        logging.info("Check Button");
+        checkEmailButton(EMAIL_BTN);
+        logging.info("Check redirect Link");
+        checkRedirectLink(EMAIL_REDIRECT_LINK);
+        logging.info("Delete email");
+        deleteEmail();
+        logging.info("Empty trash");
+        inboxEmptyTrash();
+        logging.info("Email deleted");
+        return REDIRECT_LINK;
+    }
+    public static String checkInboxEmailReport(String GMAIL_LOGIN, String GMAIL_PASSWORD, String EMAIL_SUBJECT, String EMAIL_TEXT, String thisMailingListName){
+        logging.info("Login");
+        signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
+        logging.info("Detect email");
+        detectEmail(EMAIL_SUBJECT);
+        logging.info("Open email");
+        openEmail(EMAIL_SUBJECT);
+        logging.info("Check title");
+        checkEmailText(EMAIL_TEXT);
+        logging.info("Check report back Link");
+        checkReportTitleAndBackLink(EMAIL_TEXT, thisMailingListName);
+        logging.info("Check attachment");
+        checkEmailReportAttachment();
+        logging.info("Delete email");
+        deleteEmail();
+        logging.info("Empty trash");
+        inboxEmptyTrash();
+        logging.info("Email deleted");
+        open(GMAIL_URL_SIGN_OUT);
+        return checkReportBackLink;
+    }
+    //Steps
+    public static void signInGmailInbox(String GMAIL_LOGIN, String GMAIL_PASSWORD) { //Logic for open INBOX twice or more times in one session without logout
         logging.info("Start browser");
         open(INBOX_URL);
         $(byXpath(INBOX_SIGNIN)).waitUntil(visible, 10000).click();
-        logging.info("Type email");
         sleep(3000);
         if ($(byXpath(INBOX_BTN_TRASH)).is(visible) == true){
             logging.info("User is logged in and inbox is opened");
@@ -49,92 +103,92 @@ public class ExternalSteps {
             $(GMAIL_PASSWORD_FIELD).shouldBe(visible).sendKeys(GMAIL_PASSWORD);
             logging.info("Submit password");
             $(GMAIL_SIGNIN_BTN).shouldBe(visible).click();
-            logging.info("Inbox opened");;
+            logging.info("Inbox opened");
+        }
+        if($(GMAIL_LOGIN_FIELD).is(visible) == true) {
+            logging.info("Type email");
+            $((GMAIL_LOGIN_FIELD)).sendKeys(GMAIL_LOGIN);
+            logging.info("Submit email");
+            $(GMAIL_NEXT_BTN).click();
+            logging.info("Type password");
+            $(GMAIL_PASSWORD_FIELD).shouldBe(visible).sendKeys(GMAIL_PASSWORD);
+            logging.info("Submit password");
+            $(GMAIL_SIGNIN_BTN).shouldBe(visible).click();
+            logging.info("Inbox opened");
         }
         else {
-
-                $(By.name(GMAIL_LOGIN_FIELD)).sendKeys(GMAIL_LOGIN);
-                logging.info("Submit email");
-                $(GMAIL_NEXT_BTN).click();
-                logging.info("Type password");
-                $(GMAIL_PASSWORD_FIELD).shouldBe(visible).sendKeys(GMAIL_PASSWORD);
-                logging.info("Submit password");
-                $(GMAIL_SIGNIN_BTN).shouldBe(visible).click();
-                logging.info("Inbox opened");
+            logging.info("Inbox opened");
         }
     }
-    public static String checkInboxEmail(String EMAIL_SUBJECT, String EMAIL_TITLE, String EMAIL_TEXT, String EMAIL_BTN, String EMAIL_REDIRECT_LINK) {
-        REDIRECT_LINK = null;
+    public static void detectEmail(String EMAIL_SUBJECT){
         if ($(byXpath(EMAIL_SUBJECT)).exists() == false) {
             int count = 1;
             do {
                 sleep(15000);
                 refresh();
                 count++;
-                logging.info("Email by subject NOT found loop"+count);
-                if ($(byXpath(EMAIL_SUBJECT)).exists() == true) {
-                    break;
-                }
+                logging.info("Email by subject NOT found loop" + count);
+                    if ($(byXpath(EMAIL_SUBJECT)).exists() == true) {
+                        break;
+                    }
             } while (count < 10);
+        }
+    }
+    public static void openEmail(String EMAIL_SUBJECT){
+        if (EMAIL_SUBJECT == null) {
+            Assert.fail("Subject email is - " + EMAIL_SUBJECT);
         }
         if ($(byXpath(EMAIL_SUBJECT)).exists() == true) {
             $(byXpath(EMAIL_SUBJECT)).waitUntil(visible, 10000).click();
             logging.info("Email by subject found");
             sleep(1500);
             $(byXpath(INBOX_BTN_DELETE)).waitUntil(visible, 10000);
-            logging.info("Email present");
-            $$(byText(EMAIL_TITLE)).filter(visible);
-            $$(byText(EMAIL_TEXT)).filter(visible);
-            $$(byText(EMAIL_BTN)).filter(visible);
-            logging.info(EMAIL_TITLE + "- email present");
-            REDIRECT_LINK = $(By.xpath(EMAIL_REDIRECT_LINK)).getAttribute("href");
-            logging.info("This link present in mail - " + REDIRECT_LINK);
-            $(byXpath(INBOX_BTN_DELETE)).waitUntil(visible, 10000).click();
-            sleep(500);
-            $(byXpath(INBOX_BTN_DELETE)).waitUntil(not(visible), 10000);
-            ExternalSteps.inboxEmptyTrash();
-            if (REDIRECT_LINK == null) {
-                Assert.fail("Redirect Link not found");
-            }
-            logging.info("Email deleted");
-//            if ((alertIsPresent() != null)) {
-//            confirm();
-//            }
-            //open(GMAIL_URL_SIGN_OUT);
+            logging.info("Email opened");
         }
-       return REDIRECT_LINK;
     }
-    public static String checkInboxEmailReport(String EMAIL_TEXT, String thisMailingListName){
-        if ($(byXpath(EMAIL_REPORT_SUBJECT)).exists() == false) {
-            int count = 1;
-            do {
-                sleep(15000);
-                refresh();
-                count++;
-                logging.info("Email by subject NOT found loop"+count);
-                if ($(byXpath(EMAIL_REPORT_SUBJECT)).exists() == true) {
-                    break;
-                }
-            } while (count < 10);
+    public static void checkEmailTitle(String EMAIL_TITLE){
+        if (EMAIL_TITLE == null) {
+            Assert.fail("Title email is - " + EMAIL_TITLE);
         }
-        $(byXpath(EMAIL_REPORT_SUBJECT)).waitUntil(visible, 10000).click();
-        logging.info("Email by subject found");
-        sleep(1500);
-        $(byXpath(INBOX_BTN_DELETE)).waitUntil(visible, 10000);
+        $$(byText(EMAIL_TITLE)).filter(visible);
+        logging.info(EMAIL_TITLE + "- email present");
+    }
+    public static void checkEmailText(String EMAIL_TEXT){
+        if (EMAIL_TEXT == null) {
+            Assert.fail("Title email is - " + EMAIL_TEXT);
+        }
+        $$(byText(EMAIL_TEXT)).filter(visible);
+        logging.info(EMAIL_TEXT + "- email present");
+    }
+    public static void checkEmailButton(String EMAIL_BTN){
+        if (EMAIL_BTN == null) {
+            Assert.fail("Title email is - " + EMAIL_BTN);
+        }
+        $$(byText(EMAIL_BTN)).filter(visible);
+        logging.info(EMAIL_BTN + "- email present");
+    }
+    public static String checkRedirectLink(String EMAIL_REDIRECT_LINK){
+        REDIRECT_LINK = null;
+        REDIRECT_LINK = $(By.xpath(EMAIL_REDIRECT_LINK)).getAttribute("href");
+        logging.info("This link present in mail - " + REDIRECT_LINK);
+        if (REDIRECT_LINK == null) {
+            Assert.fail("Redirect Link not found");
+        }
+        return REDIRECT_LINK;
+
+    }
+    public static String checkReportTitleAndBackLink(String EMAIL_TEXT, String thisMailingListName) {
+        checkReportBackLink = null;
         String EMAIL_TITLE = EMAIL_REPORT+" "+"\""+thisMailingListName+"\"";
         $$(byText(EMAIL_TITLE)).filter(visible).getTexts(); //get whole test
         $$(byText(EMAIL_TEXT)).filter(visible);
         logging.info(EMAIL_TITLE+ "- email present");
-
-        String backLink = $(By.xpath(EMAIL_REPORT_BACKLINK)).getAttribute("href");
-        logging.info("Link to pekama reports present - " +backLink);
-        if (backLink == null) {
+        checkReportBackLink = $(By.xpath(EMAIL_REPORT_BACKLINK)).getAttribute("href");
+        if (checkReportBackLink == null) {
             Assert.fail("Link to pekama reports not found");
         }
-        ExternalSteps.checkEmailReportAttachment();
-        ExternalSteps.inboxEmptyTrash();
-        open(GMAIL_URL_SIGN_OUT);
-        return backLink;
+        logging.info("Link to mailing list present -  "+checkReportBackLink);
+        return checkReportBackLink;
     }
     public static String checkEmailReportAttachment(){
         String attachmentFullTitle = $(byXpath(EMAIL_REPORT_ATTACHMENT)).getAttribute("title");
@@ -143,6 +197,11 @@ public class ExternalSteps {
             Assert.fail("Redirect Link not found");
         }
         return attachmentFullTitle;
+    }
+    public static void deleteEmail() {
+        $(byXpath(INBOX_BTN_DELETE)).waitUntil(visible, 10000).click();
+        sleep(500);
+        $(byXpath(INBOX_BTN_DELETE)).waitUntil(not(visible), 10000);
     }
     public static void inboxEmptyTrash(){
         sleep(1000);
@@ -158,13 +217,33 @@ public class ExternalSteps {
                 Assert.fail("Trash NOT cleared");
             }
     }
+    public static void submitInboxAlert(){
+                    if ((alertIsPresent() != null)) {
+            confirm();
+            }
+    } //not ready
+
+    public static void loginBox(){
+    }
+    public static void checkRootFolder(){
+    }
+    public static void checkProjectFolder(){
+    }
+    public static void checkFolder(){
+    }
+    public static void checkFile(){
+    }
+    public static void checkFilesRemoved(){
+    }
+
     @Test
     public void externalTestDebug() {
 
             ExternalSteps loginGmailInboxApp = new ExternalSteps();
             String GMAIL_LOGIN = TestsCredentials.User4.GMAIL_EMAIL.getValue();
             loginGmailInboxApp.signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
-            loginGmailInboxApp.inboxEmptyTrash();
+            loginGmailInboxApp.signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
+            //loginGmailInboxApp.inboxEmptyTrash();
 
 
     }
