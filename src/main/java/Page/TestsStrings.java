@@ -88,6 +88,8 @@ public class TestsStrings {
     public static final String ERROR_DuplicatedFolder = "Folder with this Parent and Name already exists.";
     public static final String ERROR_MSG_INVALID_PASSWORD = "";
     public static final String ERROR_MSG_NOT_MATCHED_PASSWORD = "The two password fields didn't match.";
+    public static final String ERROR_MSG_NOT_MATCHED_NEW_PASSWORD = "Passwords do not match";
+
     public static final String ERROR_MSG_FAMILIAR_TO_EMAIL_PASSWORD = "The password is too similar to the email address.";
     public static final String ERROR_MSG_FAMILIAR_TO_NAME_PASSWORD = "";
     public static final String ERROR_MSG_FAMILIAR_TO_SURNAME_PASSWORD = "";

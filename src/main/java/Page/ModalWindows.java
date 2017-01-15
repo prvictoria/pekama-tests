@@ -64,10 +64,10 @@ public class ModalWindows {
     public static final String MW_EnableVerificationTitle = "//h3";
     public static final String MW_EnableVerificationClose = "//button[@type='button'][contains(.,'Close')]";
     public static final String MW_EnableVerificationNext = "//button[@type='submit'][contains(.,'Next')]";
-    public static final String MW_EnableVerificationTelField = "name=phone";
+    public static final String MW_EnableVerificationTelField = "phone";
     public static final String MW_EnableVerificationCountrySelect = "//div/div/div/div/div/span";
     public static final String MW_EnableVerificationCoutryField = "//div/div/div/div/input";
-    public static final String MW_EnableVerificationConfirmCodeField = "name=two_factor_code";
+    public static final String MW_EnableVerificationConfirmCodeField = "two_factor_code";
     public static final String MW_EnableVerificationErrorArea = "//div[2]/form/div";
 //templates
     public static final String MW_TaskTemplateSet = "";
