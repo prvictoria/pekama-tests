@@ -295,11 +295,11 @@ public class PekamaSettingsPersonal {
         $(byXpath(PERSONAL_DETAILS_COUNTRY_SELECT)).shouldHave(Condition.text("United States"));
         rootLogger.info("User country"+User3.COUNTRY.getValue()+" selected");
     }
-    @Ignore
+
     @Test
-    public void tabSecurity_testA_PasswordValidations() {
+    public void tabSecurity_PasswordValidations_A() {
         rootLogger.info("Check state by default");
-        $(byName(personalSettingsCurrentPassword)).shouldHave(Condition.value(""));
+        $(byName(personalSettingsCurrentPassword)).waitUntil(Condition.visible, 10000).shouldHave(Condition.value(""));
         $(byName(personalSettingsNewPassword)).shouldHave(Condition.value(""));
         $(byName(personalSettingsConfirmPassword)).shouldHave(Condition.value(""));
         $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.disabled);
@@ -308,37 +308,57 @@ public class PekamaSettingsPersonal {
         $(byText("Disabled")).shouldBe(Condition.visible);
         rootLogger.info("State by default - PASSED");
 
-        rootLogger.info("Change Password - validation empty New password & Confirm");
-        $(byName(personalSettingsCurrentPassword)).sendKeys("");
+        rootLogger.info("Validation empty fields New password & Confirm Password");
+        $(byName(personalSettingsCurrentPassword)).waitUntil(Condition.visible, 10000).sendKeys("");
         $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.enabled).click();
         $$(byText(ERROR_MSG_REQUIRED_FIELD)).shouldHaveSize(2);
         $$(byText(ERROR_MSG_BLANK_FIELD)).shouldHaveSize(1);
-
-        $(byName(personalSettingsNewPassword)).sendKeys("");
+        rootLogger.info("Validation error present");
+    }
+    @Test
+    public void tabSecurity_PasswordValidations_C() {
+        rootLogger.info("Validation empty fields Current password & Confirm Password");
+        $(byName(personalSettingsNewPassword)).waitUntil(Condition.visible, 10000).sendKeys("");
         $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.enabled).click();
         $$(byText(ERROR_MSG_REQUIRED_FIELD)).shouldHaveSize(2);
         $$(byText(ERROR_MSG_BLANK_FIELD)).shouldHaveSize(1);
-
-        $(byName(personalSettingsConfirmPassword)).sendKeys("");
+        rootLogger.info("Validation error present");
+    }
+    @Test
+    public void tabSecurity_PasswordValidations_D() {
+        rootLogger.info("Validation empty fields Current password & New Password");
+        $(byName(personalSettingsConfirmPassword)).waitUntil(Condition.visible, 10000).sendKeys("");
         $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.enabled).click();
         $$(byText(ERROR_MSG_REQUIRED_FIELD)).shouldHaveSize(2);
         $$(byText(ERROR_MSG_BLANK_FIELD)).shouldHaveSize(1);
-
+        rootLogger.info("Validation error present");
+    }
+    @Test
+    public void tabSecurity_PasswordValidations_E() {
         rootLogger.info("Change Password - no Current password - BUG noValidation Current password MAJOR");
-        $(byName(personalSettingsNewPassword)).sendKeys(VALID_PASSWORD);
+        $(byName(personalSettingsNewPassword)).waitUntil(Condition.visible, 10000).sendKeys(VALID_PASSWORD);
         $(byName(personalSettingsConfirmPassword)).sendKeys(VALID_PASSWORD);
         $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.enabled).click();
         $$(byText(ERROR_MSG_REQUIRED_FIELD)).shouldHaveSize(1);
-
+        rootLogger.info("Validation error present");
+    }
+    @Test
+    public void tabSecurity_PasswordValidations_F() {
         rootLogger.info("Change Password - no New password");
-        rootLogger.info("Change Password - no Confirm password");
-        rootLogger.info("Change Password - not same new new password");
-        rootLogger.info("");
-        rootLogger.info("");
-        rootLogger.info("");
-
+        rootLogger.info("Validation error present");
 
     }
+    @Test
+    public void tabSecurity_PasswordValidations_G() {
+        rootLogger.info("Change Password - no Confirm password");
+        rootLogger.info("Validation error present");
+    }
+    @Test
+    public void tabSecurity_PasswordValidations_H() {
+        rootLogger.info("Change Password - not same new new password");
+        rootLogger.info("Validation error present");
+    }
+
     @Ignore
     @Test
     public void tabSecurity_test_B_TwoStepVerification() {

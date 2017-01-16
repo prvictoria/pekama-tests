@@ -36,9 +36,9 @@ public class PekamaPersonalSettings {
 
     //tab fields find by NAME
     public static final String SECURITY_TAB = "#login-security"; //id
-    public static final String personalSettingsCurrentPassword = "name=original_password";
-    public static final String personalSettingsNewPassword = "name=password1";
-    public static final String personalSettingsConfirmPassword = "name=password2";
+    public static final String personalSettingsCurrentPassword = "original_password";
+    public static final String personalSettingsNewPassword = "password1";
+    public static final String personalSettingsConfirmPassword = "password2";
     public static final String personalSettingsSaveButton = "//button[contains(.,'Save')]";
     public static final String personalSettingsEnableButton = "//button[contains(.,'Enable')]";
 

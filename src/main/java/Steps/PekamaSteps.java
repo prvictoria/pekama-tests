@@ -1,5 +1,6 @@
 package Steps;
 import Utils.HttpAuth;
+import Utils.Utils;
 import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -7,13 +8,15 @@ import org.openqa.selenium.By;
 
 import static Page.ModalWindows.*;
 import static Page.PekamaLogin.*;
+import static Page.PekamaPersonalSettings.PERSONAL_DETAILS_INPUT_REGION;
+import static Page.PekamaPersonalSettings.personalSettingsSaveButton;
 import static Page.PekamaReports.*;
 import static Page.TestsCredentials.*;
+import static Page.TestsStrings.ERROR_MSG_VALIDATION_LENGTH_255;
 import static Page.TestsUrl.urlSingUp;
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selectors.byLinkText;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selectors.byXpath;
+import static com.codeborne.selenide.Selectors.*;
+import static com.codeborne.selenide.Selectors.byName;
 import static com.codeborne.selenide.Selenide.*;
 import static junit.framework.TestCase.fail;
 import static org.junit.Assert.assertEquals;
@@ -210,5 +213,25 @@ public class PekamaSteps {
         sleep(500);
         submitConfirmAction();
  //       $(byText(thisMailingListName)).shouldNotBe(Condition.visible);
+    }
+    public static void validationFieldByName(int randomLength, String fieldName, String submitButton, String errorMsg) {
+        rootLogger.info("Validation field test for - "+fieldName);
+        $(byName(fieldName)).clear();
+        $(byName(fieldName)).sendKeys(Utils.getRandomString(randomLength));
+        rootLogger.info("Entered random string - "+randomLength+"letter length" );
+        $(byXpath(submitButton)).shouldBe(Condition.enabled).click();
+        sleep(500);
+        $(byText(errorMsg)).shouldBe(Condition.visible);
+        rootLogger.info("Validation present - "+errorMsg);
+    }
+    public static void validationFieldByXpath(int randomLength, String fieldName, String submitButton, String errorMsg) {
+        rootLogger.info("Validation field test for - "+fieldName);
+        $(byXpath(fieldName)).clear();
+        $(byXpath(fieldName)).sendKeys(Utils.getRandomString(randomLength));
+        rootLogger.info("Entered random string - "+randomLength+"letter length" );
+        $(byXpath(submitButton)).shouldBe(Condition.enabled).click();
+        sleep(500);
+        $(byText(errorMsg)).shouldBe(Condition.visible);
+        rootLogger.info("Validation present - "+errorMsg);
     }
 }
