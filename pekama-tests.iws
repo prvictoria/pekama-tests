@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2fcdccdc-4d95-4ab7-8153-9ec9d616e50f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pekama-tests.iws" afterPath="$PROJECT_DIR$/pekama-tests.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/PekamaPersonalSettings.java" afterPath="$PROJECT_DIR$/src/main/java/Page/PekamaPersonalSettings.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Steps/PekamaSteps.java" afterPath="$PROJECT_DIR$/src/main/java/Steps/PekamaSteps.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaSettingsPersonal.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaSettingsPersonal.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -195,25 +193,25 @@
     <splitter split-orientation="horizontal" split-proportion="0.6115471">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="PekamaSettingsPersonal.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="PekamaSettingsPersonal.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaSettingsPersonal.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="517">
-                  <caret line="358" column="52" lean-forward="false" selection-start-line="358" selection-start-column="52" selection-end-line="358" selection-end-column="52" />
+                <state relative-caret-position="495">
+                  <caret line="375" column="19" lean-forward="false" selection-start-line="375" selection-start-column="19" selection-end-line="375" selection-end-column="19" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="method#tabSecurity_test_B_TwoStepVerification#0;class#PekamaSettingsPersonal#0" expanded="false" />
                     <element signature="method#tabSecurity_test_C_TwoStepVerification#0;class#PekamaSettingsPersonal#0" expanded="false" />
-                    <marker date="1484582430680" expanded="false" signature="926:1127" ph="..." />
+                    <marker date="1484587023949" expanded="false" signature="926:1127" ph="..." />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="00_VAR.json" pinned="false" current-in-tab="true">
+          <file leaf-file-name="00_VAR.json" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/HTML-tests/00_VAR.json">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
+                <state relative-caret-position="-968">
                   <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
                   <folding />
                 </state>
@@ -249,7 +247,28 @@
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="836">
                   <caret line="46" column="25" lean-forward="false" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="25" />
-                  <folding />
+                  <folding>
+                    <element signature="e#485#486#0" expanded="false" />
+                    <element signature="e#527#528#0" expanded="false" />
+                    <element signature="e#562#563#0" expanded="false" />
+                    <element signature="e#598#599#0" expanded="false" />
+                    <element signature="e#1021#1022#0" expanded="false" />
+                    <element signature="e#1063#1064#0" expanded="false" />
+                    <element signature="e#1098#1099#0" expanded="false" />
+                    <element signature="e#1134#1135#0" expanded="false" />
+                    <element signature="e#1852#1853#0" expanded="false" />
+                    <element signature="e#1894#1895#0" expanded="false" />
+                    <element signature="e#1929#1930#0" expanded="false" />
+                    <element signature="e#1965#1966#0" expanded="false" />
+                    <element signature="e#2684#2685#0" expanded="false" />
+                    <element signature="e#2726#2727#0" expanded="false" />
+                    <element signature="e#2761#2762#0" expanded="false" />
+                    <element signature="e#2797#2798#0" expanded="false" />
+                    <element signature="e#3182#3183#0" expanded="false" />
+                    <element signature="e#3224#3225#0" expanded="false" />
+                    <element signature="e#3259#3260#0" expanded="false" />
+                    <element signature="e#3295#3296#0" expanded="false" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -1317,13 +1336,6 @@
       <workItem from="1484328965720" duration="12517000" />
       <workItem from="1484499660625" duration="9121000" />
     </task>
-    <task id="LOCAL-00048" summary="Gmail inbox">
-      <created>1483785252079</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1483785252079</updated>
-    </task>
     <task id="LOCAL-00049" summary="Gmail inbox">
       <created>1483786998808</created>
       <option name="number" value="00049" />
@@ -1660,7 +1672,14 @@
       <option name="project" value="LOCAL" />
       <updated>1484576392100</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <task id="LOCAL-00097" summary="Personal settings new tests">
+      <created>1484584175817</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1484584175817</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1848,11 +1867,23 @@
           <properties />
           <option name="timeStamp" value="161" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaSettingsPersonal.java</url>
+          <line>375</line>
+          <properties />
+          <option name="timeStamp" value="165" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaSettingsPersonal.java</url>
+          <line>345</line>
+          <properties />
+          <option name="timeStamp" value="166" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="165" />
+      <option name="time" value="167" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -2144,7 +2175,28 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="836">
           <caret line="46" column="25" lean-forward="false" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="25" />
-          <folding />
+          <folding>
+            <element signature="e#485#486#0" expanded="false" />
+            <element signature="e#527#528#0" expanded="false" />
+            <element signature="e#562#563#0" expanded="false" />
+            <element signature="e#598#599#0" expanded="false" />
+            <element signature="e#1021#1022#0" expanded="false" />
+            <element signature="e#1063#1064#0" expanded="false" />
+            <element signature="e#1098#1099#0" expanded="false" />
+            <element signature="e#1134#1135#0" expanded="false" />
+            <element signature="e#1852#1853#0" expanded="false" />
+            <element signature="e#1894#1895#0" expanded="false" />
+            <element signature="e#1929#1930#0" expanded="false" />
+            <element signature="e#1965#1966#0" expanded="false" />
+            <element signature="e#2684#2685#0" expanded="false" />
+            <element signature="e#2726#2727#0" expanded="false" />
+            <element signature="e#2761#2762#0" expanded="false" />
+            <element signature="e#2797#2798#0" expanded="false" />
+            <element signature="e#3182#3183#0" expanded="false" />
+            <element signature="e#3224#3225#0" expanded="false" />
+            <element signature="e#3259#3260#0" expanded="false" />
+            <element signature="e#3295#3296#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2250,24 +2302,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/HTML-tests/00_VAR.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-968">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaSettingsPersonal.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="517">
-          <caret line="358" column="52" lean-forward="false" selection-start-line="358" selection-start-column="52" selection-end-line="358" selection-end-column="52" />
+        <state relative-caret-position="495">
+          <caret line="375" column="19" lean-forward="false" selection-start-line="375" selection-start-column="19" selection-end-line="375" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#tabSecurity_test_B_TwoStepVerification#0;class#PekamaSettingsPersonal#0" expanded="false" />
             <element signature="method#tabSecurity_test_C_TwoStepVerification#0;class#PekamaSettingsPersonal#0" expanded="false" />
-            <marker date="1484582430680" expanded="false" signature="926:1127" ph="..." />
+            <marker date="1484587023949" expanded="false" signature="926:1127" ph="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/HTML-tests/00_VAR.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>

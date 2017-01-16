@@ -308,8 +308,9 @@ public class PekamaSettingsPersonal {
         $(byText("Disabled")).shouldBe(Condition.visible);
         rootLogger.info("State by default - PASSED");
 
+        String validPassword = Utils.getRandomString(8)+VALID_PASSWORD;
         rootLogger.info("Validation empty fields New password & Confirm Password");
-        $(byName(personalSettingsCurrentPassword)).waitUntil(Condition.visible, 10000).sendKeys("");
+        $(byName(personalSettingsCurrentPassword)).waitUntil(Condition.visible, 10000).sendKeys(validPassword);
         $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.enabled).click();
         $$(byText(ERROR_MSG_REQUIRED_FIELD)).shouldHaveSize(2);
         $$(byText(ERROR_MSG_BLANK_FIELD)).shouldHaveSize(1);
@@ -317,8 +318,9 @@ public class PekamaSettingsPersonal {
     }
     @Test
     public void tabSecurity_PasswordValidations_C() {
+        String validPassword = Utils.getRandomString(8)+VALID_PASSWORD;
         rootLogger.info("Validation empty fields Current password & Confirm Password");
-        $(byName(personalSettingsNewPassword)).waitUntil(Condition.visible, 10000).sendKeys("");
+        $(byName(personalSettingsNewPassword)).waitUntil(Condition.visible, 10000).sendKeys(validPassword);
         $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.enabled).click();
         $$(byText(ERROR_MSG_REQUIRED_FIELD)).shouldHaveSize(2);
         $$(byText(ERROR_MSG_BLANK_FIELD)).shouldHaveSize(1);
@@ -326,8 +328,9 @@ public class PekamaSettingsPersonal {
     }
     @Test
     public void tabSecurity_PasswordValidations_D() {
+        String validPassword = Utils.getRandomString(8)+VALID_PASSWORD;
         rootLogger.info("Validation empty fields Current password & New Password");
-        $(byName(personalSettingsConfirmPassword)).waitUntil(Condition.visible, 10000).sendKeys("");
+        $(byName(personalSettingsConfirmPassword)).waitUntil(Condition.visible, 10000).sendKeys(validPassword);
         $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.enabled).click();
         $$(byText(ERROR_MSG_REQUIRED_FIELD)).shouldHaveSize(2);
         $$(byText(ERROR_MSG_BLANK_FIELD)).shouldHaveSize(1);
@@ -335,30 +338,44 @@ public class PekamaSettingsPersonal {
     }
     @Test
     public void tabSecurity_PasswordValidations_E() {
+        String validPassword = Utils.getRandomString(8)+VALID_PASSWORD;
         rootLogger.info("Change Password - no Current password - BUG noValidation Current password MAJOR");
-        $(byName(personalSettingsNewPassword)).waitUntil(Condition.visible, 10000).sendKeys(VALID_PASSWORD);
-        $(byName(personalSettingsConfirmPassword)).sendKeys(VALID_PASSWORD);
+        $(byName(personalSettingsNewPassword)).waitUntil(Condition.visible, 10000).sendKeys(validPassword);
+        $(byName(personalSettingsConfirmPassword)).sendKeys(validPassword);
         $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.enabled).click();
         $$(byText(ERROR_MSG_REQUIRED_FIELD)).shouldHaveSize(1);
         rootLogger.info("Validation error present");
     }
     @Test
     public void tabSecurity_PasswordValidations_F() {
+        String validPassword = Utils.getRandomString(8)+VALID_PASSWORD;
         rootLogger.info("Change Password - no New password");
+        $(byName(personalSettingsCurrentPassword)).waitUntil(Condition.visible, 10000).sendKeys(validPassword);
+        $(byName(personalSettingsConfirmPassword)).sendKeys(validPassword);
+        $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.enabled).click();
+        $$(byText(ERROR_MSG_REQUIRED_FIELD)).shouldHaveSize(1);
         rootLogger.info("Validation error present");
-
     }
     @Test
     public void tabSecurity_PasswordValidations_G() {
+        String validPassword = Utils.getRandomString(8)+VALID_PASSWORD;
         rootLogger.info("Change Password - no Confirm password");
+        $(byName(personalSettingsCurrentPassword)).waitUntil(Condition.visible, 10000).sendKeys(validPassword);
+        $(byName(personalSettingsNewPassword)).sendKeys(validPassword);
+        $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.enabled).click();
+        $$(byText(ERROR_MSG_REQUIRED_FIELD)).shouldHaveSize(1);
         rootLogger.info("Validation error present");
     }
     @Test
     public void tabSecurity_PasswordValidations_H() {
-        rootLogger.info("Change Password - not same new new password");
+        rootLogger.info("Change Password - not Old can be new password");
+        $(byName(personalSettingsCurrentPassword)).waitUntil(Condition.visible, 10000).sendKeys(User3.PEKAMA_PASSWORD.getValue());
+        $(byName(personalSettingsNewPassword)).sendKeys(User3.PEKAMA_PASSWORD.getValue());
+        $(byName(personalSettingsConfirmPassword)).sendKeys(User3.PEKAMA_PASSWORD.getValue());
+        $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.enabled).click();
+        $$(byText("")).shouldHaveSize(1);
         rootLogger.info("Validation error present");
     }
-
     @Ignore
     @Test
     public void tabSecurity_test_B_TwoStepVerification() {
