@@ -276,12 +276,24 @@ public class PekamaSettingsPersonal {
         $(byText(ERROR_MSG_VALIDATION_LENGTH_255)).shouldBe(Condition.visible);
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_255);
     }
-    @Ignore
+    //todo debug
     @Test
     public void personalDetails_SelectCountry_A() {
         rootLogger.info("Select new counrty");
-        $(byName(PERSONAL_DETAILS_COUNTRY_SELECT)).shouldHave(Condition.text("United States"));
+        $(byXpath(PERSONAL_DETAILS_COUNTRY_SELECT)).click();
+        $(byXpath(PERSONAL_DETAILS_COUNTRY_SELECT)).sendKeys("United Kingdom");
+        $(byText("United Kingdom")).shouldBe(Condition.exactText("United Kingdom")).click();
+        $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.enabled).click();
+        sleep(500);
+        $(byXpath(PERSONAL_DETAILS_COUNTRY_SELECT)).shouldHave(Condition.text("United Kingdom"));
         rootLogger.info("Select user counrty");
+        $(byXpath(PERSONAL_DETAILS_COUNTRY_SELECT)).click();
+        $(byXpath(PERSONAL_DETAILS_COUNTRY_SELECT)).sendKeys("United States");
+        $(byText("United States")).shouldBe(Condition.exactText("United States")).click();
+        $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.enabled).click();
+        sleep(500);
+        $(byXpath(PERSONAL_DETAILS_COUNTRY_SELECT)).shouldHave(Condition.text("United States"));
+        rootLogger.info("User country"+User3.COUNTRY.getValue()+" selected");
     }
     @Ignore
     @Test

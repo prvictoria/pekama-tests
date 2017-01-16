@@ -190,20 +190,20 @@
     </favorites_list>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.76988983">
+    <splitter split-orientation="horizontal" split-proportion="0.6115471">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="PekamaSettingsPersonal.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaSettingsPersonal.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="262">
-                  <caret line="167" column="0" lean-forward="false" selection-start-line="167" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
+                <state relative-caret-position="539">
+                  <caret line="287" column="25" lean-forward="true" selection-start-line="287" selection-start-column="25" selection-end-line="287" selection-end-column="25" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="method#tabSecurity_testA_PasswordValidations#0;class#PekamaSettingsPersonal#0" expanded="false" />
                     <element signature="method#tabSecurity_test_B_TwoStepVerification#0;class#PekamaSettingsPersonal#0" expanded="false" />
                     <element signature="method#tabSecurity_test_C_TwoStepVerification#0;class#PekamaSettingsPersonal#0" expanded="false" />
-                    <marker date="1484571964847" expanded="false" signature="926:1127" ph="..." />
+                    <marker date="1484576384121" expanded="false" signature="926:1127" ph="..." />
                   </folding>
                 </state>
               </provider>
@@ -234,7 +234,7 @@
           <file leaf-file-name="TestsCredentials.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/Page/TestsCredentials.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="352">
+                <state relative-caret-position="836">
                   <caret line="46" column="25" lean-forward="false" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="25" />
                   <folding />
                 </state>
@@ -244,9 +244,10 @@
           <file leaf-file-name="ExternalSteps.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/Steps/ExternalSteps.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="331">
+                <state relative-caret-position="902">
                   <caret line="169" column="25" lean-forward="false" selection-start-line="169" selection-start-column="25" selection-end-line="169" selection-end-column="25" />
                   <folding>
+                    <element signature="imports" expanded="false" />
                     <element signature="method#checkEmailGeneric#0;class#ExternalSteps#0" expanded="false" />
                     <element signature="method#checkInboxEmailReport#0;class#ExternalSteps#0" expanded="false" />
                     <element signature="method#signInGmailInbox#0;class#ExternalSteps#0" expanded="false" />
@@ -305,9 +306,11 @@
           <file leaf-file-name="PekamaSettingsTeam.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaSettingsTeam.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1067">
-                  <caret line="124" column="0" lean-forward="true" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
-                  <folding />
+                <state relative-caret-position="2442">
+                  <caret line="124" column="0" lean-forward="false" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
+                  <folding>
+                    <element signature="imports" expanded="false" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -329,7 +332,7 @@
           <file leaf-file-name="TestsStrings.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/Page/TestsStrings.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="695">
+                <state relative-caret-position="2530">
                   <caret line="115" column="62" lean-forward="false" selection-start-line="115" selection-start-column="31" selection-end-line="115" selection-end-column="62" />
                   <folding />
                 </state>
@@ -339,7 +342,7 @@
           <file leaf-file-name="ModalWindows.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/Page/ModalWindows.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="827">
+                <state relative-caret-position="1452">
                   <caret line="66" column="64" lean-forward="false" selection-start-line="66" selection-start-column="64" selection-end-line="66" selection-end-column="64" />
                   <folding />
                 </state>
@@ -349,9 +352,10 @@
           <file leaf-file-name="PekamaSignUp.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaSignUp.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="77">
-                  <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="41" selection-end-column="51" />
+                <state relative-caret-position="396">
+                  <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="41" selection-end-column="51" />
                   <folding>
+                    <element signature="imports" expanded="false" />
                     <element signature="method#allFieldsEmpty#0;class#PekamaSignUp#0" expanded="false" />
                     <element signature="e#2480#2535#0" expanded="false" />
                     <element signature="method#onlyEmailSubmitted#0;class#PekamaSignUp#0" expanded="false" />
@@ -373,7 +377,7 @@
           <file leaf-file-name="TestsUrl.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/Page/TestsUrl.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="441">
+                <state relative-caret-position="506">
                   <caret line="23" column="50" lean-forward="false" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="50" />
                   <folding />
                 </state>
@@ -383,9 +387,10 @@
           <file leaf-file-name="PekamaResetPassword.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaResetPassword.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="149">
-                  <caret line="229" column="66" lean-forward="true" selection-start-line="229" selection-start-column="12" selection-end-line="229" selection-end-column="66" />
+                <state relative-caret-position="2596">
+                  <caret line="229" column="66" lean-forward="false" selection-start-line="229" selection-start-column="12" selection-end-line="229" selection-end-column="66" />
                   <folding>
+                    <element signature="imports" expanded="false" />
                     <element signature="method#openResetPassword#0;class#PekamaResetPassword#0" expanded="false" />
                     <element signature="method#invalidEmailResetPassword#0;class#PekamaResetPassword#0" expanded="false" />
                     <element signature="method#resetPassword_A#0;class#PekamaResetPassword#0" expanded="false" />
@@ -1299,13 +1304,6 @@
       <workItem from="1484328965720" duration="12517000" />
       <workItem from="1484499660625" duration="9121000" />
     </task>
-    <task id="LOCAL-00046" summary="Gmail check">
-      <created>1483733436383</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1483733436383</updated>
-    </task>
     <task id="LOCAL-00047" summary="Gmail check">
       <created>1483735378344</created>
       <option name="number" value="00047" />
@@ -1642,7 +1640,14 @@
       <option name="project" value="LOCAL" />
       <updated>1484569444116</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="Personal settings new tests">
+      <created>1484572344546</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1484572344546</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1696,14 +1701,13 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290461" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39335477" sideWeight="0.5044843" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32690248" sideWeight="0.5044843" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32606438" sideWeight="0.49778023" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36659193" sideWeight="0.5420561" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36659193" sideWeight="0.5420561" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32690248" sideWeight="0.4955157" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1723,6 +1727,7 @@
       <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32917964" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39335477" sideWeight="0.5044843" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32577434" sideWeight="0.45794392" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1870,7 +1875,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="291">
           <caret line="30" column="17" lean-forward="false" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1907,7 +1911,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="14" column="31" lean-forward="false" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1974,7 +1977,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="17" column="60" lean-forward="false" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="60" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1991,7 +1993,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="382">
           <caret line="26" column="52" lean-forward="false" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="52" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1999,7 +2000,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2061,7 +2061,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2069,13 +2068,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1540">
           <caret line="70" column="90" lean-forward="false" selection-start-line="70" selection-start-column="55" selection-end-line="70" selection-end-column="90" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Page/ModalWindows.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="827">
+        <state relative-caret-position="1452">
           <caret line="66" column="64" lean-forward="false" selection-start-line="66" selection-start-column="64" selection-end-line="66" selection-end-column="64" />
           <folding />
         </state>
@@ -2083,9 +2081,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Steps/ExternalSteps.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
+        <state relative-caret-position="902">
           <caret line="169" column="25" lean-forward="false" selection-start-line="169" selection-start-column="25" selection-end-line="169" selection-end-column="25" />
           <folding>
+            <element signature="imports" expanded="false" />
             <element signature="method#checkEmailGeneric#0;class#ExternalSteps#0" expanded="false" />
             <element signature="method#checkInboxEmailReport#0;class#ExternalSteps#0" expanded="false" />
             <element signature="method#signInGmailInbox#0;class#ExternalSteps#0" expanded="false" />
@@ -2132,9 +2131,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaSignUp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="77">
-          <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="41" selection-end-column="51" />
+        <state relative-caret-position="396">
+          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="41" selection-end-column="51" />
           <folding>
+            <element signature="imports" expanded="false" />
             <element signature="method#allFieldsEmpty#0;class#PekamaSignUp#0" expanded="false" />
             <element signature="e#2480#2535#0" expanded="false" />
             <element signature="method#onlyEmailSubmitted#0;class#PekamaSignUp#0" expanded="false" />
@@ -2154,7 +2154,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Page/TestsCredentials.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
+        <state relative-caret-position="836">
           <caret line="46" column="25" lean-forward="false" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="25" />
           <folding />
         </state>
@@ -2162,9 +2162,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaSettingsTeam.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1067">
-          <caret line="124" column="0" lean-forward="true" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="2442">
+          <caret line="124" column="0" lean-forward="false" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2172,7 +2174,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="550">
           <caret line="29" column="16" lean-forward="false" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2180,13 +2181,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="16" column="32" lean-forward="false" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Page/TestsUrl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
+        <state relative-caret-position="506">
           <caret line="23" column="50" lean-forward="false" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="50" />
           <folding />
         </state>
@@ -2194,9 +2194,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaResetPassword.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="229" column="66" lean-forward="true" selection-start-line="229" selection-start-column="12" selection-end-line="229" selection-end-column="66" />
+        <state relative-caret-position="2596">
+          <caret line="229" column="66" lean-forward="false" selection-start-line="229" selection-start-column="12" selection-end-line="229" selection-end-column="66" />
           <folding>
+            <element signature="imports" expanded="false" />
             <element signature="method#openResetPassword#0;class#PekamaResetPassword#0" expanded="false" />
             <element signature="method#invalidEmailResetPassword#0;class#PekamaResetPassword#0" expanded="false" />
             <element signature="method#resetPassword_A#0;class#PekamaResetPassword#0" expanded="false" />
@@ -2210,7 +2211,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Page/TestsStrings.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="695">
+        <state relative-caret-position="2530">
           <caret line="115" column="62" lean-forward="false" selection-start-line="115" selection-start-column="31" selection-end-line="115" selection-end-column="62" />
           <folding />
         </state>
@@ -2224,6 +2225,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12-sources.jar!/org/junit/BeforeClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="704">
+          <caret line="35" column="18" lean-forward="false" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Page/PekamaPersonalSettings.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="572">
@@ -2232,24 +2240,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12-sources.jar!/org/junit/BeforeClass.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="704">
-          <caret line="35" column="18" lean-forward="false" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaSettingsPersonal.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="167" column="0" lean-forward="false" selection-start-line="167" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
+        <state relative-caret-position="539">
+          <caret line="287" column="25" lean-forward="true" selection-start-line="287" selection-start-column="25" selection-end-line="287" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#tabSecurity_testA_PasswordValidations#0;class#PekamaSettingsPersonal#0" expanded="false" />
             <element signature="method#tabSecurity_test_B_TwoStepVerification#0;class#PekamaSettingsPersonal#0" expanded="false" />
             <element signature="method#tabSecurity_test_C_TwoStepVerification#0;class#PekamaSettingsPersonal#0" expanded="false" />
-            <marker date="1484571964847" expanded="false" signature="926:1127" ph="..." />
+            <marker date="1484576384121" expanded="false" signature="926:1127" ph="..." />
           </folding>
         </state>
       </provider>
