@@ -59,13 +59,52 @@ public class PekamaSettingsPersonal {
         $(byAttribute("data-target", personalSettingsTabIMAP)).shouldHave(Condition.text("IMAP"));
         $(byAttribute("data-target", personalSettingsTabTimeTracker)).shouldHave(Condition.text("Time Tracker"));
         rootLogger.info("Perosnal settings GUI is consistent");
-        $(byText("Team details"));
+
     }
-    @Ignore
     @Test
-    public void personalDetails_Z_lastTest() {
-        //$$(":input").shouldHave(size(4));
-        rootLogger.info("Validation Name field");
+    public void personalDetails_Y_SaveUserData() {
+        rootLogger.info("Enater and Save User Data");
+        $(byText("First name:")).waitUntil(Condition.visible, 10000);
+        $(byName(PERSONAL_DETAILS_INPUT_NAME)).clear();
+        $(byName(PERSONAL_DETAILS_INPUT_NAME)).sendKeys(User3.NAME.getValue());
+        $(byText("Last name:")).shouldBe(Condition.visible);
+        $(byName(PERSONAL_DETAILS_INPUT_SURNAME)).clear();
+        $(byName(PERSONAL_DETAILS_INPUT_SURNAME)).sendKeys(User3.SURNAME.getValue());
+        $(byText("Phone #")).shouldBe(Condition.visible);
+        $(byName(PERSONAL_DETAILS_INPUT_PHONE)).clear();
+        $(byName(PERSONAL_DETAILS_INPUT_PHONE)).sendKeys(User3.PHONE.getValue());
+        $(byText("Fax #")).shouldBe(Condition.visible);
+        $(byName(PERSONAL_DETAILS_INPUT_FAX)).clear();
+        $(byName(PERSONAL_DETAILS_INPUT_FAX)).sendKeys(User3.FAX.getValue());
+        $(byText("Mobile #")).shouldBe(Condition.visible);
+        $(byName(PERSONAL_DETAILS_INPUT_MOBILE)).clear();
+        $(byName(PERSONAL_DETAILS_INPUT_MOBILE)).sendKeys(User3.MOBILE.getValue());
+        $(byText("Legal entity:")).shouldBe(Condition.visible);
+        $(byName(PERSONAL_DETAILS_INPUT_LEGAL_ENTITY)).clear();
+        $(byName(PERSONAL_DETAILS_INPUT_LEGAL_ENTITY)).sendKeys(User3.LEGAL_ENTITY.getValue());
+        $(byText("Street address:")).shouldBe(Condition.visible);
+        $(byName(PERSONAL_DETAILS_INPUT_STREET)).clear();
+        $(byName(PERSONAL_DETAILS_INPUT_STREET)).sendKeys(User3.STREET.getValue());
+        $(byText("Post code:")).shouldBe(Condition.visible);
+        $(byName(PERSONAL_DETAILS_INPUT_ZIP)).clear();
+        $(byName(PERSONAL_DETAILS_INPUT_ZIP)).sendKeys(User3.ZIP.getValue());
+        $(byText("City:")).shouldBe(Condition.visible);
+        $(byName(PERSONAL_DETAILS_INPUT_CITY)).clear();
+        $(byName(PERSONAL_DETAILS_INPUT_CITY)).sendKeys(User3.CITY.getValue());
+        $(byText("State/Region")).shouldBe(Condition.visible);
+        $(byName(PERSONAL_DETAILS_INPUT_REGION)).clear();
+        $(byName(PERSONAL_DETAILS_INPUT_REGION)).sendKeys(User3.REGION.getValue());
+        $(byText("Country:")).shouldBe(Condition.visible);
+        $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.enabled).click();
+        sleep(2000);
+        $(byXpath(personalSettingsSaveButton)).waitUntil(Condition.disabled, 10000);
+        rootLogger.info("New data saved in all fields");
+    }
+    
+    @Test
+    public void personalDetails_Z_CheckSavedData() {
+        rootLogger.info("Check Saved Data");
+        sleep(2000);
         $(byText("First name:")).shouldBe(Condition.visible);
         $(byName(PERSONAL_DETAILS_INPUT_NAME)).shouldHave(Condition.value(User3.NAME.getValue()));
         $(byText("Last name:")).shouldBe(Condition.visible);
@@ -87,16 +126,17 @@ public class PekamaSettingsPersonal {
         $(byText("State/Region")).shouldBe(Condition.visible);
         $(byName(PERSONAL_DETAILS_INPUT_REGION)).shouldHave(Condition.value(User3.REGION.getValue()));
         $(byText("Country:")).shouldBe(Condition.visible);
-        $(byName(PERSONAL_DETAILS_COUNTRY_SELECT)).shouldHave(Condition.text("United States"));
         $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.disabled);
-        rootLogger.info("Fields are consistent, default data present");
+        rootLogger.info("User default data present");
     }
     @Test
     public void personalDetails_Name_A() {
         rootLogger.info("Validation Name field");
         $(byText("First name:")).shouldBe(Condition.visible);
-        $(byName(PERSONAL_DETAILS_INPUT_NAME)).sendKeys("");
-        sleep(500);
+        String RANDOM_21_LETTER = Utils.getRandomString(21);
+        $(byName(PERSONAL_DETAILS_INPUT_NAME)).sendKeys(RANDOM_21_LETTER);
+        $(byName(PERSONAL_DETAILS_INPUT_NAME)).clear();
+        sleep(1000);
         $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.enabled).click();
         sleep(500);
         $(byName(PERSONAL_DETAILS_INPUT_NAME)).shouldHave(Condition.value(""));
@@ -105,35 +145,36 @@ public class PekamaSettingsPersonal {
     }
     @Test
     public void personalDetails_Name_B() {
-        rootLogger.info("VValidation maxlength Name field");
+        rootLogger.info("Validation maxlength Name field");
         $(byText("First name:")).shouldBe(Condition.visible);
         String RANDOM_101_LETTER = Utils.getRandomString(101);
+        $(byName(PERSONAL_DETAILS_INPUT_NAME)).clear();
         $(byName(PERSONAL_DETAILS_INPUT_NAME)).sendKeys(RANDOM_101_LETTER);
-        sleep(500);
         $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.enabled).click();
         sleep(500);
         $(byText(ERROR_MSG_VALIDATION_LENGTH_100)).shouldBe(Condition.visible);
-        rootLogger.info("Validation present - "+ERROR_MSG_BLANK_NAME);
+        rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_100);
     }
     @Test
     public void personalDetails_Surname_A() {
         rootLogger.info("Validation Name field");
         $(byText("Last name:")).shouldBe(Condition.visible);
-        $(byName(PERSONAL_DETAILS_INPUT_SURNAME)).sendKeys("");
-        sleep(500);
+        String RANDOM_21_LETTER = Utils.getRandomString(21);
+        $(byName(PERSONAL_DETAILS_INPUT_SURNAME)).clear();
+        $(byName(PERSONAL_DETAILS_INPUT_SURNAME)).sendKeys(RANDOM_21_LETTER);
         $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.enabled).click();
         sleep(500);
-        $(byName(PERSONAL_DETAILS_INPUT_NAME)).shouldHave(Condition.value(""));
-        $(byText(ERROR_MSG_BLANK_NAME)).shouldBe(Condition.visible);
-        rootLogger.info("Validation present - "+ERROR_MSG_BLANK_NAME);
+        $(byName(PERSONAL_DETAILS_INPUT_SURNAME)).shouldHave(Condition.value(""));
+        $(byText(ERROR_MSG_BLANK_SURNAME)).shouldBe(Condition.visible);
+        rootLogger.info("Validation present - "+ERROR_MSG_BLANK_SURNAME);
     }
     @Test
     public void personalDetails_Surname_B() {
         rootLogger.info("Validation maxlength Surname field");
         $(byText("Last name:")).shouldBe(Condition.visible);
         String RANDOM_101_LETTER = Utils.getRandomString(101);
+        $(byName(PERSONAL_DETAILS_INPUT_SURNAME)).clear();
         $(byName(PERSONAL_DETAILS_INPUT_SURNAME)).sendKeys(RANDOM_101_LETTER);
-        sleep(500);
         $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.enabled).click();
         sleep(500);
         $(byText(ERROR_MSG_VALIDATION_LENGTH_100)).shouldBe(Condition.visible);
@@ -144,8 +185,8 @@ public class PekamaSettingsPersonal {
         rootLogger.info("Validation maxlength Phone field");
         $(byText("Phone #")).shouldBe(Condition.visible);
         String RANDOM_101_LETTER = Utils.getRandomString(21);
+        $(byName(PERSONAL_DETAILS_INPUT_PHONE)).clear();
         $(byName(PERSONAL_DETAILS_INPUT_PHONE)).sendKeys(RANDOM_101_LETTER);
-        sleep(500);
         $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.enabled).click();
         sleep(500);
         $(byText(ERROR_MSG_VALIDATION_LENGTH_20)).shouldBe(Condition.visible);
@@ -156,8 +197,8 @@ public class PekamaSettingsPersonal {
         rootLogger.info("Validation maxlength Fax field");
         $(byText("Fax #")).shouldBe(Condition.visible);
         String RANDOM_21_LETTER = Utils.getRandomString(21);
+        $(byName(PERSONAL_DETAILS_INPUT_FAX)).clear();
         $(byName(PERSONAL_DETAILS_INPUT_FAX)).sendKeys(RANDOM_21_LETTER);
-        sleep(500);
         $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.enabled).click();
         sleep(500);
         $(byText(ERROR_MSG_VALIDATION_LENGTH_20)).shouldBe(Condition.visible);
@@ -168,8 +209,8 @@ public class PekamaSettingsPersonal {
         rootLogger.info("Validation maxlength Mobile field");
         $(byText("Mobile #")).shouldBe(Condition.visible);
         String RANDOM_21_LETTER = Utils.getRandomString(21);
+        $(byName(PERSONAL_DETAILS_INPUT_MOBILE)).clear();
         $(byName(PERSONAL_DETAILS_INPUT_MOBILE)).sendKeys(RANDOM_21_LETTER);
-        sleep(500);
         $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.enabled).click();
         sleep(500);
         $(byText(ERROR_MSG_VALIDATION_LENGTH_20)).shouldBe(Condition.visible);
@@ -180,8 +221,8 @@ public class PekamaSettingsPersonal {
         rootLogger.info("Validation maxlength Legal entity field");
         $(byText("Legal entity:")).shouldBe(Condition.visible);
         String RANDOM_256_LETTER = Utils.getRandomString(256);
+        $(byName(PERSONAL_DETAILS_INPUT_LEGAL_ENTITY)).clear();
         $(byName(PERSONAL_DETAILS_INPUT_LEGAL_ENTITY)).sendKeys(RANDOM_256_LETTER);
-        sleep(500);
         $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.enabled).click();
         sleep(500);
         $(byText(ERROR_MSG_VALIDATION_LENGTH_255)).shouldBe(Condition.visible);
@@ -192,8 +233,8 @@ public class PekamaSettingsPersonal {
         rootLogger.info("Validation maxlength Legal entity field");
         $(byText("Street address:")).shouldBe(Condition.visible);
         String RANDOM_256_LETTER = Utils.getRandomString(256);
+        $(byName(PERSONAL_DETAILS_INPUT_STREET)).clear();
         $(byName(PERSONAL_DETAILS_INPUT_STREET)).sendKeys(RANDOM_256_LETTER);
-        sleep(500);
         $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.enabled).click();
         sleep(500);
         $(byText(ERROR_MSG_VALIDATION_LENGTH_255)).shouldBe(Condition.visible);
@@ -204,8 +245,8 @@ public class PekamaSettingsPersonal {
         rootLogger.info("Validation maxlength Post code field");
         $(byText("Post code:")).shouldBe(Condition.visible);
         String RANDOM_21_LETTER = Utils.getRandomString(21);
+        $(byName(PERSONAL_DETAILS_INPUT_ZIP)).clear();
         $(byName(PERSONAL_DETAILS_INPUT_ZIP)).sendKeys(RANDOM_21_LETTER);
-        sleep(500);
         $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.enabled).click();
         sleep(500);
         $(byText(ERROR_MSG_VALIDATION_LENGTH_20)).shouldBe(Condition.visible);
@@ -216,8 +257,8 @@ public class PekamaSettingsPersonal {
         rootLogger.info("Validation maxlength City field");
         $(byText("City:")).shouldBe(Condition.visible);
         String RANDOM_256_LETTER = Utils.getRandomString(256);
+        $(byName(PERSONAL_DETAILS_INPUT_CITY)).clear();
         $(byName(PERSONAL_DETAILS_INPUT_CITY)).sendKeys(RANDOM_256_LETTER);
-        sleep(500);
         $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.enabled).click();
         sleep(500);
         $(byText(ERROR_MSG_VALIDATION_LENGTH_255)).shouldBe(Condition.visible);
@@ -228,12 +269,19 @@ public class PekamaSettingsPersonal {
         rootLogger.info("Validation maxlength Region entity field");
         $(byText("State/Region")).shouldBe(Condition.visible);
         String RANDOM_256_LETTER = Utils.getRandomString(256);
+        $(byName(PERSONAL_DETAILS_INPUT_REGION)).clear();
         $(byName(PERSONAL_DETAILS_INPUT_REGION)).sendKeys(RANDOM_256_LETTER);
-        sleep(500);
         $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.enabled).click();
         sleep(500);
         $(byText(ERROR_MSG_VALIDATION_LENGTH_255)).shouldBe(Condition.visible);
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_255);
+    }
+    @Ignore
+    @Test
+    public void personalDetails_SelectCountry_A() {
+        rootLogger.info("Select new counrty");
+        $(byName(PERSONAL_DETAILS_COUNTRY_SELECT)).shouldHave(Condition.text("United States"));
+        rootLogger.info("Select user counrty");
     }
     @Ignore
     @Test
