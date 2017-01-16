@@ -1,4 +1,5 @@
 package Steps;
+import Utils.HttpAuth;
 import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -8,6 +9,7 @@ import static Page.ModalWindows.*;
 import static Page.PekamaLogin.*;
 import static Page.PekamaReports.*;
 import static Page.TestsCredentials.*;
+import static Page.TestsUrl.urlSingUp;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byLinkText;
 import static com.codeborne.selenide.Selectors.byText;
@@ -40,6 +42,20 @@ public class PekamaSteps {
         $(By.xpath(loginButton_Login)).click();
         $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));
         $(By.xpath(btnSignup)).shouldBe(Condition.not(visible));
+        rootLogger.info("Valid Credentials were submitted");
+    }
+
+    public void  loginByURL(String PEKAMA_USER_EMAIL, String PEKAMA_USER_PASSWORD, String AUTH_URL){
+        HttpAuth openHost = new HttpAuth();
+        openHost.httpAuthWhithCustomLink(AUTH_URL);
+        rootLogger.info(AUTH_URL+"URL opened");
+        submitCookie();
+        $(loginField_Email).sendKeys(PEKAMA_USER_EMAIL);
+        rootLogger.info(PEKAMA_USER_EMAIL+ " - login selected");
+        $(loginField_Password).sendKeys(PEKAMA_USER_PASSWORD);
+        $(By.xpath(loginButton_Login)).click();
+        sleep(1000);
+        $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));
         rootLogger.info("Valid Credentials were submitted");
     }
 

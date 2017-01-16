@@ -4,7 +4,10 @@ package Page;
  * Created by VatslauX on 29-Dec-16.
  */
 public class PekamaPersonalSettings {
-    //tabs data attribbute "data-target"
+ public static final String PERSONAL_SETTINGS_BTN = "//*[@class='header-panel-nav']//*[@href='/a/settings/profile']";
+ public static final String TEAM_SETTINGS_BTN = "//*[@class='header-panel-nav']//*[@href='/a/settings/team']";
+
+ //tabs data attribbute "data-target"
 
     public static final String personalSettingsTabPersonal = "#basic-info";
     public static final String personalSettingsTabSecurity = "#login-security";
@@ -21,7 +24,7 @@ public class PekamaPersonalSettings {
     public static final String PERSONAL_DETAILS_INPUT_PHONE = "phone_number";
     public static final String PERSONAL_DETAILS_INPUT_FAX = "fax_number";
     public static final String PERSONAL_DETAILS_INPUT_MOBILE = "cellphone_number";
-    public static final String PERSONAL_DETAILS_INPUT_COMPANY = "legal_entity_name";
+    public static final String PERSONAL_DETAILS_INPUT_LEGAL_ENTITY = "legal_entity_name";
     public static final String PERSONAL_DETAILS_INPUT_STREET = "street_address";
     public static final String PERSONAL_DETAILS_INPUT_ZIP = "postal_code";
     public static final String PERSONAL_DETAILS_INPUT_CITY = "city";

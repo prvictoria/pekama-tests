@@ -83,6 +83,7 @@ public class PekamaSettingsTeam {
     @Test
     public void values_testA_GUI() {
         rootLogger.info("Start test GUI and links");
+
         $(byText("Conference")).find(byLinkText("link=Conference")).shouldBe(Condition.visible);
         $(byText("Client Relation (CRM)")).find(byLinkText("link=Client Relation (CRM)")).shouldBe(Condition.visible);
         $(byText("Corporate")).find(byLinkText("link=Corporate")).shouldBe(Condition.visible);
@@ -104,13 +105,24 @@ public class PekamaSettingsTeam {
         rootLogger.info("Defauls state passed");
     }
     @Test
-    public void testB_() {
+    public void tabProfile_testB_() {
 
         rootLogger.info("");
-        open("");
-        $(By.xpath("")).sendKeys("");
-        $(By.xpath("")).shouldBe(Condition.visible);
-        $(By.xpath("")).click();
+        $(byText("Title:")).shouldBe(Condition.visible);
+        $(byText("Code:")).shouldBe(Condition.visible);
+        $(byText("Organization type:")).shouldBe(Condition.visible);
+        $(byText("This organization is:")).shouldBe(Condition.visible);
+        $(byText("Email:")).shouldBe(Condition.visible);
+        $(byText("@organizations.pekama.com")).shouldBe(Condition.visible);
+        $(byText("Additional Info")).shouldBe(Condition.visible);
+        $(byText("Street address:")).shouldBe(Condition.visible);
+        $(byText("Post code:")).shouldBe(Condition.visible);
+        $(byText("City:")).shouldBe(Condition.visible);
+        $(byText("State/Region")).shouldBe(Condition.visible);
+        $(byText("Country:")).shouldBe(Condition.visible);
+        $(byText("Title")).shouldBe(Condition.visible);
+        $(byText("Title")).shouldBe(Condition.visible);
+
         rootLogger.info("");
     }
     @Test

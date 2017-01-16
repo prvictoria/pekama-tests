@@ -43,8 +43,17 @@ public class TestsCredentials {
         GMAIL_PASSWORD("123456789qasw1"),
         PEKAMA_PASSWORD("asui67we34"),
         LINKEDIN_PASSWORD("123456789qasw"),
-        NAME("test003"),
-        SURNAME("qweeco003"),
+        NAME("Test003"),
+        SURNAME("Quality03"),
+        PHONE("205-780-5656"),
+        FAX("(205) 254-2294"),
+        MOBILE("205- 324-8712"),
+        LEGAL_ENTITY("Arlington House"),
+        STREET("331 Cotton Avenue, Southwest"),
+        ZIP("35211"),
+        CITY("Birmingham"),
+        REGION("Alabama"),
+        COUNTRY("United States"),
         TEAM_NAME("QweecoTeam03"),
         TEAM_CODE("QT03"),
         FULL_TEAM_NAME("Qweeco03 (QT03)");
@@ -61,11 +70,21 @@ public class TestsCredentials {
         GMAIL_PASSWORD("123456789qasw1"),
         PEKAMA_PASSWORD("asui67we34"),
         LINKEDIN_PASSWORD("123456789qasw"),
-        NAME("test004"),
-        SURNAME("qweeco004"),
+        NAME("Test004"),
+        SURNAME("Quality04"),
+        PHONE("205-780-5656"),
+        FAX("(205) 254-2294"),
+        MOBILE("205- 324-8712"),
+        LEGAL_ENTITY("Arlington House"),
+        STREET("331 Cotton Avenue, Southwest"),
+        ZIP("35211"),
+        CITY("Birmingham"),
+        REGION("Alabama"),
+        COUNTRY("United States"),
         TEAM_NAME("QweecoTeam04"),
         TEAM_CODE("QT04"),
         FULL_TEAM_NAME("Qweeco04 (QT04)");
+
         private String value;
         User4(String value) {
             this.value = value;

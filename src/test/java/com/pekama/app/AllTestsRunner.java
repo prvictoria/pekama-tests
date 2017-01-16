@@ -12,7 +12,9 @@ import org.junit.runners.Suite;
         PekamaLanding.class,
         PekamaLogin.class,
         PekamaResetPassword.class,
-        Page.PekamaSignUp.class
+        Page.PekamaSignUp.class,
+        PekamaSettingsPersonal.class,
+        PekamaSettingsTeam.class
 })
 public class AllTestsRunner {
 }

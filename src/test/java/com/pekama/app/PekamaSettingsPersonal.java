@@ -2,18 +2,18 @@ package com.pekama.app;/**
  * Created by VatslauX on 15-Jan-17.
  */
 
+import Steps.PekamaSteps;
+import Utils.Utils;
 import com.codeborne.selenide.*;
-import com.thoughtworks.selenium.DefaultSelenium;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
 import org.junit.runners.MethodSorters;
-import org.openqa.selenium.By;
 
 import static Page.ModalWindows.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
-import static com.codeborne.selenide.CollectionCondition.*;
+import static Page.TestsUrl.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -23,24 +23,35 @@ import static Page.PekamaPersonalSettings.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PekamaSettingsPersonal {
     static final Logger rootLogger = LogManager.getRootLogger();
-//    @Before
+    private String PEKAMA_USER_EMAIL = User3.GMAIL_EMAIL.getValue();
+    private String PEKAMA_USER_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
+    private String AUTH_URL = urlPersonalSettings;
+
+    //    @Before
 //    public void setUp() throws Exception {
 //        selenium = new DefaultSelenium("localhost", 4444, "*chrome", "https://staging.pekama.com/");
 //        selenium.start();
 //    }
+    @BeforeClass
+    public static void beforeClass() {
+
+    }
     @Before
     public void before() {
-        open("");
+        PekamaSteps loginIntoPekama = new PekamaSteps();
+        loginIntoPekama.loginByURL(PEKAMA_USER_EMAIL, PEKAMA_USER_PASSWORD, AUTH_URL);
     }
-
     @After
     public void after() {
-        open("");
+        open(urlLogout);
     }
 
+    @Ignore
     @Test
     public void checkGui() {
         rootLogger.info("Start test GUI and links");
+        $(byXpath(PERSONAL_SETTINGS_BTN)).shouldBe(Condition.visible);
+        $(byXpath(TEAM_SETTINGS_BTN)).shouldBe(Condition.visible);
         $(byAttribute("data-target", personalSettingsTabPersonal)).shouldHave(Condition.text("Personal details"));
         $(byAttribute("data-target", personalSettingsTabSecurity)).shouldHave(Condition.text("Login & Security"));
         $(byAttribute("data-target", personalSettingsTabEmails)).shouldHave(Condition.text("Emails"));
@@ -50,29 +61,181 @@ public class PekamaSettingsPersonal {
         rootLogger.info("Perosnal settings GUI is consistent");
         $(byText("Team details"));
     }
-
+    @Ignore
     @Test
-    public void checkFieldsState() {
+    public void personalDetails_Z_lastTest() {
         //$$(":input").shouldHave(size(4));
-        $(byText("Title:")).shouldBe(Condition.visible);
-        $(byText("Code:")).shouldBe(Condition.visible);
-        $(byText("Organization type:")).shouldBe(Condition.visible);
-        $(byText("This organization is:")).shouldBe(Condition.visible);
-        $(byText("Email:")).shouldBe(Condition.visible);
-        $(byText("@organizations.pekama.com")).shouldBe(Condition.visible);
-        $(byText("Additional Info")).shouldBe(Condition.visible);
+        rootLogger.info("Validation Name field");
+        $(byText("First name:")).shouldBe(Condition.visible);
+        $(byName(PERSONAL_DETAILS_INPUT_NAME)).shouldHave(Condition.value(User3.NAME.getValue()));
+        $(byText("Last name:")).shouldBe(Condition.visible);
+        $(byName(PERSONAL_DETAILS_INPUT_SURNAME)).shouldHave(Condition.value(User3.SURNAME.getValue()));
+        $(byText("Phone #")).shouldBe(Condition.visible);
+        $(byName(PERSONAL_DETAILS_INPUT_PHONE)).shouldHave(Condition.value(User3.PHONE.getValue()));
+        $(byText("Fax #")).shouldBe(Condition.visible);
+        $(byName(PERSONAL_DETAILS_INPUT_FAX)).shouldHave(Condition.value(User3.FAX.getValue()));
+        $(byText("Mobile #")).shouldBe(Condition.visible);
+        $(byName(PERSONAL_DETAILS_INPUT_MOBILE)).shouldHave(Condition.value(User3.MOBILE.getValue()));
+        $(byText("Legal entity:")).shouldBe(Condition.visible);
+        $(byName(PERSONAL_DETAILS_INPUT_LEGAL_ENTITY)).shouldHave(Condition.value(User3.LEGAL_ENTITY.getValue()));
         $(byText("Street address:")).shouldBe(Condition.visible);
+        $(byName(PERSONAL_DETAILS_INPUT_STREET)).shouldHave(Condition.value(User3.STREET.getValue()));
         $(byText("Post code:")).shouldBe(Condition.visible);
+        $(byName(PERSONAL_DETAILS_INPUT_ZIP)).shouldHave(Condition.value(User3.ZIP.getValue()));
         $(byText("City:")).shouldBe(Condition.visible);
+        $(byName(PERSONAL_DETAILS_INPUT_CITY)).shouldHave(Condition.value(User3.CITY.getValue()));
         $(byText("State/Region")).shouldBe(Condition.visible);
+        $(byName(PERSONAL_DETAILS_INPUT_REGION)).shouldHave(Condition.value(User3.REGION.getValue()));
         $(byText("Country:")).shouldBe(Condition.visible);
-        $(byText("Title")).shouldBe(Condition.visible);
-        $(byText("Title")).shouldBe(Condition.visible);
-
-
-        rootLogger.info("Fields are consistent");
+        $(byName(PERSONAL_DETAILS_COUNTRY_SELECT)).shouldHave(Condition.text("United States"));
+        $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.disabled);
+        rootLogger.info("Fields are consistent, default data present");
     }
-
+    @Test
+    public void personalDetails_Name_A() {
+        rootLogger.info("Validation Name field");
+        $(byText("First name:")).shouldBe(Condition.visible);
+        $(byName(PERSONAL_DETAILS_INPUT_NAME)).sendKeys("");
+        sleep(500);
+        $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.enabled).click();
+        sleep(500);
+        $(byName(PERSONAL_DETAILS_INPUT_NAME)).shouldHave(Condition.value(""));
+        $(byText(ERROR_MSG_BLANK_NAME)).shouldBe(Condition.visible);
+        rootLogger.info("Validation present - "+ERROR_MSG_BLANK_NAME);
+    }
+    @Test
+    public void personalDetails_Name_B() {
+        rootLogger.info("VValidation maxlength Name field");
+        $(byText("First name:")).shouldBe(Condition.visible);
+        String RANDOM_101_LETTER = Utils.getRandomString(101);
+        $(byName(PERSONAL_DETAILS_INPUT_NAME)).sendKeys(RANDOM_101_LETTER);
+        sleep(500);
+        $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.enabled).click();
+        sleep(500);
+        $(byText(ERROR_MSG_VALIDATION_LENGTH_100)).shouldBe(Condition.visible);
+        rootLogger.info("Validation present - "+ERROR_MSG_BLANK_NAME);
+    }
+    @Test
+    public void personalDetails_Surname_A() {
+        rootLogger.info("Validation Name field");
+        $(byText("Last name:")).shouldBe(Condition.visible);
+        $(byName(PERSONAL_DETAILS_INPUT_SURNAME)).sendKeys("");
+        sleep(500);
+        $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.enabled).click();
+        sleep(500);
+        $(byName(PERSONAL_DETAILS_INPUT_NAME)).shouldHave(Condition.value(""));
+        $(byText(ERROR_MSG_BLANK_NAME)).shouldBe(Condition.visible);
+        rootLogger.info("Validation present - "+ERROR_MSG_BLANK_NAME);
+    }
+    @Test
+    public void personalDetails_Surname_B() {
+        rootLogger.info("Validation maxlength Surname field");
+        $(byText("Last name:")).shouldBe(Condition.visible);
+        String RANDOM_101_LETTER = Utils.getRandomString(101);
+        $(byName(PERSONAL_DETAILS_INPUT_SURNAME)).sendKeys(RANDOM_101_LETTER);
+        sleep(500);
+        $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.enabled).click();
+        sleep(500);
+        $(byText(ERROR_MSG_VALIDATION_LENGTH_100)).shouldBe(Condition.visible);
+        rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_100);
+    }
+    @Test
+    public void personalDetails_Phone_A() {
+        rootLogger.info("Validation maxlength Phone field");
+        $(byText("Phone #")).shouldBe(Condition.visible);
+        String RANDOM_101_LETTER = Utils.getRandomString(21);
+        $(byName(PERSONAL_DETAILS_INPUT_PHONE)).sendKeys(RANDOM_101_LETTER);
+        sleep(500);
+        $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.enabled).click();
+        sleep(500);
+        $(byText(ERROR_MSG_VALIDATION_LENGTH_20)).shouldBe(Condition.visible);
+        rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_20);
+    }
+    @Test
+    public void personalDetails_Fax_A() {
+        rootLogger.info("Validation maxlength Fax field");
+        $(byText("Fax #")).shouldBe(Condition.visible);
+        String RANDOM_21_LETTER = Utils.getRandomString(21);
+        $(byName(PERSONAL_DETAILS_INPUT_FAX)).sendKeys(RANDOM_21_LETTER);
+        sleep(500);
+        $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.enabled).click();
+        sleep(500);
+        $(byText(ERROR_MSG_VALIDATION_LENGTH_20)).shouldBe(Condition.visible);
+        rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_20);
+    }
+    @Test
+    public void personalDetails_Mobile_A() {
+        rootLogger.info("Validation maxlength Mobile field");
+        $(byText("Mobile #")).shouldBe(Condition.visible);
+        String RANDOM_21_LETTER = Utils.getRandomString(21);
+        $(byName(PERSONAL_DETAILS_INPUT_MOBILE)).sendKeys(RANDOM_21_LETTER);
+        sleep(500);
+        $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.enabled).click();
+        sleep(500);
+        $(byText(ERROR_MSG_VALIDATION_LENGTH_20)).shouldBe(Condition.visible);
+        rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_20);
+    }
+    @Test
+    public void personalDetails_LegalEntity_A() {
+        rootLogger.info("Validation maxlength Legal entity field");
+        $(byText("Legal entity:")).shouldBe(Condition.visible);
+        String RANDOM_256_LETTER = Utils.getRandomString(256);
+        $(byName(PERSONAL_DETAILS_INPUT_LEGAL_ENTITY)).sendKeys(RANDOM_256_LETTER);
+        sleep(500);
+        $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.enabled).click();
+        sleep(500);
+        $(byText(ERROR_MSG_VALIDATION_LENGTH_255)).shouldBe(Condition.visible);
+        rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_255);
+    }
+    @Test
+    public void personalDetails_StreetAddress_A() {
+        rootLogger.info("Validation maxlength Legal entity field");
+        $(byText("Street address:")).shouldBe(Condition.visible);
+        String RANDOM_256_LETTER = Utils.getRandomString(256);
+        $(byName(PERSONAL_DETAILS_INPUT_STREET)).sendKeys(RANDOM_256_LETTER);
+        sleep(500);
+        $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.enabled).click();
+        sleep(500);
+        $(byText(ERROR_MSG_VALIDATION_LENGTH_255)).shouldBe(Condition.visible);
+        rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_255);
+    }
+    @Test
+    public void personalDetails_ZIP_A() {
+        rootLogger.info("Validation maxlength Post code field");
+        $(byText("Post code:")).shouldBe(Condition.visible);
+        String RANDOM_21_LETTER = Utils.getRandomString(21);
+        $(byName(PERSONAL_DETAILS_INPUT_ZIP)).sendKeys(RANDOM_21_LETTER);
+        sleep(500);
+        $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.enabled).click();
+        sleep(500);
+        $(byText(ERROR_MSG_VALIDATION_LENGTH_20)).shouldBe(Condition.visible);
+        rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_20);
+    }
+    @Test
+    public void personalDetails_City_A() {
+        rootLogger.info("Validation maxlength City field");
+        $(byText("City:")).shouldBe(Condition.visible);
+        String RANDOM_256_LETTER = Utils.getRandomString(256);
+        $(byName(PERSONAL_DETAILS_INPUT_CITY)).sendKeys(RANDOM_256_LETTER);
+        sleep(500);
+        $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.enabled).click();
+        sleep(500);
+        $(byText(ERROR_MSG_VALIDATION_LENGTH_255)).shouldBe(Condition.visible);
+        rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_255);
+    }
+    @Test
+    public void personalDetails_Region_A() {
+        rootLogger.info("Validation maxlength Region entity field");
+        $(byText("State/Region")).shouldBe(Condition.visible);
+        String RANDOM_256_LETTER = Utils.getRandomString(256);
+        $(byName(PERSONAL_DETAILS_INPUT_REGION)).sendKeys(RANDOM_256_LETTER);
+        sleep(500);
+        $(byXpath(personalSettingsSaveButton)).shouldBe(Condition.enabled).click();
+        sleep(500);
+        $(byText(ERROR_MSG_VALIDATION_LENGTH_255)).shouldBe(Condition.visible);
+        rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_255);
+    }
+    @Ignore
     @Test
     public void tabSecurity_testA_PasswordValidations() {
         rootLogger.info("Check state by default");
@@ -116,8 +279,7 @@ public class PekamaSettingsPersonal {
 
 
     }
-
-
+    @Ignore
     @Test
     public void tabSecurity_test_B_TwoStepVerification() {
         rootLogger.info("Open MW Enable 2-step verification");
@@ -158,6 +320,7 @@ public class PekamaSettingsPersonal {
 
 
     }
+    @Ignore
     @Test
     public void tabSecurity_test_C_TwoStepVerification() {
         rootLogger.info("Positive flow");
