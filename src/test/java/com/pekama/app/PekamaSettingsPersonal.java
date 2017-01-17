@@ -334,8 +334,7 @@ public class PekamaSettingsPersonal {
         $(byXpath(SECURITY_TAB_TITLE)).click();
         $(byName(SECURITY_TAB_NEW_PASSWORD)).waitUntil(Condition.visible, 10000).sendKeys(validPassword);
         $(byXpath(SECURITY_SAVE_BTN)).waitUntil(Condition.enabled, 10000).click();
-        $$(byText(ERROR_MSG_REQUIRED_FIELD)).shouldHaveSize(1);
-        $$(byText(ERROR_MSG_BLANK_FIELD)).shouldHaveSize(1);
+        $$(byText(ERROR_MSG_REQUIRED_FIELD)).shouldHaveSize(2);
         rootLogger.info("Validation error present");
     }
     @Test
@@ -346,13 +345,12 @@ public class PekamaSettingsPersonal {
         $(byName(SECURITY_TAB_CONFIRM_PASSWORD)).waitUntil(Condition.visible, 10000).sendKeys(validPassword);
         $(byXpath(SECURITY_SAVE_BTN)).shouldBe(Condition.enabled).click();
         $$(byText(ERROR_MSG_REQUIRED_FIELD)).shouldHaveSize(2);
-        $$(byText(ERROR_MSG_BLANK_FIELD)).shouldHaveSize(1);
         rootLogger.info("Validation error present");
     }
     @Test
     public void tabSecurity_PasswordValidations_D() {
         String validPassword = Utils.getRandomString(8)+VALID_PASSWORD;
-        rootLogger.info("Change Password - no Current password - BUG noValidation Current password MAJOR");
+        rootLogger.info("Change Password - BUG noValidation - No Current password checks MAJOR(Not reproduced)");
         $(byXpath(SECURITY_TAB_TITLE)).click();
         $(byName(SECURITY_TAB_NEW_PASSWORD)).waitUntil(Condition.visible, 10000).sendKeys(validPassword);
         $(byName(SECURITY_TAB_CONFIRM_PASSWORD)).sendKeys(validPassword);
@@ -365,7 +363,7 @@ public class PekamaSettingsPersonal {
         String validPassword = Utils.getRandomString(8)+VALID_PASSWORD;
         rootLogger.info("Change Password - no New password");
         $(byXpath(SECURITY_TAB_TITLE)).click();
-        $(byName(SECURITY_TAB_CURRENT_PASSWORD)).waitUntil(Condition.visible, 10000).sendKeys(validPassword);
+        $(byName(SECURITY_TAB_CURRENT_PASSWORD)).waitUntil(Condition.visible, 10000).sendKeys(User3.PEKAMA_PASSWORD.getValue());
         $(byName(SECURITY_TAB_CONFIRM_PASSWORD)).sendKeys(validPassword);
         $(byXpath(SECURITY_SAVE_BTN)).shouldBe(Condition.enabled).click();
         $$(byText(ERROR_MSG_REQUIRED_FIELD)).shouldHaveSize(1);
@@ -376,7 +374,7 @@ public class PekamaSettingsPersonal {
         String validPassword = Utils.getRandomString(8)+VALID_PASSWORD;
         rootLogger.info("Change Password - no Confirm password");
         $(byXpath(SECURITY_TAB_TITLE)).click();
-        $(byName(SECURITY_TAB_CURRENT_PASSWORD)).waitUntil(Condition.visible, 10000).sendKeys(validPassword);
+        $(byName(SECURITY_TAB_CURRENT_PASSWORD)).waitUntil(Condition.visible, 10000).sendKeys(User3.PEKAMA_PASSWORD.getValue());
         $(byName(SECURITY_TAB_NEW_PASSWORD)).sendKeys(validPassword);
         $(byXpath(SECURITY_SAVE_BTN)).shouldBe(Condition.enabled).click();
         $$(byText(ERROR_MSG_REQUIRED_FIELD)).shouldHaveSize(1);
@@ -390,9 +388,36 @@ public class PekamaSettingsPersonal {
         $(byName(SECURITY_TAB_NEW_PASSWORD)).sendKeys(User3.PEKAMA_PASSWORD.getValue());
         $(byName(SECURITY_TAB_CONFIRM_PASSWORD)).sendKeys(User3.PEKAMA_PASSWORD.getValue());
         $(byXpath(SECURITY_SAVE_BTN)).shouldBe(Condition.enabled).click();
-        $$(byText("")).shouldHaveSize(1);
+        $$(byText(ERROR_MSG_NEW_PASSOWRD_EQUALS_TO_OLD)).shouldHaveSize(1);
         rootLogger.info("Validation error present");
     }
+    @Test
+    public void tabSecurity_PasswordValidations_I() {
+        rootLogger.info("All fields - empty string submitted");
+        $(byXpath(SECURITY_TAB_TITLE)).click();
+        $(byName(SECURITY_TAB_CURRENT_PASSWORD)).sendKeys("1");
+        $(byName(SECURITY_TAB_CURRENT_PASSWORD)).clear();
+        $(byName(SECURITY_TAB_NEW_PASSWORD)).sendKeys("1");
+        $(byName(SECURITY_TAB_NEW_PASSWORD)).clear();
+        $(byName(SECURITY_TAB_CONFIRM_PASSWORD)).sendKeys("1");
+        $(byName(SECURITY_TAB_CONFIRM_PASSWORD)).clear();
+        $(byXpath(SECURITY_SAVE_BTN)).shouldBe(Condition.enabled).click();
+        $$(byText(ERROR_MSG_BLANK_FIELD)).shouldHaveSize(3);
+        rootLogger.info("Validation error present");
+    }
+    @Test
+    public void tabSecurity_PasswordValidations_K() {
+        rootLogger.info("Max length validation");
+        String RANDOM_129_LETTER = Utils.getRandomString(129);
+        $(byXpath(SECURITY_TAB_TITLE)).click();
+        $(byName(SECURITY_TAB_CURRENT_PASSWORD)).sendKeys(User3.PEKAMA_PASSWORD.getValue());
+        $(byName(SECURITY_TAB_NEW_PASSWORD)).sendKeys(RANDOM_129_LETTER);
+        $(byName(SECURITY_TAB_CONFIRM_PASSWORD)).sendKeys(RANDOM_129_LETTER);
+        $(byXpath(SECURITY_SAVE_BTN)).shouldBe(Condition.enabled).click();
+        $$(byText(ERROR_MSG_VALIDATION_LENGTH_128)).shouldHaveSize(1);
+        rootLogger.info("Validation error present");
+    }
+
     @Ignore
     @Test
     public void tabSecurity_test_B_TwoStepVerification() {

@@ -89,6 +89,7 @@ public class TestsStrings {
     public static final String ERROR_MSG_INVALID_PASSWORD = "";
     public static final String ERROR_MSG_NOT_MATCHED_PASSWORD = "The two password fields didn't match.";
     public static final String ERROR_MSG_NOT_MATCHED_NEW_PASSWORD = "Passwords do not match";
+    public static final String ERROR_MSG_NEW_PASSOWRD_EQUALS_TO_OLD = "You cannot reuse one of your previous passwords.";
 
     public static final String ERROR_MSG_FAMILIAR_TO_EMAIL_PASSWORD = "The password is too similar to the email address.";
     public static final String ERROR_MSG_FAMILIAR_TO_NAME_PASSWORD = "";
@@ -116,7 +117,7 @@ public class TestsStrings {
     public static final String ERROR_MSG_VALIDATION_LENGTH_20 = "Ensure this field has no more than 20 characters.";
     public static final String ERROR_MSG_VALIDATION_LENGTH_255 = "Ensure this field has no more than 255 characters.";
     public static final String ERROR_MSG_VALIDATION_LENGTH_1024 = "";
-    public static final String ERROR_MSG_VALIDATION_LENGTH_1 = "";
+    public static final String ERROR_MSG_VALIDATION_LENGTH_128 = "Ensure this field has no more than 128 characters.";
     public static final String ERROR_MSG_VALIDATION_LENGTH_2 = "";
     public static final String ERROR_MSG_VALIDATION_LENGTH_3 = "";
     public static final String ERROR_MSG_VALIDATION_LENGTH_4 = "";

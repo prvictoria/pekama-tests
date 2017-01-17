@@ -307,7 +307,7 @@ public class PekamaResetPassword {
             $(byXpath(NEWPASSWORD_PAGE_NEW_PASSWORD)).waitUntil(visible, 10000).sendKeys(NEW_PASSWORD);
             $(byXpath(NEWPASSWORD_PAGE_CONFIRM_PASSWORD)).shouldBe(Condition.visible).sendKeys(NEW_PASSWORD);
             $(byXpath(NEWPASSWORD_PAGE_RESTORE_BTN)).click();
-            $$(byText("You cannot reuse one of your previous passwords.")).shouldHaveSize(1);
+            $$(byText(ERROR_MSG_NEW_PASSOWRD_EQUALS_TO_OLD)).shouldHaveSize(1);
             rootLogger.info("Validation old password present");
         }
         else Assert.fail("password - "+NEW_PASSWORD);

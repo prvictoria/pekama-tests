@@ -8,15 +8,13 @@ import org.openqa.selenium.By;
 
 import static Page.ModalWindows.*;
 import static Page.PekamaLogin.*;
-import static Page.PekamaPersonalSettings.PERSONAL_DETAILS_INPUT_REGION;
-import static Page.PekamaPersonalSettings.personalSettingsSaveButton;
+import static Page.PekamaPersonalSettings.*;
 import static Page.PekamaReports.*;
 import static Page.TestsCredentials.*;
-import static Page.TestsStrings.ERROR_MSG_VALIDATION_LENGTH_255;
-import static Page.TestsUrl.urlSingUp;
+import static Page.TestsStrings.*;
+import static Page.TestsUrl.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
-import static com.codeborne.selenide.Selectors.byName;
 import static com.codeborne.selenide.Selenide.*;
 import static junit.framework.TestCase.fail;
 import static org.junit.Assert.assertEquals;
