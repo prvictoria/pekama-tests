@@ -1,13 +1,13 @@
 <application>
   <component name="FindSettings">
     <option name="caseSensitive" value="true" />
-    <option name="customScope" value="File '[pekama-tests] - ...\src\test\java\com\pekama\app\SignUpValidation.java'" />
-    <option name="defaultScopeName" value="File '[pekama-tests] - ...\src\test\java\com\pekama\app\SignUpValidation.java'" />
+    <option name="customScope" value="File '[pekama-tests] - ...\src\main\java\Steps\PekamaSteps.java'" />
+    <option name="defaultScopeName" value="File '[pekama-tests] - ...\src\main\java\Steps\PekamaSteps.java'" />
     <option name="localCaseSensitive" value="true" />
     <option name="wholeWordsOnly" value="true" />
     <option name="CASE_SENSITIVE_SEARCH" value="true" />
     <option name="LOCAL_CASE_SENSITIVE_SEARCH" value="true" />
     <option name="WHOLE_WORDS_ONLY" value="true" />
-    <option name="SEARCH_SCOPE" value="File '[pekama-tests] - ...\src\test\java\com\pekama\app\SignUpValidation.java'" />
+    <option name="SEARCH_SCOPE" value="File '[pekama-tests] - ...\src\main\java\Steps\PekamaSteps.java'" />
   </component>
 </application>
