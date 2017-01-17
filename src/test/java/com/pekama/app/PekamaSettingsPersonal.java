@@ -450,7 +450,8 @@ public class PekamaSettingsPersonal {
         $(byName(MW_EnableVerificationConfirmCodeField)).shouldHave(Condition.value("123123"));
         submitEnabledButton(MW_EnableVerificationNext);
         $(byText("You're out of attempts, please request a new confirmation code.")).shouldBe(Condition.visible);
-        $(byXpath(MW_EnableVerificationClose)).shouldBe(Condition.visible);
+        $(byXpath(MW_EnableVerificationClose)).shouldBe(Condition.visible).click();
+        $(byXpath(MW)).shouldNotBe(Condition.visible);
         rootLogger.info("validation 3 attempts present");
 
     }
@@ -459,9 +460,60 @@ public class PekamaSettingsPersonal {
     public void tabSecurity_TwoStepVerification_B() {
         rootLogger.info("Positive flow");
         rootLogger.info("");
-
-
-        rootLogger.info("");
+      rootLogger.info("");
 
     }
+    @Test
+    public void tabEmails_A() {
+        $(byXpath(EMAILS_TAB_TITLE)).click();
+        rootLogger.info("Check Defaults");
+        $(byXpath(EMAILS_TAB_RADIO_ALWAYS)).shouldBe(Condition.visible).shouldBe(Condition.selected);
+        $(byXpath(EMAILS_TAB_RADIO_OFFLINE)).shouldBe(Condition.visible).shouldNotBe(Condition.selected);
+        $(byXpath(EMAILS_TAB_RECIEVE_ATTACHMENTS)).shouldBe(Condition.visible).shouldBe(Condition.checked);
+        $(byXpath(EMAILS_TAB_RADIO_NO_EMAILS)).shouldBe(Condition.visible).shouldNotBe(Condition.selected);
+        $(byXpath(EMAILS_TAB_GET_COPY_OWN_EMAILS)).shouldBe(Condition.visible).shouldNotBe(Condition.checked);
+        rootLogger.info("Check selections");
+//todo - not hot
+//        $(byXpath(EMAILS_TAB_RADIO_OFFLINE)).selectRadio("on");
+//        $(byXpath(EMAILS_TAB_RADIO_OFFLINE)).shouldBe(Condition.visible).shouldBe(Condition.selected);
+
+
+    }
+    @Test
+    public void tabSignature_A() {
+        $(byXpath(SIGNATURE_TAB_TITLE)).click();
+        rootLogger.info("Enter new text");
+        $(byXpath(SIGNATURE_TAB_TEXT_EDITOR)).click();
+        $(byXpath(SIGNATURE_TAB_TEXT_EDITOR)).clear();
+        $(byXpath(SIGNATURE_TAB_TEXT_EDITOR)).sendKeys(LOREM_IPSUM_LONG);
+        $(byXpath(SIGNATURE_TAB_TEXT_EDITOR)).shouldHave(Condition.text(LOREM_IPSUM_LONG));
+        submitEnabledButton(SIGNATURE_SAVE_BTN);
+        rootLogger.info("Check entered text");
+        refresh();
+        $(byXpath(SIGNATURE_TAB_TITLE)).click();
+        $(byXpath(SIGNATURE_TAB_TEXT_EDITOR)).shouldHave(Condition.text(LOREM_IPSUM_LONG));
+    }
+    @Test
+    public void tabIMAP_A() {
+        $(byXpath(IMAP_TAB_TITLE)).click();
+        rootLogger.info("Check Defaults");
+
+
+        rootLogger.info("Check selections");
+
+
+
+    }
+    @Test
+    public void tabTimeTracker_A() {
+        $(byXpath(TIME_TRACKER_TAB_TITLE)).click();
+        rootLogger.info("Check Defaults");
+
+
+        rootLogger.info("Check selections");
+
+
+
+    }
+
 }
