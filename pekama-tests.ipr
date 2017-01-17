@@ -671,26 +671,15 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/apache/logging/log4j/log4j-core/2.7/log4j-core-2.7-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.apache.logging.log4j:log4j-slf4j-impl:2.7">
+    <library name="Maven: org.apache.logging.log4j:log4j-slf4j-impl:2.0.1">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/apache/logging/log4j/log4j-slf4j-impl/2.7/log4j-slf4j-impl-2.7.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/logging/log4j/log4j-slf4j-impl/2.0.1/log4j-slf4j-impl-2.0.1.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/apache/logging/log4j/log4j-slf4j-impl/2.7/log4j-slf4j-impl-2.7-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/logging/log4j/log4j-slf4j-impl/2.0.1/log4j-slf4j-impl-2.0.1-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/apache/logging/log4j/log4j-slf4j-impl/2.7/log4j-slf4j-impl-2.7-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.apache.logging.log4j:slf4j-api:2.0.1">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/apache/logging/log4j/slf4j-api/2.0.1/slf4j-api-2.0.1.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/apache/logging/log4j/slf4j-api/2.0.1/slf4j-api-2.0.1-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/apache/logging/log4j/slf4j-api/2.0.1/slf4j-api-2.0.1-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/logging/log4j/log4j-slf4j-impl/2.0.1/log4j-slf4j-impl-2.0.1-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.beanshell:bsh:2.0b4">
@@ -913,15 +902,15 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/slf4j/jcl-over-slf4j/1.7.21/jcl-over-slf4j-1.7.21-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.slf4j:slf4j-api:1.7.21">
+    <library name="Maven: org.slf4j:slf4j-api:1.7.7">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.7.21/slf4j-api-1.7.21.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.7.7/slf4j-api-1.7.7.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.7.21/slf4j-api-1.7.21-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.7.7/slf4j-api-1.7.7-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.7.21/slf4j-api-1.7.21-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.7.7/slf4j-api-1.7.7-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.testng:testng:6.8">
