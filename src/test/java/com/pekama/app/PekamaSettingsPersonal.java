@@ -418,9 +418,8 @@ public class PekamaSettingsPersonal {
         rootLogger.info("Validation error present");
     }
 
-    @Ignore
     @Test
-    public void tabSecurity_test_B_TwoStepVerification() {
+    public void tabSecurity_TwoStepVerification_A() {
         rootLogger.info("Open MW Enable 2-step verification");
         rootLogger.info("Check MW buttons");
         $(byXpath(MW)).shouldBe(Condition.visible);
@@ -459,9 +458,9 @@ public class PekamaSettingsPersonal {
 
 
     }
-    @Ignore
+    @Ignore // todo - need phone SMS-to-email integration
     @Test
-    public void tabSecurity_test_C_TwoStepVerification() {
+    public void tabSecurity_TwoStepVerification_B() {
         rootLogger.info("Positive flow");
         rootLogger.info("");
 
