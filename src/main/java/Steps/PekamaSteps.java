@@ -1,25 +1,16 @@
 package Steps;
-import Utils.HttpAuth;
-import Utils.Utils;
+import Utils.*;
 import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.By;
 
 import static Page.ModalWindows.*;
 import static Page.PekamaLogin.*;
-import static Page.PekamaPersonalSettings.*;
 import static Page.PekamaReports.*;
-import static Page.TestsCredentials.*;
-import static Page.TestsStrings.*;
-import static Page.TestsUrl.*;
+import static Page.TestsCredentials.GENERIC_PEKAMA_PASSWORD;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
-import static junit.framework.TestCase.fail;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.openqa.selenium.support.ui.ExpectedConditions.frameToBeAvailableAndSwitchToIt;
 
 public class PekamaSteps {
     static final Logger rootLogger = LogManager.getRootLogger();
@@ -29,9 +20,9 @@ public class PekamaSteps {
         $(loginField_Email).sendKeys(PEKAMA_USER_EMAIL);
         rootLogger.info(PEKAMA_USER_EMAIL+ " - login selected");
         $(loginField_Password).sendKeys(GENERIC_PEKAMA_PASSWORD);
-        $(By.xpath(loginButton_Login)).click();
-        $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));
-        $(By.xpath(btnSignup)).shouldBe(Condition.not(visible));
+        $(byXpath(loginButton_Login)).click();
+        $(byXpath(btnLogin)).shouldBe(Condition.not(visible));
+        $(byXpath(btnSignup)).shouldBe(Condition.not(visible));
         rootLogger.info("Valid Credentials were submitted");
     }
     public void  loginIntoPekamaByUrl(String PEKAMA_USER_EMAIL, String USER_PEKAMA_PASSWORD, String urlLogIn){
@@ -40,9 +31,9 @@ public class PekamaSteps {
         $(loginField_Email).sendKeys(PEKAMA_USER_EMAIL);
         rootLogger.info(PEKAMA_USER_EMAIL+ " - login selected");
         $(loginField_Password).sendKeys(USER_PEKAMA_PASSWORD);
-        $(By.xpath(loginButton_Login)).click();
-        $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));
-        $(By.xpath(btnSignup)).shouldBe(Condition.not(visible));
+        $(byXpath(loginButton_Login)).click();
+        $(byXpath(btnLogin)).shouldBe(Condition.not(visible));
+        $(byXpath(btnSignup)).shouldBe(Condition.not(visible));
         rootLogger.info("Valid Credentials were submitted");
     }
 
@@ -54,9 +45,9 @@ public class PekamaSteps {
         $(loginField_Email).sendKeys(PEKAMA_USER_EMAIL);
         rootLogger.info(PEKAMA_USER_EMAIL+ " - login selected");
         $(loginField_Password).sendKeys(PEKAMA_USER_PASSWORD);
-        $(By.xpath(loginButton_Login)).click();
+        $(byXpath(loginButton_Login)).click();
         sleep(1000);
-        $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));
+        $(byXpath(btnLogin)).shouldBe(Condition.not(visible));
         rootLogger.info("Valid Credentials were submitted");
     }
 
@@ -79,8 +70,8 @@ public class PekamaSteps {
         $(loginField_Email).sendKeys(PEKAMA_USER_EMAIL);
         rootLogger.info(PEKAMA_USER_EMAIL+ " - login selected");
         $(loginField_Password).sendKeys(GENERIC_PEKAMA_PASSWORD);
-        $(By.xpath(loginButton_Login)).click();
-        $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));
+        $(byXpath(loginButton_Login)).click();
+        $(byXpath(btnLogin)).shouldBe(Condition.not(visible));
         sleep(1000);
         rootLogger.info("Valid Credentials were submitted");
 
@@ -103,8 +94,8 @@ public class PekamaSteps {
         $(loginField_Email).sendKeys(PEKAMA_USER_EMAIL);
         rootLogger.info(PEKAMA_USER_EMAIL+ " - login selected");
         $(loginField_Password).sendKeys(USER_PEKAMA_PASSWORD);
-        $(By.xpath(loginButton_Login)).click();
-        $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));
+        $(byXpath(loginButton_Login)).click();
+        $(byXpath(btnLogin)).shouldBe(Condition.not(visible));
         sleep(1000);
         rootLogger.info("Valid Credentials were submitted");
 
@@ -181,7 +172,7 @@ public class PekamaSteps {
             $(byXpath(MW_MAILING_LIST_BTN_SEND_NOW)).waitUntil(visible, 10000).waitUntil(enabled, 10000).click();
             sleep(5000);
         }
-            else {
+        else {
             $(byXpath(MW_MAILING_1USER_INTERVAL)).sendKeys("999");
             rootLogger.info("Send Project report - new report");
             sleep(500);
@@ -210,7 +201,7 @@ public class PekamaSteps {
         $(byLinkText(REPORTS_MAILING_LISTS_DELETE_MW)).click();
         sleep(500);
         submitConfirmAction();
- //       $(byText(thisMailingListName)).shouldNotBe(Condition.visible);
+        //       $(byText(thisMailingListName)).shouldNotBe(Condition.visible);
     }
     public static void validationFieldByName(int randomLength, String fieldName, String submitButton, String errorMsg) {
         rootLogger.info("Validation field test for - "+fieldName);
@@ -231,5 +222,19 @@ public class PekamaSteps {
         sleep(500);
         $(byText(errorMsg)).shouldBe(Condition.visible);
         rootLogger.info("Validation present - "+errorMsg);
+    }
+    public static void enterCharsetInField(String fieldName, String enteredValue) {
+        rootLogger.info("Input date in - "+fieldName);
+        $(byXpath(fieldName)).clear();
+        $(byXpath(fieldName)).shouldHave(Condition.value("")).sendKeys(enteredValue);
+        $(byXpath(fieldName)).shouldHave(Condition.value(enteredValue));
+        rootLogger.info("This data was entered - "+enteredValue);
+    }
+    public static void submitEnabledButton(String buttonName) {
+        $(byXpath(buttonName)).waitUntil(visible, 10000);
+        $(byXpath(buttonName)).waitUntil(enabled, 10000);
+        $(byXpath(buttonName)).click();
+        sleep(500);
+        rootLogger.info(buttonName+" - Button was clicked");
     }
 }

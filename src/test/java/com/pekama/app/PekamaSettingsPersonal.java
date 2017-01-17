@@ -10,6 +10,7 @@ import static Page.ModalWindows.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.TestsUrl.*;
+import static Steps.PekamaSteps.submitEnabledButton;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static Page.PekamaPersonalSettings.*;
@@ -87,7 +88,7 @@ public class PekamaSettingsPersonal {
         $(byName(PERSONAL_DETAILS_INPUT_REGION)).clear();
         $(byName(PERSONAL_DETAILS_INPUT_REGION)).sendKeys(User3.REGION.getValue());
         $(byText("Country:")).shouldBe(Condition.visible);
-        $(byXpath(PERSONAL_DETAILS_SAVE_BTN)).shouldBe(Condition.enabled).click();
+        submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
         sleep(2000);
         $(byXpath(PERSONAL_DETAILS_SAVE_BTN)).waitUntil(Condition.disabled, 10000);
         rootLogger.info("New data saved in all fields");
@@ -128,7 +129,7 @@ public class PekamaSettingsPersonal {
         $(byName(PERSONAL_DETAILS_INPUT_SURNAME)).sendKeys(RANDOM_20_LETTER);
         $(byName(PERSONAL_DETAILS_INPUT_NAME)).clear();
         sleep(1000);
-        $(byXpath(PERSONAL_DETAILS_SAVE_BTN)).shouldBe(Condition.enabled).click();
+        submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
         sleep(500);
         $(byName(PERSONAL_DETAILS_INPUT_NAME)).shouldHave(Condition.value(""));
         $(byText(ERROR_MSG_BLANK_NAME)).shouldBe(Condition.visible);
@@ -141,7 +142,7 @@ public class PekamaSettingsPersonal {
         String RANDOM_101_LETTER = Utils.getRandomString(101);
         $(byName(PERSONAL_DETAILS_INPUT_NAME)).clear();
         $(byName(PERSONAL_DETAILS_INPUT_NAME)).sendKeys(RANDOM_101_LETTER);
-        $(byXpath(PERSONAL_DETAILS_SAVE_BTN)).shouldBe(Condition.enabled).click();
+        submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
         sleep(500);
         $(byText(ERROR_MSG_VALIDATION_LENGTH_100)).shouldBe(Condition.visible);
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_100);
@@ -152,7 +153,7 @@ public class PekamaSettingsPersonal {
         $(byText("Last name:")).shouldBe(Condition.visible);
         $(byName(PERSONAL_DETAILS_INPUT_NAME)).clear();
         $(byName(PERSONAL_DETAILS_INPUT_SURNAME)).clear();
-        $(byXpath(PERSONAL_DETAILS_SAVE_BTN)).shouldBe(Condition.enabled).click();
+        submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
         sleep(500);
         $(byName(PERSONAL_DETAILS_INPUT_SURNAME)).shouldHave(Condition.value(""));
         $(byName(PERSONAL_DETAILS_INPUT_NAME)).shouldHave(Condition.value(""));
@@ -167,8 +168,7 @@ public class PekamaSettingsPersonal {
         String RANDOM_20_LETTER = Utils.getRandomString(20);
         $(byName(PERSONAL_DETAILS_INPUT_NAME)).sendKeys(RANDOM_20_LETTER);
         $(byName(PERSONAL_DETAILS_INPUT_SURNAME)).clear();
-        $(byXpath(PERSONAL_DETAILS_SAVE_BTN)).shouldBe(Condition.enabled).click();
-        sleep(500);
+        submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
         $(byName(PERSONAL_DETAILS_INPUT_SURNAME)).shouldHave(Condition.value(""));
         $(byText(ERROR_MSG_BLANK_SURNAME)).shouldBe(Condition.visible);
         rootLogger.info("Validation present - "+ERROR_MSG_BLANK_SURNAME);
@@ -180,8 +180,7 @@ public class PekamaSettingsPersonal {
         String RANDOM_101_LETTER = Utils.getRandomString(101);
         $(byName(PERSONAL_DETAILS_INPUT_SURNAME)).clear();
         $(byName(PERSONAL_DETAILS_INPUT_SURNAME)).sendKeys(RANDOM_101_LETTER);
-        $(byXpath(PERSONAL_DETAILS_SAVE_BTN)).shouldBe(Condition.enabled).click();
-        sleep(500);
+        submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
         $(byText(ERROR_MSG_VALIDATION_LENGTH_100)).shouldBe(Condition.visible);
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_100);
     }
@@ -192,8 +191,7 @@ public class PekamaSettingsPersonal {
         String RANDOM_101_LETTER = Utils.getRandomString(21);
         $(byName(PERSONAL_DETAILS_INPUT_PHONE)).clear();
         $(byName(PERSONAL_DETAILS_INPUT_PHONE)).sendKeys(RANDOM_101_LETTER);
-        $(byXpath(PERSONAL_DETAILS_SAVE_BTN)).shouldBe(Condition.enabled).click();
-        sleep(500);
+        submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
         $(byText(ERROR_MSG_VALIDATION_LENGTH_20)).shouldBe(Condition.visible);
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_20);
     }
@@ -204,8 +202,7 @@ public class PekamaSettingsPersonal {
         String RANDOM_21_LETTER = Utils.getRandomString(21);
         $(byName(PERSONAL_DETAILS_INPUT_FAX)).clear();
         $(byName(PERSONAL_DETAILS_INPUT_FAX)).sendKeys(RANDOM_21_LETTER);
-        $(byXpath(PERSONAL_DETAILS_SAVE_BTN)).shouldBe(Condition.enabled).click();
-        sleep(500);
+        submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
         $(byText(ERROR_MSG_VALIDATION_LENGTH_20)).shouldBe(Condition.visible);
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_20);
     }
@@ -216,8 +213,7 @@ public class PekamaSettingsPersonal {
         String RANDOM_21_LETTER = Utils.getRandomString(21);
         $(byName(PERSONAL_DETAILS_INPUT_MOBILE)).clear();
         $(byName(PERSONAL_DETAILS_INPUT_MOBILE)).sendKeys(RANDOM_21_LETTER);
-        $(byXpath(PERSONAL_DETAILS_SAVE_BTN)).shouldBe(Condition.enabled).click();
-        sleep(500);
+        submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
         $(byText(ERROR_MSG_VALIDATION_LENGTH_20)).shouldBe(Condition.visible);
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_20);
     }
@@ -228,8 +224,7 @@ public class PekamaSettingsPersonal {
         String RANDOM_256_LETTER = Utils.getRandomString(256);
         $(byName(PERSONAL_DETAILS_INPUT_LEGAL_ENTITY)).clear();
         $(byName(PERSONAL_DETAILS_INPUT_LEGAL_ENTITY)).sendKeys(RANDOM_256_LETTER);
-        $(byXpath(PERSONAL_DETAILS_SAVE_BTN)).shouldBe(Condition.enabled).click();
-        sleep(500);
+        submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
         $(byText(ERROR_MSG_VALIDATION_LENGTH_255)).shouldBe(Condition.visible);
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_255);
     }
@@ -240,8 +235,7 @@ public class PekamaSettingsPersonal {
         String RANDOM_256_LETTER = Utils.getRandomString(256);
         $(byName(PERSONAL_DETAILS_INPUT_STREET)).clear();
         $(byName(PERSONAL_DETAILS_INPUT_STREET)).sendKeys(RANDOM_256_LETTER);
-        $(byXpath(PERSONAL_DETAILS_SAVE_BTN)).shouldBe(Condition.enabled).click();
-        sleep(500);
+        submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
         $(byText(ERROR_MSG_VALIDATION_LENGTH_255)).shouldBe(Condition.visible);
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_255);
     }
@@ -252,8 +246,7 @@ public class PekamaSettingsPersonal {
         String RANDOM_21_LETTER = Utils.getRandomString(21);
         $(byName(PERSONAL_DETAILS_INPUT_ZIP)).clear();
         $(byName(PERSONAL_DETAILS_INPUT_ZIP)).sendKeys(RANDOM_21_LETTER);
-        $(byXpath(PERSONAL_DETAILS_SAVE_BTN)).shouldBe(Condition.enabled).click();
-        sleep(500);
+        submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
         $(byText(ERROR_MSG_VALIDATION_LENGTH_20)).shouldBe(Condition.visible);
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_20);
     }
@@ -264,8 +257,7 @@ public class PekamaSettingsPersonal {
         String RANDOM_256_LETTER = Utils.getRandomString(256);
         $(byName(PERSONAL_DETAILS_INPUT_CITY)).clear();
         $(byName(PERSONAL_DETAILS_INPUT_CITY)).sendKeys(RANDOM_256_LETTER);
-        $(byXpath(PERSONAL_DETAILS_SAVE_BTN)).shouldBe(Condition.enabled).click();
-        sleep(500);
+        submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
         $(byText(ERROR_MSG_VALIDATION_LENGTH_255)).shouldBe(Condition.visible);
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_255);
     }
@@ -276,8 +268,7 @@ public class PekamaSettingsPersonal {
         String RANDOM_256_LETTER = Utils.getRandomString(256);
         $(byName(PERSONAL_DETAILS_INPUT_REGION)).clear();
         $(byName(PERSONAL_DETAILS_INPUT_REGION)).sendKeys(RANDOM_256_LETTER);
-        $(byXpath(PERSONAL_DETAILS_SAVE_BTN)).shouldBe(Condition.enabled).click();
-        sleep(500);
+        submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
         $(byText(ERROR_MSG_VALIDATION_LENGTH_255)).shouldBe(Condition.visible);
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_255);
     }
@@ -288,8 +279,7 @@ public class PekamaSettingsPersonal {
         $(byXpath(PERSONAL_DETAILS_COUNTRY_INPUT)).sendKeys("United Kingdom");
         $(CSS_SelectHighlighted).click();
         //$(byText("United Kingdom")).shouldBe(Condition.exactText("United Kingdom")).click();
-        $(byXpath(PERSONAL_DETAILS_SAVE_BTN)).shouldBe(Condition.enabled).click();
-        sleep(500);
+        submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
         refresh(); sleep(2000);
         $(byXpath(PERSONAL_DETAILS_COUNTRY_SELECT)).shouldHave(Condition.text("United Kingdom"));
 
@@ -298,8 +288,7 @@ public class PekamaSettingsPersonal {
         $(byXpath(PERSONAL_DETAILS_COUNTRY_INPUT)).sendKeys(User3.COUNTRY.getValue());
         $(CSS_SelectHighlighted).click();
         //$(byText("United States")).shouldBe(Condition.exactText("United States")).click();
-        $(byXpath(PERSONAL_DETAILS_SAVE_BTN)).shouldBe(Condition.enabled).click();
-        sleep(500);
+        submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
         refresh(); sleep(2000);
         $(byXpath(PERSONAL_DETAILS_COUNTRY_SELECT)).shouldHave(Condition.text("United States"));
         rootLogger.info("User country - "+User3.COUNTRY.getValue()+" - was selected");
@@ -321,7 +310,7 @@ public class PekamaSettingsPersonal {
         String validPassword = Utils.getRandomString(8)+VALID_PASSWORD;
         rootLogger.info("Validation empty fields New password & Confirm Password");
         $(byName(SECURITY_TAB_CURRENT_PASSWORD)).waitUntil(Condition.visible, 10000).sendKeys(validPassword);
-        $(byXpath(SECURITY_SAVE_BTN)).shouldBe(Condition.enabled).click();
+        submitEnabledButton(SECURITY_SAVE_BTN);
         $(byXpath(SECURITY_SAVE_BTN)).shouldBe(Condition.disabled);
         $$(byText(ERROR_MSG_WRONG_PASSWORD)).shouldHaveSize(1);
         $$(byText(ERROR_MSG_REQUIRED_FIELD)).shouldHaveSize(2);
@@ -333,7 +322,7 @@ public class PekamaSettingsPersonal {
         rootLogger.info("Validation empty fields Current password & Confirm Password");
         $(byXpath(SECURITY_TAB_TITLE)).click();
         $(byName(SECURITY_TAB_NEW_PASSWORD)).waitUntil(Condition.visible, 10000).sendKeys(validPassword);
-        $(byXpath(SECURITY_SAVE_BTN)).waitUntil(Condition.enabled, 10000).click();
+        submitEnabledButton(SECURITY_SAVE_BTN);
         $$(byText(ERROR_MSG_REQUIRED_FIELD)).shouldHaveSize(2);
         rootLogger.info("Validation error present");
     }
@@ -343,7 +332,7 @@ public class PekamaSettingsPersonal {
         rootLogger.info("Validation empty fields Current password & New Password");
         $(byXpath(SECURITY_TAB_TITLE)).click();
         $(byName(SECURITY_TAB_CONFIRM_PASSWORD)).waitUntil(Condition.visible, 10000).sendKeys(validPassword);
-        $(byXpath(SECURITY_SAVE_BTN)).shouldBe(Condition.enabled).click();
+        submitEnabledButton(SECURITY_SAVE_BTN);
         $$(byText(ERROR_MSG_REQUIRED_FIELD)).shouldHaveSize(2);
         rootLogger.info("Validation error present");
     }
@@ -354,7 +343,7 @@ public class PekamaSettingsPersonal {
         $(byXpath(SECURITY_TAB_TITLE)).click();
         $(byName(SECURITY_TAB_NEW_PASSWORD)).waitUntil(Condition.visible, 10000).sendKeys(validPassword);
         $(byName(SECURITY_TAB_CONFIRM_PASSWORD)).sendKeys(validPassword);
-        $(byXpath(SECURITY_SAVE_BTN)).shouldBe(Condition.enabled).click();
+        submitEnabledButton(SECURITY_SAVE_BTN);
         $$(byText(ERROR_MSG_REQUIRED_FIELD)).shouldHaveSize(1);
         rootLogger.info("Validation error present");
     }
@@ -365,7 +354,7 @@ public class PekamaSettingsPersonal {
         $(byXpath(SECURITY_TAB_TITLE)).click();
         $(byName(SECURITY_TAB_CURRENT_PASSWORD)).waitUntil(Condition.visible, 10000).sendKeys(User3.PEKAMA_PASSWORD.getValue());
         $(byName(SECURITY_TAB_CONFIRM_PASSWORD)).sendKeys(validPassword);
-        $(byXpath(SECURITY_SAVE_BTN)).shouldBe(Condition.enabled).click();
+        submitEnabledButton(SECURITY_SAVE_BTN);
         $$(byText(ERROR_MSG_REQUIRED_FIELD)).shouldHaveSize(1);
         rootLogger.info("Validation error present");
     }
@@ -376,7 +365,7 @@ public class PekamaSettingsPersonal {
         $(byXpath(SECURITY_TAB_TITLE)).click();
         $(byName(SECURITY_TAB_CURRENT_PASSWORD)).waitUntil(Condition.visible, 10000).sendKeys(User3.PEKAMA_PASSWORD.getValue());
         $(byName(SECURITY_TAB_NEW_PASSWORD)).sendKeys(validPassword);
-        $(byXpath(SECURITY_SAVE_BTN)).shouldBe(Condition.enabled).click();
+        submitEnabledButton(SECURITY_SAVE_BTN);
         $$(byText(ERROR_MSG_REQUIRED_FIELD)).shouldHaveSize(1);
         rootLogger.info("Validation error present");
     }
@@ -387,7 +376,7 @@ public class PekamaSettingsPersonal {
         $(byName(SECURITY_TAB_CURRENT_PASSWORD)).waitUntil(Condition.visible, 10000).sendKeys(User3.PEKAMA_PASSWORD.getValue());
         $(byName(SECURITY_TAB_NEW_PASSWORD)).sendKeys(User3.PEKAMA_PASSWORD.getValue());
         $(byName(SECURITY_TAB_CONFIRM_PASSWORD)).sendKeys(User3.PEKAMA_PASSWORD.getValue());
-        $(byXpath(SECURITY_SAVE_BTN)).shouldBe(Condition.enabled).click();
+        submitEnabledButton(SECURITY_SAVE_BTN);
         $$(byText(ERROR_MSG_NEW_PASSOWRD_EQUALS_TO_OLD)).shouldHaveSize(1);
         rootLogger.info("Validation error present");
     }
@@ -401,7 +390,7 @@ public class PekamaSettingsPersonal {
         $(byName(SECURITY_TAB_NEW_PASSWORD)).clear();
         $(byName(SECURITY_TAB_CONFIRM_PASSWORD)).sendKeys("1");
         $(byName(SECURITY_TAB_CONFIRM_PASSWORD)).clear();
-        $(byXpath(SECURITY_SAVE_BTN)).shouldBe(Condition.enabled).click();
+        submitEnabledButton(SECURITY_SAVE_BTN);
         $$(byText(ERROR_MSG_BLANK_FIELD)).shouldHaveSize(3);
         rootLogger.info("Validation error present");
     }
@@ -413,49 +402,56 @@ public class PekamaSettingsPersonal {
         $(byName(SECURITY_TAB_CURRENT_PASSWORD)).sendKeys(User3.PEKAMA_PASSWORD.getValue());
         $(byName(SECURITY_TAB_NEW_PASSWORD)).sendKeys(RANDOM_129_LETTER);
         $(byName(SECURITY_TAB_CONFIRM_PASSWORD)).sendKeys(RANDOM_129_LETTER);
-        $(byXpath(SECURITY_SAVE_BTN)).shouldBe(Condition.enabled).click();
+        submitEnabledButton(SECURITY_SAVE_BTN);
         $$(byText(ERROR_MSG_VALIDATION_LENGTH_128)).shouldHaveSize(1);
         rootLogger.info("Validation error present");
     }
 
     @Test
     public void tabSecurity_TwoStepVerification_A() {
+        $(byXpath(SECURITY_TAB_TITLE)).click();
         rootLogger.info("Open MW Enable 2-step verification");
+        $(byXpath(SECURITY_ENABLE_BTN)).shouldBe(Condition.visible).click();
         rootLogger.info("Check MW buttons");
         $(byXpath(MW)).shouldBe(Condition.visible);
         $(byXpath(MW_EnableVerificationClose)).shouldBe(Condition.visible);
         $(byXpath(MW_EnableVerificationNext)).shouldBe(Condition.visible);
         $(byXpath(MW_EnableVerificationCountrySelect)).shouldBe(Condition.visible).click();
-
-        $(byXpath(MW_EnableVerificationCoutryField)).shouldBe(Condition.visible).shouldHave(Condition.value("")).sendKeys("bela");
-        $(byLinkText("Belarus")).shouldBe(Condition.visible).click();
+        $(byXpath(MW_EnableVerificationCoutryField)).shouldBe(Condition.visible).shouldHave(Condition.value("")).sendKeys("Belarus");
+        $(CSS_SelectHighlighted).shouldBe(Condition.visible).click();
         $(byText("+375")).shouldBe(Condition.visible);
 
         rootLogger.info("Modal - Enable 2-Step Verification/ validate incorrect number");
-        $(byName("phone")).shouldHave(Condition.value("")).sendKeys("123");
-        $(byXpath(MW_EnableVerificationNext)).shouldBe(Condition.visible).click();
+        $(byName(MW_EnableVerificationTelField)).shouldHave(Condition.value("")).sendKeys("123");
+        submitEnabledButton(MW_EnableVerificationNext);
         $(byText("21211: The 'To' number 375123 is not a valid phone number.")).shouldBe(Condition.visible);
         rootLogger.info("Modal - Enable 2-Step Verification/ validate CORRECT number");
-        $(byName(MW_EnableVerificationTelField)).shouldHave(Condition.value("")).sendKeys("291200656");
-        $(byXpath(MW_EnableVerificationNext)).shouldBe(Condition.visible).click();
+        $(byName(MW_EnableVerificationTelField)).clear();
+        $(byName(MW_EnableVerificationTelField)).sendKeys("291200656");
+        submitEnabledButton(MW_EnableVerificationNext);
         $(byText("We sent a confirmation code to your phone. Please enter it in the field below.")).shouldBe(Condition.visible);
 
+        $(byName(MW_EnableVerificationConfirmCodeField)).clear();
         $(byName(MW_EnableVerificationConfirmCodeField)).shouldHave(Condition.value("")).sendKeys("12345678901234567890");
-        $(byXpath(MW_EnableVerificationNext)).shouldBe(Condition.visible).click();
+        submitEnabledButton(MW_EnableVerificationNext);
         $(byText("Wrong confirmation code format. It must be a number between 100000 and 999999")).shouldBe(Condition.visible);
         rootLogger.info("validation present");
 
+        $(byName(MW_EnableVerificationConfirmCodeField)).clear();
         $(byName(MW_EnableVerificationConfirmCodeField)).shouldHave(Condition.value("")).sendKeys("100000");
-        $(byXpath(MW_EnableVerificationNext)).shouldBe(Condition.visible).click();
+        submitEnabledButton(MW_EnableVerificationNext);
         $(byText("Wrong confirmation code. Attempts left: 2.")).shouldBe(Condition.visible);
+        $(byName(MW_EnableVerificationConfirmCodeField)).clear();
         $(byName(MW_EnableVerificationConfirmCodeField)).shouldHave(Condition.value("")).sendKeys("999999");
-        $(byXpath(MW_EnableVerificationNext)).shouldBe(Condition.visible).click();
+        submitEnabledButton(MW_EnableVerificationNext);
         $(byText("Wrong confirmation code. Attempts left: 1.")).shouldBe(Condition.visible);
+        $(byName(MW_EnableVerificationConfirmCodeField)).clear();
         $(byName(MW_EnableVerificationConfirmCodeField)).shouldHave(Condition.value("")).sendKeys("123123");
-        $(byXpath(MW_EnableVerificationNext)).shouldBe(Condition.visible).click();
+        $(byName(MW_EnableVerificationConfirmCodeField)).shouldHave(Condition.value("123123"));
+        submitEnabledButton(MW_EnableVerificationNext);
         $(byText("You're out of attempts, please request a new confirmation code.")).shouldBe(Condition.visible);
+        $(byXpath(MW_EnableVerificationClose)).shouldBe(Condition.visible);
         rootLogger.info("validation 3 attempts present");
-
 
     }
     @Ignore // todo - need phone SMS-to-email integration
