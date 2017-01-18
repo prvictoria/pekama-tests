@@ -7,11 +7,15 @@ import org.apache.logging.log4j.Logger;
 import org.junit.*;
 import org.junit.runners.MethodSorters;
 
+import static Page.Emails.*;
 import static Page.ModalWindows.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.TestsUrl.*;
+import static Steps.ExternalSteps.authGmail;
+import static Steps.PekamaSteps.submitConfirmAction;
 import static Steps.PekamaSteps.submitEnabledButton;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static Page.PekamaPersonalSettings.*;
@@ -494,9 +498,17 @@ public class PekamaSettingsPersonal {
         SIGNATURE_TAB_TITLE.click();
         SIGNATURE_TAB_TEXT_EDITOR.shouldHave(Condition.text(LOREM_IPSUM_LONG));
     }
-    @Test
+    @Ignore
+    @Test //todo - detecd delete button
     public void tabIMAP_A() {
         IMAP_TAB_TITLE.click();
+        if (IMAP_TAB_BTN_DELETE.isDisplayed())
+        {
+            rootLogger.info("Delete detected account");
+            IMAP_TAB_BTN_DELETE.click();
+            submitConfirmAction();
+            sleep(500);
+        }
         rootLogger.info("Check Defaults");
         IMAP_TAB_FIELD_USENAME.shouldBe(Condition.visible);
         IMAP_TAB_FIELD_PASSWORD.shouldBe(Condition.visible);
@@ -512,10 +524,19 @@ public class PekamaSettingsPersonal {
 
 
     }
-    @Test
+    @Ignore
+    @Test //todo - detecd delete button
     public void tabIMAP_B() {
         IMAP_TAB_TITLE.click();
         rootLogger.info("Check Defaults");
+        if (IMAP_TAB_BTN_DELETE.isDisplayed())
+        {
+            rootLogger.info("Delete tetected account");
+            IMAP_TAB_BTN_DELETE.click();
+            submitConfirmAction();
+            sleep(500);
+        }
+        if (IMAP_TAB_FIELD_USENAME.isDisplayed()){
         IMAP_TAB_FIELD_USENAME.shouldBe(Condition.visible);
         IMAP_TAB_FIELD_PASSWORD.shouldBe(Condition.visible);
         IMAP_TAB_FIELD_SERVER_NAME.shouldBe(Condition.visible);
@@ -526,8 +547,18 @@ public class PekamaSettingsPersonal {
         IMAP_TAB_BTN_CHECK.shouldBe(Condition.visible);
         IMAP_TAB_SSL.shouldBe(Condition.visible);
         rootLogger.info("Connect email manual");
-
-
+        IMAP_TAB_BTN_CONNECT_GMAIL.click();
+        authGmail(User3.GMAIL_EMAIL.getValue());
+        $(IMAP_TAB_BTN_DELETE).shouldNotBe(visible);
+        rootLogger.info("Delete added account");
+            if (IMAP_TAB_BTN_DELETE.isDisplayed())
+            {
+                IMAP_TAB_BTN_DELETE.click();
+                submitConfirmAction();
+                sleep(500);
+            }
+            else Assert.fail("Connect not connected");
+        }
 
     }
     @Test

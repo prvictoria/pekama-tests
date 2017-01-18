@@ -236,6 +236,28 @@ public class ExternalSteps {
     public static void checkFilesRemoved(){
     }
 
+    public static void authGmail(String GMAIL_LOGIN){
+        switchTo().window("Sign in - Google Accounts");
+        logging.info("Type email");
+        $((GMAIL_LOGIN_FIELD)).sendKeys(GMAIL_LOGIN);
+        logging.info("Submit email");
+        $(GMAIL_NEXT_BTN).click();
+        logging.info("Type password");
+        $(GMAIL_PASSWORD_FIELD).shouldBe(visible).sendKeys(GMAIL_PASSWORD);
+        logging.info("Submit password");
+        $(GMAIL_SIGNIN_BTN).shouldBe(visible).click();
+        logging.info("Inbox opened");
+        $(byXpath("//*[@id='submit_approve_access']")).shouldBe(visible).click();
+        $(byXpath("//*[@id='submit_approve_access']")).shouldNotBe(visible);
+//        close();
+//        switchTo().window(0);
+
+
+
+    }
+    public static void authLinkedin(){
+    }
+
     @Test
     public void externalTestDebug() {
 
@@ -247,4 +269,5 @@ public class ExternalSteps {
 
 
     }
+
 }
