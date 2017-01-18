@@ -502,6 +502,7 @@ public class PekamaSettingsPersonal {
     @Test //todo - detecd delete button
     public void tabIMAP_A() {
         IMAP_TAB_TITLE.click();
+        sleep(2000);
         if (IMAP_TAB_BTN_DELETE.isDisplayed())
         {
             rootLogger.info("Delete detected account");

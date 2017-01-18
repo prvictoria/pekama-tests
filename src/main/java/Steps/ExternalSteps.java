@@ -223,6 +223,14 @@ public class ExternalSteps {
             }
     } //not ready
 
+    public static void loginBoxFirstTime(){
+        if (true)
+        {
+
+        }
+    }
+    public static void renevAcessToBox(){
+    }
     public static void loginBox(){
     }
     public static void checkRootFolder(){
