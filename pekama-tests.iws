@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2fcdccdc-4d95-4ab7-8153-9ec9d616e50f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaIntegrationBox.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pekama-tests.iws" afterPath="$PROJECT_DIR$/pekama-tests.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/Box.java" afterPath="$PROJECT_DIR$/src/main/java/Page/Box.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/TestsCredentials.java" afterPath="$PROJECT_DIR$/src/main/java/Page/TestsCredentials.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Steps/ExternalSteps.java" afterPath="$PROJECT_DIR$/src/main/java/Steps/ExternalSteps.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaSettingsPersonal.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaSettingsPersonal.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/PekamaProject.java" afterPath="$PROJECT_DIR$/src/main/java/Page/PekamaProject.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="build/reports/" />
@@ -204,7 +200,7 @@
   <component name="FileEditorManager">
     <splitter split-orientation="vertical" split-proportion="0.8764278">
       <split-first>
-        <splitter split-orientation="horizontal" split-proportion="0.5">
+        <splitter split-orientation="horizontal" split-proportion="0.19469027">
           <split-first>
             <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
               <file leaf-file-name="PekamaSettingsPersonal.java" pinned="false" current-in-tab="false">
@@ -263,7 +259,9 @@
                   <provider selected="true" editor-type-id="text-editor">
                     <state relative-caret-position="0">
                       <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                      <folding />
+                      <folding>
+                        <element signature="imports" expanded="false" />
+                      </folding>
                     </state>
                   </provider>
                 </entry>
@@ -336,12 +334,14 @@
           </split-first>
           <split-second>
             <leaf>
-              <file leaf-file-name="box.java" pinned="false" current-in-tab="true">
+              <file leaf-file-name="box.java" pinned="false" current-in-tab="false">
                 <entry file="file://$USER_HOME$/Documents/box.java">
                   <provider selected="true" editor-type-id="text-editor">
                     <state relative-caret-position="2040">
                       <caret line="167" column="33" lean-forward="false" selection-start-line="167" selection-start-column="18" selection-end-line="167" selection-end-column="33" />
-                      <folding />
+                      <folding>
+                        <element signature="imports" expanded="false" />
+                      </folding>
                     </state>
                   </provider>
                 </entry>
@@ -368,6 +368,18 @@
                   </provider>
                 </entry>
               </file>
+              <file leaf-file-name="PekamaProject.java" pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/src/main/java/Page/PekamaProject.java">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="221">
+                      <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+                      <folding>
+                        <element signature="imports" expanded="true" />
+                      </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
             </leaf>
           </split-second>
         </splitter>
@@ -377,7 +389,7 @@
           <file leaf-file-name="PekamaPersonalSettings.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/Page/PekamaPersonalSettings.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="17">
+                <state relative-caret-position="68">
                   <caret line="73" column="103" lean-forward="false" selection-start-line="73" selection-start-column="73" selection-end-line="73" selection-end-column="103" />
                   <folding>
                     <element signature="imports" expanded="true" />
@@ -433,8 +445,6 @@
       <find>= &quot;</find>
     </findStrings>
     <replaceStrings>
-      <replace>REDIRECT_LINK</replace>
-      <replace>GENERIC_GMAIL_PASSWORD</replace>
       <replace>EMAIL_BTN</replace>
       <replace>checkReportBackLink</replace>
       <replace>Domain Name</replace>
@@ -463,6 +473,8 @@
       <replace>(byName((MW_EnableVerificationTelField)))</replace>
       <replace>$(byName((MW_EnableVerificationConfirmCodeField)))</replace>
       <replace>= $(byXpath(</replace>
+      <replace>= $(byLinkText(&quot;</replace>
+      <replace>= $(byXpath(&quot;</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -482,7 +494,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/Page/CommunityDashboard.java" />
         <option value="$PROJECT_DIR$/src/main/java/Page/CommunityWizard.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pekama/app/ConditionalIgnore.java" />
         <option value="$PROJECT_DIR$/src/main/java/Page/RunConfig.java" />
@@ -533,6 +544,7 @@
         <option value="$PROJECT_DIR$/src/main/java/Page/TestsCredentials.java" />
         <option value="$USER_HOME$/Documents/box.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaIntegrationBox.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Page/PekamaProject.java" />
       </list>
     </option>
   </component>
@@ -1424,14 +1436,7 @@
       <workItem from="1484499660625" duration="9121000" />
       <workItem from="1484596050313" duration="4332000" />
       <workItem from="1484670403339" duration="12200000" />
-      <workItem from="1484764340730" duration="4162000" />
-    </task>
-    <task id="LOCAL-00053" summary="AutoIt">
-      <created>1483948701835</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1483948701836</updated>
+      <workItem from="1484764340730" duration="4856000" />
     </task>
     <task id="LOCAL-00054" summary="AutoIt">
       <created>1483953936058</created>
@@ -1769,7 +1774,14 @@
       <option name="project" value="LOCAL" />
       <updated>1484731319941</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="BOX logic">
+      <created>1484768528546</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1484768528546</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1805,7 +1817,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="229375000" />
+    <option name="totallyTimeSpent" value="230069000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1870,7 +1882,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="page objects" />
     <MESSAGE value="root logger" />
     <MESSAGE value="Test runners" />
     <MESSAGE value="Community dashboard" />
@@ -1895,7 +1906,8 @@
     <MESSAGE value="Personal settings new tests" />
     <MESSAGE value="POM fix&#10;New test methods in Steps" />
     <MESSAGE value="Refactor elements" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor elements" />
+    <MESSAGE value="BOX logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="BOX logic" />
   </component>
   <component name="VssConfiguration">
     <CheckoutOptions>
@@ -1977,7 +1989,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk/src.zip!/java/lang/ProcessImpl.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/Page/PekamaReports.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="663">
@@ -2243,7 +2254,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Page/PekamaPersonalSettings.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
+        <state relative-caret-position="68">
           <caret line="73" column="103" lean-forward="false" selection-start-line="73" selection-start-column="73" selection-end-line="73" selection-end-column="103" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -2315,14 +2326,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Page/TestsCredentials.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="104" column="22" lean-forward="false" selection-start-line="104" selection-start-column="22" selection-end-line="104" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/seleniumhq/selenium/selenium-api/2.53.1/selenium-api-2.53.1-sources.jar!/org/openqa/selenium/WebElement.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="265">
@@ -2333,9 +2336,11 @@
     </entry>
     <entry file="file://$USER_HOME$/Documents/box.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="2040">
+          <caret line="167" column="33" lean-forward="false" selection-start-line="167" selection-start-column="18" selection-end-line="167" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2368,6 +2373,24 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#after#0;class#PekamaIntegrationBox#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Page/TestsCredentials.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="104" column="22" lean-forward="false" selection-start-line="104" selection-start-column="22" selection-end-line="104" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Page/PekamaProject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
