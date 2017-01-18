@@ -206,8 +206,12 @@ public class PekamaProject {
     public static final SelenideElement projectTabTask_ListAll = $(byXpath("//div/div/div/div/div[2]/button"));
     public static final SelenideElement projectTabTask_ = $(byXpath(""));
 
+    public static final SelenideElement buttonAddNewFile = $(byId("file-controls"));
     public static final SelenideElement buttonAddNewTask = $(byId("file-controls"));
-    public static final SelenideElement linkCreateNewTask = $(byLinkText("link=Create task"));
+    public static final SelenideElement linkCreateNewTask = $(byLinkText("Create task"));
+    public static final SelenideElement linkCreateNewFolder = $(byLinkText("Add Folder"));
+    public static final SelenideElement linkCreateNewDoc = $(byLinkText("New document"));
+    public static final SelenideElement linkDelete = $(byLinkText("Delete"));
 
     public static final SelenideElement mwUpdateSatus_Select = $(byXpath(""));
     public static final SelenideElement mwUpdateSatus_Input = $(byXpath(""));
