@@ -1,5 +1,10 @@
 package Page;
 
+import com.codeborne.selenide.SelenideElement;
+
+import static com.codeborne.selenide.Selectors.byXpath;
+import static com.codeborne.selenide.Selenide.$;
+
 /**
  * Created by VatslauX on 29-Dec-16.
  */
@@ -63,7 +68,7 @@ public class ModalWindows {
 // 2 step verifcation
     public static final String MW_EnableVerificationTitle = "//h3";
     public static final String MW_EnableVerificationClose = "//button[@type='button'][contains(.,'Close')]";
-    public static final String MW_EnableVerificationNext = "//button[@type='submit'][contains(.,'Next')]";
+    public static final SelenideElement MW_EnableVerificationNext = $(byXpath("//button[@type='submit'][contains(.,'Next')]"));
     public static final String MW_EnableVerificationTelField = "phone";
     public static final String MW_EnableVerificationCountrySelect = "//div/div/div/div/div/span";
     public static final String MW_EnableVerificationCoutryField = "//div/div/div/div/input";

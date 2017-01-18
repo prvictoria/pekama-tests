@@ -1,6 +1,7 @@
 package Steps;
 import Utils.*;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -223,17 +224,17 @@ public class PekamaSteps {
         $(byText(errorMsg)).shouldBe(Condition.visible);
         rootLogger.info("Validation present - "+errorMsg);
     }
-    public static void enterCharsetInField(String fieldName, String enteredValue) {
+    public static void enterCharsetInField(SelenideElement fieldName, String enteredValue) {
         rootLogger.info("Input date in - "+fieldName);
-        $(byXpath(fieldName)).clear();
-        $(byXpath(fieldName)).shouldHave(Condition.value("")).sendKeys(enteredValue);
-        $(byXpath(fieldName)).shouldHave(Condition.value(enteredValue));
+        fieldName.clear();
+        fieldName.shouldHave(Condition.value("")).sendKeys(enteredValue);
+        fieldName.shouldHave(Condition.value(enteredValue));
         rootLogger.info("This data was entered - "+enteredValue);
-    }
-    public static void submitEnabledButton(String buttonName) {
-        $(byXpath(buttonName)).waitUntil(visible, 10000);
-        $(byXpath(buttonName)).waitUntil(enabled, 10000);
-        $(byXpath(buttonName)).click();
+   }
+    public static void submitEnabledButton(SelenideElement buttonName) {
+        buttonName.waitUntil(visible, 10000);
+        buttonName.waitUntil(enabled, 10000);
+        buttonName.click();
         sleep(500);
         rootLogger.info(buttonName+" - Button was clicked");
     }
