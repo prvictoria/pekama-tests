@@ -21,9 +21,9 @@ public class PekamaSteps {
         $(loginField_Email).sendKeys(PEKAMA_USER_EMAIL);
         rootLogger.info(PEKAMA_USER_EMAIL+ " - login selected");
         $(loginField_Password).sendKeys(GENERIC_PEKAMA_PASSWORD);
-        $(byXpath(loginButton_Login)).click();
-        $(byXpath(btnLogin)).shouldBe(Condition.not(visible));
-        $(byXpath(btnSignup)).shouldBe(Condition.not(visible));
+        loginButton_Login.click();
+        btnLogin.shouldBe(Condition.not(visible));
+        btnSignup.shouldBe(Condition.not(visible));
         rootLogger.info("Valid Credentials were submitted");
     }
     public void  loginIntoPekamaByUrl(String PEKAMA_USER_EMAIL, String USER_PEKAMA_PASSWORD, String urlLogIn){
@@ -32,9 +32,9 @@ public class PekamaSteps {
         $(loginField_Email).sendKeys(PEKAMA_USER_EMAIL);
         rootLogger.info(PEKAMA_USER_EMAIL+ " - login selected");
         $(loginField_Password).sendKeys(USER_PEKAMA_PASSWORD);
-        $(byXpath(loginButton_Login)).click();
-        $(byXpath(btnLogin)).shouldBe(Condition.not(visible));
-        $(byXpath(btnSignup)).shouldBe(Condition.not(visible));
+        loginButton_Login.click();
+        btnLogin.shouldBe(Condition.not(visible));
+        btnSignup.shouldBe(Condition.not(visible));
         rootLogger.info("Valid Credentials were submitted");
     }
 
@@ -43,12 +43,12 @@ public class PekamaSteps {
         openHost.httpAuthWhithCustomLink(AUTH_URL);
         rootLogger.info(AUTH_URL+"URL opened");
         submitCookie();
-        $(loginField_Email).sendKeys(PEKAMA_USER_EMAIL);
+        loginField_Email.sendKeys(PEKAMA_USER_EMAIL);
         rootLogger.info(PEKAMA_USER_EMAIL+ " - login selected");
-        $(loginField_Password).sendKeys(PEKAMA_USER_PASSWORD);
-        $(byXpath(loginButton_Login)).click();
+        loginField_Password.sendKeys(PEKAMA_USER_PASSWORD);
+        loginButton_Login.click();
         sleep(1000);
-        $(byXpath(btnLogin)).shouldBe(Condition.not(visible));
+        btnLogin.shouldBe(Condition.not(visible));
         rootLogger.info("Valid Credentials were submitted");
     }
 
@@ -68,11 +68,11 @@ public class PekamaSteps {
 //            $(byXpath("//div[@title='Minimize']")).hover().click();
 //            rootLogger.info("displayed");
 //        }
-        $(loginField_Email).sendKeys(PEKAMA_USER_EMAIL);
+        loginField_Email.sendKeys(PEKAMA_USER_EMAIL);
         rootLogger.info(PEKAMA_USER_EMAIL+ " - login selected");
-        $(loginField_Password).sendKeys(GENERIC_PEKAMA_PASSWORD);
-        $(byXpath(loginButton_Login)).click();
-        $(byXpath(btnLogin)).shouldBe(Condition.not(visible));
+        loginField_Password.sendKeys(GENERIC_PEKAMA_PASSWORD);
+        loginButton_Login.click();
+        btnLogin.shouldBe(Condition.not(visible));
         sleep(1000);
         rootLogger.info("Valid Credentials were submitted");
 
@@ -92,11 +92,11 @@ public class PekamaSteps {
 //            $(byXpath("//div[@title='Minimize']")).hover().click();
 //            rootLogger.info("displayed");
 //        }
-        $(loginField_Email).sendKeys(PEKAMA_USER_EMAIL);
+        loginField_Email.sendKeys(PEKAMA_USER_EMAIL);
         rootLogger.info(PEKAMA_USER_EMAIL+ " - login selected");
         $(loginField_Password).sendKeys(USER_PEKAMA_PASSWORD);
-        $(byXpath(loginButton_Login)).click();
-        $(byXpath(btnLogin)).shouldBe(Condition.not(visible));
+        loginButton_Login.click();
+        btnLogin.shouldBe(Condition.not(visible));
         sleep(1000);
         rootLogger.info("Valid Credentials were submitted");
 
@@ -117,74 +117,75 @@ public class PekamaSteps {
     }
     public static void submitConfirmAction(){
         sleep(500);
-        $(byXpath(MW)).shouldBe(visible);
+        MW.shouldBe(visible);
         $(byText("Are you sure?")).shouldBe(Condition.visible);
         rootLogger.info("Confirm action modal window opened");
-        $(byXpath(MW_BTN_YES)).shouldBe(visible).click();
+        MW_BTN_YES.shouldBe(visible).click();
         sleep(500);
-        $(byXpath(MW)).shouldNotBe(visible);
+        MW.shouldNotBe(visible);
     }
     public static void collapseChatWidget(){
         sleep(500);
-        $(byXpath(MW)).shouldBe(visible);
+        MW.shouldBe(visible);
         $(byText("Are you sure?")).shouldBe(Condition.visible);
         rootLogger.info("Confirm action modal window opened");
-        $(byXpath(MW_BTN_YES)).shouldBe(visible).click();
+        MW_BTN_YES.shouldBe(visible).click();
         sleep(500);
-        $(byXpath(MW)).shouldNotBe(visible);
+        MW.shouldNotBe(visible);
     }
     public String mailingListCreateNew(String thisMailingListName){
         rootLogger.info("click"+REPORTS_MAILING_SAVE_SEARCH);
-        $(byXpath(REPORTS_MAILING_SAVE_SEARCH)).waitUntil(visible, 5000).click();
+        REPORTS_MAILING_SAVE_SEARCH.waitUntil(visible, 5000).click();
         sleep(3000);
-        $(byXpath(REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_SAVE)).shouldBe(disabled, visible);
+        REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_SAVE.shouldBe(disabled, visible);
         rootLogger.info("type"+thisMailingListName);
-        $(byXpath(REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_INPUT)).sendKeys(thisMailingListName);
+        REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_INPUT.sendKeys(thisMailingListName);
         rootLogger.info("click"+REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_SAVE);
-        $(byXpath(REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_SAVE)).click();
+        REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_SAVE.click();
         sleep(3000);
         $$(byText(thisMailingListName));
         $(byLinkText(thisMailingListName)).waitUntil(visible, 10000);
-        $(byXpath(REPORTS_MAILING_SAVE_SEARCH_DROPDOWN)).pressEscape();
+        REPORTS_MAILING_SAVE_SEARCH_DROPDOWN.pressEscape();
         sleep(500);
         rootLogger.info("Mailing List was created - "+ thisMailingListName);
         return thisMailingListName;
     }
     public static String mailingListSendReport(String thisMailingListName){
-        $(byLinkText(thisMailingListName)).click();
         String REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME = "//li[//a[contains(.,'"+ thisMailingListName +"')]]";
         String pathToReport = REPORTS_MAILING_LISTS+REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME+REPORTS_MAILING_LISTS_BTN_CALL_ML;
-        $(byXpath(pathToReport)).click();
         String actualMailingListRow = REPORTS_MAILING_LISTS+REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME;
-        $(byLinkText(REPORTS_MAILING_LISTS_CALL_MW)).click();
 
-        $(byXpath(MW)).shouldBe(visible);
+        $(byLinkText(thisMailingListName)).click();
+        $(byXpath(pathToReport)).click();
+        REPORTS_MAILING_LISTS_CALL_MW.click();
+
+        MW.shouldBe(visible);
         $(byText("Mailing List")).shouldBe(Condition.visible);
         rootLogger.info("Set checkbox and Set interval - new ML");
-        if ( $(byXpath(MW_MAILING_1USER_SELECT)).is(not(checked))) {
-            $(byXpath(MW_MAILING_1USER_SELECT)).waitUntil(visible, 2000).click();
+        if ( MW_MAILING_1USER_SELECT.is(not(checked))) {
+            MW_MAILING_1USER_SELECT.waitUntil(visible, 2000).click();
 
         }
         rootLogger.info("Set checkbox and Set interval - old ML");
-        if ( $(byXpath(MW_MAILING_1USER_INTERVAL)).is(not(empty))) {
+        if ( MW_MAILING_1USER_INTERVAL.is(not(empty))) {
             rootLogger.info("Send Project report - old report");
-            $(byXpath(MW_MAILING_1USER_INTERVAL)).clear();
-            $(byXpath(MW_MAILING_1USER_INTERVAL)).sendKeys("999");
-            $(byXpath(MW_MAILING_LIST_BTN_SEND_NOW)).waitUntil(visible, 10000).waitUntil(enabled, 10000).click();
+            MW_MAILING_1USER_INTERVAL.clear();
+            MW_MAILING_1USER_INTERVAL.sendKeys("999");
+            MW_MAILING_LIST_BTN_SEND_NOW.waitUntil(visible, 10000).waitUntil(enabled, 10000).click();
             sleep(5000);
         }
         else {
-            $(byXpath(MW_MAILING_1USER_INTERVAL)).sendKeys("999");
+            MW_MAILING_1USER_INTERVAL.sendKeys("999");
             rootLogger.info("Send Project report - new report");
             sleep(500);
-            $(byXpath(MW_MAILING_LIST_BTN_SAVE_AND_SEND_NOW)).waitUntil(enabled, 10000).click();
-            $(byXpath(MW_MAILING_LIST_BTN_SAVE_AND_SEND_NOW)).waitUntil(hidden, 20000);
+            MW_MAILING_LIST_BTN_SAVE_AND_SEND_NOW.waitUntil(enabled, 10000).click();
+            MW_MAILING_LIST_BTN_SAVE_AND_SEND_NOW.waitUntil(hidden, 20000);
             sleep(5000);
-            $(byXpath(MW_MAILING_LIST_BTN_SEND_NOW)).waitUntil(visible, 10000).waitUntil(enabled, 10000);
+            MW_MAILING_LIST_BTN_SEND_NOW.waitUntil(visible, 10000).waitUntil(enabled, 10000);
             sleep(1000);
         }
         rootLogger.info("Report was sent");
-        $(byXpath(MW)).pressEscape();
+        MW.pressEscape();
         $(byText("Mailing List")).shouldNotBe(Condition.visible);
         sleep(500);
 
@@ -199,7 +200,7 @@ public class PekamaSteps {
         }
         $(byXpath(pathToReportRowMenu)).click();
         rootLogger.info("Delete list");
-        $(byLinkText(REPORTS_MAILING_LISTS_DELETE_MW)).click();
+        REPORTS_MAILING_LISTS_DELETE_MW.click();
         sleep(500);
         submitConfirmAction();
         //       $(byText(thisMailingListName)).shouldNotBe(Condition.visible);

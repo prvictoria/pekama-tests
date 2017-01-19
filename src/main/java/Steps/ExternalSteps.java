@@ -93,27 +93,27 @@ public class ExternalSteps {
     public static void signInGmailInbox(String GMAIL_LOGIN, String GMAIL_PASSWORD) { //Logic for open INBOX twice or more times in one session without logout
         logging.info("Start browser");
         open(INBOX_URL);
-        $(byXpath(INBOX_SIGNIN)).waitUntil(visible, 10000).click();
+        INBOX_SIGNIN.waitUntil(visible, 10000).click();
         sleep(3000);
-        if ($(byXpath(INBOX_BTN_TRASH)).is(visible) == true){
+        if (INBOX_BTN_TRASH.is(visible) == true){
             logging.info("User is logged in and inbox is opened");
         }
-        if ($(GMAIL_PASSWORD_FIELD).is(visible) == true){
+        if (GMAIL_PASSWORD_FIELD.is(visible) == true){
             logging.info("Type password");
-            $(GMAIL_PASSWORD_FIELD).shouldBe(visible).sendKeys(GMAIL_PASSWORD);
+            GMAIL_PASSWORD_FIELD.shouldBe(visible).sendKeys(GMAIL_PASSWORD);
             logging.info("Submit password");
-            $(GMAIL_SIGNIN_BTN).shouldBe(visible).click();
+            GMAIL_SIGNIN_BTN.shouldBe(visible).click();
             logging.info("Inbox opened");
         }
-        if($(GMAIL_LOGIN_FIELD).is(visible) == true) {
+        if(GMAIL_LOGIN_FIELD.is(visible) == true) {
             logging.info("Type email");
-            $((GMAIL_LOGIN_FIELD)).sendKeys(GMAIL_LOGIN);
+            GMAIL_LOGIN_FIELD.sendKeys(GMAIL_LOGIN);
             logging.info("Submit email");
-            $(GMAIL_NEXT_BTN).click();
+            GMAIL_NEXT_BTN.click();
             logging.info("Type password");
-            $(GMAIL_PASSWORD_FIELD).shouldBe(visible).sendKeys(GMAIL_PASSWORD);
+            GMAIL_PASSWORD_FIELD.shouldBe(visible).sendKeys(GMAIL_PASSWORD);
             logging.info("Submit password");
-            $(GMAIL_SIGNIN_BTN).shouldBe(visible).click();
+            GMAIL_SIGNIN_BTN.shouldBe(visible).click();
             logging.info("Inbox opened");
         }
         else {
@@ -142,7 +142,7 @@ public class ExternalSteps {
             $(byXpath(EMAIL_SUBJECT)).waitUntil(visible, 10000).click();
             logging.info("Email by subject found");
             sleep(1500);
-            $(byXpath(INBOX_BTN_DELETE)).waitUntil(visible, 10000);
+            INBOX_BTN_DELETE.waitUntil(visible, 10000);
             logging.info("Email opened");
         }
     }
@@ -183,7 +183,7 @@ public class ExternalSteps {
         $$(byText(EMAIL_TITLE)).filter(visible).getTexts(); //get whole test
         $$(byText(EMAIL_TEXT)).filter(visible);
         logging.info(EMAIL_TITLE+ "- email present");
-        checkReportBackLink = $(By.xpath(EMAIL_REPORT_BACKLINK)).getAttribute("href");
+        checkReportBackLink = EMAIL_REPORT_BACKLINK.getAttribute("href");
         if (checkReportBackLink == null) {
             Assert.fail("Link to pekama reports not found");
         }
@@ -191,7 +191,7 @@ public class ExternalSteps {
         return checkReportBackLink;
     }
     public static String checkEmailReportAttachment(){
-        String attachmentFullTitle = $(byXpath(EMAIL_REPORT_ATTACHMENT)).getAttribute("title");
+        String attachmentFullTitle = EMAIL_REPORT_ATTACHMENT.getAttribute("title");
         logging.info("This attachment present in mail - " +attachmentFullTitle);
         if (attachmentFullTitle == null) {
             Assert.fail("Redirect Link not found");
@@ -199,17 +199,17 @@ public class ExternalSteps {
         return attachmentFullTitle;
     }
     public static void deleteEmail() {
-        $(byXpath(INBOX_BTN_DELETE)).waitUntil(visible, 10000).click();
+        INBOX_BTN_DELETE.waitUntil(visible, 10000).click();
         sleep(500);
-        $(byXpath(INBOX_BTN_DELETE)).waitUntil(not(visible), 10000);
+        INBOX_BTN_DELETE.waitUntil(not(visible), 10000);
     }
     public static void inboxEmptyTrash(){
         sleep(1000);
-        $(byXpath(INBOX_BTN_TRASH)).waitUntil(visible, 10000).click();
+        INBOX_BTN_TRASH.waitUntil(visible, 10000).click();
         sleep(1000);
-        $(byXpath(INBOX_BTN_EMPTY_TRASH)).waitUntil(visible, 10000).click();
+        INBOX_BTN_EMPTY_TRASH.waitUntil(visible, 10000).click();
         sleep(1000);
-        $(byXpath(INBOX_CONFIRM_EMPTY_TRASH)).waitUntil(visible, 10000).click();
+        INBOX_CONFIRM_EMPTY_TRASH.waitUntil(visible, 10000).click();
         sleep(1000);
         $(byText("Nothing in Trash")).waitUntil(visible, 10000);
         logging.info("Trash cleared");
@@ -247,13 +247,13 @@ public class ExternalSteps {
     public static void authGmail(String GMAIL_LOGIN){
         switchTo().window("Sign in - Google Accounts");
         logging.info("Type email");
-        $((GMAIL_LOGIN_FIELD)).sendKeys(GMAIL_LOGIN);
+        GMAIL_LOGIN_FIELD.sendKeys(GMAIL_LOGIN);
         logging.info("Submit email");
-        $(GMAIL_NEXT_BTN).click();
+        GMAIL_NEXT_BTN.click();
         logging.info("Type password");
-        $(GMAIL_PASSWORD_FIELD).shouldBe(visible).sendKeys(GMAIL_PASSWORD);
+        GMAIL_PASSWORD_FIELD.shouldBe(visible).sendKeys(GMAIL_PASSWORD);
         logging.info("Submit password");
-        $(GMAIL_SIGNIN_BTN).shouldBe(visible).click();
+        GMAIL_SIGNIN_BTN.shouldBe(visible).click();
         logging.info("Inbox opened");
         $(byXpath("//*[@id='submit_approve_access']")).shouldBe(visible).click();
         $(byXpath("//*[@id='submit_approve_access']")).shouldNotBe(visible);

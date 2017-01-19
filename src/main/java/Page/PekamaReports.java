@@ -2,6 +2,7 @@ package Page;
 
 import com.codeborne.selenide.SelenideElement;
 
+import static com.codeborne.selenide.Selectors.byLinkText;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 
@@ -47,8 +48,8 @@ public class PekamaReports {
     public static SelenideElement REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME = $(byXpath("//li[//a[contains(.,'"+ reportName +"')]]")); //ML+
     public static SelenideElement REPORTS_MAILING_LISTS_BTN_UPDATE = $(byXpath("//button[contains(.,'Update')]")); //REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME+
     public static SelenideElement REPORTS_MAILING_LISTS_BTN_CALL_ML = $(byXpath("//button[@uib-dropdown-toggle]")); //REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME+
-    public static SelenideElement REPORTS_MAILING_LISTS_CALL_MW = $(byXpath("Mailing List"));
-    public static SelenideElement REPORTS_MAILING_LISTS_DELETE_MW = $(byXpath("Delete"));
+    public static SelenideElement REPORTS_MAILING_LISTS_CALL_MW = $(byLinkText("Mailing List"));
+    public static SelenideElement REPORTS_MAILING_LISTS_DELETE_MW = $(byLinkText("Delete"));
 
     public static final SelenideElement REPORTS_MAILING_SAVE_SEARCH_DROPDOWN = $(byXpath("//*[@class='save-search-dropdown']"));
     public static final SelenideElement REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_INPUT = $(byXpath(REPORTS_MAILING_SAVE_SEARCH_DROPDOWN+"//input"));

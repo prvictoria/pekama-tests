@@ -2,6 +2,7 @@ package Page;
 
 import com.codeborne.selenide.SelenideElement;
 
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 
@@ -9,9 +10,9 @@ import static com.codeborne.selenide.Selenide.$;
  * Created by VatslauX on 29-Dec-16.
  */
 public class ModalWindows {
-    public static final SelenideElement MW_ = $(byXpath(""));
+    private static final String mw = "//div[@class='modal-content']";
     public static final SelenideElement MW = $(byXpath("//div[@class='modal-content']"));
-    public static final SelenideElement MW_BTN_SUBMIT = $(byXpath(MW+"//button[@submit]"));
+    public static final SelenideElement MW_BTN_SUBMIT = $(byXpath(mw+"//button[@submit]"));
     public static final SelenideElement MW_INPUT_NEW_MEMBER_EMAIL = $(byXpath(MW+"//*[@id='newFollowerEmail']"));
 
 //reports

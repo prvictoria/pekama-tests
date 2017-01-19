@@ -14,6 +14,7 @@ public class Utils {
                }
                return sb.toString();
     }
+
     public void  getCurrentDate (){
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); //2017-01-10 need- 2017/01/10
         java.util.Date date = new java.util.Date();
