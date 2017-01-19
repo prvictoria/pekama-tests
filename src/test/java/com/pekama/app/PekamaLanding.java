@@ -19,51 +19,49 @@ public class PekamaLanding {
     }
     @Test //GUI
     public void openLandingGui() {
-        $(By.xpath(BTN_LOGIN)).shouldBe(Condition.visible);
-        $(By.xpath(BTN_SIGN_UP)).shouldBe(Condition.visible);
-        $(By.xpath(BTN_ABOUT)).shouldBe(Condition.visible);
-        $(By.xpath(BTN_BENEFITS)).shouldBe(Condition.visible);
-        $(By.xpath(BTN_VIDEO)).shouldBe(Condition.visible);
-        $(By.xpath(BTN_TEAM)).shouldBe(Condition.visible);
-        $(FIELD_EMAIL).shouldBe(Condition.visible).shouldHave(Condition.value(""));
-        $(BTN_TRY_IT).shouldBe(Condition.visible);
+        BTN_LOGIN.shouldBe(Condition.visible);
+        BTN_SIGN_UP.shouldBe(Condition.visible);
+        BTN_ABOUT.shouldBe(Condition.visible);
+        BTN_BENEFITS.shouldBe(Condition.visible);
+        BTN_VIDEO.shouldBe(Condition.visible);
+        BTN_TEAM.shouldBe(Condition.visible);
+        FIELD_EMAIL.shouldBe(Condition.visible).shouldHave(Condition.value(""));
+        BTN_TRY_IT.shouldBe(Condition.visible);
   }
     @Test //Goto login page
     public void openLoginPage() {
-        $(By.xpath(BTN_LOGIN)).shouldBe(Condition.visible).click();
+        BTN_LOGIN.shouldBe(Condition.visible).click();
         sleep(1000);
-        $(By.xpath(lOGIN_TITLE)).shouldBe(Condition.visible).shouldHave(Condition.text(lOGIN_TITLE_TEXT));
+        lOGIN_TITLE.shouldBe(Condition.visible).shouldHave(Condition.text(lOGIN_TITLE_TEXT));
     }
     @Test //Goto signup page
     public void openSignupPage() {
-        $(By.xpath(BTN_SIGN_UP)).shouldBe(Condition.visible).click();
+        BTN_SIGN_UP.shouldBe(Condition.visible).click();
         sleep(1000);
-        $(By.xpath(SIGN_UP_TITLE)).shouldBe(Condition.visible).shouldHave(Condition.text(SIGN_UP_TITLE_TEXT));
+        SIGN_UP_TITLE.shouldBe(Condition.visible).shouldHave(Condition.text(SIGN_UP_TITLE_TEXT));
     }
     @Test //Goto Tty it - email is prepopulated
     public void openSignupPageWithEmail() {
-        $((FIELD_EMAIL)).shouldBe(Condition.visible).sendKeys("12345@email.com");
-        $((BTN_TRY_IT)).shouldBe(Condition.visible).click();
+        FIELD_EMAIL.shouldBe(Condition.visible).sendKeys("12345@email.com");
+        BTN_TRY_IT.shouldBe(Condition.visible).click();
         sleep(1000);
-        $(By.xpath(SIGN_UP_TITLE)).shouldBe(Condition.visible).shouldHave(Condition.text(SIGN_UP_TITLE_TEXT));
-        $(signupEmail).shouldBe(Condition.visible).shouldHave(Condition.value("12345@email.com"));
+        SIGN_UP_TITLE.shouldBe(Condition.visible).shouldHave(Condition.text(SIGN_UP_TITLE_TEXT));
+        signupEmail.shouldBe(Condition.visible).shouldHave(Condition.value("12345@email.com"));
     }
     @Test //Open landing after login
     public void openLandingAfterLogin() {
-        $(By.xpath(BTN_LOGIN)).shouldBe(Condition.visible).click();
+        BTN_LOGIN.shouldBe(Condition.visible).click();
         sleep(1000);
-        $(By.xpath(lOGIN_TITLE)).shouldBe(Condition.visible).shouldHave(Condition.text(lOGIN_TITLE_TEXT));
-        $(loginField_Email).sendKeys(User1.GMAIL_EMAIL.getValue());
-        $(loginField_Password).sendKeys(GENERIC_PEKAMA_PASSWORD);
-        $(By.xpath(loginButton_Login)).click();
-        $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));
-        $(By.xpath(btnSignup)).shouldBe(Condition.not(visible));
+        lOGIN_TITLE.shouldBe(Condition.visible).shouldHave(Condition.text(lOGIN_TITLE_TEXT));
+        loginField_Email.sendKeys(User1.GMAIL_EMAIL.getValue());
+        loginField_Password.sendKeys(GENERIC_PEKAMA_PASSWORD);
+        loginButton_Login.click();
+        btnLogin.shouldBe(Condition.not(visible));
+        btnSignup.shouldBe(Condition.not(visible));
         open(PEKAMA);
-        $(By.xpath(BTN_DASHBOARD)).shouldBe(Condition.visible);
-        $(By.xpath(BTN_LOG_OUT)).shouldBe(Condition.visible).click();
+        BTN_DASHBOARD.shouldBe(Condition.visible);
+        BTN_LOG_OUT.shouldBe(Condition.visible).click();
         sleep(1000);
         $(BTN_TRY_IT).shouldBe(Condition.visible);
-
-
     }
 }

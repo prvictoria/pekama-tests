@@ -35,17 +35,17 @@ public class CommynityLanding {
     @Test
     public void checkGui() {
         sleep(2000);
-        $(By.xpath(LANDING_ABOUT)).shouldBe(Condition.visible);
-        $(By.xpath(LANDING_WHY)).shouldBe(Condition.visible);
-        $(By.xpath(LANDING_SIGNUP)).shouldBe(Condition.visible);
-        $(By.xpath(LANDING_LOGIN)).shouldBe(Condition.visible);
-        $(By.xpath(LANDING_EXPLORE_UPPER)).shouldBe(Condition.visible);
-        $(By.xpath(LANDING_EXPLORE_FOOTER)).shouldBe(Condition.visible);
+        LANDING_ABOUT.shouldBe(Condition.visible);
+        LANDING_WHY.shouldBe(Condition.visible);
+        LANDING_SIGNUP.shouldBe(Condition.visible);
+        LANDING_LOGIN.shouldBe(Condition.visible);
+        LANDING_EXPLORE_UPPER.shouldBe(Condition.visible);
+        LANDING_EXPLORE_FOOTER.shouldBe(Condition.visible);
         rootLogger.info("Community landing elements checked and present");
     }
     @Test
     public void openSingUp() {
-        $(By.xpath(LANDING_SIGNUP)).shouldBe(Condition.visible).click();
+        LANDING_SIGNUP.shouldBe(Condition.visible).click();
         sleep(2000);
         $(signupAgree).shouldBe(visible).shouldNot(selected);
         $(signupNext).shouldBe(visible).shouldBe(disabled);
@@ -53,23 +53,23 @@ public class CommynityLanding {
     }
     @Test
     public void openLogIn() {
-        $(By.xpath(LANDING_LOGIN)).shouldBe(Condition.visible).click();
+        LANDING_LOGIN.shouldBe(Condition.visible).click();
         sleep(2000);
-        $(By.xpath(loginButton_Login)).shouldBe(visible);
+        loginButton_Login.shouldBe(visible);
         rootLogger.info("Login page was opened");
     }
     @Test
     public void clickExploreUpper() {
-        $(By.xpath(LANDING_EXPLORE_UPPER)).shouldBe(Condition.visible).click();
+        LANDING_EXPLORE_UPPER.shouldBe(Condition.visible).click();
         sleep(2000);
-        $(By.xpath(COMMUNITY_HEADER_MANAGEMENT)).shouldBe(visible);
+        COMMUNITY_HEADER_MANAGEMENT.shouldBe(visible);
         rootLogger.info("Community Wizard page was opened");
     }
     @Test
     public void clickExploreFooter() {
-        $(By.xpath(LANDING_EXPLORE_FOOTER)).shouldBe(Condition.visible).click();
+        LANDING_EXPLORE_FOOTER.shouldBe(Condition.visible).click();
         sleep(2000);
-        $(By.xpath(COMMUNITY_HEADER_MANAGEMENT)).shouldBe(visible);
+        COMMUNITY_HEADER_MANAGEMENT.shouldBe(visible);
         rootLogger.info("Community Wizard page was opened");
     }
 }

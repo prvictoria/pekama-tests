@@ -1,6 +1,7 @@
 package Steps;
 
 import Page.TestsCredentials;
+import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
@@ -22,7 +23,7 @@ public class ExternalSteps {
     public static String REDIRECT_LINK;
     public static String checkReportBackLink;
 
-    public static void checkEmailGeneric(String GMAIL_LOGIN, String GMAIL_PASSWORD, String EMAIL_SUBJECT, String EMAIL_TITLE, String EMAIL_TEXT, String EMAIL_BTN, String EMAIL_REDIRECT_LINK, String thisMailingListName){
+    public static void checkEmailGeneric(String GMAIL_LOGIN, String GMAIL_PASSWORD, SelenideElement EMAIL_SUBJECT, String EMAIL_TITLE, String EMAIL_TEXT, String EMAIL_BTN, SelenideElement EMAIL_REDIRECT_LINK, String thisMailingListName){
         logging.info("Login");
         signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
         logging.info("Detect email");
@@ -47,7 +48,7 @@ public class ExternalSteps {
         inboxEmptyTrash();
         logging.info("Email deleted");
     };
-    public static String checkInboxEmail(String GMAIL_LOGIN, String GMAIL_PASSWORD, String EMAIL_SUBJECT, String EMAIL_TITLE, String EMAIL_TEXT, String EMAIL_BTN, String EMAIL_REDIRECT_LINK) {
+    public static String checkInboxEmail(String GMAIL_LOGIN, String GMAIL_PASSWORD, SelenideElement EMAIL_SUBJECT, String EMAIL_TITLE, String EMAIL_TEXT, String EMAIL_BTN, SelenideElement EMAIL_REDIRECT_LINK) {
         logging.info("Login");
         signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
         detectEmail(EMAIL_SUBJECT);
@@ -68,7 +69,7 @@ public class ExternalSteps {
         logging.info("Email deleted");
         return REDIRECT_LINK;
     }
-    public static String checkInboxEmailReport(String GMAIL_LOGIN, String GMAIL_PASSWORD, String EMAIL_SUBJECT, String EMAIL_TEXT, String thisMailingListName){
+    public static String checkInboxEmailReport(String GMAIL_LOGIN, String GMAIL_PASSWORD, SelenideElement EMAIL_SUBJECT, String EMAIL_TEXT, String thisMailingListName){
         logging.info("Login");
         signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
         logging.info("Detect email");
@@ -120,26 +121,26 @@ public class ExternalSteps {
             logging.info("Inbox opened");
         }
     }
-    public static void detectEmail(String EMAIL_SUBJECT){
-        if ($(byXpath(EMAIL_SUBJECT)).exists() == false) {
+    public static void detectEmail(SelenideElement EMAIL_SUBJECT){
+        if (EMAIL_SUBJECT.exists() == false) {
             int count = 1;
             do {
                 sleep(15000);
                 refresh();
                 count++;
                 logging.info("Email by subject NOT found loop" + count);
-                    if ($(byXpath(EMAIL_SUBJECT)).exists() == true) {
+                    if (EMAIL_SUBJECT.exists() == true) {
                         break;
                     }
             } while (count < 10);
         }
     }
-    public static void openEmail(String EMAIL_SUBJECT){
+    public static void openEmail(SelenideElement EMAIL_SUBJECT){
         if (EMAIL_SUBJECT == null) {
             Assert.fail("Subject email is - " + EMAIL_SUBJECT);
         }
-        if ($(byXpath(EMAIL_SUBJECT)).exists() == true) {
-            $(byXpath(EMAIL_SUBJECT)).waitUntil(visible, 10000).click();
+        if (EMAIL_SUBJECT.exists() == true) {
+            EMAIL_SUBJECT.waitUntil(visible, 10000).click();
             logging.info("Email by subject found");
             sleep(1500);
             INBOX_BTN_DELETE.waitUntil(visible, 10000);
@@ -167,9 +168,9 @@ public class ExternalSteps {
         $$(byText(EMAIL_BTN)).filter(visible);
         logging.info(EMAIL_BTN + "- email present");
     }
-    public static String checkRedirectLink(String EMAIL_REDIRECT_LINK){
+    public static String checkRedirectLink(SelenideElement EMAIL_REDIRECT_LINK){
         REDIRECT_LINK = null;
-        REDIRECT_LINK = $(By.xpath(EMAIL_REDIRECT_LINK)).getAttribute("href");
+        REDIRECT_LINK = EMAIL_REDIRECT_LINK.getAttribute("href");
         logging.info("This link present in mail - " + REDIRECT_LINK);
         if (REDIRECT_LINK == null) {
             Assert.fail("Redirect Link not found");

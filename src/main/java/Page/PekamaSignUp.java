@@ -15,7 +15,7 @@ import static com.codeborne.selenide.Selenide.$;
 public class PekamaSignUp {
     public static final SelenideElement signup = $(byXpath("//form[@id='signup-form']"));
     public static final SelenideElement SIGN_UP_TITLE = $(byXpath("//*[@class='details-title']"));
-    public static final SelenideElement SIGN_UP_TITLE_TEXT = $(byText("Your Details"));
+    public static final String SIGN_UP_TITLE_TEXT = "Your Details";
 
     public static final SelenideElement signupNewButtonDisabled = $(byXpath("//form[@id='signup-form']//*[@class='btn btn-primary disabled']//*[contains(text(),'Next Step')]"));
     public static final SelenideElement signupNewButtonEnabled = $(byXpath("//*[@class='btn btn-primary']//*[contains(text(),'Next Step')]"));

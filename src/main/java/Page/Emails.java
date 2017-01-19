@@ -11,23 +11,23 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class Emails {
     public static final SelenideElement EMAIL_RESET_PASSWORD = $(byXpath(""));
-    public static final SelenideElement EMAIL_RESET_PASSWORD_TITLE = $(byText("Password Restoration"));
-    public static final SelenideElement EMAIL_RESET_PASSWORD_TEXT = $(byText("You've received this e-mail because you requested to reset the password for your user account. Press the button bellow to complete restoration."));
-    public static final SelenideElement EMAIL_RESET_PASSWORD_BTN = $(byText("Reset Password"));
+    public static final String EMAIL_RESET_PASSWORD_TITLE = "Password Restoration";
+    public static final String EMAIL_RESET_PASSWORD_TEXT = "You've received this e-mail because you requested to reset the password for your user account. Press the button bellow to complete restoration.";
+    public static final String EMAIL_RESET_PASSWORD_BTN = "Reset Password";
     public static final SelenideElement EMAIL_RESET_PASSWORD_SUBJECT = $(byXpath("//span[contains(.,'Password Restoration [Pekama]')]"));
     public static final SelenideElement EMAIL_RESET_PASSWORD_BACKLINK = $(byXpath("//td/a[contains(@href, '"+SELECT_HOST+"/accounts/password/reset/')]"));
 
     public static final SelenideElement EMAIL_CONFIRM_REGISTRATION = $(byXpath(""));
     public static final SelenideElement EMAIL_CONFIRM_REGISTRATION_SUBJECT = $(byXpath("//span[contains(.,'Confirm Registration [Pekama]')]"));
-    public static final SelenideElement EMAIL_CONFIRM_REGISTRATION_TITLE = $(byText("Registration Complete"));
-    public static final SelenideElement EMAIL_CONFIRM_REGISTRATION_TEXT = $(byText("To finish registration, please confirm your account."));
-    public static final SelenideElement EMAIL_CONFIRM_REGISTRATION_BTN = $(byText("Confirm Account"));
+    public static final String EMAIL_CONFIRM_REGISTRATION_TITLE = "Registration Complete";
+    public static final String EMAIL_CONFIRM_REGISTRATION_TEXT = "To finish registration, please confirm your account.";
+    public static final String EMAIL_CONFIRM_REGISTRATION_BTN = "Confirm Account";
     public static final SelenideElement EMAIL_CONFIRM_REGISTRATION_BACKLINK = $(byXpath("//td/a[contains(@href, '"+SELECT_HOST+"/accounts/confirm/')]"));
 
-    public static final SelenideElement EMAIL_REPORT = $(byText("Pekama Report"));
+    public static final String EMAIL_REPORT = "Pekama Report";
     public static final SelenideElement EMAIL_REPORT_SUBJECT = $(byXpath("//span[contains(.,'Pekama Report')]"));
     public static final SelenideElement EMAIL_REPORT_TITLE = $(byXpath(""));
-    public static final SelenideElement EMAIL_REPORT_TEXT = $(byText("This is the report that you configured in Pekama. You will get it every 999 days."));
+    public static final String EMAIL_REPORT_TEXT = "This is the report that you configured in Pekama. You will get it every 999 days.";
     public static final SelenideElement EMAIL_REPORT_ATTACHMENT = $(byXpath("//div[@title][contains(.,'csv')]"));
     public static final SelenideElement EMAIL_REPORT_ATTACHMENT_ABSOLUTE_PATH = $(byXpath("//div[@title][contains(.,'Projects Report Mailing List')][contains(.,'csv')]"));
     public static final SelenideElement EMAIL_REPORT_BACKLINK = $(byXpath("//a[contains(@href, '"+SELECT_HOST+"/filters/mailinglist/edit/')]"));

@@ -3,6 +3,7 @@ import Steps.ExternalSteps;
 import Steps.PekamaSteps;
 import Utils.*;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import com.pekama.app.draft.LoginGmail;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -36,11 +37,11 @@ public class PekamaResetPassword {
     public static String NEW_PASSWORD = null;
     String GMAIL_LOGIN = User4.GMAIL_EMAIL.getValue();
     String GMAIL_PASSWORD = User4.GMAIL_PASSWORD.getValue();
-    String EMAIL_SUBJECT = EMAIL_RESET_PASSWORD_SUBJECT;
+    SelenideElement EMAIL_SUBJECT = EMAIL_RESET_PASSWORD_SUBJECT;
     String EMAIL_TITLE = EMAIL_RESET_PASSWORD_TITLE;
     String EMAIL_TEXT = EMAIL_RESET_PASSWORD_TEXT;
     String EMAIL_BTN = EMAIL_RESET_PASSWORD_BTN;
-    String EMAIL_REDIRECT_LINK = EMAIL_RESET_PASSWORD_BACKLINK;
+    SelenideElement EMAIL_REDIRECT_LINK = EMAIL_RESET_PASSWORD_BACKLINK;
     String PEKAMA_USER_EMAIL = User4.GMAIL_EMAIL.getValue();
 
 
@@ -51,8 +52,8 @@ public class PekamaResetPassword {
         String AUTH_URL = urlLogIn;
         openHost.httpAuthWhithCustomLink(AUTH_URL);
         sleep(1000);
-        $(byXpath(lOGIN_TITLE)).shouldBe(Condition.visible).shouldHave(Condition.text(lOGIN_TITLE_TEXT));
-        $(byXpath(LINK_FORGOT_PASSWORD)).click();
+       lOGIN_TITLE.shouldBe(Condition.visible).shouldHave(Condition.text(lOGIN_TITLE_TEXT));
+       LINK_FORGOT_PASSWORD.click();
         sleep(1000);
     }
     @Test
@@ -62,11 +63,12 @@ public class PekamaResetPassword {
         String AUTH_URL = urlResetPassword;
         openHost.httpAuthWhithCustomLink(AUTH_URL);
         sleep(1000);
-        $(byXpath(RESET_PAGE_TITLE)).shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_TITLE_TEXT));
-        $(byXpath(RESET_PAGE_EMAIL)).sendKeys("123@123");
-        $(byXpath(RESET_PAGE_RESET_BTN)).click();
+       RESET_PAGE_TITLE.shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_TITLE_TEXT));
+       RESET_PAGE_EMAIL.sendKeys("123@123");
+       RESET_PAGE_RESET_BTN.click();
         sleep(1000);
-        $(byXpath(RESET_PAGE_ERROR)).shouldBe(Condition.visible).shouldHave(Condition.text(ERROR_MSG_INVALID_EMAIL));
+       RESET_PAGE_ERROR.shouldHaveSize(1);
+       $(byText(ERROR_MSG_INVALID_EMAIL)).shouldBe(visible);
     }
     @Test
     public void resetPassword_A() {
@@ -76,12 +78,12 @@ public class PekamaResetPassword {
         String AUTH_URL = urlResetPassword;
         openHost.httpAuthWhithCustomLink(AUTH_URL);
         sleep(1000);
-        $(byXpath(RESET_PAGE_TITLE)).shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_TITLE_TEXT));
-        $(byXpath(RESET_PAGE_EMAIL)).sendKeys(User4.GMAIL_EMAIL.getValue());
-        $(byXpath(RESET_PAGE_RESET_BTN)).click();
+       RESET_PAGE_TITLE.shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_TITLE_TEXT));
+       RESET_PAGE_EMAIL.sendKeys(User4.GMAIL_EMAIL.getValue());
+       RESET_PAGE_RESET_BTN.click();
         sleep(1000);
-        $(byXpath(RESET_PAGE_SUCCESS)).shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_SUCCESS_MSG));
-        String testSuccessMsg = $(byXpath(RESET_PAGE_SUCCESS)).getText();
+       RESET_PAGE_SUCCESS.shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_SUCCESS_MSG));
+        String testSuccessMsg =RESET_PAGE_SUCCESS.getText();
         rootLogger.info(testSuccessMsg + " displayed, valid email submitted");
         ExternalSteps loginGmailInboxApp = new ExternalSteps();
         loginGmailInboxApp.checkInboxEmail(GMAIL_LOGIN, GMAIL_PASSWORD,EMAIL_SUBJECT, EMAIL_TITLE, EMAIL_TEXT, EMAIL_BTN, EMAIL_REDIRECT_LINK);
@@ -96,11 +98,11 @@ public class PekamaResetPassword {
             openHost.httpAuthWhithCustomLink(AUTH_URL);
             sleep(1000);
             rootLogger.info("Set up new password page opened");
-            $(byXpath(NEWPASSWORD_TITLE)).shouldBe(Condition.visible).shouldHave(Condition.text(NEWPASSWORD_TITLE_TEXT));
+           NEWPASSWORD_TITLE.shouldBe(Condition.visible).shouldHave(Condition.text(NEWPASSWORD_TITLE_TEXT));
             $$(byText(NEWPASSWORD_TEXT)).filter(visible).shouldHave(size(1));
-            $(byXpath(NEWPASSWORD_PAGE_NEW_PASSWORD)).shouldBe(Condition.visible).shouldHave(value(""));
-            $(byXpath(NEWPASSWORD_PAGE_CONFIRM_PASSWORD)).shouldBe(Condition.visible).shouldHave(value(""));
-            $(byXpath(NEWPASSWORD_PAGE_RESTORE_BTN)).shouldBe(Condition.visible);
+           NEWPASSWORD_PAGE_NEW_PASSWORD.shouldBe(Condition.visible).shouldHave(value(""));
+           NEWPASSWORD_PAGE_CONFIRM_PASSWORD.shouldBe(Condition.visible).shouldHave(value(""));
+           NEWPASSWORD_PAGE_RESTORE_BTN.shouldBe(Condition.visible);
             rootLogger.info("Set up new password page - contain all elements");
             }
         else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
@@ -114,8 +116,8 @@ public class PekamaResetPassword {
             openHost.httpAuthWhithCustomLink(AUTH_URL);
             sleep(1000);
             rootLogger.info("Validation test");
-            $(byXpath(NEWPASSWORD_PAGE_RESTORE_BTN)).waitUntil(visible, 10000).click();
-            $$(byXpath(RESET_PAGE_ERROR)).filter(visible).shouldHave(size(2));
+           NEWPASSWORD_PAGE_RESTORE_BTN.waitUntil(visible, 10000).click();
+            $$(RESET_PAGE_ERROR).filter(visible).shouldHave(size(2));
             $(byText(ERROR_MSG_REQUIRED_FIELD)).shouldBe(visible);
             rootLogger.info("User submitted blank form - "+ERROR_MSG_REQUIRED_FIELD);
         }
@@ -130,10 +132,10 @@ public class PekamaResetPassword {
             openHost.httpAuthWhithCustomLink(AUTH_URL);
             sleep(1000);
             rootLogger.info("Validation test");
-            $(byXpath(NEWPASSWORD_PAGE_NEW_PASSWORD)).waitUntil(visible, 10000).sendKeys("12345");
-            $(byXpath(NEWPASSWORD_PAGE_CONFIRM_PASSWORD)).shouldBe(Condition.visible).sendKeys("67890");
-            $(byXpath(NEWPASSWORD_PAGE_RESTORE_BTN)).click();
-            $$(byXpath(RESET_PAGE_ERROR)).filter(visible).shouldHave(size(1));
+           NEWPASSWORD_PAGE_NEW_PASSWORD.waitUntil(visible, 10000).sendKeys("12345");
+           NEWPASSWORD_PAGE_CONFIRM_PASSWORD.shouldBe(Condition.visible).sendKeys("67890");
+           NEWPASSWORD_PAGE_RESTORE_BTN.click();
+            $$(RESET_PAGE_ERROR).filter(visible).shouldHave(size(1));
             $(byText(ERROR_MSG_NOT_MATCHED_PASSWORD)).shouldBe(visible);
             rootLogger.info("User submitted different passwords - "+ERROR_MSG_NOT_MATCHED_PASSWORD);
         }
@@ -148,10 +150,10 @@ public class PekamaResetPassword {
             openHost.httpAuthWhithCustomLink(AUTH_URL);
             sleep(1000);
             rootLogger.info("Validation test");
-            $(byXpath(NEWPASSWORD_PAGE_NEW_PASSWORD)).waitUntil(visible, 10000).sendKeys(User1.GMAIL_EMAIL.getValue());
-            $(byXpath(NEWPASSWORD_PAGE_CONFIRM_PASSWORD)).shouldBe(Condition.visible).sendKeys(User1.GMAIL_EMAIL.getValue());
-            $(byXpath(NEWPASSWORD_PAGE_RESTORE_BTN)).click();
-            $$(byXpath(RESET_PAGE_ERROR)).filter(visible).shouldHave(size(2));
+           NEWPASSWORD_PAGE_NEW_PASSWORD.waitUntil(visible, 10000).sendKeys(User1.GMAIL_EMAIL.getValue());
+           NEWPASSWORD_PAGE_CONFIRM_PASSWORD.shouldBe(Condition.visible).sendKeys(User1.GMAIL_EMAIL.getValue());
+           NEWPASSWORD_PAGE_RESTORE_BTN.click();
+            $$(RESET_PAGE_ERROR).filter(visible).shouldHave(size(2));
             $(byText(ERROR_MSG_FAMILIAR_TO_EMAIL_PASSWORD)).shouldBe(visible);
             $(byText(ERROR_MSG_WEAK_PASSWORD)).shouldBe(visible);
             rootLogger.info("User submitted familiar to email passwords - "+ERROR_MSG_FAMILIAR_TO_EMAIL_PASSWORD);
@@ -171,10 +173,10 @@ public class PekamaResetPassword {
 
             rootLogger.info("Validation Loop");
             for (int arrayLength = 0; arrayLength < arrayInvalidPasswords.length; arrayLength++) {
-                $(byXpath(NEWPASSWORD_PAGE_NEW_PASSWORD)).waitUntil(visible, 10000).sendKeys(arrayInvalidPasswords[arrayLength]);
-                $(byXpath(NEWPASSWORD_PAGE_CONFIRM_PASSWORD)).shouldBe(Condition.visible).sendKeys(arrayInvalidPasswords[arrayLength]);
-                $(byXpath(NEWPASSWORD_PAGE_RESTORE_BTN)).click();
-                $$(byXpath(RESET_PAGE_ERROR)).filter(visible);
+               NEWPASSWORD_PAGE_NEW_PASSWORD.waitUntil(visible, 10000).sendKeys(arrayInvalidPasswords[arrayLength]);
+               NEWPASSWORD_PAGE_CONFIRM_PASSWORD.shouldBe(Condition.visible).sendKeys(arrayInvalidPasswords[arrayLength]);
+               NEWPASSWORD_PAGE_RESTORE_BTN.click();
+                $$(RESET_PAGE_ERROR).filter(visible);
                 refresh();
                 sleep(500);
             }
@@ -191,10 +193,10 @@ public class PekamaResetPassword {
             openHost.httpAuthWhithCustomLink(AUTH_URL);
             sleep(1000);
             rootLogger.info("Validation test - name");
-            $(byXpath(NEWPASSWORD_PAGE_NEW_PASSWORD)).waitUntil(visible, 10000).sendKeys(User4.NAME.getValue());
-            $(byXpath(NEWPASSWORD_PAGE_CONFIRM_PASSWORD)).shouldBe(Condition.visible).sendKeys(User4.NAME.getValue());
-            $(byXpath(NEWPASSWORD_PAGE_RESTORE_BTN)).click();
-            $$(byXpath(RESET_PAGE_ERROR)).filter(visible).shouldHave(size(3));
+           NEWPASSWORD_PAGE_NEW_PASSWORD.waitUntil(visible, 10000).sendKeys(User4.NAME.getValue());
+           NEWPASSWORD_PAGE_CONFIRM_PASSWORD.shouldBe(Condition.visible).sendKeys(User4.NAME.getValue());
+           NEWPASSWORD_PAGE_RESTORE_BTN.click();
+            $$(RESET_PAGE_ERROR).filter(visible).shouldHave(size(3));
             $(byText("The password is too similar to the first name.")).shouldBe(visible);
             rootLogger.info("User submitted own Username to email passwords - "+"The password is too similar to the first name.");
         }
@@ -209,10 +211,10 @@ public class PekamaResetPassword {
             openHost.httpAuthWhithCustomLink(AUTH_URL);
             sleep(1000);
             rootLogger.info("Validation test");
-            $(byXpath(NEWPASSWORD_PAGE_NEW_PASSWORD)).waitUntil(visible, 10000).sendKeys(User4.SURNAME.getValue());
-            $(byXpath(NEWPASSWORD_PAGE_CONFIRM_PASSWORD)).shouldBe(Condition.visible).sendKeys(User4.SURNAME.getValue());
-            $(byXpath(NEWPASSWORD_PAGE_RESTORE_BTN)).click();
-            $$(byXpath(RESET_PAGE_ERROR)).filter(visible).shouldHave(size(2));
+           NEWPASSWORD_PAGE_NEW_PASSWORD.waitUntil(visible, 10000).sendKeys(User4.SURNAME.getValue());
+           NEWPASSWORD_PAGE_CONFIRM_PASSWORD.shouldBe(Condition.visible).sendKeys(User4.SURNAME.getValue());
+           NEWPASSWORD_PAGE_RESTORE_BTN.click();
+            $$(RESET_PAGE_ERROR).filter(visible).shouldHave(size(2));
             $(byText("The password is too similar to the last name.")).shouldBe(visible);
             rootLogger.info("User submitted own Surname to email passwords - "+"The password is too similar to the last name.");
         }
@@ -228,10 +230,10 @@ public class PekamaResetPassword {
             sleep(1000);
             rootLogger.info("Validation test");
             String RANDOM_129_LETTER = Utils.getRandomString(129);
-            $(byXpath(NEWPASSWORD_PAGE_NEW_PASSWORD)).waitUntil(visible, 10000).sendKeys(RANDOM_129_LETTER);
-            $(byXpath(NEWPASSWORD_PAGE_CONFIRM_PASSWORD)).shouldBe(Condition.visible).sendKeys(RANDOM_129_LETTER);
-            $(byXpath(NEWPASSWORD_PAGE_RESTORE_BTN)).click();
-            $$(byXpath(RESET_PAGE_ERROR)).filter(visible).shouldHave(size(1));
+           NEWPASSWORD_PAGE_NEW_PASSWORD.waitUntil(visible, 10000).sendKeys(RANDOM_129_LETTER);
+           NEWPASSWORD_PAGE_CONFIRM_PASSWORD.shouldBe(Condition.visible).sendKeys(RANDOM_129_LETTER);
+           NEWPASSWORD_PAGE_RESTORE_BTN.click();
+            $$(RESET_PAGE_ERROR).filter(visible).shouldHave(size(1));
             $(byText("Ensure this value has at most 128 characters (it has 129).")).shouldBe(visible);
             rootLogger.info("Max length validation present - "+ERROR_MSG_FAMILIAR_TO_EMAIL_PASSWORD);
         }
@@ -249,12 +251,12 @@ public class PekamaResetPassword {
             //need random passwrord +constant
             String RANDOM_8_LETTER = Utils.getRandomString(8);
             NEW_PASSWORD = VALID_PASSWORD+RANDOM_8_LETTER;
-            $(byXpath(NEWPASSWORD_PAGE_NEW_PASSWORD)).shouldBe(Condition.visible).sendKeys(NEW_PASSWORD);
-            $(byXpath(NEWPASSWORD_PAGE_CONFIRM_PASSWORD)).shouldBe(Condition.visible).sendKeys(NEW_PASSWORD);
-            $(byXpath(NEWPASSWORD_PAGE_RESTORE_BTN)).click();
+           NEWPASSWORD_PAGE_NEW_PASSWORD.shouldBe(Condition.visible).sendKeys(NEW_PASSWORD);
+           NEWPASSWORD_PAGE_CONFIRM_PASSWORD.shouldBe(Condition.visible).sendKeys(NEW_PASSWORD);
+           NEWPASSWORD_PAGE_RESTORE_BTN.click();
 
             $(byText(RESET_PAGE_FINISHED_TITLE)).waitUntil(visible, 10000);
-            $(byXpath(RESET_PAGE_FINISHED_BTN_LOGIN)).shouldBe(visible);
+           RESET_PAGE_FINISHED_BTN_LOGIN.shouldBe(visible);
             String thisUrl = url();
             assertEquals(thisUrl, urlResetPasswordComplete);
             rootLogger.info("User submitted valid credentials");
@@ -291,12 +293,12 @@ public class PekamaResetPassword {
             String AUTH_URL = urlResetPassword;
             openHost.httpAuthWhithCustomLink(AUTH_URL);
             sleep(1000);
-            $(byXpath(RESET_PAGE_TITLE)).shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_TITLE_TEXT));
-            $(byXpath(RESET_PAGE_EMAIL)).sendKeys(User4.GMAIL_EMAIL.getValue());
-            $(byXpath(RESET_PAGE_RESET_BTN)).click();
+           RESET_PAGE_TITLE.shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_TITLE_TEXT));
+           RESET_PAGE_EMAIL.sendKeys(User4.GMAIL_EMAIL.getValue());
+           RESET_PAGE_RESET_BTN.click();
             sleep(1000);
-            $(byXpath(RESET_PAGE_SUCCESS)).shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_SUCCESS_MSG));
-            String testSuccessMsg = $(byXpath(RESET_PAGE_SUCCESS)).getText();
+           RESET_PAGE_SUCCESS.shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_SUCCESS_MSG));
+            String testSuccessMsg = RESET_PAGE_SUCCESS.getText();
             rootLogger.info(testSuccessMsg + " displayed, valid email submitted");
             ExternalSteps loginGmailInboxApp = new ExternalSteps();
 
@@ -304,9 +306,9 @@ public class PekamaResetPassword {
             rootLogger.info("Email and links correspond requirements");
 
             open(REDIRECT_LINK);
-            $(byXpath(NEWPASSWORD_PAGE_NEW_PASSWORD)).waitUntil(visible, 10000).sendKeys(NEW_PASSWORD);
-            $(byXpath(NEWPASSWORD_PAGE_CONFIRM_PASSWORD)).shouldBe(Condition.visible).sendKeys(NEW_PASSWORD);
-            $(byXpath(NEWPASSWORD_PAGE_RESTORE_BTN)).click();
+           NEWPASSWORD_PAGE_NEW_PASSWORD.waitUntil(visible, 10000).sendKeys(NEW_PASSWORD);
+           NEWPASSWORD_PAGE_CONFIRM_PASSWORD.shouldBe(Condition.visible).sendKeys(NEW_PASSWORD);
+           NEWPASSWORD_PAGE_RESTORE_BTN.click();
             $$(byText(ERROR_MSG_NEW_PASSOWRD_EQUALS_TO_OLD)).shouldHaveSize(1);
             rootLogger.info("Validation old password present");
         }

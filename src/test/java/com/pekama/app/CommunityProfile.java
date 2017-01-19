@@ -36,11 +36,11 @@ public class CommunityProfile {
         log.info("Open host");
         HttpAuth openHost = new HttpAuth();
         openHost.httpAuthStagingCommunity();
-        $(By.xpath(LANDING_LOGIN)).shouldBe(Condition.visible).click();
+        LANDING_LOGIN.shouldBe(Condition.visible).click();
         PekamaSteps login = new PekamaSteps();
         login.submitLoginCredentials(PEKAMA_USER_EMAIL);
         log.info("Redirect back after login");
-        $(By.xpath(COMMUNITY_TAB_Profile)).shouldBe(Condition.visible).shouldHave(Condition.text("my profile")).click();
+        COMMUNITY_TAB_Profile.shouldBe(Condition.visible).shouldHave(Condition.text("my profile")).click();
     }
 //    @After
 //    public void openUrlLogout() {
@@ -49,9 +49,9 @@ public class CommunityProfile {
     @Ignore("not ready")
     @Test
     public void checkGui() {
-        $(byXpath(PROFILE_TEAM_NAME)).shouldBe(visible).shouldHave(text(TEAM));
-        $(byXpath(PROFILE_BTN_SAVE_DESCRIPTION)).shouldNotBe(disabled);
-        $(byXpath(PROFILE_BTN_ADD)).shouldBe(disabled);
+        PROFILE_TEAM_NAME.shouldBe(visible).shouldHave(text(TEAM));
+        PROFILE_BTN_SAVE_DESCRIPTION.shouldNotBe(disabled);
+        PROFILE_BTN_ADD.shouldBe(disabled);
 //        $(byXpath(PROFILE_TEAM_NAME)).shouldBe(visible);
 //        $(byXpath(PROFILE_TEAM_NAME)).shouldNotBe(visible);
 //        $(byXpath(PROFILE_TEAM_NAME)).shouldNotBe(visible);
@@ -65,25 +65,25 @@ public class CommunityProfile {
     }
     @Test
     public void editTeamName() {
-        $(byXpath(PROFILE_TEAM_NAME)).shouldHave(Condition.text(TEAM)).click();
-        $(byXpath(PROFILE_TEAM_NAME_INPUT)).clear();
-        $(byXpath(PROFILE_TEAM_NAME_SAVE)).click();
+        PROFILE_TEAM_NAME.shouldHave(Condition.text(TEAM)).click();
+        PROFILE_TEAM_NAME_INPUT.clear();
+        PROFILE_TEAM_NAME_SAVE.click();
         $(byText(ERROR_MSG_BLANK_FIELD)).shouldBe(Condition.visible);
         log.info("Validation for empty name present");
 
-        $(byXpath(PROFILE_TEAM_NAME_CANCEL)).click();
+        PROFILE_TEAM_NAME_CANCEL.click();
         $(byText(ERROR_MSG_BLANK_FIELD)).shouldNotBe(Condition.visible);
         log.info("Changes canceled");
 
-        $(byXpath(PROFILE_TEAM_NAME)).shouldHave(Condition.text(TEAM)).click();
-        $(byXpath(PROFILE_TEAM_NAME_INPUT)).sendKeys(VALID_COMPANY);
-        $(byXpath(PROFILE_TEAM_NAME_SAVE)).click();
+        PROFILE_TEAM_NAME.shouldHave(Condition.text(TEAM)).click();
+        PROFILE_TEAM_NAME_INPUT.sendKeys(VALID_COMPANY);
+        PROFILE_TEAM_NAME_SAVE.click();
         log.info("New team name saved");
 
-        $(byXpath(PROFILE_TEAM_NAME)).shouldHave(Condition.text(VALID_COMPANY)).click();
-        $(byXpath(PROFILE_TEAM_NAME_INPUT)).sendKeys(TEAM);
-        $(byXpath(PROFILE_TEAM_NAME_SAVE)).click();
-        $(byXpath(PROFILE_TEAM_NAME)).shouldHave(Condition.text(TEAM));
+        PROFILE_TEAM_NAME.shouldHave(Condition.text(VALID_COMPANY)).click();
+        PROFILE_TEAM_NAME_INPUT.sendKeys(TEAM);
+        PROFILE_TEAM_NAME_SAVE.click();
+        PROFILE_TEAM_NAME.shouldHave(Condition.text(TEAM));
         log.info("Team name restored");
     }
     @Ignore("not ready")
@@ -96,27 +96,27 @@ public class CommunityProfile {
     }
     @Test
     public void saveFirmExpertise() {
-        $(byXpath(PROFILE_BTN_SAVE_DESCRIPTION)).shouldBe(disabled);
-        $(byXpath(PROFILE_INPUT_DESCRIPTION)).clear();
-        $(byXpath(PROFILE_BTN_SAVE_DESCRIPTION)).shouldHave(value(""));
+        PROFILE_BTN_SAVE_DESCRIPTION.shouldBe(disabled);
+        PROFILE_INPUT_DESCRIPTION.clear();
+        PROFILE_BTN_SAVE_DESCRIPTION.shouldHave(value(""));
         log.info("firm's expertise text cleared");
-        $(byXpath(PROFILE_INPUT_DESCRIPTION)).sendKeys(LOREM_IPSUM_SHORT);
-        $(byXpath(PROFILE_BTN_SAVE_DESCRIPTION)).shouldNot(disabled).click();
-        $(byXpath(PROFILE_INPUT_DESCRIPTION)).shouldHave(Condition.value(LOREM_IPSUM_SHORT));
+        PROFILE_INPUT_DESCRIPTION.sendKeys(LOREM_IPSUM_SHORT);
+        PROFILE_BTN_SAVE_DESCRIPTION.shouldNot(disabled).click();
+        PROFILE_INPUT_DESCRIPTION.shouldHave(Condition.value(LOREM_IPSUM_SHORT));
         log.info("firm's expertise saved with dummy text");
     }
     @Test
     public void testA_addMember() {
-        $(byXpath(PROFILE_BTN_SAVE_DESCRIPTION)).shouldBe(visible).click();
-        $(byXpath(MW)).shouldBe(visible);
+        PROFILE_BTN_SAVE_DESCRIPTION.shouldBe(visible).click();
+        MW.shouldBe(visible);
         $(byText("Members")).shouldNotBe(Condition.visible);
-        $(byXpath(MW_BTN_SUBMIT)).click();
+        MW_BTN_SUBMIT.click();
         $(byText(ERROR_MSG_BLANK_FIELD)).shouldBe(Condition.visible);
         log.info("Validation for empty EMAIL field present");
-        $(byXpath(MW_INPUT_NEW_MEMBER_EMAIL)).sendKeys(NEW_MEMBER);
+        MW_INPUT_NEW_MEMBER_EMAIL.sendKeys(NEW_MEMBER);
         log.info("Add memeber");
-        $(byXpath(MW_BTN_SUBMIT)).click();
-        $(byXpath(MW)).waitUntil(not(visible), 15000);
+        MW_BTN_SUBMIT.click();
+        MW.waitUntil(not(visible), 15000);
         $(byText(NEW_MEMBER+" (inactive)")).shouldBe(Condition.visible);
         log.info("New Memeber is displayed");
     }
@@ -124,7 +124,7 @@ public class CommunityProfile {
     @Test
     public void testB_deleteMember() {
         log.info("Check QTY and redirect to Pekama");
-        $(byXpath(PROFILE_MEMBERS_COUNT)).shouldBe(visible).click();
+        PROFILE_MEMBERS_COUNT.shouldBe(visible).click();
         String redirectedUrl = url();
         assertEquals(urlTSMembers, redirectedUrl);
         $(byText(NEW_MEMBER+" (inactive)")).shouldBe(Condition.visible);

@@ -34,34 +34,34 @@ public class CommunityDashboard {
 
     @Test
     public void checkDashboardGui() {
-        $(By.xpath(COMMUNITY_HEADER_LOGO)).shouldBe(Condition.visible);
-        $(By.xpath(COMMUNITY_HEADER_MANAGEMENT)).shouldBe(Condition.visible);
-        $(By.xpath(COMMUNITY_HEADER_SIGNUP)).shouldBe(Condition.visible);
-        $(By.xpath(COMMUNITY_HEADER_LOGIN)).shouldBe(Condition.visible);
+        COMMUNITY_HEADER_LOGO.shouldBe(Condition.visible);
+        COMMUNITY_HEADER_MANAGEMENT.shouldBe(Condition.visible);
+        COMMUNITY_HEADER_SIGNUP.shouldBe(Condition.visible);
+        COMMUNITY_HEADER_LOGIN.shouldBe(Condition.visible);
         rootLogger.info("All elements in Header present on default screen");
-        $(By.xpath(COMMUNITY_TAB_Supplier)).shouldBe(Condition.visible).shouldHave(Condition.text("find a supplier"));
-        $(By.xpath(COMMUNITY_TAB_Incoming)).shouldBe(Condition.visible).shouldHave(Condition.text("incoming cases"));
-        $(By.xpath(COMMUNITY_TAB_Outgoing)).shouldBe(Condition.visible).shouldHave(Condition.text("outgoing cases"));
-        $(By.xpath(COMMUNITY_TAB_Profile)).shouldBe(Condition.visible).shouldHave(Condition.text("become a supplier"));
+        COMMUNITY_TAB_Supplier.shouldBe(Condition.visible).shouldHave(Condition.text("find a supplier"));
+        COMMUNITY_TAB_Incoming.shouldBe(Condition.visible).shouldHave(Condition.text("incoming cases"));
+        COMMUNITY_TAB_Outgoing.shouldBe(Condition.visible).shouldHave(Condition.text("outgoing cases"));
+        COMMUNITY_TAB_Profile.shouldBe(Condition.visible).shouldHave(Condition.text("become a supplier"));
         rootLogger.info("Tabs names correct and user isn`t logged in");
     }
     @Test
     public void redirectBackFromHeaderLogin() {
-        $(By.xpath(COMMUNITY_HEADER_LOGIN)).shouldBe(Condition.visible).click();
+        COMMUNITY_HEADER_LOGIN.shouldBe(Condition.visible).click();
         sleep(1500);
         $(loginField_Email).sendKeys(User1.GMAIL_EMAIL.getValue());
         $(loginField_Password).sendKeys(GENERIC_PEKAMA_PASSWORD);
-        $(By.xpath(loginButton_Login)).click();
-        $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));
-        $(By.xpath(btnSignup)).shouldBe(Condition.not(visible));
+        loginButton_Login.click();
+        btnLogin.shouldBe(Condition.not(visible));
+        btnSignup.shouldBe(Condition.not(visible));
         rootLogger.info("Valid Credentials were submitted");
         sleep(1500);
         String urlAfterLogin = url();
         rootLogger.info(urlAfterLogin);
         assertEquals(COMMUNITY_WIZARD, urlAfterLogin);
         rootLogger.info("User redirected back to Wizard");
-        $(By.xpath(COMMUNITY_HEADER_UserDropdown)).click();
-        $(By.xpath(COMMUNITY_HEADER_LogOut)).shouldBe(Condition.visible).click();
+        COMMUNITY_HEADER_UserDropdown.click();
+        COMMUNITY_HEADER_LogOut.shouldBe(Condition.visible).click();
         sleep(1500);
         String urlAfterLogout = url();
         rootLogger.info(urlAfterLogout);
@@ -72,43 +72,43 @@ public class CommunityDashboard {
 
     @Test
     public void checkWizardLoginRedirect() {
-        $(By.xpath(COMMUNITY_HEADER_LOGIN)).shouldBe(Condition.visible);
-        $(By.xpath(COMMUNITY_TAB_Supplier)).shouldBe(Condition.visible).shouldHave(Condition.text("find a supplier")).click();
-        $(By.xpath(WIZARD_BTN_GetStarted)).shouldBe(visible).shouldBe(disabled);
-        $(By.xpath(COMMUNITY_SELECT_CaseType)).click();
-        $(By.xpath(COMMUNITY_INPUT_CaseType)).sendKeys("patent");
-        $(CSS_SelectHighlighted).click();
-        $(By.xpath(COMMUNITY_SELECT_Defining)).click();
-        $(By.xpath(COMMUNITY_INPUT_Defining)).sendKeys("united kingdom");
-        $(CSS_SelectHighlighted).click();
-        $(By.xpath(WIZARD_BTN_GetStarted)).click();
+        COMMUNITY_HEADER_LOGIN.shouldBe(Condition.visible);
+        COMMUNITY_TAB_Supplier.shouldBe(Condition.visible).shouldHave(Condition.text("find a supplier")).click();
+        WIZARD_BTN_GetStarted.shouldBe(visible).shouldBe(disabled);
+        COMMUNITY_SELECT_CaseType.click();
+        COMMUNITY_INPUT_CaseType.sendKeys("patent");
+        CSS_SelectHighlighted.click();
+        COMMUNITY_SELECT_Defining.click();
+        COMMUNITY_INPUT_Defining.sendKeys("united kingdom");
+        CSS_SelectHighlighted.click();
+        WIZARD_BTN_GetStarted.click();
         rootLogger.info("All elements in STEP 1 displayed for Guest user");
         //Refactor Xpath
-        $(By.xpath(WIZARD_BTN_YES)).shouldBe(Condition.visible);
-        $(By.xpath(WIZARD_BTN_NO)).click();
-        $(By.xpath(WIZARD_BTN_NEXT)).shouldBe(Condition.visible).click();
+        WIZARD_BTN_YES.shouldBe(Condition.visible);
+        WIZARD_BTN_NO.click();
+        WIZARD_BTN_NEXT.shouldBe(Condition.visible).click();
         rootLogger.info("All elements in STEP 2 displayed for Guest user");
         sleep(2000);
-//        $(By.xpath(COMMUNITY_INNRER_BTN_SIGNUP)).shouldBe(Condition.visible);
-//        $(By.xpath(COMMUNITY_INNRER_BTN_LOGIN)).shouldBe(Condition.visible);
+//        COMMUNITY_INNRER_BTN_SIGNUP)).shouldBe(Condition.visible);
+//        COMMUNITY_INNRER_BTN_LOGIN)).shouldBe(Condition.visible);
         rootLogger.info("All elements in STEP 3 displayed for Guest user");
         rootLogger.info("All elements in Wizard Tab displayed for Guest user");
 
-        $(By.xpath(COMMUNITY_INNRER_BTN_LOGIN)).click();
+        COMMUNITY_INNRER_BTN_LOGIN.click();
         sleep(1500);
-        $(loginField_Email).sendKeys(User1.GMAIL_EMAIL.getValue());
-        $(loginField_Password).sendKeys(GENERIC_PEKAMA_PASSWORD);
-        $(By.xpath(loginButton_Login)).click();
-        $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));
-        $(By.xpath(btnSignup)).shouldBe(Condition.not(visible));
+        loginField_Email.sendKeys(User1.GMAIL_EMAIL.getValue());
+        loginField_Password.sendKeys(GENERIC_PEKAMA_PASSWORD);
+        loginButton_Login.click();
+        btnLogin.shouldBe(Condition.not(visible));
+        btnSignup.shouldBe(Condition.not(visible));
         rootLogger.info("Valid Credentials were submitted");
         sleep(1500);
         String urlAfterLogin = url();
         rootLogger.info(urlAfterLogin);
 //        assertEquals(COMMUNITY_PROFILE, urlAfterLogin);
         rootLogger.info("User redirected back to Incoming");
-        $(By.xpath(COMMUNITY_HEADER_UserDropdown)).click();
-        $(By.xpath(COMMUNITY_HEADER_LogOut)).shouldBe(Condition.visible).click();
+        COMMUNITY_HEADER_UserDropdown.click();
+        COMMUNITY_HEADER_LogOut.shouldBe(Condition.visible).click();
         sleep(1500);
         String urlAfterLogout = url();
         rootLogger.info(urlAfterLogout);
@@ -119,27 +119,27 @@ public class CommunityDashboard {
     }
     @Test
     public void checkOutgoingLoginRedirect() {
-        $(By.xpath(COMMUNITY_HEADER_LOGIN)).shouldBe(Condition.visible);
-        $(By.xpath(COMMUNITY_TAB_Outgoing)).shouldBe(Condition.visible).shouldHave(Condition.text("outgoing cases")).click();
-        $(By.xpath(COMMUNITY_INNRER_BTN_SIGNUP)).shouldBe(Condition.visible);
-        $(By.xpath(COMMUNITY_INNRER_BTN_LOGIN)).shouldBe(Condition.visible);
+        COMMUNITY_HEADER_LOGIN.shouldBe(Condition.visible);
+        COMMUNITY_TAB_Outgoing.shouldBe(Condition.visible).shouldHave(Condition.text("outgoing cases")).click();
+        COMMUNITY_INNRER_BTN_SIGNUP.shouldBe(Condition.visible);
+        COMMUNITY_INNRER_BTN_LOGIN.shouldBe(Condition.visible);
         rootLogger.info("All elements in Outgoing Tab displayed for Guest user");
 
-        $(By.xpath(COMMUNITY_INNRER_BTN_LOGIN)).click();
+        COMMUNITY_INNRER_BTN_LOGIN.click();
         sleep(1500);
-        $(loginField_Email).sendKeys(User1.GMAIL_EMAIL.getValue());
-        $(loginField_Password).sendKeys(GENERIC_PEKAMA_PASSWORD);
-        $(By.xpath(loginButton_Login)).click();
-        $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));
-        $(By.xpath(btnSignup)).shouldBe(Condition.not(visible));
+        loginField_Email.sendKeys(User1.GMAIL_EMAIL.getValue());
+        loginField_Password.sendKeys(GENERIC_PEKAMA_PASSWORD);
+        loginButton_Login.click();
+        btnLogin.shouldBe(Condition.not(visible));
+        btnSignup.shouldBe(Condition.not(visible));
         rootLogger.info("Valid Credentials were submitted");
         sleep(1500);
         String urlAfterLogin = url();
         rootLogger.info(urlAfterLogin);
         assertEquals(COMMUNITY_OUTGOING, urlAfterLogin);
         rootLogger.info("User redirected back to Incoming");
-        $(By.xpath(COMMUNITY_HEADER_UserDropdown)).click();
-        $(By.xpath(COMMUNITY_HEADER_LogOut)).shouldBe(Condition.visible).click();
+        COMMUNITY_HEADER_UserDropdown.click();
+        COMMUNITY_HEADER_LogOut.shouldBe(Condition.visible).click();
         sleep(1500);
         String urlAfterLogout = url();
         rootLogger.info(urlAfterLogout);
@@ -150,27 +150,27 @@ public class CommunityDashboard {
     }
     @Test
     public void checkIncomingLoginRedirect() {
-        $(By.xpath(COMMUNITY_HEADER_LOGIN)).shouldBe(Condition.visible);
-        $(By.xpath(COMMUNITY_TAB_Incoming)).shouldBe(Condition.visible).shouldHave(Condition.text("incoming cases")).click();
-        $(By.xpath(COMMUNITY_INNRER_BTN_SIGNUP)).shouldBe(Condition.visible);
-        $(By.xpath(COMMUNITY_INNRER_BTN_LOGIN)).shouldBe(Condition.visible);
+        COMMUNITY_HEADER_LOGIN.shouldBe(Condition.visible);
+        COMMUNITY_TAB_Incoming.shouldBe(Condition.visible).shouldHave(Condition.text("incoming cases")).click();
+        COMMUNITY_INNRER_BTN_SIGNUP.shouldBe(Condition.visible);
+        COMMUNITY_INNRER_BTN_LOGIN.shouldBe(Condition.visible);
         rootLogger.info("All elements in Incoming Tab displayed for Guest user");
 
-        $(By.xpath(COMMUNITY_INNRER_BTN_LOGIN)).click();
+        COMMUNITY_INNRER_BTN_LOGIN.click();
         sleep(1500);
-        $(loginField_Email).sendKeys(User1.GMAIL_EMAIL.getValue());
-        $(loginField_Password).sendKeys(GENERIC_PEKAMA_PASSWORD);
-        $(By.xpath(loginButton_Login)).click();
-        $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));
-        $(By.xpath(btnSignup)).shouldBe(Condition.not(visible));
+        loginField_Email.sendKeys(User1.GMAIL_EMAIL.getValue());
+        loginField_Password.sendKeys(GENERIC_PEKAMA_PASSWORD);
+        loginButton_Login.click();
+        btnLogin.shouldBe(Condition.not(visible));
+        btnSignup.shouldBe(Condition.not(visible));
         rootLogger.info("Valid Credentials were submitted");
         sleep(1500);
         String urlAfterLogin = url();
         rootLogger.info(urlAfterLogin);
         assertEquals(COMMUNITY_INCOMING, urlAfterLogin);
         rootLogger.info("User redirected back to Incoming");
-        $(By.xpath(COMMUNITY_HEADER_UserDropdown)).click();
-        $(By.xpath(COMMUNITY_HEADER_LogOut)).shouldBe(Condition.visible).click();
+        COMMUNITY_HEADER_UserDropdown.click();
+        COMMUNITY_HEADER_LogOut.shouldBe(Condition.visible).click();
         sleep(1500);
         String urlAfterLogout = url();
         rootLogger.info(urlAfterLogout);
@@ -181,27 +181,27 @@ public class CommunityDashboard {
     }
     @Test
     public void checkProfileLoginRedirect() {
-        $(By.xpath(COMMUNITY_HEADER_LOGIN)).shouldBe(Condition.visible);
-        $(By.xpath(COMMUNITY_TAB_Profile)).shouldBe(Condition.visible).shouldHave(Condition.text("become a supplier")).click();
-        $(By.xpath(COMMUNITY_INNRER_BTN_SIGNUP)).shouldBe(Condition.visible);
-        $(By.xpath(COMMUNITY_INNRER_BTN_LOGIN)).shouldBe(Condition.visible);
+        COMMUNITY_HEADER_LOGIN.shouldBe(Condition.visible);
+        COMMUNITY_TAB_Profile.shouldBe(Condition.visible).shouldHave(Condition.text("become a supplier")).click();
+        COMMUNITY_INNRER_BTN_SIGNUP.shouldBe(Condition.visible);
+        COMMUNITY_INNRER_BTN_LOGIN.shouldBe(Condition.visible);
         rootLogger.info("All elements in Profile Tab displayed for Guest user");
 
-        $(By.xpath(COMMUNITY_INNRER_BTN_LOGIN)).click();
+        COMMUNITY_INNRER_BTN_LOGIN.click();
         sleep(1500);
-        $(loginField_Email).sendKeys(User1.GMAIL_EMAIL.getValue());
-        $(loginField_Password).sendKeys(GENERIC_PEKAMA_PASSWORD);
-        $(By.xpath(loginButton_Login)).click();
-        $(By.xpath(btnLogin)).shouldBe(Condition.not(visible));
-        $(By.xpath(btnSignup)).shouldBe(Condition.not(visible));
+        loginField_Email.sendKeys(User1.GMAIL_EMAIL.getValue());
+        loginField_Password.sendKeys(GENERIC_PEKAMA_PASSWORD);
+        loginButton_Login.click();
+        btnLogin.shouldBe(Condition.not(visible));
+        btnSignup.shouldBe(Condition.not(visible));
         rootLogger.info("Valid Credentials were submitted");
         sleep(1500);
         String urlAfterLogin = url();
         rootLogger.info(urlAfterLogin);
         assertEquals(COMMUNITY_PROFILE, urlAfterLogin);
         rootLogger.info("User redirected back to Incoming");
-        $(By.xpath(COMMUNITY_HEADER_UserDropdown)).click();
-        $(By.xpath(COMMUNITY_HEADER_LogOut)).shouldBe(Condition.visible).click();
+        COMMUNITY_HEADER_UserDropdown.click();
+        COMMUNITY_HEADER_LogOut.shouldBe(Condition.visible).click();
         sleep(1500);
         String urlAfterLogout = url();
         rootLogger.info(urlAfterLogout);

@@ -49,7 +49,7 @@ public class ModalWindows {
     public static final SelenideElement genericButtonAdd = $(byXpath("//button[contains(.,'add')]"));
     public static final SelenideElement genericButtonDelete = $(byXpath("//button[contains(.,'Delete')]"));
     public static final SelenideElement genericButtonCancel = $(byXpath("//button[contains(.,'Cancel')]"));
-    public static final SelenideElement CSS_SelectHighlighted = $(byXpath("span.ui-select-highlight"));
+    public static final SelenideElement CSS_SelectHighlighted = $("span.ui-select-highlight");
 
     public static final SelenideElement MW_GenericButtonOk = $(byXpath("//button[text()='OK']"));
     public static final SelenideElement MW_GenericTitleSimple = $(byXpath("//h3[@class='modal-title']"));

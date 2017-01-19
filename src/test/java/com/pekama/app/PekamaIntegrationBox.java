@@ -63,21 +63,21 @@ public class PekamaIntegrationBox {
         //todo - random+name
         buttonAddNewFile.click();
         linkCreateNewFolder.shouldBe(Condition.visible).click();
-        $(byXpath(MW)).shouldBe(Condition.visible);
+        MW.shouldBe(Condition.visible);
         $(byText(mwTitleNewFolder)).shouldBe(Condition.visible);
         $(byName("name")).sendKeys(FolderNameBeforeConnect);
-        $(byXpath(MW_BTN_SAVE)).click();
-        $(byXpath(MW)).shouldNotBe(Condition.visible);
+        MW_BTN_SAVE.click();
+        MW.shouldNotBe(Condition.visible);
         $(byText(FolderNameBeforeConnect)).shouldBe(Condition.visible);
         rootLogger.info("Add folder");
         //todo - random+name
         buttonAddNewFile.click();
         linkCreateNewDoc.shouldBe(Condition.visible).click();
-        $(byXpath(MW)).shouldBe(Condition.visible);
-        $(byXpath(MW_DeployDoc_01TemplateWord)).shouldBe(Condition.visible).click();
+        MW.shouldBe(Condition.visible);
+        MW_DeployDoc_01TemplateWord.shouldBe(Condition.visible).click();
         $(byName("name")).sendKeys(FileNameBeforeConnect);
-        $(byXpath(MW_DeployDoc_ButtonCreate)).click();
-        $(byXpath(MW)).shouldNotBe(Condition.visible);
+        MW_DeployDoc_ButtonCreate.click();
+        MW.shouldNotBe(Condition.visible);
         $(byText(FileNameBeforeConnect)).shouldBe(Condition.visible);
 
         pekamaProjectUrl = url();

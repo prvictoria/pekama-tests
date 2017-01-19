@@ -2,6 +2,7 @@ package Page;
 
 import com.codeborne.selenide.SelenideElement;
 
+import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 
@@ -19,7 +20,7 @@ public class PekamaLanding {
     public static final SelenideElement BTN_BENEFITS = $(byXpath("//a[contains(@href, '/#connect')]"));
     public static final SelenideElement BTN_VIDEO = $(byXpath("//a[contains(@href, '/#watch-video')]"));
     public static final SelenideElement BTN_TEAM = $(byXpath("//a[contains(@href, '/#team')]"));
-    public static final SelenideElement FIELD_EMAIL = $(byXpath("#exampleInputEmail3"));
-    public static final SelenideElement BTN_TRY_IT = $(byXpath("#tryItOutButton"));
+    public static final SelenideElement FIELD_EMAIL = $(byId("exampleInputEmail3"));
+    public static final SelenideElement BTN_TRY_IT = $(byId("tryItOutButton"));
 
 }
