@@ -46,9 +46,9 @@ public class BasicAuth {
         //switchTo().alert().authenticateUsing("qweeco", login);
         //open("http://www.staging.pekama.com\\qweeco:qw33coStudi0@staging.pekama.com");
         //open("https://staging.pekama.com", "www.staging.pekama.com", "qweeco" , "qw33coStudi0");
-        $(By.xpath(BTN_LOGIN)).shouldBe(Condition.visible).click();
+        BTN_LOGIN.shouldBe(Condition.visible).click();
         sleep(1000);
-        $(By.xpath(lOGIN_TITLE)).shouldBe(Condition.visible).shouldHave(Condition.text(lOGIN_TITLE_TEXT));
+        lOGIN_TITLE.shouldBe(Condition.visible).shouldHave(Condition.text(lOGIN_TITLE_TEXT));
     };
 
 

@@ -70,10 +70,10 @@ public class ModalWindows {
     public static final SelenideElement MW_EnableVerificationTitle = $(byXpath("//h3"));
     public static final SelenideElement MW_EnableVerificationClose = $(byXpath("//button[@type='button'][contains(.,'Close')]"));
     public static final SelenideElement MW_EnableVerificationNext = $(byXpath("//button[@type='submit'][contains(.,'Next')]"));
-    public static final SelenideElement MW_EnableVerificationTelField = $(byXpath("phone"));
+    public static final SelenideElement MW_EnableVerificationTelField = $(byName("phone"));
     public static final SelenideElement MW_EnableVerificationCountrySelect = $(byXpath("//div/div/div/div/div/span"));
     public static final SelenideElement MW_EnableVerificationCoutryField = $(byXpath("//div/div/div/div/input"));
-    public static final SelenideElement MW_EnableVerificationConfirmCodeField = $(byXpath("two_factor_code"));
+    public static final SelenideElement MW_EnableVerificationConfirmCodeField = $(byName("two_factor_code"));
     public static final SelenideElement MW_EnableVerificationErrorArea = $(byXpath("//div[2]/form/div"));
 //templates
     public static final SelenideElement MW_TaskTemplateSet = $(byXpath(""));

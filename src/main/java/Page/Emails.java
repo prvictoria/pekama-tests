@@ -4,9 +4,7 @@ import com.codeborne.selenide.SelenideElement;
 
 import static Page.PekamaReports.*;
 import static Page.TestsUrlConfiguration.SELECT_HOST;
-import static com.codeborne.selenide.Selectors.byId;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selectors.byXpath;
+import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 
 public class Emails {
@@ -53,7 +51,7 @@ public class Emails {
     public static final String GMAIL_URL_LOG_OUT = "https://www.google.com/accounts/Logout"; //username  remains
     public static final String GMAIL_URL_SIGN_OUT = "https://accounts.google.com/Logout?continue=https%3A%2F%2Faccounts.google.com%2FServiceLogin%3Fsacu%3D1&il=true&zx=icxpgruz0yao";
 
-    public static final SelenideElement GMAIL_LOGIN_FIELD = $(byId("Email"));
+    public static final SelenideElement GMAIL_LOGIN_FIELD = $(byName("Email"));
     public static final SelenideElement GMAIL_PASSWORD_FIELD = $(byId("Passwd"));
     public static final SelenideElement GMAIL_SIGNIN_BTN = $(byId("signIn"));
     public static final SelenideElement GMAIL_NEXT_BTN = $(byId("next"));

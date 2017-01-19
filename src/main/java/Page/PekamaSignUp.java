@@ -1,13 +1,13 @@
 package Page;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 import java.lang.reflect.Array;
 
-import static com.codeborne.selenide.Selectors.byId;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selectors.byXpath;
+import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 /**
  * Created by Viachaslau_Balashevi on 12/29/2016.
@@ -34,11 +34,11 @@ public class PekamaSignUp {
     public static final SelenideElement signupPassword = $(byId("inputPassword"));
     public static final SelenideElement signupUpload = $(byId("avatar-upload-link"));
     public static final SelenideElement signupAgree = $(byId("agree_to_tou"));
-    public static final SelenideElement signupSubcribeNews = $(byId("user_info-receive_news"));
+    public static final SelenideElement signupSubcribeNews = $(byName("user_info-receive_news"));
     public static final SelenideElement signupTerms = $(byXpath("//a[@href='/accounts/terms_of_use/']"));
     public static final SelenideElement signupNext = $(byId("next-button"));
-    public static final SelenideElement signupError = $(".list-unstyled.error-list>li");
-    public static final SelenideElement signupErrorEmail = $(byXpath("//div[@class='signup-details']//div[@class='row'][1]//li"));
+    public static final ElementsCollection signupError = $$(".list-unstyled.error-list>li");
+    public static final ElementsCollection signupErrorEmail = $$(byXpath("//div[@class='signup-details']//div[@class='row'][1]//li"));
     public static final SelenideElement signupErrorPassword = $(byXpath("//div[@class='signup-details']//div[@class='row'][3]//li[2]"));
 
     public static final SelenideElement SIGNUP_ERROR_SHORT_PASSWORD = $(byXpath("//div[@class='signup-details']//li[contains(.,'This password is too common.')]"));
@@ -51,10 +51,10 @@ public class PekamaSignUp {
     //public static final SelenideElement[] arrayCommonPasswords = $(byXpath({"1234567", "abcdefg", "1234567890", "qwertyuiop", "QWERTYUIOP", "!\"#$%&()*+-,./:;<=>?[]{}~'", "1234567890qwertyuiop", "1234567890QWERTYUIOP", "1234567890#", "qwertyuiopQWERTYUIOP", "qwertyuiop#", "QWERTYUIOP#", "1#qQ"};
     public static final String[] arrayInvalidPasswords = {"1234567", "abcdefg", "1234567890", "qwertyuiop", "QWERTYUIOP", "!\"#$%&()*+-,./:;<=>?[]{}~'", "1234567890qwertyuiop", "1234567890QWERTYUIOP", "1234567890#", "qwertyuiopQWERTYUIOP", "qwertyuiop#", "QWERTYUIOP#", "1#qQ"}; //1#qQ 1#qQ 1#qQ 1#qQ - no empty space validation
 
-    public static final SelenideElement SIGN_UP_JOIN_PAGE_TITLE = $(byText("Teams on Your Domain"));
-    public static final SelenideElement SIGN_UP_JOIN_PAGE_TEXT = $(byText("We found some existing teams on your domain."));
-    public static final SelenideElement SIGN_UP_JOIN_PAGE_TEAM_SECTION_TITLE = $(byText("Please mark a Team you belong to"));
-    public static final SelenideElement SIGN_UP_JOIN_PAGE_DEFAULT_RADIO = $(byText("//label[contains(.,\"I don't belong to any of these Teams\")]/input"));
-    public static final SelenideElement SIGN_UP_JOIN_PAGE_DEFAULT_RADIO_TEXT = $(byText("I don't belong to any of these Teams"));
+    public static final String SIGN_UP_JOIN_PAGE_TITLE = "Teams on Your Domain";
+    public static final String SIGN_UP_JOIN_PAGE_TEXT = "We found some existing teams on your domain.";
+    public static final String SIGN_UP_JOIN_PAGE_TEAM_SECTION_TITLE = "Please mark a Team you belong to";
+    public static final SelenideElement SIGN_UP_JOIN_PAGE_DEFAULT_RADIO = $(byXpath("//label[contains(.,\"I don't belong to any of these Teams\")]/input"));
+    public static final String SIGN_UP_JOIN_PAGE_DEFAULT_RADIO_TEXT = "I don't belong to any of these Teams";
     public static final SelenideElement SIGN_UP_JOIN_PAGE_FINISH_BTN = $(byXpath("//*[@id='finish-button']"));
 }

@@ -2,6 +2,7 @@ package com.pekama.app.draft;
 
 import Steps.ExternalSteps;
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Ignore;
@@ -23,11 +24,11 @@ public class LoginGmail {
     static final Logger logging = LogManager.getLogger(LoginGmail.class);
     String GMAIL_LOGIN = User1.GMAIL_EMAIL.getValue();
     String GMAIL_PASSWORD = User1.GMAIL_PASSWORD.getValue();
-    String EMAIL_SUBJECT = EMAIL_RESET_PASSWORD_SUBJECT;
+    SelenideElement EMAIL_SUBJECT = EMAIL_RESET_PASSWORD_SUBJECT;
     String EMAIL_TITLE = EMAIL_RESET_PASSWORD_TITLE;
     String EMAIL_TEXT = EMAIL_RESET_PASSWORD_TEXT;
     String EMAIL_BTN = EMAIL_RESET_PASSWORD_BTN;
-    String EMAIL_REDIRECT_LINK = EMAIL_RESET_PASSWORD_BACKLINK;
+    SelenideElement EMAIL_REDIRECT_LINK = EMAIL_RESET_PASSWORD_BACKLINK;
     @Ignore
     @Test
     public void canOpenChromeApps() {
@@ -43,7 +44,7 @@ public class LoginGmail {
         logging.info("Start browser");
         open(GMAIL_URL);
         logging.info("Type email");
-        $(By.name(GMAIL_LOGIN_FIELD)).sendKeys(GMAIL_LOGIN);
+        GMAIL_LOGIN_FIELD.sendKeys(GMAIL_LOGIN);
         logging.info("Submit email");
         $(GMAIL_NEXT_BTN).click();
 
@@ -60,22 +61,22 @@ public class LoginGmail {
 //        $$(byText("Gmail Team")).filter(visible).shouldHave(size(1));
 //        $$(byText("LastPass")).filter(visible).shouldHave(size(1));
 //        $$(byText("Pivotal Tracker")).filter(visible).shouldHave(size(1));
-//        $(byXpath(GMAIL_SELECT_MENU)).click();
+//        GMAIL_SELECT_MENU)).click();
 
 //        $(byAttribute("selector", "none")).shouldBe(visible);
 //        $(byAttribute("selector", "read")).shouldBe(visible);
 //        $(byAttribute("selector", "unread")).shouldBe(visible).click();
         sleep(250);
-        String actualEmailSubject = $(byXpath(EMAIL_RESET_PASSWORD_SUBJECT)).getText();
+        String actualEmailSubject = EMAIL_RESET_PASSWORD_SUBJECT.getText();
         logging.info("Target full email subject - " +actualEmailSubject);
-        $(byXpath(EMAIL_RESET_PASSWORD_SUBJECT)).click();
+        EMAIL_RESET_PASSWORD_SUBJECT.click();
         $$(byText(EMAIL_RESET_PASSWORD_TITLE)).filter(visible).shouldHave(size(1));
         $$(byText(EMAIL_RESET_PASSWORD_TEXT)).filter(visible).shouldHave(size(1));
         $$(byText(EMAIL_RESET_PASSWORD_BTN)).filter(visible).shouldHave(size(1));
-        String actualBackLink = $(By.xpath(EMAIL_RESET_PASSWORD_BACKLINK)).getAttribute("href");
+        String actualBackLink = EMAIL_RESET_PASSWORD_BACKLINK.getAttribute("href");
         logging.info("Back link to Pekama - " +actualBackLink);
 
-        $(byXpath(GMAIL_ARCHIVE_BTN)).click();
+        GMAIL_ARCHIVE_BTN.click();
 //        open(actualBackLink);
 
 //        $(byAttribute("selector", "starred")).shouldBe(visible);
@@ -87,9 +88,9 @@ public class LoginGmail {
     public void openInbox() {
         logging.info("Start browser");
         open(INBOX_URL);
-        $(byXpath(INBOX_SIGNIN)).waitUntil(visible, 10000).click();
+        INBOX_SIGNIN.waitUntil(visible, 10000).click();
         logging.info("Type email");
-        $(By.name(GMAIL_LOGIN_FIELD)).sendKeys(GMAIL_LOGIN);
+        GMAIL_LOGIN_FIELD.sendKeys(GMAIL_LOGIN);
         logging.info("Submit email");
         $(GMAIL_NEXT_BTN).click();
         logging.info("Type password");
@@ -97,14 +98,14 @@ public class LoginGmail {
         logging.info("Submit password");
         $(GMAIL_SIGNIN_BTN).shouldBe(visible).click();
 
-        $(byXpath(EMAIL_RESET_PASSWORD_SUBJECT)).waitUntil(visible, 10000).click();
-        $(byXpath(INBOX_BTN_DONE)).waitUntil(visible, 10000);
+        EMAIL_RESET_PASSWORD_SUBJECT.waitUntil(visible, 10000).click();
+        INBOX_BTN_DONE.waitUntil(visible, 10000);
         $$(byText(EMAIL_RESET_PASSWORD_TITLE)).filter(visible).shouldHave(size(1));
         $$(byText(EMAIL_RESET_PASSWORD_TEXT)).filter(visible).shouldHave(size(1));
         $$(byText(EMAIL_RESET_PASSWORD_BTN)).filter(visible).shouldHave(size(1));
-        String actualBackLink = $(By.xpath(EMAIL_RESET_PASSWORD_BACKLINK)).getAttribute("href");
+        String actualBackLink = EMAIL_RESET_PASSWORD_BACKLINK.getAttribute("href");
         logging.info("Back link to Pekama - " +actualBackLink);
-        $(byXpath(INBOX_BTN_DONE)).click();
+        INBOX_BTN_DONE.click();
         open(actualBackLink);
     }
 

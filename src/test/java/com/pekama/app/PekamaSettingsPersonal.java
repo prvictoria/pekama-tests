@@ -418,45 +418,45 @@ public class PekamaSettingsPersonal {
         rootLogger.info("Open MW Enable 2-step verification");
         SECURITY_ENABLE_BTN.shouldBe(Condition.visible).click();
         rootLogger.info("Check MW buttons");
-        $(byXpath(MW)).shouldBe(Condition.visible);
-        $(byXpath(MW_EnableVerificationClose)).shouldBe(Condition.visible);
+        MW.shouldBe(Condition.visible);
+        MW_EnableVerificationClose.shouldBe(Condition.visible);
         MW_EnableVerificationNext.shouldBe(Condition.visible);
-        $(byXpath(MW_EnableVerificationCountrySelect)).shouldBe(Condition.visible).click();
-        $(byXpath(MW_EnableVerificationCoutryField)).shouldBe(Condition.visible).shouldHave(Condition.value("")).sendKeys("Belarus");
+        MW_EnableVerificationCountrySelect.shouldBe(Condition.visible).click();
+        MW_EnableVerificationCoutryField.shouldBe(Condition.visible).shouldHave(Condition.value("")).sendKeys("Belarus");
         $(CSS_SelectHighlighted).shouldBe(Condition.visible).click();
         $(byText("+375")).shouldBe(Condition.visible);
 
         rootLogger.info("Modal - Enable 2-Step Verification/ validate incorrect number");
-        $(byName((MW_EnableVerificationTelField))).shouldHave(Condition.value("")).sendKeys("123");
+        MW_EnableVerificationTelField.shouldHave(Condition.value("")).sendKeys("123");
         submitEnabledButton(MW_EnableVerificationNext);
         $(byText("21211: The 'To' number 375123 is not a valid phone number.")).shouldBe(Condition.visible);
         rootLogger.info("Modal - Enable 2-Step Verification/ validate CORRECT number");
-        $(byName((MW_EnableVerificationTelField))).clear();
-        $(byName((MW_EnableVerificationTelField))).sendKeys("291200656");
+        MW_EnableVerificationTelField.clear();
+        MW_EnableVerificationTelField.sendKeys("291200656");
         submitEnabledButton(MW_EnableVerificationNext);
         $(byText("We sent a confirmation code to your phone. Please enter it in the field below.")).shouldBe(Condition.visible);
 
-        $(byName((MW_EnableVerificationConfirmCodeField))).clear();
-        $(byName((MW_EnableVerificationConfirmCodeField))).shouldHave(Condition.value("")).sendKeys("12345678901234567890");
+        MW_EnableVerificationConfirmCodeField.clear();
+        MW_EnableVerificationConfirmCodeField.shouldHave(Condition.value("")).sendKeys("12345678901234567890");
         submitEnabledButton(MW_EnableVerificationNext);
         $(byText("Wrong confirmation code format. It must be a number between 100000 and 999999")).shouldBe(Condition.visible);
         rootLogger.info("validation present");
 
-        $(byName((MW_EnableVerificationConfirmCodeField))).clear();
-        $(byName((MW_EnableVerificationConfirmCodeField))).shouldHave(Condition.value("")).sendKeys("100000");
+        MW_EnableVerificationConfirmCodeField.clear();
+        MW_EnableVerificationConfirmCodeField.shouldHave(Condition.value("")).sendKeys("100000");
         submitEnabledButton(MW_EnableVerificationNext);
         $(byText("Wrong confirmation code. Attempts left: 2.")).shouldBe(Condition.visible);
-        $(byName((MW_EnableVerificationConfirmCodeField))).clear();
-        $(byName((MW_EnableVerificationConfirmCodeField))).shouldHave(Condition.value("")).sendKeys("999999");
+        MW_EnableVerificationConfirmCodeField.clear();
+        MW_EnableVerificationConfirmCodeField.shouldHave(Condition.value("")).sendKeys("999999");
         submitEnabledButton(MW_EnableVerificationNext);
         $(byText("Wrong confirmation code. Attempts left: 1.")).shouldBe(Condition.visible);
-        $(byName((MW_EnableVerificationConfirmCodeField))).clear();
-        $(byName((MW_EnableVerificationConfirmCodeField))).shouldHave(Condition.value("")).sendKeys("123123");
-        $(byName((MW_EnableVerificationConfirmCodeField))).shouldHave(Condition.value("123123"));
+        MW_EnableVerificationConfirmCodeField.clear();
+        MW_EnableVerificationConfirmCodeField.shouldHave(Condition.value("")).sendKeys("123123");
+        MW_EnableVerificationConfirmCodeField.shouldHave(Condition.value("123123"));
         submitEnabledButton(MW_EnableVerificationNext);
         $(byText("You're out of attempts, please request a new confirmation code.")).shouldBe(Condition.visible);
-        $(byXpath(MW_EnableVerificationClose)).shouldBe(Condition.visible).click();
-        $(byXpath(MW)).shouldNotBe(Condition.visible);
+        MW_EnableVerificationClose.shouldBe(Condition.visible).click();
+        MW.shouldNotBe(Condition.visible);
         rootLogger.info("validation 3 attempts present");
 
     }
