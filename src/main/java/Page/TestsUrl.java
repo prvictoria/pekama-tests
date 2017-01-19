@@ -39,6 +39,13 @@ public class TestsUrl {
     public static final String BACK_TO_INCOMING = COMMUNITY+BACK_QUERY_COMMUNITY+"incoming";
     public static final String BACK_TO_PROFILE = COMMUNITY+BACK_QUERY_COMMUNITY+"profile";
 
+    public static final String boxLoginURL = "https://account.box.com/login";
+    public static final String boxFilesURL = "https://app.box.com/files";
+    public static final String boxLogoutURL = "https://app.box.com/logout";
+
+    public static final String COMMUNITY_UrlLoginWizard = "accounts/login/?next=%2Fa%2FCOMMUNITY_%2Fwizard";
+
+
 
 
 

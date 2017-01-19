@@ -1,26 +1,31 @@
 package Page;
 
+import com.codeborne.selenide.SelenideElement;
+
+import static com.codeborne.selenide.Selectors.byXpath;
+import static com.codeborne.selenide.Selenide.$;
+
 /**
  * Created by VatslauX on 29-Dec-16.
  */
 public class PekamaHeader {
-    public static final String HEADER = "//*[@class='content-page-header']";
-    public static final String HEADER_DASHBOARD = "//*[@href='/a/dashboard']";
-    public static final String HEADER_PROJECTS = "//*[@href='/a/reports/projects']";
-    public static final String HEADER_TASKS = "//*[@href='/a/reports/tasks']";
-    public static final String HEADER_EVENTS = "//*[@href='/a/reports/events']";
-    public static final String HEADER_CHARGES = "//*[@href='/a/reports/charges']";
-    public static final String HEADER_CONTACTS = "//*[@href='/a/reports/contacts']";
-    public static final String HEADER_TUTORIAL_BTN = "//button[contains(.,'Run Tutorial')]";
-    public static final String HEADER_SEARCH_FIELD = HEADER+"//input";
-    public static final String HEADER_SEARCH_ICON = HEADER+"//form/button";
-    public static final String HEADER_UserAvavtar = HEADER+"//img[@class='img-circle']";
-    public static final String HEADER_Username = "//ul[@role='menu']//*[@class='username ng-binding']";
-    public static final String HEADER_Teamname = "//ul[@role='menu']//*[@class='ng-binding']";
+    public static final SelenideElement HEADER = $(byXpath("//*[@class='content-page-header']"));
+    public static final SelenideElement HEADER_DASHBOARD = $(byXpath("//*[@href='/a/dashboard']"));
+    public static final SelenideElement HEADER_PROJECTS = $(byXpath("//*[@href='/a/reports/projects']"));
+    public static final SelenideElement HEADER_TASKS = $(byXpath("//*[@href='/a/reports/tasks']"));
+    public static final SelenideElement HEADER_EVENTS = $(byXpath("//*[@href='/a/reports/events']"));
+    public static final SelenideElement HEADER_CHARGES = $(byXpath("//*[@href='/a/reports/charges']"));
+    public static final SelenideElement HEADER_CONTACTS = $(byXpath("//*[@href='/a/reports/contacts']"));
+    public static final SelenideElement HEADER_TUTORIAL_BTN = $(byXpath("//button[contains(.,'Run Tutorial')]"));
+    public static final SelenideElement HEADER_SEARCH_FIELD = $(byXpath(HEADER+"//input"));
+    public static final SelenideElement HEADER_SEARCH_ICON = $(byXpath(HEADER+"//form/button"));
+    public static final SelenideElement HEADER_UserAvavtar = $(byXpath(HEADER+"//img[@class='img-circle']"));
+    public static final SelenideElement HEADER_Username = $(byXpath("//ul[@role='menu']//*[@class='username ng-binding']"));
+    public static final SelenideElement HEADER_Teamname = $(byXpath("//ul[@role='menu']//*[@class='ng-binding']"));
 
-    public static final String HEADER_UserDropdown = "//*[@class='pkm-icon-down-open']";
-    public static final String HEADER_TeamAvatar = "";
-    public static final String HEADER_PersonalSettings = "//ul[@role='menu']//*[@href='/a/settings/profile']";
-    public static final String HEADER_TeamSettings = "//ul[@role='menu']//*[@href='/a/settings/team']";
-    public static final String HEADER_LogOut = "//ul[@role='menu']//*[@pkm-confirm-click='logout()']";
+    public static final SelenideElement HEADER_UserDropdown = $(byXpath("//*[@class='pkm-icon-down-open']"));
+    public static final SelenideElement HEADER_TeamAvatar = $(byXpath(""));
+    public static final SelenideElement HEADER_PersonalSettings = $(byXpath("//ul[@role='menu']//*[@href='/a/settings/profile']"));
+    public static final SelenideElement HEADER_TeamSettings = $(byXpath("//ul[@role='menu']//*[@href='/a/settings/team']"));
+    public static final SelenideElement HEADER_LogOut = $(byXpath("//ul[@role='menu']//*[@pkm-confirm-click='logout()']"));
 }

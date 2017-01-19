@@ -1,80 +1,86 @@
 package Page;
+
+import com.codeborne.selenide.SelenideElement;
+
+import static com.codeborne.selenide.Selectors.byXpath;
+import static com.codeborne.selenide.Selenide.$;
+
 public class PekamaReports {
 
-    public static final String REPORTS_AllCheckbox = "//li[@class='items-header clearfix clearfix']//input[@type='checkbox']";
-    public static final String REPORTS_BulkDelete = "//button[@class='btn-link'][contains(.,'Delete')]";
-    public static final String REPORTS_BulkMerge = "//button[@class='btn-link'][contains(.,'Merge')]";
-    public static final String REPORTS_NoData = "//div/div[2][@class='alert alert-empty ng-binding ng-scope']";
-    public static final String REPORTS_Spinner = "//i[@class='pkm-icon-spinner icon-spin']";
-    public static final String REPORTS_BtnList = "//button[contains(.,'List')]";
-    public static final String REPORTS_BtnReport = "//button[contains(.,'Report')]";
-    public static final String REPORTS_BtnNew = "//button[@type='button'][contains(.,'New')]";
-    public static final String REPORTS_BtnImport = "//button[@type='button'][contains(.,'Import')]";
-    public static final String REPORTS_BtnAddContact = "//button[@type='button'][contains(.,'Add contact')]";
+    public static final SelenideElement REPORTS_AllCheckbox = $(byXpath("//li[@class='items-header clearfix clearfix']//input[@type='checkbox']"));
+    public static final SelenideElement REPORTS_BulkDelete = $(byXpath("//button[@class='btn-link'][contains(.,'Delete')]"));
+    public static final SelenideElement REPORTS_BulkMerge = $(byXpath("//button[@class='btn-link'][contains(.,'Merge')]"));
+    public static final SelenideElement REPORTS_NoData = $(byXpath("//div/div[2][@class='alert alert-empty ng-binding ng-scope']"));
+    public static final SelenideElement REPORTS_Spinner = $(byXpath("//i[@class='pkm-icon-spinner icon-spin']"));
+    public static final SelenideElement REPORTS_BtnList = $(byXpath("//button[contains(.,'List')]"));
+    public static final SelenideElement REPORTS_BtnReport = $(byXpath("//button[contains(.,'Report')]"));
+    public static final SelenideElement REPORTS_BtnNew = $(byXpath("//button[@type='button'][contains(.,'New')]"));
+    public static final SelenideElement REPORTS_BtnImport = $(byXpath("//button[@type='button'][contains(.,'Import')]"));
+    public static final SelenideElement REPORTS_BtnAddContact = $(byXpath("//button[@type='button'][contains(.,'Add contact')]"));
 //list view
 //detailes view
-    public static final String REPORTS_ListRow01 = "//ng-include[@src='reportParams.listTemplate']/li[1]";
-    public static final String REPORTS_ListRow02 = "//ng-include[@src='reportParams.listTemplate']/li[2]";
-    public static final String REPORTS_ListRow03 = "//ng-include[@src='reportParams.listTemplate']/li[3]";
-    public static final String REPORTS_ListRow04 = "//ng-include[@src='reportParams.listTemplate']/li[4]";
-    public static final String REPORTS_ListRow05 = "//ng-include[@src='reportParams.listTemplate']/li[5]";
+    public static final SelenideElement REPORTS_ListRow01 = $(byXpath("//ng-include[@src='reportParams.listTemplate']/li[1]"));
+    public static final SelenideElement REPORTS_ListRow02 = $(byXpath("//ng-include[@src='reportParams.listTemplate']/li[2]"));
+    public static final SelenideElement REPORTS_ListRow03 = $(byXpath("//ng-include[@src='reportParams.listTemplate']/li[3]"));
+    public static final SelenideElement REPORTS_ListRow04 = $(byXpath("//ng-include[@src='reportParams.listTemplate']/li[4]"));
+    public static final SelenideElement REPORTS_ListRow05 = $(byXpath("//ng-include[@src='reportParams.listTemplate']/li[5]"));
 
-    public static final String REPORTS_1RowCheckbox = "";
-    public static final String REPORTS_2RowCheckbox = "";
-    public static final String REPORTS_3RowCheckbox = "";
-    public static final String REPORTS_4RowCheckbox = "";
-    public static final String REPORTS_5RowCheckbox = "";
-    public static final String REPORTS_1Row = "//section[@id='page']/div[2]/ui-view/div/div[2]/div/div/ul/li[2]/ul/ng-include/li/a";
-    public static final String REPORTS_2Row = "//section[@id='page']/div[2]/ui-view/div/div[2]/div/div/ul/li[2]/ul/ng-include/li[2]/a";
-    public static final String REPORTS_3Row = "";
-    public static final String REPORTS_Contacts = "";
-    public static final String REPORTS_1RowNameSurname = "css=div.conact-page-name.ng-binding";
-    public static final String REPORTS_1RowCountry = ".//*[@class='contact-page-country ng-binding'][contains(.,'Ireland')]";
-    public static final String REPORTS_FiltersFreeText = "//pkm-filtering//input";
+    public static final SelenideElement REPORTS_1RowCheckbox = $(byXpath(""));
+    public static final SelenideElement REPORTS_2RowCheckbox = $(byXpath(""));
+    public static final SelenideElement REPORTS_3RowCheckbox = $(byXpath(""));
+    public static final SelenideElement REPORTS_4RowCheckbox = $(byXpath(""));
+    public static final SelenideElement REPORTS_5RowCheckbox = $(byXpath(""));
+    public static final SelenideElement REPORTS_1Row = $(byXpath("//section[@id='page']/div[2]/ui-view/div/div[2]/div/div/ul/li[2]/ul/ng-include/li/a"));
+    public static final SelenideElement REPORTS_2Row = $(byXpath("//section[@id='page']/div[2]/ui-view/div/div[2]/div/div/ul/li[2]/ul/ng-include/li[2]/a"));
+    public static final SelenideElement REPORTS_3Row = $(byXpath(""));
+    public static final SelenideElement REPORTS_Contacts = $(byXpath(""));
+    public static final SelenideElement REPORTS_1RowNameSurname = $(byXpath("css=div.conact-page-name.ng-binding"));
+    public static final SelenideElement REPORTS_1RowCountry = $(byXpath(".//*[@class='contact-page-country ng-binding'][contains(.,'Ireland')]"));
+    public static final SelenideElement REPORTS_FiltersFreeText = $(byXpath("//pkm-filtering//input"));
 
 //search sidebar - all controls
-    public static final String REPORTS_SEARCH_SIDEBAR = "//*[@class='search-sidebar']";
-    public static final String REPORTS_MAILING_AREA = "//*[@class='saved']";
-    public static final String REPORTS_MAILING_SAVE_SEARCH = "//*[@type='button' and contains(.,'Save search...')]";
-    public static final String REPORTS_MAILING_LISTS = "//*[@class='search-list']";
-    public static String reportName;
-    public static String REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME = "//li[//a[contains(.,'"+ reportName +"')]]"; //ML+
-    public static String REPORTS_MAILING_LISTS_BTN_UPDATE = "//button[contains(.,'Update')]"; //REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME+
-    public static String REPORTS_MAILING_LISTS_BTN_CALL_ML = "//button[@uib-dropdown-toggle]"; //REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME+
-    public static String REPORTS_MAILING_LISTS_CALL_MW = "Mailing List";
-    public static String REPORTS_MAILING_LISTS_DELETE_MW = "Delete";
+    public static final SelenideElement REPORTS_SEARCH_SIDEBAR = $(byXpath("//*[@class='search-sidebar']"));
+    public static final SelenideElement REPORTS_MAILING_AREA = $(byXpath("//*[@class='saved']"));
+    public static final SelenideElement REPORTS_MAILING_SAVE_SEARCH = $(byXpath("//*[@type='button' and contains(.,'Save search...')]"));
+    public static final SelenideElement REPORTS_MAILING_LISTS = $(byXpath("//*[@class='search-list']"));
+    public static SelenideElement reportName;
+    public static SelenideElement REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME = $(byXpath("//li[//a[contains(.,'"+ reportName +"')]]")); //ML+
+    public static SelenideElement REPORTS_MAILING_LISTS_BTN_UPDATE = $(byXpath("//button[contains(.,'Update')]")); //REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME+
+    public static SelenideElement REPORTS_MAILING_LISTS_BTN_CALL_ML = $(byXpath("//button[@uib-dropdown-toggle]")); //REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME+
+    public static SelenideElement REPORTS_MAILING_LISTS_CALL_MW = $(byXpath("Mailing List"));
+    public static SelenideElement REPORTS_MAILING_LISTS_DELETE_MW = $(byXpath("Delete"));
 
-    public static final String REPORTS_MAILING_SAVE_SEARCH_DROPDOWN = "//*[@class='save-search-dropdown']";
-    public static final String REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_INPUT = REPORTS_MAILING_SAVE_SEARCH_DROPDOWN+"//input";
-    public static final String REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_SAVE = REPORTS_MAILING_SAVE_SEARCH_DROPDOWN+"//button[contains(.,'Save')]";
-    public static final String REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_SAVE_NEW = REPORTS_MAILING_SAVE_SEARCH_DROPDOWN+"//button[contains(.,'Save as New')]";
+    public static final SelenideElement REPORTS_MAILING_SAVE_SEARCH_DROPDOWN = $(byXpath("//*[@class='save-search-dropdown']"));
+    public static final SelenideElement REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_INPUT = $(byXpath(REPORTS_MAILING_SAVE_SEARCH_DROPDOWN+"//input"));
+    public static final SelenideElement REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_SAVE = $(byXpath(REPORTS_MAILING_SAVE_SEARCH_DROPDOWN+"//button[contains(.,'Save')]"));
+    public static final SelenideElement REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_SAVE_NEW = $(byXpath(REPORTS_MAILING_SAVE_SEARCH_DROPDOWN+"//button[contains(.,'Save as New')]"));
 
-//    public static final String REPORTS_MAILING_ = "";
-//    public static final String REPORTS_MAILING_ = "";
+//    public static final SelenideElement REPORTS_MAILING_ = $(byXpath(""));
+//    public static final SelenideElement REPORTS_MAILING_ = $(byXpath(""));
 
-    public static final String REPORTS_FiltersButtonClear = "//button[@ng-click='clearFilters()']";
-    public static final String REPORTS_FiltersButtonSearch = "//button[@ng-click='applyFilters()']";
-    public static final String REPORTS_FiltersButtonAdvanced = "";
-    public static final String REPORTS_FiltersButtonSaveSearch = "";
-    public static final String REPORTS_FiltersButtonSaveAs = "";
-    public static final String REPORTS_FiltersButtonUpdate = "";
-    public static final String REPORTS_FiltersButtonMailingList = "";
-    public static final String REPORTS_FiltersButtonDelete = "";
-    public static final String REPORTS_FiltersButton = "";
+    public static final SelenideElement REPORTS_FiltersButtonClear = $(byXpath("//button[@ng-click='clearFilters()']"));
+    public static final SelenideElement REPORTS_FiltersButtonSearch = $(byXpath("//button[@ng-click='applyFilters()']"));
+    public static final SelenideElement REPORTS_FiltersButtonAdvanced = $(byXpath(""));
+    public static final SelenideElement REPORTS_FiltersButtonSaveSearch = $(byXpath(""));
+    public static final SelenideElement REPORTS_FiltersButtonSaveAs = $(byXpath(""));
+    public static final SelenideElement REPORTS_FiltersButtonUpdate = $(byXpath(""));
+    public static final SelenideElement REPORTS_FiltersButtonMailingList = $(byXpath(""));
+    public static final SelenideElement REPORTS_FiltersButtonDelete = $(byXpath(""));
+    public static final SelenideElement REPORTS_FiltersButton = $(byXpath(""));
 
-    public static final String REPORTS_ = "";
+    public static final SelenideElement REPORTS_ = $(byXpath(""));
 //Specific pages
-public static final String REPORTS_ContactTailsPath = "";
-    public static final String REPORTS_ContactRowName = "same";
-    public static final String REPORTS_ContactRowSurname = "same";
-    public static final String REPORTS_ContactName = "//*[@class='name ng-binding']";
-    public static final String REPORTS_ContactEmail = "//span[@ng-if='contact.email']";
-    public static final String REPORTS_ContactCountry = "//span[@ng-if='contact.country']";
-    public static final String REPORTS_ContactLinkedCompany = "//span[@ng-if='contact.company']";
-    public static final String REPORTS_ContactProjects = "//span[@ng-switch='contact.number_of_projects']";
-    public static final String REPORTS_ContactCharges = "//span[@ng-switch='!contact.total_charges']";
-    public static final String REPORTS_ContactCheckbox = "//input[@type='checkbox']";
-    public static final String REPORTS_ContactNewProject = "//button[contains(.,'+ New Project')]";
-    public static final String REPORTS_ContactEdit = "//div[@class='contact-page-invite-edit']/i[1]";
-    public static final String REPORTS_ContactDelete = "//div[@class='contact-page-invite-edit']/i[2]";
+public static final SelenideElement REPORTS_ContactTailsPath = $(byXpath(""));
+    public static final SelenideElement REPORTS_ContactRowName = $(byXpath("same"));
+    public static final SelenideElement REPORTS_ContactRowSurname = $(byXpath("same"));
+    public static final SelenideElement REPORTS_ContactName = $(byXpath("//*[@class='name ng-binding']"));
+    public static final SelenideElement REPORTS_ContactEmail = $(byXpath("//span[@ng-if='contact.email']"));
+    public static final SelenideElement REPORTS_ContactCountry = $(byXpath("//span[@ng-if='contact.country']"));
+    public static final SelenideElement REPORTS_ContactLinkedCompany = $(byXpath("//span[@ng-if='contact.company']"));
+    public static final SelenideElement REPORTS_ContactProjects = $(byXpath("//span[@ng-switch='contact.number_of_projects']"));
+    public static final SelenideElement REPORTS_ContactCharges = $(byXpath("//span[@ng-switch='!contact.total_charges']"));
+    public static final SelenideElement REPORTS_ContactCheckbox = $(byXpath("//input[@type='checkbox']"));
+    public static final SelenideElement REPORTS_ContactNewProject = $(byXpath("//button[contains(.,'+ New Project')]"));
+    public static final SelenideElement REPORTS_ContactEdit = $(byXpath("//div[@class='contact-page-invite-edit']/i[1]"));
+    public static final SelenideElement REPORTS_ContactDelete = $(byXpath("//div[@class='contact-page-invite-edit']/i[2]"));
 }
