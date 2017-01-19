@@ -6,13 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2fcdccdc-4d95-4ab7-8153-9ec9d616e50f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pekama-tests.iws" afterPath="$PROJECT_DIR$/pekama-tests.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/Emails.java" afterPath="$PROJECT_DIR$/src/main/java/Page/Emails.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/ModalWindows.java" afterPath="$PROJECT_DIR$/src/main/java/Page/ModalWindows.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/PekamaSignUp.java" afterPath="$PROJECT_DIR$/src/main/java/Page/PekamaSignUp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaSettingsPersonal.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaSettingsPersonal.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaSignUp.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaSignUp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/draft/BasicAuth.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/draft/BasicAuth.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/draft/LoginGmail.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/draft/LoginGmail.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/CommunityDashboard.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/CommunityDashboard.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="build/reports/" />
@@ -227,7 +221,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LoginGmail.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LoginGmail.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/draft/LoginGmail.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="256">
@@ -280,18 +274,6 @@
         </entry>
       </file>
       <file leaf-file-name="PekamaResetPassword.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaResetPassword.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="618">
-              <caret line="235" column="27" lean-forward="false" selection-start-line="235" selection-start-column="27" selection-end-line="235" selection-end-column="27" />
-              <folding>
-                <element signature="method#resetPassword_Z#0;class#PekamaResetPassword#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PekamaResetPassword.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Page/PekamaResetPassword.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="264">
@@ -301,11 +283,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CommunityDashboard.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CommunityDashboard.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/CommunityDashboard.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-354">
-              <caret line="27" column="22" lean-forward="false" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
+            <state relative-caret-position="686">
+              <caret line="208" column="46" lean-forward="true" selection-start-line="208" selection-start-column="46" selection-end-line="208" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Configuration.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/com/codeborne/selenide/3.11/selenide-3.11-sources.jar!/com/codeborne/selenide/Configuration.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1632">
+              <caret line="183" column="52" lean-forward="false" selection-start-line="183" selection-start-column="52" selection-end-line="183" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -324,9 +316,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>&quot;&quot;</find>
-      <find>PERSONAL_DETAILS_</find>
-      <find>match</find>
       <find>two</find>
       <find>shouldHave(Condition.value</find>
       <find>personalSettingsSaveButton</find>
@@ -352,8 +341,11 @@
       <find>byXpath</find>
       <find>$(By.xpath(</find>
       <find>$(byXpath(</find>
-      <find>$(byXpath(</find>
       <find>$(byName((</find>
+      <find>$(byXpath(</find>
+      <find>User1</find>
+      <find>User2</find>
+      <find>User</find>
     </findStrings>
     <replaceStrings>
       <replace>Domain Name</replace>
@@ -439,7 +431,6 @@
         <option value="$PROJECT_DIR$/src/main/java/Page/PekamaReports.java" />
         <option value="$PROJECT_DIR$/src/main/java/Steps/PekamaSteps.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/CommunityProfile.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/CommunityDashboard.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/CommynityLanding.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaIntegrationBox.java" />
         <option value="$PROJECT_DIR$/src/main/java/Page/PekamaLanding.java" />
@@ -456,6 +447,7 @@
         <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/draft/BasicAuth.java" />
         <option value="$PROJECT_DIR$/src/main/java/Page/Emails.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/draft/LoginGmail.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/CommunityDashboard.java" />
       </list>
     </option>
   </component>
@@ -1239,13 +1231,6 @@
       <workItem from="1484670403339" duration="12200000" />
       <workItem from="1484764340730" duration="8318000" />
     </task>
-    <task id="LOCAL-00059" summary="Base auth works for FF">
-      <created>1483970574087</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1483970574088</updated>
-    </task>
     <task id="LOCAL-00060" summary="Base auth works for FF">
       <created>1483971108973</created>
       <option name="number" value="00060" />
@@ -1582,21 +1567,28 @@
       <option name="project" value="LOCAL" />
       <updated>1484825806184</updated>
     </task>
-    <option name="localTasksCounter" value="108" />
+    <task id="LOCAL-00108" summary="Test refactoring - steps fix">
+      <created>1484828842477</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1484828842477</updated>
+    </task>
+    <option name="localTasksCounter" value="109" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="PekamaSettingsPersonal_tabIMAP_A - 2017.01.18 at 21h 34m 07s.xml">
-      <configuration name="PekamaSettingsPersonal.tabIMAP_A" configurationId="JUnit" />
+    <history-entry file="CommunityDashboard - 2017.01.19 at 16h 05m 29s.xml">
+      <configuration name="CommunityDashboard" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PekamaSettingsPersonal_tabIMAP_B - 2017.01.18 at 13h 37m 20s.xml">
-      <configuration name="PekamaSettingsPersonal.tabIMAP_B" configurationId="JUnit" />
+    <history-entry file="CommunityDashboard - 2017.01.19 at 16h 37m 05s.xml">
+      <configuration name="CommunityDashboard" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PekamaSettingsPersonal_tabIMAP_B - 2017.01.18 at 13h 40m 24s.xml">
-      <configuration name="PekamaSettingsPersonal.tabIMAP_B" configurationId="JUnit" />
+    <history-entry file="CommunityDashboard - 2017.01.19 at 16h 41m 30s.xml">
+      <configuration name="CommunityDashboard" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PekamaSettingsPersonal_tabIMAP_B - 2017.01.18 at 15h 51m 20s.xml">
-      <configuration name="PekamaSettingsPersonal.tabIMAP_B" configurationId="JUnit" />
+    <history-entry file="CommunityDashboard - 2017.01.19 at 16h 44m 40s.xml">
+      <configuration name="CommunityDashboard" configurationId="JUnit" />
     </history-entry>
     <history-entry file="PekamaSettingsPersonal_tabIMAP_B - 2017.01.18 at 15h 53m 29s.xml">
       <configuration name="PekamaSettingsPersonal.tabIMAP_B" configurationId="JUnit" />
@@ -1643,12 +1635,12 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32690248" sideWeight="0.5044843" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32606438" sideWeight="0.49778023" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35730088" sideWeight="0.5420561" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.396861" sideWeight="0.5420561" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32606438" sideWeight="0.4955157" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21692826" sideWeight="0.48805815" order="0" side_tool="false" content_ui="tabs" x="710" y="525" width="432" height="494" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21692826" sideWeight="0.48805815" order="0" side_tool="false" content_ui="tabs" x="710" y="525" width="432" height="494" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32502595" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1784,14 +1776,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/com/codeborne/selenide/3.11/selenide-3.11-sources.jar!/com/codeborne/selenide/Selenide.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10560">
-          <caret line="545" column="21" lean-forward="false" selection-start-line="545" selection-start-column="21" selection-end-line="545" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/seleniumhq/selenium/selenium-api/2.53.1/selenium-api-2.53.1-sources.jar!/org/openqa/selenium/WebElement.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="265">
@@ -1804,6 +1788,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="560">
           <caret line="245" column="23" lean-forward="false" selection-start-line="245" selection-start-column="23" selection-end-line="245" selection-end-column="23" />
+          <folding>
+            <element signature="e#7104#7105#0" expanded="false" />
+            <element signature="e#7155#7156#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2074,7 +2062,7 @@
         <state relative-caret-position="506">
           <caret line="23" column="61" lean-forward="false" selection-start-line="23" selection-start-column="61" selection-end-line="23" selection-end-column="61" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2084,7 +2072,7 @@
         <state relative-caret-position="396">
           <caret line="18" column="40" lean-forward="false" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2136,14 +2124,6 @@
           <folding>
             <element signature="method#resetPassword_Z#0;class#PekamaResetPassword#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/CommunityDashboard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-354">
-          <caret line="27" column="22" lean-forward="false" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2219,6 +2199,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="256">
           <caret line="69" column="64" lean-forward="false" selection-start-line="69" selection-start-column="64" selection-end-line="69" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/codeborne/selenide/3.11/selenide-3.11-sources.jar!/com/codeborne/selenide/Configuration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1632">
+          <caret line="183" column="52" lean-forward="false" selection-start-line="183" selection-start-column="52" selection-end-line="183" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/CommunityDashboard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="686">
+          <caret line="208" column="46" lean-forward="true" selection-start-line="208" selection-start-column="46" selection-end-line="208" selection-end-column="46" />
           <folding />
         </state>
       </provider>

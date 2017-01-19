@@ -3,6 +3,7 @@
  */
 package com.pekama.app;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Configuration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Before;
@@ -23,8 +24,11 @@ import static com.codeborne.selenide.WebDriverRunner.url;
 import static org.junit.Assert.assertEquals;
 public class CommunityDashboard {
     static final Logger rootLogger = LogManager.getRootLogger();
+    String userEmail = User2.GMAIL_EMAIL.getValue();
     @Before
     public void before() {
+        Configuration test = new Configuration();
+        test.holdBrowserOpen = true;
         open(COMMUNITY_DASHBOARD);
     }
 //    @After
@@ -45,11 +49,12 @@ public class CommunityDashboard {
         COMMUNITY_TAB_Profile.shouldBe(Condition.visible).shouldHave(Condition.text("become a supplier"));
         rootLogger.info("Tabs names correct and user isn`t logged in");
     }
+
     @Test
     public void redirectBackFromHeaderLogin() {
         COMMUNITY_HEADER_LOGIN.shouldBe(Condition.visible).click();
         sleep(1500);
-        $(loginField_Email).sendKeys(User1.GMAIL_EMAIL.getValue());
+        $(loginField_Email).sendKeys(userEmail);
         $(loginField_Password).sendKeys(GENERIC_PEKAMA_PASSWORD);
         loginButton_Login.click();
         btnLogin.shouldBe(Condition.not(visible));
@@ -96,7 +101,7 @@ public class CommunityDashboard {
 
         COMMUNITY_INNRER_BTN_LOGIN.click();
         sleep(1500);
-        loginField_Email.sendKeys(User1.GMAIL_EMAIL.getValue());
+        loginField_Email.sendKeys(userEmail);
         loginField_Password.sendKeys(GENERIC_PEKAMA_PASSWORD);
         loginButton_Login.click();
         btnLogin.shouldBe(Condition.not(visible));
@@ -115,8 +120,8 @@ public class CommunityDashboard {
         assertEquals(COMMUNITY+"/", urlAfterLogout);
         rootLogger.info("User logged out");
         rootLogger.info("Test Passed");
-
     }
+
     @Test
     public void checkOutgoingLoginRedirect() {
         COMMUNITY_HEADER_LOGIN.shouldBe(Condition.visible);
@@ -127,7 +132,7 @@ public class CommunityDashboard {
 
         COMMUNITY_INNRER_BTN_LOGIN.click();
         sleep(1500);
-        loginField_Email.sendKeys(User1.GMAIL_EMAIL.getValue());
+        loginField_Email.sendKeys(userEmail);
         loginField_Password.sendKeys(GENERIC_PEKAMA_PASSWORD);
         loginButton_Login.click();
         btnLogin.shouldBe(Condition.not(visible));
@@ -158,7 +163,7 @@ public class CommunityDashboard {
 
         COMMUNITY_INNRER_BTN_LOGIN.click();
         sleep(1500);
-        loginField_Email.sendKeys(User1.GMAIL_EMAIL.getValue());
+        loginField_Email.sendKeys(userEmail);
         loginField_Password.sendKeys(GENERIC_PEKAMA_PASSWORD);
         loginButton_Login.click();
         btnLogin.shouldBe(Condition.not(visible));
@@ -179,6 +184,7 @@ public class CommunityDashboard {
         rootLogger.info("Test Passed");
 
     }
+
     @Test
     public void checkProfileLoginRedirect() {
         COMMUNITY_HEADER_LOGIN.shouldBe(Condition.visible);
@@ -189,7 +195,7 @@ public class CommunityDashboard {
 
         COMMUNITY_INNRER_BTN_LOGIN.click();
         sleep(1500);
-        loginField_Email.sendKeys(User1.GMAIL_EMAIL.getValue());
+        loginField_Email.sendKeys(userEmail);
         loginField_Password.sendKeys(GENERIC_PEKAMA_PASSWORD);
         loginButton_Login.click();
         btnLogin.shouldBe(Condition.not(visible));
@@ -208,6 +214,5 @@ public class CommunityDashboard {
         assertEquals(COMMUNITY+"/", urlAfterLogout);
         rootLogger.info("User logged out");
         rootLogger.info("Test Passed");
-
     }
 }
