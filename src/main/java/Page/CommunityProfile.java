@@ -7,16 +7,23 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class CommunityProfile {
     //Team setting
+    public static String PROFILE_SERVICE_CASE_TYPE = "";
+    public static String PROFILE_SERVICE_COUNTRY = "";
     public static final SelenideElement PROFILE_TEAM_NAME = $(byXpath("//*[@class='editable-title clearfix']//h3"));
     public static final SelenideElement PROFILE_TEAM_NAME_INPUT = $(byXpath("//*[@class='editable-title clearfix']//input"));
     public static final SelenideElement PROFILE_TEAM_NAME_SAVE = $(byXpath("//*[@class='editable-title clearfix']//button[contains(.,'Save')]"));
     public static final SelenideElement PROFILE_TEAM_NAME_CANCEL = $(byXpath("//*[@class='editable-title clearfix']//button[contains(.,'Cancel')]"));
 
     public static final SelenideElement PROFILE_SERVICES_FORM = $(byXpath(""));
-    public static final SelenideElement PROFILE_SERVICE_ROW = $(byXpath(""));
-    public static final SelenideElement PROFILE_SERVICE_DELETE = $(byXpath(""));
-    public static final SelenideElement PROFILE_SERVICE_EDIT = $(byXpath(""));
+    public static final SelenideElement PROFILE_SERVICE_EDIT = $(byXpath("//div[contains(.,'"+PROFILE_SERVICE_CASE_TYPE+"')]/following-sibling::div[contains(.,'"+PROFILE_SERVICE_COUNTRY+"')]/following-sibling::div//button[1]"));
+    public static final SelenideElement PROFILE_SERVICE_DELETE = $(byXpath("//div[contains(.,'"+PROFILE_SERVICE_CASE_TYPE+"')]/following-sibling::div[contains(.,'"+PROFILE_SERVICE_COUNTRY+"')]/following-sibling::div//button[1]")); //todo - locked!!!
     public static final SelenideElement PROFILE_SERVICE_SAVE = $(byXpath("//*[@class='border-container border-container-white']//button[contains(.,'Save')]"));
+    private static final String PROFILE_SERVICE_TABLE = "//*[@class='services-table']";
+    private static final String PROFILE_SERVICE_ROW = "//div[@class='row']";
+
+
+
+    public static final SelenideElement PROFILE_SERVICE = $(byXpath(""));
 
     public static final SelenideElement PROFILE_SELECT_CaseType = $(byXpath("//span[text()='Practice Area']"));
     public static final SelenideElement PROFILE_INPUT_CaseType = $(byXpath("//input[@placeholder='Practice Area']"));
@@ -26,8 +33,7 @@ public class CommunityProfile {
     public static final SelenideElement PROFILE_INPUT_ExpertType = $(byXpath("//input[@placeholder='Service Type']"));
     public static final SelenideElement PROFILE_INPUT_PRICE = $(byXpath("//input[@name='rate']"));
     public static final SelenideElement PROFILE_BTN_ADD = $(byXpath("//button[contains(.,'+ Add')]")); //disabled="disabled"
-    private static final String PROFILE_SERVICE_TABLE = "//*[@class='services-table']";
-    public static final SelenideElement PROFILE_SERVICE_ROW = $(byXpath("//button[contains(.,'+ Add')]"));
+
 
     public static final SelenideElement PROFILE_INPUT_DESCRIPTION = $(byXpath("//textarea[@name='competence']"));
     public static final SelenideElement PROFILE_BTN_SAVE_DESCRIPTION = $(byXpath("//*[@class='clearfix ng-scope']//button[contains(.,'Save')]")); //disabled="disabled"

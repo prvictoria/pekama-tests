@@ -46,6 +46,7 @@ Delete</button>
 .//*[@class='ui-select-choices-row-inner']/span[text()='New']
 //*[@class='services-table']//div[@class='row']/[./div[contains(.,'Trademark')]]//button[1]
 [text()='No data available.']
+//div[@class='row']//div[contains(.,'Trademark')]/following-sibling::div[contains(.,'Angola')]/following-sibling::div//button[1]
 //span[@class='ui-select-placeholder text-muted ng-binding']
 //div[[@class='modal-body'] and span[@class='btn btn-default form-control ui-select-toggle']
 //div[@name='relation']/span[@class = 'btn btn-default form-control ui-select-toggle']

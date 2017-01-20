@@ -155,18 +155,15 @@ public class CommunityProfile {
         PROFILE_BTN_ADD.shouldBe(disabled);
         log.info("Select new service - "+caseType);
         searchServicesQuery( caseType,  country,  price);
-        log.info("Delete member");
+        log.info("Service added");
         PROFILE_BTN_ADD.shouldBe(disabled);
     }
     @Test
     public void addNewService_testC() {
         log.info("Edit service");
-        String caseType = "Trademark";
-        String country = "Angola";
-        String price = "100000";
-        PROFILE_BTN_ADD.shouldBe(disabled);
-        log.info("Select new service - "+caseType);
-        searchServicesQuery( caseType,  country,  price);
+        PROFILE_SERVICE_CASE_TYPE  = "Trademark";
+        PROFILE_SERVICE_COUNTRY = "Angola";
+        PROFILE_SERVICE_EDIT.click();
         log.info("Delete member");
         PROFILE_BTN_ADD.shouldBe(disabled);
     }
