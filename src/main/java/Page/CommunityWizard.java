@@ -18,6 +18,7 @@ public class CommunityWizard {
 
     public static final SelenideElement WIZARD_BTN_GetStarted = $(byXpath("//button[contains(text(),'Get Started')]"));
     public static final SelenideElement WIZARD_BTN_NEXT = $(byXpath("//button[contains(text(),'Next')]"));
+    public static final SelenideElement WIZARD_BTN_REQUEST_INSTRUCTIONS = $(byXpath("//button[contains(text(),'request introductions')]"));
 
     public static final SelenideElement WIZARD_BTN_YES = $(byXpath(WIZARD_STEP2+"//div[@ class='toggle-group mb-3']/label[1]"));
     public static final SelenideElement WIZARD_BTN_NO = $(byXpath(WIZARD_STEP2+"//div[@ class='toggle-group mb-3']/label[2]"));

@@ -32,10 +32,10 @@ public class CommunityDashboard {
         test.holdBrowserOpen = true;
         open(COMMUNITY_DASHBOARD);
     }
-    @After
-    public void after() {
-        open(COMMUNITY_LOGOUT);
-    }
+//    @After
+//    public void after() {
+//        open(COMMUNITY_LOGOUT);
+//    }
 
     @Test
     public void checkDashboardGui() {
@@ -89,18 +89,17 @@ public class CommunityDashboard {
         CSS_SelectHighlighted.click();
         WIZARD_BTN_GetStarted.click();
         rootLogger.info("All elements in STEP 1 displayed for Guest user");
-        //Refactor Xpath
-        WIZARD_BTN_YES.shouldBe(Condition.visible);
-        WIZARD_BTN_NO.click();
-        WIZARD_BTN_NEXT.shouldBe(Condition.visible).click();
-        rootLogger.info("All elements in STEP 2 displayed for Guest user");
-        sleep(2000);
-//        COMMUNITY_INNRER_BTN_SIGNUP)).shouldBe(Condition.visible);
-//        COMMUNITY_INNRER_BTN_LOGIN)).shouldBe(Condition.visible);
-        rootLogger.info("All elements in STEP 3 displayed for Guest user");
-        rootLogger.info("All elements in Wizard Tab displayed for Guest user");
 
-        COMMUNITY_INNRER_BTN_LOGIN.click();
+//        WIZARD_BTN_YES.shouldBe(Condition.visible);
+//        WIZARD_BTN_NO.click();
+//        WIZARD_BTN_NEXT.shouldBe(Condition.visible).click();
+//        sleep(2000);
+        rootLogger.info("All elements in Wizard Tab displayed for Guest user");
+        COMMUNITY_INNRER_BTN_SIGNUP.shouldBe(Condition.visible);
+        COMMUNITY_INNRER_BTN_LOGIN.shouldBe(Condition.visible).click();
+
+
+
         sleep(1500);
         loginField_Email.sendKeys(userEmail);
         loginField_Password.sendKeys(GENERIC_PEKAMA_PASSWORD);
@@ -108,14 +107,19 @@ public class CommunityDashboard {
         btnLogin.shouldBe(Condition.not(visible));
         btnSignup.shouldBe(Condition.not(visible));
         rootLogger.info("Valid Credentials were submitted");
-        sleep(1500);
+        sleep(2000);
         String urlAfterLogin = url();
         rootLogger.info(urlAfterLogin);
-//        assertEquals(COMMUNITY_PROFILE, urlAfterLogin);
+//query is for selected param in 1st step        assertEquals(COMMUNITY_WIZARD, urlAfterLogin);
         rootLogger.info("User redirected back to Incoming");
+
+        WIZARD_BTN_REQUEST_INSTRUCTIONS.waitUntil(visible, 10000).shouldBe(disabled);
+        rootLogger.info("All elements in STEP 2 displayed for authorized user");
+
         COMMUNITY_HEADER_UserDropdown.click();
         COMMUNITY_HEADER_LogOut.shouldBe(Condition.visible).click();
         sleep(1500);
+
         String urlAfterLogout = url();
         rootLogger.info(urlAfterLogout);
         assertEquals(COMMUNITY+"/", urlAfterLogout);
@@ -128,10 +132,8 @@ public class CommunityDashboard {
         COMMUNITY_HEADER_LOGIN.shouldBe(Condition.visible);
         COMMUNITY_TAB_Outgoing.shouldBe(Condition.visible).shouldHave(Condition.text("outgoing cases")).click();
         COMMUNITY_INNRER_BTN_SIGNUP.shouldBe(Condition.visible);
-        COMMUNITY_INNRER_BTN_LOGIN.shouldBe(Condition.visible);
+        COMMUNITY_INNRER_BTN_LOGIN.shouldBe(Condition.visible).click();
         rootLogger.info("All elements in Outgoing Tab displayed for Guest user");
-
-        COMMUNITY_INNRER_BTN_LOGIN.click();
         sleep(1500);
         loginField_Email.sendKeys(userEmail);
         loginField_Password.sendKeys(GENERIC_PEKAMA_PASSWORD);
@@ -159,10 +161,8 @@ public class CommunityDashboard {
         COMMUNITY_HEADER_LOGIN.shouldBe(Condition.visible);
         COMMUNITY_TAB_Incoming.shouldBe(Condition.visible).shouldHave(Condition.text("incoming cases")).click();
         COMMUNITY_INNRER_BTN_SIGNUP.shouldBe(Condition.visible);
-        COMMUNITY_INNRER_BTN_LOGIN.shouldBe(Condition.visible);
+        COMMUNITY_INNRER_BTN_LOGIN.shouldBe(Condition.visible).click();
         rootLogger.info("All elements in Incoming Tab displayed for Guest user");
-
-        COMMUNITY_INNRER_BTN_LOGIN.click();
         sleep(1500);
         loginField_Email.sendKeys(userEmail);
         loginField_Password.sendKeys(GENERIC_PEKAMA_PASSWORD);
@@ -189,12 +189,11 @@ public class CommunityDashboard {
     @Test
     public void checkProfileLoginRedirect() {
         COMMUNITY_HEADER_LOGIN.shouldBe(Condition.visible);
-        COMMUNITY_TAB_Profile.shouldBe(Condition.visible).shouldHave(Condition.text("become a supplier")).click();
+        COMMUNITY_TAB_Profile.shouldBe(Condition.visible).click();
+//        COMMUNITY_TAB_Profile.shouldBe(Condition.visible).shouldHave(Condition.text("become a supplier")).click();
         COMMUNITY_INNRER_BTN_SIGNUP.shouldBe(Condition.visible);
-        COMMUNITY_INNRER_BTN_LOGIN.shouldBe(Condition.visible);
+        COMMUNITY_INNRER_BTN_LOGIN.shouldBe(Condition.visible).click();
         rootLogger.info("All elements in Profile Tab displayed for Guest user");
-
-        COMMUNITY_INNRER_BTN_LOGIN.click();
         sleep(1500);
         loginField_Email.sendKeys(userEmail);
         loginField_Password.sendKeys(GENERIC_PEKAMA_PASSWORD);
@@ -205,7 +204,7 @@ public class CommunityDashboard {
         sleep(1500);
         String urlAfterLogin = url();
         rootLogger.info(urlAfterLogin);
-        assertEquals(COMMUNITY_PROFILE, urlAfterLogin);
+        assertEquals(COMMUNITY_PROFILE_TEAM, urlAfterLogin);
         rootLogger.info("User redirected back to Incoming");
         COMMUNITY_HEADER_UserDropdown.click();
         COMMUNITY_HEADER_LogOut.shouldBe(Condition.visible).click();
