@@ -29,13 +29,13 @@ public class CommunityDashboard {
     @Before
     public void before() {
         Configuration test = new Configuration();
-        test.holdBrowserOpen = true;
+//        test.holdBrowserOpen = true;
         open(COMMUNITY_DASHBOARD);
     }
-//    @After
-//    public void after() {
-//        open(COMMUNITY_LOGOUT);
-//    }
+    @After
+    public void after() {
+        open(COMMUNITY_LOGOUT);
+    }
 
     @Test
     public void checkDashboardGui() {
