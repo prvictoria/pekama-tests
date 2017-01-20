@@ -130,5 +130,15 @@ public class CommunityProfile {
         $(byText(NEW_MEMBER+" (inactive)")).shouldBe(Condition.visible);
         log.info("Delete member");
     }
+    @Ignore
+    @Test
+    public void createCommunityProfile() {
+        log.info("Check QTY and redirect to Pekama");
+        PROFILE_MEMBERS_COUNT.shouldBe(visible).click();
+        String redirectedUrl = url();
+        assertEquals(urlTSMembers, redirectedUrl);
+        $(byText(NEW_MEMBER+" (inactive)")).shouldBe(Condition.visible);
+        log.info("Delete member");
+    }
 
 }

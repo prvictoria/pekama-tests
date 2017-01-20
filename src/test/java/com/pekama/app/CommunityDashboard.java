@@ -9,15 +9,16 @@ import org.apache.logging.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 
 import static Page.CommunityDashboard.*;
 import static Page.CommunityWizard.*;
 import static Page.TestsUrl.*;
-import static Page.ModalWindows.CSS_SelectHighlighted;
 import static Page.PekamaLogin.*;
 import static Page.TestsUrlConfiguration.*;
 import static Page.TestsCredentials.*;
+import static Steps.CommunitySteps.searchExpertsQuery;
+import static Steps.CommunitySteps.searchExpertsSubmit;
+import static Steps.CommunitySteps.searchQueryUrl;
 import static com.codeborne.selenide.Condition.disabled;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
@@ -81,25 +82,12 @@ public class CommunityDashboard {
         COMMUNITY_HEADER_LOGIN.shouldBe(Condition.visible);
         COMMUNITY_TAB_Supplier.shouldBe(Condition.visible).shouldHave(Condition.text("find a supplier")).click();
         WIZARD_BTN_GetStarted.shouldBe(visible).shouldBe(disabled);
-        COMMUNITY_SELECT_CaseType.click();
-        COMMUNITY_INPUT_CaseType.sendKeys("patent");
-        CSS_SelectHighlighted.click();
-        COMMUNITY_SELECT_Defining.click();
-        COMMUNITY_INPUT_Defining.sendKeys("united kingdom");
-        CSS_SelectHighlighted.click();
-        WIZARD_BTN_GetStarted.click();
-        rootLogger.info("All elements in STEP 1 displayed for Guest user");
-
-//        WIZARD_BTN_YES.shouldBe(Condition.visible);
-//        WIZARD_BTN_NO.click();
-//        WIZARD_BTN_NEXT.shouldBe(Condition.visible).click();
-//        sleep(2000);
-        rootLogger.info("All elements in Wizard Tab displayed for Guest user");
+        String caseType = "patent";
+        String country = "united kingdom";
+        searchExpertsQuery(caseType, country);
+        searchExpertsSubmit();
         COMMUNITY_INNRER_BTN_SIGNUP.shouldBe(Condition.visible);
         COMMUNITY_INNRER_BTN_LOGIN.shouldBe(Condition.visible).click();
-
-
-
         sleep(1500);
         loginField_Email.sendKeys(userEmail);
         loginField_Password.sendKeys(GENERIC_PEKAMA_PASSWORD);
@@ -110,7 +98,7 @@ public class CommunityDashboard {
         sleep(2000);
         String urlAfterLogin = url();
         rootLogger.info(urlAfterLogin);
-//query is for selected param in 1st step        assertEquals(COMMUNITY_WIZARD, urlAfterLogin);
+        assertEquals(searchQueryUrl, urlAfterLogin);
         rootLogger.info("User redirected back to Incoming");
 
         WIZARD_BTN_REQUEST_INSTRUCTIONS.waitUntil(visible, 10000).shouldBe(disabled);
