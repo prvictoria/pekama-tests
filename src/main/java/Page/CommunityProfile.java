@@ -18,14 +18,16 @@ public class CommunityProfile {
     public static final SelenideElement PROFILE_SERVICE_EDIT = $(byXpath(""));
     public static final SelenideElement PROFILE_SERVICE_SAVE = $(byXpath("//*[@class='border-container border-container-white']//button[contains(.,'Save')]"));
 
-    public static final SelenideElement PROFILE_SELECT_DEFINING = $(byXpath(""));
-    public static final SelenideElement PROFILE_INPUT_DEFINING = $(byXpath(""));
-    public static final SelenideElement PROFILE_SELECT_JURSDICTION = $(byXpath(""));
-    public static final SelenideElement PROFILE_INPUT_JURSDICTION = $(byXpath(""));
-    public static final SelenideElement PROFILE_SELECT_SERVICE = $(byXpath(""));
-    public static final SelenideElement PROFILE_INPUT_SERVICE = $(byXpath(""));
-    public static final SelenideElement PROFILE_INPUT_PRICE = $(byXpath("//input[@type='number']"));
+    public static final SelenideElement PROFILE_SELECT_CaseType = $(byXpath("//span[text()='Practice Area']"));
+    public static final SelenideElement PROFILE_INPUT_CaseType = $(byXpath("//input[@placeholder='Practice Area']"));
+    public static final SelenideElement PROFILE_SELECT_Defining = $(byXpath("//span[text()='Jurisdiction']"));
+    public static final SelenideElement PROFILE_INPUT_Defining = $(byXpath("//input[@placeholder='Jurisdiction']"));
+    public static final SelenideElement PROFILE_SELECT_ExpertType = $(byXpath("//span[text()='Service Type']"));
+    public static final SelenideElement PROFILE_INPUT_ExpertType = $(byXpath("//input[@placeholder='Service Type']"));
+    public static final SelenideElement PROFILE_INPUT_PRICE = $(byXpath("//input[@name='rate']"));
     public static final SelenideElement PROFILE_BTN_ADD = $(byXpath("//button[contains(.,'+ Add')]")); //disabled="disabled"
+    private static final String PROFILE_SERVICE_TABLE = "//*[@class='services-table']";
+    public static final SelenideElement PROFILE_SERVICE_ROW = $(byXpath("//button[contains(.,'+ Add')]"));
 
     public static final SelenideElement PROFILE_INPUT_DESCRIPTION = $(byXpath("//textarea[@name='competence']"));
     public static final SelenideElement PROFILE_BTN_SAVE_DESCRIPTION = $(byXpath("//*[@class='clearfix ng-scope']//button[contains(.,'Save')]")); //disabled="disabled"

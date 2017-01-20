@@ -23,4 +23,10 @@ public class CommunityWizard {
     public static final SelenideElement WIZARD_BTN_YES = $(byXpath(WIZARD_STEP2+"//div[@ class='toggle-group mb-3']/label[1]"));
     public static final SelenideElement WIZARD_BTN_NO = $(byXpath(WIZARD_STEP2+"//div[@ class='toggle-group mb-3']/label[2]"));
 
+    public static final SelenideElement WIZARD_SELECT_CaseType = $(byXpath("//div[@class='panel-body']//div[@name='matterType']//span"));
+    public static final SelenideElement WIZARD_INPUT_CaseType = $(byXpath("//div[@class='panel-body']//div[@name='matterType']//input"));
+    public static final SelenideElement WIZARD_SELECT_Defining = $(byXpath("//div[@class='panel-body']//div[@name='defining']//span"));
+    public static final SelenideElement WIZARD_INPUT_Defining = $(byXpath("//div[@class='panel-body']//div[@name='defining']//input"));
+    public static final SelenideElement WIZARD_SELECT_ExpertType = $(byXpath("//div[@class='panel-body']//div[@name='expertiseType']//span"));
+    public static final SelenideElement WIZARD_INPUT_ExpertType = $(byXpath("//div[@class='panel-body']//div[@name='expertiseType']//input"));
 }

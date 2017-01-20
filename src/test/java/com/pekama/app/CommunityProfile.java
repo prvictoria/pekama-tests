@@ -2,6 +2,7 @@ package com.pekama.app;
 import Page.TestsCredentials;
 import Steps.PekamaSteps;
 import Utils.HttpAuth;
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,6 +18,8 @@ import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.TestsUrl.urlTSMembers;
 import static Page.TestsUrlConfiguration.*;
+import static Steps.CommunitySteps.searchServicesQuery;
+import static Steps.PekamaSteps.submitEnabledButton;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.byXpath;
@@ -132,13 +135,53 @@ public class CommunityProfile {
     }
     @Ignore
     @Test
-    public void createCommunityProfile() {
-        log.info("Check QTY and redirect to Pekama");
-        PROFILE_MEMBERS_COUNT.shouldBe(visible).click();
-        String redirectedUrl = url();
-        assertEquals(urlTSMembers, redirectedUrl);
-        $(byText(NEW_MEMBER+" (inactive)")).shouldBe(Condition.visible);
+    public void addNewService_testA() {
+        log.info("Add new service");
+        String caseType = "Trademark";
+        String country = "Angola";
+        String price = "100000";
+        PROFILE_BTN_ADD.shouldBe(disabled);
+        log.info("Select new service - "+caseType);
+        searchServicesQuery( caseType,  country,  price);
         log.info("Delete member");
+        submitEnabledButton(PROFILE_BTN_ADD);
+    }
+    @Test
+    public void addNewService_testB() {
+        log.info("Check validation by adding the same service");
+        String caseType = "Trademark";
+        String country = "Angola";
+        String price = "100000";
+        PROFILE_BTN_ADD.shouldBe(disabled);
+        log.info("Select new service - "+caseType);
+        searchServicesQuery( caseType,  country,  price);
+        log.info("Delete member");
+        PROFILE_BTN_ADD.shouldBe(disabled);
+    }
+    @Test
+    public void addNewService_testC() {
+        log.info("Edit service");
+        String caseType = "Trademark";
+        String country = "Angola";
+        String price = "100000";
+        PROFILE_BTN_ADD.shouldBe(disabled);
+        log.info("Select new service - "+caseType);
+        searchServicesQuery( caseType,  country,  price);
+        log.info("Delete member");
+        PROFILE_BTN_ADD.shouldBe(disabled);
+    }
+    @Ignore //todo - delete is locked
+    @Test
+    public void addNewService_testD() {
+        log.info("Edit service");
+        String caseType = "Trademark";
+        String country = "Angola";
+        String price = "100000";
+        PROFILE_BTN_ADD.shouldBe(disabled);
+        log.info("Select new service - "+caseType);
+        searchServicesQuery( caseType,  country,  price);
+        log.info("Delete member");
+        PROFILE_BTN_ADD.shouldBe(disabled);
     }
 
 }

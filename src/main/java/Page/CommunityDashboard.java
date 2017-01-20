@@ -29,7 +29,6 @@ public class CommunityDashboard {
     public static final SelenideElement COMMUNITY_INNRER_BTN_SIGNUP = $(byXpath("//a[@type='button' and contains(.,'Sign up')]"));
     public static final SelenideElement COMMUNITY_INNRER_BTN_LOGIN = $(byXpath("//a[@type='button' and contains(.,'Login')]"));
 
-
     public static final SelenideElement COMMUNITY_BTN_StartConversation = $(byXpath("//button[contains(text(),'start new conversation')]"));
     public static final SelenideElement COMMUNITY_BTN_StartRequestInstruction = $(byXpath("//button[contains(text(),'request introductions')]"));
     public static final SelenideElement COMMUNITY_BTN_BoostProfile = $(byXpath("//button[contains(text(),'Boost Your Profile')]"));
@@ -38,13 +37,6 @@ public class CommunityDashboard {
     public static final SelenideElement COMMUNITY_BTN_Withdraw = $(byXpath("//button[contains(text(),'withdraw instructions')]"));
     public static final SelenideElement COMMUNITY_BTN_ConfirmInstructions = $(byXpath("//button[contains(text(),'Confirm Instructions')]"));
     public static final SelenideElement COMMUNITY_BTN_ConfirmCompletion = $(byXpath("//button[contains(text(),'Confirm Completion')]"));
-
-    public static final SelenideElement COMMUNITY_WIZARD_SELECT_CaseType = $(byXpath("//div[@class='panel-body']//div[@name='matterType']//span"));
-    public static final SelenideElement COMMUNITY_WIZARD_INPUT_CaseType = $(byXpath("//div[@class='panel-body']//div[@name='matterType']//input"));
-    public static final SelenideElement COMMUNITY_WIZARD_SELECT_Defining = $(byXpath("//div[@class='panel-body']//div[@name='defining']//span"));
-    public static final SelenideElement COMMUNITY_WIZARD_INPUT_Defining = $(byXpath("//div[@class='panel-body']//div[@name='defining']//input"));
-    public static final SelenideElement COMMUNITY_WIZARD_SELECT_ExpertType = $(byXpath("//div[@class='panel-body']//div[@name='expertiseType']//span"));
-    public static final SelenideElement COMMUNITY_WIZARD_INPUT_ExpertType = $(byXpath("//div[@class='panel-body']//div[@name='expertiseType']//input"));
 
     public static final SelenideElement COMMUNITY_LABEL_You = $(byXpath("//span[contains(text(),'This Is You!')]"));
     public static final SelenideElement COMMUNITY_LABEL_ExpertTeam = $(byXpath("//span[contains(text(),'Member of Qweeco03')]"));
@@ -94,11 +86,5 @@ public class CommunityDashboard {
 
     public static final SelenideElement COMMUNITY_ExpertInfo = $(byXpath("//div[@class='expert-info']/div"));
 
-    public static final SelenideElement COMMUNITY_PROFILE_SELECT_CaseType = $(byXpath("//span[text()='Practice Area']"));
-    public static final SelenideElement COMMUNITY_PROFILE_INPUT_CaseType = $(byXpath("//input[@placeholder='Practice Area']"));
-    public static final SelenideElement COMMUNITY_PROFILE_SELECT_Defining = $(byXpath("//span[text()='Jurisdiction']"));
-    public static final SelenideElement COMMUNITY_PROFILE_INPUT_Defining = $(byXpath("//input[@placeholder='Jurisdiction']"));
-    public static final SelenideElement COMMUNITY_PROFILE_SELECT_ExpertType = $(byXpath("//span[text()='Service Type']"));
-    public static final SelenideElement COMMUNITY_PROFILE_INPUT_ExpertType = $(byXpath("//input[@placeholder='Service Type']"));
 
 }

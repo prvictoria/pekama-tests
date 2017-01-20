@@ -228,7 +228,7 @@ public class PekamaSteps {
     public static void enterCharsetInField(SelenideElement fieldName, String enteredValue) {
         rootLogger.info("Input date in - "+fieldName);
         fieldName.clear();
-        fieldName.shouldHave(Condition.value("")).sendKeys(enteredValue);
+        fieldName.shouldHave(Condition.value("")).val(enteredValue);
         fieldName.shouldHave(Condition.value(enteredValue));
         rootLogger.info("This data was entered - "+enteredValue);
    }

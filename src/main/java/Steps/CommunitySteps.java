@@ -1,11 +1,14 @@
 package Steps;
 
+import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import static Page.CommunityDashboard.*;
+import static Page.CommunityProfile.*;
 import static Page.CommunityWizard.*;
 import static Page.ModalWindows.CSS_SelectHighlighted;
+import static Steps.PekamaSteps.enterCharsetInField;
 import static com.codeborne.selenide.Condition.disabled;
 import static com.codeborne.selenide.Condition.enabled;
 import static com.codeborne.selenide.Condition.visible;
@@ -19,12 +22,12 @@ public class CommunitySteps {
     public static String searchQueryUrl;
     public static void searchExpertsQuery(String caseType, String country) {
         WIZARD_BTN_GetStarted.shouldBe(visible).shouldBe(disabled);
-        COMMUNITY_WIZARD_SELECT_CaseType.click();
-        COMMUNITY_WIZARD_INPUT_CaseType.sendKeys(caseType);
+        WIZARD_SELECT_CaseType.click();
+        WIZARD_INPUT_CaseType.sendKeys(caseType);
         CSS_SelectHighlighted.click();
         rootLogger.info("Selected case type - "+caseType);
-        COMMUNITY_WIZARD_SELECT_Defining.click();
-        COMMUNITY_WIZARD_INPUT_Defining.sendKeys(country);
+        WIZARD_SELECT_Defining.click();
+        WIZARD_INPUT_Defining.sendKeys(country);
         CSS_SelectHighlighted.click();
          rootLogger.info("Selected case type - "+country);
    }
@@ -34,15 +37,17 @@ public class CommunitySteps {
         rootLogger.info("Link to mailing list present -  ");
         return searchQueryUrl;
     }
-    public static void searchServicesQuery(String caseType, String country) {
-        WIZARD_BTN_GetStarted.shouldBe(visible).shouldBe(disabled);
-        COMMUNITY_PROFILE_SELECT_CaseType.click();
-        COMMUNITY_PROFILE_INPUT_CaseType.sendKeys(caseType);
+    public static void searchServicesQuery(String caseType, String country, String price) {
+        PROFILE_SELECT_CaseType.click();
+        enterCharsetInField(PROFILE_INPUT_CaseType, caseType);
+//        PROFILE_INPUT_CaseType.sendKeys(caseType);
         CSS_SelectHighlighted.click();
         rootLogger.info("Selected case type - "+caseType);
-        COMMUNITY_PROFILE_SELECT_Defining.click();
-        COMMUNITY_PROFILE_INPUT_Defining.sendKeys(country);
+        PROFILE_SELECT_Defining.click();
+        enterCharsetInField(PROFILE_INPUT_Defining, country);
+//        PROFILE_INPUT_Defining.sendKeys(country);
         CSS_SelectHighlighted.click();
+        PROFILE_INPUT_PRICE.sendKeys(price);
         rootLogger.info("Selected case type - "+country);
     }
 }
