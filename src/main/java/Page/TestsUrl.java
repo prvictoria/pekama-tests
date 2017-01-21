@@ -27,6 +27,8 @@ public class TestsUrl {
 
     public static final String COMMUNITY_PATH = COMMUNITY;
     public static final String COMMUNITY_DASHBOARD = COMMUNITY+"/a";
+    public static final String COMMUNITY_SIGN_UP = COMMUNITY+"/signup/";
+    public static final String COMMUNITY_LOGIN = COMMUNITY+"/accounts/login/";
     public static final String COMMUNITY_LOGOUT = COMMUNITY+"/accounts/logout";
     public static final String COMMUNITY_WIZARD = COMMUNITY+"/a/community/wizard";
     public static final String COMMUNITY_OUTGOING = COMMUNITY+"/a/community/outgoing";

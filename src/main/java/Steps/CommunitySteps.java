@@ -1,8 +1,10 @@
 package Steps;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.Assert;
 
 import static Page.CommunityDashboard.*;
 import static Page.CommunityProfile.*;
@@ -56,4 +58,32 @@ public class CommunitySteps {
 
         return profileServiceRow;
     }
+
+    public static void findServiceRow(String profileServiceCaseType, String profileServiceCountry, boolean rowPresentOnPage) {
+        //String profileServiceRow = "//div[contains(.,'"+profileServiceCaseType+"')]/following-sibling::div[contains(.,'"+profileServiceCountry+"')]";
+        String profileServiceRow = "//div[@class='row' and contains(.,'"+ profileServiceCaseType +"') and contains(.,'"+ profileServiceCountry +"')]";
+        if ($(byXpath(profileServiceRow)).exists()!=rowPresentOnPage)
+        {
+            Assert.fail("Service present element state is - "+$(byXpath(profileServiceRow)).exists());
+        }
+    }
+    public static void clickServiceRowEdit(String profileServiceCaseType, String profileServiceCountry) {
+        //       String profileServiceRow = "//div[contains(.,'"+profileServiceCaseType+"')]/following-sibling::div[contains(.,'"+profileServiceCountry+"')]/following-sibling::div//button[1]";
+        String profileServiceRow = "//div[@class='row' and contains(.,'"+ profileServiceCaseType +"') and contains(.,'"+ profileServiceCountry +"')]//button[1]";
+        SelenideElement PROFILE_SERVICE_EDIT = $(byXpath(profileServiceRow));
+        PROFILE_SERVICE_EDIT.click();
+    }
+    public static void clickServiceRowDelete(String profileServiceCaseType, String profileServiceCountry) {
+        // String profileServiceRow = "//div[contains(.,'"+profileServiceCaseType+"')]/following-sibling::div[contains(.,'"+profileServiceCountry+"')]/following-sibling::div//button[2]";
+        String profileServiceRow = "//div[@class='row' and contains(.,'"+ profileServiceCaseType +"') and contains(.,'"+ profileServiceCountry +"')]//button[2]";
+        SelenideElement PROFILE_SERVICE_EDIT = $(byXpath(profileServiceRow));
+        PROFILE_SERVICE_EDIT.click();
+    }
+    public static void changeServiceRate(String profileServiceCaseType, String profileServiceCountry, String newPrice) {
+        SelenideElement serviceRateField = $(byXpath("//div[@class='row ng-scope' and contains(.,'"+profileServiceCaseType+"') and contains(.,'"+profileServiceCountry+"')]//input[@name='rate']"));
+        serviceRateField.clear();
+        serviceRateField.val(newPrice);
+        serviceRateField.shouldHave(Condition.value(newPrice));
+    }
+
 }

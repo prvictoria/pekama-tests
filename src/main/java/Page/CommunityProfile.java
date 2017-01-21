@@ -4,52 +4,28 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.junit.Assert;
 
+import static com.codeborne.selenide.Selectors.byName;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 
 public class CommunityProfile {
+    //tabs
+    public static final SelenideElement PROFILE_TEAM_TAB = $(byXpath("//*[@href='/a/community/profile/team']"));
+    public static final SelenideElement PROFILE_PROFILE_TAB = $(byXpath("//*[@href='/a/community/profile/personal']"));
+
     //Team setting
+    public static final SelenideElement PROFILE_BTN_BOOST_SCORE = $(byXpath("//button[contains(.,'boost community score')]")); //disabled="disabled"
+
+
     public static final SelenideElement PROFILE_TEAM_NAME = $(byXpath("//*[@class='editable-title clearfix']//h3"));
     public static final SelenideElement PROFILE_TEAM_NAME_INPUT = $(byXpath("//*[@class='editable-title clearfix']//input"));
     public static final SelenideElement PROFILE_TEAM_NAME_SAVE = $(byXpath("//*[@class='editable-title clearfix']//button[contains(.,'Save')]"));
     public static final SelenideElement PROFILE_TEAM_NAME_CANCEL = $(byXpath("//*[@class='editable-title clearfix']//button[contains(.,'Cancel')]"));
 
     public static final SelenideElement PROFILE_SERVICES_FORM = $(byXpath(""));
-
-    public static void findServiceRow(String profileServiceCaseType, String profileServiceCountry, boolean rowPresentOnPage) {
-        //String profileServiceRow = "//div[contains(.,'"+profileServiceCaseType+"')]/following-sibling::div[contains(.,'"+profileServiceCountry+"')]";
-        String profileServiceRow = "//div[@class='row' and contains(.,'"+ profileServiceCaseType +"') and contains(.,'"+ profileServiceCountry +"')]";
-        if ($(byXpath(profileServiceRow)).exists()!=rowPresentOnPage)
-        {
-            Assert.fail("Service present element state is - "+$(byXpath(profileServiceRow)).exists());
-        }
-    }
-
-    public static void clickServiceRowEdit(String profileServiceCaseType, String profileServiceCountry) {
- //       String profileServiceRow = "//div[contains(.,'"+profileServiceCaseType+"')]/following-sibling::div[contains(.,'"+profileServiceCountry+"')]/following-sibling::div//button[1]";
-        String profileServiceRow = "//div[@class='row' and contains(.,'"+ profileServiceCaseType +"') and contains(.,'"+ profileServiceCountry +"')]//button[1]";
-        SelenideElement PROFILE_SERVICE_EDIT = $(byXpath(profileServiceRow));
-        PROFILE_SERVICE_EDIT.click();
-    }
-
-    public static void clickServiceRowDelete(String profileServiceCaseType, String profileServiceCountry) {
-       // String profileServiceRow = "//div[contains(.,'"+profileServiceCaseType+"')]/following-sibling::div[contains(.,'"+profileServiceCountry+"')]/following-sibling::div//button[2]";
-        String profileServiceRow = "//div[@class='row' and contains(.,'"+ profileServiceCaseType +"') and contains(.,'"+ profileServiceCountry +"')]//button[2]";
-        SelenideElement PROFILE_SERVICE_EDIT = $(byXpath(profileServiceRow));
-        PROFILE_SERVICE_EDIT.click();
-    }
-    public static void changeServiceRate(String profileServiceCaseType, String profileServiceCountry, String newPrice) {
-        SelenideElement serviceRateField = $(byXpath("//div[@class='row ng-scope' and contains(.,'"+profileServiceCaseType+"') and contains(.,'"+profileServiceCountry+"')]//input[@name='rate']"));
-        serviceRateField.clear();
-        serviceRateField.val(newPrice);
-        serviceRateField.shouldHave(Condition.value(newPrice));
-    }
-
     public static final SelenideElement PROFILE_SERVICE_SAVE = $(byXpath("//*[@class='border-container border-container-white']//button[contains(.,'Save')]"));
     private static final String PROFILE_SERVICE_TABLE = "//*[@class='services-table']";
     private static final String PROFILE_SERVICE_ROW = "//div[@class='row']";
-
-
 
     public static final SelenideElement PROFILE_SERVICE = $(byXpath(""));
 
@@ -81,6 +57,10 @@ public class CommunityProfile {
     public static final SelenideElement PROFILE_BTN_AVATAR_DELETE = $(byXpath(""));
     public static final SelenideElement PROFILE_BTN_AVATAR_UPLOAD = $(byXpath(""));
     //Personal setting
+    public static final SelenideElement PROFILE_FIELD_NAME = $(byName("first_name"));
+    public static final SelenideElement PROFILE_FIELD_SURNAME = $(byName("last_name"));
+    public static final SelenideElement PROFILE_BTN_CONNECT_LINKEDIN = $(byXpath("//*[@href='/accounts/social/login/linkedin-oauth2/?next=%2Fa%2Fcommunity%2Fprofile%2Fpersonal']"));
+    public static final SelenideElement PROFILE_BTN_SAVE_NAME_AND_SURNAME = $(byXpath("//div[@class='community-your-profile ng-scope']//button[contains(.,'Save')]"));
 
 
 

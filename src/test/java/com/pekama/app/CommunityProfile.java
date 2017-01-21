@@ -1,5 +1,6 @@
 package com.pekama.app;
 import Page.TestsCredentials;
+import Page.TestsUrlConfiguration;
 import Steps.PekamaSteps;
 import Utils.HttpAuth;
 import com.codeborne.selenide.Condition;
@@ -15,11 +16,10 @@ import static Page.CommunityProfile.*;
 import static Page.ModalWindows.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
-import static Page.TestsUrl.urlTSMembers;
+import static Page.TestsUrl.*;
 import static Page.TestsUrlConfiguration.*;
-import static Steps.CommunitySteps.searchServicesQuery;
-import static Steps.PekamaSteps.submitConfirmAction;
-import static Steps.PekamaSteps.submitEnabledButton;
+import static Steps.CommunitySteps.*;
+import static Steps.PekamaSteps.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -30,38 +30,36 @@ import static org.junit.Assert.assertEquals;
 public class CommunityProfile {
     static final Logger log = LogManager.getLogger(CommunityProfile.class);
     String TEAM = TestsCredentials.User3.TEAM_NAME.getValue();
-    String PEKAMA_USER_EMAIL = TestsCredentials.User3.GMAIL_EMAIL.getValue();
-    String SELECT_HOST = COMMUNITY;
+    String PEKAMA_USER_EMAIL = User3.GMAIL_EMAIL.getValue();
+    String PEKAMA_USER_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
+    String AUTH_URL = COMMUNITY_LOGIN;
     String NEW_MEMBER = "qazwsx@qaz.com";
 
 
     @Before
     public void openUrlLogin() {
-        Configuration test = new Configuration();
-        test.holdBrowserOpen = true;
+//        Configuration test = new Configuration();
+//        test.holdBrowserOpen = true;
         log.info("Open host");
-        HttpAuth openHost = new HttpAuth();
-        openHost.httpAuthStagingCommunity();
-        LANDING_LOGIN.shouldBe(Condition.visible).click();
-        PekamaSteps login = new PekamaSteps();
-        login.submitLoginCredentials(PEKAMA_USER_EMAIL);
+        PekamaSteps loginIntoPekama = new PekamaSteps();
+        loginIntoPekama.loginByURL(PEKAMA_USER_EMAIL, PEKAMA_USER_PASSWORD, AUTH_URL);
         log.info("Redirect back after login");
         COMMUNITY_TAB_Profile.shouldBe(Condition.visible).shouldHave(Condition.text("my profile")).click();
     }
-//    @After
-//    public void openUrlLogout() {
-//        open(urlLogout);
-//    }
-    @Ignore("not ready")
+    @After
+    public void openUrlLogout() {
+        open(COMMUNITY_LOGOUT);
+    }
+
     @Test
     public void checkGui() {
         PROFILE_TEAM_NAME.shouldBe(visible).shouldHave(text(TEAM));
-        PROFILE_BTN_SAVE_DESCRIPTION.shouldNotBe(disabled);
+        PROFILE_BTN_SAVE_DESCRIPTION.shouldBe(disabled);
         PROFILE_BTN_ADD.shouldBe(disabled);
-//        $(byXpath(PROFILE_TEAM_NAME)).shouldBe(visible);
-//        $(byXpath(PROFILE_TEAM_NAME)).shouldNotBe(visible);
-//        $(byXpath(PROFILE_TEAM_NAME)).shouldNotBe(visible);
-//        $(byXpath(PROFILE_TEAM_NAME)).shouldNotBe(visible);
+        PROFILE_TEAM_TAB.shouldBe(visible);
+        PROFILE_PROFILE_TAB.shouldBe(visible);
+        PROFILE_BTN_BOOST_SCORE.shouldBe(visible);
+        PROFILE_BTN_INVITE.shouldBe(visible).shouldBe(enabled);
         log.info("Gui elements present");
     }
     @Ignore("not ready")
@@ -92,14 +90,6 @@ public class CommunityProfile {
         PROFILE_TEAM_NAME.shouldHave(Condition.text(TEAM));
         log.info("Team name restored");
     }
-    @Ignore("not ready")
-    @Test
-    public void serviceCRUD() {
-        log.info("Service added");
-        log.info("Service edited");
-        log.info("Service deleted");
-        log.info("No services");
-    }
     @Test
     public void saveFirmExpertise() {
         PROFILE_BTN_SAVE_DESCRIPTION.shouldBe(disabled);
@@ -111,6 +101,7 @@ public class CommunityProfile {
         PROFILE_INPUT_DESCRIPTION.shouldHave(Condition.value(LOREM_IPSUM_SHORT));
         log.info("firm's expertise saved with dummy text");
     }
+    @Ignore//todo delete members
     @Test
     public void testA_addMember() {
         PROFILE_BTN_SAVE_DESCRIPTION.shouldBe(visible).click();
@@ -136,12 +127,12 @@ public class CommunityProfile {
         $(byText(NEW_MEMBER+" (inactive)")).shouldBe(Condition.visible);
         log.info("Delete member");
     }
-    @Ignore
+
     @Test
     public void service_testA_addService() {
         log.info("Add new service");
-        String profileServiceCaseType = "Trademark";
-        String profileServiceCountry = "Angola";
+        String profileServiceCaseType = CaseType.TRADEMARK.getValue();
+        String profileServiceCountry = Countries.AFGANISTAN.getValue();
         String price = "100000";
         boolean rowPresentOnPage = true;
         PROFILE_BTN_ADD.shouldBe(disabled);
@@ -155,12 +146,10 @@ public class CommunityProfile {
     @Test
     public void service_testB_addSameService() {
         log.info("Check validation by adding the same service");
-        String caseType = "Trademark";
-        String country = "Angola";
         String price = "100000";
         PROFILE_BTN_ADD.shouldBe(disabled);
-        log.info("Select new service - "+caseType);
-        searchServicesQuery( caseType,  country,  price);
+        log.info("Select new service - "+CaseType.TRADEMARK.getValue());
+        searchServicesQuery(CaseType.TRADEMARK.getValue(),  Countries.AFGANISTAN.getValue(),  price);
         log.info("Service added");
         PROFILE_BTN_ADD.shouldBe(disabled);
     }
@@ -168,23 +157,21 @@ public class CommunityProfile {
     public void service_testC_editServicePrice() {
         log.info("Edit service");
         sleep(2000);
-        String profileServiceCaseType = "Trademark";
-        String profileServiceCountry = "Angola";
+        String profileServiceCaseType = CaseType.TRADEMARK.getValue();
+        String profileServiceCountry = Countries.AFGANISTAN.getValue();
         String price = "100000";
         String newPrice = "99999";
         clickServiceRowEdit(profileServiceCaseType, profileServiceCountry);
         PROFILE_BTN_ADD.shouldBe(disabled);
         changeServiceRate(profileServiceCaseType, profileServiceCountry, newPrice);
         submitEnabledButton(PROFILE_SERVICE_SAVE);
-        $(byText(newPrice)).shouldBe(visible);
-        $(byText(price)).shouldNotBe(visible);
     }
 
     @Test
     public void service_testD_deleteService() {
         log.info("Delete service");
-        String profileServiceCaseType = "Trademark";
-        String profileServiceCountry = "Angola";
+        String profileServiceCaseType = CaseType.TRADEMARK.getValue();
+        String profileServiceCountry = Countries.AFGANISTAN.getValue();
         boolean rowPresentOnPage = false;
         clickServiceRowDelete(profileServiceCaseType, profileServiceCountry);
         submitConfirmAction();
@@ -193,4 +180,42 @@ public class CommunityProfile {
         PROFILE_BTN_ADD.shouldBe(disabled);
     }
 
+    @Test
+    public void yourProfileSaveNewName_A_SetNewName() {
+        log.info("open Yuor profile tab");
+        String newName = "new name";
+        String newSurname = "new surname";
+        PROFILE_PROFILE_TAB.click();
+        PROFILE_FIELD_NAME.shouldHave(value(User3.NAME.getValue()));
+        PROFILE_FIELD_SURNAME.shouldHave(value(User3.SURNAME.getValue()));
+        enterCharsetInField(PROFILE_FIELD_NAME, newName);
+        enterCharsetInField(PROFILE_FIELD_SURNAME, newSurname);
+        submitEnabledButton(PROFILE_BTN_SAVE_NAME_AND_SURNAME);
+        PROFILE_BTN_SAVE_NAME_AND_SURNAME.shouldBe(disabled);
+        sleep(2000);
+        refresh();
+        PROFILE_FIELD_NAME.shouldHave(value(newName));
+        PROFILE_FIELD_SURNAME.shouldHave(value(newSurname));
+        log.info("Service was deleted");
+
+    }
+    @Test
+    public void yourProfileSaveNewName_B_returnUserName() {
+        log.info("open Yuor profile tab");
+        String newName = "new name";
+        String newSurname = "new surname";
+        PROFILE_PROFILE_TAB.click();
+        PROFILE_FIELD_NAME.shouldHave(value(newName));
+        PROFILE_FIELD_SURNAME.shouldHave(value(newSurname));
+        enterCharsetInField(PROFILE_FIELD_NAME, User3.NAME.getValue());
+        enterCharsetInField(PROFILE_FIELD_SURNAME, User3.SURNAME.getValue());
+        submitEnabledButton(PROFILE_BTN_SAVE_NAME_AND_SURNAME);
+        PROFILE_BTN_SAVE_NAME_AND_SURNAME.shouldBe(disabled);
+        sleep(2000);
+        refresh();
+        PROFILE_FIELD_NAME.shouldHave(value(User3.NAME.getValue()));
+        PROFILE_FIELD_SURNAME.shouldHave(value(User3.SURNAME.getValue()));
+        log.info("Service was deleted");
+
+    }
 }

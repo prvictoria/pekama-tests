@@ -8,11 +8,11 @@ public class TestsCredentials {
         PEKAMA_PASSWORD("asui67we34"),
         LINKEDIN_PASSWORD("123456789qasw"),
         BOX_PASSWORD("32qew8127a12a"),
-        NAME("test001"),
-        SURNAME("qweeco001"),
+        NAME("Test001"),
+        SURNAME("Quality01"),
         TEAM_NAME("QweecoTeam01"),
         TEAM_CODE("QT01"),
-        FULL_TEAM_NAME("Qweeco01 (QT01)");
+        FULL_TEAM_NAME("QweecoTeam01 (QT01)");
         private String value;
         User1(String value) {
             this.value = value;
@@ -27,8 +27,8 @@ public class TestsCredentials {
         PEKAMA_PASSWORD("asui67we34"),
         LINKEDIN_PASSWORD("123456789qasw"),
         BOX_PASSWORD("32qew8127a12a"),
-        NAME("test002"),
-        SURNAME("qweeco002"),
+        NAME("Test002"),
+        SURNAME("Quality02"),
         TEAM_NAME("QweecoTeam02"),
         TEAM_CODE("QT02"),
         FULL_TEAM_NAME("Qweeco02 (QT02)");
@@ -59,7 +59,7 @@ public class TestsCredentials {
         COUNTRY("United States"),
         TEAM_NAME("QweecoTeam03"),
         TEAM_CODE("QT03"),
-        FULL_TEAM_NAME("Qweeco03 (QT03)");
+        FULL_TEAM_NAME("QweecoTeam03 (QT03)");
         private String value;
         User3(String value) {
             this.value = value;
@@ -87,7 +87,7 @@ public class TestsCredentials {
         COUNTRY("United States"),
         TEAM_NAME("QweecoTeam04"),
         TEAM_CODE("QT04"),
-        FULL_TEAM_NAME("Qweeco04 (QT04)");
+        FULL_TEAM_NAME("QweecoTeam04 (QT04)");
 
         private String value;
         User4(String value) {
@@ -116,6 +116,52 @@ public class TestsCredentials {
             return value;
         }
     }//Unregistered for SignUp links tests
+    public enum Countries {
+        AFGANISTAN("Afghanistan"),
+        ALL_COUNTRIES("All countries"),
+        AMERICAN_SAMOA("American Samoa"),
+        GREENLAND("Greenland"),
+        NETHERLAND_ANTILES("Netherlands Antilles"),
+        PATENT_COOPERATION_TREATY("Patent Cooperation Treaty"),
+        CRM_CONFERENCE("Conference Lead"),
+        CRM_PROSPECT("Prospect"),
+        TRADEMARK_MADRID_PROTOCOL("International Application (Madrid Protocol)"),
+        TRADEMARK_CMT("European Union (CTM)"),
+        TRADEMARK_CONSUMER_TRADEMARK("Consumer Trademark Defining"),
+        GENERIC("");
+
+        private String value;
+        Countries(String value) {
+            this.value = value;
+        }
+        public String getValue() {
+            return value;
+        }
+    }
+    public enum CaseType {
+        PATENT("Patent"),
+        CRM("Client Relation (CRM)"),
+        TRADEMARK("Trademark");
+        private String value;
+        CaseType(String value) {
+            this.value = value;
+        }
+        public String getValue() {
+            return value;
+        }
+    }
+    public enum ProjectType {
+        PATENT_COOPERATION_TREATY("Patent Cooperation Treaty"),
+        CRM_CONFERENCE("Conference Lead"),
+        TRADEMARK_CONSUMER_TRADEMARK("Consumer Trademark Defining");
+        private String value;
+        ProjectType(String value) {
+            this.value = value;
+        }
+        public String getValue() {
+            return value;
+        }
+    }
     @Test
     public  void enumTest() {
         System.out.println(User1.GMAIL_EMAIL.value);
