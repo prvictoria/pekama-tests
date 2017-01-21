@@ -48,7 +48,7 @@ Delete</button>
 [text()='No data available.']
 //div[@class='row']//div[contains(.,'Trademark')]/following-sibling::div[contains(.,'Angola')]/following-sibling::div//button[1]
 //div[@class='row' and contains(.,'Trademark') and contains(.,'Aruba')]//button[1]
-
+//div[@class='row ng-scope' and contains(.,'Trademark') and contains(.,'Austria')]//input[@name='rate']
 
 //div[[@class='modal-body'] and span[@class='btn btn-default form-control ui-select-toggle']
 //div[@name='relation']/span[@class = 'btn btn-default form-control ui-select-toggle']

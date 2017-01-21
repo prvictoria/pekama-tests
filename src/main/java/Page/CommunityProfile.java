@@ -1,5 +1,6 @@
 package Page;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.junit.Assert;
 
@@ -36,6 +37,12 @@ public class CommunityProfile {
         String profileServiceRow = "//div[@class='row' and contains(.,'"+ profileServiceCaseType +"') and contains(.,'"+ profileServiceCountry +"')]//button[2]";
         SelenideElement PROFILE_SERVICE_EDIT = $(byXpath(profileServiceRow));
         PROFILE_SERVICE_EDIT.click();
+    }
+    public static void changeServiceRate(String profileServiceCaseType, String profileServiceCountry, String newPrice) {
+        SelenideElement serviceRateField = $(byXpath("//div[@class='row ng-scope' and contains(.,'"+profileServiceCaseType+"') and contains(.,'"+profileServiceCountry+"')]//input[@name='rate']"));
+        serviceRateField.clear();
+        serviceRateField.val(newPrice);
+        serviceRateField.shouldHave(Condition.value(newPrice));
     }
 
     public static final SelenideElement PROFILE_SERVICE_SAVE = $(byXpath("//*[@class='border-container border-container-white']//button[contains(.,'Save')]"));

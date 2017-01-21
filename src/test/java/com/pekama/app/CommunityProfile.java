@@ -138,7 +138,7 @@ public class CommunityProfile {
     }
     @Ignore
     @Test
-    public void addNewService_testA() {
+    public void service_testA_addService() {
         log.info("Add new service");
         String profileServiceCaseType = "Trademark";
         String profileServiceCountry = "Angola";
@@ -153,7 +153,7 @@ public class CommunityProfile {
         PROFILE_BTN_ADD.shouldBe(disabled);
     }
     @Test
-    public void addNewService_testB() {
+    public void service_testB_addSameService() {
         log.info("Check validation by adding the same service");
         String caseType = "Trademark";
         String country = "Angola";
@@ -165,17 +165,23 @@ public class CommunityProfile {
         PROFILE_BTN_ADD.shouldBe(disabled);
     }
     @Test
-    public void addNewService_testC() {
+    public void service_testC_editServicePrice() {
         log.info("Edit service");
         sleep(2000);
         String profileServiceCaseType = "Trademark";
         String profileServiceCountry = "Angola";
+        String price = "100000";
+        String newPrice = "99999";
         clickServiceRowEdit(profileServiceCaseType, profileServiceCountry);
         PROFILE_BTN_ADD.shouldBe(disabled);
+        changeServiceRate(profileServiceCaseType, profileServiceCountry, newPrice);
+        submitEnabledButton(PROFILE_SERVICE_SAVE);
+        $(byText(newPrice)).shouldBe(visible);
+        $(byText(price)).shouldNotBe(visible);
     }
 
     @Test
-    public void addNewService_testD() {
+    public void service_testD_deleteService() {
         log.info("Delete service");
         String profileServiceCaseType = "Trademark";
         String profileServiceCountry = "Angola";
