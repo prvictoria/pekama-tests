@@ -13,25 +13,25 @@ public class ModalWindows {
     private static final String mw = "//div[@class='modal-content']";
     public static final SelenideElement MW = $(byXpath("//div[@class='modal-content']"));
     public static final SelenideElement MW_BTN_SUBMIT = $(byXpath(mw+"//button[@submit]"));
-    public static final SelenideElement MW_INPUT_NEW_MEMBER_EMAIL = $(byXpath(MW+"//*[@id='newFollowerEmail']"));
+    public static final SelenideElement MW_INPUT_NEW_MEMBER_EMAIL = $(byXpath(mw+"//*[@id='newFollowerEmail']"));
 
 //reports
 //mailing list
-    public static final SelenideElement MW_MAILING_LIST_BTN_ACTIVATE = $(byXpath(MW+"//*[contains(.,'Activate')]"));
-    public static final SelenideElement MW_MAILING_LIST_BTN_SAVE_AND_SEND_NOW = $(byXpath(MW+"//button[contains(.,'Save & Send Now')]"));
-    public static final SelenideElement MW_MAILING_LIST_BTN_SEND_NOW = $(byXpath(MW+"//button[contains(.,'Send Now')]"));
-    public static final SelenideElement MW_MAILING_LIST_CHECKBOX_ALL = $(byXpath(MW+"//input[@ng-model='all']"));
-    public static final SelenideElement MW_MAILING_1USER_SELECT = $(byXpath(MW+"//ul//li[2]//input[@type='checkbox']"));
-    public static final SelenideElement MW_MAILING_1USER_INTERVAL = $(byXpath(MW+"//ul//li[2]//input[@type='number']"));
+    public static final SelenideElement MW_MAILING_LIST_BTN_ACTIVATE = $(byXpath(mw+"//*[contains(.,'Activate')]"));
+    public static final SelenideElement MW_MAILING_LIST_BTN_SAVE_AND_SEND_NOW = $(byXpath(mw+"//button[contains(.,'Save & Send Now')]"));
+    public static final SelenideElement MW_MAILING_LIST_BTN_SEND_NOW = $(byXpath(mw+"//button[contains(.,'Send Now')]"));
+    public static final SelenideElement MW_MAILING_LIST_CHECKBOX_ALL = $(byXpath(mw+"//input[@ng-model='all']"));
+    public static final SelenideElement MW_MAILING_1USER_SELECT = $(byXpath(mw+"//ul//li[2]//input[@type='checkbox']"));
+    public static final SelenideElement MW_MAILING_1USER_INTERVAL = $(byXpath(mw+"//ul//li[2]//input[@type='number']"));
 
 
-    public static final SelenideElement MW_BTN_SAVE = $(byXpath(MW+"//*[contains(.,'Save')]"));
-    public static final SelenideElement MW_BTN_CANCEL = $(byXpath(MW+"//*[contains(.,'Cancel')]"));
-    public static final SelenideElement MW_BTN_ADD = $(byXpath(MW+"//*[contains(.,'Add')]"));
-    public static final SelenideElement MW_BTN_OK = $(byXpath(MW+"//*[contains(.,'OK')]"));
-    public static final SelenideElement MW_BTN_YES = $(byXpath(MW+"//button[contains(.,'Yes')]"));
-    public static final SelenideElement MW_ICON_CLOSE = $(byXpath(MW+"//*[@aria-label='Close']"));
-    public static final SelenideElement MW_BTN_CLOSE = $(byXpath(MW+"//*[contains .,'Close' ]"));
+    public static final SelenideElement MW_BTN_SAVE = $(byXpath(mw+"//*[contains(.,'Save')]"));
+    public static final SelenideElement MW_BTN_CANCEL = $(byXpath(mw+"//*[contains(.,'Cancel')]"));
+    public static final SelenideElement MW_BTN_ADD = $(byXpath(mw+"//*[contains(.,'Add')]"));
+    public static final SelenideElement MW_BTN_OK = $(byXpath(mw+"//*[contains(.,'OK')]"));
+    public static final SelenideElement MW_BTN_YES = $(byXpath(mw+"//button[contains(.,'Yes')]"));
+    public static final SelenideElement MW_ICON_CLOSE = $(byXpath(mw+"//*[@aria-label='Close']"));
+    public static final SelenideElement MW_BTN_CLOSE = $(byXpath(mw+"//*[contains .,'Close' ]"));
 
     public static final SelenideElement MW_GENERIC_Title = $(byXpath("//*[@class='modal-title']"));
     public static final SelenideElement MW_GENERIC_DatepickerField = $("css=input.form-control.date-box");

@@ -122,4 +122,6 @@ public class TestsStrings {
     public static final String ERROR_MSG_VALIDATION_LENGTH_3 = "";
     public static final String ERROR_MSG_VALIDATION_LENGTH_4 = "";
 
+    public static String PROFILE_SERVICE_CASE_TYPE;
+    public static String PROFILE_SERVICE_COUNTRY;
 }

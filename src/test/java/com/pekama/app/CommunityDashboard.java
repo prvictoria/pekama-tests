@@ -29,7 +29,7 @@ public class CommunityDashboard {
     String userEmail = User2.GMAIL_EMAIL.getValue();
     @Before
     public void before() {
-        Configuration test = new Configuration();
+//        Configuration test = new Configuration();
 //        test.holdBrowserOpen = true;
         open(COMMUNITY_DASHBOARD);
     }

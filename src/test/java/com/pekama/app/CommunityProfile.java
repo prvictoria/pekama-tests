@@ -2,13 +2,12 @@ package com.pekama.app;
 import Page.TestsCredentials;
 import Steps.PekamaSteps;
 import Utils.HttpAuth;
-import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Configuration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
 import org.junit.runners.MethodSorters;
-import org.openqa.selenium.By;
 
 import static Page.CommunityDashboard.*;
 import static Page.CommunityLanding.*;
@@ -19,10 +18,10 @@ import static Page.TestsStrings.*;
 import static Page.TestsUrl.urlTSMembers;
 import static Page.TestsUrlConfiguration.*;
 import static Steps.CommunitySteps.searchServicesQuery;
+import static Steps.PekamaSteps.submitConfirmAction;
 import static Steps.PekamaSteps.submitEnabledButton;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.url;
 import static org.junit.Assert.assertEquals;
@@ -34,8 +33,12 @@ public class CommunityProfile {
     String PEKAMA_USER_EMAIL = TestsCredentials.User3.GMAIL_EMAIL.getValue();
     String SELECT_HOST = COMMUNITY;
     String NEW_MEMBER = "qazwsx@qaz.com";
+
+
     @Before
     public void openUrlLogin() {
+        Configuration test = new Configuration();
+        test.holdBrowserOpen = true;
         log.info("Open host");
         HttpAuth openHost = new HttpAuth();
         openHost.httpAuthStagingCommunity();
@@ -137,14 +140,17 @@ public class CommunityProfile {
     @Test
     public void addNewService_testA() {
         log.info("Add new service");
-        String caseType = "Trademark";
-        String country = "Angola";
+        String profileServiceCaseType = "Trademark";
+        String profileServiceCountry = "Angola";
         String price = "100000";
+        boolean rowPresentOnPage = true;
         PROFILE_BTN_ADD.shouldBe(disabled);
-        log.info("Select new service - "+caseType);
-        searchServicesQuery( caseType,  country,  price);
-        log.info("Delete member");
+        log.info("Select new service - "+ profileServiceCaseType);
+        searchServicesQuery(profileServiceCaseType, profileServiceCountry,  price);
         submitEnabledButton(PROFILE_BTN_ADD);
+        findServiceRow(profileServiceCaseType, profileServiceCountry, rowPresentOnPage);
+        log.info("Service was created");
+        PROFILE_BTN_ADD.shouldBe(disabled);
     }
     @Test
     public void addNewService_testB() {
@@ -161,23 +167,23 @@ public class CommunityProfile {
     @Test
     public void addNewService_testC() {
         log.info("Edit service");
-        PROFILE_SERVICE_CASE_TYPE  = "Trademark";
-        PROFILE_SERVICE_COUNTRY = "Angola";
-        PROFILE_SERVICE_EDIT.click();
-        log.info("Delete member");
+        sleep(2000);
+        String profileServiceCaseType = "Trademark";
+        String profileServiceCountry = "Angola";
+        clickServiceRowEdit(profileServiceCaseType, profileServiceCountry);
         PROFILE_BTN_ADD.shouldBe(disabled);
     }
-    @Ignore //todo - delete is locked
+
     @Test
     public void addNewService_testD() {
-        log.info("Edit service");
-        String caseType = "Trademark";
-        String country = "Angola";
-        String price = "100000";
-        PROFILE_BTN_ADD.shouldBe(disabled);
-        log.info("Select new service - "+caseType);
-        searchServicesQuery( caseType,  country,  price);
-        log.info("Delete member");
+        log.info("Delete service");
+        String profileServiceCaseType = "Trademark";
+        String profileServiceCountry = "Angola";
+        boolean rowPresentOnPage = false;
+        clickServiceRowDelete(profileServiceCaseType, profileServiceCountry);
+        submitConfirmAction();
+        findServiceRow(profileServiceCaseType, profileServiceCountry, rowPresentOnPage);
+        log.info("Service was deleted");
         PROFILE_BTN_ADD.shouldBe(disabled);
     }
 

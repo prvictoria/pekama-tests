@@ -124,6 +124,7 @@ public class PekamaSteps {
         sleep(500);
         MW.shouldNotBe(visible);
     }
+    //todo frame switch
     public static void collapseChatWidget(){
         sleep(500);
         MW.shouldBe(visible);

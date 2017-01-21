@@ -12,6 +12,8 @@ import static Steps.PekamaSteps.enterCharsetInField;
 import static com.codeborne.selenide.Condition.disabled;
 import static com.codeborne.selenide.Condition.enabled;
 import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selectors.byXpath;
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.WebDriverRunner.url;
 
 /**
@@ -37,17 +39,21 @@ public class CommunitySteps {
         rootLogger.info("Link to mailing list present -  ");
         return searchQueryUrl;
     }
-    public static void searchServicesQuery(String caseType, String country, String price) {
+    public static void searchServicesQuery(String PROFILE_SERVICE_CASE_TYPE, String PROFILE_SERVICE_COUNTRY, String price) {
         PROFILE_SELECT_CaseType.click();
-        enterCharsetInField(PROFILE_INPUT_CaseType, caseType);
-//        PROFILE_INPUT_CaseType.sendKeys(caseType);
+        enterCharsetInField(PROFILE_INPUT_CaseType, PROFILE_SERVICE_CASE_TYPE);
         CSS_SelectHighlighted.click();
-        rootLogger.info("Selected case type - "+caseType);
+        rootLogger.info("Selected case type - "+PROFILE_SERVICE_CASE_TYPE);
         PROFILE_SELECT_Defining.click();
-        enterCharsetInField(PROFILE_INPUT_Defining, country);
-//        PROFILE_INPUT_Defining.sendKeys(country);
+        enterCharsetInField(PROFILE_INPUT_Defining, PROFILE_SERVICE_COUNTRY);
         CSS_SelectHighlighted.click();
+        PROFILE_INPUT_PRICE.clear();
         PROFILE_INPUT_PRICE.sendKeys(price);
-        rootLogger.info("Selected case type - "+country);
+        rootLogger.info("Selected case type - "+PROFILE_SERVICE_COUNTRY);
+    }
+    public static String findServiceRow(String PROFILE_SERVICE_CASE_TYPE, String PROFILE_SERVICE_COUNTRY) {
+        String profileServiceRow = "//div[contains(.,'"+PROFILE_SERVICE_CASE_TYPE+"')]/following-sibling::div[contains(.,'"+PROFILE_SERVICE_COUNTRY+"')]/following-sibling::div//button[1]";
+
+        return profileServiceRow;
     }
 }

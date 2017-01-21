@@ -1,22 +1,43 @@
 package Page;
 
 import com.codeborne.selenide.SelenideElement;
+import org.junit.Assert;
 
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 
 public class CommunityProfile {
     //Team setting
-    public static String PROFILE_SERVICE_CASE_TYPE = "";
-    public static String PROFILE_SERVICE_COUNTRY = "";
     public static final SelenideElement PROFILE_TEAM_NAME = $(byXpath("//*[@class='editable-title clearfix']//h3"));
     public static final SelenideElement PROFILE_TEAM_NAME_INPUT = $(byXpath("//*[@class='editable-title clearfix']//input"));
     public static final SelenideElement PROFILE_TEAM_NAME_SAVE = $(byXpath("//*[@class='editable-title clearfix']//button[contains(.,'Save')]"));
     public static final SelenideElement PROFILE_TEAM_NAME_CANCEL = $(byXpath("//*[@class='editable-title clearfix']//button[contains(.,'Cancel')]"));
 
     public static final SelenideElement PROFILE_SERVICES_FORM = $(byXpath(""));
-    public static final SelenideElement PROFILE_SERVICE_EDIT = $(byXpath("//div[contains(.,'"+PROFILE_SERVICE_CASE_TYPE+"')]/following-sibling::div[contains(.,'"+PROFILE_SERVICE_COUNTRY+"')]/following-sibling::div//button[1]"));
-    public static final SelenideElement PROFILE_SERVICE_DELETE = $(byXpath("//div[contains(.,'"+PROFILE_SERVICE_CASE_TYPE+"')]/following-sibling::div[contains(.,'"+PROFILE_SERVICE_COUNTRY+"')]/following-sibling::div//button[1]")); //todo - locked!!!
+
+    public static void findServiceRow(String profileServiceCaseType, String profileServiceCountry, boolean rowPresentOnPage) {
+        //String profileServiceRow = "//div[contains(.,'"+profileServiceCaseType+"')]/following-sibling::div[contains(.,'"+profileServiceCountry+"')]";
+        String profileServiceRow = "//div[@class='row' and contains(.,'"+ profileServiceCaseType +"') and contains(.,'"+ profileServiceCountry +"')]";
+        if ($(byXpath(profileServiceRow)).exists()!=rowPresentOnPage)
+        {
+            Assert.fail("Service present element state is - "+$(byXpath(profileServiceRow)).exists());
+        }
+    }
+
+    public static void clickServiceRowEdit(String profileServiceCaseType, String profileServiceCountry) {
+ //       String profileServiceRow = "//div[contains(.,'"+profileServiceCaseType+"')]/following-sibling::div[contains(.,'"+profileServiceCountry+"')]/following-sibling::div//button[1]";
+        String profileServiceRow = "//div[@class='row' and contains(.,'"+ profileServiceCaseType +"') and contains(.,'"+ profileServiceCountry +"')]//button[1]";
+        SelenideElement PROFILE_SERVICE_EDIT = $(byXpath(profileServiceRow));
+        PROFILE_SERVICE_EDIT.click();
+    }
+
+    public static void clickServiceRowDelete(String profileServiceCaseType, String profileServiceCountry) {
+       // String profileServiceRow = "//div[contains(.,'"+profileServiceCaseType+"')]/following-sibling::div[contains(.,'"+profileServiceCountry+"')]/following-sibling::div//button[2]";
+        String profileServiceRow = "//div[@class='row' and contains(.,'"+ profileServiceCaseType +"') and contains(.,'"+ profileServiceCountry +"')]//button[2]";
+        SelenideElement PROFILE_SERVICE_EDIT = $(byXpath(profileServiceRow));
+        PROFILE_SERVICE_EDIT.click();
+    }
+
     public static final SelenideElement PROFILE_SERVICE_SAVE = $(byXpath("//*[@class='border-container border-container-white']//button[contains(.,'Save')]"));
     private static final String PROFILE_SERVICE_TABLE = "//*[@class='services-table']";
     private static final String PROFILE_SERVICE_ROW = "//div[@class='row']";
