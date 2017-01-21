@@ -33,6 +33,7 @@ public class TestsUrl {
     public static final String COMMUNITY_WIZARD = COMMUNITY+"/a/community/wizard";
     public static final String COMMUNITY_OUTGOING = COMMUNITY+"/a/community/outgoing";
     public static final String COMMUNITY_INCOMING = COMMUNITY+"/a/community/incoming";
+    public static final String COMMUNITY_EXPERTS = COMMUNITY+"/a/community/experts";
     public static final String COMMUNITY_PROFILE = COMMUNITY+"/a/community/profile";
     public static final String COMMUNITY_PROFILE_TEAM = COMMUNITY+"/a/community/profile/team";
     public static final String COMMUNITY_PROFILE_USER = COMMUNITY+"/a/community/profile/personal";
