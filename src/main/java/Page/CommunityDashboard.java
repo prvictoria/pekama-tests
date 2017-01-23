@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.$;
 /**
  * Created by Viachaslau_Balashevi on 12/29/2016.
  */
-public class CommunityDashboard {
+public class CommunityDashboard extends Page {
 
     public static final SelenideElement COMMUNITY_DASHBOARD_ = $(byXpath(""));
     public static final SelenideElement COMMUNITY_HEADER_LOGO = $(byXpath("//header//*[@class='logo']"));
@@ -25,7 +25,9 @@ public class CommunityDashboard {
     public static final SelenideElement COMMUNITY_TAB_Supplier = $(byXpath("//a[contains(@href, '/a/community/wizard')]"));
     public static final SelenideElement COMMUNITY_TAB_Outgoing = $(byXpath("//a[contains(@href, '/a/community/outgoing')]"));
     public static final SelenideElement COMMUNITY_TAB_Incoming = $(byXpath("//a[contains(@href, '/a/community/incoming')]"));
+    public static final SelenideElement COMMUNITY_TAB_Experts = $(byXpath("//a[contains(@href, '/a/community/experts')]"));
     public static final SelenideElement COMMUNITY_TAB_Profile = $(byXpath("//a[contains(@href, '/a/community/profile')]"));
+
     public static final SelenideElement COMMUNITY_INNRER_BTN_SIGNUP = $(byXpath("//a[@type='button' and contains(.,'Sign up')]"));
     public static final SelenideElement COMMUNITY_INNRER_BTN_LOGIN = $(byXpath("//a[@type='button' and contains(.,'Login')]"));
 

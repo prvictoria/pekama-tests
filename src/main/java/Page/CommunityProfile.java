@@ -8,13 +8,13 @@ import static com.codeborne.selenide.Selectors.byName;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 
-public class CommunityProfile {
+public class CommunityProfile extends Page {
     //tabs
     public static final SelenideElement PROFILE_TEAM_TAB = $(byXpath("//*[@href='/a/community/profile/team']"));
     public static final SelenideElement PROFILE_PROFILE_TAB = $(byXpath("//*[@href='/a/community/profile/personal']"));
 
     //Team setting
-    public static final SelenideElement PROFILE_BTN_BOOST_SCORE = $(byXpath("//button[contains(.,'boost community score')]")); //disabled="disabled"
+    public static final SelenideElement PROFILE_BTN_BOOST_YOUR_SCORE = $(byXpath("//button[contains(.,'boost community score')]")); //disabled="disabled"
 
 
     public static final SelenideElement PROFILE_TEAM_NAME = $(byXpath("//*[@class='editable-title clearfix']//h3"));

@@ -6,7 +6,7 @@ import static com.codeborne.selenide.Selectors.byLinkText;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 
-public class PekamaReports {
+public class PekamaReports extends Page {
 
     public static final SelenideElement REPORTS_AllCheckbox = $(byXpath("//li[@class='items-header clearfix clearfix']//input[@type='checkbox']"));
     public static final SelenideElement REPORTS_BulkDelete = $(byXpath("//button[@class='btn-link'][contains(.,'Delete')]"));

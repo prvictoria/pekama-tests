@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.$;
 /**
  * Created by VatslauX on 29-Dec-16.
  */
-public class PekamaLanding {
+public class PekamaLanding extends Page {
 
     public static final SelenideElement landing = $(byXpath(""));
     public static final SelenideElement BTN_LOGIN = $(byXpath("//a[contains(@href, '/accounts/login/')]"));

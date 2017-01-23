@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selenide.$;
 /**
  * Created by Viachaslau_Balashevi on 12/29/2016.
  */
-public class PekamaProject {
+public class PekamaProject extends Page {
 
     public static final SelenideElement projectButtonPlus = $(byXpath("//div[@class='project-heading']/button"));
     public static final SelenideElement projectPlusNewEvent = $(byLinkText("New Event"));

@@ -5,7 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 
-public class Box {
+public class Box extends Page {
     public static final String box = "";
     public static final String boxLoginURL = "https://account.box.com/login";
     public static final String boxFilesURL = "https://app.box.com/files";

@@ -1,5 +1,5 @@
 package com.pekama.app;
-import Utils.HttpAuth;
+import Steps.StepsHttpAuth;
 import com.codeborne.selenide.Condition;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +15,7 @@ import static com.codeborne.selenide.Selenide.*;
 public class PekamaLanding {
     @Before
     public void openUrlLogin() {
-        HttpAuth openHost = new HttpAuth();
+        StepsHttpAuth openHost = new StepsHttpAuth();
         String AUTH_URL = PEKAMA;
         openHost.httpAuthUrl(AUTH_URL);
     }

@@ -1,6 +1,6 @@
 package com.pekama.app;
 import Page.TestsCredentials;
-import Steps.PekamaSteps;
+import Steps.StepsPekama;
 import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,8 +13,8 @@ import static Page.ModalWindows.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.TestsUrl.*;
-import static Steps.CommunitySteps.*;
-import static Steps.PekamaSteps.*;
+import static Steps.StepsCommunity.*;
+import static Steps.StepsPekama.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -28,7 +28,6 @@ public class CommunityProfile {
     String TEAM = TestsCredentials.User3.TEAM_NAME.getValue();
     String PEKAMA_USER_EMAIL = User3.GMAIL_EMAIL.getValue();
     String PEKAMA_USER_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
-    String AUTH_URL = URL_COMMUNITY_LOGIN;
     String NEW_MEMBER = "qazwsx@qaz.com";
 
     @Before
@@ -36,8 +35,8 @@ public class CommunityProfile {
 //        Configuration test = new Configuration();
 //        test.holdBrowserOpen = true;
         log.info("Open host");
-        PekamaSteps loginIntoPekama = new PekamaSteps();
-        loginIntoPekama.loginByURL(PEKAMA_USER_EMAIL, PEKAMA_USER_PASSWORD, AUTH_URL);
+        StepsPekama loginIntoPekama = new StepsPekama();
+        loginIntoPekama.loginByURL(PEKAMA_USER_EMAIL, PEKAMA_USER_PASSWORD, URL_COMMUNITY_LOGIN);
         log.info("Redirect back after login");
         COMMUNITY_TAB_Profile.shouldBe(Condition.visible).shouldHave(Condition.text("my profile")).click();
     }
@@ -53,7 +52,7 @@ public class CommunityProfile {
         PROFILE_BTN_ADD.shouldBe(disabled);
         PROFILE_TEAM_TAB.shouldBe(visible);
         PROFILE_PROFILE_TAB.shouldBe(visible);
-        PROFILE_BTN_BOOST_SCORE.shouldBe(visible);
+        PROFILE_BTN_BOOST_YOUR_SCORE.shouldBe(visible);
         PROFILE_BTN_INVITE.shouldBe(visible).shouldBe(enabled);
         log.info("Gui elements present");
     }

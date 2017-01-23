@@ -1,5 +1,4 @@
 package com.pekama.app;
-import Utils.HttpAuth;
 import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,7 +11,7 @@ import static Page.PekamaLogin.*;
 import static Page.TestsUrlConfiguration.TEST_ENVIROMENT_COMMUNITY;
 import static Page.TestsUrlConfiguration.TEST_ENVIROMENT_PEKAMA;
 import static Page.TestsCredentials.*;
-import static Utils.HttpAuth.httpAuthUrl;
+import static Steps.StepsHttpAuth.httpAuthUrl;
 import static com.codeborne.selenide.Condition.empty;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;

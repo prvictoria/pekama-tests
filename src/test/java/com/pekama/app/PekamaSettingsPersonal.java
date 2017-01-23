@@ -1,5 +1,5 @@
 package com.pekama.app;
-import Steps.PekamaSteps;
+import Steps.StepsPekama;
 import Utils.Utils;
 import com.codeborne.selenide.*;
 import org.apache.logging.log4j.LogManager;
@@ -7,14 +7,13 @@ import org.apache.logging.log4j.Logger;
 import org.junit.*;
 import org.junit.runners.MethodSorters;
 
-import static Page.Emails.*;
 import static Page.ModalWindows.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.TestsUrl.*;
-import static Steps.ExternalSteps.authGmail;
-import static Steps.PekamaSteps.submitConfirmAction;
-import static Steps.PekamaSteps.submitEnabledButton;
+import static Steps.StepsExternal.authGmail;
+import static Steps.StepsPekama.submitConfirmAction;
+import static Steps.StepsPekama.submitEnabledButton;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
@@ -37,7 +36,7 @@ public class PekamaSettingsPersonal {
     }
     @Before
     public void before() {
-        PekamaSteps loginIntoPekama = new PekamaSteps();
+        StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(PEKAMA_USER_EMAIL, PEKAMA_USER_PASSWORD, AUTH_URL);
     }
     @After

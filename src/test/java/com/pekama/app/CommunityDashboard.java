@@ -3,7 +3,6 @@
  */
 package com.pekama.app;
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.After;
@@ -16,9 +15,9 @@ import static Page.TestsUrl.*;
 import static Page.PekamaLogin.*;
 import static Page.TestsUrlConfiguration.*;
 import static Page.TestsCredentials.*;
-import static Steps.CommunitySteps.searchExpertsQuery;
-import static Steps.CommunitySteps.searchExpertsSubmit;
-import static Steps.CommunitySteps.searchQueryUrl;
+import static Steps.StepsCommunity.searchExpertsQuery;
+import static Steps.StepsCommunity.searchExpertsSubmit;
+import static Steps.StepsCommunity.searchQueryUrl;
 import static com.codeborne.selenide.Condition.disabled;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
@@ -82,8 +81,8 @@ public class CommunityDashboard {
         COMMUNITY_HEADER_LOGIN.shouldBe(Condition.visible);
         COMMUNITY_TAB_Supplier.shouldBe(Condition.visible).shouldHave(Condition.text("find a supplier")).click();
         WIZARD_BTN_GetStarted.shouldBe(visible).shouldBe(disabled);
-        String caseType = "patent";
-        String country = "united kingdom";
+        String caseType = CaseType.PATENT.getValue();
+        String country = Countries.PITCAIRN_ISLANDS.getValue();
         searchExpertsQuery(caseType, country);
         searchExpertsSubmit();
         COMMUNITY_INNRER_BTN_SIGNUP.shouldBe(Condition.visible);

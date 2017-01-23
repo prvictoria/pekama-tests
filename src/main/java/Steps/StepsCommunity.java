@@ -6,11 +6,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 
-import static Page.CommunityDashboard.*;
 import static Page.CommunityProfile.*;
 import static Page.CommunityWizard.*;
 import static Page.ModalWindows.CSS_SelectHighlighted;
-import static Steps.PekamaSteps.enterCharsetInField;
+import static Steps.StepsPekama.enterCharsetInField;
 import static com.codeborne.selenide.Condition.disabled;
 import static com.codeborne.selenide.Condition.enabled;
 import static com.codeborne.selenide.Condition.visible;
@@ -21,8 +20,8 @@ import static com.codeborne.selenide.WebDriverRunner.url;
 /**
  * Created by VatslauX on 03-Jan-17.
  */
-public class CommunitySteps {
-    static final Logger rootLogger = LogManager.getLogger(CommunitySteps.class);
+public class StepsCommunity implements StepsFactory{
+    static final Logger rootLogger = LogManager.getLogger(StepsCommunity.class);
     public static String searchQueryUrl;
     public static void searchExpertsQuery(String caseType, String country) {
         WIZARD_BTN_GetStarted.shouldBe(visible).shouldBe(disabled);
@@ -86,4 +85,7 @@ public class CommunitySteps {
         serviceRateField.shouldHave(Condition.value(newPrice));
     }
 
+    public static void selectExtpert(String expertName) {
+
+    }
 }

@@ -1,6 +1,7 @@
 package com.pekama.app;
-import Steps.ExternalSteps;
-import Steps.PekamaSteps;
+import Steps.StepsExternal;
+import Steps.StepsHttpAuth;
+import Steps.StepsPekama;
 import Utils.*;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
@@ -19,7 +20,7 @@ import static Page.PekamaResetPassword.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.TestsUrlConfiguration.*;
-import static Steps.ExternalSteps.REDIRECT_LINK;
+import static Steps.StepsExternal.REDIRECT_LINK;
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.value;
 import static com.codeborne.selenide.Condition.visible;
@@ -47,7 +48,7 @@ public class PekamaResetPassword {
     @Test
     public void openResetPassword() {
         rootLogger.info("Open URL - " +URL_LogIn);
-        HttpAuth openHost = new HttpAuth();
+        StepsHttpAuth openHost = new StepsHttpAuth();
         String AUTH_URL = URL_LogIn;
         openHost.httpAuthUrl(AUTH_URL);
         sleep(1000);
@@ -58,7 +59,7 @@ public class PekamaResetPassword {
     @Test
     public void invalidEmailResetPassword() {
         rootLogger.info("Open URL - " +URL_ResetPassword);
-        HttpAuth openHost = new HttpAuth();
+        StepsHttpAuth openHost = new StepsHttpAuth();
         String AUTH_URL = URL_ResetPassword;
         openHost.httpAuthUrl(AUTH_URL);
         sleep(1000);
@@ -73,7 +74,7 @@ public class PekamaResetPassword {
     public void resetPassword_A() {
         REDIRECT_LINK = null;
         rootLogger.info("Open URL - " + URL_ResetPassword);
-        HttpAuth openHost = new HttpAuth();
+        StepsHttpAuth openHost = new StepsHttpAuth();
         String AUTH_URL = URL_ResetPassword;
         openHost.httpAuthUrl(AUTH_URL);
         sleep(1000);
@@ -84,7 +85,7 @@ public class PekamaResetPassword {
        RESET_PAGE_SUCCESS.shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_SUCCESS_MSG));
         String testSuccessMsg =RESET_PAGE_SUCCESS.getText();
         rootLogger.info(testSuccessMsg + " displayed, valid email submitted");
-        ExternalSteps loginGmailInboxApp = new ExternalSteps();
+        StepsExternal loginGmailInboxApp = new StepsExternal();
         loginGmailInboxApp.checkInboxEmail(GMAIL_LOGIN, GMAIL_PASSWORD,EMAIL_SUBJECT, EMAIL_TITLE, EMAIL_TEXT, EMAIL_BTN, EMAIL_REDIRECT_LINK);
         rootLogger.info("Email and links correspond requirements");
     }
@@ -92,7 +93,7 @@ public class PekamaResetPassword {
     public void resetPassword_B() {
         if (REDIRECT_LINK != null) {
             rootLogger.info("Open URL - " +REDIRECT_LINK);
-            HttpAuth openHost = new HttpAuth();
+            StepsHttpAuth openHost = new StepsHttpAuth();
             String AUTH_URL = REDIRECT_LINK;
             openHost.httpAuthUrl(AUTH_URL);
             sleep(1000);
@@ -110,7 +111,7 @@ public class PekamaResetPassword {
     public void resetPassword_C() {
         if (REDIRECT_LINK != null) {
             rootLogger.info("Open URL - " +REDIRECT_LINK);
-            HttpAuth openHost = new HttpAuth();
+            StepsHttpAuth openHost = new StepsHttpAuth();
             String AUTH_URL = REDIRECT_LINK;
             openHost.httpAuthUrl(AUTH_URL);
             sleep(1000);
@@ -126,7 +127,7 @@ public class PekamaResetPassword {
     public void resetPassword_D() {
         if (REDIRECT_LINK != null) {
             rootLogger.info("Open URL - " +REDIRECT_LINK);
-            HttpAuth openHost = new HttpAuth();
+            StepsHttpAuth openHost = new StepsHttpAuth();
             String AUTH_URL = REDIRECT_LINK;
             openHost.httpAuthUrl(AUTH_URL);
             sleep(1000);
@@ -144,7 +145,7 @@ public class PekamaResetPassword {
     public void resetPassword_E() {
         if (REDIRECT_LINK != null) {
             rootLogger.info("Open URL - " +REDIRECT_LINK);
-            HttpAuth openHost = new HttpAuth();
+            StepsHttpAuth openHost = new StepsHttpAuth();
             String AUTH_URL = REDIRECT_LINK;
             openHost.httpAuthUrl(AUTH_URL);
             sleep(1000);
@@ -165,7 +166,7 @@ public class PekamaResetPassword {
         if (REDIRECT_LINK != null) {
             rootLogger.info("Start test - "+"User submitted invalid password");
             rootLogger.info("Open URL - " +REDIRECT_LINK);
-            HttpAuth openHost = new HttpAuth();
+            StepsHttpAuth openHost = new StepsHttpAuth();
             String AUTH_URL = REDIRECT_LINK;
             openHost.httpAuthUrl(AUTH_URL);
             sleep(1000);
@@ -187,7 +188,7 @@ public class PekamaResetPassword {
     public void resetPassword_G() {
         if (REDIRECT_LINK != null) {
             rootLogger.info("Open URL - " +REDIRECT_LINK);
-            HttpAuth openHost = new HttpAuth();
+            StepsHttpAuth openHost = new StepsHttpAuth();
             String AUTH_URL = REDIRECT_LINK;
             openHost.httpAuthUrl(AUTH_URL);
             sleep(1000);
@@ -205,7 +206,7 @@ public class PekamaResetPassword {
     public void resetPassword_H() {
         if (REDIRECT_LINK != null) {
             rootLogger.info("Open URL - " +REDIRECT_LINK);
-            HttpAuth openHost = new HttpAuth();
+            StepsHttpAuth openHost = new StepsHttpAuth();
             String AUTH_URL = REDIRECT_LINK;
             openHost.httpAuthUrl(AUTH_URL);
             sleep(1000);
@@ -223,7 +224,7 @@ public class PekamaResetPassword {
     public void resetPassword_I() {
         if (REDIRECT_LINK != null) {
             rootLogger.info("Open URL - " +REDIRECT_LINK);
-            HttpAuth openHost = new HttpAuth();
+            StepsHttpAuth openHost = new StepsHttpAuth();
             String AUTH_URL = REDIRECT_LINK;
             openHost.httpAuthUrl(AUTH_URL);
             sleep(1000);
@@ -242,7 +243,7 @@ public class PekamaResetPassword {
     public void resetPassword_P() {
         if (REDIRECT_LINK != null) {
             rootLogger.info("Open URL - " +REDIRECT_LINK);
-            HttpAuth openHost = new HttpAuth();
+            StepsHttpAuth openHost = new StepsHttpAuth();
             String AUTH_URL = REDIRECT_LINK;
             openHost.httpAuthUrl(AUTH_URL);
             sleep(1000);
@@ -267,12 +268,12 @@ public class PekamaResetPassword {
     public void resetPassword_Q() {
         if (NEW_PASSWORD != null) {
             rootLogger.info("Open URL - " +URL_Dashboard);
-            HttpAuth openHost = new HttpAuth();
+            StepsHttpAuth openHost = new StepsHttpAuth();
             String AUTH_URL = URL_Dashboard;
             openHost.httpAuthUrl(AUTH_URL);
             sleep(1000);
 
-            PekamaSteps loginWithNewPassword = new PekamaSteps();
+            StepsPekama loginWithNewPassword = new StepsPekama();
             String USER_PEKAMA_PASSWORD = NEW_PASSWORD;
             loginWithNewPassword.submitLoginCredentials(PEKAMA_USER_EMAIL,USER_PEKAMA_PASSWORD);
                 sleep(3000);
@@ -288,7 +289,7 @@ public class PekamaResetPassword {
         if (NEW_PASSWORD != null) {
             REDIRECT_LINK = null;
             rootLogger.info("User password - " +NEW_PASSWORD);
-            HttpAuth openHost = new HttpAuth();
+            StepsHttpAuth openHost = new StepsHttpAuth();
             String AUTH_URL = URL_ResetPassword;
             openHost.httpAuthUrl(AUTH_URL);
             sleep(1000);
@@ -299,7 +300,7 @@ public class PekamaResetPassword {
            RESET_PAGE_SUCCESS.shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_SUCCESS_MSG));
             String testSuccessMsg = RESET_PAGE_SUCCESS.getText();
             rootLogger.info(testSuccessMsg + " displayed, valid email submitted");
-            ExternalSteps loginGmailInboxApp = new ExternalSteps();
+            StepsExternal loginGmailInboxApp = new StepsExternal();
 
             loginGmailInboxApp.checkInboxEmail(GMAIL_LOGIN, GMAIL_PASSWORD,EMAIL_SUBJECT, EMAIL_TITLE, EMAIL_TEXT, EMAIL_BTN, EMAIL_REDIRECT_LINK);
             rootLogger.info("Email and links correspond requirements");
@@ -318,7 +319,7 @@ public class PekamaResetPassword {
     public void resetPassword_Z() {
         if (REDIRECT_LINK != null) {
             rootLogger.info("Open URL - " +REDIRECT_LINK);
-            HttpAuth openHost = new HttpAuth();
+            StepsHttpAuth openHost = new StepsHttpAuth();
             String AUTH_URL = REDIRECT_LINK;
             openHost.httpAuthUrl(AUTH_URL);
             sleep(1000);

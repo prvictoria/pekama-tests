@@ -5,8 +5,8 @@ import org.apache.logging.log4j.*;
 import org.junit.*;
 
 import static Page.TestsUrl.*;
-import static Steps.PekamaSteps.*;
-import static Utils.HttpAuth.httpAuthUrl;
+import static Steps.StepsPekama.*;
+import static Steps.StepsHttpAuth.httpAuthUrl;
 import static com.codeborne.selenide.Selenide.*;
 
 public class PekamaReports {
@@ -17,10 +17,10 @@ public class PekamaReports {
     @Test
     public void selectAgreeCheckbox() {
         rootLogger.info("Open URL - " +URL_Dashboard);
-//        HttpAuth openHost = new HttpAuth();
+//        StepsHttpAuth openHost = new StepsHttpAuth();
         String AUTH_URL = URL_Dashboard;
         httpAuthUrl(AUTH_URL);
-        PekamaSteps login = new PekamaSteps();
+        StepsPekama login = new StepsPekama();
         login.submitLoginCredentials(PEKAMA_USER_EMAIL);
         rootLogger.info("Redirect after login to - "+URL_Dashboard);
         sleep(100);
@@ -35,7 +35,7 @@ public class PekamaReports {
         sleep(3000);
         waitForSpinnerNotPresent();
         rootLogger.info("Open Dropdown and create new mailing list");
-        PekamaSteps mailingList = new PekamaSteps();
+        StepsPekama mailingList = new StepsPekama();
         mailingList.mailingListCreateNew(thisMailingListName);
         rootLogger.info("Send report");
         mailingListSendReport(thisMailingListName);

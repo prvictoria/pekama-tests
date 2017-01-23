@@ -1,5 +1,5 @@
 package com.pekama.app;
-import Utils.HttpAuth;
+import Steps.StepsHttpAuth;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,7 +13,7 @@ import static Page.TestsUrl.*;
 import static Page.PekamaSignUp.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
-import static Steps.ExternalSteps.checkInboxEmail;
+import static Steps.StepsExternal.checkInboxEmail;
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
@@ -34,7 +34,7 @@ public class PekamaSignUp {
     @Before
     public void selectAgreeCheckbox() {
         rootLogger.info("Open URL - "+URL_SingUp);
-        HttpAuth openHost = new HttpAuth();
+        StepsHttpAuth openHost = new StepsHttpAuth();
         String AUTH_URL = URL_SingUp;
         openHost.httpAuthUrl(AUTH_URL);
         $(signupNext).shouldBe(visible).shouldNotBe(disabled);

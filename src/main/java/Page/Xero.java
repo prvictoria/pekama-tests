@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selenide.$;
 /**
  * Created by VatslauX on 29-Dec-16.
  */
-public class Xero {
+public class Xero extends Page {
     public static final SelenideElement extXeroEmail = $(byXpath("//input[@id='email']"));
     public static final SelenideElement extXeroPassword = $(byXpath("//input[@id='password']"));
     public static final SelenideElement extXeroLogin = $(byXpath("//button[@id='submitButton']"));

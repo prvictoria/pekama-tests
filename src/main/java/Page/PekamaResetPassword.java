@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selenide.$$;
 /**
  * Created by Viachaslau_Balashevi on 12/29/2016.
  */
-public class PekamaResetPassword {
+public class PekamaResetPassword extends Page {
     public static final SelenideElement RESET_PAGE_TITLE = $(byXpath("//*[@class='small-title']"));
     public static final String RESET_PAGE_TITLE_TEXT ="Reset Password";
     public static final SelenideElement RESET_PAGE_EMAIL = $(byXpath("//input[@name='email']"));

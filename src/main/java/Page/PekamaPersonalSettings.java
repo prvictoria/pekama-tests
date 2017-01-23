@@ -6,7 +6,7 @@ import static com.codeborne.selenide.Selectors.byName;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 
-public class PekamaPersonalSettings {
+public class PekamaPersonalSettings extends Page {
  public static final SelenideElement PERSONAL_SETTINGS_BTN = $(byXpath("//*[@class='header-panel-nav']//*[@href='/a/settings/profile']"));
  public static final SelenideElement TEAM_SETTINGS_BTN = $(byXpath("//*[@class='header-panel-nav']//*[@href='/a/settings/team']"));
 

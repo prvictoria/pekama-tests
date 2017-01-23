@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.$;
 /**
  * Created by VatslauX on 29-Dec-16.
  */
-public class PekamaTeamSettings {
+public class PekamaTeamSettings extends Page {
     public static final SelenideElement teamSettingsProjectTemplatesTab = $(byXpath("/a/settings/team/templates/projects"));
     public static final SelenideElement teamSettingsTaskTemplatesTab = $(byXpath("/a/settings/team/templates/tasks"));
     public static final SelenideElement teamSettingsTaskTemplatesTab_TM = $(byPartialLinkText("Trademark"));

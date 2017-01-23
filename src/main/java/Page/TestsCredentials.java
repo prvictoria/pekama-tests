@@ -121,6 +121,7 @@ public class TestsCredentials {
         ALL_COUNTRIES("All countries"),
         AMERICAN_SAMOA("American Samoa"),
         GREENLAND("Greenland"),
+        PITCAIRN_ISLANDS("Pitcairn Islands"),
         NETHERLAND_ANTILES("Netherlands Antilles"),
         PATENT_COOPERATION_TREATY("Patent Cooperation Treaty"),
         CRM_CONFERENCE("Conference Lead"),

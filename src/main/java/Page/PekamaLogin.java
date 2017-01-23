@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selenide.$;
 /**
  * Created by Viachaslau_Balashevi on 12/29/2016.
  */
-public class PekamaLogin {
+public class PekamaLogin extends Page {
     public static final SelenideElement lOGIN_TITLE = $(byXpath("//*[@class='title']"));
     public static final String lOGIN_TITLE_TEXT = "Login";
 

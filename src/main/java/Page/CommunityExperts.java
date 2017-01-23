@@ -1,5 +1,5 @@
 package Page;
 
 
-public class CommunityExperts {
+public class CommunityExperts extends Page {
 }

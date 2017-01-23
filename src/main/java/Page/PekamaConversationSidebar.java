@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selenide.$;
 /**
  * Created by Viachaslau_Balashevi on 12/29/2016.
  */
-public class PekamaConversationSidebar {
+public class PekamaConversationSidebar extends Page {
     public static final SelenideElement conversationSidebar = $(byXpath("//aside[@class='column-sidebar']"));
     public static final SelenideElement conversationSidebarToggle = $(byXpath("css=a.sidebar-toggle"));
     public static final SelenideElement conversationSidebarSearch = $(byXpath("//input[@placeholder='Search in conversations']"));

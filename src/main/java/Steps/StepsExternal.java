@@ -6,7 +6,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Test;
-import org.openqa.selenium.By;
 
 import static Page.TestsCredentials.GMAIL_PASSWORD;
 import static com.codeborne.selenide.Condition.*;
@@ -18,8 +17,8 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.alertIsPresent;
 
 
 
-public class ExternalSteps {
-    static final Logger logging = LogManager.getLogger(ExternalSteps.class);
+public class StepsExternal implements StepsFactory{
+    static final Logger logging = LogManager.getLogger(StepsExternal.class);
     public static String REDIRECT_LINK;
     public static String checkReportBackLink;
 
@@ -270,7 +269,7 @@ public class ExternalSteps {
     @Test
     public void externalTestDebug() {
 
-            ExternalSteps loginGmailInboxApp = new ExternalSteps();
+            StepsExternal loginGmailInboxApp = new StepsExternal();
             String GMAIL_LOGIN = TestsCredentials.User4.GMAIL_EMAIL.getValue();
             loginGmailInboxApp.signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
             loginGmailInboxApp.signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);

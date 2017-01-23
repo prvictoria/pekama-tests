@@ -7,19 +7,17 @@ import static Page.ModalWindows.*;
 import static Page.PekamaProject.*;
 import static Page.TestsCredentials.*;
 import Utils.Utils;
-import Steps.PekamaSteps;
+import Steps.StepsPekama;
 import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
 import org.junit.runners.MethodSorters;
-import org.openqa.selenium.By;
 
 import static Page.TestsStrings.*;
 import static Page.TestsUrl.URL_Dashboard;
 import static com.codeborne.selenide.Selectors.byName;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.url;
 
@@ -40,7 +38,7 @@ public class PekamaIntegrationBox {
 
     @Before
     public void before() {
-        PekamaSteps loginIntoPekama = new PekamaSteps();
+        StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(PEKAMA_USER_EMAIL, PEKAMA_USER_PASSWORD, AUTH_URL);
         rootLogger.info("");
     }
@@ -237,7 +235,7 @@ public class PekamaIntegrationBox {
         open(boxProjectFolderUrl);
         projectAllCheckbox.click();
         linkDelete.click();
-        PekamaSteps.submitConfirmAction();
+        StepsPekama.submitConfirmAction();
         $(byText(placeholderNoFiles)).shouldBe(Condition.visible);
 
         if ($(byText(FileNameBeforeConnect)).exists() == true) {

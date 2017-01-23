@@ -7,7 +7,7 @@ import static Page.TestsUrlConfiguration.SELECT_HOST;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 
-public class Emails {
+public class Emails extends Page {
     public static final SelenideElement EMAIL_RESET_PASSWORD = $(byXpath(""));
     public static final String EMAIL_RESET_PASSWORD_TITLE = "Password Restoration";
     public static final String EMAIL_RESET_PASSWORD_TEXT = "You've received this e-mail because you requested to reset the password for your user account. Press the button bellow to complete restoration.";

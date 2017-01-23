@@ -9,12 +9,12 @@ import static Page.ModalWindows.*;
 import static Page.PekamaLogin.*;
 import static Page.PekamaReports.*;
 import static Page.TestsCredentials.GENERIC_PEKAMA_PASSWORD;
-import static Utils.HttpAuth.httpAuthUrl;
+import static Steps.StepsHttpAuth.httpAuthUrl;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 
-public class PekamaSteps {
+public class StepsPekama implements StepsFactory{
     static final Logger rootLogger = LogManager.getRootLogger();
 
 

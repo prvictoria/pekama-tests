@@ -12,7 +12,7 @@ import static com.codeborne.selenide.Selenide.$$;
 /**
  * Created by Viachaslau_Balashevi on 12/29/2016.
  */
-public class PekamaSignUp {
+public class PekamaSignUp extends Page {
     public static final SelenideElement signup = $(byXpath("//form[@id='signup-form']"));
     public static final SelenideElement SIGN_UP_TITLE = $(byXpath("//*[@class='details-title']"));
     public static final String SIGN_UP_TITLE_TEXT = "Your Details";

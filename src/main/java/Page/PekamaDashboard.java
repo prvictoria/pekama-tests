@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.$;
 /**
  * Created by Viachaslau_Balashevi on 12/29/2016.
  */
-public class PekamaDashboard {
+public class PekamaDashboard extends Page {
     public static final SelenideElement dashboardProjectsTitle = $(byXpath("//h4[contains(.,'Projects')]"));
     public static final SelenideElement dashboardYourProfileTitle = $(byXpath("//h4[contains(.,'Your Profile And Team')]"));
     public static final SelenideElement dashboardUpcomingTitle = $(byXpath("//h4[contains(.,'UPCOMING')]"));

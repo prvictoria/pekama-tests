@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selenide.$;
 /**
  * Created by VatslauX on 29-Dec-16.
  */
-public class PekamaHeader {
+public class PekamaHeader extends Page {
     public static final SelenideElement HEADER = $(byXpath("//*[@class='content-page-header']"));
     public static final SelenideElement HEADER_DASHBOARD = $(byXpath("//*[@href='/a/dashboard']"));
     public static final SelenideElement HEADER_PROJECTS = $(byXpath("//*[@href='/a/reports/projects']"));

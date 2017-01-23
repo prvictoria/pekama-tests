@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.$;
 /**
  * Created by Viachaslau_Balashevi on 12/29/2016.
  */
-public class PekamaConversationProject {
+public class PekamaConversationProject extends Page {
     public static final SelenideElement conversationProjectBtnTeam = $("button.team-button");
     public static final SelenideElement conversationProjectBtnClient = $("button.external-email-button");
     public static final SelenideElement conversationProjectBtnNew = $(byXpath("//pkm-conversations//button[contains(.,'New')]"));

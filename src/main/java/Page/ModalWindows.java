@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.$;
 /**
  * Created by VatslauX on 29-Dec-16.
  */
-public class ModalWindows {
+public class ModalWindows extends Page {
     private static final String mw = "//div[@class='modal-content']";
     public static final SelenideElement MW = $(byXpath("//div[@class='modal-content']"));
     public static final SelenideElement MW_BTN_SUBMIT = $(byXpath(mw+"//button[@submit]"));
