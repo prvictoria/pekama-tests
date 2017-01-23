@@ -32,6 +32,10 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_BTN_YES = $(byXpath(mw+"//button[contains(.,'Yes')]"));
     public static final SelenideElement MW_ICON_CLOSE = $(byXpath(mw+"//*[@aria-label='Close']"));
     public static final SelenideElement MW_BTN_CLOSE = $(byXpath(mw+"//*[contains .,'Close' ]"));
+    public static final SelenideElement MW_BTN_INVITE = $(byXpath(mw+"//*[contains .,'invite' ]"));
+
+    public static final SelenideElement MW_FIELD_EMAIL = $(byName(mw+"email"));
+    public static final SelenideElement MW_FIELD_MESSAGE = $(byName(mw+"message"));
 
     public static final SelenideElement MW_GENERIC_Title = $(byXpath("//*[@class='modal-title']"));
     public static final SelenideElement MW_GENERIC_DatepickerField = $("css=input.form-control.date-box");
@@ -114,7 +118,7 @@ public class ModalWindows extends Page {
     public static final SelenideElement modalTemplatesEventType = $(byXpath("//div[4]/div/div/div/span/span"));
     public static final SelenideElement modalTemplatesMsgTemplate = $(byXpath("//a/div/div/p"));
 //conversation
-    public static final SelenideElement MW_Conversation = $(byXpath("//div[@class='modal-content']"));
+
     public static final SelenideElement MW_ConversationInputSubject = $(byXpath("//div[@class='modal-content']//input[@name='subject']"));
     public static final SelenideElement MW_ConversationInputFollower = $(byXpath("//div[@class='modal-content']//pkm-followers-picker//input"));
     public static final SelenideElement MW_ConversationInputZoneTeams = $(byXpath("//div[@class='modal-content']//pkm-organizations-picker//li/input"));
@@ -258,12 +262,12 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_TaskStatusRejected = $(byXpath("//span[text()='Rejected']"));
     public static final SelenideElement MW_TaskStatusCancelled = $(byXpath("//span[text()='Cancelled']"));
 
-    public static final SelenideElement MW_COMMUNITY_body = $(byXpath("//div[@class='modal-content']"));
-    public static final SelenideElement MW_COMMUNITY_Title = $(byXpath("//div[@class='modal-content']//h2"));
-    public static final SelenideElement MW_COMMUNITY_Text = $(byXpath("//div[@class='modal-content']//p"));
-    public static final SelenideElement MW_COMMUNITY_Link = $(byXpath("//div[@class='modal-community-footer ng-scope']/div[@class='link']"));
-    public static final SelenideElement MW_COMMUNITY_No = $(byXpath("//div[@class='modal-content']//button[contains(text(),'No')]"));
-    public static final SelenideElement MW_COMMUNITY_Yes = $(byXpath("//div[@class='modal-content']//button[contains(text(),'Yes')]"));
+
+    public static final SelenideElement MW_COMMUNITY_Title = $(byXpath(mw+"//h2"));
+    public static final SelenideElement MW_COMMUNITY_Text = $(byXpath(mw+"//p"));
+    public static final SelenideElement MW_COMMUNITY_Link = $(byXpath(mw+"/div[@class='link']"));
+    public static final SelenideElement MW_COMMUNITY_No = $(byXpath(mw+"//button[contains(text(),'No')]"));
+    public static final SelenideElement MW_COMMUNITY_Yes = $(byXpath(mw+"//button[contains(text(),'Yes')]"));
     public static final SelenideElement MW_COMMUNITY_LinkTextNoSendEmail = $(byText("I already asked the expert not to proceed"));
     public static final SelenideElement MW_COMMUNITY_Text1 = $(byText("Please DO NOT proceed with this filing. Kindly confirm immediately."));
     public static final SelenideElement MW_COMMUNITY_Text2 = $(byText("Thank you for all the information. Please consider this as instructions to proceed with this case as discussed."));
@@ -271,6 +275,15 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_COMMUNITY_Text4 = $(byText("Thank you for all the information. Please consider this as instructions to proceed with this case as discussed."));
     public static final SelenideElement MW_COMMUNITY_Text5 = $(byText("Thank you for all the information. Please consider this as instructions to proceed with this case as discussed."));
 
+    public static final SelenideElement MW_BOOST_YOUR_PROFILE = $(byXpath(mw+""));
+    public static final SelenideElement MW_BOOST_YOUR_PROFILE_BTN_START_NEW_CASE = $(byXpath(mw+"//button[contains(text(),'Start a new case')]"));
+    public static final SelenideElement MW_BOOST_YOUR_PROFILE_BTN_REFER_ATTORNEY = $(byXpath(mw+"//button[contains(text(),'Refer an attorney now')]"));
 
+    public static final SelenideElement MW_BOOST_INVITE_ATTORNEY = $(byXpath(mw+""));
+
+    public static final SelenideElement MW_COMMUNITY_CONFIRM_TITLE = $(byText("Are you sure you want to leave the default invitation message unchaged?"));
+    public static final SelenideElement MW_COMMUNITY_CONFIRM_TEXT = $(byText("Notice that the default message doesn't have a name on the first line."));
+    public static final SelenideElement MW_COMMUNITY_CONFIRM_DISMISS = $(byXpath(mw+"//button[contains(text(),'No, let me change the message')]"));
+    public static final SelenideElement MW_COMMUNITY_CONFIRM_SUBMIT = $(byXpath(mw+"//button[contains(text(),'Yes, I'm sure')]"));
 
 }

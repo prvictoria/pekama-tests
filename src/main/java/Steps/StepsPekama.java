@@ -202,7 +202,7 @@ public class StepsPekama implements StepsFactory{
         $(byText(errorMsg)).shouldBe(Condition.visible);
         rootLogger.info("Validation present - "+errorMsg);
     }
-    public static void enterCharsetInField(SelenideElement fieldName, String enteredValue) {
+    public static void fillField(SelenideElement fieldName, String enteredValue) {
         rootLogger.info("Input date in - "+fieldName);
         fieldName.clear();
         fieldName.shouldHave(Condition.value("")).val(enteredValue);
@@ -216,4 +216,11 @@ public class StepsPekama implements StepsFactory{
         sleep(500);
         rootLogger.info(buttonName+" - Button was clicked");
     }
+    public static void waitForModalWindow(String modalTitle) {
+        rootLogger.info("Wait for '"+modalTitle+"' modal window");
+        MW.shouldBe(visible);
+        MW.shouldHave(text(modalTitle));
+        rootLogger.info("modal window '"+modalTitle+"' was opened");
+    }
+
 }

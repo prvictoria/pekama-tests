@@ -182,8 +182,8 @@ public class CommunityProfile {
         PROFILE_PROFILE_TAB.click();
         PROFILE_FIELD_NAME.shouldHave(value(User3.NAME.getValue()));
         PROFILE_FIELD_SURNAME.shouldHave(value(User3.SURNAME.getValue()));
-        enterCharsetInField(PROFILE_FIELD_NAME, newName);
-        enterCharsetInField(PROFILE_FIELD_SURNAME, newSurname);
+        fillField(PROFILE_FIELD_NAME, newName);
+        fillField(PROFILE_FIELD_SURNAME, newSurname);
         submitEnabledButton(PROFILE_BTN_SAVE_NAME_AND_SURNAME);
         PROFILE_BTN_SAVE_NAME_AND_SURNAME.shouldBe(disabled);
         sleep(2000);
@@ -201,8 +201,8 @@ public class CommunityProfile {
         PROFILE_PROFILE_TAB.click();
         PROFILE_FIELD_NAME.shouldHave(value(newName));
         PROFILE_FIELD_SURNAME.shouldHave(value(newSurname));
-        enterCharsetInField(PROFILE_FIELD_NAME, User3.NAME.getValue());
-        enterCharsetInField(PROFILE_FIELD_SURNAME, User3.SURNAME.getValue());
+        fillField(PROFILE_FIELD_NAME, User3.NAME.getValue());
+        fillField(PROFILE_FIELD_SURNAME, User3.SURNAME.getValue());
         submitEnabledButton(PROFILE_BTN_SAVE_NAME_AND_SURNAME);
         PROFILE_BTN_SAVE_NAME_AND_SURNAME.shouldBe(disabled);
         sleep(2000);

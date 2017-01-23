@@ -3,14 +3,15 @@ package com.pekama.app;/**
  */
 
 import Steps.*;
-import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 
 import static Page.CommunityWizard.*;
+import static Page.ModalWindows.*;
 import static Page.TestsCredentials.*;
+import static Page.TestsStrings.*;
 import static Page.TestsUrl.*;
 import static Steps.StepsCommunity.*;
 import static Steps.StepsPekama.*;
@@ -40,7 +41,26 @@ public class ComunityWizard {
         searchExpertsSubmit();
         submitEnabledButton(PROFILE_BTN_BOOST_YOUR_PROFILE);
         rootLogger.info("Boost Your profile - send new case");
-
+        waitForModalWindow(TITLE_MW_BOOST_YOUR_PROFILE);
+        MW_BOOST_YOUR_PROFILE_BTN_START_NEW_CASE.click();
+        WIZARD_BTN_GetStarted.shouldBe(Condition.visible).shouldBe(Condition.disabled);
+    }
+    @Test
+    public void boostYourProfileInviteTeam() {
+        String caseType = CaseType.PATENT.getValue();
+        String country = Countries.PITCAIRN_ISLANDS.getValue();
+        searchExpertsQuery(caseType, country);
+        searchExpertsSubmit();
+        submitEnabledButton(PROFILE_BTN_BOOST_YOUR_PROFILE);
+        rootLogger.info("Boost Your profile - send new case");
+        waitForModalWindow(TITLE_MW_BOOST_YOUR_PROFILE);
+        MW_BOOST_YOUR_PROFILE_BTN_REFER_ATTORNEY.click();
+        waitForModalWindow(TITLE_MW_INVITE_AN_ATTORNEY);
+        MW_BTN_INVITE.click();
+        fillField(MW_FIELD_EMAIL, "123@mail.com");
+        submitEnabledButton(MW_BTN_INVITE);
+        MW.shouldNotBe(Condition.visible);
 
     }
+
 }

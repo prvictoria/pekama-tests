@@ -8,13 +8,12 @@ import org.junit.Assert;
 
 import static Page.CommunityProfile.*;
 import static Page.CommunityWizard.*;
-import static Page.ModalWindows.CSS_SelectHighlighted;
-import static Steps.StepsPekama.enterCharsetInField;
-import static com.codeborne.selenide.Condition.disabled;
-import static com.codeborne.selenide.Condition.enabled;
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selectors.byXpath;
-import static com.codeborne.selenide.Selenide.$;
+
+import static Page.ModalWindows.*;
+import static Steps.StepsPekama.*;
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selectors.*;
+import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.url;
 
 /**
@@ -23,6 +22,7 @@ import static com.codeborne.selenide.WebDriverRunner.url;
 public class StepsCommunity implements StepsFactory{
     static final Logger rootLogger = LogManager.getLogger(StepsCommunity.class);
     public static String searchQueryUrl;
+
     public static void searchExpertsQuery(String caseType, String country) {
         WIZARD_BTN_GetStarted.shouldBe(visible).shouldBe(disabled);
         WIZARD_SELECT_CaseType.click();
@@ -37,16 +37,16 @@ public class StepsCommunity implements StepsFactory{
     public static String searchExpertsSubmit() {
         WIZARD_BTN_GetStarted.shouldBe(enabled).click();
         searchQueryUrl = url();
-        rootLogger.info("Link to mailing list present -  ");
+        rootLogger.info("Link to mailing list present - "+searchQueryUrl);
         return searchQueryUrl;
     }
     public static void searchServicesQuery(String PROFILE_SERVICE_CASE_TYPE, String PROFILE_SERVICE_COUNTRY, String price) {
         PROFILE_SELECT_CaseType.click();
-        enterCharsetInField(PROFILE_INPUT_CaseType, PROFILE_SERVICE_CASE_TYPE);
+        fillField(PROFILE_INPUT_CaseType, PROFILE_SERVICE_CASE_TYPE);
         CSS_SelectHighlighted.click();
         rootLogger.info("Selected case type - "+PROFILE_SERVICE_CASE_TYPE);
         PROFILE_SELECT_Defining.click();
-        enterCharsetInField(PROFILE_INPUT_Defining, PROFILE_SERVICE_COUNTRY);
+        fillField(PROFILE_INPUT_Defining, PROFILE_SERVICE_COUNTRY);
         CSS_SelectHighlighted.click();
         PROFILE_INPUT_PRICE.clear();
         PROFILE_INPUT_PRICE.sendKeys(price);
@@ -57,10 +57,9 @@ public class StepsCommunity implements StepsFactory{
         return profileServiceRow;
     }
 
-    public static String TEST_CASE_USER_CREATED_SUCCESS = "//div[@class='row' and contains(.,'%s') and contains(.,'%s')]";
-
+    public static String SERVICE_ROW = "//div[@class='row' and contains(.,'%s') and contains(.,'%s')]";
     public static void findServiceRow(boolean rowPresentOnPage, String... args) {
-        String profileServiceRow = String.format(TEST_CASE_USER_CREATED_SUCCESS, args);
+        String profileServiceRow = String.format(SERVICE_ROW, args);
         if ($(byXpath(profileServiceRow)).exists()!=rowPresentOnPage)
         {
             Assert.fail("Service present element state is - "+$(byXpath(profileServiceRow)).exists());
@@ -87,5 +86,17 @@ public class StepsCommunity implements StepsFactory{
 
     public static void selectExtpert(String expertName) {
 
+    }
+    public static void dismissModalConfirmAction(SelenideElement title, SelenideElement text, SelenideElement btnDismiss) {
+        MW_COMMUNITY_CONFIRM_TITLE.shouldBe(visible);
+        MW_COMMUNITY_CONFIRM_TEXT.shouldBe(visible);
+        MW_COMMUNITY_CONFIRM_DISMISS.click();
+        MW_COMMUNITY_CONFIRM_TITLE.shouldNotBe(visible)
+    }
+    public static void acceptModalConfirAction(SelenideElement title, SelenideElement text, SelenideElement btnAccept) {
+        MW_COMMUNITY_CONFIRM_TITLE.shouldBe(visible);
+        MW_COMMUNITY_CONFIRM_TEXT.shouldBe(visible);
+        MW_COMMUNITY_CONFIRM_SUBMIT.click();
+        MW_COMMUNITY_CONFIRM_TITLE.shouldNotBe(visible);
     }
 }
