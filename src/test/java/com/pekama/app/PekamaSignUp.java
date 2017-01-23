@@ -1,7 +1,5 @@
 package com.pekama.app;
-import Steps.ExternalSteps;
 import Utils.HttpAuth;
-import com.codeborne.selenide.Selectors;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -9,18 +7,16 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.openqa.selenium.By;
+
 import static Page.Emails.*;
 import static Page.TestsUrl.*;
 import static Page.PekamaSignUp.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
-import static Page.TestsUrlConfiguration.*;
 import static Steps.ExternalSteps.checkInboxEmail;
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.*;
 
 public class PekamaSignUp {
@@ -37,13 +33,13 @@ public class PekamaSignUp {
 
     @Before
     public void selectAgreeCheckbox() {
-        rootLogger.info("Open URL - "+urlSingUp);
+        rootLogger.info("Open URL - "+URL_SingUp);
         HttpAuth openHost = new HttpAuth();
-        String AUTH_URL = urlSingUp;
-        openHost.httpAuthWhithCustomLink(AUTH_URL);
+        String AUTH_URL = URL_SingUp;
+        openHost.httpAuthUrl(AUTH_URL);
         $(signupNext).shouldBe(visible).shouldNotBe(disabled);
         $(signupAgree).shouldBe(selected);
-        rootLogger.info("Opened - " +urlSingUp);
+        rootLogger.info("Opened - " +URL_SingUp);
     }
 
     @Test

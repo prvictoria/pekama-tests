@@ -6,13 +6,13 @@ import org.apache.logging.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 
 import static Page.TestsUrl.*;
 import static Page.PekamaLogin.*;
 import static Page.TestsUrlConfiguration.TEST_ENVIROMENT_COMMUNITY;
 import static Page.TestsUrlConfiguration.TEST_ENVIROMENT_PEKAMA;
 import static Page.TestsCredentials.*;
+import static Utils.HttpAuth.httpAuthUrl;
 import static com.codeborne.selenide.Condition.empty;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
@@ -29,13 +29,11 @@ public class PekamaLogin {
     static final Logger rootLogger = LogManager.getRootLogger();
     @Before
     public void openUrlLogin() {
-        HttpAuth openHost = new HttpAuth();
-        String AUTH_URL = urlLogIn;
-        openHost.httpAuthWhithCustomLink(AUTH_URL);
+        httpAuthUrl(URL_LogIn);
     }
     @After
     public void openUrlLogout() {
-        open(urlLogout);
+        open(URL_LogIn);
     }
 
     @Test
@@ -114,7 +112,7 @@ public class PekamaLogin {
         rootLogger.info("Valid Credentials were submitted");
         sleep(1000);
         String testDashboardUrl = url();
-        assertEquals(urlDashboard, testDashboardUrl);
+        assertEquals(URL_Dashboard, testDashboardUrl);
         rootLogger.info(url()+"Dashboard is opened");
 
     }

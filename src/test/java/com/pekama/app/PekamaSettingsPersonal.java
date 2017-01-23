@@ -24,7 +24,7 @@ public class PekamaSettingsPersonal {
     static final Logger rootLogger = LogManager.getRootLogger();
     private String PEKAMA_USER_EMAIL = User3.GMAIL_EMAIL.getValue();
     private String PEKAMA_USER_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
-    private String AUTH_URL = urlPersonalSettings;
+    private String AUTH_URL = URL_PersonalSettings;
 
     //    @Before
 //    public void setUp() throws Exception {
@@ -42,7 +42,7 @@ public class PekamaSettingsPersonal {
     }
     @After
     public void after() {
-        open(urlLogout);
+        open(URL_Logout);
     }
 
     @Test

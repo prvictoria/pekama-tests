@@ -9,14 +9,17 @@ import static Page.ModalWindows.*;
 import static Page.PekamaLogin.*;
 import static Page.PekamaReports.*;
 import static Page.TestsCredentials.GENERIC_PEKAMA_PASSWORD;
+import static Utils.HttpAuth.httpAuthUrl;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 
 public class PekamaSteps {
     static final Logger rootLogger = LogManager.getRootLogger();
+
+
     public void  loginIntoPekamaByUrl(String PEKAMA_USER_EMAIL, String urlLogIn){
-        open(urlLogIn); //HOST define PEKAMA or COMMUNITY redirect after login
+        httpAuthUrl(urlLogIn);
         rootLogger.info(urlLogIn+ "opened");
         $(loginField_Email).sendKeys(PEKAMA_USER_EMAIL);
         rootLogger.info(PEKAMA_USER_EMAIL+ " - login selected");
@@ -27,7 +30,7 @@ public class PekamaSteps {
         rootLogger.info("Valid Credentials were submitted");
     }
     public void  loginIntoPekamaByUrl(String PEKAMA_USER_EMAIL, String USER_PEKAMA_PASSWORD, String urlLogIn){
-        open(urlLogIn); //HOST define PEKAMA or COMMUNITY redirect after login
+        httpAuthUrl(urlLogIn);
         rootLogger.info(urlLogIn+ "opened");
         $(loginField_Email).sendKeys(PEKAMA_USER_EMAIL);
         rootLogger.info(PEKAMA_USER_EMAIL+ " - login selected");
@@ -39,8 +42,7 @@ public class PekamaSteps {
     }
 
     public void  loginByURL(String PEKAMA_USER_EMAIL, String PEKAMA_USER_PASSWORD, String AUTH_URL){
-        HttpAuth openHost = new HttpAuth();
-        openHost.httpAuthWhithCustomLink(AUTH_URL);
+        httpAuthUrl(AUTH_URL);
         rootLogger.info(AUTH_URL+"URL opened");
         submitCookie();
         loginField_Email.sendKeys(PEKAMA_USER_EMAIL);
@@ -55,19 +57,6 @@ public class PekamaSteps {
 
     public void  submitLoginCredentials(String PEKAMA_USER_EMAIL){
         submitCookie();
-//        String index = $(byXpath("//body/div[2]/iframe")).getAttribute("z-index");
-//        rootLogger.info("z-index "+index);
-//        Wait().until(frameToBeAvailableAndSwitchToIt(byXpath("//body/div[2]/iframe")));
-//        switchTo().frame($(byXpath("//body/div[2]/iframe"))); // z-index: 16000003
-//        $(byXpath("//div[@title='Minimize']"));
-//        if($(byXpath("//div[@title='Minimize']"))!= null) {
-//            $(byXpath("//div[@title='Minimize']")).hover().click();
-//            rootLogger.info("null");
-//        }
-//        if($(byXpath("//div[@title='Minimize']")).hover().isDisplayed()) {
-//            $(byXpath("//div[@title='Minimize']")).hover().click();
-//            rootLogger.info("displayed");
-//        }
         loginField_Email.sendKeys(PEKAMA_USER_EMAIL);
         rootLogger.info(PEKAMA_USER_EMAIL+ " - login selected");
         loginField_Password.sendKeys(GENERIC_PEKAMA_PASSWORD);
@@ -79,19 +68,6 @@ public class PekamaSteps {
     }
     public void  submitLoginCredentials(String PEKAMA_USER_EMAIL, String USER_PEKAMA_PASSWORD){
         submitCookie();
-//        String index = $(byXpath("//body/div[2]/iframe")).getAttribute("z-index");
-//        rootLogger.info("z-index "+index);
-//        Wait().until(frameToBeAvailableAndSwitchToIt(byXpath("//body/div[2]/iframe")));
-//        switchTo().frame($(byXpath("//body/div[2]/iframe"))); // z-index: 16000003
-//        $(byXpath("//div[@title='Minimize']"));
-//        if($(byXpath("//div[@title='Minimize']"))!= null) {
-//            $(byXpath("//div[@title='Minimize']")).hover().click();
-//            rootLogger.info("null");
-//        }
-//        if($(byXpath("//div[@title='Minimize']")).hover().isDisplayed()) {
-//            $(byXpath("//div[@title='Minimize']")).hover().click();
-//            rootLogger.info("displayed");
-//        }
         loginField_Email.sendKeys(PEKAMA_USER_EMAIL);
         rootLogger.info(PEKAMA_USER_EMAIL+ " - login selected");
         $(loginField_Password).sendKeys(USER_PEKAMA_PASSWORD);

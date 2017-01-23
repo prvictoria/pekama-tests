@@ -55,13 +55,13 @@ public class CommunitySteps {
     }
     public static String findServiceRow(String PROFILE_SERVICE_CASE_TYPE, String PROFILE_SERVICE_COUNTRY) {
         String profileServiceRow = "//div[contains(.,'"+PROFILE_SERVICE_CASE_TYPE+"')]/following-sibling::div[contains(.,'"+PROFILE_SERVICE_COUNTRY+"')]/following-sibling::div//button[1]";
-
         return profileServiceRow;
     }
 
-    public static void findServiceRow(String profileServiceCaseType, String profileServiceCountry, boolean rowPresentOnPage) {
-        //String profileServiceRow = "//div[contains(.,'"+profileServiceCaseType+"')]/following-sibling::div[contains(.,'"+profileServiceCountry+"')]";
-        String profileServiceRow = "//div[@class='row' and contains(.,'"+ profileServiceCaseType +"') and contains(.,'"+ profileServiceCountry +"')]";
+    public static String TEST_CASE_USER_CREATED_SUCCESS = "//div[@class='row' and contains(.,'%s') and contains(.,'%s')]";
+
+    public static void findServiceRow(boolean rowPresentOnPage, String... args) {
+        String profileServiceRow = String.format(TEST_CASE_USER_CREATED_SUCCESS, args);
         if ($(byXpath(profileServiceRow)).exists()!=rowPresentOnPage)
         {
             Assert.fail("Service present element state is - "+$(byXpath(profileServiceRow)).exists());

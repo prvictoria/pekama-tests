@@ -1,18 +1,12 @@
 package com.pekama.app;
 import Page.TestsCredentials.*;
 import Steps.*;
-import Utils.*;
-import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.*;
 import org.junit.*;
-import org.openqa.selenium.By;
 
-import static Page.Emails.*;
-import static Page.PekamaReports.*;
-import static Page.TestsCredentials.*;
 import static Page.TestsUrl.*;
 import static Steps.PekamaSteps.*;
-import static com.codeborne.selenide.Selectors.*;
+import static Utils.HttpAuth.httpAuthUrl;
 import static com.codeborne.selenide.Selenide.*;
 
 public class PekamaReports {
@@ -22,13 +16,13 @@ public class PekamaReports {
 
     @Test
     public void selectAgreeCheckbox() {
-        rootLogger.info("Open URL - " +urlDashboard);
-        HttpAuth openHost = new HttpAuth();
-        String AUTH_URL = urlDashboard;
-        openHost.httpAuthWhithCustomLink(AUTH_URL);
+        rootLogger.info("Open URL - " +URL_Dashboard);
+//        HttpAuth openHost = new HttpAuth();
+        String AUTH_URL = URL_Dashboard;
+        httpAuthUrl(AUTH_URL);
         PekamaSteps login = new PekamaSteps();
         login.submitLoginCredentials(PEKAMA_USER_EMAIL);
-        rootLogger.info("Redirect after login to - "+urlDashboard);
+        rootLogger.info("Redirect after login to - "+URL_Dashboard);
         sleep(100);
 
     }
@@ -36,8 +30,8 @@ public class PekamaReports {
     @Test
     public void sendProjectReport() {
 
-        rootLogger.info("Open Project reports, opened URL - "+urlReportsProjects);
-        open(urlReportsProjects);
+        rootLogger.info("Open Project reports, opened URL - "+URL_ReportsProjects);
+        open(URL_ReportsProjects);
         sleep(3000);
         waitForSpinnerNotPresent();
         rootLogger.info("Open Dropdown and create new mailing list");
@@ -57,20 +51,20 @@ public class PekamaReports {
     @Ignore
     @Test
     public void sendTasksReport() {
-        open(urlReportsTasks);
+        open(URL_ReportsTasks);
         rootLogger.info("Open Tasks reports");
     }
     @Ignore
     @Test
     public void sendEventsReport() {
-        open(urlReportsEvents);
+        open(URL_ReportsEvents);
         rootLogger.info("Open Project reports");
 
     }
     @Ignore
     @Test
     public void sendChargesReport() {
-        open(urlReportsCharges);
+        open(URL_ReportsCharges);
         rootLogger.info("Open Project reports");
 
     }
@@ -78,6 +72,6 @@ public class PekamaReports {
     @Test
     public void sendContactsReport() {
         rootLogger.info("Open Contacts reports");
-        open(urlReportsContacts);
+        open(URL_ReportsContacts);
     }
 }

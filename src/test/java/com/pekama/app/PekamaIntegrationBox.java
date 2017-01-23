@@ -16,7 +16,7 @@ import org.junit.runners.MethodSorters;
 import org.openqa.selenium.By;
 
 import static Page.TestsStrings.*;
-import static Page.TestsUrl.urlDashboard;
+import static Page.TestsUrl.URL_Dashboard;
 import static com.codeborne.selenide.Selectors.byName;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.byXpath;
@@ -29,7 +29,7 @@ public class PekamaIntegrationBox {
     static final Logger rootLogger = LogManager.getRootLogger();
     private String PEKAMA_USER_EMAIL = User1.GMAIL_EMAIL.getValue();
     private String PEKAMA_USER_PASSWORD = User1.PEKAMA_PASSWORD.getValue();
-    private String AUTH_URL = urlDashboard;
+    private String AUTH_URL = URL_Dashboard;
     private String pekamaProjectUrl;
     static final String FolderNameBeforeConnect = "Folder created before connect";
     static final String FolderNameAfterConnect = "Folder created after connect";

@@ -31,11 +31,11 @@ public class CommunityDashboard {
     public void before() {
 //        Configuration test = new Configuration();
 //        test.holdBrowserOpen = true;
-        open(COMMUNITY_DASHBOARD);
+        open(URL_COMMUNITY_DASHBOARD);
     }
     @After
     public void after() {
-        open(COMMUNITY_LOGOUT);
+        open(URL_COMMUNITY_LOGOUT);
     }
 
     @Test
@@ -65,7 +65,7 @@ public class CommunityDashboard {
         sleep(1500);
         String urlAfterLogin = url();
         rootLogger.info(urlAfterLogin);
-        assertEquals(COMMUNITY_WIZARD, urlAfterLogin);
+        assertEquals(URL_COMMUNITY_WIZARD, urlAfterLogin);
         rootLogger.info("User redirected back to Wizard");
         COMMUNITY_HEADER_UserDropdown.click();
         COMMUNITY_HEADER_LogOut.shouldBe(Condition.visible).click();
@@ -132,7 +132,7 @@ public class CommunityDashboard {
         sleep(1500);
         String urlAfterLogin = url();
         rootLogger.info(urlAfterLogin);
-        assertEquals(COMMUNITY_OUTGOING, urlAfterLogin);
+        assertEquals(URL_COMMUNITY_OUTGOING, urlAfterLogin);
         rootLogger.info("User redirected back to Incoming");
         COMMUNITY_HEADER_UserDropdown.click();
         COMMUNITY_HEADER_LogOut.shouldBe(Condition.visible).click();
@@ -161,7 +161,7 @@ public class CommunityDashboard {
         sleep(1500);
         String urlAfterLogin = url();
         rootLogger.info(urlAfterLogin);
-        assertEquals(COMMUNITY_INCOMING, urlAfterLogin);
+        assertEquals(URL_COMMUNITY_INCOMING, urlAfterLogin);
         rootLogger.info("User redirected back to Incoming");
         COMMUNITY_HEADER_UserDropdown.click();
         COMMUNITY_HEADER_LogOut.shouldBe(Condition.visible).click();
@@ -192,7 +192,7 @@ public class CommunityDashboard {
         sleep(1500);
         String urlAfterLogin = url();
         rootLogger.info(urlAfterLogin);
-        assertEquals(COMMUNITY_PROFILE_TEAM, urlAfterLogin);
+        assertEquals(URL_COMMUNITY_PROFILE_TEAM, urlAfterLogin);
         rootLogger.info("User redirected back to Incoming");
         COMMUNITY_HEADER_UserDropdown.click();
         COMMUNITY_HEADER_LogOut.shouldBe(Condition.visible).click();

@@ -1,8 +1,8 @@
 package com.pekama.app;
+import Utils.HttpAuth;
 import com.codeborne.selenide.Condition;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 
 import static Page.PekamaLanding.*;
 import static Page.PekamaLogin.*;
@@ -15,7 +15,9 @@ import static com.codeborne.selenide.Selenide.*;
 public class PekamaLanding {
     @Before
     public void openUrlLogin() {
-        open(PEKAMA);
+        HttpAuth openHost = new HttpAuth();
+        String AUTH_URL = PEKAMA;
+        openHost.httpAuthUrl(AUTH_URL);
     }
     @Test //GUI
     public void openLandingGui() {
