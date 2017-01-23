@@ -91,7 +91,7 @@ public class StepsCommunity implements StepsFactory{
         MW_COMMUNITY_CONFIRM_TITLE.shouldBe(visible);
         MW_COMMUNITY_CONFIRM_TEXT.shouldBe(visible);
         MW_COMMUNITY_CONFIRM_DISMISS.click();
-        MW_COMMUNITY_CONFIRM_TITLE.shouldNotBe(visible)
+        MW_COMMUNITY_CONFIRM_TITLE.shouldNotBe(visible);
     }
     public static void acceptModalConfirAction(SelenideElement title, SelenideElement text, SelenideElement btnAccept) {
         MW_COMMUNITY_CONFIRM_TITLE.shouldBe(visible);
