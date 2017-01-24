@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import org.junit.*;
 
 import static Page.CommunityWizard.*;
+import static Page.Emails.*;
 import static Page.ModalWindows.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
@@ -77,19 +78,21 @@ public class ComunityWizard {
 
         sleep(500);
         waitForModalWindow(TITLE_MW_INVITE_AN_ATTORNEY);
-        MW_COMMUNITY_INVITE_ATTORNEY_BTN_INVITE.click();
         MW_COMMUNITY_INVITE_FIELD_EMAIL.shouldHave(Condition.value(User5.GMAIL_EMAIL.getValue()));
         fillField(MW_COMMUNITY_INVITE_FIELD_MESSAGE, "Hello world");
         submitEnabledButton(MW_COMMUNITY_INVITE_ATTORNEY_BTN_INVITE);
         MW_COMMUNITY_INVITE_ATTORNEY_BTN_INVITE.shouldNotBe(visible);
 
         rootLogger.info("Check invitation email");
-        SelenideElement EMAIL_SUBJECT = null;
-        String EMAIL_TITLE = null;
-        String EMAIL_TEXT = null;
-        String EMAIL_BTN = null;
-        SelenideElement EMAIL_REDIRECT_LINK = null;
+        SelenideElement EMAIL_SUBJECT = EMAIL_INVITE_IN_COMMUNITY_SUBJECT;
+        String EMAIL_TITLE = EMAIL_INVITE_IN_COMMUNITY_TITLE;
+        String EMAIL_TEXT = "Hello world";
+        String EMAIL_BTN = EMAIL_INVITE_IN_COMMUNITY_BTN;
+        SelenideElement EMAIL_REDIRECT_LINK = EMAIL_INVITE_IN_COMMUNITY_BACKLINK;
         checkInboxEmail(User5.GMAIL_EMAIL.getValue(), GMAIL_PASSWORD, EMAIL_SUBJECT, EMAIL_TITLE, EMAIL_TEXT, EMAIL_BTN, EMAIL_REDIRECT_LINK);
+        rootLogger.info("Email redirect link is - "+REDIRECT_LINK);
+
+
     }
 
 }

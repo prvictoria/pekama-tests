@@ -1,26 +1,35 @@
 package Page;
-
 import com.codeborne.selenide.SelenideElement;
-
 import static Page.PekamaReports.*;
-import static Page.TestsUrlConfiguration.SELECT_HOST;
+import static Page.TestsUrlConfiguration.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 
 public class Emails extends Page {
+    //reset password
     public static final SelenideElement EMAIL_RESET_PASSWORD = $(byXpath(""));
     public static final String EMAIL_RESET_PASSWORD_TITLE = "Password Restoration";
     public static final String EMAIL_RESET_PASSWORD_TEXT = "You've received this e-mail because you requested to reset the password for your user account. Press the button bellow to complete restoration.";
     public static final String EMAIL_RESET_PASSWORD_BTN = "Reset Password";
     public static final SelenideElement EMAIL_RESET_PASSWORD_SUBJECT = $(byXpath("//span[contains(.,'Password Restoration [Pekama]')]"));
     public static final SelenideElement EMAIL_RESET_PASSWORD_BACKLINK = $(byXpath("//td/a[contains(@href, '"+SELECT_HOST+"/accounts/password/reset/')]"));
-
+    //confirm registration
     public static final SelenideElement EMAIL_CONFIRM_REGISTRATION = $(byXpath(""));
     public static final SelenideElement EMAIL_CONFIRM_REGISTRATION_SUBJECT = $(byXpath("//span[contains(.,'Confirm Registration [Pekama]')]"));
     public static final String EMAIL_CONFIRM_REGISTRATION_TITLE = "Registration Complete";
     public static final String EMAIL_CONFIRM_REGISTRATION_TEXT = "To finish registration, please confirm your account.";
     public static final String EMAIL_CONFIRM_REGISTRATION_BTN = "Confirm Account";
     public static final SelenideElement EMAIL_CONFIRM_REGISTRATION_BACKLINK = $(byXpath("//td/a[contains(@href, '"+SELECT_HOST+"/accounts/confirm/')]"));
+    //Invite in Community
+    public static final SelenideElement EMAIL_INVITE_IN_COMMUNITY = $(byXpath(""));
+    public static final SelenideElement EMAIL_INVITE_IN_COMMUNITY_SUBJECT = $(byXpath("//span[contains(.,'invited you to join Pekama Community')]"));
+    public static final String EMAIL_INVITE_IN_COMMUNITY_TITLE = "You're invited to Pekama Community";
+    public static final String EMAIL_INVITE_IN_COMMUNITY_TEXT = "Entered by user text";
+    public static final String EMAIL_INVITE_IN_COMMUNITY_BTN = "Join Pekama Community";
+    public static final SelenideElement EMAIL_INVITE_IN_COMMUNITY_BACKLINK = $(byXpath("//td/a[contains(@href, '"+COMMUNITY+"/community/activate/')]"));
+
+    public static final SelenideElement EMAIL_SUBJECT_INVITE_IN_COMMUNITY = $(byText(""));
+    public static final SelenideElement EMAIL_SUBJECT_INVITE_LINK = $(byText(""));
 
     public static final String EMAIL_REPORT = "Pekama Report";
     public static final SelenideElement EMAIL_REPORT_SUBJECT = $(byXpath("//span[contains(.,'Pekama Report')]"));
@@ -79,7 +88,7 @@ public class Emails extends Page {
     public static final SelenideElement EMAIL_SUBJECT_11 = $(byText("Ready to confirm instructions in Pekama?"));
     public static final SelenideElement EMAIL_SUBJECT_12 = $(byText("Ready to confirm completion in Pekama?"));
 
-    public static final SelenideElement EMAIL_SUBJECT_INVITE_IN_COMMUNITY = $(byText(""));
+
 
 
     public static final SelenideElement EMAIL_SUBJECT_EXPIRED_BOX_TOKEN = $(byText("Your Box.com token has expired"));
