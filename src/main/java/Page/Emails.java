@@ -78,6 +78,8 @@ public class Emails extends Page {
     public static final SelenideElement EMAIL_SUBJECT_Report_10 = $(byText(""));
     public static final SelenideElement EMAIL_SUBJECT_11 = $(byText("Ready to confirm instructions in Pekama?"));
     public static final SelenideElement EMAIL_SUBJECT_12 = $(byText("Ready to confirm completion in Pekama?"));
-    public static final SelenideElement EMAIL_SUBJECT_13 = $(byText(""));
+    public static final SelenideElement EMAIL_SUBJECT_INVITE_IN_COMMUNITY = $(byText(""));
+
+
     public static final SelenideElement EMAIL_SUBJECT_EXPIRED_BOX_TOKEN = $(byText("Your Box.com token has expired"));
 }
