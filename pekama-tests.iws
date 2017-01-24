@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2fcdccdc-4d95-4ab7-8153-9ec9d616e50f" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaProject.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pekama-tests.iws" afterPath="$PROJECT_DIR$/pekama-tests.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/Emails.java" afterPath="$PROJECT_DIR$/src/main/java/Page/Emails.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/ModalWindows.java" afterPath="$PROJECT_DIR$/src/main/java/Page/ModalWindows.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/ComunityWizard.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/ComunityWizard.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="build/reports/" />
@@ -201,47 +199,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="CommunityDashboard.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/CommunityDashboard.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="85" column="8" lean-forward="false" selection-start-line="85" selection-start-column="8" selection-end-line="85" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StepsCommunity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Steps/StepsCommunity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="99" column="121" lean-forward="false" selection-start-line="99" selection-start-column="112" selection-end-line="99" selection-end-column="121" />
-              <folding>
-                <element signature="docComment;class#StepsCommunity#0" expanded="false" />
-                <element signature="method#searchExpertsQuery#0;class#StepsCommunity#0" expanded="false" />
-                <element signature="method#searchExpertsSubmit#0;class#StepsCommunity#0" expanded="false" />
-                <element signature="method#searchServicesQuery#0;class#StepsCommunity#0" expanded="false" />
-                <element signature="method#findServiceRow#0;class#StepsCommunity#0" expanded="false" />
-                <element signature="method#findServiceRow#1;class#StepsCommunity#0" expanded="false" />
-                <element signature="method#clickServiceRowEdit#0;class#StepsCommunity#0" expanded="false" />
-                <element signature="method#clickServiceRowDelete#0;class#StepsCommunity#0" expanded="false" />
-                <element signature="method#changeServiceRate#0;class#StepsCommunity#0" expanded="false" />
-                <element signature="method#selectExtpert#0;class#StepsCommunity#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TestsStrings.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Page/TestsStrings.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="444">
-              <caret line="128" column="50" lean-forward="false" selection-start-line="128" selection-start-column="50" selection-end-line="128" selection-end-column="50" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="TestsCredentials.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Page/TestsCredentials.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -252,11 +209,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ComunityWizard.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ComunityWizard.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/ComunityWizard.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="272">
-              <caret line="85" column="50" lean-forward="true" selection-start-line="85" selection-start-column="50" selection-end-line="85" selection-end-column="50" />
+              <caret line="40" column="9" lean-forward="true" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -264,24 +221,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Configuration.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/com/codeborne/selenide/3.11/selenide-3.11.jar!/com/codeborne/selenide/Configuration.class">
+      <file leaf-file-name="PekamaProject.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaProject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+            <state relative-caret-position="240">
+              <caret line="54" column="5" lean-forward="true" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="trademark_tests.java" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/Documents/trademark_tests.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="31" column="9" lean-forward="true" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestsUrl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Page/TestsUrl.java">
+      <file leaf-file-name="PekamaLanding.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaLanding.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="29" column="31" lean-forward="false" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="31" />
-              <folding>
-                <element signature="docComment;class#TestsUrl#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="425">
+              <caret line="43" column="5" lean-forward="true" selection-start-line="38" selection-start-column="2" selection-end-line="43" selection-end-column="5" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -289,7 +256,7 @@
       <file leaf-file-name="Emails.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Page/Emails.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
+            <state relative-caret-position="155">
               <caret line="70" column="70" lean-forward="false" selection-start-line="70" selection-start-column="70" selection-end-line="70" selection-end-column="70" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -298,23 +265,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StepsExternal.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Steps/StepsExternal.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="369">
-              <caret line="179" column="78" lean-forward="false" selection-start-line="179" selection-start-column="78" selection-end-line="179" selection-end-column="78" />
-              <folding>
-                <element signature="method#checkEmailGeneric#0;class#StepsExternal#0" expanded="false" />
-                <element signature="method#checkInboxEmailReport#0;class#StepsExternal#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ModalWindows.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Page/ModalWindows.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
+            <state relative-caret-position="393">
               <caret line="290" column="90" lean-forward="false" selection-start-line="290" selection-start-column="90" selection-end-line="290" selection-end-column="90" />
               <folding />
             </state>
@@ -415,7 +369,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/Steps/LoginPgeTestRobot.java" />
         <option value="$PROJECT_DIR$/src/main/java/Steps/LoginPageTestRobot.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/draft/LoginPageTestRobotImpl.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/draft/LoginPageTestRobot.java" />
@@ -466,6 +419,7 @@
         <option value="$PROJECT_DIR$/src/main/java/Page/Emails.java" />
         <option value="$PROJECT_DIR$/src/main/java/Page/ModalWindows.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/ComunityWizard.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaProject.java" />
       </list>
     </option>
   </component>
@@ -593,6 +547,48 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pekama-tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pekama-tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="draft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -694,6 +690,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pekama-tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pekama-tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -727,9 +737,8 @@
     <property name="SearchEverywhereHistoryKey" value="Run Cofiguration&#9;null&#9;null" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\PRJ\pekama-tests\src\main\java\Page" />
-      <recent name="D:\PRJ\pekama-tests\src\main" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.pekama.app" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.pekama.app" />
@@ -743,8 +752,9 @@
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="Utils" />
     </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.pekama.app" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\PRJ\pekama-tests\src\main\java\Page" />
+      <recent name="D:\PRJ\pekama-tests\src\main" />
     </key>
   </component>
   <component name="RunManager" selected="JUnit.ComunityWizard">
@@ -1143,13 +1153,6 @@
       <workItem from="1484764340730" duration="8318000" />
       <workItem from="1484929187337" duration="40253000" />
     </task>
-    <task id="LOCAL-00077" summary="Mailing lists test UI and logic">
-      <created>1484142067310</created>
-      <option name="number" value="00077" />
-      <option name="presentableId" value="LOCAL-00077" />
-      <option name="project" value="LOCAL" />
-      <updated>1484142067311</updated>
-    </task>
     <task id="LOCAL-00078" summary="Test check UI Join to Team page">
       <created>1484163109040</created>
       <option name="number" value="00078" />
@@ -1486,7 +1489,14 @@
       <option name="project" value="LOCAL" />
       <updated>1485260671750</updated>
     </task>
-    <option name="localTasksCounter" value="126" />
+    <task id="LOCAL-00126" summary="Wizard invite test">
+      <created>1485280373363</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
+      <option name="project" value="LOCAL" />
+      <updated>1485280373363</updated>
+    </task>
+    <option name="localTasksCounter" value="127" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1547,7 +1557,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32690248" sideWeight="0.5044843" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32606438" sideWeight="0.49778023" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13824885" sideWeight="0.5420561" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13824885" sideWeight="0.5420561" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32606438" sideWeight="0.4955157" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1593,7 +1603,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.3561786" sideWeight="0.4955157" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.3563748" sideWeight="0.4955157" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290461" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3840246" sideWeight="0.5044843" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -1601,13 +1611,13 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32606438" sideWeight="0.49778023" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.26728112" sideWeight="0.5420561" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13824885" sideWeight="0.5420561" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32577434" sideWeight="0.45794392" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32606438" sideWeight="0.4955157" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29585326" sideWeight="0.48805815" order="0" side_tool="false" content_ui="tabs" x="710" y="525" width="432" height="494" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33280382" sideWeight="0.48805815" order="0" side_tool="false" content_ui="tabs" x="710" y="525" width="432" height="494" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Aspects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33640552" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33486944" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="EJB" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28318584" sideWeight="0.51194185" order="7" side_tool="true" content_ui="tabs" />
@@ -1726,34 +1736,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/draft/LoginPageTestRobot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/AllPekamaTestsRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaLanding.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-355">
-          <caret line="19" column="39" lean-forward="false" selection-start-line="17" selection-start-column="7" selection-end-line="19" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/AllCommunityTestsRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaLogin.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="470">
@@ -1765,13 +1747,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1134">
           <caret line="41" column="47" lean-forward="false" selection-start-line="41" selection-start-column="47" selection-end-line="41" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaIntegrationBox.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="26" column="45" lean-forward="true" selection-start-line="26" selection-start-column="45" selection-end-line="26" selection-end-column="45" />
         </state>
       </provider>
     </entry>
@@ -2019,17 +1994,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Steps/StepsExternal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="179" column="78" lean-forward="false" selection-start-line="179" selection-start-column="78" selection-end-line="179" selection-end-column="78" />
-          <folding>
-            <element signature="method#checkEmailGeneric#0;class#StepsExternal#0" expanded="false" />
-            <element signature="method#checkInboxEmailReport#0;class#StepsExternal#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Steps/StepsCommunity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="236">
@@ -2049,28 +2013,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Page/Emails.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="70" column="70" lean-forward="false" selection-start-line="70" selection-start-column="70" selection-end-line="70" selection-end-column="70" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Page/TestsStrings.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="444">
           <caret line="128" column="50" lean-forward="false" selection-start-line="128" selection-start-column="50" selection-end-line="128" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Page/ModalWindows.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="290" column="90" lean-forward="false" selection-start-line="290" selection-start-column="90" selection-end-line="290" selection-end-column="90" />
           <folding />
         </state>
       </provider>
@@ -2083,13 +2029,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Page/TestsUrl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Steps/StepsExternal.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="29" column="31" lean-forward="false" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="31" />
+        <state relative-caret-position="255">
+          <caret line="92" column="23" lean-forward="false" selection-start-line="92" selection-start-column="23" selection-end-line="92" selection-end-column="23" />
           <folding>
-            <element signature="docComment;class#TestsUrl#0" expanded="false" />
+            <element signature="method#checkEmailGeneric#0;class#StepsExternal#0" expanded="false" />
+            <element signature="method#checkInboxEmail#0;class#StepsExternal#0" expanded="false" />
+            <element signature="method#checkInboxEmailReport#0;class#StepsExternal#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/AllCommunityTestsRunner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaIntegrationBox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="26" column="45" lean-forward="true" selection-start-line="26" selection-start-column="45" selection-end-line="26" selection-end-column="45" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2101,10 +2065,64 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Page/TestsUrl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-185">
+          <caret line="7" column="40" lean-forward="false" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="40" />
+          <folding>
+            <element signature="docComment;class#TestsUrl#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Page/ModalWindows.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="290" column="90" lean-forward="false" selection-start-line="290" selection-start-column="90" selection-end-line="290" selection-end-column="90" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Page/Emails.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="70" column="70" lean-forward="false" selection-start-line="70" selection-start-column="70" selection-end-line="70" selection-end-column="70" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaLanding.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="43" column="5" lean-forward="true" selection-start-line="38" selection-start-column="2" selection-end-line="43" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/ComunityWizard.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
-          <caret line="85" column="50" lean-forward="true" selection-start-line="85" selection-start-column="50" selection-end-line="85" selection-end-column="50" />
+          <caret line="40" column="9" lean-forward="true" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Documents/trademark_tests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="31" column="9" lean-forward="true" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaProject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="54" column="5" lean-forward="true" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
