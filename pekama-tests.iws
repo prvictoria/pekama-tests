@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="2fcdccdc-4d95-4ab7-8153-9ec9d616e50f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pekama-tests.iws" afterPath="$PROJECT_DIR$/pekama-tests.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/Emails.java" afterPath="$PROJECT_DIR$/src/main/java/Page/Emails.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/ModalWindows.java" afterPath="$PROJECT_DIR$/src/main/java/Page/ModalWindows.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Steps/StepsCommunity.java" afterPath="$PROJECT_DIR$/src/main/java/Steps/StepsCommunity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/ComunityWizard.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/ComunityWizard.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -204,18 +204,18 @@
       <file leaf-file-name="CommunityDashboard.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/CommunityDashboard.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
+            <state relative-caret-position="1037">
               <caret line="85" column="8" lean-forward="false" selection-start-line="85" selection-start-column="8" selection-end-line="85" selection-end-column="8" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StepsCommunity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="StepsCommunity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Steps/StepsCommunity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="93" column="56" lean-forward="false" selection-start-line="93" selection-start-column="56" selection-end-line="93" selection-end-column="56" />
+            <state relative-caret-position="21">
+              <caret line="89" column="4" lean-forward="false" selection-start-line="89" selection-start-column="4" selection-end-line="89" selection-end-column="4" />
               <folding>
                 <element signature="docComment;class#StepsCommunity#0" expanded="false" />
                 <element signature="method#searchExpertsQuery#0;class#StepsCommunity#0" expanded="false" />
@@ -226,6 +226,7 @@
                 <element signature="method#clickServiceRowEdit#0;class#StepsCommunity#0" expanded="false" />
                 <element signature="method#clickServiceRowDelete#0;class#StepsCommunity#0" expanded="false" />
                 <element signature="method#changeServiceRate#0;class#StepsCommunity#0" expanded="false" />
+                <element signature="method#selectExtpert#0;class#StepsCommunity#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -234,7 +235,7 @@
       <file leaf-file-name="TestsStrings.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Page/TestsStrings.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
+            <state relative-caret-position="2176">
               <caret line="128" column="25" lean-forward="false" selection-start-line="128" selection-start-column="25" selection-end-line="128" selection-end-column="25" />
               <folding />
             </state>
@@ -251,14 +252,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ComunityWizard.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ComunityWizard.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/ComunityWizard.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="74" column="125" lean-forward="false" selection-start-line="74" selection-start-column="125" selection-end-line="74" selection-end-column="125" />
+            <state relative-caret-position="142">
+              <caret line="59" column="54" lean-forward="true" selection-start-line="59" selection-start-column="54" selection-end-line="59" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1059#1071#0" expanded="false" />
+                <element signature="e#1022#1034#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -267,7 +268,7 @@
       <file leaf-file-name="Emails.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Page/Emails.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
+            <state relative-caret-position="138">
               <caret line="80" column="73" lean-forward="false" selection-start-line="80" selection-start-column="40" selection-end-line="80" selection-end-column="73" />
               <folding />
             </state>
@@ -277,7 +278,7 @@
       <file leaf-file-name="StepsExternal.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Steps/StepsExternal.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
+            <state relative-caret-position="17">
               <caret line="49" column="25" lean-forward="false" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="25" />
               <folding>
                 <element signature="method#checkEmailGeneric#0;class#StepsExternal#0" expanded="false" />
@@ -290,8 +291,8 @@
       <file leaf-file-name="ModalWindows.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Page/ModalWindows.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="379">
-              <caret line="283" column="0" lean-forward="true" selection-start-line="283" selection-start-column="0" selection-end-line="283" selection-end-column="0" />
+            <state relative-caret-position="274">
+              <caret line="293" column="67" lean-forward="false" selection-start-line="293" selection-start-column="67" selection-end-line="293" selection-end-column="67" />
               <folding />
             </state>
           </provider>
@@ -438,10 +439,10 @@
         <option value="$PROJECT_DIR$/src/main/java/Steps/HttpAuth.java" />
         <option value="$PROJECT_DIR$/src/main/java/Page/TestsStrings.java" />
         <option value="$PROJECT_DIR$/src/main/java/Steps/StepsPekama.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Steps/StepsCommunity.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Page/ModalWindows.java" />
         <option value="$PROJECT_DIR$/src/main/java/Page/Emails.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Page/ModalWindows.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/ComunityWizard.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Steps/StepsCommunity.java" />
       </list>
     </option>
   </component>
@@ -1119,13 +1120,6 @@
       <workItem from="1484764340730" duration="8318000" />
       <workItem from="1484929187337" duration="40253000" />
     </task>
-    <task id="LOCAL-00073" summary="Mailing lists test UI and logic">
-      <created>1484129271510</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
-      <option name="project" value="LOCAL" />
-      <updated>1484129271510</updated>
-    </task>
     <task id="LOCAL-00074" summary="Mailing lists test UI and logic">
       <created>1484133040949</created>
       <option name="number" value="00074" />
@@ -1462,17 +1456,24 @@
       <option name="project" value="LOCAL" />
       <updated>1485194910936</updated>
     </task>
-    <option name="localTasksCounter" value="122" />
+    <task id="LOCAL-00122" summary="Wizard invite test">
+      <created>1485253813228</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1485253813229</updated>
+    </task>
+    <option name="localTasksCounter" value="123" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ComunityWizard_boostYourProfileInviteTeam - 2017.01.23 at 20h 46m 40s.xml">
-      <configuration name="ComunityWizard.boostYourProfileInviteTeam" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ComunityWizard_boostYourProfileInviteTeam - 2017.01.24 at 11h 51m 13s.xml">
-      <configuration name="ComunityWizard.boostYourProfileInviteTeam" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="ComunityWizard_boostYourProfileInviteTeam - 2017.01.24 at 12h 29m 18s.xml">
+      <configuration name="ComunityWizard.boostYourProfileInviteTeam" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ComunityWizard_boostYourProfileInviteTeam - 2017.01.24 at 13h 34m 48s.xml">
+      <configuration name="ComunityWizard.boostYourProfileInviteTeam" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ComunityWizard_boostYourProfileInviteTeam - 2017.01.24 at 13h 38m 45s.xml">
       <configuration name="ComunityWizard.boostYourProfileInviteTeam" configurationId="JUnit" />
     </history-entry>
     <history-entry file="ComunityWizard_boostYourProfileToWizardRedirect - 2017.01.23 at 19h 45m 08s.xml">
@@ -1601,7 +1602,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Test check UI Join to Team page" />
     <MESSAGE value="@Fix - Mailing list test" />
     <MESSAGE value="Check attachment presnt Mailing list test" />
     <MESSAGE value="Check attachment present Mailing list test - refactoring" />
@@ -1626,7 +1626,8 @@
     <MESSAGE value="Refresh url config" />
     <MESSAGE value="Refactor naming" />
     <MESSAGE value="Confirm modal method" />
-    <option name="LAST_COMMIT_MESSAGE" value="Confirm modal method" />
+    <MESSAGE value="Wizard invite test" />
+    <option name="LAST_COMMIT_MESSAGE" value="Wizard invite test" />
   </component>
   <component name="VssConfiguration">
     <CheckoutOptions>
@@ -1691,7 +1692,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/ComunityWizard.java</url>
-          <line>59</line>
+          <line>58</line>
           <properties />
           <option name="timeStamp" value="296" />
         </line-breakpoint>
@@ -2016,10 +2017,64 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Page/TestsStrings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2176">
+          <caret line="128" column="25" lean-forward="false" selection-start-line="128" selection-start-column="25" selection-end-line="128" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/CommunityDashboard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1037">
+          <caret line="85" column="8" lean-forward="false" selection-start-line="85" selection-start-column="8" selection-end-line="85" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Steps/StepsExternal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="49" column="25" lean-forward="false" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="25" />
+          <folding>
+            <element signature="method#checkEmailGeneric#0;class#StepsExternal#0" expanded="false" />
+            <element signature="method#checkInboxEmailReport#0;class#StepsExternal#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Page/Emails.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="80" column="73" lean-forward="false" selection-start-line="80" selection-start-column="40" selection-end-line="80" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Page/ModalWindows.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="293" column="67" lean-forward="false" selection-start-line="293" selection-start-column="67" selection-end-line="293" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/ComunityWizard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="59" column="54" lean-forward="true" selection-start-line="59" selection-start-column="54" selection-end-line="59" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1022#1034#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Steps/StepsCommunity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="93" column="56" lean-forward="false" selection-start-line="93" selection-start-column="56" selection-end-line="93" selection-end-column="56" />
+        <state relative-caret-position="21">
+          <caret line="89" column="4" lean-forward="false" selection-start-line="89" selection-start-column="4" selection-end-line="89" selection-end-column="4" />
           <folding>
             <element signature="docComment;class#StepsCommunity#0" expanded="false" />
             <element signature="method#searchExpertsQuery#0;class#StepsCommunity#0" expanded="false" />
@@ -2030,60 +2085,7 @@
             <element signature="method#clickServiceRowEdit#0;class#StepsCommunity#0" expanded="false" />
             <element signature="method#clickServiceRowDelete#0;class#StepsCommunity#0" expanded="false" />
             <element signature="method#changeServiceRate#0;class#StepsCommunity#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Page/TestsStrings.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="128" column="25" lean-forward="false" selection-start-line="128" selection-start-column="25" selection-end-line="128" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Page/ModalWindows.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="283" column="0" lean-forward="true" selection-start-line="283" selection-start-column="0" selection-end-line="283" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Page/Emails.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="80" column="73" lean-forward="false" selection-start-line="80" selection-start-column="40" selection-end-line="80" selection-end-column="73" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/CommunityDashboard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="85" column="8" lean-forward="false" selection-start-line="85" selection-start-column="8" selection-end-line="85" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Steps/StepsExternal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="49" column="25" lean-forward="false" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="25" />
-          <folding>
-            <element signature="method#checkEmailGeneric#0;class#StepsExternal#0" expanded="false" />
-            <element signature="method#checkInboxEmailReport#0;class#StepsExternal#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/ComunityWizard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="74" column="125" lean-forward="false" selection-start-line="74" selection-start-column="125" selection-end-line="74" selection-end-column="125" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1059#1071#0" expanded="false" />
+            <element signature="method#selectExtpert#0;class#StepsCommunity#0" expanded="false" />
           </folding>
         </state>
       </provider>

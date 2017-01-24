@@ -14,7 +14,6 @@ import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.TestsUrl.*;
 import static Steps.StepsCommunity.*;
-import static Steps.StepsExternal.*;
 import static Steps.StepsPekama.*;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -58,21 +57,23 @@ public class ComunityWizard {
 
         waitForModalWindow(TITLE_MW_BOOST_YOUR_PROFILE);
         MW_BOOST_YOUR_PROFILE_BTN_REFER_ATTORNEY.click();
+        rootLogger.info("Check dismiss modal window");
 
         sleep(500);
         waitForModalWindow(TITLE_MW_INVITE_AN_ATTORNEY);
         MW_COMMUNITY_INVITE_ATTORNEY_BTN_INVITE.click();
-        fillField(MW_FIELD_EMAIL, User5.GMAIL_EMAIL.getValue());
+        fillField(MW_COMMUNITY_INVITE_FIELD_EMAIL, User5.GMAIL_EMAIL.getValue());
         submitEnabledButton(MW_COMMUNITY_INVITE_ATTORNEY_BTN_INVITE);
-        MW.shouldNotBe(Condition.visible);
 
-        rootLogger.info("Check invitation email");
-        SelenideElement EMAIL_SUBJECT = null;
-        String EMAIL_TITLE = null;
-        String EMAIL_TEXT = null;
-        String EMAIL_BTN = null;
-        SelenideElement EMAIL_REDIRECT_LINK = null;
-        checkInboxEmail(User5.GMAIL_EMAIL.getValue(), GMAIL_PASSWORD, EMAIL_SUBJECT, EMAIL_TITLE, EMAIL_TEXT, EMAIL_BTN, EMAIL_REDIRECT_LINK);
+
+
+//        rootLogger.info("Check invitation email");
+//        SelenideElement EMAIL_SUBJECT = null;
+//        String EMAIL_TITLE = null;
+//        String EMAIL_TEXT = null;
+//        String EMAIL_BTN = null;
+//        SelenideElement EMAIL_REDIRECT_LINK = null;
+//        checkInboxEmail(User5.GMAIL_EMAIL.getValue(), GMAIL_PASSWORD, EMAIL_SUBJECT, EMAIL_TITLE, EMAIL_TEXT, EMAIL_BTN, EMAIL_REDIRECT_LINK);
     }
 
 }

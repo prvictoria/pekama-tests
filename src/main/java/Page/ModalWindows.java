@@ -34,8 +34,7 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_BTN_CLOSE = $(byXpath(mw+"//*[contains .,'Close' ]"));
 
 
-    public static final SelenideElement MW_FIELD_EMAIL = $(byName(mw+"email"));
-    public static final SelenideElement MW_FIELD_MESSAGE = $(byName(mw+"message"));
+
 
     public static final SelenideElement MW_GENERIC_Title = $(byXpath("//*[@class='modal-title']"));
     public static final SelenideElement MW_GENERIC_DatepickerField = $("css=input.form-control.date-box");
@@ -280,11 +279,18 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_BOOST_YOUR_PROFILE_BTN_REFER_ATTORNEY = $(byXpath(mw+"//button[contains(text(),'Refer an attorney now')]"));
     public static final SelenideElement MW_COMMUNITY_INVITE_ATTORNEY_BTN_INVITE = $(byXpath(mw+"//button[text()='invite']"));
     public static final SelenideElement MW_COMMUNITY_INVITE_ATTORNEY_BTN_CANCEL = $(byXpath(mw+"//button[text()='cancel']"));
+    public static final SelenideElement MW_COMMUNITY_INVITE_FIELD_EMAIL = $(byXpath(mw+"//*[@id='attorneyEmail']"));
+    public static final SelenideElement MW_COMMUNITY_INVITE_FIELD_MESSAGE = $(byXpath(mw+"//*[@id='inviteMessage']"));
 
-
+    //Default standard invitation
     public static final SelenideElement MW_COMMUNITY_CONFIRM_TITLE = $(byText("Are you sure you want to leave the default invitation message unchaged?"));
     public static final SelenideElement MW_COMMUNITY_CONFIRM_TEXT = $(byText("Notice that the default message doesn't have a name on the first line."));
     public static final SelenideElement MW_COMMUNITY_CONFIRM_DISMISS = $(byXpath(mw+"//button[contains(text(),'No, let me change the message')]"));
     public static final SelenideElement MW_COMMUNITY_CONFIRM_SUBMIT = $(byXpath(mw+"//button[contains(text(),'Yes, I'm sure')]"));
+
+    public static final SelenideElement MW_CONFIRM_INVITE_ATTOTNEY_TITLE = $(byText("Are you sure you want to leave the default invitation message unchaged?"));
+    public static final SelenideElement MW_CONFIRM_INVITE_ATTOTNEY_TEXT = $(byText("Notice that the default message doesn't have a name on the first line."));
+    public static final SelenideElement MW_CONFIRM_INVITE_ATTOTNEY_DISMISS = $(byXpath(mw+"//button[contains(text(),'No, let me change the message')]"));
+    public static final SelenideElement MW_CONFIRM_INVITE_ATTOTNEY_SUBMIT = $(byXpath(mw+"//button[contains(text(),'Yes, I'm sure')]"));
 
 }
