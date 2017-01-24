@@ -96,15 +96,6 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_EventTemplate_AdditionalInfo = $(byXpath("//textarea"));
     public static final SelenideElement MW_EventTemplate_Input = $(byXpath("//div[@name='event_type']/input[1]"));
 
-// new project
-    public static final SelenideElement MW_ProjectTitle = $(byText("NEW_PROJECT"));
-    public static final SelenideElement buttonNewProject = $(byXpath("//div[2]/div/button"));
-    public static final SelenideElement field_ProjectType = $(byXpath("//fieldset/div/div/div/span"));
-    public static final SelenideElement projectTypeGENERAL = $(byLinkText("General"));
-    public static final SelenideElement field_ProjectDefining = $(byXpath("//fieldset/div[2]/div/div/span"));
-    public static final SelenideElement projectDefiningUSA = $(byXpath("//div[4]/a/span"));
-    public static final SelenideElement field_ProjectTitle = $(byName("title"));
-    public static final SelenideElement button_Finish = $(byXpath("//button[@type='submit']"));
 
     public static final SelenideElement modalEmailparametersFieldEmailAddress = $(byXpath("//div/div[2]/div/div/input"));
     public static final SelenideElement modalEmailparametersSubjectLine = $(byName("template"));
@@ -116,36 +107,36 @@ public class ModalWindows extends Page {
     public static final SelenideElement modalTemplatesSubMatterType = $(byXpath("//div[3]/div/div/div/span/span"));
     public static final SelenideElement modalTemplatesEventType = $(byXpath("//div[4]/div/div/div/span/span"));
     public static final SelenideElement modalTemplatesMsgTemplate = $(byXpath("//a/div/div/p"));
-//conversation
 
+    //conversation
     public static final SelenideElement MW_ConversationInputSubject = $(byXpath("//div[@class='modal-content']//input[@name='subject']"));
     public static final SelenideElement MW_ConversationInputFollower = $(byXpath("//div[@class='modal-content']//pkm-followers-picker//input"));
     public static final SelenideElement MW_ConversationInputZoneTeams = $(byXpath("//div[@class='modal-content']//pkm-organizations-picker//li/input"));
-    // public static final SelenideElement MW_ConversationCancellButton = $(byXpath(""));
-// public static final SelenideElement MW_ConversationCancellButton = $(byXpath(""));
+
     public static final SelenideElement MW_ConversationCreatelButton = $(byXpath("//button[text()='Create']"));
     public static final SelenideElement MW_ConversationCancellButton = $(byXpath("//button[text()='Cancel']"));
     public static final SelenideElement MW_ConversationFollowerField = $(byXpath("//li/input"));
     public static final SelenideElement MW_ConversationFollowerSelect = $("span.result-name.ng-binding");
 
     public static final SelenideElement modalCheckboxPermissionAllTeams = $(byXpath("//*[@ng-disabled='uiState.disableAllTeams']"));
-
+    //Project templates
     public static final SelenideElement modalProjectTemplateCancelButton = $(byXpath("//div[2]/button[2]"));
     public static final SelenideElement modalProjectTemplateOklButton = $(byXpath("//div[2]/button"));
     public static final SelenideElement MW_ProjectTemplateProjectTypeInput = $(byXpath("//div[@name='matter_type']/input[1]"));
     public static final SelenideElement MW_ProjectTemplateProjectDefiningInput = $(byXpath("//div[@name='defining']/input[1]"));
-
-    public static final SelenideElement MW_ProjectFinishButton = $(byXpath("//button[@type='submit'][contains(.,'FINISH')]"));
-    public static final SelenideElement MW_Project_SelectType = $(byXpath("//div[@name='matter_type']/div/span/span[1]"));
-    public static final SelenideElement MW_Project_InputType = $(byXpath("//div[@name='matter_type']/input[1]"));
-    public static final SelenideElement MW_Project_SelectDefining = $(byXpath("//div[@name='defining']/div/span/span[1]"));
-    public static final SelenideElement MW_Project_InputDefining = $(byXpath("//div[@name='defining']/input[1]"));
-    public static final SelenideElement MW_Project_TMNumber = $(byXpath("//input[@name='official_lookup']"));
-    public static final SelenideElement MW_Project_Title = $(byXpath("//input[@name='title']"));
-    public static final SelenideElement MW_Project_Reference = $(byXpath("//input[@name='number']"));
+    //New project
+    public static final String MW_ProjectTitle = "New Project";
+    public static final SelenideElement MW_ProjectFinishButton = $(byXpath(mw+"//button[@type='submit'][contains(.,'FINISH')]"));
+    public static final SelenideElement MW_Project_SelectType = $(byXpath(mw+"//div[@name='matter_type']/div/span/span[1]"));
+    public static final SelenideElement MW_Project_InputType = $(byXpath(mw+"//div[@name='matter_type']/input[1]"));
+    public static final SelenideElement MW_Project_SelectDefining = $(byXpath(mw+"//div[@name='defining']/div/span/span[1]"));
+    public static final SelenideElement MW_Project_InputDefining = $(byXpath(mw+"//div[@name='defining']/input[1]"));
+    public static final SelenideElement MW_Project_TMNumber = $(byXpath(mw+"//input[@name='official_lookup']"));
+    public static final SelenideElement MW_Project_Title = $(byXpath(mw+"//input[@name='title']"));
+    public static final SelenideElement MW_Project_Reference = $(byXpath(mw+"//input[@name='number']"));
 
     public static final SelenideElement modalMembersOkButton = $(byXpath("//div[2]/button"));
-//deploy doc templates
+    //deploy doc templates
     public static final SelenideElement MW_DeployDoc_Title = $("css=h3.modal-title");
     public static final SelenideElement MW_DeployDoc_FileName = $(byXpath("//input[@name='name']"));
     public static final SelenideElement MW_DeployDoc_01TemplateWord = $(byXpath("//li/label[text()='New Word document']"));
@@ -260,6 +251,42 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_TaskStatusApproved = $(byXpath("//span[text()='Approved']"));
     public static final SelenideElement MW_TaskStatusRejected = $(byXpath("//span[text()='Rejected']"));
     public static final SelenideElement MW_TaskStatusCancelled = $(byXpath("//span[text()='Cancelled']"));
+
+    public static final SelenideElement mwUpdateSatus_Select = $(byXpath(""));
+    public static final SelenideElement mwUpdateSatus_Input = $(byXpath(""));
+    public static final SelenideElement mwUpdateImportance_Select = $(byXpath(""));
+    public static final SelenideElement mwUpdateImportance_Input = $(byXpath(""));
+    public static final SelenideElement mwUpdateAssignor_Select = $(byXpath(""));
+    public static final SelenideElement mwUpdateAssignor_Input = $(byXpath(""));
+    public static final SelenideElement mwUpdateAssignee_Select = $(byXpath(""));
+    public static final SelenideElement mwUpdateAssignee_Input = $(byXpath(""));
+
+    public static final SelenideElement mwClasses_Title = $(byXpath("//div/div/h3"));
+    public static final SelenideElement mwClasses_SelectClassType = $(byXpath("//div[2]/div/div/div/span/span[2]/span"));
+    public static final SelenideElement mwClasses_FieldClassType = $(byXpath("//form/div[2]/div/div/input"));
+    public static final SelenideElement mwClasses_FieldClass = $(byXpath("//input[@name='class_no']"));
+    public static final SelenideElement mwClasses_FieldDescription = $(byXpath("//textarea[@name='description']"));
+
+    public static final SelenideElement mwChangeCollaborator_Title = $(byXpath("//div/div/h3"));
+    public static final SelenideElement mwChangeCollaborator_Select = $(byXpath("//select"));
+    public static final SelenideElement mwChangeCollaborator_Viewer = $(byXpath("label=Viewer"));
+    public static final SelenideElement mwChangeCollaborator_Collaborator = $(byXpath("label=Collaborator"));
+    public static final SelenideElement mwChangeCollaborator_Admin = $(byXpath("label=Admin"));
+
+    public static final SelenideElement wmEvent_ = $(byXpath(""));
+    public static final SelenideElement wmEvent_SelectType = $(byXpath("//div/div[2]/pkm-values-dropdown/div/div/span"));
+    public static final SelenideElement wmEvent_SelectInput = $(byXpath("//pkm-values-dropdown/div/input"));
+    public static final SelenideElement wmEvent_FieldInfo = $(byXpath("//textarea[@name='number']"));
+    public static final SelenideElement wmEvent_SAVE = $(byXpath(""));
+
+    public static final SelenideElement mODAL_ShareProject = $("css=.modal-content");
+    public static final SelenideElement mODAL_ShareProjectEmptyTeam = $(byXpath("//*[@class='ng-binding'][contains .,'' ]"));
+    public static final SelenideElement mODAL_ShareProjectOkButton = $(byXpath("//*[@class='btn btn-primary ng-isolate-scope'][contains .,'OK' ]"));
+    public static final SelenideElement mODAL_ShareProjectCancelButton = $(byXpath("//*[@class='btn btn-secondary'][contains .,'Cancel' ]"));
+    public static final SelenideElement collaborator_VatslauAfrica = $(byXpath("//*[@class='ng-binding'][contains .,'Vatslau Africa' ]"));
+    public static final SelenideElement collaborator_V375291200656 = $(byXpath("//*[@class='ng-binding'][contains .,'Test01 Musk' ]"));
+    public static final SelenideElement collaborator_QweecoTest02 = $(byXpath("//*[@class='ng-binding'][contains .,'Test02 Qweeco Zubr' ]"));
+
 
 
     public static final SelenideElement MW_COMMUNITY_Title = $(byXpath(mw+"//h2"));

@@ -12,6 +12,9 @@ import static com.codeborne.selenide.Selenide.$;
  */
 public class PekamaProject extends Page {
 
+    public static final SelenideElement PROJECT_BTN_CLONE = $(byXpath("//button[@pkm-confirm-click='copy()']"));
+    public static final SelenideElement PROJECT_BTN_DELETE = $(byXpath("//*[@class='project-heading']//button[contains(.,'Delete')]"));
+
     public static final SelenideElement projectButtonPlus = $(byXpath("//div[@class='project-heading']/button"));
     public static final SelenideElement projectPlusNewEvent = $(byLinkText("New Event"));
     public static final SelenideElement projectPlusNewConversation = $(byLinkText("New Conversation"));
@@ -22,14 +25,6 @@ public class PekamaProject extends Page {
     public static final SelenideElement projectPlusNewContact = $(byLinkText("New Contact"));
     public static final SelenideElement projectAllCheckbox = $("css=i.pkm-icon-checkbox");
     public static final SelenideElement projectAllCheckboxFiles = $(byXpath("//div[@class='checkbox-holder fancy main-checkbox pull-left']//input"));
-
-    public static final SelenideElement mODAL_ShareProject = $("css=.modal-content");
-    public static final SelenideElement mODAL_ShareProjectEmptyTeam = $(byXpath("//*[@class='ng-binding'][contains .,'' ]"));
-    public static final SelenideElement mODAL_ShareProjectOkButton = $(byXpath("//*[@class='btn btn-primary ng-isolate-scope'][contains .,'OK' ]"));
-    public static final SelenideElement mODAL_ShareProjectCancelButton = $(byXpath("//*[@class='btn btn-secondary'][contains .,'Cancel' ]"));
-    public static final SelenideElement collaborator_VatslauAfrica = $(byXpath("//*[@class='ng-binding'][contains .,'Vatslau Africa' ]"));
-    public static final SelenideElement collaborator_V375291200656 = $(byXpath("//*[@class='ng-binding'][contains .,'Test01 Musk' ]"));
-    public static final SelenideElement collaborator_QweecoTest02 = $(byXpath("//*[@class='ng-binding'][contains .,'Test02 Qweeco Zubr' ]"));
 
     public static final SelenideElement timelineLine = $("css=.slider-selection");
     public static final SelenideElement timelineCheckboxLessImportant = $(byXpath("//*[@ng-model='showLessImportant']"));
@@ -52,12 +47,6 @@ public class PekamaProject extends Page {
     public static final SelenideElement projectTimeline_ArrowLeft = $(byXpath(""));
     public static final SelenideElement projectTimeline_ArrowRight = $(byXpath(""));
     public static final SelenideElement projectTimeline_EventToday = $(byXpath("//ul[@id='timeline']/li/a/span"));
-
-    public static final SelenideElement wmEvent_ = $(byXpath(""));
-    public static final SelenideElement wmEvent_SelectType = $(byXpath("//div/div[2]/pkm-values-dropdown/div/div/span"));
-    public static final SelenideElement wmEvent_SelectInput = $(byXpath("//pkm-values-dropdown/div/input"));
-    public static final SelenideElement wmEvent_FieldInfo = $(byXpath("//textarea[@name='number']"));
-    public static final SelenideElement wmEvent_SAVE = $(byXpath(""));
 
     public static final SelenideElement projectTabMore = $(byXpath("//i[@class='icon pkm-icon-info-square']"));
     public static final SelenideElement projectTabContacts = $(byXpath("//i[@class='icon pkm-icon-users-square']"));
@@ -115,11 +104,7 @@ public class PekamaProject extends Page {
     public static final SelenideElement projectTabMore_CommunityCaseDefining = $(byXpath("//div[@class='patent']/span"));
     public static final SelenideElement projectTabMore_CommunityCaseStatus = $(byXpath("//div[@class='status']//span"));
 
-    public static final SelenideElement mwClasses_Title = $(byXpath("//div/div/h3"));
-    public static final SelenideElement mwClasses_SelectClassType = $(byXpath("//div[2]/div/div/div/span/span[2]/span"));
-    public static final SelenideElement mwClasses_FieldClassType = $(byXpath("//form/div[2]/div/div/input"));
-    public static final SelenideElement mwClasses_FieldClass = $(byXpath("//input[@name='class_no']"));
-    public static final SelenideElement mwClasses_FieldDescription = $(byXpath("//textarea[@name='description']"));
+
 
     public static final SelenideElement projectTabContacts_TeamsTitle = $(byXpath("//section[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div[2]/div/div/pkm-collaborators/h4"));
     public static final SelenideElement projectTabContacts_TeamRow = $(byXpath("//tr[@ng-repeat='collaborator in collaborators']"));
@@ -127,11 +112,7 @@ public class PekamaProject extends Page {
     public static final SelenideElement projectTabContacts_TeamStatus = $(byXpath("/td[2]"));
     public static final SelenideElement projectTabContacts_TeamEdit = $(byXpath("/td[3]/a[1]"));
     public static final SelenideElement projectTabContacts_TeamDelete = $(byXpath("/td[3]/a[2]"));
-    public static final SelenideElement mwChangeCollaborator_Title = $(byXpath("//div/div/h3"));
-    public static final SelenideElement mwChangeCollaborator_Select = $(byXpath("//select"));
-    public static final SelenideElement mwChangeCollaborator_Viewer = $(byXpath("label=Viewer"));
-    public static final SelenideElement mwChangeCollaborator_Collaborator = $(byXpath("label=Collaborator"));
-    public static final SelenideElement mwChangeCollaborator_Admin = $(byXpath("label=Admin"));
+
 
     public static final SelenideElement projectTabContacts_RelationNoData = $(byXpath("//pkm-contact-relations/div[2]/div/div[2]"));
     public static final SelenideElement projectTabContacts_AddSelectContact = $(byXpath("//div[@name='contact']/div/span"));
@@ -213,14 +194,7 @@ public class PekamaProject extends Page {
     public static final SelenideElement linkCreateNewDoc = $(byLinkText("New document"));
     public static final SelenideElement linkDelete = $(byLinkText("Delete"));
 
-    public static final SelenideElement mwUpdateSatus_Select = $(byXpath(""));
-    public static final SelenideElement mwUpdateSatus_Input = $(byXpath(""));
-    public static final SelenideElement mwUpdateImportance_Select = $(byXpath(""));
-    public static final SelenideElement mwUpdateImportance_Input = $(byXpath(""));
-    public static final SelenideElement mwUpdateAssignor_Select = $(byXpath(""));
-    public static final SelenideElement mwUpdateAssignor_Input = $(byXpath(""));
-    public static final SelenideElement mwUpdateAssignee_Select = $(byXpath(""));
-    public static final SelenideElement mwUpdateAssignee_Input = $(byXpath(""));
+
 
     public static final SelenideElement projectTabFin_ = $(byXpath(""));
     public static final SelenideElement projectTabFin_CollapseForm = $(byXpath("//div/ng-include/div/a[@class='link-task']"));

@@ -10,22 +10,25 @@ import org.junit.*;
 import static Page.CommunityWizard.*;
 import static Page.Emails.*;
 import static Page.ModalWindows.*;
-import static Page.PekamaLanding.BTN_SIGN_UP;
-import static Page.PekamaSignUp.SIGN_UP_TITLE;
-import static Page.PekamaSignUp.SIGN_UP_TITLE_TEXT;
+import static Page.PekamaDashboard.*;
+import static Page.PekamaLanding.*;
+import static Page.PekamaProject.*;
+import static Page.PekamaSignUp.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.TestsUrl.*;
 import static Steps.StepsCommunity.*;
 import static Steps.StepsExternal.*;
 import static Steps.StepsPekama.*;
+import static Steps.StepsPekama.fillField;
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 
 public class PekamaProject {
     static final Logger rootLogger = LogManager.getRootLogger();
-
+    String testProjectTitle = "new test project";
     @Before
     public void before() {
         Configuration test = new Configuration();
@@ -34,19 +37,36 @@ public class PekamaProject {
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(User2.GMAIL_EMAIL.getValue(), User2.PEKAMA_PASSWORD.getValue(), URL_LogIn);
         rootLogger.info("Create project");
-
+        dashboardNewProject.waitUntil(visible, 15000).click();
+        rootLogger.info("NW - New project");
+        waitForModalWindow(MW_ProjectTitle);
+        rootLogger.info("select project type");
+        selectItemInDropdown(MW_Project_SelectType, MW_Project_InputType, CaseType.TRADEMARK.getValue());
+        rootLogger.info("select defining");
+        selectItemInDropdown(MW_Project_SelectDefining, MW_Project_InputDefining, Countries.PITCAIRN_ISLANDS.getValue());
+        rootLogger.info("fill title");
+        fillField(MW_Project_Title, testProjectTitle);
+        rootLogger.info("submit");
+        submitEnabledButton(MW_ProjectFinishButton);
+        MW.shouldNot(visible);
+        getActualUrl ();
+        if ($$(byText(testProjectTitle))==null){Assert.fail("project name not matched of crated");}
     }
 
     @After
     public void after() {
         rootLogger.info("delete project - ");
+        sleep(5000);
+        PROJECT_BTN_DELETE.shouldBe(visible).click();
+        StepsPekama.submitConfirmAction();
         open(URL_Logout);
         rootLogger.info("Open URL - " +URL_Logout);
     }
 
     @Test
     public void createProject_A_CheckDefaultState() {
-
+        $$(byText(testProjectTitle)).shouldHaveSize(1);
+        rootLogger.info("GUI test passed");
     }
 
     @Test
@@ -99,6 +119,10 @@ public class PekamaProject {
     }
     @Test
     public void createProject_P_addConversation() {
+
+    }
+    @Test
+    public void createProject_S_cloneProkect() {
 
     }
     @Test

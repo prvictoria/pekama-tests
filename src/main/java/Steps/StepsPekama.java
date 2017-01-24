@@ -13,6 +13,7 @@ import static Steps.StepsHttpAuth.httpAuthUrl;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.url;
 
 public class StepsPekama implements StepsFactory{
     static final Logger rootLogger = LogManager.getRootLogger();
@@ -221,6 +222,20 @@ public class StepsPekama implements StepsFactory{
         MW.shouldBe(visible);
         MW.shouldHave(text(modalTitle));
         rootLogger.info("modal window '"+modalTitle+"' was opened");
+    }
+
+    public static void selectItemInDropdown(SelenideElement uiSelectName, SelenideElement uiSelectInput, String inputValue) {
+        rootLogger.info("select - "+inputValue);
+        uiSelectName.click();
+        fillField(uiSelectInput, inputValue);
+        CSS_SelectHighlighted.click();
+        rootLogger.info("selected - "+inputValue);
+    }
+    public static String getActualUrl () {
+        sleep(1500);
+        String currentUrl = url();
+        rootLogger.info("opened URL is - "+currentUrl);
+        return currentUrl;
     }
 
 }
