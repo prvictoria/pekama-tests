@@ -14,7 +14,9 @@ import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.TestsUrl.*;
 import static Steps.StepsCommunity.*;
+import static Steps.StepsExternal.*;
 import static Steps.StepsPekama.*;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
 public class ComunityWizard {
@@ -44,8 +46,9 @@ public class ComunityWizard {
         rootLogger.info("Boost Your profile - send new case");
         waitForModalWindow(TITLE_MW_BOOST_YOUR_PROFILE);
         MW_BOOST_YOUR_PROFILE_BTN_START_NEW_CASE.click();
-        WIZARD_BTN_GetStarted.shouldBe(Condition.visible).shouldBe(Condition.disabled);
+        WIZARD_BTN_GetStarted.shouldBe(visible).shouldBe(Condition.disabled);
     }
+
     @Test
     public void boostYourProfileInviteTeam() {
         String caseType = CaseType.PATENT.getValue();
@@ -54,10 +57,8 @@ public class ComunityWizard {
         searchExpertsSubmit();
         submitEnabledButton(PROFILE_BTN_BOOST_YOUR_PROFILE);
         rootLogger.info("Boost Your profile - send new case");
-
         waitForModalWindow(TITLE_MW_BOOST_YOUR_PROFILE);
         MW_BOOST_YOUR_PROFILE_BTN_REFER_ATTORNEY.click();
-        rootLogger.info("Check dismiss modal window");
 
         sleep(500);
         waitForModalWindow(TITLE_MW_INVITE_AN_ATTORNEY);
@@ -65,15 +66,30 @@ public class ComunityWizard {
         fillField(MW_COMMUNITY_INVITE_FIELD_EMAIL, User5.GMAIL_EMAIL.getValue());
         submitEnabledButton(MW_COMMUNITY_INVITE_ATTORNEY_BTN_INVITE);
 
+        sleep(500);
+        rootLogger.info("Check dismiss modal window");
+        SelenideElement mwTitle = MW_CONFIRM_INVITE_ATTOTNEY_TITLE;
+        SelenideElement mwText = MW_CONFIRM_INVITE_ATTOTNEY_TEXT;
+        SelenideElement btnDismiss = MW_COMMUNITY_CONFIRM_DISMISS;
+        dismissModalConfirmAction(mwTitle, mwText, btnDismiss);
 
+        rootLogger.info("Sent email = invitation email");
 
-//        rootLogger.info("Check invitation email");
-//        SelenideElement EMAIL_SUBJECT = null;
-//        String EMAIL_TITLE = null;
-//        String EMAIL_TEXT = null;
-//        String EMAIL_BTN = null;
-//        SelenideElement EMAIL_REDIRECT_LINK = null;
-//        checkInboxEmail(User5.GMAIL_EMAIL.getValue(), GMAIL_PASSWORD, EMAIL_SUBJECT, EMAIL_TITLE, EMAIL_TEXT, EMAIL_BTN, EMAIL_REDIRECT_LINK);
+        sleep(500);
+        waitForModalWindow(TITLE_MW_INVITE_AN_ATTORNEY);
+        MW_COMMUNITY_INVITE_ATTORNEY_BTN_INVITE.click();
+        MW_COMMUNITY_INVITE_FIELD_EMAIL.shouldHave(Condition.value(User5.GMAIL_EMAIL.getValue()));
+        fillField(MW_COMMUNITY_INVITE_FIELD_MESSAGE, "Hello world");
+        submitEnabledButton(MW_COMMUNITY_INVITE_ATTORNEY_BTN_INVITE);
+        MW_COMMUNITY_INVITE_ATTORNEY_BTN_INVITE.shouldNotBe(visible);
+
+        rootLogger.info("Check invitation email");
+        SelenideElement EMAIL_SUBJECT = null;
+        String EMAIL_TITLE = null;
+        String EMAIL_TEXT = null;
+        String EMAIL_BTN = null;
+        SelenideElement EMAIL_REDIRECT_LINK = null;
+        checkInboxEmail(User5.GMAIL_EMAIL.getValue(), GMAIL_PASSWORD, EMAIL_SUBJECT, EMAIL_TITLE, EMAIL_TEXT, EMAIL_BTN, EMAIL_REDIRECT_LINK);
     }
 
 }

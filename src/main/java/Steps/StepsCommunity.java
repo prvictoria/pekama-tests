@@ -88,22 +88,22 @@ public class StepsCommunity implements StepsFactory{
 
     }
 
-    public static void dismissModalConfirmAction(SelenideElement title, SelenideElement text, SelenideElement btnDismiss) {
-        rootLogger.info("Check that MW '"+MW_COMMUNITY_CONFIRM_TITLE+"' is present");
-        MW_COMMUNITY_CONFIRM_TITLE.shouldBe(visible);
-        MW_COMMUNITY_CONFIRM_TEXT.shouldBe(visible);
-        rootLogger.info("Check dismiss modal window - "+MW_COMMUNITY_CONFIRM_TITLE);
-        MW_COMMUNITY_CONFIRM_DISMISS.click();
-        MW_COMMUNITY_CONFIRM_TITLE.shouldNotBe(visible);
-        rootLogger.info("MW '"+MW_COMMUNITY_CONFIRM_TITLE+"' closed");
+    public static void dismissModalConfirmAction(SelenideElement mwTitle, SelenideElement mwText, SelenideElement btnDismiss) {
+        rootLogger.info("Check that MW '"+mwTitle+"' is present");
+        mwTitle.shouldBe(visible);
+        mwText.shouldBe(visible);
+        rootLogger.info("Check dismiss modal window - "+mwTitle);
+        btnDismiss.click();
+        mwTitle.shouldNotBe(visible);
+        rootLogger.info("MW '"+mwTitle+"' closed");
     }
-    public static void acceptModalConfirAction(SelenideElement title, SelenideElement text, SelenideElement btnAccept) {
-        rootLogger.info("Check that MW '"+MW_COMMUNITY_CONFIRM_TITLE+"' is present");
-        MW_COMMUNITY_CONFIRM_TITLE.shouldBe(visible);
-        MW_COMMUNITY_CONFIRM_TEXT.shouldBe(visible);
-        rootLogger.info("Check confirm modal window - "+MW_COMMUNITY_CONFIRM_TITLE);
-        MW_COMMUNITY_CONFIRM_SUBMIT.click();
-        MW_COMMUNITY_CONFIRM_TITLE.shouldNotBe(visible);
-        rootLogger.info("MW '"+MW_COMMUNITY_CONFIRM_TITLE+"' closed");
+    public static void acceptModalConfirAction(SelenideElement mwTitle, SelenideElement mwText, SelenideElement btnAccept) {
+        rootLogger.info("Check that MW '"+mwTitle+"' is present");
+        mwTitle.shouldBe(visible);
+        mwText.shouldBe(visible);
+        rootLogger.info("Check confirm modal window - "+mwTitle);
+        btnAccept.click();
+        mwTitle.shouldNotBe(visible);
+        rootLogger.info("MW '"+mwTitle+"' closed");
     }
 }
