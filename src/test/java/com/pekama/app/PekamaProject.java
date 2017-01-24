@@ -57,6 +57,7 @@ public class PekamaProject {
     public void after() {
         rootLogger.info("delete project - ");
         sleep(5000);
+        //todo element not found?????
         PROJECT_BTN_DELETE.shouldBe(visible).click();
         StepsPekama.submitConfirmAction();
         open(URL_Logout);
