@@ -149,7 +149,7 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_DeployDoc_ButtonCreate = $(byXpath("//button[contains(.,'Create')]"));
     public static final SelenideElement MW_DeployDoc_ButtonCancel = $(byXpath("//button[contains(.,'Cancel')]"));
 
-    public static final SelenideElement MW_DeployTask_Title = $(byXpath(""));
+    public static final SelenideElement MW_DeployTask_Title = $(byName("title"));
     public static final SelenideElement MW_DeployTask_SelectEvent = $(byXpath("//div[@id='task-template-picker']/div/div/div/span/span"));
     public static final SelenideElement MW_DeployTask_InputEvent = $(byXpath("//input[@placeholder='Select an event...']"));
     public static final SelenideElement MW_DeployTask_01Template = $(byXpath("//div[@id='task-template-picker']/div[2]/div/div/label/span"));
@@ -210,6 +210,7 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_Document = $(byXpath(""));
 
     public static final SelenideElement COMMENT_007 = $(byText("DATEPICKER"));
+    public static final SelenideElement MW_DATAPICKER_TODAY = $(byXpath(mw+"//i[@class='pkm-icon-calendar']"));
     public static final SelenideElement dueDateInputField = $("input.form-control.date-box");
     public static final SelenideElement datepickerToday = $(".day.active.today");
     public static final SelenideElement calendarBody = $("table.table-condensed");
@@ -224,6 +225,7 @@ public class ModalWindows extends Page {
     public static final SelenideElement calendarDay08 = $(byXpath("//*[@data-action='selectDay'][contains .,'8' ]"));
     public static final SelenideElement calendarDay09 = $(byXpath("//*[@data-action='selectDay'][contains .,'9' ]"));
     public static final SelenideElement calendarDay10 = $(byXpath("//*[@data-action='selectDay'][contains .,'10' ]"));
+    //EVENT
     public static final SelenideElement MW_eventTypeApplicationFiled = $(byXpath("//*[@class='ng-binding ng-scope'][contains .,'Application filed']"));
     public static final SelenideElement MW_eventTypeApplicationPublished = $(byXpath("//*[@class='ng-binding ng-scope'][contains .,'Application published' ]"));
     public static final SelenideElement MW_eventTypeSubMatterCreated = $(byXpath("//*[@class='ng-binding ng-scope'][contains .,'Sub Matter Created' ]"));
@@ -260,8 +262,8 @@ public class ModalWindows extends Page {
     public static final SelenideElement mwUpdateAssignor_Input = $(byXpath(""));
     public static final SelenideElement mwUpdateAssignee_Select = $(byXpath(""));
     public static final SelenideElement mwUpdateAssignee_Input = $(byXpath(""));
-
-    public static final SelenideElement mwClasses_Title = $(byXpath("//div/div/h3"));
+    //New Class
+    public static final String mwClasses_Title = "Classes & Goods";
     public static final SelenideElement mwClasses_SelectClassType = $(byXpath("//div[2]/div/div/div/span/span[2]/span"));
     public static final SelenideElement mwClasses_FieldClassType = $(byXpath("//form/div[2]/div/div/input"));
     public static final SelenideElement mwClasses_FieldClass = $(byXpath("//input[@name='class_no']"));
@@ -269,9 +271,9 @@ public class ModalWindows extends Page {
 
     public static final SelenideElement mwChangeCollaborator_Title = $(byXpath("//div/div/h3"));
     public static final SelenideElement mwChangeCollaborator_Select = $(byXpath("//select"));
-    public static final SelenideElement mwChangeCollaborator_Viewer = $(byXpath("label=Viewer"));
-    public static final SelenideElement mwChangeCollaborator_Collaborator = $(byXpath("label=Collaborator"));
-    public static final SelenideElement mwChangeCollaborator_Admin = $(byXpath("label=Admin"));
+    public static final String mwChangeCollaborator_Viewer ="Viewer";
+    public static final String mwChangeCollaborator_Collaborator = "Collaborator";
+    public static final String mwChangeCollaborator_Admin = "Admin";
 
     public static final SelenideElement wmEvent_ = $(byXpath(""));
     public static final SelenideElement wmEvent_SelectType = $(byXpath("//div/div[2]/pkm-values-dropdown/div/div/span"));

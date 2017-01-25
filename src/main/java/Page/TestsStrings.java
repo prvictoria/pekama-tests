@@ -75,6 +75,8 @@ public class TestsStrings {
     public static final String mwTitledNewModal = "";
     public static final String placeholderNoFiles = "No files found. Upload your first file.";
     public static final String placeholderEmptyList = "Empty list.";
+    public static final String placeholderNoCases = "No community cases.";
+
     public static final String placeholderNoNumbers = "No numbers yet. Use the form below to create one.";
     public static final String placeholderNoProjects = "No projects yet. Create your first project";
     public static final String placeholderNoData = "No data available.";

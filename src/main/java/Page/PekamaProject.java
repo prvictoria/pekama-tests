@@ -82,15 +82,23 @@ public class PekamaProject extends Page {
     public static final SelenideElement projectTabMore_NumberRow02Edit = $(byXpath(""));
     public static final SelenideElement projectTabMore_NumberRow02Type = $(byXpath(""));
 
+//todo param string and method
+    public static final SelenideElement projectTabMore_NumberEdit = $(byXpath("//*[@class='more-item numbers ng-scope']//ul/li[contains(.,'122')]//a[@class='edit ng-scope']"));
+    public static final SelenideElement projectTabMore_NumberDelete = $(byXpath("//*[@class='more-item numbers ng-scope']//ul/li[contains(.,'122')]//i[@class='pkm-icon-cancel icon']"));
+
     public static final SelenideElement projectTabMore_NumberNewSelect = $(byXpath("//div[@name='reference_type']/div/span/span[1]"));
     public static final SelenideElement projectTabMore_NumberNewField = $(byXpath("//div[@name='reference_type']/input[1]"));
     public static final SelenideElement projectTabMore_NumberReferenceField = $(byXpath("//input[@name='reference_number']"));
 
-    public static final SelenideElement projectTabMore_ClassesAdd = $(byLinkText("link=add"));
+    public static final String projectTabMore_Classes = "//*[@class='more-item classes ng-scope']";
+
+
+    public static final SelenideElement projectTabMore_ClassesAdd = $(byXpath(projectTabMore_Classes+"//a[contains(.,'Add')]"));
     public static final SelenideElement projectTabMore_ClassRow01Number = $(byXpath("//tbody/tr/td[1]"));
     public static final SelenideElement projectTabMore_ClassRow01Type = $(byXpath("//tbody/tr/td[2]"));
     public static final SelenideElement projectTabMore_ClassRow01Description = $(byXpath("//tbody/tr/td[3]"));
     public static final SelenideElement projectTabMore_ClassRow01Edit = $(byXpath("//tbody/tr/td[4]/a[@class='edit ng-scope']"));
+    public static final SelenideElement projectTabMore_ClassRow01delete = $(byXpath(projectTabMore_Classes+"//table//tr[1]//*[@class='pkm-icon-cancel icon']"));
 
     public static final SelenideElement projectTabMore_ProejctType = $(byXpath("//section[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div[2]/div/div/div/div[2]/div[2]/form/div/pkm-values-dropdown/div/div/span/span[2]/span"));
     public static final SelenideElement projectTabMore_SelectDefining = $(byXpath("//section[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div[2]/div/div/div/div[2]/div[2]/form/div/pkm-values-dropdown/div/div/span/span[2]/span"));
@@ -105,7 +113,9 @@ public class PekamaProject extends Page {
     public static final SelenideElement projectTabMore_CommunityCaseStatus = $(byXpath("//div[@class='status']//span"));
 
 
-
+    //todo - TAB contacts
+    public static final SelenideElement projectTabContacts_Teams = $(byXpath("//pkm-collaborators"));
+    public static final SelenideElement projectTabContacts_AddCollaborator = $(byXpath("//pkm-collaborators//a[contains(.,'Add')]"));
     public static final SelenideElement projectTabContacts_TeamsTitle = $(byXpath("//section[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div[2]/div/div/pkm-collaborators/h4"));
     public static final SelenideElement projectTabContacts_TeamRow = $(byXpath("//tr[@ng-repeat='collaborator in collaborators']"));
     public static final SelenideElement projectTabContacts_TeamName = $(byXpath("/td[1]"));
@@ -119,7 +129,7 @@ public class PekamaProject extends Page {
     public static final SelenideElement projectTabContacts_AddContactInput = $(byXpath("//input[@type='search']"));
     public static final SelenideElement projectTabContacts_AddSelectRelation = $(byXpath("//div[@name='relation']/div/span"));
     public static final SelenideElement projectTabContacts_AddRelationInput = $(byXpath("//div[@name='relation']/input[1]"));
-    public static final SelenideElement projectTabContacts_AddContactButton = $(byXpath(""));
+    public static final SelenideElement projectTabContacts_AddContactButton = $(byXpath("//pkm-contact-relations//button[contains(.,'Add')]"));
 
     public static final SelenideElement projectTabContacts_ContactRow = $(byXpath("//li[starts-with(@ng-repeat, 'contactRelation')]"));
     public static final SelenideElement projectTabContacts_ContactIconPerson = $(byXpath("css=i.pkm-icon-user"));

@@ -58,6 +58,7 @@ Delete</button>
 //button[@class="btn-link"][contains(.,'Update Status')]
 <button class="btn-link" ng-click="bulkUpdate('status')">Update Status
 //span[text()=='Deadline']
+[@class="like-td media-body" and contains(.,'123')]
 
 //*[@class='ng-binding ng-scope'][contains(.,'New')]
 //*[@class='ng-binding ng-scope'][contains(.,'USD')]
