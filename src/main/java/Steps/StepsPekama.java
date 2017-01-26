@@ -204,7 +204,7 @@ public class StepsPekama implements StepsFactory{
         rootLogger.info("Validation present - "+errorMsg);
     }
     public static void fillField(SelenideElement fieldName, String enteredValue) {
-        rootLogger.info("Input date in - "+fieldName);
+        rootLogger.info("Input date");
         fieldName.clear();
         fieldName.shouldHave(Condition.value("")).val(enteredValue);
         fieldName.shouldHave(Condition.value(enteredValue));
@@ -215,7 +215,7 @@ public class StepsPekama implements StepsFactory{
         buttonName.waitUntil(enabled, 10000);
         buttonName.click();
         sleep(500);
-        rootLogger.info(buttonName+" - Button was clicked");
+        rootLogger.info("Button was clicked");
     }
     public static void waitForModalWindow(String modalTitle) {
         rootLogger.info("Wait for '"+modalTitle+"' modal window");

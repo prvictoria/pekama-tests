@@ -1,10 +1,13 @@
 package com.pekama.app;
-
 import Steps.*;
+import Utils.Utils;
 import com.codeborne.selenide.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
+
+import java.awt.*;
+import java.awt.event.KeyEvent;
 
 import static Page.ModalWindows.*;
 import static Page.PekamaDashboard.*;
@@ -19,12 +22,12 @@ import static com.codeborne.selenide.Selectors.byLinkText;
 import static com.codeborne.selenide.Selectors.byName;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-import static com.pekama.app.PekamaIntegrationBox.FolderNameBeforeConnect;
+import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 
 public class PekamaProject {
     static final Logger rootLogger = LogManager.getRootLogger();
-    String testProjectTitle = "new test project";
+    String testProjectTitle = "new test project - "+ Utils.getRandomString(6);
     @Before
     public void before() {
         Configuration test = new Configuration();
@@ -32,6 +35,7 @@ public class PekamaProject {
         rootLogger.info("Open host");
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(User2.GMAIL_EMAIL.getValue(), User2.PEKAMA_PASSWORD.getValue(), URL_LogIn);
+
         rootLogger.info("Create project");
         dashboardNewProject.waitUntil(visible, 15000).click();
         rootLogger.info("NW - New project");
@@ -45,41 +49,50 @@ public class PekamaProject {
         rootLogger.info("submit");
         submitEnabledButton(MW_ProjectFinishButton);
         MW.shouldNot(visible);
+        sleep(1000);
         getActualUrl ();
+        rootLogger.info("Project '"+testProjectTitle+"' created");
         if ($$(byText(testProjectTitle))==null){Assert.fail("project name not matched of crated");}
     }
 
-    @After
-    public void after() {
-        rootLogger.info("delete project - ");
-        sleep(5000);
-        //todo element not found?????
-//        PROJECT_BTN_DELETE.shouldBe(visible).click();
-        StepsPekama.submitConfirmAction();
-        open(URL_Dashboard);
-        rootLogger.info("Open URL - " +URL_Dashboard);
-    }
+//    @After
+//    public void after() {
+//        rootLogger.info("delete project - ");
+//        sleep(5000);
+//        //todo element not found?????
+////        PROJECT_BTN_DELETE.shouldBe(visible).click();
+//        StepsPekama.submitConfirmAction();
+//        open(URL_Dashboard);
+//        rootLogger.info("Open URL - " +URL_Dashboard);
+//    }
 
     @Test
     public void createProject_A_CheckDefaultState() {
-        $$(byText(testProjectTitle)).shouldHaveSize(1);
-        $$(byText(placeholderNoCases)).shouldHaveSize(1);
-        $$(byText(placeholderNoNumbers)).shouldHaveSize(1);
-        $$(byText(placeholderNoData)).shouldHaveSize(1);
+        $$(byText(testProjectTitle)).filter(visible).shouldHaveSize(1);
+        $$(byText(placeholderNoCases)).filter(visible).shouldHaveSize(1);
+        $$(byText(placeholderNoNumbers)).filter(visible).shouldHaveSize(1);
+        $$(byText(placeholderNoData)).filter(visible).shouldHaveSize(1);
         $$(byText("Team chat is great for conversations between groups of people, where all the group members should see the conversation all the time.")).shouldHaveSize(1);
         rootLogger.info("GUI test passed");
     }
 
     @Test
-    public void createProject_B_editProjectName() {
+    public void createProject_B_editProjectName() throws AWTException {
+        $(byText(testProjectTitle)).waitUntil(exist, 10000);
+        if ($(byText(testProjectTitle))==null){ Assert.fail("Title not present on page");}
+        executeJavaScript("scrollTo(0, -1000)");
         projectTabMore_ProjectTitle.shouldHave(text(testProjectTitle));
-        projectTabMore_TitleEditButton.click();
-        String NewProjectName = "New project name after edition";
-        fillField(projectTabMore_TitleInput, NewProjectName);
+
+        rootLogger.info("4");
+
+        projectTabMore_ProjectTitle.click();
+       // projectTabMore_TitleEditButton.click();
+        String newProjectName = "New project name after edition "+ Utils.getRandomString(6);
+        fillField(projectTabMore_TitleInput, newProjectName);
         projectTabMore_TitleSave.click();
         sleep(500);
         refresh();
-        projectTabMore_ProjectTitle.shouldHave(text(NewProjectName));
+        projectTabMore_ProjectTitle.shouldHave(text(newProjectName));
         projectTabMore_TitleEditButton.click();
         fillField(projectTabMore_TitleInput, testProjectTitle);
         projectTabMore_TitleSave.click();
@@ -329,6 +342,17 @@ public class PekamaProject {
     }
     @Test
     public void createProject_M_addCharges() {
+        projectTabFin.click();
+        $$(byText(placeholderEmptyList)).shouldHaveSize(1);
+        genericButtonAdd.click();
+
+        rootLogger.info("Create charge");
+        waitForModalWindow("Add charge");
+
+        
+        rootLogger.info("Delete charge");
+        $$(byText(placeholderEmptyList)).shouldHaveSize(1);
+
 
     }
     @Test

@@ -58,8 +58,8 @@ public class PekamaProject extends Page {
     public static final SelenideElement projectTabNoContentPlaceholder = $(byXpath("//div[@class='project-content-body ng-scope']//div[starts-with(@class, 'alert alert-empty')]"));
 
     public static final SelenideElement projectTabMore_ = $(byXpath(""));
-    public static final SelenideElement projectTabMore_ProjectTitle = $(byXpath("//pkm-editable-title/div/div/h4"));
-    public static final SelenideElement projectTabMore_TitleEditButton = $(byXpath("link=Edit"));
+    public static final SelenideElement projectTabMore_ProjectTitle = $(byXpath("//pkm-editable-title//h4"));
+    public static final SelenideElement projectTabMore_TitleEditButton = $(byXpath("//*[@class='info-section project-details ng-scope']//button[contains(.,'Edit')]"));
     public static final SelenideElement projectTabMore_TitleInput = $(byXpath("//input[@name='title']"));
     public static final SelenideElement projectTabMore_TitleSave = $(byXpath("//button[contains(.,'Save')]"));
     public static final SelenideElement projectTabMore_TitleCancel = $(byXpath("//button[contains(.,'Cancel')]"));
