@@ -246,4 +246,10 @@ public class StepsPekama implements StepsFactory{
             Assert.fail("Text not present on page -" + text);
         }
     }
+    public static void scrollUp() {
+        executeJavaScript("scrollTo(0, -2000)");
+    }
+    public static void scrollDown() {
+        executeJavaScript("scrollTo(0, 2000)");
+    }
 }

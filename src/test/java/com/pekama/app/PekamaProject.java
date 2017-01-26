@@ -79,7 +79,7 @@ public class PekamaProject {
     @Test
     public void createProject_B_editProjectName() throws AWTException {
         waitForTestPresent(testProjectTitle);
-        executeJavaScript("scrollTo(0, -1000)");
+        scrollUp();
         projectTabMore_ProjectTitle.shouldHave(text(testProjectTitle));
         projectTabMore_ProjectTitle.click();
         String newProjectName = "New project name after edition "+ Utils.getRandomString(6);
@@ -89,7 +89,7 @@ public class PekamaProject {
         refresh();
 
         waitForTestPresent(newProjectName);
-        executeJavaScript("scrollTo(0, -1000)");
+        scrollUp();
         projectTabMore_ProjectTitle.shouldHave(text(newProjectName));
         projectTabMore_TitleEditButton.click();
         fillField(projectTabMore_TitleInput, testProjectTitle);
