@@ -48,19 +48,19 @@ public class PekamaProject {
         fillField(MW_Project_Title, testProjectTitle);
         rootLogger.info("submit");
         submitEnabledButton(MW_ProjectFinishButton);
-        MW.shouldNot(visible);
+        MW.shouldNot(exist);
         sleep(1000);
         getActualUrl ();
         rootLogger.info("Project '"+testProjectTitle+"' created");
-        if ($$(byText(testProjectTitle))==null){Assert.fail("project name not matched of crated");}
+        waitForTestPresent(testProjectTitle);
     }
 
 //    @After
 //    public void after() {
-//        rootLogger.info("delete project - ");
-//        sleep(5000);
+//        rootLogger.info("delete project - '"+testProjectTitle"'");
 //        //todo element not found?????
-////        PROJECT_BTN_DELETE.shouldBe(visible).click();
+//        executeJavaScript("scrollTo(0, -1000)");
+//        PROJECT_BTN_DELETE.shouldBe(visible).click();
 //        StepsPekama.submitConfirmAction();
 //        open(URL_Dashboard);
 //        rootLogger.info("Open URL - " +URL_Dashboard);
@@ -78,25 +78,23 @@ public class PekamaProject {
 
     @Test
     public void createProject_B_editProjectName() throws AWTException {
-        $(byText(testProjectTitle)).waitUntil(exist, 10000);
-        if ($(byText(testProjectTitle))==null){ Assert.fail("Title not present on page");}
+        waitForTestPresent(testProjectTitle);
         executeJavaScript("scrollTo(0, -1000)");
         projectTabMore_ProjectTitle.shouldHave(text(testProjectTitle));
-
-        rootLogger.info("4");
-
         projectTabMore_ProjectTitle.click();
-       // projectTabMore_TitleEditButton.click();
         String newProjectName = "New project name after edition "+ Utils.getRandomString(6);
         fillField(projectTabMore_TitleInput, newProjectName);
         projectTabMore_TitleSave.click();
-        sleep(500);
+        sleep(1000);
         refresh();
+
+        waitForTestPresent(newProjectName);
+        executeJavaScript("scrollTo(0, -1000)");
         projectTabMore_ProjectTitle.shouldHave(text(newProjectName));
         projectTabMore_TitleEditButton.click();
         fillField(projectTabMore_TitleInput, testProjectTitle);
         projectTabMore_TitleSave.click();
-        sleep(500);
+        sleep(1000);
         refresh();
         projectTabMore_ProjectTitle.shouldHave(text(testProjectTitle));
     }

@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.Assert;
 
 import static Page.ModalWindows.*;
 import static Page.PekamaLogin.*;
@@ -238,4 +239,11 @@ public class StepsPekama implements StepsFactory{
         return currentUrl;
     }
 
+    public static void waitForTestPresent(String text) {
+        rootLogger.info("Wait for - " + text);
+        $(byText(text)).waitUntil(exist, 20000);
+        if ($(byText(text)) == null) {
+            Assert.fail("Text not present on page -" + text);
+        }
+    }
 }
