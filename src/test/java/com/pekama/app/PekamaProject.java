@@ -7,7 +7,6 @@ import org.apache.logging.log4j.Logger;
 import org.junit.*;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 
 import static Page.ModalWindows.*;
 import static Page.PekamaDashboard.*;
@@ -22,7 +21,6 @@ import static com.codeborne.selenide.Selectors.byLinkText;
 import static com.codeborne.selenide.Selectors.byName;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 
 public class PekamaProject {
@@ -101,26 +99,27 @@ public class PekamaProject {
 
     @Test
     public void createProject_C_AddNumber() {
-        String codeName = "Equinox code";
+        String codeType = "Equinox code";
         String codeValue = "2000/17/55-asd";
         rootLogger.info("select number from list - ");
-        selectItemInDropdown(projectTabMore_NumberNewSelect, projectTabMore_NumberNewField, codeName);
+        selectItemInDropdown(projectTabMore_NumberNewSelect, projectTabMore_NumberNewField, codeType);
         fillField(projectTabMore_NumberReferenceField, codeValue);
         projectTabMore_NumberAdd.click();
-        projectTabMore_NumberRow01Type.shouldHave(text(codeName));
+        projectTabMore_NumberRow01Type.shouldHave(text(codeType));
 
-        rootLogger.info("edit number inline - ");
+        rootLogger.info("open inline form");
         projectTabMore_NumberRow01Edit.click();
-        projectTabMore_NumberReferenceField.shouldHave(text(codeName));
+        rootLogger.info("edit number inline - ");
         String newCodeValue = "8888-1111-lkjh";
-        fillField(projectTabMore_NumberReferenceField, newCodeValue);
-        //todo new codeType
-        projectTabMore_TitleSave.click();
-        sleep(500);
-        refresh();
-        projectTabMore_NumberReferenceField.shouldHave(text(newCodeValue));
+        String newCodeType = "Reference Number";
+        selectItemInDropdown(projectTabMore_Number_EDIT_REFERENCE_TYPE_SELECT, projectTabMore_Number_EDIT_REFERENCE_TYPE_INPUT, newCodeType);
+        fillField(projectTabMore_Number_EDIT_REFERENCE_VALUE_INPUT, newCodeValue);
+        submitEnabledButton(projectTabMore_Number_EDIT_REFERENCE_BTN_SAVE);
+        $$(byText(newCodeValue)).shouldHaveSize(2);
+        $$(byText(newCodeType)).shouldHaveSize(2);
 
         rootLogger.info("delete number -");
+        projectTabMore_NumberRow01Collapse.click();
         projectTabMore_NumberRow01Delete.click();
         submitConfirmAction();
         $$(byText(placeholderNoNumbers)).shouldHaveSize(1);
