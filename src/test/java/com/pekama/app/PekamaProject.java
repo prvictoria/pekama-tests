@@ -104,21 +104,25 @@ public class PekamaProject {
         rootLogger.info("select number from list - ");
         selectItemInDropdown(projectTabMore_NumberNewSelect, projectTabMore_NumberNewField, codeType);
         fillField(projectTabMore_NumberReferenceField, codeValue);
+        scrollDown();
         projectTabMore_NumberAdd.click();
         projectTabMore_NumberRow01Type.shouldHave(text(codeType));
 
         rootLogger.info("open inline form");
         projectTabMore_NumberRow01Edit.click();
+        projectTabMore_Number_EDIT_REFERENCE_BTN_SAVE.waitUntil(visible, 10000).shouldBe(disabled);
         rootLogger.info("edit number inline - ");
         String newCodeValue = "8888-1111-lkjh";
         String newCodeType = "Reference Number";
         selectItemInDropdown(projectTabMore_Number_EDIT_REFERENCE_TYPE_SELECT, projectTabMore_Number_EDIT_REFERENCE_TYPE_INPUT, newCodeType);
         fillField(projectTabMore_Number_EDIT_REFERENCE_VALUE_INPUT, newCodeValue);
         submitEnabledButton(projectTabMore_Number_EDIT_REFERENCE_BTN_SAVE);
-        $$(byText(newCodeValue)).shouldHaveSize(2);
+        $$(byText(newCodeValue)).shouldHaveSize(1);
         $$(byText(newCodeType)).shouldHaveSize(2);
+        $$(byText(codeValue)).shouldHaveSize(0);
+        $$(byText(codeType)).shouldHaveSize(0);
 
-        rootLogger.info("delete number -");
+        rootLogger.info("delete number");
         projectTabMore_NumberRow01Collapse.click();
         projectTabMore_NumberRow01Delete.click();
         submitConfirmAction();
@@ -126,13 +130,14 @@ public class PekamaProject {
     }
     @Test
     public void createProject_D_addClassification() {
+        String classNumber = "12";
+        String classDescripton = "old description";
+        scrollDown();
         projectTabMore_ClassesAdd.click();
         waitForModalWindow(mwClasses_Title);
         MW_BTN_OK.shouldBe(disabled);
         mwClasses_SelectClassType.shouldHave(text("Up-to-date"));
-        String classNumber = "12";
         fillField(mwClasses_FieldClass, classNumber);
-        String classDescripton = "old description";
         fillField(mwClasses_FieldDescription, classDescripton);
         submitEnabledButton(MW_BTN_OK);
         MW.shouldNotBe(visible);

@@ -205,7 +205,7 @@ public class StepsPekama implements StepsFactory{
         rootLogger.info("Validation present - "+errorMsg);
     }
     public static void fillField(SelenideElement fieldName, String enteredValue) {
-        rootLogger.info("Input date");
+        rootLogger.info("Input data");
         fieldName.clear();
         fieldName.shouldHave(Condition.value("")).val(enteredValue);
         fieldName.shouldHave(Condition.value(enteredValue));
@@ -247,9 +247,9 @@ public class StepsPekama implements StepsFactory{
         }
     }
     public static void scrollUp() {
-        executeJavaScript("scrollTo(0, -2000)");
+        executeJavaScript("scrollTo(0, -1000)");
     }
     public static void scrollDown() {
-        executeJavaScript("scrollTo(0, 2000)");
+        executeJavaScript("scrollTo(0, 1000)");
     }
 }

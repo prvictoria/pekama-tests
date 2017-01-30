@@ -90,14 +90,14 @@ public class PekamaProject extends Page {
     public static final SelenideElement projectTabMore_NumberNewSelect = $(byXpath("//div[@name='reference_type']/div/span/span[1]"));
     public static final SelenideElement projectTabMore_NumberNewField = $(byXpath("//div[@name='reference_type']/input[1]"));
     public static final SelenideElement projectTabMore_NumberReferenceField = $(byXpath("//input[@name='reference_number']"));
-    public static final SelenideElement projectTabMore_Number_EDIT_REFERENCE_TYPE_SELECT = $(byXpath("//*[@class='subrow collapsable ng-scope']//pkm-values-dropdown//span[starts-with(@class, 'ui-select-placeholder')]"));
+    public static final SelenideElement projectTabMore_Number_EDIT_REFERENCE_TYPE_SELECT = $(byXpath("//*[@class='subrow collapsable ng-scope']//pkm-values-dropdown//span[starts-with(@class, 'btn btn-default form-control ui-select-toggle')]"));
     public static final SelenideElement projectTabMore_Number_EDIT_REFERENCE_TYPE_INPUT = $(byXpath("//*[@class='subrow collapsable ng-scope']//pkm-values-dropdown//input[@type='search']"));
     public static final SelenideElement projectTabMore_Number_EDIT_REFERENCE_VALUE_INPUT = $(byXpath("//*[@class='subrow collapsable ng-scope']//div[@class='form-group ng-scope']/input"));
     public static final SelenideElement projectTabMore_Number_EDIT_REFERENCE_BTN_SAVE = $(byXpath("//*[@class='subrow collapsable ng-scope']//button"));
 
 
     public static final String projectTabMore_Classes = "//*[@class='more-item classes ng-scope']";
-    public static final SelenideElement projectTabMore_ClassesAdd = $(byXpath(projectTabMore_Classes+"//a[contains(.,'Add')]"));
+    public static final SelenideElement projectTabMore_ClassesAdd = $(byXpath(projectTabMore_Classes+"//button[contains(.,'Add')]"));
     public static final SelenideElement projectTabMore_ClassRow01Number = $(byXpath("//tbody/tr/td[1]"));
     public static final SelenideElement projectTabMore_ClassRow01Type = $(byXpath("//tbody/tr/td[2]"));
     public static final SelenideElement projectTabMore_ClassRow01Description = $(byXpath("//tbody/tr/td[3]"));
