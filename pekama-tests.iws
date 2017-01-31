@@ -6,10 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2fcdccdc-4d95-4ab7-8153-9ec9d616e50f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pekama-tests.iws" afterPath="$PROJECT_DIR$/pekama-tests.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/ModalWindows.java" afterPath="$PROJECT_DIR$/src/main/java/Page/ModalWindows.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/PekamaProject.java" afterPath="$PROJECT_DIR$/src/main/java/Page/PekamaProject.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/TestsCredentials.java" afterPath="$PROJECT_DIR$/src/main/java/Page/TestsCredentials.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaProject.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/PekamaProject.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="build/reports/" />
@@ -307,7 +303,13 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="5192">
               <caret line="255" column="0" lean-forward="false" selection-start-line="255" selection-start-column="0" selection-end-line="255" selection-end-column="0" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#11116#11117#0" expanded="false" />
+                <element signature="e#11171#11172#0" expanded="false" />
+                <element signature="e#11209#11210#0" expanded="false" />
+                <element signature="e#11263#11264#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -1211,13 +1213,6 @@
       <workItem from="1484764340730" duration="8318000" />
       <workItem from="1484929187337" duration="40253000" />
     </task>
-    <task id="LOCAL-00088" summary="Overload signature in login">
-      <created>1484296733872</created>
-      <option name="number" value="00088" />
-      <option name="presentableId" value="LOCAL-00088" />
-      <option name="project" value="LOCAL" />
-      <updated>1484296733872</updated>
-    </task>
     <task id="LOCAL-00089" summary="Overload signature in login">
       <created>1484306714565</created>
       <option name="number" value="00089" />
@@ -1554,7 +1549,14 @@
       <option name="project" value="LOCAL" />
       <updated>1485841662425</updated>
     </task>
-    <option name="localTasksCounter" value="137" />
+    <task id="LOCAL-00137" summary="ProjectTests - Collaborator test">
+      <created>1485843833180</created>
+      <option name="number" value="00137" />
+      <option name="presentableId" value="LOCAL-00137" />
+      <option name="project" value="LOCAL" />
+      <updated>1485843833180</updated>
+    </task>
+    <option name="localTasksCounter" value="138" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1693,7 +1695,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Overide args for login reset password tests&#10;static var for NEW_PASSWORD" />
     <MESSAGE value="Overload signature in login" />
     <MESSAGE value="Fix Inbox empty trash" />
     <MESSAGE value="Reuse password validation test" />
@@ -1718,7 +1719,8 @@
     <MESSAGE value="ProjectTests - fix invisible elements on page&#10;scroll UP implemented" />
     <MESSAGE value="ProjectTests - scroll up method" />
     <MESSAGE value="ProjectTests - Classification test" />
-    <option name="LAST_COMMIT_MESSAGE" value="ProjectTests - Classification test" />
+    <MESSAGE value="ProjectTests - Collaborator test" />
+    <option name="LAST_COMMIT_MESSAGE" value="ProjectTests - Collaborator test" />
   </component>
   <component name="VssConfiguration">
     <CheckoutOptions>
@@ -1812,13 +1814,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/Page/PekamaConversationProject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="11" column="52" lean-forward="false" selection-start-line="11" selection-start-column="52" selection-end-line="11" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Page/PekamaConversationSidebar.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -2108,7 +2103,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5192">
           <caret line="255" column="0" lean-forward="false" selection-start-line="255" selection-start-column="0" selection-end-line="255" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#11116#11117#0" expanded="false" />
+            <element signature="e#11171#11172#0" expanded="false" />
+            <element signature="e#11209#11210#0" expanded="false" />
+            <element signature="e#11263#11264#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2167,6 +2168,14 @@
             <element signature="method#createProject_C_AddNumber#0;class#PekamaProject#0" expanded="false" />
             <element signature="method#createProject_D_addClassification#0;class#PekamaProject#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Documents/MockBackend/ProxyRewrite/Endpoint_usage/usageStub.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="638">
+          <caret line="29" column="14" lean-forward="true" selection-start-line="9" selection-start-column="12" selection-end-line="29" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
