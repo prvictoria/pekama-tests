@@ -52,7 +52,6 @@ public class PekamaProject {
         rootLogger.info("Project '"+testProjectTitle+"' created");
         waitForTestPresent(testProjectTitle);
     }
-
 //    @After
 //    public void after() {
 //        rootLogger.info("delete project - '"+testProjectTitle"'");
@@ -63,7 +62,6 @@ public class PekamaProject {
 //        open(URL_Dashboard);
 //        rootLogger.info("Open URL - " +URL_Dashboard);
 //    }
-
     @Test
     public void createProject_A_CheckDefaultState() {
         $$(byText(testProjectTitle)).filter(visible).shouldHaveSize(1);
@@ -73,7 +71,6 @@ public class PekamaProject {
         $$(byText("Team chat is great for conversations between groups of people, where all the group members should see the conversation all the time.")).shouldHaveSize(1);
         rootLogger.info("GUI test passed");
     }
-
     @Test
     public void createProject_B_editProjectName() throws AWTException {
         waitForTestPresent(testProjectTitle);
@@ -96,7 +93,6 @@ public class PekamaProject {
         refresh();
         projectTabMore_ProjectTitle.shouldHave(text(testProjectTitle));
     }
-
     @Test
     public void createProject_C_AddNumber() {
         String codeType = "Equinox code";
@@ -159,11 +155,11 @@ public class PekamaProject {
         $$(byText("Official Data")).shouldHaveSize(1);
         $$(byText(classNewDescripton)).shouldHaveSize(1);
 
-        rootLogger.info("delete class - ");
+        rootLogger.info("delete classification");
         projectTabMore_ClassRow01delete.click();
         submitConfirmAction();
         $$(byText(placeholderNoCases)).shouldHaveSize(1);
-
+        rootLogger.info("All calsses were deleted - "+placeholderNoCases);
     }
     @Test
     public void createProject_E_addCollaborator() {

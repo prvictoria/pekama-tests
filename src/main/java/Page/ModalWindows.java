@@ -25,15 +25,13 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_MAILING_1USER_INTERVAL = $(byXpath(mw+"//ul//li[2]//input[@type='number']"));
 
 
-    public static final SelenideElement MW_BTN_SAVE = $(byXpath(mw+"//*[contains(.,'Save')]"));
-    public static final SelenideElement MW_BTN_CANCEL = $(byXpath(mw+"//*[contains(.,'Cancel')]"));
-    public static final SelenideElement MW_BTN_ADD = $(byXpath(mw+"//*[contains(.,'Add')]"));
-    public static final SelenideElement MW_BTN_OK = $(byXpath(mw+"//*[contains(.,'OK')]"));
+    public static final SelenideElement MW_BTN_SAVE = $(byXpath(mw+"button[contains(.,'Save')]"));
+    public static final SelenideElement MW_BTN_CANCEL = $(byXpath(mw+"//button[contains(.,'Cancel')]"));
+    public static final SelenideElement MW_BTN_ADD = $(byXpath(mw+"button[contains(.,'Add')]"));
+    public static final SelenideElement MW_BTN_OK = $(byXpath(mw+"//button[contains(.,'OK')]"));
     public static final SelenideElement MW_BTN_YES = $(byXpath(mw+"//button[contains(.,'Yes')]"));
     public static final SelenideElement MW_ICON_CLOSE = $(byXpath(mw+"//*[@aria-label='Close']"));
     public static final SelenideElement MW_BTN_CLOSE = $(byXpath(mw+"//*[contains .,'Close' ]"));
-
-
 
 
     public static final SelenideElement MW_GENERIC_Title = $(byXpath("//*[@class='modal-title']"));
@@ -264,10 +262,10 @@ public class ModalWindows extends Page {
     public static final SelenideElement mwUpdateAssignee_Input = $(byXpath(""));
     //New Class
     public static final String mwClasses_Title = "Classes & Goods";
-    public static final SelenideElement mwClasses_SelectClassType = $(byXpath("//div[2]/div/div/div/span/span[2]/span"));
-    public static final SelenideElement mwClasses_FieldClassType = $(byXpath("//form/div[2]/div/div/input"));
-    public static final SelenideElement mwClasses_FieldClass = $(byXpath("//input[@name='class_no']"));
-    public static final SelenideElement mwClasses_FieldDescription = $(byXpath("//textarea[@name='description']"));
+    public static final SelenideElement mwClasses_SelectClassType = $(byXpath(mw+"//label[contains(.,'Class Type')]/following-sibling::div//span[@class='ng-binding ng-scope']"));
+    public static final SelenideElement mwClasses_FieldClassType = $(byXpath(mw+"//input[@type='search']"));
+    public static final SelenideElement mwClasses_FieldClass = $(byXpath(mw+"//input[@name='class_no']"));
+    public static final SelenideElement mwClasses_FieldDescription = $(byXpath(mw+"//textarea[@name='description']"));
 
     public static final SelenideElement mwChangeCollaborator_Title = $(byXpath("//div/div/h3"));
     public static final SelenideElement mwChangeCollaborator_Select = $(byXpath("//select"));
