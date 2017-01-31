@@ -6,7 +6,7 @@ public class TestsCredentials {
         GMAIL_EMAIL("testqweeco001@gmail.com"),
         GMAIL_PASSWORD("123456789qasw1"),
         PEKAMA_PASSWORD("asui67we34"),
-        LINKEDIN_PASSWORD("123456789qasw"),
+        LINKEDIN_PASSWORD("asui67we34@Q"),
         BOX_PASSWORD("32qew8127a12a"),
         NAME("Test001"),
         SURNAME("Quality01"),
@@ -20,7 +20,7 @@ public class TestsCredentials {
         public String getValue() {
             return value;
         }
-    }
+    } //has linkedin
     public enum User2 {
         GMAIL_EMAIL("testqweeco002@gmail.com"),
         GMAIL_PASSWORD("123456789qasw1"),

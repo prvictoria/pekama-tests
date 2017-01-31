@@ -267,11 +267,7 @@ public class ModalWindows extends Page {
     public static final SelenideElement mwClasses_FieldClass = $(byXpath(mw+"//input[@name='class_no']"));
     public static final SelenideElement mwClasses_FieldDescription = $(byXpath(mw+"//textarea[@name='description']"));
 
-    public static final SelenideElement mwChangeCollaborator_Title = $(byXpath("//div/div/h3"));
-    public static final SelenideElement mwChangeCollaborator_Select = $(byXpath("//select"));
-    public static final String mwChangeCollaborator_Viewer ="Viewer";
-    public static final String mwChangeCollaborator_Collaborator = "Collaborator";
-    public static final String mwChangeCollaborator_Admin = "Admin";
+
 
     public static final SelenideElement wmEvent_ = $(byXpath(""));
     public static final SelenideElement wmEvent_SelectType = $(byXpath("//div/div[2]/pkm-values-dropdown/div/div/span"));
@@ -279,14 +275,16 @@ public class ModalWindows extends Page {
     public static final SelenideElement wmEvent_FieldInfo = $(byXpath("//textarea[@name='number']"));
     public static final SelenideElement wmEvent_SAVE = $(byXpath(""));
 
-    public static final SelenideElement mODAL_ShareProject = $("css=.modal-content");
-    public static final SelenideElement mODAL_ShareProjectEmptyTeam = $(byXpath("//*[@class='ng-binding'][contains .,'' ]"));
-    public static final SelenideElement mODAL_ShareProjectOkButton = $(byXpath("//*[@class='btn btn-primary ng-isolate-scope'][contains .,'OK' ]"));
-    public static final SelenideElement mODAL_ShareProjectCancelButton = $(byXpath("//*[@class='btn btn-secondary'][contains .,'Cancel' ]"));
-    public static final SelenideElement collaborator_VatslauAfrica = $(byXpath("//*[@class='ng-binding'][contains .,'Vatslau Africa' ]"));
-    public static final SelenideElement collaborator_V375291200656 = $(byXpath("//*[@class='ng-binding'][contains .,'Test01 Musk' ]"));
-    public static final SelenideElement collaborator_QweecoTest02 = $(byXpath("//*[@class='ng-binding'][contains .,'Test02 Qweeco Zubr' ]"));
-
+    //MW SHARE PROJECT and Change collaborators
+    public static final SelenideElement MW_SHARE_PROJECT = $(byXpath(mw+""));
+    public static final SelenideElement MW_SHARE_PROJECT_EMAIL = $(byXpath(mw+"//input[@name='email']"));
+    public static final SelenideElement MW_SHARE_PROJECT_BTN_FIND = $(byXpath(mw+"//button[contains(text(),'Find')]"));
+    //todo paran string %s = name + surname existaed contacts
+    public static final SelenideElement MW_SHARE_PROJECT_SELECT_TEAM = $(byXpath(mw+"//strong[contains(.,'%s')]//preceding-sibling::input"));
+    public static final SelenideElement MW_SHARE_PROJECT_SELECT_ROLE = $(byXpath(mw+"//select"));
+    public static final String ROLE_VIEWER = "Viewer";
+    public static final String ROLE_COLLABORATOR = "Collaborator";
+    public static final String ROLE_ADMIN = "Admin";
 
 
     public static final SelenideElement MW_COMMUNITY_Title = $(byXpath(mw+"//h2"));

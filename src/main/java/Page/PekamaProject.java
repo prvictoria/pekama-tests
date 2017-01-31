@@ -119,7 +119,7 @@ public class PekamaProject extends Page {
 
     //todo - TAB contacts
     public static final SelenideElement projectTabContacts_Teams = $(byXpath("//pkm-collaborators"));
-    public static final SelenideElement projectTabContacts_AddCollaborator = $(byXpath("//pkm-collaborators//a[contains(.,'Add')]"));
+    public static final SelenideElement projectTabContacts_AddCollaborator = $(byXpath("//pkm-collaborators//button[contains(.,'Add')]"));
     public static final SelenideElement projectTabContacts_TeamsTitle = $(byXpath("//section[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div[2]/div/div/pkm-collaborators/h4"));
     public static final SelenideElement projectTabContacts_TeamRow = $(byXpath("//tr[@ng-repeat='collaborator in collaborators']"));
     public static final SelenideElement projectTabContacts_TeamName = $(byXpath("/td[1]"));

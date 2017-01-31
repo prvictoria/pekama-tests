@@ -171,26 +171,26 @@ public class PekamaProject {
         //todo new row selection by team name
         waitForModalWindow("Change Collaborator");
         MW_BTN_OK.shouldBe(disabled);
-        mwChangeCollaborator_Select.selectOption(mwChangeCollaborator_Viewer);
+        MW_SHARE_PROJECT_SELECT_ROLE.selectOption(ROLE_VIEWER);
         submitEnabledButton(MW_BTN_OK);
         MW.shouldNotBe(visible);
-        $$(byText(mwChangeCollaborator_Viewer)).shouldHaveSize(1);
+        $$(byText(ROLE_VIEWER)).shouldHaveSize(1);
 
         //todo
         waitForModalWindow("Change Collaborator");
         MW_BTN_OK.shouldBe(disabled);
-        mwChangeCollaborator_Select.selectOption(mwChangeCollaborator_Admin);
+        mwChangeCollaborator_Select.selectOption(ROLE_ADMIN);
         submitEnabledButton(MW_BTN_OK);
         MW.shouldNotBe(visible);
-        $$(byText(mwChangeCollaborator_Admin)).shouldHaveSize(1);
+        $$(byText(ROLE_ADMIN)).shouldHaveSize(1);
 
         //todo
         waitForModalWindow("Change Collaborator");
         MW_BTN_OK.shouldBe(disabled);
-        mwChangeCollaborator_Select.selectOption(mwChangeCollaborator_Collaborator);
+        mwChangeCollaborator_Select.selectOption(ROLE_COLLABORATOR);
         submitEnabledButton(MW_BTN_OK);
         MW.shouldNotBe(visible);
-        $$(byText(mwChangeCollaborator_Collaborator)).shouldHaveSize(1);
+        $$(byText(ROLE_COLLABORATOR)).shouldHaveSize(1);
 
         rootLogger.info("Delete collaborator");
 
