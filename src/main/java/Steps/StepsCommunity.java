@@ -5,6 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
+import org.junit.Test;
 
 import static Page.CommunityProfile.*;
 import static Page.CommunityWizard.*;
@@ -64,6 +65,11 @@ public class StepsCommunity implements StepsFactory{
         {
             Assert.fail("Service present element state is - "+$(byXpath(profileServiceRow)).exists());
         }
+    }
+    @Test
+    public void testParam(){
+        findServiceRow(false, "123", "456");
+
     }
     public static void clickServiceRowEdit(String profileServiceCaseType, String profileServiceCountry) {
         //       String profileServiceRow = "//div[contains(.,'"+profileServiceCaseType+"')]/following-sibling::div[contains(.,'"+profileServiceCountry+"')]/following-sibling::div//button[1]";

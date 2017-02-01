@@ -21,6 +21,7 @@ public class StepsExternal implements StepsFactory{
     static final Logger logging = LogManager.getLogger(StepsExternal.class);
     public static String REDIRECT_LINK;
     public static String checkReportBackLink;
+    private static String[] args;
 
     public static void checkEmailGeneric(String GMAIL_LOGIN, String GMAIL_PASSWORD, SelenideElement EMAIL_SUBJECT, String EMAIL_TITLE, String EMAIL_TEXT, String EMAIL_BTN, SelenideElement EMAIL_REDIRECT_LINK, String thisMailingListName){
         logging.info("Login");
@@ -135,6 +136,7 @@ public class StepsExternal implements StepsFactory{
         }
     }
     public static void openEmail(SelenideElement EMAIL_SUBJECT){
+
         if (EMAIL_SUBJECT == null) {
             Assert.fail("Subject email is - " + EMAIL_SUBJECT);
         }
@@ -146,6 +148,9 @@ public class StepsExternal implements StepsFactory{
             logging.info("Email opened");
         }
     }
+
+
+
     public static void checkEmailTitle(String EMAIL_TITLE){
         if (EMAIL_TITLE == null) {
             Assert.fail("Title email is - " + EMAIL_TITLE);
@@ -266,9 +271,9 @@ public class StepsExternal implements StepsFactory{
     public static void authLinkedin(){
     }
 
+
     @Test
     public void externalTestDebug() {
-
             StepsExternal loginGmailInboxApp = new StepsExternal();
             String GMAIL_LOGIN = TestsCredentials.User4.GMAIL_EMAIL.getValue();
             loginGmailInboxApp.signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);

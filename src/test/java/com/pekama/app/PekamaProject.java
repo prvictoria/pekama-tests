@@ -1,4 +1,5 @@
 package com.pekama.app;
+import Page.Emails;
 import Steps.*;
 import Utils.Utils;
 import com.codeborne.selenide.*;
@@ -8,19 +9,19 @@ import org.junit.*;
 
 import java.awt.*;
 
+import static Page.Emails.*;
+import static Page.Emails.emailSubject;
 import static Page.ModalWindows.*;
 import static Page.PekamaDashboard.*;
 import static Page.PekamaProject.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.TestsUrl.*;
-import static Steps.StepsExternal.checkInboxEmail;
+import static Steps.StepsExternal.*;
 import static Steps.StepsPekama.*;
 import static Steps.StepsPekama.fillField;
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selectors.byLinkText;
-import static com.codeborne.selenide.Selectors.byName;
-import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 
 
@@ -216,34 +217,41 @@ public class PekamaProject {
     }
     @Test //todo
     public void createProject_E_inviteCollaborator() {
-        rootLogger.info("Invite new team to Pekama project");
-        projectTabContacts.click();
-        projectTabContacts_AddCollaborator.click();
-        waitForModalWindow("Share Project");
-        MW_SHARE_PROJECT_BTN_FIND.shouldBe(disabled);
-        fillField(MW_SHARE_PROJECT_EMAIL, User5.GMAIL_EMAIL.getValue());
-        submitEnabledButton(MW_SHARE_PROJECT_BTN_FIND);
-        submitEnabledButton(MW_BTN_OK);
-        MW.shouldNotBe(visible);
-        $$(byText(OWNER)).shouldHaveSize(1);
-        $$(byText(COLLABORATOR)).shouldHaveSize(1);
+//        rootLogger.info("Invite new team to Pekama project");
+//        projectTabContacts.click();
+//        projectTabContacts_AddCollaborator.click();
+//        waitForModalWindow("Share Project");
+//        MW_SHARE_PROJECT_BTN_FIND.shouldBe(disabled);
+//        fillField(MW_SHARE_PROJECT_EMAIL, User5.GMAIL_EMAIL.getValue());
+//        submitEnabledButton(MW_SHARE_PROJECT_BTN_FIND);
+//        submitEnabledButton(MW_BTN_OK);
+//        MW.shouldNotBe(visible);
+//        $$(byText(OWNER)).shouldHaveSize(1);
+//        $$(byText(COLLABORATOR)).shouldHaveSize(1);
 
         rootLogger.info("Check email");
         String USER_EMAIL = User5.GMAIL_EMAIL.getValue();
-        SelenideElement EMAIL_SUBJECT = ;
-        String EMAIL_TITLE = "";
-        String EMAIL_TEXT = "";
-        String EMAIL_BTN = "";
-        SelenideElement EMAIL_REDIRECT_LINK = ;
-        String inviteLink = checkInboxEmail(
-                USER_EMAIL,
-                GMAIL_PASSWORD,
-                EMAIL_SUBJECT,
-                EMAIL_TITLE,
-                EMAIL_TEXT,
-                EMAIL_BTN,
-                EMAIL_REDIRECT_LINK);
-        if (inviteLink==null){Assert.fail("no link in email");};
+
+
+//        SelenideElement EMAIL_SUBJECT = $(byXpath(emailSubject(testProjectTitle)));
+//        String EMAIL_TITLE = emailInviteInProjectText(
+//                User2.NAME.getValue(),
+//                User2.SURNAME.getValue());
+//        String EMAIL_TEXT = emailInviteInProjectText(
+//                User2.NAME.getValue(),
+//                User2.SURNAME.getValue(),
+//                testProjectTitle);
+//        String EMAIL_BTN = EMAIL_INVITE_IN_PROJECT_BTN;
+//        SelenideElement EMAIL_REDIRECT_LINK = EMAIL_INVITE_IN_PROJECT_BACKLINK;
+//        String inviteLink = checkInboxEmail(
+//                USER_EMAIL,
+//                GMAIL_PASSWORD,
+//                EMAIL_SUBJECT,
+//                EMAIL_TITLE,
+//                EMAIL_TEXT,
+//                EMAIL_BTN,
+//                EMAIL_REDIRECT_LINK);
+//        if (inviteLink==null){Assert.fail("no link in email");};
 
     }
     @Test //todo

@@ -1,6 +1,7 @@
 package Page;
 import com.codeborne.selenide.SelenideElement;
-import static Page.PekamaReports.*;
+import org.junit.Test;
+
 import static Page.TestsUrlConfiguration.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
@@ -13,6 +14,23 @@ public class Emails extends Page {
     public static final String EMAIL_RESET_PASSWORD_BTN = "Reset Password";
     public static final SelenideElement EMAIL_RESET_PASSWORD_SUBJECT = $(byXpath("//span[contains(.,'Password Restoration [Pekama]')]"));
     public static final SelenideElement EMAIL_RESET_PASSWORD_BACKLINK = $(byXpath("//td/a[contains(@href, '"+SELECT_HOST+"/accounts/password/reset/')]"));
+
+
+    public static String EMAIL_SUBJECT ="//span[contains(.,'%s')]";
+
+    public static String emailSubject(String... args) {
+        String buildSubject = String.format(EMAIL_SUBJECT, args);
+//        SelenideElement thisEmailSubject = $(byXpath(buildSubject));
+        return buildSubject;
+    }
+    @Test
+    public void test (){
+        String a = emailSubject("Team");
+
+        System.out.println(a);
+    }
+
+
     //confirm registration
     public static final SelenideElement EMAIL_CONFIRM_REGISTRATION = $(byXpath(""));
     public static final SelenideElement EMAIL_CONFIRM_REGISTRATION_SUBJECT = $(byXpath("//span[contains(.,'Confirm Registration [Pekama]')]"));
@@ -29,11 +47,23 @@ public class Emails extends Page {
     public static final SelenideElement EMAIL_INVITE_IN_COMMUNITY_BACKLINK = $(byXpath("//td/a[contains(@href, '"+COMMUNITY+"/community/activate/')]"));
     //Invite in Project
     public static final SelenideElement EMAIL_INVITE_IN_PROJECT = $(byXpath(""));
-    public static final SelenideElement EMAIL_INVITE_IN_PROJECT_SUBJECT = $(byXpath("//span[contains(.,'invited you to join Pekama Community')]"));
-    public static final String EMAIL_INVITE_IN_PROJECT_TITLE = "You're invited to Pekama Community";
-    public static final String EMAIL_INVITE_IN_PROJECT_TEXT = "Entered by user text";
-    public static final String EMAIL_INVITE_IN_PROJECT_BTN = "Join Pekama Community";
-    public static final SelenideElement EMAIL_INVITE_IN_PROJECT_BACKLINK = $(byXpath("//td/a[contains(@href, '"+COMMUNITY+"/community/activate/')]"));
+    public static final  SelenideElement EMAIL_INVITE_IN_PROJECT_SUBJECT = $(byXpath("//span[contains(.,'invited you')]")); //Test002 Quality02 invited you to TM.PN.028318 new test project - TPTTUX Project
+    //public static String EMAIL_INVITE_IN_PROJECT_SUBJECT = "'%s' '%s' invited you to TM.PN.028318 new test project - TPTTUX Project"; //Test002 Quality02 invited you to TM.PN.028318 new test project - TPTTUX Project
+
+    public static final String EMAIL_INVITE_IN_PROJECT_TITLE = "'%s' '%s' invited you to collaborate";
+    public static String emailInviteInProjectTitle(String... args){
+        String emailTitle = String.format(EMAIL_INVITE_IN_PROJECT_TITLE, args);
+        return emailTitle;
+    }
+
+    public static String EMAIL_INVITE_IN_PROJECT_TEXT = String.format("'%s' '%s' from created a project for '%s' and invites you to join in."); //User name, Surname, Project name
+    public static String emailInviteInProjectText(String... args){
+        String emailText = String.format(EMAIL_INVITE_IN_PROJECT_TEXT, args);
+        return emailText;
+    }
+    public static final String EMAIL_INVITE_IN_PROJECT_BTN = "Join Project";
+    public static final SelenideElement EMAIL_INVITE_IN_PROJECT_BACKLINK = $(byXpath("//td/a[contains(@href, '"+SELECT_HOST+"/n/legal/submatter/')]"));
+    //https://staging.pekama.com/n/legal/submatter/28318/?user=7557
     // Report email
     public static final String EMAIL_REPORT = "Pekama Report";
     public static final SelenideElement EMAIL_REPORT_SUBJECT = $(byXpath("//span[contains(.,'Pekama Report')]"));
