@@ -27,6 +27,13 @@ public class Emails extends Page {
     public static final String EMAIL_INVITE_IN_COMMUNITY_TEXT = "Entered by user text";
     public static final String EMAIL_INVITE_IN_COMMUNITY_BTN = "Join Pekama Community";
     public static final SelenideElement EMAIL_INVITE_IN_COMMUNITY_BACKLINK = $(byXpath("//td/a[contains(@href, '"+COMMUNITY+"/community/activate/')]"));
+    //Invite in Project
+    public static final SelenideElement EMAIL_INVITE_IN_PROJECT = $(byXpath(""));
+    public static final SelenideElement EMAIL_INVITE_IN_PROJECT_SUBJECT = $(byXpath("//span[contains(.,'invited you to join Pekama Community')]"));
+    public static final String EMAIL_INVITE_IN_PROJECT_TITLE = "You're invited to Pekama Community";
+    public static final String EMAIL_INVITE_IN_PROJECT_TEXT = "Entered by user text";
+    public static final String EMAIL_INVITE_IN_PROJECT_BTN = "Join Pekama Community";
+    public static final SelenideElement EMAIL_INVITE_IN_PROJECT_BACKLINK = $(byXpath("//td/a[contains(@href, '"+COMMUNITY+"/community/activate/')]"));
     // Report email
     public static final String EMAIL_REPORT = "Pekama Report";
     public static final SelenideElement EMAIL_REPORT_SUBJECT = $(byXpath("//span[contains(.,'Pekama Report')]"));
@@ -48,7 +55,7 @@ public class Emails extends Page {
     public static final SelenideElement INBOX_BTN_EMPTY_TRASH = $(byXpath("//button[contains(.,'EMPTY TRASH NOW')]"));
     public static final SelenideElement INBOX_CONFIRM_EMPTY_TRASH = $(byXpath("//div[@role='dialog']//div/div[contains(.,'OK')]"));
 
-    //Common gamail app - not user NOW
+    //Common gmail app - not user NOW
     public static final String GMAIL_URL = "https://mail.google.com/mail/u/0/#inbox";
     public static final String GMAIL_URL_LOG_OUT = "https://www.google.com/accounts/Logout"; //username  remains
     public static final String GMAIL_URL_SIGN_OUT = "https://accounts.google.com/Logout?continue=https%3A%2F%2Faccounts.google.com%2FServiceLogin%3Fsacu%3D1&il=true&zx=icxpgruz0yao";
@@ -68,7 +75,7 @@ public class Emails extends Page {
 
     public static final SelenideElement OUTLOOK_URL = $(byXpath("https://outlook.live.com/owa/?path=/mail/inbox"));
     public static final SelenideElement OUTLOOK_INBOX_LIST = $(byXpath("//div[@role='listbox']//div[@data-convid][2]/*[@role='option']"));
-    public static final SelenideElement OUTLOOK_INBOX_EMAIL_SUNJECT = $(byXpath("//tbody/tr[1]//b[1]"));
+    public static final SelenideElement OUTLOOK_INBOX_EMAIL_SUBJECT = $(byXpath("//tbody/tr[1]//b[1]"));
 
 
     //generic email strings

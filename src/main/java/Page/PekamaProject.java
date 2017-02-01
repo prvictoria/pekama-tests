@@ -124,9 +124,12 @@ public class PekamaProject extends Page {
     public static final SelenideElement projectTabContacts_TeamRow = $(byXpath("//tr[@ng-repeat='collaborator in collaborators']"));
     public static final SelenideElement projectTabContacts_TeamName = $(byXpath("/td[1]"));
     public static final SelenideElement projectTabContacts_TeamStatus = $(byXpath("/td[2]"));
-    public static final SelenideElement projectTabContacts_TeamEdit = $(byXpath("/td[3]/a[1]"));
-    public static final SelenideElement projectTabContacts_TeamDelete = $(byXpath("/td[3]/a[2]"));
-
+    public static final SelenideElement projectTabContacts_TeamEdit = $(byXpath("//pkm-collaborators//tbody//tr[2]//a[1]"));
+    public static final SelenideElement projectTabContacts_TeamDelete = $(byXpath("//pkm-collaborators//tbody//tr[2]//a[2]"));
+    public static final String OWNER = "OWNER";
+    public static final String ADMIN = "ADMIN";
+    public static final String COLLABORATOR = "COLLABORATOR";
+    public static final String VIEWER = "VIEWER";
 
     public static final SelenideElement projectTabContacts_RelationNoData = $(byXpath("//pkm-contact-relations/div[2]/div/div[2]"));
     public static final SelenideElement projectTabContacts_AddSelectContact = $(byXpath("//div[@name='contact']/div/span"));

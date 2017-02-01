@@ -42,7 +42,6 @@ public class StepsPekama implements StepsFactory{
         btnSignup.shouldBe(Condition.not(visible));
         rootLogger.info("Valid Credentials were submitted");
     }
-
     public void  loginByURL(String PEKAMA_USER_EMAIL, String PEKAMA_USER_PASSWORD, String AUTH_URL){
         httpAuthUrl(AUTH_URL);
         rootLogger.info(AUTH_URL+"URL opened");
@@ -55,7 +54,6 @@ public class StepsPekama implements StepsFactory{
         btnLogin.shouldBe(Condition.not(visible));
         rootLogger.info("Valid Credentials were submitted");
     }
-
 
     public void  submitLoginCredentials(String PEKAMA_USER_EMAIL){
         submitCookie();
@@ -239,7 +237,7 @@ public class StepsPekama implements StepsFactory{
         return currentUrl;
     }
 
-    public static void waitForTestPresent(String text) {
+    public static void waitForTextPresent(String text) {
         rootLogger.info("Wait for - " + text);
         $(byText(text)).waitUntil(exist, 20000);
         if ($(byText(text)) == null) {
@@ -252,4 +250,15 @@ public class StepsPekama implements StepsFactory{
     public static void scrollDown() {
         executeJavaScript("scrollTo(0, 1000)");
     }
+
+//    public static String MW_SHARE_PROJECT_SELECT_TEAM = "//div[@class='row' and contains(.,'%s') and contains(.,'%s')]";
+    public static void selectTeam(String... args) {
+        String searchedRadio = String.format(MW_SHARE_PROJECT_SELECT_TEAM, args);
+        $(byXpath(searchedRadio)).shouldBe(visible);
+        $(byXpath(searchedRadio)).click();
+    }
+    public static void selectOption(SelenideElement optionSelector,String optionName) {
+        optionSelector.selectOption(new String[]{optionName});
+    }
+
 }

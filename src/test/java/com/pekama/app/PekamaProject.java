@@ -14,6 +14,7 @@ import static Page.PekamaProject.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.TestsUrl.*;
+import static Steps.StepsExternal.checkInboxEmail;
 import static Steps.StepsPekama.*;
 import static Steps.StepsPekama.fillField;
 import static com.codeborne.selenide.Condition.*;
@@ -50,7 +51,7 @@ public class PekamaProject {
         sleep(1000);
         getActualUrl ();
         rootLogger.info("Project '"+testProjectTitle+"' created");
-        waitForTestPresent(testProjectTitle);
+        waitForTextPresent(testProjectTitle);
     }
 //    @After
 //    public void after() {
@@ -73,7 +74,7 @@ public class PekamaProject {
     }
     @Test
     public void createProject_B_editProjectName() throws AWTException {
-        waitForTestPresent(testProjectTitle);
+        waitForTextPresent(testProjectTitle);
         scrollUp();
         projectTabMore_ProjectTitle.shouldHave(text(testProjectTitle));
         projectTabMore_ProjectTitle.click();
@@ -83,7 +84,7 @@ public class PekamaProject {
         sleep(1000);
         refresh();
 
-        waitForTestPresent(newProjectName);
+        waitForTextPresent(newProjectName);
         scrollUp();
         projectTabMore_ProjectTitle.shouldHave(text(newProjectName));
         projectTabMore_TitleEditButton.click();
@@ -163,36 +164,54 @@ public class PekamaProject {
     }
     @Test
     public void createProject_E_addCollaborator() {
-        rootLogger.info("Add Pekama member");
+        rootLogger.info("Add Pekama member - by default - as Collaborator");
         projectTabContacts.click();
         projectTabContacts_AddCollaborator.click();
         waitForModalWindow("Share Project");
-        rootLogger.info("Edit role");
-        //todo new row selection by team name
-        waitForModalWindow("Change Collaborator");
-        MW_BTN_OK.shouldBe(disabled);
-        MW_SHARE_PROJECT_SELECT_ROLE.selectOption(ROLE_VIEWER);
+        selectTeam(User3.TEAM_NAME.getValue());
         submitEnabledButton(MW_BTN_OK);
         MW.shouldNotBe(visible);
-        $$(byText(ROLE_VIEWER)).shouldHaveSize(1);
+        $$(byText(OWNER)).shouldHaveSize(1);
+        $$(byText(COLLABORATOR)).shouldHaveSize(1);
+//todo SELECT ??? Type mismatch Can't assign non-array value to an array
 
-        //todo
+        rootLogger.info("Edit role to - "+ROLE_VIEWER);
+        projectTabContacts_TeamEdit.click();
         waitForModalWindow("Change Collaborator");
         MW_BTN_OK.shouldBe(disabled);
-        mwChangeCollaborator_Select.selectOption(ROLE_ADMIN);
+        selectOption(MW_SHARE_PROJECT_SELECT_ROLE, ROLE_VIEWER);
+      //  MW_SHARE_PROJECT_SELECT_ROLE.selectOption(new String[]{ROLE_VIEWER});
         submitEnabledButton(MW_BTN_OK);
         MW.shouldNotBe(visible);
-        $$(byText(ROLE_ADMIN)).shouldHaveSize(1);
+        $$(byText(VIEWER)).shouldHaveSize(1);
 
-        //todo
+        rootLogger.info("Edit role to - "+ROLE_ADMIN);
+        projectTabContacts_TeamEdit.click();
         waitForModalWindow("Change Collaborator");
         MW_BTN_OK.shouldBe(disabled);
-        mwChangeCollaborator_Select.selectOption(ROLE_COLLABORATOR);
+        selectOption(MW_SHARE_PROJECT_SELECT_ROLE, ROLE_ADMIN);
+     //   MW_SHARE_PROJECT_SELECT_ROLE.selectOption(new String[]{ROLE_ADMIN});
         submitEnabledButton(MW_BTN_OK);
         MW.shouldNotBe(visible);
-        $$(byText(ROLE_COLLABORATOR)).shouldHaveSize(1);
+        $$(byText(ADMIN)).shouldHaveSize(1);
+
+        rootLogger.info("Edit role to - "+ROLE_COLLABORATOR);
+        projectTabContacts_TeamEdit.click();
+        waitForModalWindow("Change Collaborator");
+        MW_BTN_OK.shouldBe(disabled);
+        selectOption(MW_SHARE_PROJECT_SELECT_ROLE, ROLE_COLLABORATOR);
+      //  MW_SHARE_PROJECT_SELECT_ROLE.selectOption(new String[]{ROLE_COLLABORATOR});
+        submitEnabledButton(MW_BTN_OK);
+        MW.shouldNotBe(visible);
+        $$(byText(COLLABORATOR)).shouldHaveSize(1);
 
         rootLogger.info("Delete collaborator");
+        projectTabContacts_TeamDelete.click();
+        submitConfirmAction();
+        $$(byText(OWNER)).shouldHaveSize(1);
+        $$(byText(ADMIN)).shouldHaveSize(0);
+        $$(byText(COLLABORATOR)).shouldHaveSize(0);
+        $$(byText(VIEWER)).shouldHaveSize(0);
 
     }
     @Test //todo
@@ -200,7 +219,31 @@ public class PekamaProject {
         rootLogger.info("Invite new team to Pekama project");
         projectTabContacts.click();
         projectTabContacts_AddCollaborator.click();
+        waitForModalWindow("Share Project");
+        MW_SHARE_PROJECT_BTN_FIND.shouldBe(disabled);
+        fillField(MW_SHARE_PROJECT_EMAIL, User5.GMAIL_EMAIL.getValue());
+        submitEnabledButton(MW_SHARE_PROJECT_BTN_FIND);
+        submitEnabledButton(MW_BTN_OK);
+        MW.shouldNotBe(visible);
+        $$(byText(OWNER)).shouldHaveSize(1);
+        $$(byText(COLLABORATOR)).shouldHaveSize(1);
+
         rootLogger.info("Check email");
+        String USER_EMAIL = User5.GMAIL_EMAIL.getValue();
+        SelenideElement EMAIL_SUBJECT = ;
+        String EMAIL_TITLE = "";
+        String EMAIL_TEXT = "";
+        String EMAIL_BTN = "";
+        SelenideElement EMAIL_REDIRECT_LINK = ;
+        String inviteLink = checkInboxEmail(
+                USER_EMAIL,
+                GMAIL_PASSWORD,
+                EMAIL_SUBJECT,
+                EMAIL_TITLE,
+                EMAIL_TEXT,
+                EMAIL_BTN,
+                EMAIL_REDIRECT_LINK);
+        if (inviteLink==null){Assert.fail("no link in email");};
 
     }
     @Test //todo

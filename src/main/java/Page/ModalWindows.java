@@ -280,7 +280,7 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_SHARE_PROJECT_EMAIL = $(byXpath(mw+"//input[@name='email']"));
     public static final SelenideElement MW_SHARE_PROJECT_BTN_FIND = $(byXpath(mw+"//button[contains(text(),'Find')]"));
     //todo paran string %s = name + surname existaed contacts
-    public static final SelenideElement MW_SHARE_PROJECT_SELECT_TEAM = $(byXpath(mw+"//strong[contains(.,'%s')]//preceding-sibling::input"));
+    public static String MW_SHARE_PROJECT_SELECT_TEAM = mw+"//strong[contains(.,'%s')]//preceding-sibling::input";
     public static final SelenideElement MW_SHARE_PROJECT_SELECT_ROLE = $(byXpath(mw+"//select"));
     public static final String ROLE_VIEWER = "Viewer";
     public static final String ROLE_COLLABORATOR = "Collaborator";
