@@ -10,6 +10,7 @@ import org.junit.Test;
 import static Page.CommunityProfile.*;
 import static Page.CommunityWizard.*;
 
+import static Page.Emails.emailSubject;
 import static Page.ModalWindows.*;
 import static Steps.StepsPekama.*;
 import static com.codeborne.selenide.Condition.*;
@@ -69,8 +70,9 @@ public class StepsCommunity implements StepsFactory{
     @Test
     public void testParam(){
         findServiceRow(false, "123", "456");
-
     }
+
+
     public static void clickServiceRowEdit(String profileServiceCaseType, String profileServiceCountry) {
         //       String profileServiceRow = "//div[contains(.,'"+profileServiceCaseType+"')]/following-sibling::div[contains(.,'"+profileServiceCountry+"')]/following-sibling::div//button[1]";
         String profileServiceRow = "//div[@class='row' and contains(.,'"+ profileServiceCaseType +"') and contains(.,'"+ profileServiceCountry +"')]//button[1]";

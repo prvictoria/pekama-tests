@@ -217,41 +217,41 @@ public class PekamaProject {
     }
     @Test //todo
     public void createProject_E_inviteCollaborator() {
-//        rootLogger.info("Invite new team to Pekama project");
-//        projectTabContacts.click();
-//        projectTabContacts_AddCollaborator.click();
-//        waitForModalWindow("Share Project");
-//        MW_SHARE_PROJECT_BTN_FIND.shouldBe(disabled);
-//        fillField(MW_SHARE_PROJECT_EMAIL, User5.GMAIL_EMAIL.getValue());
-//        submitEnabledButton(MW_SHARE_PROJECT_BTN_FIND);
-//        submitEnabledButton(MW_BTN_OK);
-//        MW.shouldNotBe(visible);
-//        $$(byText(OWNER)).shouldHaveSize(1);
-//        $$(byText(COLLABORATOR)).shouldHaveSize(1);
+        rootLogger.info("Invite new team to Pekama project");
+        projectTabContacts.click();
+        projectTabContacts_AddCollaborator.click();
+        waitForModalWindow("Share Project");
+        MW_SHARE_PROJECT_BTN_FIND.shouldBe(disabled);
+        fillField(MW_SHARE_PROJECT_EMAIL, User5.GMAIL_EMAIL.getValue());
+        submitEnabledButton(MW_SHARE_PROJECT_BTN_FIND);
+        submitEnabledButton(MW_BTN_OK);
+        MW.shouldNotBe(visible);
+        $$(byText(OWNER)).shouldHaveSize(1);
+        $$(byText(COLLABORATOR)).shouldHaveSize(1);
 
-        rootLogger.info("Check email");
+        rootLogger.info("Check email - set vars");
         String USER_EMAIL = User5.GMAIL_EMAIL.getValue();
-
-
-//        SelenideElement EMAIL_SUBJECT = $(byXpath(emailSubject(testProjectTitle)));
-//        String EMAIL_TITLE = emailInviteInProjectText(
-//                User2.NAME.getValue(),
-//                User2.SURNAME.getValue());
-//        String EMAIL_TEXT = emailInviteInProjectText(
-//                User2.NAME.getValue(),
-//                User2.SURNAME.getValue(),
-//                testProjectTitle);
-//        String EMAIL_BTN = EMAIL_INVITE_IN_PROJECT_BTN;
-//        SelenideElement EMAIL_REDIRECT_LINK = EMAIL_INVITE_IN_PROJECT_BACKLINK;
-//        String inviteLink = checkInboxEmail(
-//                USER_EMAIL,
-//                GMAIL_PASSWORD,
-//                EMAIL_SUBJECT,
-//                EMAIL_TITLE,
-//                EMAIL_TEXT,
-//                EMAIL_BTN,
-//                EMAIL_REDIRECT_LINK);
-//        if (inviteLink==null){Assert.fail("no link in email");};
+        String thisEmailSubject = emailSubject(testProjectTitle);
+        SelenideElement EMAIL_SUBJECT = $(byXpath(thisEmailSubject));
+        String EMAIL_TITLE = emailInviteInProjectTitle(
+                User2.NAME.getValue(),
+                User2.SURNAME.getValue());
+        String EMAIL_TEXT = emailInviteInProjectText(
+                User2.NAME.getValue(),
+                User2.SURNAME.getValue(),
+                testProjectTitle);
+        String EMAIL_BTN = EMAIL_INVITE_IN_PROJECT_BTN;
+        SelenideElement EMAIL_REDIRECT_LINK = EMAIL_INVITE_IN_PROJECT_BACKLINK;
+        rootLogger.info("Opne inbox email");
+        String inviteLink = checkInboxEmail(
+                USER_EMAIL,
+                GMAIL_PASSWORD,
+                EMAIL_SUBJECT,
+                EMAIL_TITLE,
+                EMAIL_TEXT,
+                EMAIL_BTN,
+                EMAIL_REDIRECT_LINK);
+        if (inviteLink==null){Assert.fail("no link in email");};
 
     }
     @Test //todo
