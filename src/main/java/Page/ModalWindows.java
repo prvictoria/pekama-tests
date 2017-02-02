@@ -134,7 +134,7 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_Project_Reference = $(byXpath(mw+"//input[@name='number']"));
 
     public static final SelenideElement modalMembersOkButton = $(byXpath("//div[2]/button"));
-    //deploy doc templates
+    //MW deploy doc templates
     public static final SelenideElement MW_DeployDoc_Title = $("css=h3.modal-title");
     public static final SelenideElement MW_DeployDoc_FileName = $(byXpath("//input[@name='name']"));
     public static final SelenideElement MW_DeployDoc_01TemplateWord = $(byXpath("//li/label[text()='New Word document']"));

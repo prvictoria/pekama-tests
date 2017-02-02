@@ -5,6 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
+import org.junit.Test;
 
 import static Page.ModalWindows.*;
 import static Page.PekamaLogin.*;
@@ -262,6 +263,26 @@ public class StepsPekama implements StepsFactory{
         $(byXpath(searchedRadio)).shouldBe(visible);
         $(byXpath(searchedRadio)).click();
     }
+    public static String TAB_DOCS_FILES_MENU = "//ul[@class='doc-list-table' and contains(.,'%s')]//div[@id]";
+    public static String TAB_DOCS_FILES_MENU_OPEN = TAB_DOCS_FILES_MENU+"/button";
+    public static String TAB_DOCS_FILES_MENU_DOWNLOAD = TAB_DOCS_FILES_MENU+"//a[contains(.,'Download')]";
+    public static String TAB_DOCS_FILES_MENU_RENAME = TAB_DOCS_FILES_MENU+"//a[contains(.,'Rename')]";
+    public static String TAB_DOCS_FILES_MENU_DELETE = TAB_DOCS_FILES_MENU+"//a[contains(.,'Delete')]";
+    public static String TAB_DOCS_FILES_MENU_UPLOAD = TAB_DOCS_FILES_MENU+"//a[contains(.,'Upload New Version')]";
+    public static void fileMenuMakeAction(String actionName, String... args) {
+        String menu = String.format(TAB_DOCS_FILES_MENU_OPEN, args);
+        $(byXpath(menu)).shouldBe(visible);
+        $(byXpath(menu)).click();
+        String action = String.format(actionName, args);
+        $(byXpath(action)).shouldBe(visible);
+        $(byXpath(action)).click();
+    }
+    @Test
+    public void fileMenuMakeAction (){
+        fileMenuMakeAction (TAB_DOCS_FILES_MENU_RENAME, "new name");
+    }
+
+
     public static void selectOption(SelenideElement optionSelector,String optionName) {
         optionSelector.selectOption(new String[]{optionName});
     }

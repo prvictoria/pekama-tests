@@ -4,17 +4,17 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        CommunityDashboard.class,
-        CommynityLanding.class,
-        ComunityWizard.class,
-        CommunityProfile.class,
+        TestsCommunityDashboard.class,
+        TestsCommynityLanding.class,
+        TestsComunityWizard.class,
+        TestsCommunityProfile.class,
 
-        PekamaLanding.class,
-        PekamaLogin.class,
-        PekamaResetPassword.class,
+        TestsPekamaLanding.class,
+        TestsPekamaLogin.class,
+        TestsPekamaResetPassword.class,
         Page.PekamaSignUp.class,
-        PekamaSettingsPersonal.class,
-        PekamaSettingsTeam.class
+        TestsPekamaSettingsPersonal.class,
+        TestsPekamaSettingsTeam.class
 })
 public class AllTestsRunner {
 }

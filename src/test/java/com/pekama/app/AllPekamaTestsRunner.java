@@ -4,9 +4,9 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        PekamaLanding.class,
-        PekamaLogin.class,
-        PekamaResetPassword.class,
+        TestsPekamaLanding.class,
+        TestsPekamaLogin.class,
+        TestsPekamaResetPassword.class,
         Page.PekamaSignUp.class
 })
 public class AllPekamaTestsRunner {

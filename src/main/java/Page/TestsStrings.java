@@ -73,7 +73,7 @@ public class TestsStrings {
     public static final String mwTitleNewTask = "Add new task";
     public static final String mwTitleEvent = "Event";
     public static final String mwTitledNewModal = "";
-    public static final String placeholderNoFiles = "No files found. Upload your first file.";
+    public static final String placeholderNoFiles = "No files found.";
     public static final String placeholderEmptyList = "Empty list.";
     public static final String placeholderNoCases = "No community cases.";
 

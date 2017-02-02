@@ -23,7 +23,7 @@ public class PekamaProject extends Page {
     public static final SelenideElement projectPlusNewFinancial = $(byLinkText("New financial"));
     public static final SelenideElement projectPlusNewNumber = $(byLinkText("New Number"));
     public static final SelenideElement projectPlusNewContact = $(byLinkText("New Contact"));
-    public static final SelenideElement projectAllCheckbox = $("css=i.pkm-icon-checkbox");
+    public static final SelenideElement projectAllCheckbox = $("i.pkm-icon-checkbox");
     public static final SelenideElement projectAllCheckboxFiles = $(byXpath("//div[@class='checkbox-holder fancy main-checkbox pull-left']//input"));
 
     public static final SelenideElement timelineLine = $("css=.slider-selection");
@@ -186,7 +186,7 @@ public class PekamaProject extends Page {
     public static final SelenideElement projectTabDocs_03Row = $(byXpath("//section[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div[2]/div/div/pkm-files/div/div[3]/div/ol/li[3]/div/div/ul/li[3]/div/a/span"));
     public static final SelenideElement projectTabDocs_RenameExpanded = $(byXpath("//a[contains(text(),'Rename')]"));
     public static final SelenideElement projectTabDocs_NameExpanded = $(byXpath("//input[@name='name']"));
-    public static final SelenideElement projectTabDocs_SaveExpanded = $(byXpath("//pkm-files-editable-title/div/form/div/a[contains(text(),'Save')]"));
+    public static final SelenideElement projectTabDocs_SaveExpanded = $(byXpath("//pkm-simple-files-editable-title//a[contains(.,'Save')]"));
 
     public static final SelenideElement projectTabTask_New = $(byLinkText("Create task"));
     public static final SelenideElement projectTabTask_BulkSelectAll = $(byXpath("xpath=(//input[@type='checkbox'])[5]"));

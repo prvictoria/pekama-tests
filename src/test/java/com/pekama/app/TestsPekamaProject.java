@@ -58,7 +58,7 @@ public class TestsPekamaProject {
 //    @After
 //    public void after() {
 //        rootLogger.info("delete project - '"+testProjectTitle"'");
-//        //todo element not found?????
+//
 //        executeJavaScript("scrollTo(0, -1000)");
 //        PROJECT_BTN_DELETE.shouldBe(visible).click();
 //        StepsPekama.submitConfirmAction();
@@ -175,7 +175,6 @@ public class TestsPekamaProject {
         MW.shouldNotBe(visible);
         $$(byText(OWNER)).shouldHaveSize(1);
         $$(byText(COLLABORATOR)).shouldHaveSize(1);
-//todo SELECT ??? Type mismatch Can't assign non-array value to an array
 
         rootLogger.info("Edit role to - "+ROLE_VIEWER);
         projectTabContacts_TeamEdit.click();
@@ -344,34 +343,36 @@ public class TestsPekamaProject {
     public void createProject_G_addDocument() {
         String newDoc = "new word document";
         projectTabDocs.click();
-        //todo - random+name
         buttonAddNewFile.click();
         linkCreateNewDoc.shouldBe(Condition.visible).click();
         MW.shouldBe(Condition.visible);
         MW_DeployDoc_01TemplateWord.shouldBe(Condition.visible).click();
-        $(byName("name")).sendKeys(newDoc);
+        fillField(MW_DeployDoc_FileName, newDoc);
         MW_DeployDoc_ButtonCreate.click();
         MW.shouldNotBe(Condition.visible);
         $(byText(newDoc)).shouldBe(Condition.visible);
         rootLogger.info(newDoc+" - file present");
 
         rootLogger.info("edit file");
-        projectTabDocs_RenameExpanded.click();
+        fileMenuMakeAction(TAB_DOCS_FILES_MENU_RENAME, newDoc);
         fillField(projectTabDocs_NameExpanded, "New Excel sheet");
         projectTabDocs_SaveExpanded.click();
-        $(byText("New Excel sheet")).shouldBe(Condition.visible);
+     //   $(byText("New Excel sheet")).shouldBe(Condition.visible);
 
         rootLogger.info("delete file");
         projectAllCheckbox.click();
-        $(byLinkText("Delete")).click();
+        linkDelete.click();
         submitConfirmAction();
-        $$(byText(placeholderNoFiles)).shouldHaveSize(1);
 
+        $(byText(placeholderNoFiles)).shouldBe(Condition.visible);
+        $$(byText(placeholderNoFiles)).filter(visible).shouldHaveSize(1);
+        //$(withText("No files found. Upload your first file. ")).shouldBe(Condition.visible);
+        rootLogger.info(placeholderNoFiles);
+        rootLogger.info("Test passed");
     }
-    @Test
+    @Test //todo
     public void createProject_H_addFolder() {
         projectTabDocs.click();
-        //todo - random+name
         buttonAddNewFile.click();
         rootLogger.info("Add folder");
         linkCreateNewFolder.shouldBe(Condition.visible).click();
@@ -386,7 +387,7 @@ public class TestsPekamaProject {
         rootLogger.info(newFolder+" - Folder present");
         rootLogger.info("check validation duplicate folder");
 
-        //todo
+
         rootLogger.info("edit folder");
         $$(byText(ERROR_DuplicatedFolder)).shouldHaveSize(1);
 
@@ -397,7 +398,7 @@ public class TestsPekamaProject {
         $$(byText(placeholderNoFiles)).shouldHaveSize(1);
 
     }
-    @Test
+    @Test  //todo
     public void createProject_I_addTask() {
         projectTabTasks.click();
         $$(byText(placeholderEmptyList)).shouldHaveSize(1);
@@ -420,11 +421,11 @@ public class TestsPekamaProject {
 
 
     }
-    @Test
+    @Test  //todo
     public void createProject_L_deployEvent() {
 
     }
-    @Test
+    @Test  //todo
     public void createProject_M_addCharges() {
         projectTabFin.click();
         $$(byText(placeholderEmptyList)).shouldHaveSize(1);
@@ -439,23 +440,23 @@ public class TestsPekamaProject {
 
 
     }
-    @Test
+    @Test  //todo
     public void createProject_N_changeTypes() {
 
     }
-    @Test
+    @Test  //todo
     public void createProject_O_addFamilyProject() {
 
     }
-    @Test
+    @Test  //todo
     public void createProject_P_addConversation() {
 
     }
-    @Test
-    public void createProject_S_cloneProkect() {
+    @Test  //todo
+    public void createProject_S_cloneProject() {
 
     }
-    @Test
+    @Test  //todo
     public void createCommunityCase() {
 
     }
