@@ -131,22 +131,27 @@ public class PekamaProject extends Page {
     public static final String COLLABORATOR = "COLLABORATOR";
     public static final String VIEWER = "VIEWER";
 
+    public static final String TAB_CONTACTS = "//pkm-contact-relations/ul"; //table
+    public static final String TAB_CONTACTS_SELECTION_ROW = TAB_CONTACTS+"/li[last()]";
+    public static final String TAB_CONTACTS_FIRST_ROW = TAB_CONTACTS+"/li[1]";
+
     public static final SelenideElement projectTabContacts_RelationNoData = $(byXpath("//pkm-contact-relations/div[2]/div/div[2]"));
     public static final SelenideElement projectTabContacts_AddSelectContact = $(byXpath("//div[@name='contact']/div/span"));
     public static final SelenideElement projectTabContacts_AddContactInput = $(byXpath("//input[@type='search']"));
     public static final SelenideElement projectTabContacts_AddSelectRelation = $(byXpath("//div[@name='relation']/div/span"));
     public static final SelenideElement projectTabContacts_AddRelationInput = $(byXpath("//div[@name='relation']/input[1]"));
     public static final SelenideElement projectTabContacts_AddContactButton = $(byXpath("//pkm-contact-relations//button[contains(.,'Add')]"));
+    public static final SelenideElement projectTabContacts_CREATE_NEW_CONTACT = $(byXpath("//pkm-values-dropdown//span[text()='Create new']"));
 
     public static final SelenideElement projectTabContacts_ContactRow = $(byXpath("//li[starts-with(@ng-repeat, 'contactRelation')]"));
     public static final SelenideElement projectTabContacts_ContactIconPerson = $(byXpath("css=i.pkm-icon-user"));
     public static final SelenideElement projectTabContacts_ContactIconCompany = $(byXpath("css=i.pkm-icon-building"));
-    public static final SelenideElement projectTabContacts_ContactName = $(byXpath("/div/div[1]"));
-    public static final SelenideElement projectTabContacts_ContactRelation = $(byXpath("/div/div[2]"));
-    public static final SelenideElement projectTabContacts_ContactCollaborate = $(byXpath("//button[contains(.,'+COLLABORATE')]"));
-    public static final SelenideElement projectTabContacts_ContactDrop = $(byXpath("//a[@class='first']"));
-    public static final SelenideElement projectTabContacts_ContactEdit = $(byXpath("//a[@class='edit']"));
-    public static final SelenideElement projectTabContacts_ContactDelete = $(byXpath("//a[@class='cancel']"));
+    public static final SelenideElement projectTabContacts_ContactName = $(byXpath(TAB_CONTACTS_FIRST_ROW+"/div/div[1]"));
+    public static final SelenideElement projectTabContacts_ContactRelation = $(byXpath(TAB_CONTACTS_FIRST_ROW+"/div/div[2]"));
+    public static final SelenideElement projectTabContacts_Contact_BTN_COLLABORATE = $(byXpath(TAB_CONTACTS_FIRST_ROW+"//button[text()='+COLLABORATE']"));
+    public static final SelenideElement projectTabContacts_ContactDrop = $(byXpath(TAB_CONTACTS_FIRST_ROW+"//a[@class='first']"));
+    public static final SelenideElement projectTabContacts_ContactEdit = $(byXpath(TAB_CONTACTS_FIRST_ROW+"//a[@class='edit']"));
+    public static final SelenideElement projectTabContacts_ContactDelete = $(byXpath(TAB_CONTACTS_FIRST_ROW+"//a[@class='cancel']"));
 
     public static final SelenideElement projectTabContacts_Form = $(byXpath(""));
     public static final SelenideElement projectTabContacts_FormRelationSelect = $(byXpath("//select[@name='relation']"));

@@ -71,7 +71,7 @@ public class PekamaReports extends Page {
 
     public static final SelenideElement REPORTS_ = $(byXpath(""));
 //Specific pages
-public static final SelenideElement REPORTS_ContactTailsPath = $(byXpath(""));
+    public static final SelenideElement REPORTS_ContactTailsPath = $(byXpath(""));
     public static final SelenideElement REPORTS_ContactRowName = $(byXpath("same"));
     public static final SelenideElement REPORTS_ContactRowSurname = $(byXpath("same"));
     public static final SelenideElement REPORTS_ContactName = $(byXpath("//*[@class='name ng-binding']"));

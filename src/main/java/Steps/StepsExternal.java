@@ -271,6 +271,36 @@ public class StepsExternal implements StepsFactory{
     public static void authLinkedin(){
     }
 
+    public static SelenideElement emailSubject(String... args) {
+        String buildSubject = String.format(EMAIL_SUBJECT, args);
+        SelenideElement actualSubject = $(byXpath(buildSubject));
+        return actualSubject;
+    }
+    @Test
+    public void emailSubject (){
+        SelenideElement a = emailSubject("new test project - ORL9GP");
+        System.out.println(a);
+    }
+
+    public static String emailInviteInProjectTitle(String... args){
+        String emailTitle = String.format(EMAIL_INVITE_IN_PROJECT_TITLE, args);
+        return emailTitle;
+    }
+    @Test
+    public void emailInviteInProjectTitle (){
+        String a = emailInviteInProjectTitle("1", "2");
+        System.out.println(a);
+    }
+
+    public static String emailInviteInProjectText(String... args){
+        String emailText = String.format(EMAIL_INVITE_IN_PROJECT_TEXT, args);
+        return emailText;
+    }
+    @Test
+    public void emailInviteInProjectText (){
+        String a = emailInviteInProjectText("name", "surname", "project title");
+        System.out.println(a);
+    }
 
     @Test
     public void externalTestDebug() {

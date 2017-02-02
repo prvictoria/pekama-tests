@@ -209,6 +209,11 @@ public class StepsPekama implements StepsFactory{
         fieldName.shouldHave(Condition.value(enteredValue));
         rootLogger.info("This data was entered - "+enteredValue);
    }
+    public static void checkInputValue(SelenideElement selector, String enteredValue) {
+        selector.shouldBe(visible);
+        selector.shouldHave(Condition.value(enteredValue));
+        rootLogger.info("This text present in element: "+enteredValue);
+    }
     public static void submitEnabledButton(SelenideElement buttonName) {
         buttonName.waitUntil(visible, 10000);
         buttonName.waitUntil(enabled, 10000);

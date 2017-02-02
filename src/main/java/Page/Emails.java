@@ -17,59 +17,33 @@ public class Emails extends Page {
 
     //        SelenideElement thisEmailSubject = $(byXpath(buildSubject));
     public static String EMAIL_SUBJECT = "//span[contains(.,'%1$s')]";
-    public static String emailSubject(String... args) {
-        String buildSubject = String.format(EMAIL_SUBJECT, args);
-        return buildSubject;
-    }
-    @Test
-    public void emailSubject (){
-        String a = emailSubject("new test project - ORL9GP");
-        System.out.println(a);
-    }
-    //confirm registration
+
+    //Email confirm registration
     public static final SelenideElement EMAIL_CONFIRM_REGISTRATION = $(byXpath(""));
     public static final SelenideElement EMAIL_CONFIRM_REGISTRATION_SUBJECT = $(byXpath("//span[contains(.,'Confirm Registration [Pekama]')]"));
     public static final String EMAIL_CONFIRM_REGISTRATION_TITLE = "Registration Complete";
     public static final String EMAIL_CONFIRM_REGISTRATION_TEXT = "To finish registration, please confirm your account.";
     public static final String EMAIL_CONFIRM_REGISTRATION_BTN = "Confirm Account";
     public static final SelenideElement EMAIL_CONFIRM_REGISTRATION_BACKLINK = $(byXpath("//td/a[contains(@href, '"+SELECT_HOST+"/accounts/confirm/')]"));
-    //Invite in Community
+
+    //Email Invite in Community
     public static final SelenideElement EMAIL_INVITE_IN_COMMUNITY = $(byXpath(""));
     public static final SelenideElement EMAIL_INVITE_IN_COMMUNITY_SUBJECT = $(byXpath("//span[contains(.,'invited you to join Pekama Community')]"));
     public static final String EMAIL_INVITE_IN_COMMUNITY_TITLE = "You're invited to Pekama Community";
     public static final String EMAIL_INVITE_IN_COMMUNITY_TEXT = "Entered by user text";
     public static final String EMAIL_INVITE_IN_COMMUNITY_BTN = "Join Pekama Community";
     public static final SelenideElement EMAIL_INVITE_IN_COMMUNITY_BACKLINK = $(byXpath("//td/a[contains(@href, '"+COMMUNITY+"/community/activate/')]"));
-    //Invite in Project
+
+    //Email  Invite in Project
     public static final SelenideElement EMAIL_INVITE_IN_PROJECT = $(byXpath(""));
     public static final  SelenideElement EMAIL_INVITE_IN_PROJECT_SUBJECT = $(byXpath("//span[contains(.,'invited you')]")); //Test002 Quality02 invited you to TM.PN.028318 new test project - TPTTUX Project
     //public static String EMAIL_INVITE_IN_PROJECT_SUBJECT = "'%s' '%s' invited you to TM.PN.028318 new test project - TPTTUX Project"; //Test002 Quality02 invited you to TM.PN.028318 new test project - TPTTUX Project
-
-    public static final String EMAIL_INVITE_IN_PROJECT_TITLE = "%s %s invited you to collaborate";
-    public static String emailInviteInProjectTitle(String... args){
-        String emailTitle = String.format(EMAIL_INVITE_IN_PROJECT_TITLE, args);
-        return emailTitle;
-    }
-    @Test
-    public void emailInviteInProjectTitle (){
-        String a = emailInviteInProjectTitle("1", "2");
-        System.out.println(a);
-    }
-
+    public static String EMAIL_INVITE_IN_PROJECT_TITLE = "%s %s invited you to collaborate";
     public static String EMAIL_INVITE_IN_PROJECT_TEXT = "%s %s from created a project for %s and invites you to join in."; //User name, Surname, Project name
-    public static String emailInviteInProjectText(String... args){
-        String emailText = String.format(EMAIL_INVITE_IN_PROJECT_TEXT, args);
-        return emailText;
-    }
-    @Test
-    public void emailInviteInProjectText (){
-        String a = emailInviteInProjectText("name", "surname", "project title");
-        System.out.println(a);
-    }
-
     public static final String EMAIL_INVITE_IN_PROJECT_BTN = "Join Project";
     public static final SelenideElement EMAIL_INVITE_IN_PROJECT_BACKLINK = $(byXpath("//td/a[contains(@href, '"+SELECT_HOST+"/n/legal/submatter/')]"));
     //https://staging.pekama.com/n/legal/submatter/28318/?user=7557
+
     // Report email
     public static final String EMAIL_REPORT = "Pekama Report";
     public static final SelenideElement EMAIL_REPORT_SUBJECT = $(byXpath("//span[contains(.,'Pekama Report')]"));
@@ -91,7 +65,7 @@ public class Emails extends Page {
     public static final SelenideElement INBOX_BTN_EMPTY_TRASH = $(byXpath("//button[contains(.,'EMPTY TRASH NOW')]"));
     public static final SelenideElement INBOX_CONFIRM_EMPTY_TRASH = $(byXpath("//div[@role='dialog']//div/div[contains(.,'OK')]"));
 
-    //Common gmail app - not user NOW
+    //Common gmail app - not used NOW
     public static final String GMAIL_URL = "https://mail.google.com/mail/u/0/#inbox";
     public static final String GMAIL_URL_LOG_OUT = "https://www.google.com/accounts/Logout"; //username  remains
     public static final String GMAIL_URL_SIGN_OUT = "https://accounts.google.com/Logout?continue=https%3A%2F%2Faccounts.google.com%2FServiceLogin%3Fsacu%3D1&il=true&zx=icxpgruz0yao";

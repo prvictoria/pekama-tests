@@ -1,5 +1,4 @@
 package com.pekama.app;
-import Page.Emails;
 import Steps.*;
 import Utils.Utils;
 import com.codeborne.selenide.*;
@@ -10,7 +9,6 @@ import org.junit.*;
 import java.awt.*;
 
 import static Page.Emails.*;
-import static Page.Emails.emailSubject;
 import static Page.ModalWindows.*;
 import static Page.PekamaDashboard.*;
 import static Page.PekamaProject.*;
@@ -27,7 +25,9 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class PekamaProject {
     static final Logger rootLogger = LogManager.getRootLogger();
-    String testProjectTitle = "new test project - "+ Utils.getRandomString(6);
+    private static String testProjectTitle = "new test project - "+ Utils.getRandomString(6);
+    private static String testContactName = "name"+Utils.getRandomString(10);
+    private static String testContactSurname = "surname"+Utils.getRandomString(10);
     @Before
     public void before() {
         Configuration test = new Configuration();
@@ -69,7 +69,7 @@ public class PekamaProject {
         $$(byText(testProjectTitle)).filter(visible).shouldHaveSize(1);
         $$(byText(placeholderNoCases)).filter(visible).shouldHaveSize(1);
         $$(byText(placeholderNoNumbers)).filter(visible).shouldHaveSize(1);
-        $$(byText(placeholderNoData)).filter(visible).shouldHaveSize(1);
+        $$(byText(PLACEHOLDER_NO_DATA)).filter(visible).shouldHaveSize(1);
         $$(byText("Team chat is great for conversations between groups of people, where all the group members should see the conversation all the time.")).shouldHaveSize(1);
         rootLogger.info("GUI test passed");
     }
@@ -215,7 +215,7 @@ public class PekamaProject {
         $$(byText(VIEWER)).shouldHaveSize(0);
 
     }
-    @Test //todo
+    @Test
     public void createProject_E_inviteCollaborator() {
         rootLogger.info("Invite new team to Pekama project");
         projectTabContacts.click();
@@ -231,8 +231,11 @@ public class PekamaProject {
 
         rootLogger.info("Check email - set vars");
         String USER_EMAIL = User5.GMAIL_EMAIL.getValue();
-        String thisEmailSubject = emailSubject(testProjectTitle);
-        SelenideElement EMAIL_SUBJECT = $(byXpath(thisEmailSubject));
+//        String thisEmailSubject = emailSubject(testProjectTitle);
+  //      SelenideElement EMAIL_SUBJECT = $(byXpath(thisEmailSubject));
+       // SelenideElement EMAIL_SUBJECT = $(byXpath(emailSubject(testProjectTitle)));
+        SelenideElement EMAIL_SUBJECT = emailSubject(testProjectTitle);
+
         String EMAIL_TITLE = emailInviteInProjectTitle(
                 User2.NAME.getValue(),
                 User2.SURNAME.getValue());
@@ -254,35 +257,51 @@ public class PekamaProject {
         if (inviteLink==null){Assert.fail("no link in email");};
 
     }
-    @Test //todo
-    public void createProject_F_addNewContact() {
+    @Test
+    public void createProject_F1_addNewContact_Person() {
         projectTabContacts.click();
-        $$(byText(placeholderNoData)).shouldHaveSize(1);
-        rootLogger.info("Check validation");
-        projectTabContacts_AddContactButton.click();
-        $$(byText("")).shouldHaveSize(1);
+        $$(byText(PLACEHOLDER_NO_DATA)).filter(visible).shouldHaveSize(1);
+        rootLogger.info("Select create new");
+        projectTabContacts_AddSelectContact.click();
+        fillField(projectTabContacts_AddContactInput, testContactName);
+        projectTabContacts_CREATE_NEW_CONTACT.click();
         rootLogger.info("Create new contact");
-        rootLogger.info("Add new contact");
-
-        rootLogger.info("delete contact");
-    }
-
-    @Test //todo
-    public void createProject_F_addExistedContact() {
-        projectTabContacts.click();
-        $$(byText(placeholderNoData)).shouldHaveSize(1);
-
-        //todo
-        rootLogger.info("Select existed contact - new role");
-        selectItemInDropdown(projectTabContacts_AddSelectContact, projectTabContacts_AddContactInput, "");
-        String relationInvestor = "Investor";
-        selectItemInDropdown(projectTabContacts_AddSelectRelation, projectTabContacts_AddRelationInput, relationInvestor);
-        rootLogger.info("Add existed contact - new role");
+        waitForModalWindow("Contact");
+        checkInputValue(MW_Contact_NAME, testContactName);
+        fillField(MW_Contact_SURNAME, testContactSurname);
+        checkInputValue(MW_Contact_SURNAME, testContactSurname);
+        submitEnabledButton(MW_BTN_OK);
+        MW.shouldNotBe(visible);
+        $$(byText(testContactName+" "+testContactSurname)).filter(visible).shouldHaveSize(1);
+        rootLogger.info("Select relation");
+        selectItemInDropdown(projectTabContacts_AddSelectRelation, projectTabContacts_AddRelationInput, ContactRelation.ATTORNEY.getValue());
+        rootLogger.info("Add contact to Project");
         projectTabContacts_AddContactButton.click();
+        projectTabContacts_ContactName.shouldHave(Condition.exactText(testContactName+" "+testContactSurname));
+        projectTabContacts_ContactRelation.shouldHave(Condition.exactText((ContactRelation.ATTORNEY.getValue())));
+
+        rootLogger.info("delete contact relation");
+        projectTabContacts_ContactDelete.click();
+        submitConfirmAction();
+        $$(byText(PLACEHOLDER_NO_DATA)).filter(visible).shouldHaveSize(1);
+//    }
+//
+//    @Test
+//    public void createProject_F2_addExistedContact() {
+//        projectTabContacts.click();
+        $$(byText(PLACEHOLDER_NO_DATA)).filter(visible).shouldHaveSize(1);
+        rootLogger.info("Select existed contact");
+        selectItemInDropdown(projectTabContacts_AddSelectContact, projectTabContacts_AddContactInput, testContactName);
+        rootLogger.info("Select relation");
+        selectItemInDropdown(projectTabContacts_AddSelectRelation, projectTabContacts_AddRelationInput, ContactRelation.DOMESTIC_REPRESENTATIVE.getValue());
+        projectTabContacts_AddContactButton.click();
+        projectTabContacts_ContactName.shouldHave(Condition.exactText(testContactName+" "+testContactSurname));
+        projectTabContacts_ContactRelation.shouldHave(Condition.exactText((ContactRelation.DOMESTIC_REPRESENTATIVE.getValue())));
 
         //todo
         rootLogger.info("Edit fields contact inline");
-        projectTabContacts_FormRelationSelect.selectOption("Owner");
+        projectTabContacts_ContactEdit.click();
+        projectTabContacts_FormRelationSelect.selectOption(ContactRelation.CLIENT_COMPANY.getValue());
         fillField(projectTabContacts_FormOwnership, "99");
         fillField(projectTabContacts_FormEntity, "newEntity");
         fillField(projectTabContacts_FormFirstName, "NEWperson");
@@ -299,10 +318,25 @@ public class PekamaProject {
         submitEnabledButton(genericButtonSave);
         sleep(500);
         refresh();
-        projectTabContacts_ContactEdit.click();
-        //todo
-        projectTabContacts_FormOwnership.shouldHave(text(""));
 
+        rootLogger.info("Check saved values");
+        projectTabContacts_ContactEdit.shouldBe(visible).click();
+        projectTabContacts_FormCountrySelect.shouldHave(Condition.text(nameCountryIreland));
+        projectTabContacts_FormRelationSelect.shouldHave(Condition.text(ContactRelation.CLIENT_COMPANY.getValue()));
+        String savedOption = projectTabContacts_FormRelationSelect.getSelectedText();
+        Assert.assertEquals(ContactRelation.CLIENT_COMPANY.getValue(), savedOption);
+        checkInputValue(projectTabContacts_FormOwnership, "99");
+        checkInputValue(projectTabContacts_FormEntity, "newEntity");
+        checkInputValue(projectTabContacts_FormFirstName, "NEWperson");
+        checkInputValue(projectTabContacts_FormLastName, "NEWman03");
+        checkInputValue(projectTabContacts_FormEmail, "NEWcontact_01_mail@mail.com");
+        checkInputValue(projectTabContacts_FormPhone, "newPhone");
+        checkInputValue(projectTabContacts_FormFax, "newFax");
+        checkInputValue(projectTabContacts_FormMobile, "newMobile");
+        checkInputValue(projectTabContacts_FormStreet, "newStreet");
+        checkInputValue(projectTabContacts_FormPostal, "newZip");
+        checkInputValue(projectTabContacts_FormCity, "newCity");
+        checkInputValue(projectTabContacts_FormRegion, "newRegion");
 
     }
     @Test

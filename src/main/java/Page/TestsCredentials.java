@@ -163,6 +163,24 @@ public class TestsCredentials {
             return value;
         }
     }
+    public enum ContactRelation {
+        ATTORNEY("Attorney of Record"),
+        INVESTOR("Investor"),
+        CLIENT_COMPANY("Client (Company)"),
+        OWNER_PERSON("Owner (Person)"),
+        REGIXTERED_OWNER("Registered Owner"),
+        CONTACT_PERSON("Contact Person"),
+        OPPONENT_REPRESENTATIVE("opponent representative"),
+        OWNER_COMPANY("Owner (Company)"),
+        DOMESTIC_REPRESENTATIVE("Domestic Representative");
+        private String value;
+        ContactRelation(String value) {
+            this.value = value;
+        }
+        public String getValue() {
+            return value;
+        }
+    }
     @Test
     public  void enumTest() {
         System.out.println(User1.GMAIL_EMAIL.value);

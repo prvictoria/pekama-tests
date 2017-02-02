@@ -203,8 +203,13 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_TimeTrackerPause = $(byXpath(""));
     public static final SelenideElement MW_TimeTrackerDiscard = $(byXpath("//label[@class='danger']/input"));
 
-    public static final SelenideElement MW_Contact = $(byXpath(""));
+
+
+
     public static final SelenideElement MW_Number = $(byXpath(""));
+
+
+
     public static final SelenideElement MW_Document = $(byXpath(""));
 
     public static final SelenideElement COMMENT_007 = $(byText("DATEPICKER"));
@@ -227,19 +232,33 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_eventTypeApplicationFiled = $(byXpath("//*[@class='ng-binding ng-scope'][contains .,'Application filed']"));
     public static final SelenideElement MW_eventTypeApplicationPublished = $(byXpath("//*[@class='ng-binding ng-scope'][contains .,'Application published' ]"));
     public static final SelenideElement MW_eventTypeSubMatterCreated = $(byXpath("//*[@class='ng-binding ng-scope'][contains .,'Sub Matter Created' ]"));
-
+    //MW new Contact
     public static final SelenideElement MW_Contact_ = $(byXpath(""));
     public static final SelenideElement MW_Contact_SelectType = $(byXpath("//select[@name='type']"));
-    public static final SelenideElement MW_Contact_FieldEntity = $(byXpath("//input[@name='legal_entity_name']"));
-    public static final SelenideElement MW_Contact_Field = $(byXpath(""));
+    public static final String CONTACT_TYPE_PERSON = "Person";
+    public static final String CONTACT_TYPE_COMPANY = "Company";
+    public static final SelenideElement MW_Contact_Entity = $(byXpath("//input[@name='legal_entity_name']"));
+    public static final SelenideElement MW_Contact_NAME = $(byXpath(mw+"//input[@name='first_name']"));
+    public static final SelenideElement MW_Contact_SURNAME = $(byXpath(mw+"//input[@name='last_name']"));
+    public static final SelenideElement MW_Contact_Select_COMPANY = $(byXpath(mw+""));
+    public static final SelenideElement MW_Contact_Select_COMPANY_NAME = $(byXpath(mw+""));
+    public static final SelenideElement MW_Contact_Input_COMPANY = $(byXpath(mw+""));
+    public static final SelenideElement MW_Contact_EMAIL = $(byXpath(mw+"//input[@name='email']"));
+    public static final SelenideElement MW_Contact_PHONE = $(byXpath(mw+"//input[@name='phone_number']"));
+    public static final SelenideElement MW_Contact_FAX = $(byXpath(mw+"//input[@name='fax_number']"));
+    public static final SelenideElement MW_Contact_MOBILE = $(byXpath(mw+"//input[@name='cellphone_number']"));
+    public static final SelenideElement MW_Contact_STREET = $(byXpath(mw+"//input[@name='street_address']"));
+    public static final SelenideElement MW_Contact_ZIP = $(byXpath(mw+"//input[@name='postal_code']"));
+    public static final SelenideElement MW_Contact_CITY = $(byXpath(mw+"//input[@name='city']"));
+    public static final SelenideElement MW_Contact_REGION = $(byXpath(mw+"//input[@name='region']"));
     public static final SelenideElement MW_Contact_SelectCountry = $(byXpath("//div[@name='country']/div/span"));
     public static final SelenideElement MW_Contact_SelectCountryName = $(byXpath("//div[@name='country']/div/span/span/span"));
     public static final SelenideElement MW_Contact_InputCountry = $(byXpath("//div[@name='country']/input"));
-
+    //MW Merge Contact
     public static final SelenideElement MW_MergeContact_ = $(byXpath(""));
     public static final SelenideElement MW_MergeContact_Select = $(byXpath("//div[@class='modal-body']//span[text()='Pick one...']"));
     public static final SelenideElement MW_MergeContact_Input = $(byXpath("//div[@class='modal-body']//input[@type='search']"));
-
+    //MW Task
     public static final SelenideElement MW_TaskImportanceDeadline = $(byXpath("//span[text()='Deadline']"));
     public static final SelenideElement MW_TaskImportanceFatal = $(byXpath("//span[text()='Fatal']"));
     public static final SelenideElement MW_TaskImportanceFinalDeadline = $(byXpath("//span[text()='Final Deadline']"));
@@ -251,7 +270,7 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_TaskStatusApproved = $(byXpath("//span[text()='Approved']"));
     public static final SelenideElement MW_TaskStatusRejected = $(byXpath("//span[text()='Rejected']"));
     public static final SelenideElement MW_TaskStatusCancelled = $(byXpath("//span[text()='Cancelled']"));
-
+    //MW Status
     public static final SelenideElement mwUpdateSatus_Select = $(byXpath(""));
     public static final SelenideElement mwUpdateSatus_Input = $(byXpath(""));
     public static final SelenideElement mwUpdateImportance_Select = $(byXpath(""));
@@ -267,8 +286,7 @@ public class ModalWindows extends Page {
     public static final SelenideElement mwClasses_FieldClass = $(byXpath(mw+"//input[@name='class_no']"));
     public static final SelenideElement mwClasses_FieldDescription = $(byXpath(mw+"//textarea[@name='description']"));
 
-
-
+    //MW Event
     public static final SelenideElement wmEvent_ = $(byXpath(""));
     public static final SelenideElement wmEvent_SelectType = $(byXpath("//div/div[2]/pkm-values-dropdown/div/div/span"));
     public static final SelenideElement wmEvent_SelectInput = $(byXpath("//pkm-values-dropdown/div/input"));
@@ -279,7 +297,6 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_SHARE_PROJECT = $(byXpath(mw+""));
     public static final SelenideElement MW_SHARE_PROJECT_EMAIL = $(byXpath(mw+"//input[@name='email']"));
     public static final SelenideElement MW_SHARE_PROJECT_BTN_FIND = $(byXpath(mw+"//button[contains(text(),'Find')]"));
-    //todo paran string %s = name + surname existaed contacts
     public static String MW_SHARE_PROJECT_SELECT_TEAM = mw+"//strong[contains(.,'%s')]//preceding-sibling::input";
     public static final SelenideElement MW_SHARE_PROJECT_SELECT_ROLE = $(byXpath(mw+"//select"));
     public static final String ROLE_VIEWER = "Viewer";
