@@ -14,6 +14,8 @@ import org.junit.runners.Suite;
         TestsPekamaResetPassword.class,
         Page.PekamaSignUp.class,
         TestsPekamaSettingsPersonal.class,
+        TestsPekamaProject.class,
+        TestsPekamaIntegrationBox.class,
         TestsPekamaSettingsTeam.class
 })
 public class AllTestsRunner {
