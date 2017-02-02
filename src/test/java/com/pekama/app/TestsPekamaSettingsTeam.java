@@ -18,7 +18,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class PekamaSettingsTeam {
+public class TestsPekamaSettingsTeam {
     static final Logger rootLogger = LogManager.getRootLogger();
 
     @Before

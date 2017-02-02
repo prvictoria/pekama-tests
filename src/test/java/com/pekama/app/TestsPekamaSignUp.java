@@ -19,7 +19,7 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class PekamaSignUp {
+public class TestsPekamaSignUp {
     static final Logger rootLogger = LogManager.getRootLogger();
     public String passwordFieldValue = "";
     public String EXIST_USER = User1.GMAIL_EMAIL.getValue();

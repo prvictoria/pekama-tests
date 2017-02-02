@@ -20,7 +20,7 @@ import static Steps.StepsPekama.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
-public class ComunityWizard {
+public class TestsComunityWizard {
     static final Logger rootLogger = LogManager.getRootLogger();
 
     @Before

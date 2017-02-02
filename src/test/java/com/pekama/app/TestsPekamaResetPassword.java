@@ -31,7 +31,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class PekamaResetPassword {
+public class TestsPekamaResetPassword {
     static final Logger rootLogger = LogManager.getLogger(LoginGmail.class);
     public static String SELECT_HOST = PEKAMA;
     public static String NEW_PASSWORD = null;

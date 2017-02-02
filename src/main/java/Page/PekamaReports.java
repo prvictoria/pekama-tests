@@ -1,11 +1,13 @@
 package Page;
 
 import com.codeborne.selenide.SelenideElement;
+import org.junit.FixMethodOrder;
+import org.junit.runners.MethodSorters;
 
 import static com.codeborne.selenide.Selectors.byLinkText;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
-
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PekamaReports extends Page {
 
     public static final SelenideElement REPORTS_AllCheckbox = $(byXpath("//li[@class='items-header clearfix clearfix']//input[@type='checkbox']"));

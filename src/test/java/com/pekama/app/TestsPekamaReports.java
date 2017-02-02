@@ -9,7 +9,7 @@ import static Steps.StepsPekama.*;
 import static Steps.StepsHttpAuth.httpAuthUrl;
 import static com.codeborne.selenide.Selenide.*;
 
-public class PekamaReports {
+public class TestsPekamaReports {
     static final Logger rootLogger = LogManager.getRootLogger();
     private String PEKAMA_USER_EMAIL = User3.GMAIL_EMAIL.getValue();
     String thisMailingListName = "Projects Report Mailing List";

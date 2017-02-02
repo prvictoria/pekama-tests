@@ -19,7 +19,7 @@ import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static Page.PekamaPersonalSettings.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class PekamaSettingsPersonal {
+public class TestsPekamaSettingsPersonal {
     static final Logger rootLogger = LogManager.getRootLogger();
     private String PEKAMA_USER_EMAIL = User3.GMAIL_EMAIL.getValue();
     private String PEKAMA_USER_PASSWORD = User3.PEKAMA_PASSWORD.getValue();

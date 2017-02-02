@@ -23,7 +23,7 @@ import static com.codeborne.selenide.WebDriverRunner.url;
 
 //todo draft cases
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class PekamaIntegrationBox {
+public class TestsPekamaIntegrationBox {
     static final Logger rootLogger = LogManager.getRootLogger();
     private String PEKAMA_USER_EMAIL = User1.GMAIL_EMAIL.getValue();
     private String PEKAMA_USER_PASSWORD = User1.PEKAMA_PASSWORD.getValue();

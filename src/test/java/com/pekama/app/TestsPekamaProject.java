@@ -5,6 +5,7 @@ import com.codeborne.selenide.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
+import org.junit.runners.MethodSorters;
 
 import java.awt.*;
 
@@ -22,8 +23,8 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 
-
-public class PekamaProject {
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+public class TestsPekamaProject {
     static final Logger rootLogger = LogManager.getRootLogger();
     private static String testProjectTitle = "new test project - "+ Utils.getRandomString(6);
     private static String testContactName = "name"+Utils.getRandomString(10);
@@ -284,11 +285,11 @@ public class PekamaProject {
         projectTabContacts_ContactDelete.click();
         submitConfirmAction();
         $$(byText(PLACEHOLDER_NO_DATA)).filter(visible).shouldHaveSize(1);
-//    }
-//
-//    @Test
-//    public void createProject_F2_addExistedContact() {
-//        projectTabContacts.click();
+    }
+
+    @Test
+    public void createProject_F2_addExistedContact() {
+        projectTabContacts.click();
         $$(byText(PLACEHOLDER_NO_DATA)).filter(visible).shouldHaveSize(1);
         rootLogger.info("Select existed contact");
         selectItemInDropdown(projectTabContacts_AddSelectContact, projectTabContacts_AddContactInput, testContactName);
