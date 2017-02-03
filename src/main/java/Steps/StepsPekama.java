@@ -281,7 +281,7 @@ public class StepsPekama implements StepsFactory{
         rootLogger.info(args+" - row opened");
     }
     public static void clickFolderRow(String... args) {
-        String row = String.format(TAB_DOCS_FILES_EXPAND_FILE, args);
+        String row = String.format(TAB_DOCS_FILES_EXPAND_FOLDER, args);
         $(byXpath(row)).shouldBe(visible);
         $(byXpath(row)).click();
         rootLogger.info(args+" - row opened");

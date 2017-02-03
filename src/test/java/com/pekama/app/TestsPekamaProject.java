@@ -343,7 +343,7 @@ public class TestsPekamaProject {
     public void createProject_G1_addWordDocument() {
         String newDoc = "new word document";
         projectTabDocs.click();
-        TAB_DOCS_ADD_FILE.click();
+        TAB_DOCS_BTN_ADD.click();
         TAB_DOC_NEW_DOCUMENT.shouldBe(Condition.visible).click();
         waitForModalWindow(TITLE_MW_ADD_DOCUMENT);
         MW_DeployDoc_01TemplateWord.shouldBe(Condition.visible).click();
@@ -374,7 +374,7 @@ public class TestsPekamaProject {
     public void createProject_G2_addExcelDocument() {
         String newExcel = "new excel spreadsheet";
         projectTabDocs.click();
-        TAB_DOCS_ADD_FILE.click();
+        TAB_DOCS_BTN_ADD.click();
         TAB_DOC_NEW_DOCUMENT.shouldBe(Condition.visible).click();
         deployFileTemplate(MW_DeployDoc_02TemplateExcel, newExcel);
 
@@ -397,7 +397,7 @@ public class TestsPekamaProject {
     public void createProject_H1_addFolder() {
         String newFolder = "new folder";
         projectTabDocs.click();
-        TAB_DOCS_ADD_FILE.click();
+        TAB_DOCS_BTN_ADD.click();
         rootLogger.info("Add folder");
         TAB_DOC_ADD_FOLDER.shouldBe(Condition.visible).click();
         createFolder(newFolder);
@@ -420,13 +420,13 @@ public class TestsPekamaProject {
         String newFolder1 = "folder1";
         String newFolder2 = "folder2";
         projectTabDocs.click();
-        TAB_DOCS_ADD_FILE.click();
+        TAB_DOCS_BTN_ADD.click();
         TAB_DOC_ADD_FOLDER.shouldBe(Condition.visible).click();
         rootLogger.info("Add folder");
         createFolder(newFolder1);
 
         rootLogger.info("Add same folder");
-        TAB_DOCS_ADD_FILE.click();
+        TAB_DOCS_BTN_ADD.click();
         TAB_DOC_ADD_FOLDER.shouldBe(Condition.visible).click();
         waitForModalWindow(TITLE_MW_NEW_FOLDER);
         MW_BTN_SAVE.shouldBe(disabled);
@@ -462,7 +462,9 @@ public class TestsPekamaProject {
         String newFolder3 = "folder3";
         String newExcel = "excel";
         projectTabDocs.click();
-        TAB_DOCS_ADD_FILE.click();
+        sleep(1000);
+        TAB_DOCS_BTN_ADD.click();
+        TAB_DOC_ADD_FOLDER.shouldBe(Condition.visible).click();
         rootLogger.info("Add folder");
         createFolder(newFolder1);
         clickFolderRow(newFolder1);
@@ -474,15 +476,17 @@ public class TestsPekamaProject {
         fileMenuMakeAction(TAB_DOCS_FILES_MENU_ADD_SUBFOLDER, newFolder2);
         createFolder(newFolder3);
         clickFolderRow(newFolder3);
-        rootLogger.info("Add doc sub-sub-folder");
+       // rootLogger.info("Add doc sub-sub-folder");
+
+        rootLogger.info("Delete file via inline control");
+        TAB_DOCS_BTN_ADD.click();
         TAB_DOC_NEW_DOCUMENT.shouldBe(Condition.visible).click();
         deployFileTemplate(MW_DeployDoc_02TemplateExcel, newExcel);
         clickFileRow(newExcel);
-        TAB_DOCS_FILE_DELETE.click();
+        TAB_DOCS_FILE_DELETE.shouldBe(visible).click();
         submitConfirmAction();
-
-
         rootLogger.info("Test passed");
+        $$(byText(newExcel)).shouldHaveSize(0);
 
     }
     @Test  //todo

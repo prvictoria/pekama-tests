@@ -175,7 +175,7 @@ public class PekamaProject extends Page {
 
 
     public static final SelenideElement TAB_DOCS = $(byXpath(""));
-    public static final SelenideElement TAB_DOCS_ADD_FILE = $(byId("file-controls"));
+    public static final SelenideElement TAB_DOCS_BTN_ADD = $(byId("file-controls"));
     public static final SelenideElement projectTabDocs_Row = $(byXpath("//div[@class='items-list files ng-scope angular-ui-tree']/ol/li"));
     public static final SelenideElement projectTabDocs_RowName = $(byXpath("//div[@class='file-info-holder']/a[1]"));
 
@@ -192,10 +192,10 @@ public class PekamaProject extends Page {
     public static String TAB_DOCS_FILES_MENU_DOWNLOAD_ZIP = TAB_DOCS_FILES_MENU+"//a[contains(.,'Download ZIP')]";
     public static String TAB_DOCS_FILES_MENU_ADD_SUBFOLDER = TAB_DOCS_FILES_MENU+"//a[contains(.,'Add Sub Folder')]";
 
-    public static final SelenideElement TAB_DOCS_FILE_RENAME = $(byXpath("//a[contains(text(),'Rename')]"));
-    public static final SelenideElement TAB_DOCS_FILE_INPUT_NAME = $(byXpath("//input[@name='name']"));
-    public static final SelenideElement TAB_DOCS_FILE_SAVE = $(byXpath("//a[contains(.,'Save')]"));
-    public static final SelenideElement TAB_DOCS_FILE_DELETE = $(byXpath("//a[contains(.,'Delete')]"));
+    public static final SelenideElement TAB_DOCS_FILE_RENAME = $(byXpath("//pkm-files-editable-title//a[contains(.,'Rename')]"));
+    public static final SelenideElement TAB_DOCS_FILE_INPUT_NAME = $(byXpath("//pkm-files-editable-title//input[@name='name']"));
+    public static final SelenideElement TAB_DOCS_FILE_SAVE = $(byXpath("//pkm-files-editable-title//a[contains(.,'Save')]"));
+    public static final SelenideElement TAB_DOCS_FILE_DELETE = $(byXpath("//pkm-files-editable-title//a[contains(.,'Delete')]"));
 
     public static final SelenideElement projectTabTask_New = $(byLinkText("Create task"));
     public static final SelenideElement projectTabTask_BulkSelectAll = $(byXpath("xpath=(//input[@type='checkbox'])[5]"));

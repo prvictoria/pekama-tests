@@ -59,7 +59,7 @@ public class TestsPekamaIntegrationBox {
 
         rootLogger.info("Add folder");
         //todo - random+name
-        TAB_DOCS_ADD_FILE.click();
+        TAB_DOCS_BTN_ADD.click();
         TAB_DOC_ADD_FOLDER.shouldBe(Condition.visible).click();
         MW.shouldBe(Condition.visible);
         $(byText(TITLE_MW_NEW_FOLDER)).shouldBe(Condition.visible);
@@ -69,7 +69,7 @@ public class TestsPekamaIntegrationBox {
         $(byText(FolderNameBeforeConnect)).shouldBe(Condition.visible);
         rootLogger.info("Add folder");
         //todo - random+name
-        TAB_DOCS_ADD_FILE.click();
+        TAB_DOCS_BTN_ADD.click();
         TAB_DOC_NEW_DOCUMENT.shouldBe(Condition.visible).click();
         MW.shouldBe(Condition.visible);
         MW_DeployDoc_01TemplateWord.shouldBe(Condition.visible).click();
