@@ -17,7 +17,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="pekama-tests" target="1.5" />
+      <module name="pekama-tests" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="Encoding">

@@ -52,7 +52,7 @@ public class TestsPekamaProject {
         MW.shouldNot(exist);
         sleep(1000);
         getActualUrl ();
-        rootLogger.info("Project '"+testProjectTitle+"' created");
+        rootLogger.info("ProjectValues '"+testProjectTitle+"' created");
         waitForTextPresent(testProjectTitle);
     }
 //    @After
@@ -169,7 +169,7 @@ public class TestsPekamaProject {
         rootLogger.info("Add Pekama member - by default - as Collaborator");
         projectTabContacts.click();
         projectTabContacts_AddCollaborator.click();
-        waitForModalWindow("Share Project");
+        waitForModalWindow("Share ProjectValues");
         selectTeam(User3.TEAM_NAME.getValue());
         submitEnabledButton(MW_BTN_OK);
         MW.shouldNotBe(visible);
@@ -220,7 +220,7 @@ public class TestsPekamaProject {
         rootLogger.info("Invite new team to Pekama project");
         projectTabContacts.click();
         projectTabContacts_AddCollaborator.click();
-        waitForModalWindow("Share Project");
+        waitForModalWindow("Share ProjectValues");
         MW_SHARE_PROJECT_BTN_FIND.shouldBe(disabled);
         fillField(MW_SHARE_PROJECT_EMAIL, User5.GMAIL_EMAIL.getValue());
         submitEnabledButton(MW_SHARE_PROJECT_BTN_FIND);
@@ -275,7 +275,7 @@ public class TestsPekamaProject {
         $$(byText(testContactName+" "+testContactSurname)).filter(visible).shouldHaveSize(1);
         rootLogger.info("Select relation");
         selectItemInDropdown(projectTabContacts_AddSelectRelation, projectTabContacts_AddRelationInput, ContactRelation.ATTORNEY.getValue());
-        rootLogger.info("Add contact to Project");
+        rootLogger.info("Add contact to ProjectValues");
         projectTabContacts_AddContactButton.click();
         projectTabContacts_ContactName.shouldHave(Condition.exactText(testContactName+" "+testContactSurname));
         projectTabContacts_ContactRelation.shouldHave(Condition.exactText((ContactRelation.ATTORNEY.getValue())));
@@ -393,7 +393,7 @@ public class TestsPekamaProject {
         rootLogger.info(placeholderNoFiles);
         rootLogger.info("Test passed");
     }
-    @Test //todo
+    @Test
     public void createProject_H1_addFolder() {
         String newFolder = "new folder";
         projectTabDocs.click();
@@ -415,7 +415,7 @@ public class TestsPekamaProject {
         $$(byText(placeholderNoFiles)).shouldHaveSize(1);
         rootLogger.info("Test passed");
     }
-    @Test //todo
+    @Test
     public void createProject_H2_validationDuplicateFolder() {
         String newFolder1 = "folder1";
         String newFolder2 = "folder2";
@@ -455,7 +455,7 @@ public class TestsPekamaProject {
         rootLogger.info("Test passed");
 
     }
-    @Test //todo
+    @Test
     public void createProject_H3_addSubFoldersTree() {
         String newFolder1 = "folder1";
         String newFolder2 = "folder2";
@@ -489,31 +489,36 @@ public class TestsPekamaProject {
         $$(byText(newExcel)).shouldHaveSize(0);
 
     }
-    @Test  //todo
+    @Test
     public void createProject_I_addTask() {
+        String taskName = "new task";
         projectTabTasks.click();
         $$(byText(placeholderEmptyList)).shouldHaveSize(1);
-        $(byLinkText("Create task")).click();
-        waitForModalWindow("Add new task");
+        TAB_TASKS_ADD.click();
+        TAB_TASKS_NEW_TASK.shouldBe(visible).click();
+
+        waitForModalWindow(TITLE_MW_NEW_TASK);
         MW_BTN_OK.shouldBe(disabled);
-        String taskName = "new task";
         fillField(MW_DeployTask_Title, taskName);
-        MW_DATAPICKER_TODAY.click();
-        MW_DATAPICKER_TODAY.pressEscape();
         submitEnabledButton(MW_BTN_OK);
         MW.shouldNotBe(visible);
         $$(byText(taskName)).shouldHaveSize(1);
 
         rootLogger.info("delete task");
         projectAllCheckbox.click();
-        projectTabTask_BulkDelete.click();
+        TAB_TASKS_BTN_DELETE.click();
         submitConfirmAction();
-
-
 
     }
     @Test  //todo
     public void createProject_L_deployEvent() {
+        scrollUp();
+        projectButtonPlus.shouldBe(visible).click();
+        projectPlusNewEvent.shouldBe(visible).click();
+        waitForModalWindow(TITLE_MW_EVENT);
+        MW_BTN_SAVE.shouldBe(disabled);
+        MW_INPUT_DATE.click();
+
 
     }
     @Test  //todo

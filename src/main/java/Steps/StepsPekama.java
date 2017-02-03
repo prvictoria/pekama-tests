@@ -148,7 +148,7 @@ public class StepsPekama implements StepsFactory{
         }
         rootLogger.info("Set checkbox and Set interval - old ML");
         if ( MW_MAILING_1USER_INTERVAL.is(not(empty))) {
-            rootLogger.info("Send Project report - old report");
+            rootLogger.info("Send ProjectValues report - old report");
             MW_MAILING_1USER_INTERVAL.clear();
             MW_MAILING_1USER_INTERVAL.sendKeys("999");
             MW_MAILING_LIST_BTN_SEND_NOW.waitUntil(visible, 10000).waitUntil(enabled, 10000).click();
@@ -156,7 +156,7 @@ public class StepsPekama implements StepsFactory{
         }
         else {
             MW_MAILING_1USER_INTERVAL.sendKeys("999");
-            rootLogger.info("Send Project report - new report");
+            rootLogger.info("Send ProjectValues report - new report");
             sleep(500);
             MW_MAILING_LIST_BTN_SAVE_AND_SEND_NOW.waitUntil(enabled, 10000).click();
             MW_MAILING_LIST_BTN_SAVE_AND_SEND_NOW.waitUntil(hidden, 20000);
@@ -304,6 +304,11 @@ public class StepsPekama implements StepsFactory{
         submitEnabledButton(MW_BTN_SAVE);
         MW.shouldNotBe(Condition.visible);
         $(byText(folderName)).shouldBe(Condition.visible);
+        rootLogger.info(folderName+" - Folder present");
+    }
+
+    public static void createTask(String folderName) {
+
         rootLogger.info(folderName+" - Folder present");
     }
 

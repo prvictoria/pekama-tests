@@ -84,7 +84,7 @@ public class TestsPekamaIntegrationBox {
     @Test
     public void testB_ConnectToBOX() {
         if (pekamaProjectUrl ==null){
-            Assert.fail("Project url not found");
+            Assert.fail("ProjectValues url not found");
         }
         if(boxConnectProjectButton.isDisplayed()) {
             boxConnectProjectButton.click();
@@ -122,12 +122,12 @@ public class TestsPekamaIntegrationBox {
     public void testC_AddFilesInProject() {
         rootLogger.info("Add files after connect");
         if (pekamaProjectUrl ==null){
-            Assert.fail("Project url not found");
+            Assert.fail("ProjectValues url not found");
         }
         open(pekamaProjectUrl);
         sleep(4000);
         if (boxConnectProjectButton!=null){
-            Assert.fail("Project not connected to BOX");
+            Assert.fail("ProjectValues not connected to BOX");
         }
 
         rootLogger.info("");
@@ -226,11 +226,11 @@ public class TestsPekamaIntegrationBox {
     public void testE_DeleteFilesAndCheckBOX() {
         rootLogger.info("Delete files and folders");
         if (pekamaProjectUrl ==null){
-            Assert.fail("Project url not found");
+            Assert.fail("ProjectValues url not found");
         }
         sleep(4000);
         if (boxConnectProjectButton!=null){
-            Assert.fail("Project not connected to BOX");
+            Assert.fail("ProjectValues not connected to BOX");
         }
         open(boxProjectFolderUrl);
         projectAllCheckbox.click();
@@ -257,11 +257,11 @@ public class TestsPekamaIntegrationBox {
     public void testF_DeleteProjectAndCheckBOX() {
         rootLogger.info("Delete files and folders");
         if (pekamaProjectUrl ==null){
-            Assert.fail("Project url not found");
+            Assert.fail("ProjectValues url not found");
         }
         sleep(4000);
         if (boxConnectProjectButton!=null){
-            Assert.fail("Project not connected to BOX");
+            Assert.fail("ProjectValues not connected to BOX");
         }
         open(boxProjectFolderUrl);
         //todo delete project method

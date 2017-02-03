@@ -30,7 +30,7 @@ public class TestsPekamaReports {
     @Test
     public void sendProjectReport() {
 
-        rootLogger.info("Open Project reports, opened URL - "+URL_ReportsProjects);
+        rootLogger.info("Open ProjectValues reports, opened URL - "+URL_ReportsProjects);
         open(URL_ReportsProjects);
         sleep(3000);
         waitForSpinnerNotPresent();
@@ -58,14 +58,14 @@ public class TestsPekamaReports {
     @Test
     public void sendEventsReport() {
         open(URL_ReportsEvents);
-        rootLogger.info("Open Project reports");
+        rootLogger.info("Open ProjectValues reports");
 
     }
     @Ignore
     @Test
     public void sendChargesReport() {
         open(URL_ReportsCharges);
-        rootLogger.info("Open Project reports");
+        rootLogger.info("Open ProjectValues reports");
 
     }
     @Ignore

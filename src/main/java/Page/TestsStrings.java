@@ -24,8 +24,8 @@ public class TestsStrings {
     public static final String nameMsgTemplateSet = "AUTO-TEST MESSAGE";
 
     public static final String nameProjectTemporary = "New project (temporary name)";
-    public static final String nameProject = "Test Project";
-    public static final String nameProjectBOX = "BOX Test Project";
+    public static final String nameProject = "Test ProjectValues";
+    public static final String nameProjectBOX = "BOX Test ProjectValues";
     public static final String nameEventInfo = "Test Event";
     public static final String nameTask = "Test Task";
     public static final String nameDocument = "Test Document";

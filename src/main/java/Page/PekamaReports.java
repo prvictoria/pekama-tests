@@ -83,7 +83,7 @@ public class PekamaReports extends Page {
     public static final SelenideElement REPORTS_ContactProjects = $(byXpath("//span[@ng-switch='contact.number_of_projects']"));
     public static final SelenideElement REPORTS_ContactCharges = $(byXpath("//span[@ng-switch='!contact.total_charges']"));
     public static final SelenideElement REPORTS_ContactCheckbox = $(byXpath("//input[@type='checkbox']"));
-    public static final SelenideElement REPORTS_ContactNewProject = $(byXpath("//button[contains(.,'+ New Project')]"));
+    public static final SelenideElement REPORTS_ContactNewProject = $(byXpath("//button[contains(.,'+ New ProjectValues')]"));
     public static final SelenideElement REPORTS_ContactEdit = $(byXpath("//div[@class='contact-page-invite-edit']/i[1]"));
     public static final SelenideElement REPORTS_ContactDelete = $(byXpath("//div[@class='contact-page-invite-edit']/i[2]"));
 }

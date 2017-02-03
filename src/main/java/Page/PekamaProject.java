@@ -172,10 +172,13 @@ public class PekamaProject extends Page {
     public static final SelenideElement projectTabContacts_FormRegion = $(byXpath("//input[@name='contact.region']"));
     public static final SelenideElement projectTabContacts_FormCountrySelect = $(byXpath("//div[@name='contact.country']//div/span"));
     public static final SelenideElement projectTabContacts_FormCountryInput = $(byXpath("//div[@name='contact.country']//input"));
-
-
-    public static final SelenideElement TAB_DOCS = $(byXpath(""));
+    //TAB DOCS
     public static final SelenideElement TAB_DOCS_BTN_ADD = $(byId("file-controls"));
+    public static final SelenideElement TAB_DOC_ADD_FOLDER = $(byLinkText("Add Folder"));
+    public static final SelenideElement TAB_DOC_NEW_DOCUMENT = $(byLinkText("New document"));
+    public static final SelenideElement LINK_DELETE = $(byLinkText("Delete"));
+    public static final SelenideElement TAB_DOCS = $(byXpath(""));
+
     public static final SelenideElement projectTabDocs_Row = $(byXpath("//div[@class='items-list files ng-scope angular-ui-tree']/ol/li"));
     public static final SelenideElement projectTabDocs_RowName = $(byXpath("//div[@class='file-info-holder']/a[1]"));
 
@@ -196,19 +199,26 @@ public class PekamaProject extends Page {
     public static final SelenideElement TAB_DOCS_FILE_INPUT_NAME = $(byXpath("//pkm-files-editable-title//input[@name='name']"));
     public static final SelenideElement TAB_DOCS_FILE_SAVE = $(byXpath("//pkm-files-editable-title//a[contains(.,'Save')]"));
     public static final SelenideElement TAB_DOCS_FILE_DELETE = $(byXpath("//pkm-files-editable-title//a[contains(.,'Delete')]"));
+    //TAB TASKS
 
-    public static final SelenideElement projectTabTask_New = $(byLinkText("Create task"));
-    public static final SelenideElement projectTabTask_BulkSelectAll = $(byXpath("xpath=(//input[@type='checkbox'])[5]"));
-    public static final SelenideElement projectTabTask_BulkSelect01 = $(byXpath(""));
-    public static final SelenideElement projectTabTask_BulkSelect02 = $(byXpath(""));
-    public static final SelenideElement projectTabTask_BulkSelect03 = $(byXpath(""));
-    public static final SelenideElement projectTabTask_BulkSelect04 = $(byXpath(""));
-    public static final SelenideElement projectTabTask_BulkSelect05 = $(byXpath(""));
-    public static final SelenideElement projectTabTask_BulkDelete = $(byXpath("//button[@pkm-confirm-click='bulkDelete()']"));
-    public static final SelenideElement projectTabTask_BulkStatus = $(byXpath("//button[@ng-click='bulkUpdate('status')']"));
-    public static final SelenideElement projectTabTask_BulkImportance = $(byXpath("//button[@ng-click='bulkUpdate('importance')']"));
-    public static final SelenideElement projectTabTask_BulkAssignor = $(byXpath("//button[@ng-click='bulkUpdate('assignor')']"));
-    public static final SelenideElement projectTabTask_BulkAssignee = $(byXpath("//button[@ng-click='bulkUpdate('assignee')']"));
+    public static final String TASKS_ORDER = "";
+    public static final String TASKS_ORDER_DUE_DATE = "Due date";
+    public static final String TASKS_ORDER_LAST_CREATED = "Last created";
+    public static final String TASKS_ORDER_LAST_MODIFIED = "Last modified";
+    public static final String TASKS_ORDER_TIRLE = "Title";
+    public static final String TASKS_ORDER_ASSIGNEE = "Assignee";
+    public static final String TAB_TASKS_CONTROLS_ROW = "//div[@class='clearfix-row zone-controls-holder']";
+    public static final SelenideElement TAB_TASKS_ACTIVE = $(byXpath(TAB_TASKS_CONTROLS_ROW+"//button[contains(.,'Active')]"));
+    public static final SelenideElement TAB_TASKS_ALL = $(byXpath(TAB_TASKS_CONTROLS_ROW+"//button[contains(.,'All')]"));
+    public static SelenideElement TAB_TASKS_ACTUAL_ORDER = $(byXpath(TAB_TASKS_CONTROLS_ROW+"//a[contains(.,'"+TASKS_ORDER+"')]"));        //order value
+    public static final SelenideElement TAB_TASKS_ADD = $(byXpath(TAB_TASKS_CONTROLS_ROW+"//button[contains(.,'add')]"));
+    public static final SelenideElement TAB_TASKS_NEW_TASK = $(byLinkText("Create task"));
+
+    public static final SelenideElement TAB_TASKS_BTN_DELETE = $(byXpath("//button[@class='btn-link' and contains(.,'Delete')]"));
+    public static final SelenideElement TAB_TASKS_BTN_UPDATE_STATUS = $(byXpath("//button[@class='btn-link' and contains(.,'Update Status')]"));
+    public static final SelenideElement TAB_TASKS_BTN_UPDATE_IMPORTANCE = $(byXpath("//button[@class='btn-link' and contains(.,'Update Importance')]"));
+    public static final SelenideElement TAB_TASKS_BTN_UPDATE_ASSIGNOR = $(byXpath("//button[@class='btn-link' and contains(.,'Update Assignor')]"));
+    public static final SelenideElement TAB_TASKS_BTN_UPDATE_ASSIGNEE = $(byXpath("//button[@class='btn-link' and contains(.,'Update Assignee')]"));
     public static final SelenideElement projectTabTask_DatepickerCall = $(byXpath(""));
     public static final SelenideElement projectTabTask_ButtonStatus = $(byXpath(""));
     public static final SelenideElement projectTabTask_MenuStatus = $(byXpath("//pkm-task-change-status/div/div"));
@@ -219,14 +229,11 @@ public class PekamaProject extends Page {
     public static final SelenideElement projectTabTask_ = $(byXpath(""));
 
 
-    public static final SelenideElement TAB_TASKS_ADD_TASK = $(byId("file-controls"));
-    public static final SelenideElement TAB_TASKS_CREATE_TASK = $(byLinkText("Create task"));
-    public static final SelenideElement TAB_DOC_ADD_FOLDER = $(byLinkText("Add Folder"));
-    public static final SelenideElement TAB_DOC_NEW_DOCUMENT = $(byLinkText("New document"));
-    public static final SelenideElement LINK_DELETE = $(byLinkText("Delete"));
 
 
 
+
+    //TAB CHARGES
     public static final SelenideElement projectTabFin_ = $(byXpath(""));
     public static final SelenideElement projectTabFin_CollapseForm = $(byXpath("//div/ng-include/div/a[@class='link-task']"));
     public static final SelenideElement projectTabFin_BackToListLink = $(byLinkText("link=Back to all finances"));

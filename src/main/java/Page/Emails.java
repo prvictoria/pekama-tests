@@ -34,13 +34,13 @@ public class Emails extends Page {
     public static final String EMAIL_INVITE_IN_COMMUNITY_BTN = "Join Pekama Community";
     public static final SelenideElement EMAIL_INVITE_IN_COMMUNITY_BACKLINK = $(byXpath("//td/a[contains(@href, '"+COMMUNITY+"/community/activate/')]"));
 
-    //Email  Invite in Project
+    //Email  Invite in ProjectValues
     public static final SelenideElement EMAIL_INVITE_IN_PROJECT = $(byXpath(""));
-    public static final  SelenideElement EMAIL_INVITE_IN_PROJECT_SUBJECT = $(byXpath("//span[contains(.,'invited you')]")); //Test002 Quality02 invited you to TM.PN.028318 new test project - TPTTUX Project
-    //public static String EMAIL_INVITE_IN_PROJECT_SUBJECT = "'%s' '%s' invited you to TM.PN.028318 new test project - TPTTUX Project"; //Test002 Quality02 invited you to TM.PN.028318 new test project - TPTTUX Project
+    public static final  SelenideElement EMAIL_INVITE_IN_PROJECT_SUBJECT = $(byXpath("//span[contains(.,'invited you')]")); //Test002 Quality02 invited you to TM.PN.028318 new test project - TPTTUX ProjectValues
+    //public static String EMAIL_INVITE_IN_PROJECT_SUBJECT = "'%s' '%s' invited you to TM.PN.028318 new test project - TPTTUX ProjectValues"; //Test002 Quality02 invited you to TM.PN.028318 new test project - TPTTUX ProjectValues
     public static String EMAIL_INVITE_IN_PROJECT_TITLE = "%s %s invited you to collaborate";
-    public static String EMAIL_INVITE_IN_PROJECT_TEXT = "%s %s from created a project for %s and invites you to join in."; //User name, Surname, Project name
-    public static final String EMAIL_INVITE_IN_PROJECT_BTN = "Join Project";
+    public static String EMAIL_INVITE_IN_PROJECT_TEXT = "%s %s from created a project for %s and invites you to join in."; //User name, Surname, ProjectValues name
+    public static final String EMAIL_INVITE_IN_PROJECT_BTN = "Join ProjectValues";
     public static final SelenideElement EMAIL_INVITE_IN_PROJECT_BACKLINK = $(byXpath("//td/a[contains(@href, '"+SELECT_HOST+"/n/legal/submatter/')]"));
     //https://staging.pekama.com/n/legal/submatter/28318/?user=7557
 

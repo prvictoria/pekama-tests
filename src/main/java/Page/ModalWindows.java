@@ -34,9 +34,9 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_BTN_CLOSE = $(byXpath(mw+"//*[contains .,'Close' ]"));
 
 
-    public static final SelenideElement MW_GENERIC_Title = $(byXpath("//*[@class='modal-title']"));
-    public static final SelenideElement MW_GENERIC_DatepickerField = $("css=input.form-control.date-box");
-    public static final SelenideElement MW_GENERIC_DatepickerIcon = $("css=.memobox-icon-calendar");
+    public static final SelenideElement MW_TITLE = $(byXpath("//*[@class='modal-title']"));
+    public static final SelenideElement MW_INPUT_DATE =  $(byXpath(mw+"//input[@class='form-control date-box']")); //click==today
+    public static final SelenideElement MW_ICON_CALENDAR = $("css=.memobox-icon-calendar");
 
     public static final SelenideElement MW_ERROR = $(".help-block.error");
     public static final SelenideElement MW_SELECT_HIGHLIGHTED = $("span.ui-select-highlight");
@@ -88,10 +88,14 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_TaskTemplate_DateOffset = $(byXpath(""));
     public static final SelenideElement MW_TaskTemplate_DateOffsetUnit = $(byXpath(""));
 
-    public static final SelenideElement MW_EventTemplate_EventType = $(byXpath("//pkm-values-dropdown/div/div/span"));
-    public static final SelenideElement MW_EventTemplate_AdditionalInfo = $(byXpath("//textarea"));
-    public static final SelenideElement MW_EventTemplate_Input = $(byXpath("//div[@name='event_type']/input[1]"));
+    public static final SelenideElement MW_EventTemplate_EventType = $(byXpath(mw+"//pkm-values-dropdown/div/div/span"));
+    public static final SelenideElement MW_EventTemplate_Input = $(byXpath(mw+"//div[@name='event_type']/input[1]"));
+    public static final SelenideElement MW_EventTemplate_AdditionalInfo = $(byXpath(mw+"//textarea"));
 
+    public static final SelenideElement MW_EVENT_SELECT_TYPE = MW_EventTemplate_EventType;
+    public static final SelenideElement MW_EVENT_INPUT_TYPE = MW_EventTemplate_Input;
+    public static final SelenideElement MW_EVENT_INPUT_INFO = MW_EventTemplate_AdditionalInfo;
+    public static final SelenideElement MW_EVENT_INPUT_DATE = MW_INPUT_DATE;
 
     public static final SelenideElement modalEmailparametersFieldEmailAddress = $(byXpath("//div/div[2]/div/div/input"));
     public static final SelenideElement modalEmailparametersSubjectLine = $(byName("template"));
@@ -115,13 +119,13 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_ConversationFollowerSelect = $("span.result-name.ng-binding");
 
     public static final SelenideElement modalCheckboxPermissionAllTeams = $(byXpath("//*[@ng-disabled='uiState.disableAllTeams']"));
-    //Project templates
+    //ProjectValues templates
     public static final SelenideElement modalProjectTemplateCancelButton = $(byXpath("//div[2]/button[2]"));
     public static final SelenideElement modalProjectTemplateOklButton = $(byXpath("//div[2]/button"));
     public static final SelenideElement MW_ProjectTemplateProjectTypeInput = $(byXpath("//div[@name='matter_type']/input[1]"));
     public static final SelenideElement MW_ProjectTemplateProjectDefiningInput = $(byXpath("//div[@name='defining']/input[1]"));
     //New project
-    public static final String MW_ProjectTitle = "New Project";
+    public static final String MW_ProjectTitle = "New ProjectValues";
     public static final SelenideElement MW_ProjectFinishButton = $(byXpath(mw+"//button[@type='submit'][contains(.,'FINISH')]"));
     public static final SelenideElement MW_Project_SelectType = $(byXpath(mw+"//div[@name='matter_type']/div/span/span[1]"));
     public static final SelenideElement MW_Project_InputType = $(byXpath(mw+"//div[@name='matter_type']/input[1]"));

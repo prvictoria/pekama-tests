@@ -1,6 +1,8 @@
 package Page;
 import org.junit.Test;
 
+
+
 public class TestsCredentials {
     public enum User1 {
         GMAIL_EMAIL("testqweeco001@gmail.com"),
@@ -181,13 +183,23 @@ public class TestsCredentials {
             return value;
         }
     }
+    public enum TrademarkEvents {
+
+        CASE_SUSPENDED("Case still suspended"),
+        PRIORITY_APLICATION_FILED("Priority Application Filed"),
+        OPPSITION_END_DATE("Opposition end date"),
+        APPLICATION_REGISTERED("Application Registered");
+        private String eventName;
+        TrademarkEvents(String value) {
+            this.eventName = value;
+        }
+    }
     @Test
     public  void enumTest() {
-        System.out.println(User1.GMAIL_EMAIL.value);
-        System.out.println(User1.FULL_TEAM_NAME.value);
-        System.out.println(User1.GMAIL_PASSWORD.value);
-        System.out.println(User1.TEAM_CODE.value);
-        System.out.println(User1.FULL_TEAM_NAME.value);
+        System.out.println(TrademarkEvents.APPLICATION_REGISTERED.eventName);
+//        System.out.println(User1.GMAIL_PASSWORD.value);
+//        System.out.println(User1.TEAM_CODE.value);
+//        System.out.println(User1.FULL_TEAM_NAME.value);
 
     }
 
