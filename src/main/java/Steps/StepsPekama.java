@@ -9,9 +9,11 @@ import org.junit.Test;
 
 import static Page.ModalWindows.*;
 import static Page.PekamaLogin.*;
+import static Page.PekamaProject.*;
 import static Page.PekamaReports.*;
-import static Page.TestsCredentials.GENERIC_PEKAMA_PASSWORD;
-import static Steps.StepsHttpAuth.httpAuthUrl;
+import static Page.TestsCredentials.*;
+import static Page.TestsStrings.*;
+import static Steps.StepsHttpAuth.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
@@ -101,7 +103,7 @@ public class StepsPekama implements StepsFactory{
         sleep(500);
         MW.shouldNotBe(visible);
     }
-    //todo frame switch
+
     public static void collapseChatWidget(){
         sleep(500);
         MW.shouldBe(visible);
@@ -186,7 +188,7 @@ public class StepsPekama implements StepsFactory{
     public static void validationFieldByName(int randomLength, String fieldName, String submitButton, String errorMsg) {
         rootLogger.info("Validation field test for - "+fieldName);
         $(byName(fieldName)).clear();
-        $(byName(fieldName)).sendKeys(Utils.getRandomString(randomLength));
+        $(byName(fieldName)).sendKeys(Utils.randomString(randomLength));
         rootLogger.info("Entered random string - "+randomLength+"letter length" );
         $(byXpath(submitButton)).shouldBe(Condition.enabled).click();
         sleep(500);
@@ -196,7 +198,7 @@ public class StepsPekama implements StepsFactory{
     public static void validationFieldByXpath(int randomLength, String fieldName, String submitButton, String errorMsg) {
         rootLogger.info("Validation field test for - "+fieldName);
         $(byXpath(fieldName)).clear();
-        $(byXpath(fieldName)).sendKeys(Utils.getRandomString(randomLength));
+        $(byXpath(fieldName)).sendKeys(Utils.randomString(randomLength));
         rootLogger.info("Entered random string - "+randomLength+"letter length" );
         $(byXpath(submitButton)).shouldBe(Condition.enabled).click();
         sleep(500);
@@ -257,18 +259,12 @@ public class StepsPekama implements StepsFactory{
         executeJavaScript("scrollTo(0, 1000)");
     }
 
-//    public static String MW_SHARE_PROJECT_SELECT_TEAM = "//div[@class='row' and contains(.,'%s') and contains(.,'%s')]";
     public static void selectTeam(String... args) {
         String searchedRadio = String.format(MW_SHARE_PROJECT_SELECT_TEAM, args);
         $(byXpath(searchedRadio)).shouldBe(visible);
         $(byXpath(searchedRadio)).click();
     }
-    public static String TAB_DOCS_FILES_MENU = "//ul[@class='doc-list-table' and contains(.,'%s')]//div[@id]";
-    public static String TAB_DOCS_FILES_MENU_OPEN = TAB_DOCS_FILES_MENU+"/button";
-    public static String TAB_DOCS_FILES_MENU_DOWNLOAD = TAB_DOCS_FILES_MENU+"//a[contains(.,'Download')]";
-    public static String TAB_DOCS_FILES_MENU_RENAME = TAB_DOCS_FILES_MENU+"//a[contains(.,'Rename')]";
-    public static String TAB_DOCS_FILES_MENU_DELETE = TAB_DOCS_FILES_MENU+"//a[contains(.,'Delete')]";
-    public static String TAB_DOCS_FILES_MENU_UPLOAD = TAB_DOCS_FILES_MENU+"//a[contains(.,'Upload New Version')]";
+
     public static void fileMenuMakeAction(String actionName, String... args) {
         String menu = String.format(TAB_DOCS_FILES_MENU_OPEN, args);
         $(byXpath(menu)).shouldBe(visible);
@@ -276,15 +272,47 @@ public class StepsPekama implements StepsFactory{
         String action = String.format(actionName, args);
         $(byXpath(action)).shouldBe(visible);
         $(byXpath(action)).click();
+        rootLogger.info("Action done");
     }
-    @Test
-    public void fileMenuMakeAction (){
-        fileMenuMakeAction (TAB_DOCS_FILES_MENU_RENAME, "new name");
+    public static void clickFileRow(String... args) {
+        String row = String.format(TAB_DOCS_FILES_EXPAND_FILE, args);
+        $(byXpath(row)).shouldBe(visible);
+        $(byXpath(row)).click();
+        rootLogger.info(args+" - row opened");
+    }
+    public static void clickFolderRow(String... args) {
+        String row = String.format(TAB_DOCS_FILES_EXPAND_FILE, args);
+        $(byXpath(row)).shouldBe(visible);
+        $(byXpath(row)).click();
+        rootLogger.info(args+" - row opened");
+    }
+
+    public static void deployFileTemplate(SelenideElement fileType, String fileName) {
+        waitForModalWindow(TITLE_MW_ADD_DOCUMENT);
+        MW_DEPLOY_DOC_BTN_CREATE.shouldBe(disabled);
+        fileType.shouldBe(Condition.visible).click();
+        fillField(MW_DEPLOY_DOC_INPUT_FILE_NAME, fileName);
+        submitEnabledButton(MW_DEPLOY_DOC_BTN_CREATE);
+        MW.shouldNotBe(Condition.visible);
+        $(byText(fileName)).shouldBe(Condition.visible);
+        rootLogger.info(fileName+" - file present");
+    }
+    public static void createFolder(String folderName) {
+        waitForModalWindow(TITLE_MW_NEW_FOLDER);
+        MW_BTN_SAVE.shouldBe(disabled);
+        fillField(MW_NEW_FOLDER_INPUT_NAME, folderName);
+        submitEnabledButton(MW_BTN_SAVE);
+        MW.shouldNotBe(Condition.visible);
+        $(byText(folderName)).shouldBe(Condition.visible);
+        rootLogger.info(folderName+" - Folder present");
     }
 
 
     public static void selectOption(SelenideElement optionSelector,String optionName) {
         optionSelector.selectOption(new String[]{optionName});
     }
-
+    @Test
+    public void fileMenuMakeAction (){
+        fileMenuMakeAction (TAB_DOCS_FILES_MENU_RENAME, "new name");
+    }
 }

@@ -25,9 +25,9 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_MAILING_1USER_INTERVAL = $(byXpath(mw+"//ul//li[2]//input[@type='number']"));
 
 
-    public static final SelenideElement MW_BTN_SAVE = $(byXpath(mw+"button[contains(.,'Save')]"));
+    public static final SelenideElement MW_BTN_SAVE = $(byXpath(mw+"//button[contains(.,'Save')]"));
     public static final SelenideElement MW_BTN_CANCEL = $(byXpath(mw+"//button[contains(.,'Cancel')]"));
-    public static final SelenideElement MW_BTN_ADD = $(byXpath(mw+"button[contains(.,'Add')]"));
+    public static final SelenideElement MW_BTN_ADD = $(byXpath(mw+"//button[contains(.,'Add')]"));
     public static final SelenideElement MW_BTN_OK = $(byXpath(mw+"//button[contains(.,'OK')]"));
     public static final SelenideElement MW_BTN_YES = $(byXpath(mw+"//button[contains(.,'Yes')]"));
     public static final SelenideElement MW_ICON_CLOSE = $(byXpath(mw+"//*[@aria-label='Close']"));
@@ -38,10 +38,8 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_GENERIC_DatepickerField = $("css=input.form-control.date-box");
     public static final SelenideElement MW_GENERIC_DatepickerIcon = $("css=.memobox-icon-calendar");
 
-    public static final SelenideElement MW_GENERIC_ErrorMsg = $(".help-block.error");
-    public static final SelenideElement MW_GENERIC_SpecificTeam = $(byXpath("//*[@pkm-team-colored-box='chosenOrganization']"));
-    public static final SelenideElement MW_GENERIC_TeamsCheckbox = $(byXpath("//*[@pkm-team-colored-box='chosenOrganization']"));
-    public static final SelenideElement MW_GENERIC_SelectHighlighted = $("span.ui-select-highlight");
+    public static final SelenideElement MW_ERROR = $(".help-block.error");
+    public static final SelenideElement MW_SELECT_HIGHLIGHTED = $("span.ui-select-highlight");
     public static final SelenideElement BTN_WITH_TEXT = $(byXpath("//button[contains(.,'')]"));
 
     public static final SelenideElement genericButtonSave = $(byXpath("//button[contains(.,'Save')]"));
@@ -132,11 +130,12 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_Project_TMNumber = $(byXpath(mw+"//input[@name='official_lookup']"));
     public static final SelenideElement MW_Project_Title = $(byXpath(mw+"//input[@name='title']"));
     public static final SelenideElement MW_Project_Reference = $(byXpath(mw+"//input[@name='number']"));
-
+    //MW new folder
+    public static final SelenideElement MW_NEW_FOLDER_INPUT_NAME = $(byXpath(mw+"//input[@name='name']"));
     public static final SelenideElement modalMembersOkButton = $(byXpath("//div[2]/button"));
     //MW deploy doc templates
     public static final SelenideElement MW_DeployDoc_Title = $("css=h3.modal-title");
-    public static final SelenideElement MW_DeployDoc_FileName = $(byXpath("//input[@name='name']"));
+    public static final SelenideElement MW_DEPLOY_DOC_INPUT_FILE_NAME = $(byXpath("//input[@name='name']"));
     public static final SelenideElement MW_DeployDoc_01TemplateWord = $(byXpath("//li/label[text()='New Word document']"));
     public static final SelenideElement MW_DeployDoc_02TemplateExcel = $(byXpath("//li/label[text()='New Excel sheet']"));
     public static final SelenideElement MW_DeployDoc_03TemplateCustom = $(byXpath("//li[3]/label"));
@@ -144,7 +143,7 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_DeployDoc_SelectDefining = $(byXpath(""));
     public static final SelenideElement MW_DeployDoc_SelectType = $(byXpath(""));
     public static final SelenideElement MW_DeployDoc_SelectEvent = $(byXpath(""));
-    public static final SelenideElement MW_DeployDoc_ButtonCreate = $(byXpath("//button[contains(.,'Create')]"));
+    public static final SelenideElement MW_DEPLOY_DOC_BTN_CREATE = $(byXpath("//button[contains(.,'Create')]"));
     public static final SelenideElement MW_DeployDoc_ButtonCancel = $(byXpath("//button[contains(.,'Cancel')]"));
 
     public static final SelenideElement MW_DeployTask_Title = $(byName("title"));

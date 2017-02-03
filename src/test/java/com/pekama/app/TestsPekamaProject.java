@@ -1,6 +1,5 @@
 package com.pekama.app;
 import Steps.*;
-import Utils.Utils;
 import com.codeborne.selenide.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,6 +18,7 @@ import static Page.TestsUrl.*;
 import static Steps.StepsExternal.*;
 import static Steps.StepsPekama.*;
 import static Steps.StepsPekama.fillField;
+import static Utils.Utils.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
@@ -26,9 +26,9 @@ import static com.codeborne.selenide.Selenide.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaProject {
     static final Logger rootLogger = LogManager.getRootLogger();
-    private static String testProjectTitle = "new test project - "+ Utils.getRandomString(6);
-    private static String testContactName = "name"+Utils.getRandomString(10);
-    private static String testContactSurname = "surname"+Utils.getRandomString(10);
+    private static String testProjectTitle = "new test project - "+ randomString(6);
+    private static String testContactName = "name"+ randomString(10);
+    private static String testContactSurname = "surname"+ randomString(10);
     @Before
     public void before() {
         Configuration test = new Configuration();
@@ -80,7 +80,7 @@ public class TestsPekamaProject {
         scrollUp();
         projectTabMore_ProjectTitle.shouldHave(text(testProjectTitle));
         projectTabMore_ProjectTitle.click();
-        String newProjectName = "New project name after edition "+ Utils.getRandomString(6);
+        String newProjectName = "New project name after edition "+ randomString(6);
         fillField(projectTabMore_TitleInput, newProjectName);
         projectTabMore_TitleSave.click();
         sleep(1000);
@@ -340,62 +340,149 @@ public class TestsPekamaProject {
 
     }
     @Test
-    public void createProject_G_addDocument() {
+    public void createProject_G1_addWordDocument() {
         String newDoc = "new word document";
         projectTabDocs.click();
-        buttonAddNewFile.click();
-        linkCreateNewDoc.shouldBe(Condition.visible).click();
-        MW.shouldBe(Condition.visible);
+        TAB_DOCS_ADD_FILE.click();
+        TAB_DOC_NEW_DOCUMENT.shouldBe(Condition.visible).click();
+        waitForModalWindow(TITLE_MW_ADD_DOCUMENT);
         MW_DeployDoc_01TemplateWord.shouldBe(Condition.visible).click();
-        fillField(MW_DeployDoc_FileName, newDoc);
-        MW_DeployDoc_ButtonCreate.click();
+        fillField(MW_DEPLOY_DOC_INPUT_FILE_NAME, newDoc);
+        MW_DEPLOY_DOC_BTN_CREATE.click();
         MW.shouldNotBe(Condition.visible);
         $(byText(newDoc)).shouldBe(Condition.visible);
         rootLogger.info(newDoc+" - file present");
 
         rootLogger.info("edit file");
         fileMenuMakeAction(TAB_DOCS_FILES_MENU_RENAME, newDoc);
-        fillField(projectTabDocs_NameExpanded, "New Excel sheet");
-        projectTabDocs_SaveExpanded.click();
-     //   $(byText("New Excel sheet")).shouldBe(Condition.visible);
+        fillField(TAB_DOCS_FILE_INPUT_NAME, "New Excel sheet");
+        TAB_DOCS_FILE_SAVE.click();
+        $(byText("New Excel sheet")).shouldBe(Condition.visible);
 
         rootLogger.info("delete file");
         projectAllCheckbox.click();
-        linkDelete.click();
+        LINK_DELETE.click();
         submitConfirmAction();
 
         $(byText(placeholderNoFiles)).shouldBe(Condition.visible);
         $$(byText(placeholderNoFiles)).filter(visible).shouldHaveSize(1);
-        //$(withText("No files found. Upload your first file. ")).shouldBe(Condition.visible);
+      //  $(byText("No files found.Upload your first file. ")).shouldBe(Condition.visible);
+        rootLogger.info(placeholderNoFiles);
+        rootLogger.info("Test passed");
+    }
+    @Test
+    public void createProject_G2_addExcelDocument() {
+        String newExcel = "new excel spreadsheet";
+        projectTabDocs.click();
+        TAB_DOCS_ADD_FILE.click();
+        TAB_DOC_NEW_DOCUMENT.shouldBe(Condition.visible).click();
+        deployFileTemplate(MW_DeployDoc_02TemplateExcel, newExcel);
+
+        rootLogger.info("edit file");
+        fileMenuMakeAction(TAB_DOCS_FILES_MENU_RENAME, newExcel);
+        fillField(TAB_DOCS_FILE_INPUT_NAME, "renamed file");
+        TAB_DOCS_FILE_SAVE.click();
+        $(byText("renamed file")).shouldBe(Condition.visible);
+
+        rootLogger.info("delete file via menu");
+        fileMenuMakeAction(TAB_DOCS_FILES_MENU_DELETE, "renamed file");
+        submitConfirmAction();
+
+        $(byText(placeholderNoFiles)).shouldBe(Condition.visible);
+        $$(byText(placeholderNoFiles)).filter(visible).shouldHaveSize(1);
         rootLogger.info(placeholderNoFiles);
         rootLogger.info("Test passed");
     }
     @Test //todo
-    public void createProject_H_addFolder() {
-        projectTabDocs.click();
-        buttonAddNewFile.click();
-        rootLogger.info("Add folder");
-        linkCreateNewFolder.shouldBe(Condition.visible).click();
-        MW.shouldBe(Condition.visible);
-        $(byText(mwTitleNewFolder)).shouldBe(Condition.visible);
-        String newDoc = "new word document";
+    public void createProject_H1_addFolder() {
         String newFolder = "new folder";
-        $(byName("name")).sendKeys(newFolder);
-        MW_BTN_SAVE.click();
-        MW.shouldNotBe(Condition.visible);
-        $(byText(newFolder)).shouldBe(Condition.visible);
-        rootLogger.info(newFolder+" - Folder present");
-        rootLogger.info("check validation duplicate folder");
-
+        projectTabDocs.click();
+        TAB_DOCS_ADD_FILE.click();
+        rootLogger.info("Add folder");
+        TAB_DOC_ADD_FOLDER.shouldBe(Condition.visible).click();
+        createFolder(newFolder);
 
         rootLogger.info("edit folder");
-        $$(byText(ERROR_DuplicatedFolder)).shouldHaveSize(1);
+        fileMenuMakeAction(TAB_DOCS_FILES_MENU_RENAME, newFolder);
+        fillField(TAB_DOCS_FILE_INPUT_NAME, "renamed folder");
+        TAB_DOCS_FILE_SAVE.click();
+        $(byText("renamed folder")).shouldBe(Condition.visible);
 
         rootLogger.info("delete folder");
         projectAllCheckbox.click();
         $(byLinkText("Delete")).click();
         submitConfirmAction();
         $$(byText(placeholderNoFiles)).shouldHaveSize(1);
+        rootLogger.info("Test passed");
+    }
+    @Test //todo
+    public void createProject_H2_validationDuplicateFolder() {
+        String newFolder1 = "folder1";
+        String newFolder2 = "folder2";
+        projectTabDocs.click();
+        TAB_DOCS_ADD_FILE.click();
+        TAB_DOC_ADD_FOLDER.shouldBe(Condition.visible).click();
+        rootLogger.info("Add folder");
+        createFolder(newFolder1);
+
+        rootLogger.info("Add same folder");
+        TAB_DOCS_ADD_FILE.click();
+        TAB_DOC_ADD_FOLDER.shouldBe(Condition.visible).click();
+        waitForModalWindow(TITLE_MW_NEW_FOLDER);
+        MW_BTN_SAVE.shouldBe(disabled);
+        fillField(MW_NEW_FOLDER_INPUT_NAME, newFolder1);
+        submitEnabledButton(MW_BTN_SAVE);
+        $$(byText(ERROR_DuplicatedFolder)).shouldHaveSize(1);
+
+        rootLogger.info("Check max length field validation");
+        MW_NEW_FOLDER_INPUT_NAME.clear();
+        fillField(MW_NEW_FOLDER_INPUT_NAME, randomString(1025));
+        submitEnabledButton(MW_BTN_SAVE);
+        $$(byText(ERROR_MSG_VALIDATION_LENGTH_1024)).shouldHaveSize(1);
+
+        rootLogger.info("Create 2-nd folder");
+        fillField(MW_NEW_FOLDER_INPUT_NAME, newFolder2);
+        submitEnabledButton(MW_BTN_SAVE);
+        MW.shouldNotBe(Condition.visible);
+        $(byText(newFolder2)).shouldBe(Condition.visible);
+        rootLogger.info(newFolder2+" - Folder present");
+
+        rootLogger.info("check validation duplicate folder while rename");
+        fileMenuMakeAction(TAB_DOCS_FILES_MENU_RENAME, newFolder2);
+        fillField(TAB_DOCS_FILE_INPUT_NAME, newFolder1);
+        TAB_DOCS_FILE_SAVE.click();
+        $$(byText(ERROR_DuplicatedFolder)).shouldHaveSize(1);
+        rootLogger.info("Test passed");
+
+    }
+    @Test //todo
+    public void createProject_H3_addSubFoldersTree() {
+        String newFolder1 = "folder1";
+        String newFolder2 = "folder2";
+        String newFolder3 = "folder3";
+        String newExcel = "excel";
+        projectTabDocs.click();
+        TAB_DOCS_ADD_FILE.click();
+        rootLogger.info("Add folder");
+        createFolder(newFolder1);
+        clickFolderRow(newFolder1);
+        rootLogger.info("Add sub-folder");
+        fileMenuMakeAction(TAB_DOCS_FILES_MENU_ADD_SUBFOLDER, newFolder1);
+        createFolder(newFolder2);
+        clickFolderRow(newFolder2);
+        rootLogger.info("Add sub-sub-folder");
+        fileMenuMakeAction(TAB_DOCS_FILES_MENU_ADD_SUBFOLDER, newFolder2);
+        createFolder(newFolder3);
+        clickFolderRow(newFolder3);
+        rootLogger.info("Add doc sub-sub-folder");
+        TAB_DOC_NEW_DOCUMENT.shouldBe(Condition.visible).click();
+        deployFileTemplate(MW_DeployDoc_02TemplateExcel, newExcel);
+        clickFileRow(newExcel);
+        TAB_DOCS_FILE_DELETE.click();
+        submitConfirmAction();
+
+
+        rootLogger.info("Test passed");
 
     }
     @Test  //todo

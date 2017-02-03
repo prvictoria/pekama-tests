@@ -129,7 +129,7 @@ public class TestsPekamaSettingsPersonal {
     public void personalDetails_Name_A() {
         rootLogger.info("Validation Name field");
         $(byText("First name:")).shouldBe(Condition.visible);
-        String RANDOM_20_LETTER = Utils.getRandomString(20);
+        String RANDOM_20_LETTER = Utils.randomString(20);
         PERSONAL_DETAILS_INPUT_SURNAME.sendKeys(RANDOM_20_LETTER);
         PERSONAL_DETAILS_INPUT_NAME.clear();
         sleep(1000);
@@ -143,7 +143,7 @@ public class TestsPekamaSettingsPersonal {
     public void personalDetails_Name_B() {
         rootLogger.info("Validation maxlength Name field");
         $(byText("First name:")).shouldBe(Condition.visible);
-        String RANDOM_101_LETTER = Utils.getRandomString(101);
+        String RANDOM_101_LETTER = Utils.randomString(101);
         PERSONAL_DETAILS_INPUT_NAME.clear();
         PERSONAL_DETAILS_INPUT_NAME.sendKeys(RANDOM_101_LETTER);
         submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
@@ -169,7 +169,7 @@ public class TestsPekamaSettingsPersonal {
     public void personalDetails_Surname_A() {
         rootLogger.info("Validation Name field");
         $(byText("Last name:")).shouldBe(Condition.visible);
-        String RANDOM_20_LETTER = Utils.getRandomString(20);
+        String RANDOM_20_LETTER = Utils.randomString(20);
         PERSONAL_DETAILS_INPUT_NAME.sendKeys(RANDOM_20_LETTER);
         PERSONAL_DETAILS_INPUT_SURNAME.clear();
         submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
@@ -181,7 +181,7 @@ public class TestsPekamaSettingsPersonal {
     public void personalDetails_Surname_B() {
         rootLogger.info("Validation maxlength Surname field");
         $(byText("Last name:")).shouldBe(Condition.visible);
-        String RANDOM_101_LETTER = Utils.getRandomString(101);
+        String RANDOM_101_LETTER = Utils.randomString(101);
         PERSONAL_DETAILS_INPUT_SURNAME.clear();
         PERSONAL_DETAILS_INPUT_SURNAME.sendKeys(RANDOM_101_LETTER);
         submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
@@ -192,7 +192,7 @@ public class TestsPekamaSettingsPersonal {
     public void personalDetails_Phone_A() {
         rootLogger.info("Validation maxlength Phone field");
         $(byText("Phone #")).shouldBe(Condition.visible);
-        String RANDOM_101_LETTER = Utils.getRandomString(21);
+        String RANDOM_101_LETTER = Utils.randomString(21);
         PERSONAL_DETAILS_INPUT_PHONE.clear();
         PERSONAL_DETAILS_INPUT_PHONE.sendKeys(RANDOM_101_LETTER);
         submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
@@ -203,7 +203,7 @@ public class TestsPekamaSettingsPersonal {
     public void personalDetails_Fax_A() {
         rootLogger.info("Validation maxlength Fax field");
         $(byText("Fax #")).shouldBe(Condition.visible);
-        String RANDOM_21_LETTER = Utils.getRandomString(21);
+        String RANDOM_21_LETTER = Utils.randomString(21);
         PERSONAL_DETAILS_INPUT_FAX.clear();
         PERSONAL_DETAILS_INPUT_FAX.sendKeys(RANDOM_21_LETTER);
         submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
@@ -214,7 +214,7 @@ public class TestsPekamaSettingsPersonal {
     public void personalDetails_Mobile_A() {
         rootLogger.info("Validation maxlength Mobile field");
         $(byText("Mobile #")).shouldBe(Condition.visible);
-        String RANDOM_21_LETTER = Utils.getRandomString(21);
+        String RANDOM_21_LETTER = Utils.randomString(21);
         PERSONAL_DETAILS_INPUT_MOBILE.clear();
         PERSONAL_DETAILS_INPUT_MOBILE.sendKeys(RANDOM_21_LETTER);
         submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
@@ -225,7 +225,7 @@ public class TestsPekamaSettingsPersonal {
     public void personalDetails_LegalEntity_A() {
         rootLogger.info("Validation maxlength Legal entity field");
         $(byText("Legal entity:")).shouldBe(Condition.visible);
-        String RANDOM_256_LETTER = Utils.getRandomString(256);
+        String RANDOM_256_LETTER = Utils.randomString(256);
         PERSONAL_DETAILS_INPUT_LEGAL_ENTITY.clear();
         PERSONAL_DETAILS_INPUT_LEGAL_ENTITY.sendKeys(RANDOM_256_LETTER);
         submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
@@ -236,7 +236,7 @@ public class TestsPekamaSettingsPersonal {
     public void personalDetails_StreetAddress_A() {
         rootLogger.info("Validation maxlength Legal entity field");
         $(byText("Street address:")).shouldBe(Condition.visible);
-        String RANDOM_256_LETTER = Utils.getRandomString(256);
+        String RANDOM_256_LETTER = Utils.randomString(256);
         PERSONAL_DETAILS_INPUT_STREET.clear();
         PERSONAL_DETAILS_INPUT_STREET.sendKeys(RANDOM_256_LETTER);
         submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
@@ -247,7 +247,7 @@ public class TestsPekamaSettingsPersonal {
     public void personalDetails_PostalCode_A() {
         rootLogger.info("Validation maxlength Post code field");
         $(byText("Post code:")).shouldBe(Condition.visible);
-        String RANDOM_21_LETTER = Utils.getRandomString(21);
+        String RANDOM_21_LETTER = Utils.randomString(21);
         PERSONAL_DETAILS_INPUT_ZIP.clear();
         PERSONAL_DETAILS_INPUT_ZIP.sendKeys(RANDOM_21_LETTER);
         submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
@@ -258,7 +258,7 @@ public class TestsPekamaSettingsPersonal {
     public void personalDetails_City_A() {
         rootLogger.info("Validation maxlength City field");
         $(byText("City:")).shouldBe(Condition.visible);
-        String RANDOM_256_LETTER = Utils.getRandomString(256);
+        String RANDOM_256_LETTER = Utils.randomString(256);
         PERSONAL_DETAILS_INPUT_CITY.clear();
         PERSONAL_DETAILS_INPUT_CITY.sendKeys(RANDOM_256_LETTER);
         submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
@@ -269,7 +269,7 @@ public class TestsPekamaSettingsPersonal {
     public void personalDetails_Region_A() {
         rootLogger.info("Validation maxlength Region entity field");
         $(byText("State/Region")).shouldBe(Condition.visible);
-        String RANDOM_256_LETTER = Utils.getRandomString(256);
+        String RANDOM_256_LETTER = Utils.randomString(256);
         PERSONAL_DETAILS_INPUT_REGION.clear();
         PERSONAL_DETAILS_INPUT_REGION.sendKeys(RANDOM_256_LETTER);
         submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
@@ -311,7 +311,7 @@ public class TestsPekamaSettingsPersonal {
         $(byText("Disabled")).shouldBe(Condition.visible);
         rootLogger.info("State by default - PASSED");
 
-        String validPassword = Utils.getRandomString(8)+VALID_PASSWORD;
+        String validPassword = Utils.randomString(8)+VALID_PASSWORD;
         rootLogger.info("Validation empty fields New password & Confirm Password");
         SECURITY_TAB_CURRENT_PASSWORD.waitUntil(Condition.visible, 10000).sendKeys(validPassword);
         submitEnabledButton(SECURITY_SAVE_BTN);
@@ -322,7 +322,7 @@ public class TestsPekamaSettingsPersonal {
     }
     @Test
     public void tabSecurity_PasswordValidations_B() {
-        String validPassword = Utils.getRandomString(8)+VALID_PASSWORD;
+        String validPassword = Utils.randomString(8)+VALID_PASSWORD;
         rootLogger.info("Validation empty fields Current password & Confirm Password");
         SECURITY_TAB_TITLE.click();
         SECURITY_TAB_NEW_PASSWORD.waitUntil(Condition.visible, 10000).sendKeys(validPassword);
@@ -332,7 +332,7 @@ public class TestsPekamaSettingsPersonal {
     }
     @Test
     public void tabSecurity_PasswordValidations_C() {
-        String validPassword = Utils.getRandomString(8)+VALID_PASSWORD;
+        String validPassword = Utils.randomString(8)+VALID_PASSWORD;
         rootLogger.info("Validation empty fields Current password & New Password");
         SECURITY_TAB_TITLE.click();
         SECURITY_TAB_CONFIRM_PASSWORD.waitUntil(Condition.visible, 10000).sendKeys(validPassword);
@@ -342,7 +342,7 @@ public class TestsPekamaSettingsPersonal {
     }
     @Test
     public void tabSecurity_PasswordValidations_D() {
-        String validPassword = Utils.getRandomString(8)+VALID_PASSWORD;
+        String validPassword = Utils.randomString(8)+VALID_PASSWORD;
         rootLogger.info("Change Password - BUG noValidation - No Current password checks MAJOR(Not reproduced)");
         SECURITY_TAB_TITLE.click();
         SECURITY_TAB_NEW_PASSWORD.waitUntil(Condition.visible, 10000).sendKeys(validPassword);
@@ -353,7 +353,7 @@ public class TestsPekamaSettingsPersonal {
     }
     @Test
     public void tabSecurity_PasswordValidations_E() {
-        String validPassword = Utils.getRandomString(8)+VALID_PASSWORD;
+        String validPassword = Utils.randomString(8)+VALID_PASSWORD;
         rootLogger.info("Change Password - no New password");
         SECURITY_TAB_TITLE.click();
         SECURITY_TAB_CURRENT_PASSWORD.waitUntil(Condition.visible, 10000).sendKeys(User3.PEKAMA_PASSWORD.getValue());
@@ -364,7 +364,7 @@ public class TestsPekamaSettingsPersonal {
     }
     @Test
     public void tabSecurity_PasswordValidations_F() {
-        String validPassword = Utils.getRandomString(8)+VALID_PASSWORD;
+        String validPassword = Utils.randomString(8)+VALID_PASSWORD;
         rootLogger.info("Change Password - no Confirm password");
         SECURITY_TAB_TITLE.click();
         SECURITY_TAB_CURRENT_PASSWORD.waitUntil(Condition.visible, 10000).sendKeys(User3.PEKAMA_PASSWORD.getValue());
@@ -401,7 +401,7 @@ public class TestsPekamaSettingsPersonal {
     @Test
     public void tabSecurity_PasswordValidations_K() {
         rootLogger.info("Max length validation");
-        String RANDOM_129_LETTER = Utils.getRandomString(129);
+        String RANDOM_129_LETTER = Utils.randomString(129);
         SECURITY_TAB_TITLE.click();
         SECURITY_TAB_CURRENT_PASSWORD.sendKeys(User3.PEKAMA_PASSWORD.getValue());
         SECURITY_TAB_NEW_PASSWORD.sendKeys(RANDOM_129_LETTER);

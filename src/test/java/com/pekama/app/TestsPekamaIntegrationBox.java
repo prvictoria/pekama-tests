@@ -50,7 +50,7 @@ public class TestsPekamaIntegrationBox {
 
     @Test
     public void testA_PrepareProject() {
-        String testProjectName = nameProjectBOX+Utils.getRandomString(5);
+        String testProjectName = nameProjectBOX+Utils.randomString(5);
         rootLogger.info("Create project - full path via MW");
 
 
@@ -59,22 +59,22 @@ public class TestsPekamaIntegrationBox {
 
         rootLogger.info("Add folder");
         //todo - random+name
-        buttonAddNewFile.click();
-        linkCreateNewFolder.shouldBe(Condition.visible).click();
+        TAB_DOCS_ADD_FILE.click();
+        TAB_DOC_ADD_FOLDER.shouldBe(Condition.visible).click();
         MW.shouldBe(Condition.visible);
-        $(byText(mwTitleNewFolder)).shouldBe(Condition.visible);
+        $(byText(TITLE_MW_NEW_FOLDER)).shouldBe(Condition.visible);
         $(byName("name")).sendKeys(FolderNameBeforeConnect);
         MW_BTN_SAVE.click();
         MW.shouldNotBe(Condition.visible);
         $(byText(FolderNameBeforeConnect)).shouldBe(Condition.visible);
         rootLogger.info("Add folder");
         //todo - random+name
-        buttonAddNewFile.click();
-        linkCreateNewDoc.shouldBe(Condition.visible).click();
+        TAB_DOCS_ADD_FILE.click();
+        TAB_DOC_NEW_DOCUMENT.shouldBe(Condition.visible).click();
         MW.shouldBe(Condition.visible);
         MW_DeployDoc_01TemplateWord.shouldBe(Condition.visible).click();
         $(byName("name")).sendKeys(FileNameBeforeConnect);
-        MW_DeployDoc_ButtonCreate.click();
+        MW_DEPLOY_DOC_BTN_CREATE.click();
         MW.shouldNotBe(Condition.visible);
         $(byText(FileNameBeforeConnect)).shouldBe(Condition.visible);
 
@@ -234,7 +234,7 @@ public class TestsPekamaIntegrationBox {
         }
         open(boxProjectFolderUrl);
         projectAllCheckbox.click();
-        linkDelete.click();
+        LINK_DELETE.click();
         StepsPekama.submitConfirmAction();
         $(byText(placeholderNoFiles)).shouldBe(Condition.visible);
 

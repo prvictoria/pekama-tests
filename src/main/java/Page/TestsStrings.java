@@ -68,11 +68,16 @@ public class TestsStrings {
     public static final String nameExterlalConversation = "Thread in Talk to your client/3rd party";
     public static final String name = "";
 
-    public static final String mwTitleTaskTemplateSet = "Task Template Set";
-    public static final String mwTitleNewFolder = "Add new folder";
-    public static final String mwTitleNewTask = "Add new task";
-    public static final String mwTitleEvent = "Event";
-    public static final String mwTitledNewModal = "";
+    public static final String TITLE_MW_TASK_TEMPLATE_SET = "Task Template Set";
+    public static final String TITLE_MW_NEW_FOLDER = "Add new folder";
+    public static final String TITLE_MW_NEW_TASK = "Add new task";
+    public static final String TITLE_MW_EVENT = "Event";
+    public static final String TITLE_MW_ADD_DOCUMENT = "ADD DOCUMENT";
+    public static final String TITLE_MW_1 = "";
+    public static final String TITLE_MW_2 = "";
+    public static final String TITLE_MW_3 = "";
+    public static final String TITLE_MW_4 = "";
+
     public static final String placeholderNoFiles = "No files found.";
     public static final String placeholderEmptyList = "Empty list.";
     public static final String placeholderNoCases = "No community cases.";
@@ -118,7 +123,7 @@ public class TestsStrings {
     public static final String ERROR_MSG_VALIDATION_LENGTH_100 = "Ensure this field has no more than 100 characters.";
     public static final String ERROR_MSG_VALIDATION_LENGTH_20 = "Ensure this field has no more than 20 characters.";
     public static final String ERROR_MSG_VALIDATION_LENGTH_255 = "Ensure this field has no more than 255 characters.";
-    public static final String ERROR_MSG_VALIDATION_LENGTH_1024 = "";
+    public static final String ERROR_MSG_VALIDATION_LENGTH_1024 = "Ensure this field has no more than 1024 characters.";
     public static final String ERROR_MSG_VALIDATION_LENGTH_128 = "Ensure this field has no more than 128 characters.";
     public static final String ERROR_MSG_VALIDATION_LENGTH_2 = "";
     public static final String ERROR_MSG_VALIDATION_LENGTH_3 = "";

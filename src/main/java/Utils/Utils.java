@@ -7,7 +7,7 @@ public class Utils {
     private static final String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static Random rnd = new Random();
 
-    public static String getRandomString(int len) {
+    public static String randomString(int len) {
         StringBuilder sb = new StringBuilder(len);
             for (int i = 0; i < len; i++) {
                     sb.append(AB.charAt(rnd.nextInt(AB.length())));
