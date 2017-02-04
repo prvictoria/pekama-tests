@@ -184,7 +184,6 @@ public class TestsCredentials {
         }
     }
     public enum TrademarkEvents {
-
         CASE_SUSPENDED("Case still suspended"),
         PRIORITY_APLICATION_FILED("Priority Application Filed"),
         OPPSITION_END_DATE("Opposition end date"),
@@ -193,10 +192,15 @@ public class TestsCredentials {
         TrademarkEvents(String value) {
             this.eventName = value;
         }
+        public String getValue() {
+            return eventName;
+        }
     }
     @Test
     public  void enumTest() {
         System.out.println(TrademarkEvents.APPLICATION_REGISTERED.eventName);
+        System.out.println(TrademarkEvents.APPLICATION_REGISTERED.toString());
+        System.out.println(TrademarkEvents.APPLICATION_REGISTERED.getValue());
 //        System.out.println(User1.GMAIL_PASSWORD.value);
 //        System.out.println(User1.TEAM_CODE.value);
 //        System.out.println(User1.FULL_TEAM_NAME.value);

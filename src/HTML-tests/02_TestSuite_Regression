@@ -69,6 +69,15 @@
 <tr><td><a href="DeploymentTests/03_Deploy_precreated_templates_and_messages.html">03_Deploy_precreated_templates_and_messages</a></td></tr>
 <tr><td><a href="DeploymentTests/04_Edit_objects_project.html">04_Edit_objects_project</a></td></tr>
 <tr><td><a href="DeploymentTests/06_BOX_tests.html">06_BOX_tests</a></td></tr>
+<tr><td><a href="DeploymentTests/01_Create_project_trademark.html">01_Create_project_trademark</a></td></tr>
+<tr><td><a href="DeploymentTests/02_Create_templates_and_deploy.html">02_Create_templates_and_deploy</a></td></tr>
+<tr><td><a href="DeploymentTests/03_Deploy_precreated_templates_and_messages.html">03_Deploy_precreated_templates_and_messages</a></td></tr>
+<tr><td><a href="DeploymentTests/04_Deploy_templates_conversation.html">04_Deploy_templates_conversation</a></td></tr>
+<tr><td><a href="DeploymentTests/05_Edit_objects_project.html">05_Edit_objects_project</a></td></tr>
+<tr><td><a href="DeploymentTests/06_BOXtests_Pekama_to_BOX_sync.html">06_BOXtests_Pekama_to_BOX_sync</a></td></tr>
+<tr><td><a href="DeploymentTests/07_Community_Requester.html">07_Community_Requester</a></td></tr>
+<tr><td><a href="DeploymentTests/08_Community_Expert.html">08_Community_Expert</a></td></tr>
+<tr><td><a href="DeploymentTests/09_Community_CreateCaseFromPekama.html">09_Community_CreateCaseFromPekama</a></td></tr>
 </tbody></table>
 </body>
 </html>

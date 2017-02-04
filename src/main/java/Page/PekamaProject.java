@@ -26,27 +26,21 @@ public class PekamaProject extends Page {
     public static final SelenideElement projectAllCheckbox = $("i.pkm-icon-checkbox");
     public static final SelenideElement projectAllCheckboxFiles = $(byXpath("//div[@class='checkbox-holder fancy main-checkbox pull-left']//input"));
 
-    public static final SelenideElement timelineLine = $("css=.slider-selection");
-    public static final SelenideElement timelineCheckboxLessImportant = $(byXpath("//*[@ng-model='showLessImportant']"));
-    public static final SelenideElement timelineCheckboxAutoPopulated = $(byXpath("//*[@ng-model='showPopulated']"));
-    public static final SelenideElement timelineCheckboxManuallyAdded = $(byXpath("//*[@ng-model='showManual']"));
-    public static final SelenideElement timelineCheckboxShrinkedEventsView = $(byXpath("//*[@ng-model='shrinkedEventsView']"));
-    public static final SelenideElement timelineDeleteEvent = $(byXpath("//*[@pkm-confirm-click='remove event ']"));
-    public static final SelenideElement timelineEditEvent = $(byXpath("//*[@ng-click='update event ']"));
-    public static final SelenideElement timelineArrowLeft = $(byXpath(""));
-    public static final SelenideElement timelineArrowRight = $(byXpath(""));
+    public static final SelenideElement TIMELINE__Line = $(".slider-selection");
+    public static final SelenideElement TIMELINE_DeleteEvent = $(byXpath("//*[@pkm-confirm-click='remove event ']"));
+    public static final SelenideElement TIMELINE_EditEvent = $(byXpath("//*[@ng-click='update event ']"));
+    public static final SelenideElement TIMELINE_ArrowLeft = $(byXpath(""));
+    public static final SelenideElement TIMELINE_ArrowRight = $(byXpath(""));
+    public static final SelenideElement BTN_HIDE_TIMELINE = $(byXpath("//button[text()='hide timeline']"));
+    public static final SelenideElement BTN_SHOW_TIMELINE = $(byXpath("//button[text()='show timeline']"));
+    public static final SelenideElement TIMELINE_Line = $("css=.slider-selection");
+    public static final SelenideElement TIMELINE_CheckboxLessImportant = $(byXpath("//div[@class='check-filters-holder form-inline']/div[1]//input"));
+    public static final SelenideElement TIMELINE_CheckboxAutoPopulated = $(byXpath("//div[@class='check-filters-holder form-inline']/div[2]//input"));
+    public static final SelenideElement TIMELINE_CheckboxManuallyAdded = $(byXpath("//div[@class='check-filters-holder form-inline']/div[3]//input"));
+    public static final SelenideElement TIMELINE_CheckboxShrinkedEventsView = $(byXpath("//div[@class='check-filters-holder form-inline']/div[4]//input"));
+    public static final SelenideElement TIMELINE_EventToday = $(byXpath("//ul[@id='timeline']/li/a/span"));
 
-    public static final SelenideElement projectTimeline_ShowHide = $(byXpath("//button[@type='button'][contains(.,'timeline')]"));
-    public static final SelenideElement projectTimeline_Line = $("css=.slider-selection");
-    public static final SelenideElement projectTimeline_CheckboxLessImportant = $(byXpath("//div[@class='check-filters-holder form-inline']/div[1]//input"));
-    public static final SelenideElement projectTimeline_CheckboxAutoPopulated = $(byXpath("//div[@class='check-filters-holder form-inline']/div[2]//input"));
-    public static final SelenideElement projectTimeline_CheckboxManuallyAdded = $(byXpath("//div[@class='check-filters-holder form-inline']/div[3]//input"));
-    public static final SelenideElement projectTimeline_CheckboxShrinkedEventsView = $(byXpath("//div[@class='check-filters-holder form-inline']/div[4]//input"));
-    public static final SelenideElement projectTimeline_DeleteEvent = $(byXpath("//*[@pkm-confirm-click='remove(event)']"));
-    public static final SelenideElement projectTimeline_EditEvent = $(byXpath("//*[@ng-click='update(event)']"));
-    public static final SelenideElement projectTimeline_ArrowLeft = $(byXpath(""));
-    public static final SelenideElement projectTimeline_ArrowRight = $(byXpath(""));
-    public static final SelenideElement projectTimeline_EventToday = $(byXpath("//ul[@id='timeline']/li/a/span"));
+
 
     public static final SelenideElement projectTabMore = $(byXpath("//i[@class='icon pkm-icon-info-square']"));
     public static final SelenideElement projectTabContacts = $(byXpath("//i[@class='icon pkm-icon-users-square']"));

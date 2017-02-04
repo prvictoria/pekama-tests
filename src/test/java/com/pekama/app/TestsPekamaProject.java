@@ -1,4 +1,5 @@
 package com.pekama.app;
+import Page.TestsCredentials;
 import Steps.*;
 import com.codeborne.selenide.*;
 import org.apache.logging.log4j.LogManager;
@@ -13,6 +14,7 @@ import static Page.ModalWindows.*;
 import static Page.PekamaDashboard.*;
 import static Page.PekamaProject.*;
 import static Page.TestsCredentials.*;
+import static Page.TestsCredentials.TrademarkEvents.*;
 import static Page.TestsStrings.*;
 import static Page.TestsUrl.*;
 import static Steps.StepsExternal.*;
@@ -518,7 +520,13 @@ public class TestsPekamaProject {
         waitForModalWindow(TITLE_MW_EVENT);
         MW_BTN_SAVE.shouldBe(disabled);
         MW_INPUT_DATE.click();
-
+        MW_INPUT_DATE.pressEscape();
+        fillField(MW_EVENT_INPUT_INFO, LOREM_IPSUM_SHORT);
+        selectItemInDropdown(MW_EVENT_SELECT_TYPE, MW_EVENT_INPUT_TYPE, APPLICATION_REGISTERED.getValue());
+        submitEnabledButton(MW_BTN_SAVE);
+        MW.shouldNotBe(visible);
+        //Check timeline
+        BTN_HIDE_TIMELINE.shouldBe(visible);
 
     }
     @Test  //todo
