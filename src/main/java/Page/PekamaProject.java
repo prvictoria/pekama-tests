@@ -27,17 +27,17 @@ public class PekamaProject extends Page {
     public static final SelenideElement projectAllCheckboxFiles = $(byXpath("//div[@class='checkbox-holder fancy main-checkbox pull-left']//input"));
 
     public static final SelenideElement TIMELINE__Line = $(".slider-selection");
-    public static final SelenideElement TIMELINE_DeleteEvent = $(byXpath("//*[@pkm-confirm-click='remove event ']"));
-    public static final SelenideElement TIMELINE_EditEvent = $(byXpath("//*[@ng-click='update event ']"));
+    public static final SelenideElement TIMELINE_DeleteEvent = $(byXpath("//*[@id='timeline']//a[@class='delete ng-scope']"));
+    public static final SelenideElement TIMELINE_EditEvent = $(byXpath("//*[@id='timeline']//a[@class='edit ng-scope']"));
     public static final SelenideElement TIMELINE_ArrowLeft = $(byXpath(""));
     public static final SelenideElement TIMELINE_ArrowRight = $(byXpath(""));
     public static final SelenideElement BTN_HIDE_TIMELINE = $(byXpath("//button[text()='hide timeline']"));
     public static final SelenideElement BTN_SHOW_TIMELINE = $(byXpath("//button[text()='show timeline']"));
     public static final SelenideElement TIMELINE_Line = $("css=.slider-selection");
-    public static final SelenideElement TIMELINE_CheckboxLessImportant = $(byXpath("//div[@class='check-filters-holder form-inline']/div[1]//input"));
-    public static final SelenideElement TIMELINE_CheckboxAutoPopulated = $(byXpath("//div[@class='check-filters-holder form-inline']/div[2]//input"));
-    public static final SelenideElement TIMELINE_CheckboxManuallyAdded = $(byXpath("//div[@class='check-filters-holder form-inline']/div[3]//input"));
-    public static final SelenideElement TIMELINE_CheckboxShrinkedEventsView = $(byXpath("//div[@class='check-filters-holder form-inline']/div[4]//input"));
+    public static final SelenideElement TIMELINE_CheckboxLessImportant = $(byXpath("//div[@class='check-filters-holder form-inline']/div[1]//span"));
+    public static final SelenideElement TIMELINE_CheckboxAutoPopulated = $(byXpath("//div[@class='check-filters-holder form-inline']/div[2]//span"));
+    public static final SelenideElement TIMELINE_CheckboxManuallyAdded = $(byXpath("//div[@class='check-filters-holder form-inline']/div[3]//span"));
+    public static final SelenideElement TIMELINE_CheckboxShrinkedEventsView = $(byXpath("//div[@class='check-filters-holder form-inline']/div[4]//span"));
     public static final SelenideElement TIMELINE_EventToday = $(byXpath("//ul[@id='timeline']/li/a/span"));
 
 

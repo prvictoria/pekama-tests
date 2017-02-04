@@ -73,6 +73,7 @@ public class TestsStrings {
     public static final String TITLE_MW_NEW_TASK = "Add new task";
     public static final String TITLE_MW_EVENT = "Event";
     public static final String TITLE_MW_ADD_DOCUMENT = "ADD DOCUMENT";
+    public static final String TILE_MW_PROJECT = "New Project";
     public static final String TITLE_MW_1 = "";
     public static final String TITLE_MW_2 = "";
     public static final String TITLE_MW_3 = "";

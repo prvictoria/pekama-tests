@@ -1,5 +1,4 @@
 package com.pekama.app;
-import Page.TestsCredentials;
 import Steps.*;
 import com.codeborne.selenide.*;
 import org.apache.logging.log4j.LogManager;
@@ -42,7 +41,7 @@ public class TestsPekamaProject {
         rootLogger.info("Create project");
         dashboardNewProject.waitUntil(visible, 15000).click();
         rootLogger.info("NW - New project");
-        waitForModalWindow(MW_ProjectTitle);
+        waitForModalWindow(TILE_MW_PROJECT);
         rootLogger.info("select project type");
         selectItemInDropdown(MW_Project_SelectType, MW_Project_InputType, CaseType.TRADEMARK.getValue());
         rootLogger.info("select defining");
@@ -513,8 +512,40 @@ public class TestsPekamaProject {
 
     }
     @Test  //todo
-    public void createProject_L_deployEvent() {
+    public void createProject_L1_autodeployEvent() {
         scrollUp();
+        rootLogger.info("Check timeline state");
+        BTN_HIDE_TIMELINE.shouldBe(visible);
+        TIMELINE_CheckboxLessImportant.shouldNotBe(checked); //todo
+        TIMELINE_CheckboxAutoPopulated.shouldBe(checked); //todo
+        TIMELINE_CheckboxManuallyAdded.shouldBe(checked);
+        TIMELINE_CheckboxShrinkedEventsView.shouldBe(checked);
+        rootLogger.info("Check auto-deploy less important event");
+        TIMELINE_CheckboxLessImportant.setSelected(true).shouldBe(checked);
+        $$(byText(MARK_CREATED.getValue())).filter(visible).shouldHaveSize(1);
+        rootLogger.info("Edit event info");
+        TIMELINE_EditEvent.click();
+        waitForModalWindow(TITLE_MW_EVENT);
+        MW_BTN_SAVE.shouldBe(disabled);
+        fillField(MW_EVENT_INPUT_INFO, LOREM_IPSUM_SHORT);
+        submitEnabledButton(MW_BTN_SAVE);
+        MW.shouldNotBe(visible);
+        $(byText(MARK_CREATED.getValue())).click();
+        $$(byText(LOREM_IPSUM_SHORT)).filter(visible).shouldHaveSize(1);
+        rootLogger.info("Delete event");
+        TIMELINE_DeleteEvent.click();
+        submitConfirmAction();
+        $$(byText(MARK_CREATED.getValue())).filter(visible).shouldHaveSize(0);
+        checkTextNotPresent(MARK_CREATED.getValue());
+        rootLogger.info("Test passed");
+
+
+    }
+    @Test  //todo
+    public void createProject_L2_deployNewEvent() {
+        scrollUp();
+        rootLogger.info("Deploy new event");
+        BTN_HIDE_TIMELINE.shouldBe(visible);
         projectButtonPlus.shouldBe(visible).click();
         projectPlusNewEvent.shouldBe(visible).click();
         waitForModalWindow(TITLE_MW_EVENT);
@@ -525,10 +556,19 @@ public class TestsPekamaProject {
         selectItemInDropdown(MW_EVENT_SELECT_TYPE, MW_EVENT_INPUT_TYPE, APPLICATION_REGISTERED.getValue());
         submitEnabledButton(MW_BTN_SAVE);
         MW.shouldNotBe(visible);
-        //Check timeline
-        BTN_HIDE_TIMELINE.shouldBe(visible);
+        $$(byText(APPLICATION_REGISTERED.getValue())).filter(visible).shouldHaveSize(1);
 
+        rootLogger.info("Check expanded timeline");
+        TIMELINE_CheckboxShrinkedEventsView.shouldBe(checked);
+        TIMELINE_CheckboxLessImportant.setSelected(true).shouldNotBe(checked);
+        checkText(APPLICATION_REGISTERED.getValue());
+
+        TIMELINE_CheckboxLessImportant.setSelected(true).shouldBe(checked);
+        checkText(APPLICATION_REGISTERED.getValue());
+        checkText(MARK_CREATED.getValue());
+        rootLogger.info("Test passed");
     }
+
     @Test  //todo
     public void createProject_M_addCharges() {
         projectTabFin.click();
@@ -542,7 +582,7 @@ public class TestsPekamaProject {
         rootLogger.info("Delete charge");
         $$(byText(placeholderEmptyList)).shouldHaveSize(1);
 
-
+        rootLogger.info("Test passed");
     }
     @Test  //todo
     public void createProject_N_changeTypes() {
@@ -550,19 +590,19 @@ public class TestsPekamaProject {
     }
     @Test  //todo
     public void createProject_O_addFamilyProject() {
-
+        rootLogger.info("Test passed");
     }
     @Test  //todo
     public void createProject_P_addConversation() {
-
+        rootLogger.info("Test passed");
     }
     @Test  //todo
     public void createProject_S_cloneProject() {
-
+        rootLogger.info("Test passed");
     }
     @Test  //todo
     public void createCommunityCase() {
-
+        rootLogger.info("Test passed");
     }
 
 

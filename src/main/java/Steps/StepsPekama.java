@@ -21,8 +21,6 @@ import static com.codeborne.selenide.WebDriverRunner.url;
 
 public class StepsPekama implements StepsFactory{
     static final Logger rootLogger = LogManager.getRootLogger();
-
-
     public void  loginIntoPekamaByUrl(String PEKAMA_USER_EMAIL, String urlLogIn){
         httpAuthUrl(urlLogIn);
         rootLogger.info(urlLogIn+ "opened");
@@ -57,7 +55,6 @@ public class StepsPekama implements StepsFactory{
         btnLogin.shouldBe(Condition.not(visible));
         rootLogger.info("Valid Credentials were submitted");
     }
-
     public void  submitLoginCredentials(String PEKAMA_USER_EMAIL){
         submitCookie();
         loginField_Email.sendKeys(PEKAMA_USER_EMAIL);
@@ -80,7 +77,6 @@ public class StepsPekama implements StepsFactory{
         rootLogger.info("Valid Credentials were submitted");
 
     }
-
     public void  submitCookie(){
         rootLogger.info("Check if cookie present");
         sleep(500);
@@ -103,7 +99,6 @@ public class StepsPekama implements StepsFactory{
         sleep(500);
         MW.shouldNotBe(visible);
     }
-
     public static void collapseChatWidget(){
         sleep(500);
         MW.shouldBe(visible);
@@ -230,7 +225,6 @@ public class StepsPekama implements StepsFactory{
         MW.shouldHave(text(modalTitle));
         rootLogger.info("modal window '"+modalTitle+"' was opened");
     }
-
     public static void selectItemInDropdown(SelenideElement uiSelectName, SelenideElement uiSelectInput, String inputValue) {
         rootLogger.info("select - "+inputValue);
         uiSelectName.click();
@@ -244,7 +238,6 @@ public class StepsPekama implements StepsFactory{
         rootLogger.info("opened URL is - "+currentUrl);
         return currentUrl;
     }
-
     public static void waitForTextPresent(String text) {
         rootLogger.info("Wait for - " + text);
         $(byText(text)).waitUntil(exist, 20000);
@@ -258,7 +251,25 @@ public class StepsPekama implements StepsFactory{
     public static void scrollDown() {
         executeJavaScript("scrollTo(0, 1000)");
     }
-
+    public static void scrollCustom(int value) {
+        executeJavaScript("scrollTo(0, "+value+")");
+    }
+    public static void checkText(String textString, int size) {
+        $(byText(textString)).waitUntil(visible, 10000);
+        $$(byText(textString)).filter(visible).shouldHaveSize(size);
+    }
+    public static void checkText(String textString) {
+        $(byText(textString)).waitUntil(visible, 10000);
+        $$(byText(textString)).filter(visible).shouldHaveSize(1);
+    }
+    public static void checkTextNotPresent(String textString, int waitTime) {
+        sleep(waitTime);
+        $$(byText(textString)).filter(visible).shouldHaveSize(0);
+    }
+    public static void checkTextNotPresent(String textString) {
+        sleep(3000);
+        $$(byText(textString)).filter(visible).shouldHaveSize(0);
+    }
     public static void selectTeam(String... args) {
         String searchedRadio = String.format(MW_SHARE_PROJECT_SELECT_TEAM, args);
         $(byXpath(searchedRadio)).shouldBe(visible);
@@ -306,16 +317,15 @@ public class StepsPekama implements StepsFactory{
         $(byText(folderName)).shouldBe(Condition.visible);
         rootLogger.info(folderName+" - Folder present");
     }
-
     public static void createTask(String folderName) {
 
         rootLogger.info(folderName+" - Folder present");
     }
 
-
     public static void selectOption(SelenideElement optionSelector,String optionName) {
         optionSelector.selectOption(new String[]{optionName});
     }
+
     @Test
     public void fileMenuMakeAction (){
         fileMenuMakeAction (TAB_DOCS_FILES_MENU_RENAME, "new name");

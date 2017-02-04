@@ -125,7 +125,7 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_ProjectTemplateProjectTypeInput = $(byXpath("//div[@name='matter_type']/input[1]"));
     public static final SelenideElement MW_ProjectTemplateProjectDefiningInput = $(byXpath("//div[@name='defining']/input[1]"));
     //New project
-    public static final String MW_ProjectTitle = "New ProjectValues";
+
     public static final SelenideElement MW_ProjectFinishButton = $(byXpath(mw+"//button[@type='submit'][contains(.,'FINISH')]"));
     public static final SelenideElement MW_Project_SelectType = $(byXpath(mw+"//div[@name='matter_type']/div/span/span[1]"));
     public static final SelenideElement MW_Project_InputType = $(byXpath(mw+"//div[@name='matter_type']/input[1]"));

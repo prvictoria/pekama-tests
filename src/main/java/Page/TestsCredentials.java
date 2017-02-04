@@ -187,7 +187,9 @@ public class TestsCredentials {
         CASE_SUSPENDED("Case still suspended"),
         PRIORITY_APLICATION_FILED("Priority Application Filed"),
         OPPSITION_END_DATE("Opposition end date"),
-        APPLICATION_REGISTERED("Application Registered");
+        APPLICATION_REGISTERED("Application Registered"),
+        MARK_CREATED("Mark Created");
+
         private String eventName;
         TrademarkEvents(String value) {
             this.eventName = value;
