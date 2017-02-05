@@ -238,12 +238,13 @@ public class StepsPekama implements StepsFactory{
         rootLogger.info("opened URL is - "+currentUrl);
         return currentUrl;
     }
-    public static void waitForTextPresent(String text) {
+    public static boolean waitForTextPresent(String text) {
         rootLogger.info("Wait for - " + text);
         $(byText(text)).waitUntil(exist, 20000);
         if ($(byText(text)) == null) {
             Assert.fail("Text not present on page -" + text);
         }
+        return true;
     }
     public static void scrollUp() {
         executeJavaScript("scrollTo(0, -1000)");
@@ -254,21 +255,25 @@ public class StepsPekama implements StepsFactory{
     public static void scrollCustom(int value) {
         executeJavaScript("scrollTo(0, "+value+")");
     }
-    public static void checkText(String textString, int size) {
+    public static boolean checkText(String textString, int size) {
         $(byText(textString)).waitUntil(visible, 10000);
         $$(byText(textString)).filter(visible).shouldHaveSize(size);
+        return true;
     }
-    public static void checkText(String textString) {
+    public static boolean checkText(String textString) {
         $(byText(textString)).waitUntil(visible, 10000);
         $$(byText(textString)).filter(visible).shouldHaveSize(1);
+        return true;
     }
-    public static void checkTextNotPresent(String textString, int waitTime) {
+    public static boolean checkTextNotPresent(String textString, int waitTime) {
         sleep(waitTime);
         $$(byText(textString)).filter(visible).shouldHaveSize(0);
+        return true;
     }
-    public static void checkTextNotPresent(String textString) {
+    public static boolean checkTextNotPresent(String textString) {
         sleep(3000);
         $$(byText(textString)).filter(visible).shouldHaveSize(0);
+        return true;
     }
     public static void selectTeam(String... args) {
         String searchedRadio = String.format(MW_SHARE_PROJECT_SELECT_TEAM, args);
