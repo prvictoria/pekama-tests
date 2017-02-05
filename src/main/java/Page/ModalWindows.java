@@ -45,7 +45,6 @@ public class ModalWindows extends Page {
     public static final SelenideElement genericButtonSave = $(byXpath("//button[contains(.,'Save')]"));
     public static final SelenideElement genericButtonOk = $(byXpath("//button[contains(.,'Ok')]"));
     public static final SelenideElement genericButtonYes = $(byXpath("//button[contains(.,'Yes')]"));
-    public static final SelenideElement genericButtonAdd = $(byXpath("//button[contains(.,'add')]"));
     public static final SelenideElement genericButtonDelete = $(byXpath("//button[contains(.,'Delete')]"));
     public static final SelenideElement genericButtonCancel = $(byXpath("//button[contains(.,'Cancel')]"));
     public static final SelenideElement CSS_SelectHighlighted = $("span.ui-select-highlight");
@@ -177,34 +176,41 @@ public class ModalWindows extends Page {
 //    public static final SelenideElement MW_TaskStatusRejected = $(byXpath(""));
 //    public static final SelenideElement MW_TaskStatusCanceled = $(byXpath(""));
 //    public static final SelenideElement MW_Task = $(byXpath(""));
+    //MW CHARGES
+    public static final SelenideElement MW_CHARGES_ = $(byXpath(mw+""));
+    public static final SelenideElement MW_CHARGES_SELECT_FROM = $(byXpath(mw+"//label[contains(.,'From:')]/following-sibling::div//span[@class='ng-binding ng-scope']"));
+    public static final SelenideElement MW_CHARGES_INPUT_FROM = $(byXpath(mw+"//label[contains(.,'From:')]/following-sibling::div//input[@type='search']"));
+    public static final SelenideElement MW_CHARGES_SELECT_TO = $(byXpath(mw+"//label[contains(.,'To:')]/following-sibling::div//span[@class='ng-binding ng-scope']"));
+    public static final SelenideElement MW_CHARGES_INPUT_TO = $(byXpath(mw+""));
+    public static final SelenideElement MW_CHARGES_SELECT_BY = $(byXpath(mw+""));
+    public static final SelenideElement MW_CHARGES_INPUT_BY = $(byXpath(mw+""));
+    public static final SelenideElement MW_CHARGES_SELECT_STATUS = $(byXpath(mw+"//div[2]/div/div/div/span/span[2]/span"));
+    public static final SelenideElement MW_CHARGES_INPUT_STATUS = $(byXpath(mw+""));
+    public static final SelenideElement MW_CHARGES_SELECT_TYPE = $(byXpath(mw+"//label[contains(.,'Type:')]/following-sibling::pkm-values-dropdown"));
+    public static final SelenideElement MW_CHARGES_INPUT_TYPE = $(byXpath(mw+"//label[contains(.,'Type:')]/following-sibling::pkm-values-dropdown//input[@type='search']"));
+    public static final String CHARGES_TYPE_EXPENSES = "Direct expenses";
+    public static final String CHARGES_TYPE_ASSOCIATE = "Foreign associate charges";
+    public static final String CHARGES_TYPE_FEES = "Government Fees";
+    public static final String CHARGES_TYPE_SERVICE = "Service Charges";
+    public static final String CHARGES_TYPE_TIME = "Time Recorded";
 
-    public static final SelenideElement MW_Financial = $(byXpath(""));
-    public static final SelenideElement MW_FinancialClickFrom = $(byXpath("//span[2]/span"));
-    public static final SelenideElement MW_FinancialInputFrom = $(byXpath(""));
-    public static final SelenideElement MW_FinancialClickTo = $(byXpath("//div[2]/div/div/span/span"));
-    public static final SelenideElement MW_FinancialInputTo = $(byXpath(""));
-    public static final SelenideElement MW_FinancialClickBy = $(byXpath("//div[3]/div/div/span/span[2]/span"));
-    public static final SelenideElement MW_FinancialInputBy = $(byXpath(""));
-    public static final SelenideElement MW_FinancialClickStatus = $(byXpath("//div[2]/div/div/div/span/span[2]/span"));
-    public static final SelenideElement MW_FinancialInputStatus = $(byXpath(""));
-    public static final SelenideElement MW_FinancialClickType = $(byXpath("//pkm-values-dropdown/div/div/span/span"));
-    public static final SelenideElement MW_FinancialInputType = $(byXpath(""));
-    public static final SelenideElement MW_FinancialInputDueDate = $(byXpath("generic datepicker!"));
-    public static final SelenideElement MW_FinancialInputItem = $(byXpath("//textarea"));
-    public static final SelenideElement MW_FinancialClickCurrency = $(byXpath("//div[3]/div[2]/pkm-values-dropdown/div/div/span/span"));
-    public static final SelenideElement MW_FinancialInputCurrency = $(byXpath(""));
-    public static final SelenideElement MW_FinancialInputQty = $(byXpath("//input[@name='quantity']"));
-    public static final SelenideElement MW_FinancialInputTimeHour = $(byXpath("//input[@name='hours']"));
-    public static final SelenideElement MW_FinancialInputTimeMin = $(byXpath("//input[@name='minutes']"));
-    public static final SelenideElement MW_FinancialInputTimeRate = $(byXpath("//input[@name='hourly_rate']"));
-    public static final SelenideElement MW_FinancialInputPrice = $(byXpath("//input[@name='price']"));
-    public static final SelenideElement MW_FinancialInputVat = $(byXpath("//input[@name='vat']"));
-    public static final SelenideElement MW_FinancialInputDisc = $(byXpath("//input[@name='discount']"));
-    public static final SelenideElement MW_FinancialInputTotal = $(byXpath(""));
 
-    public static final SelenideElement MW_TimeTrackerSave = $(byXpath(""));
-    public static final SelenideElement MW_TimeTrackerPause = $(byXpath(""));
-    public static final SelenideElement MW_TimeTrackerDiscard = $(byXpath("//label[@class='danger']/input"));
+    public static final SelenideElement MW_CHARGES_INPUT_DATE = MW_INPUT_DATE;
+    public static final SelenideElement MW_CHARGES_INPUT_ITEM = $(byXpath(mw+"//textarea"));
+    public static final SelenideElement MW_CHARGES_SELECT_CURRENCY = $(byXpath(mw+"//label[contains(.,'Currency:')]/following-sibling::pkm-values-dropdown"));
+    public static final SelenideElement MW_CHARGES_INPUT_CURRENCY = $(byXpath(mw+"//label[contains(.,'Currency:')]/following-sibling::pkm-values-dropdown//input[@type='search']"));
+    public static final SelenideElement MW_CHARGES_INPUT_QTY = $(byXpath(mw+"//input[@name='quantity']"));
+    public static final SelenideElement MW_CHARGES_INPUT_HOUR = $(byXpath(mw+"//input[@name='hours']"));
+    public static final SelenideElement MW_CHARGES_INPUT_MIN = $(byXpath(mw+"//input[@name='minutes']"));
+    public static final SelenideElement MW_CHARGES_INPUT_RATE = $(byXpath(mw+"//input[@name='hourly_rate']"));
+    public static final SelenideElement MW_CHARGES_INPUT_PRICE = $(byXpath(mw+"//input[@name='price']"));
+    public static final SelenideElement MW_CHARGES_INPUT_VAT = $(byXpath(mw+"//input[@name='vat']"));
+    public static final SelenideElement MW_CHARGES_INPUT_DISCOUNT = $(byXpath(mw+"//input[@name='discount']"));
+    public static final SelenideElement MW_CHARGES_TOTAL = $(byXpath(mw+"//label[contains(.,'Total:')]/following-sibling::input"));
+    //MW TIEM TRACKER
+    public static final SelenideElement MW_TimeTrackerSave = $(byXpath(mw+""));
+    public static final SelenideElement MW_TimeTrackerPause = $(byXpath(mw+""));
+    public static final SelenideElement MW_TimeTrackerDiscard = $(byXpath(mw+"//label[@class='danger']/input"));
 
 
 

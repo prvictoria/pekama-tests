@@ -33,7 +33,7 @@ public class TestsCredentials {
         SURNAME("Quality02"),
         TEAM_NAME("QweecoTeam02"),
         TEAM_CODE("QT02"),
-        FULL_TEAM_NAME("Qweeco02 (QT02)");
+        FULL_TEAM_NAME("QweecoTeam02 (QT02)");
         private String value;
         User2(String value) {
             this.value = value;

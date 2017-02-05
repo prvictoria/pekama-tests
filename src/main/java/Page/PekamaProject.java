@@ -40,8 +40,18 @@ public class PekamaProject extends Page {
     public static final SelenideElement TIMELINE_CheckboxShrinkedEventsView = $(byXpath("//div[@class='check-filters-holder form-inline']/div[4]//span"));
     public static final SelenideElement TIMELINE_EventToday = $(byXpath("//ul[@id='timeline']/li/a/span"));
 
+    public static final String CONTROLS_ROW = "//div[@class='clearfix-row zone-controls-holder']";
+    public static final SelenideElement TAB_CONTROL_DELETE = $(byXpath("//button[@class='btn-link' and contains(.,'Delete')]"));
+    public static final SelenideElement TAB_CONTROL_XERO = $(byXpath("//button[@class='btn-link' and contains(.,'To Xero')]"));
+    public static final SelenideElement TAB_CONTROL_DOWNLOAD = $(byXpath(""));
+    public static final SelenideElement TAB_CONTROL_ADD = $(byXpath(CONTROLS_ROW+"//button[contains(.,'add')]"));
+    public static final SelenideElement TAB_CONTROL_SELECT_ALL = $("i.pkm-icon-checkbox");
+    public static final SelenideElement TAB_CONTROL_1 = $(byXpath(CONTROLS_ROW+""));
+    public static final SelenideElement TAB_CONTROL_2 = $(byXpath(CONTROLS_ROW+""));
+    public static final SelenideElement TAB_CONTROL_3 = $(byXpath(CONTROLS_ROW+""));
 
-
+    public static final SelenideElement TAB_CHARGES_ADD = TAB_CONTROL_ADD;
+    public static final SelenideElement TAB_CHARGES_CHECKBOX_ALL = $(byXpath(CONTROLS_ROW+""));
     public static final SelenideElement projectTabMore = $(byXpath("//i[@class='icon pkm-icon-info-square']"));
     public static final SelenideElement projectTabContacts = $(byXpath("//i[@class='icon pkm-icon-users-square']"));
     public static final SelenideElement projectTabDocs = $(byXpath("//i[@class='icon pkm-icon-documents-square']"));
@@ -201,11 +211,10 @@ public class PekamaProject extends Page {
     public static final String TASKS_ORDER_LAST_MODIFIED = "Last modified";
     public static final String TASKS_ORDER_TIRLE = "Title";
     public static final String TASKS_ORDER_ASSIGNEE = "Assignee";
-    public static final String TAB_TASKS_CONTROLS_ROW = "//div[@class='clearfix-row zone-controls-holder']";
-    public static final SelenideElement TAB_TASKS_ACTIVE = $(byXpath(TAB_TASKS_CONTROLS_ROW+"//button[contains(.,'Active')]"));
-    public static final SelenideElement TAB_TASKS_ALL = $(byXpath(TAB_TASKS_CONTROLS_ROW+"//button[contains(.,'All')]"));
-    public static SelenideElement TAB_TASKS_ACTUAL_ORDER = $(byXpath(TAB_TASKS_CONTROLS_ROW+"//a[contains(.,'"+TASKS_ORDER+"')]"));        //order value
-    public static final SelenideElement TAB_TASKS_ADD = $(byXpath(TAB_TASKS_CONTROLS_ROW+"//button[contains(.,'add')]"));
+    public static final SelenideElement TAB_TASKS_ACTIVE = $(byXpath(CONTROLS_ROW+"//button[contains(.,'Active')]"));
+    public static final SelenideElement TAB_TASKS_ALL = $(byXpath(CONTROLS_ROW+"//button[contains(.,'All')]"));
+    public static SelenideElement TAB_TASKS_ACTUAL_ORDER = $(byXpath(CONTROLS_ROW+"//a[contains(.,'"+TASKS_ORDER+"')]"));        //order value
+    public static final SelenideElement TAB_TASKS_ADD = $(byXpath(CONTROLS_ROW+"//button[contains(.,'add')]"));
     public static final SelenideElement TAB_TASKS_NEW_TASK = $(byLinkText("Create task"));
 
     public static final SelenideElement TAB_TASKS_BTN_DELETE = $(byXpath("//button[@class='btn-link' and contains(.,'Delete')]"));
@@ -223,23 +232,23 @@ public class PekamaProject extends Page {
     public static final SelenideElement projectTabTask_ = $(byXpath(""));
 
 
-
-
-
-
     //TAB CHARGES
-    public static final SelenideElement projectTabFin_ = $(byXpath(""));
-    public static final SelenideElement projectTabFin_CollapseForm = $(byXpath("//div/ng-include/div/a[@class='link-task']"));
-    public static final SelenideElement projectTabFin_BackToListLink = $(byLinkText("link=Back to all finances"));
-    public static final SelenideElement projectTabFin_ToXero = $(byXpath("//button[@ng-click='bulkToXero()']"));
 
-    public static final SelenideElement projectTabFin_01From = $(byXpath("//div[@class='items-list with-caret ng-scope finances']/div[1]//span[@class='name ng-binding']"));
-    public static final SelenideElement projectTabFin_01Type = $(byXpath("//div[@class='items-list with-caret ng-scope finances']/div[1]//span[@class='task-title ng-binding']"));
-    public static final SelenideElement projectTabFin_01Total = $(byXpath("//div[@class='items-list with-caret ng-scope finances']/div[1]//span[@class='price ng-binding']"));
-    public static final SelenideElement projectTabFin_01Date = $(byXpath("//div[@class='items-list with-caret ng-scope finances']/div[1]//span[@class='date ng-binding']"));
-    public static final SelenideElement projectTabFin_01To = $(byXpath(""));
-    public static final SelenideElement projectTabFin_01AllZone = $(byXpath("//div[@class='items-list with-caret ng-scope finances']/div[1]//div[@class='organizations-list ng-isolate-scope']//span"));
-    public static final SelenideElement projectTabFin_01OneTeamZone = $(byXpath(".//*[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div[2]/div/div/ui-view/div[3]/div/div/ng-include/div[2]/ul/li/a"));
+    public static SelenideElement TAB_CHARGES_ACTUAL_ORDER = $(byXpath(CONTROLS_ROW+"//a[contains(.,'"+TASKS_ORDER+"')]"));        //order value
+
+    public static final SelenideElement TAB_CHARGES = $(byXpath(""));
+    public static final SelenideElement TAB_CHARGES_CollapseForm = $(byXpath("//div/ng-include/div/a[@class='link-task']"));
+    public static final SelenideElement TAB_CHARGES_BackToListLink = $(byLinkText("link=Back to all finances"));
+    public static final SelenideElement TAB_CHACRGES_BTN_DELETE = TAB_CONTROL_DELETE;
+    public static final SelenideElement TAB_CHARGES_ToXero = $(byXpath("//button[@ng-click='bulkToXero()']"));
+
+    public static final SelenideElement TAB_CHARGES01From = $(byXpath("//div[@class='items-list with-caret ng-scope finances']/div[1]//span[@class='name ng-binding']"));
+    public static final SelenideElement TAB_CHARGES01Type = $(byXpath("//div[@class='items-list with-caret ng-scope finances']/div[1]//span[@class='task-title ng-binding']"));
+    public static final SelenideElement TAB_CHARGES01Total = $(byXpath("//div[@class='items-list with-caret ng-scope finances']/div[1]//span[@class='price ng-binding']"));
+    public static final SelenideElement TAB_CHARGES01Date = $(byXpath("//div[@class='items-list with-caret ng-scope finances']/div[1]//span[@class='date ng-binding']"));
+    public static final SelenideElement TAB_CHARGES01To = $(byXpath(""));
+    public static final SelenideElement TAB_CHARGES01AllZone = $(byXpath("//div[@class='items-list with-caret ng-scope finances']/div[1]//div[@class='organizations-list ng-isolate-scope']//span"));
+    public static final SelenideElement TAB_CHARGES01OneTeamZone = $(byXpath(".//*[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div[2]/div/div/ui-view/div[3]/div/div/ng-include/div[2]/ul/li/a"));
 
 
 }

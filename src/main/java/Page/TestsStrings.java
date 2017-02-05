@@ -74,7 +74,7 @@ public class TestsStrings {
     public static final String TITLE_MW_EVENT = "Event";
     public static final String TITLE_MW_ADD_DOCUMENT = "ADD DOCUMENT";
     public static final String TILE_MW_PROJECT = "New Project";
-    public static final String TITLE_MW_1 = "";
+    public static final String TITLE_MW_CHARGE = "Add charge";
     public static final String TITLE_MW_2 = "";
     public static final String TITLE_MW_3 = "";
     public static final String TITLE_MW_4 = "";
@@ -135,5 +135,10 @@ public class TestsStrings {
 
     public static String TITLE_MW_BOOST_YOUR_PROFILE = "If you want to boost your community profile and appear higher on the search results, there are two ways to do this:";
     public static String TITLE_MW_INVITE_AN_ATTORNEY = "Invite an Attorney";
+
+    public static final String EUR = "EUR";
+    public static final String GBP = "GBP";
+    public static final String ILS = "ILS";
+    public static final String USD = "USD";
 
 }

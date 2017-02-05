@@ -581,23 +581,35 @@ public class TestsPekamaProject {
     }
 
     @Test  //todo
-    public void createProject_M_addCharges() {
+    public void createProject_M_addChargePositive() {
         projectTabFin.click();
-        $$(byText(placeholderEmptyList)).shouldHaveSize(1);
-        genericButtonAdd.click();
-
+        checkText(placeholderEmptyList);
+        TAB_CHARGES_ADD.click();
         rootLogger.info("Create charge");
-        waitForModalWindow("Add charge");
+        waitForModalWindow(TITLE_MW_CHARGE);
+        MW_CHARGES_SELECT_FROM.shouldHave(text(User2.FULL_TEAM_NAME.getValue()));
+        selectItemInDropdown(MW_CHARGES_SELECT_TYPE, MW_CHARGES_INPUT_TYPE, CHARGES_TYPE_ASSOCIATE);
+        selectItemInDropdown(MW_CHARGES_SELECT_CURRENCY, MW_CHARGES_INPUT_CURRENCY, GBP);
+        fillField(MW_CHARGES_INPUT_PRICE, "1000");
+        submitEnabledButton(MW_BTN_OK);
+        MW.shouldNot(visible);
+        checkTextNotPresent(placeholderEmptyList);
+        checkText(User2.FULL_TEAM_NAME.getValue()+" ->");
+        checkText(CHARGES_TYPE_ASSOCIATE);
+        checkText(getCurrentDate());
+        checkText("1,000.00 GBP");
 
-        
+
         rootLogger.info("Delete charge");
-        $$(byText(placeholderEmptyList)).shouldHaveSize(1);
-
+        projectAllCheckbox.click();
+        TAB_CHACRGES_BTN_DELETE.click();
+        submitConfirmAction();
+        checkText(placeholderEmptyList);
         rootLogger.info("Test passed");
     }
     @Test  //todo
     public void createProject_N_changeTypes() {
-
+        rootLogger.info("Test passed");
     }
     @Test  //todo
     public void createProject_O_addFamilyProject() {
