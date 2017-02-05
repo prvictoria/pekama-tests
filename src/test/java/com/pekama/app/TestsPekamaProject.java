@@ -73,6 +73,14 @@ public class TestsPekamaProject {
         $$(byText(placeholderNoNumbers)).filter(visible).shouldHaveSize(1);
         $$(byText(PLACEHOLDER_NO_DATA)).filter(visible).shouldHaveSize(1);
         $$(byText("Team chat is great for conversations between groups of people, where all the group members should see the conversation all the time.")).shouldHaveSize(1);
+        projectButtonPlus.click();
+        projectPlusNewEvent.shouldBe(visible);
+        projectPlusNewConversation.shouldBe(visible);
+        projectPlusNewTask.shouldBe(visible);
+        projectPlusNewDocument.shouldBe(visible);
+        projectPlusNewFinancial.shouldBe(visible);
+        projectPlusNewNumber.shouldBe(visible);
+        projectPlusNewContact.shouldBe(visible);
         rootLogger.info("GUI test passed");
     }
     @Test
@@ -580,7 +588,7 @@ public class TestsPekamaProject {
         rootLogger.info("Test passed");
     }
 
-    @Test  //todo
+    @Test
     public void createProject_M_addChargePositive() {
         projectTabFin.click();
         checkText(placeholderEmptyList);
@@ -608,7 +616,7 @@ public class TestsPekamaProject {
         rootLogger.info("Test passed");
     }
     @Test  //todo
-    public void createProject_N_changeTypes() {
+    public void createProject_N_changeValues() {
         rootLogger.info("Test passed");
     }
     @Test  //todo
@@ -627,8 +635,5 @@ public class TestsPekamaProject {
     public void createCommunityCase() {
         rootLogger.info("Test passed");
     }
-
-
-
 
 }

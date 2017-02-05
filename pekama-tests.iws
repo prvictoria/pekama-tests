@@ -2,15 +2,11 @@
 <project version="4">
   <component name="BookmarkManager">
     <bookmark url="file://$PROJECT_DIR$/src/main/java/Page/TestsStrings.java" line="114" />
-    <bookmark url="file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java" line="437" />
+    <bookmark url="file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java" line="445" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2fcdccdc-4d95-4ab7-8153-9ec9d616e50f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pekama-tests.iws" afterPath="$PROJECT_DIR$/pekama-tests.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/ModalWindows.java" afterPath="$PROJECT_DIR$/src/main/java/Page/ModalWindows.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/PekamaProject.java" afterPath="$PROJECT_DIR$/src/main/java/Page/PekamaProject.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/TestsCredentials.java" afterPath="$PROJECT_DIR$/src/main/java/Page/TestsCredentials.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/TestsStrings.java" afterPath="$PROJECT_DIR$/src/main/java/Page/TestsStrings.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -209,8 +205,8 @@
           <file leaf-file-name="TestsPekamaProject.java" pinned="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="432">
-                  <caret line="600" column="0" lean-forward="true" selection-start-line="600" selection-start-column="0" selection-end-line="600" selection-end-column="0" />
+                <state relative-caret-position="583">
+                  <caret line="638" column="1" lean-forward="true" selection-start-line="638" selection-start-column="1" selection-end-line="638" selection-end-column="1" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="method#createProject_A_CheckDefaultState#0;class#TestsPekamaProject#0" expanded="false" />
@@ -226,17 +222,17 @@
                     <element signature="method#createProject_L1_autodeployEvent#0;class#TestsPekamaProject#0" expanded="false" />
                     <element signature="method#createProject_L2_deployNewEvent#0;class#TestsPekamaProject#0" expanded="false" />
                     <element signature="method#createProject_L3_lessImportantEvent#0;class#TestsPekamaProject#0" expanded="false" />
-                    <element signature="e#27428#27429#0" expanded="true" />
-                    <element signature="e#27474#27475#0" expanded="true" />
-                    <element signature="e#27545#27546#0" expanded="true" />
-                    <element signature="e#27591#27592#0" expanded="true" />
-                    <element signature="e#27661#27662#0" expanded="true" />
-                    <element signature="e#27707#27708#0" expanded="true" />
-                    <element signature="e#27774#27775#0" expanded="true" />
-                    <element signature="e#27820#27821#0" expanded="true" />
-                    <element signature="e#27878#27879#0" expanded="true" />
-                    <element signature="e#27924#27925#0" expanded="true" />
-                    <marker date="1486322097133" expanded="false" signature="10484:10621" ph="..." />
+                    <element signature="e#27801#27802#0" expanded="true" />
+                    <element signature="e#27847#27848#0" expanded="true" />
+                    <element signature="e#27918#27919#0" expanded="true" />
+                    <element signature="e#27964#27965#0" expanded="true" />
+                    <element signature="e#28034#28035#0" expanded="true" />
+                    <element signature="e#28080#28081#0" expanded="true" />
+                    <element signature="e#28147#28148#0" expanded="true" />
+                    <element signature="e#28193#28194#0" expanded="true" />
+                    <element signature="e#28251#28252#0" expanded="true" />
+                    <element signature="e#28297#28298#0" expanded="true" />
+                    <marker date="1486322738590" expanded="false" signature="10864:11001" ph="..." />
                   </folding>
                 </state>
               </provider>
@@ -435,8 +431,8 @@
           <file leaf-file-name="PekamaProject.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/Page/PekamaProject.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="323">
-                  <caret line="53" column="67" lean-forward="true" selection-start-line="53" selection-start-column="67" selection-end-line="53" selection-end-column="67" />
+                <state relative-caret-position="340">
+                  <caret line="24" column="61" lean-forward="false" selection-start-line="24" selection-start-column="40" selection-end-line="24" selection-end-column="61" />
                   <folding />
                 </state>
               </provider>
@@ -1517,14 +1513,7 @@
       <workItem from="1485937876144" duration="859000" />
       <workItem from="1485954118467" duration="50075000" />
       <workItem from="1486100653060" duration="40879000" />
-      <workItem from="1486241221442" duration="11717000" />
-    </task>
-    <task id="LOCAL-00101" summary="Refactor elements">
-      <created>1484731319939</created>
-      <option name="number" value="00101" />
-      <option name="presentableId" value="LOCAL-00101" />
-      <option name="project" value="LOCAL" />
-      <updated>1484731319941</updated>
+      <workItem from="1486241221442" duration="12295000" />
     </task>
     <task id="LOCAL-00102" summary="BOX logic">
       <created>1484768528546</created>
@@ -1862,7 +1851,14 @@
       <option name="project" value="LOCAL" />
       <updated>1486289418353</updated>
     </task>
-    <option name="localTasksCounter" value="150" />
+    <task id="LOCAL-00150" summary="ProjectTests - Charges">
+      <created>1486322173046</created>
+      <option name="number" value="00150" />
+      <option name="presentableId" value="LOCAL-00150" />
+      <option name="project" value="LOCAL" />
+      <updated>1486322173046</updated>
+    </task>
+    <option name="localTasksCounter" value="151" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1898,7 +1894,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="377314000" />
+    <option name="totallyTimeSpent" value="377892000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2001,7 +1997,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Constants refactoring" />
     <MESSAGE value="Constants refactoring - steps fix" />
     <MESSAGE value="Test refactoring - steps fix" />
     <MESSAGE value="Community Wizard fix tests" />
@@ -2026,7 +2021,8 @@
     <MESSAGE value="ProjectTests -Days increment method" />
     <MESSAGE value="ProjectTests - Event test" />
     <MESSAGE value="ProjectTests - Event bug test" />
-    <option name="LAST_COMMIT_MESSAGE" value="ProjectTests - Event bug test" />
+    <MESSAGE value="ProjectTests - Charges" />
+    <option name="LAST_COMMIT_MESSAGE" value="ProjectTests - Charges" />
   </component>
   <component name="VssConfiguration">
     <CheckoutOptions>
@@ -2091,163 +2087,163 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java</url>
-          <line>182</line>
+          <line>190</line>
           <properties />
           <option name="timeStamp" value="345" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java</url>
-          <line>184</line>
+          <line>192</line>
           <properties />
           <option name="timeStamp" value="346" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java</url>
-          <line>190</line>
+          <line>198</line>
           <properties />
           <option name="timeStamp" value="351" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java</url>
-          <line>197</line>
+          <line>205</line>
           <properties />
           <option name="timeStamp" value="352" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java</url>
-          <line>200</line>
+          <line>208</line>
           <properties />
           <option name="timeStamp" value="353" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java</url>
-          <line>207</line>
+          <line>215</line>
           <properties />
           <option name="timeStamp" value="355" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java</url>
-          <line>215</line>
+          <line>223</line>
           <properties />
           <option name="timeStamp" value="356" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java</url>
-          <line>210</line>
+          <line>218</line>
           <properties />
           <option name="timeStamp" value="357" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java</url>
-          <line>177</line>
+          <line>185</line>
           <properties />
           <option name="timeStamp" value="358" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java</url>
-          <line>173</line>
+          <line>181</line>
           <properties />
           <option name="timeStamp" value="360" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java</url>
-          <line>183</line>
+          <line>191</line>
           <properties />
           <option name="timeStamp" value="362" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java</url>
-          <line>242</line>
+          <line>250</line>
           <properties />
           <option name="timeStamp" value="364" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java</url>
-          <line>239</line>
+          <line>247</line>
           <properties />
           <option name="timeStamp" value="365" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java</url>
-          <line>246</line>
+          <line>254</line>
           <properties />
           <option name="timeStamp" value="368" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java</url>
-          <line>249</line>
+          <line>257</line>
           <properties />
           <option name="timeStamp" value="383" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java</url>
-          <line>237</line>
+          <line>245</line>
           <properties />
           <option name="timeStamp" value="385" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java</url>
-          <line>327</line>
+          <line>335</line>
           <properties />
           <option name="timeStamp" value="403" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="NONE" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java</url>
-          <line>326</line>
+          <line>334</line>
           <properties />
           <option name="timeStamp" value="408" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java</url>
-          <line>325</line>
+          <line>333</line>
           <properties />
           <option name="timeStamp" value="409" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java</url>
-          <line>324</line>
+          <line>332</line>
           <properties />
           <option name="timeStamp" value="413" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java</url>
-          <line>439</line>
+          <line>447</line>
           <properties />
           <option name="timeStamp" value="439" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java</url>
-          <line>431</line>
+          <line>439</line>
           <properties />
           <option name="timeStamp" value="440" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java</url>
-          <line>429</line>
+          <line>437</line>
           <properties />
           <option name="timeStamp" value="441" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java</url>
-          <line>440</line>
+          <line>448</line>
           <properties />
           <option name="timeStamp" value="445" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java</url>
-          <line>420</line>
+          <line>428</line>
           <properties />
           <option name="timeStamp" value="446" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java</url>
-          <line>424</line>
+          <line>432</line>
           <properties />
           <option name="timeStamp" value="452" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java</url>
-          <line>596</line>
+          <line>604</line>
           <properties />
           <option name="timeStamp" value="474" />
         </line-breakpoint>
@@ -2743,16 +2739,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Page/PekamaProject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="53" column="67" lean-forward="true" selection-start-line="53" selection-start-column="67" selection-end-line="53" selection-end-column="67" />
+        <state relative-caret-position="340">
+          <caret line="24" column="61" lean-forward="false" selection-start-line="24" selection-start-column="40" selection-end-line="24" selection-end-column="61" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="600" column="0" lean-forward="true" selection-start-line="600" selection-start-column="0" selection-end-line="600" selection-end-column="0" />
+        <state relative-caret-position="583">
+          <caret line="638" column="1" lean-forward="true" selection-start-line="638" selection-start-column="1" selection-end-line="638" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#createProject_A_CheckDefaultState#0;class#TestsPekamaProject#0" expanded="false" />
@@ -2768,17 +2764,17 @@
             <element signature="method#createProject_L1_autodeployEvent#0;class#TestsPekamaProject#0" expanded="false" />
             <element signature="method#createProject_L2_deployNewEvent#0;class#TestsPekamaProject#0" expanded="false" />
             <element signature="method#createProject_L3_lessImportantEvent#0;class#TestsPekamaProject#0" expanded="false" />
-            <element signature="e#27428#27429#0" expanded="true" />
-            <element signature="e#27474#27475#0" expanded="true" />
-            <element signature="e#27545#27546#0" expanded="true" />
-            <element signature="e#27591#27592#0" expanded="true" />
-            <element signature="e#27661#27662#0" expanded="true" />
-            <element signature="e#27707#27708#0" expanded="true" />
-            <element signature="e#27774#27775#0" expanded="true" />
-            <element signature="e#27820#27821#0" expanded="true" />
-            <element signature="e#27878#27879#0" expanded="true" />
-            <element signature="e#27924#27925#0" expanded="true" />
-            <marker date="1486322097133" expanded="false" signature="10484:10621" ph="..." />
+            <element signature="e#27801#27802#0" expanded="true" />
+            <element signature="e#27847#27848#0" expanded="true" />
+            <element signature="e#27918#27919#0" expanded="true" />
+            <element signature="e#27964#27965#0" expanded="true" />
+            <element signature="e#28034#28035#0" expanded="true" />
+            <element signature="e#28080#28081#0" expanded="true" />
+            <element signature="e#28147#28148#0" expanded="true" />
+            <element signature="e#28193#28194#0" expanded="true" />
+            <element signature="e#28251#28252#0" expanded="true" />
+            <element signature="e#28297#28298#0" expanded="true" />
+            <marker date="1486322738590" expanded="false" signature="10864:11001" ph="..." />
           </folding>
         </state>
       </provider>
