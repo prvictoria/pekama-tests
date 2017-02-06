@@ -77,7 +77,9 @@ public class TestsStrings {
     public static final String TITLE_MW_CHARGE = "Add charge";
     public static final String TITLE_MW_CONVERSATION = "New Conversation";
     public static final String TITLE_MW_EMAIL_SETTINGS = "Email parameters";
-    public static final String TITLE_MW_4 = "";
+    public static final String TITLE_MW_DELETE_MESSAGE = "Delete message?";
+    public static final String TITLE_MW_SHARE_PROJECT = "Share Project";
+    public static final String TITLE_MW_CHANGE_COLLABORATOR = "Change Collaborator";
 
     public static final String placeholderNoFiles = "No files found.";
     public static final String placeholderEmptyList = "Empty list.";

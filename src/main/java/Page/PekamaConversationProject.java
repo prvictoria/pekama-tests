@@ -30,13 +30,17 @@ public class PekamaConversationProject extends Page {
     public static final SelenideElement CONVERSATION_Pin = $(byXpath( CONVERSATION_BLOCK+"//button[@class='btn btn-secondary btn-small ng-binding'][contains(.,'Pin')]"));
     public static final SelenideElement CONVERSATION_Unpin = $(byXpath( CONVERSATION_BLOCK+"//button[@class='btn btn-secondary btn-small ng-binding'][contains(.,'Unpin')]"));
    // public static final SelenideElement CONVERSATION_BTN_Back = $(byXpath( CONVERSATION_BLOCK+"//a[@class='btn btn-secondary btn-small'][contains(.,'Back')]"));
+
+    public static final SelenideElement CONVERSATION_EDIT_TITLE = $(byXpath( CONVERSATION_BLOCK+"//*[@class='pkm-icon-edit']"));
+    public static final SelenideElement CONVERSATION_TITLE = $( "h3.ng-binding");
+    public static final SelenideElement CONVERSATION_FIELD_TITLE = $(byXpath( CONVERSATION_BLOCK+"//input[@name='subject']"));
     //FOLLOWERS
 
     //TEXT EDITOR AREA
     public static final SelenideElement CONVERSATION_INPUT_TEXT_COLLAPSED = $(byXpath( CONVERSATION_BLOCK+"//input[@placeholder='Write Something']"));
     public static final SelenideElement CONVERSATION_BTN_EMAIL_SETTINGS = $(byXpath( CONVERSATION_BLOCK+""));
     public static final SelenideElement CONVERSATION_TEXT_EDITOR = SIGNATURE_TAB_TEXT_EDITOR;
-    public static final SelenideElement CONVERSATION_BTN_POST = $(byXpath( CONVERSATION_BLOCK+"//a[@class='btn btn-primary'][contains(.,'Post')]"));
+    public static final SelenideElement CONVERSATION_BTN_POST = $(byXpath( CONVERSATION_BLOCK+"//*[@class='btn btn-primary'][contains(.,'Post')]"));
     public static final SelenideElement CONVERSATION_BTN_TEMPLATE = $(byXpath( CONVERSATION_BLOCK+"//i[@class='pkm-icon-template']"));
     public static final SelenideElement CONVERSATION_BTN_ATTACH = $(byXpath( CONVERSATION_BLOCK+"//i[@class='pkm-icon-attach']"));
     public static final SelenideElement CONVERSATION_BTN_CLOUD = $(byXpath( CONVERSATION_BLOCK+"//i[@class='pkm-icon-cloud']"));
@@ -71,9 +75,7 @@ public class PekamaConversationProject extends Page {
     public static final SelenideElement CONVERSATION_04THREAD_Row = $(byXpath( CONVERSATION_BLOCK+"//li[4]/span"));
     public static final SelenideElement CONVERSATION_05THREAD_Row = $(byXpath( CONVERSATION_BLOCK+"//li[5]/span"));
 
-    public static final SelenideElement CONVERSATION_NewButton = $(byXpath( CONVERSATION_BLOCK+"//pkm-conversations/div/div/button"));
-    public static final SelenideElement CONVERSATION_EditTitleIcon = $(byXpath( CONVERSATION_BLOCK+"//*[@ng-click='startTitleEditing  ']//*[@class='memobox-icon-edit']"));
-    public static final SelenideElement CONVERSATION_Title = $(byXpath( CONVERSATION_BLOCK+"css=h3.ng-binding"));
+
     public static final SelenideElement CONVERSATION_01Follower = $(byXpath( CONVERSATION_BLOCK+"//div/div/ul/li/span/span[2]"));
     public static final SelenideElement CONVERSATION_02Follower = $(byXpath( CONVERSATION_BLOCK+"//li[2]/span/span"));
     public static final SelenideElement CONVERSATION_03Follower = $(byXpath( CONVERSATION_BLOCK+"//li[3]/span/span"));

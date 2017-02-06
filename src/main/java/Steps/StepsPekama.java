@@ -101,6 +101,16 @@ public class StepsPekama implements StepsFactory{
         sleep(500);
         MW.shouldNotBe(visible);
     }
+    public static void submitConfirmAction(String modalTitle){
+        sleep(500);
+        rootLogger.info("Wait for '"+modalTitle+"' modal window");
+        MW.shouldBe(visible);
+        MW.shouldHave(text(modalTitle));
+        rootLogger.info("Confirm action modal '"+modalTitle+"' was opened");
+        MW_BTN_YES.shouldBe(visible).click();
+        sleep(500);
+        MW.shouldNotBe(visible);
+    }
     public static void collapseChatWidget(){
         sleep(500);
         MW.shouldBe(visible);
@@ -222,11 +232,13 @@ public class StepsPekama implements StepsFactory{
         sleep(500);
         rootLogger.info("Button was clicked");
     }
-    public static void waitForModalWindow(String modalTitle) {
+    public static boolean waitForModalWindow(String modalTitle) {
         rootLogger.info("Wait for '"+modalTitle+"' modal window");
         MW.shouldBe(visible);
+        //MW.should(matchText(modalTitle));
         MW.shouldHave(text(modalTitle));
         rootLogger.info("modal window '"+modalTitle+"' was opened");
+        return true;
     }
     public static void selectItemInDropdown(SelenideElement uiSelectName, SelenideElement uiSelectInput, String inputValue) {
         rootLogger.info("select - "+inputValue);

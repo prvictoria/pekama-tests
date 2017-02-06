@@ -20,7 +20,7 @@ public class PekamaProject extends Page {
     public static final SelenideElement projectPlusNewConversation = $(byLinkText("New Conversation"));
     public static final SelenideElement projectPlusNewTask = $(byLinkText("New Task"));
     public static final SelenideElement projectPlusNewDocument = $(byLinkText("New Document"));
-    public static final SelenideElement projectPlusNewFinancial = $(byLinkText("New financial"));
+    public static final SelenideElement projectPlusNewFinancial = $(byLinkText("New Charge"));
     public static final SelenideElement projectPlusNewNumber = $(byLinkText("New Number"));
     public static final SelenideElement projectPlusNewContact = $(byLinkText("New Contact"));
     public static final SelenideElement projectAllCheckbox = $("i.pkm-icon-checkbox");
@@ -204,6 +204,11 @@ public class PekamaProject extends Page {
     public static String TAB_DOCS_FILES_MENU_DOWNLOAD_ZIP = TAB_DOCS_FILES_MENU+"//a[contains(.,'Download ZIP')]";
     public static String TAB_DOCS_FILES_MENU_ADD_SUBFOLDER = TAB_DOCS_FILES_MENU+"//a[contains(.,'Add Sub Folder')]";
 
+    //SIMPLE IN RWO CONTRLOS
+        public static final SelenideElement TAB_DOCS_FILE_INPUT_NAME_IN_ROW = $(byXpath("//pkm-simple-files-editable-title//input[@name='name']"));
+    public static final SelenideElement TAB_DOCS_FILE_SAVE_IN_ROW = $(byXpath("//pkm-simple-files-editable-title//a[contains(.,'Save')]"));
+
+    //EXPANDED CONTROLS
     public static final SelenideElement TAB_DOCS_FILE_RENAME = $(byXpath("//pkm-files-editable-title//a[contains(.,'Rename')]"));
     public static final SelenideElement TAB_DOCS_FILE_INPUT_NAME = $(byXpath("//pkm-files-editable-title//input[@name='name']"));
     public static final SelenideElement TAB_DOCS_FILE_SAVE = $(byXpath("//pkm-files-editable-title//a[contains(.,'Save')]"));
