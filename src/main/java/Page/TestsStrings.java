@@ -75,8 +75,8 @@ public class TestsStrings {
     public static final String TITLE_MW_ADD_DOCUMENT = "ADD DOCUMENT";
     public static final String TILE_MW_PROJECT = "New Project";
     public static final String TITLE_MW_CHARGE = "Add charge";
-    public static final String TITLE_MW_2 = "";
-    public static final String TITLE_MW_3 = "";
+    public static final String TITLE_MW_CONVERSATION = "New Conversation";
+    public static final String TITLE_MW_EMAIL_SETTINGS = "Email parameters";
     public static final String TITLE_MW_4 = "";
 
     public static final String placeholderNoFiles = "No files found.";

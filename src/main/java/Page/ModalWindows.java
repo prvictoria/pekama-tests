@@ -24,15 +24,17 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_MAILING_1USER_SELECT = $(byXpath(mw+"//ul//li[2]//input[@type='checkbox']"));
     public static final SelenideElement MW_MAILING_1USER_INTERVAL = $(byXpath(mw+"//ul//li[2]//input[@type='number']"));
 
-
     public static final SelenideElement MW_BTN_SAVE = $(byXpath(mw+"//button[contains(.,'Save')]"));
-    public static final SelenideElement MW_BTN_CANCEL = $(byXpath(mw+"//button[contains(.,'Cancel')]"));
+    //public static final SelenideElement MW_BTN_CANCEL = $(byXpath(mw+"//button[contains(.,'Cancel')]"));
+    public static final SelenideElement MW_BTN_CANCEL = $(byXpath(mw+"//button[text()='Cancel']"));
     public static final SelenideElement MW_BTN_ADD = $(byXpath(mw+"//button[contains(.,'Add')]"));
     public static final SelenideElement MW_BTN_OK = $(byXpath(mw+"//button[contains(.,'OK')]"));
     public static final SelenideElement MW_BTN_YES = $(byXpath(mw+"//button[contains(.,'Yes')]"));
     public static final SelenideElement MW_ICON_CLOSE = $(byXpath(mw+"//*[@aria-label='Close']"));
     public static final SelenideElement MW_BTN_CLOSE = $(byXpath(mw+"//*[contains .,'Close' ]"));
+    public static final SelenideElement MW_BTN_CREATE = $(byXpath(mw+"//button[text()='Create']"));
 
+    public static final SelenideElement MW_CHECKBOX_ALL_TEAMS = $(byXpath(mw+"//*[@ng-disabled='uiState.disableAllTeams']"));
 
     public static final SelenideElement MW_TITLE = $(byXpath("//*[@class='modal-title']"));
     public static final SelenideElement MW_INPUT_DATE =  $(byXpath(mw+"//input[@class='form-control date-box']")); //click==today
@@ -108,16 +110,16 @@ public class ModalWindows extends Page {
     public static final SelenideElement modalTemplatesMsgTemplate = $(byXpath("//a/div/div/p"));
 
     //conversation
-    public static final SelenideElement MW_ConversationInputSubject = $(byXpath("//div[@class='modal-content']//input[@name='subject']"));
-    public static final SelenideElement MW_ConversationInputFollower = $(byXpath("//div[@class='modal-content']//pkm-followers-picker//input"));
-    public static final SelenideElement MW_ConversationInputZoneTeams = $(byXpath("//div[@class='modal-content']//pkm-organizations-picker//li/input"));
+    public static final SelenideElement MW_CONVERSATION_INPUT_Subject = $(byXpath(mw+"//input[@name='subject']"));
+    public static final SelenideElement MW_CONVERSATION_INPUT_Follower = $(byXpath(mw+"//pkm-followers-picker//input"));
+    public static final SelenideElement MW_CONVERSATION_INPUT_ZoneTeams = $(byXpath(mw+"//pkm-organizations-picker//li/input"));
 
-    public static final SelenideElement MW_ConversationCreatelButton = $(byXpath("//button[text()='Create']"));
-    public static final SelenideElement MW_ConversationCancellButton = $(byXpath("//button[text()='Cancel']"));
-    public static final SelenideElement MW_ConversationFollowerField = $(byXpath("//li/input"));
-    public static final SelenideElement MW_ConversationFollowerSelect = $("span.result-name.ng-binding");
 
-    public static final SelenideElement modalCheckboxPermissionAllTeams = $(byXpath("//*[@ng-disabled='uiState.disableAllTeams']"));
+    public static final SelenideElement MW_CONVERSATION_FollowerField = $(byXpath(mw+"//li/input"));
+    public static final SelenideElement MW_CONVERSATION_FollowerSelect =  $(byXpath(mw+""));
+
+
+
     //ProjectValues templates
     public static final SelenideElement modalProjectTemplateCancelButton = $(byXpath("//div[2]/button[2]"));
     public static final SelenideElement modalProjectTemplateOklButton = $(byXpath("//div[2]/button"));

@@ -10,19 +10,21 @@ import java.awt.*;
 
 import static Page.Emails.*;
 import static Page.ModalWindows.*;
+import static Page.PekamaConversationProject.*;
 import static Page.PekamaDashboard.*;
 import static Page.PekamaProject.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsCredentials.TrademarkEvents.*;
 import static Page.TestsStrings.*;
 import static Page.TestsUrl.*;
+import static Steps.StepsCommunity.*;
 import static Steps.StepsExternal.*;
 import static Steps.StepsPekama.*;
-import static Steps.StepsPekama.fillField;
 import static Utils.Utils.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.*;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaProject {
@@ -30,6 +32,7 @@ public class TestsPekamaProject {
     private static String testProjectTitle = "new test project - "+ randomString(6);
     private static String testContactName = "name"+ randomString(10);
     private static String testContactSurname = "surname"+ randomString(10);
+    private static String defaultProjectURL;
     @Before
     public void before() {
         Configuration test = new Configuration();
@@ -52,7 +55,7 @@ public class TestsPekamaProject {
         submitEnabledButton(MW_ProjectFinishButton);
         MW.shouldNot(exist);
         sleep(1000);
-        getActualUrl ();
+        defaultProjectURL = getActualUrl ();
         rootLogger.info("ProjectValues '"+testProjectTitle+"' created");
         waitForTextPresent(testProjectTitle);
     }
@@ -60,7 +63,7 @@ public class TestsPekamaProject {
 //    public void after() {
 //        rootLogger.info("delete project - '"+testProjectTitle"'");
 //
-//        executeJavaScript("scrollTo(0, -1000)");
+//        scrollUp();
 //        PROJECT_BTN_DELETE.shouldBe(visible).click();
 //        StepsPekama.submitConfirmAction();
 //        open(URL_Dashboard);
@@ -87,52 +90,52 @@ public class TestsPekamaProject {
     public void createProject_B_editProjectName() throws AWTException {
         waitForTextPresent(testProjectTitle);
         scrollUp();
-        projectTabMore_ProjectTitle.shouldHave(text(testProjectTitle));
-        projectTabMore_ProjectTitle.click();
+        TAB_INFO_ProjectTitle.shouldHave(text(testProjectTitle));
+        TAB_INFO_ProjectTitle.click();
         String newProjectName = "New project name after edition "+ randomString(6);
-        fillField(projectTabMore_TitleInput, newProjectName);
-        projectTabMore_TitleSave.click();
+        fillField(TAB_INFO_TitleInput, newProjectName);
+        TAB_INFO_TitleSave.click();
         sleep(1000);
         refresh();
 
         waitForTextPresent(newProjectName);
         scrollUp();
-        projectTabMore_ProjectTitle.shouldHave(text(newProjectName));
-        projectTabMore_TitleEditButton.click();
-        fillField(projectTabMore_TitleInput, testProjectTitle);
-        projectTabMore_TitleSave.click();
+        TAB_INFO_ProjectTitle.shouldHave(text(newProjectName));
+        TAB_INFO_TitleEditButton.click();
+        fillField(TAB_INFO_TitleInput, testProjectTitle);
+        TAB_INFO_TitleSave.click();
         sleep(1000);
         refresh();
-        projectTabMore_ProjectTitle.shouldHave(text(testProjectTitle));
+        TAB_INFO_ProjectTitle.shouldHave(text(testProjectTitle));
     }
     @Test
     public void createProject_C_AddNumber() {
         String codeType = "Equinox code";
         String codeValue = "2000/17/55-asd";
         rootLogger.info("select number from list - ");
-        selectItemInDropdown(projectTabMore_NumberNewSelect, projectTabMore_NumberNewField, codeType);
-        fillField(projectTabMore_NumberReferenceField, codeValue);
+        selectItemInDropdown(TAB_INFO_NumberNewSelect, TAB_INFO_NumberNewField, codeType);
+        fillField(TAB_INFO_NumberReferenceField, codeValue);
         scrollDown();
-        projectTabMore_NumberAdd.click();
-        projectTabMore_NumberRow01Type.shouldHave(text(codeType));
+        TAB_INFO_NumberAdd.click();
+        TAB_INFO_NumberRow01Type.shouldHave(text(codeType));
 
         rootLogger.info("open inline form");
-        projectTabMore_NumberRow01Edit.click();
-        projectTabMore_Number_EDIT_REFERENCE_BTN_SAVE.waitUntil(visible, 10000).shouldBe(disabled);
+        TAB_INFO_NumberRow01Edit.click();
+        TAB_INFO_Number_EDIT_REFERENCE_BTN_SAVE.waitUntil(visible, 10000).shouldBe(disabled);
         rootLogger.info("edit number inline - ");
         String newCodeValue = "8888-1111-lkjh";
         String newCodeType = "Reference Number";
-        selectItemInDropdown(projectTabMore_Number_EDIT_REFERENCE_TYPE_SELECT, projectTabMore_Number_EDIT_REFERENCE_TYPE_INPUT, newCodeType);
-        fillField(projectTabMore_Number_EDIT_REFERENCE_VALUE_INPUT, newCodeValue);
-        submitEnabledButton(projectTabMore_Number_EDIT_REFERENCE_BTN_SAVE);
+        selectItemInDropdown(TAB_INFO_Number_EDIT_REFERENCE_TYPE_SELECT, TAB_INFO_Number_EDIT_REFERENCE_TYPE_INPUT, newCodeType);
+        fillField(TAB_INFO_Number_EDIT_REFERENCE_VALUE_INPUT, newCodeValue);
+        submitEnabledButton(TAB_INFO_Number_EDIT_REFERENCE_BTN_SAVE);
         $$(byText(newCodeValue)).shouldHaveSize(1);
         $$(byText(newCodeType)).shouldHaveSize(2);
         $$(byText(codeValue)).shouldHaveSize(0);
         $$(byText(codeType)).shouldHaveSize(0);
 
         rootLogger.info("delete number");
-        projectTabMore_NumberRow01Collapse.click();
-        projectTabMore_NumberRow01Delete.click();
+        TAB_INFO_NumberRow01Collapse.click();
+        TAB_INFO_NumberRow01Delete.click();
         submitConfirmAction();
         $$(byText(placeholderNoNumbers)).shouldHaveSize(1);
     }
@@ -141,7 +144,7 @@ public class TestsPekamaProject {
         String classNumber = "12";
         String classDescripton = "old description";
         scrollDown();
-        projectTabMore_ClassesAdd.click();
+        TAB_INFO_ClassesAdd.click();
         waitForModalWindow(mwClasses_Title);
         MW_BTN_OK.shouldBe(disabled);
         mwClasses_SelectClassType.shouldHave(text("Up-to-date"));
@@ -153,7 +156,7 @@ public class TestsPekamaProject {
         $$(byText(classDescripton)).shouldHaveSize(1);
 
         rootLogger.info("edit class in modal - ");
-        projectTabMore_ClassRow01Edit.click();
+        TAB_INFO_ClassRow01Edit.click();
         waitForModalWindow(mwClasses_Title);
         MW_BTN_OK.shouldBe(disabled);
         mwClasses_SelectClassType.shouldHave(text("Up-to-date"));
@@ -168,7 +171,7 @@ public class TestsPekamaProject {
         $$(byText(classNewDescripton)).shouldHaveSize(1);
 
         rootLogger.info("delete classification");
-        projectTabMore_ClassRow01delete.click();
+        TAB_INFO_ClassRow01delete.click();
         submitConfirmAction();
         $$(byText(placeholderNoCases)).shouldHaveSize(1);
         rootLogger.info("All calsses were deleted - "+placeholderNoCases);
@@ -607,7 +610,6 @@ public class TestsPekamaProject {
         checkText(getCurrentDate());
         checkText("1,000.00 GBP");
 
-
         rootLogger.info("Delete charge");
         projectAllCheckbox.click();
         TAB_CHACRGES_BTN_DELETE.click();
@@ -616,23 +618,155 @@ public class TestsPekamaProject {
         rootLogger.info("Test passed");
     }
     @Test  //todo
-    public void createProject_N_changeValues() {
+    public void createProject_N_selectValues() {
+        TAB_INFO_PROJECT_TYPE.shouldHave(text(CaseType.TRADEMARK.getValue()));
+        selectItemInDropdown(TAB_INFO_SELECT_Defining, TAB_INFO_INPUT_Defining, Countries.NETHERLAND_ANTILES.getValue());
+        selectItemInDropdown(TAB_INFO_SELECT_Type, TAB_INFO_INPUT_Type, "Basic Filing");
+        selectItemInDropdown(TAB_INFO_SELECT_SubType, TAB_INFO_INPUT_SubType, "Certification Mark");
+        sleep(1000);
+        checkText(Countries.NETHERLAND_ANTILES.getValue());
+        checkText("Basic Filing");
+        checkText("Certification Mark");
         rootLogger.info("Test passed");
     }
     @Test  //todo
     public void createProject_O_addFamilyProject() {
+        projectTabFamily.click();
+        TAB_FAMILY_NEW.click();
+        waitForModalWindow(TILE_MW_PROJECT);
+        rootLogger.info("select project type");
+        selectItemInDropdown(MW_Project_SelectType, MW_Project_InputType, CaseType.TRADEMARK.getValue());
+        rootLogger.info("select defining");
+        selectItemInDropdown(MW_Project_SelectDefining, MW_Project_InputDefining, Countries.PITCAIRN_ISLANDS.getValue());
+        rootLogger.info("fill title");
+        fillField(MW_Project_Title, "FAMILY-"+testProjectTitle);
+        rootLogger.info("submit");
+        submitEnabledButton(MW_ProjectFinishButton);
+        MW.shouldNot(exist);
+        sleep(1000);
+
+        open(defaultProjectURL);
+        projectTabFamily.click();
+        checkText("FAMILY-"+testProjectTitle);
         rootLogger.info("Test passed");
     }
+
     @Test  //todo
-    public void createProject_P_addConversation() {
+    public void createProject_P_addTeamConversation() {
+        rootLogger.info("Create thered in private zone");
+        CONVERSATION_BTN_Team.shouldBe(visible);
+        checkText(CONVERSATION_PLACEHOLDER_IN_TEAM_TAB);
+        CONVERSATION_BTN_Client.click();
+        checkText(CONVERSATION_PLACEHOLDER_IN_CLIENT_TAB);
+        CONVERSATION_BTN_Team.click();
+        CONVERSATION_BTN_New.click();
+        waitForModalWindow(TITLE_MW_CONVERSATION);
+        fillField(MW_CONVERSATION_INPUT_Subject, "TEAM_THREAD IN PRIVATE ZONE");
+        MW_BTN_CREATE.click();
+        MW.shouldNotBe(visible);
+        checkText("TEAM_THREAD IN PRIVATE ZONE");
+        CONVERSATION_LABEL_ACTIVE_TAB.shouldHave(text(CONVERSATION_TEAM_TAB_NAME));
+        CONVERSATION_INPUT_TEXT_COLLAPSED.click();
+        fillField(CONVERSATION_TEXT_EDITOR, "new message");
+        CONVERSATION_BTN_POST.click();
+        checkText("new message");
+
+        rootLogger.info("Delete message");
+        CONVERSATION_MsgDelete.click();
+        submitConfirmAction();
+        checkTextNotPresent("new message");
+
         rootLogger.info("Test passed");
     }
+
+    @Test  //todo
+    public void createProject_P_addExternalConversation() {
+
+
+        rootLogger.info("Test passed");
+    }
+
     @Test  //todo
     public void createProject_S_cloneProject() {
+        String currentURL = url();
+        scrollUp();
+        PROJECT_BTN_CLONE.click();
+        submitConfirmAction();
+        String newURL = url();
+        Assert.assertNotEquals(currentURL, newURL);
+        rootLogger.info("Test passed");
+        projectTabFamily.click();
+        checkText(testProjectTitle);
+    }
+
+    @Test  //todo
+    public void createProject_W_search() {
+        String testEventType = TrademarkEvents.CASE_SUSPENDED.getValue();
+        String testSearchFileName = "FILE-"+randomString(10);
+        String testSearchFolderName = "FOLDER-"+randomString(10);
+        String testSearchTaskName = "TASK-"+randomString(10);
+        String testSearchChargesType = CHARGES_TYPE_ASSOCIATE;
+
+
+        rootLogger.info("Create Event");
+        createEvent(testEventType);
+        rootLogger.info("Create Doc");
+        createFileInRoot(MW_DeployDoc_01TemplateWord, testSearchFileName);
+        rootLogger.info("Create Folder");
+        createFolderInRoot(testSearchFolderName);
+        rootLogger.info("Create Task");
+        createTask(testSearchTaskName);
+        rootLogger.info("Create Charge");
+        createCharge(testSearchChargesType, EUR, "5000");
+
+        projectTabSearch.click();
+        checkText(PLACEHOLDER_NO_DATA);
+        
+        rootLogger.info("Search: "+testEventType);
+        fillField(TAB_SEARCH_INPUT, testEventType);
+        TAB_SEARCH_BTN.click();
+        checkText(testEventType);
+
+        rootLogger.info("Search: "+testSearchFileName);
+        fillField(TAB_SEARCH_INPUT, testSearchFileName);
+        TAB_SEARCH_BTN.click();
+        checkText(testSearchFileName);
+
+        rootLogger.info("Search: "+testSearchFolderName);
+        fillField(TAB_SEARCH_INPUT, testSearchFolderName);
+        TAB_SEARCH_BTN.click();
+        checkText(testSearchFolderName);
+
+        rootLogger.info("Search: "+testSearchTaskName);
+        fillField(TAB_SEARCH_INPUT, testSearchTaskName);
+        TAB_SEARCH_BTN.click();
+        checkText(testSearchTaskName);
+
+        rootLogger.info("Search: "+testSearchChargesType);
+        fillField(TAB_SEARCH_INPUT, testSearchChargesType);
+        TAB_SEARCH_BTN.click();
+        checkText(testSearchChargesType);
+
+        rootLogger.info("Search: clear text");
+        fillField(TAB_SEARCH_INPUT, "");
+        TAB_SEARCH_BTN.click();
+        checkText(PLACEHOLDER_NO_DATA);
+
         rootLogger.info("Test passed");
     }
+
+    @Ignore
     @Test  //todo
     public void createCommunityCase() {
+        TAB_INFO_COMMUNITY_TITLE.shouldHave(text("Services from the Pekama IP Community"));
+        TAB_INFO_COMMUNITY_BTN_START_NEW.click();
+
+
+
+
+
+
+
         rootLogger.info("Test passed");
     }
 

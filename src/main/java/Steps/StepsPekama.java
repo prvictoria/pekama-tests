@@ -14,6 +14,8 @@ import static Page.PekamaReports.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Steps.StepsHttpAuth.*;
+import static Utils.Utils.getCurrentDate;
+import static Utils.Utils.getDate;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
@@ -180,6 +182,7 @@ public class StepsPekama implements StepsFactory{
         submitConfirmAction();
         //       $(byText(thisMailingListName)).shouldNotBe(Condition.visible);
     }
+
     public static void validationFieldByName(int randomLength, String fieldName, String submitButton, String errorMsg) {
         rootLogger.info("Validation field test for - "+fieldName);
         $(byName(fieldName)).clear();
@@ -261,7 +264,7 @@ public class StepsPekama implements StepsFactory{
         return true;
     }
     public static boolean checkText(String textString) {
-        $(byText(textString)).waitUntil(visible, 10000);
+        $(byText(textString)).waitUntil(visible, 15000);
         $$(byText(textString)).filter(visible).shouldHaveSize(1);
         return true;
     }
@@ -302,7 +305,28 @@ public class StepsPekama implements StepsFactory{
         $(byXpath(row)).click();
         rootLogger.info(args+" - row opened");
     }
+    public static void createProject(String projectType, String projectDefining, String projectName) {
+        waitForModalWindow(TILE_MW_PROJECT);
+        rootLogger.info("Select project type, actual: "+projectType);
+        selectItemInDropdown(MW_Project_SelectType, MW_Project_InputType, projectType);
+        rootLogger.info("Select defining, actual: "+projectDefining);
+        selectItemInDropdown(MW_Project_SelectDefining, MW_Project_InputDefining, projectDefining);
+        rootLogger.info("Fill title");
+        fillField(MW_Project_Title, projectName);
+        submitEnabledButton(MW_ProjectFinishButton);
+        MW.shouldNot(exist);
+        sleep(1000);
+        checkText(projectName);
+        rootLogger.info("Created project: "+projectName);
+    }
+    //in root
+    public static void createFileInRoot(SelenideElement fileType, String fileName) {
+        projectTabDocs.click();
+        TAB_DOCS_BTN_ADD.click();
+        TAB_DOC_NEW_DOCUMENT.shouldBe(Condition.visible).click();
+        deployFileTemplate(fileType, fileName);
 
+    }
     public static void deployFileTemplate(SelenideElement fileType, String fileName) {
         waitForModalWindow(TITLE_MW_ADD_DOCUMENT);
         MW_DEPLOY_DOC_BTN_CREATE.shouldBe(disabled);
@@ -322,9 +346,54 @@ public class StepsPekama implements StepsFactory{
         $(byText(folderName)).shouldBe(Condition.visible);
         rootLogger.info(folderName+" - Folder present");
     }
-    public static void createTask(String folderName) {
-
+    public static void createFolderInRoot(String folderName) {
+        TAB_DOCS_BTN_ADD.click();
+        rootLogger.info("Add folder");
+        TAB_DOC_ADD_FOLDER.shouldBe(Condition.visible).click();
+        createFolder(folderName);
         rootLogger.info(folderName+" - Folder present");
+    }
+    public static void createTask(String taskName) {
+        projectTabTasks.click();
+        TAB_TASKS_ADD.click();
+        TAB_TASKS_NEW_TASK.shouldBe(visible).click();
+        waitForModalWindow(TITLE_MW_NEW_TASK);
+        MW_BTN_OK.shouldBe(disabled);
+        fillField(MW_DeployTask_Title, taskName);
+        submitEnabledButton(MW_BTN_OK);
+        MW.shouldNotBe(visible);
+        $$(byText(taskName)).shouldHaveSize(1);
+        rootLogger.info(taskName+" - Task created");
+    }
+    public static void createEvent(String eventTypeName) {
+        scrollUp();
+        rootLogger.info("Deploy new event");
+        projectButtonPlus.shouldBe(visible).click();
+        projectPlusNewEvent.shouldBe(visible).click();
+        waitForModalWindow(TITLE_MW_EVENT);
+        MW_BTN_SAVE.shouldBe(disabled);
+        MW_INPUT_DATE.click();
+        MW_INPUT_DATE.pressEscape();
+        fillField(MW_EVENT_INPUT_INFO, LOREM_IPSUM_SHORT);
+        selectItemInDropdown(MW_EVENT_SELECT_TYPE, MW_EVENT_INPUT_TYPE, eventTypeName);
+        submitEnabledButton(MW_BTN_SAVE);
+        MW.shouldNotBe(visible);
+        $$(byText(eventTypeName)).filter(visible).shouldHaveSize(1);
+        rootLogger.info(eventTypeName+" - Event created");
+    }
+    public static void createCharge(String chargeType, String currency, String price) {
+        projectTabFin.click();
+        TAB_CHARGES_ADD.click();
+        rootLogger.info("Create charge");
+        waitForModalWindow(TITLE_MW_CHARGE);
+        selectItemInDropdown(MW_CHARGES_SELECT_TYPE, MW_CHARGES_INPUT_TYPE, chargeType);
+        selectItemInDropdown(MW_CHARGES_SELECT_CURRENCY, MW_CHARGES_INPUT_CURRENCY, currency);
+        fillField(MW_CHARGES_INPUT_PRICE, price);
+        submitEnabledButton(MW_BTN_OK);
+        MW.shouldNot(visible);
+        checkTextNotPresent(placeholderEmptyList);
+        checkText(CHARGES_TYPE_ASSOCIATE);
+        checkText(getDate(0));
     }
 
     public static void selectOption(SelenideElement optionSelector,String optionName) {

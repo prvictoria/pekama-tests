@@ -61,64 +61,69 @@ public class PekamaProject extends Page {
     public static final SelenideElement projectTabSearch = $(byXpath("//i[@class='icon pkm-icon-search-square']"));
     public static final SelenideElement projectTabNoContentPlaceholder = $(byXpath("//div[@class='project-content-body ng-scope']//div[starts-with(@class, 'alert alert-empty')]"));
 
-    public static final SelenideElement projectTabMore_ = $(byXpath(""));
-    public static final SelenideElement projectTabMore_ProjectTitle = $(byXpath("//pkm-editable-title//h4"));
-    public static final SelenideElement projectTabMore_TitleEditButton = $(byXpath("//*[@class='info-section project-details ng-scope']//button[contains(.,'Edit')]"));
-    public static final SelenideElement projectTabMore_TitleInput = $(byXpath("//input[@name='title']"));
-    public static final SelenideElement projectTabMore_TitleSave = $(byXpath("//button[contains(.,'Save')]"));
-    public static final SelenideElement projectTabMore_TitleCancel = $(byXpath("//button[contains(.,'Cancel')]"));
-    public static final SelenideElement projectTabMore_Notes = $(byXpath(""));
-    public static final SelenideElement projectTabMore_Statuses = $(byXpath(""));
-    public static final SelenideElement projectTabMore_StatusesSearchButton = $("css=button.info-status-seach-btn");
-    public static final SelenideElement projectTabMore_StatusesSearchInupt = $(byId("searchStatusInput"));
-    public static final SelenideElement projectTabMore_Statuses1Status = $(byXpath("//ul//*[@id]/span"));
-    public static final SelenideElement projectTabMore_Statuses2Status = $(byXpath("//ul//*[@id][2]/span"));
 
-    public static final SelenideElement projectTabMore_NumberNoNumbers = $(byXpath("//pkm-reference-numbers/div[2]/div/div[2]"));
-    public static final SelenideElement projectTabMore_NumberNoClasses = $(byXpath("//pkm-classes/div[2]/div/div[2]"));
+    public static final SelenideElement TAB_INFO_ProjectTitle = $(byXpath("//pkm-editable-title//h4"));
+    public static final SelenideElement TAB_INFO_TitleEditButton = $(byXpath("//*[@class='info-section project-details ng-scope']//button[contains(.,'Edit')]"));
+    public static final SelenideElement TAB_INFO_TitleInput = $(byXpath("//input[@name='title']"));
+    public static final SelenideElement TAB_INFO_TitleSave = $(byXpath("//button[contains(.,'Save')]"));
+    public static final SelenideElement TAB_INFO_TitleCancel = $(byXpath("//button[contains(.,'Cancel')]"));
 
-    public static final SelenideElement projectTabMore_NumberAdd = $(byXpath("//button[contains(.,'Add')]"));
-    public static final SelenideElement projectTabMore_NumberRow01Type = $(byXpath("//li[@class='like-tr ng-scope']/div/div[1]"));
-    public static final SelenideElement projectTabMore_NumberRow01Number = $(byXpath("//li[@class='like-tr ng-scope']/div/div/span"));
-    public static final SelenideElement projectTabMore_NumberRow01Edit = $(byXpath("//pkm-reference-numbers/ul/li[1]//i[@class='icon pkm-icon-edit']"));
-    public static final SelenideElement projectTabMore_NumberRow01Delete = $(byXpath("//pkm-reference-numbers/ul/li[1]//i[@class='pkm-icon-cancel icon']"));
-    public static final SelenideElement projectTabMore_NumberRow01Collapse = $(byXpath("//pkm-reference-numbers/ul/li[1]//i[@class='icon pkm-icon-up-open']"));
-    public static final SelenideElement projectTabMore_NumberRow02Number = $(byXpath(""));
-    public static final SelenideElement projectTabMore_NumberRow02Edit = $(byXpath(""));
-    public static final SelenideElement projectTabMore_NumberRow02Type = $(byXpath(""));
+    public static final String TAB_INFO_VALUES= "//*[@class='details-list clearfix']";
+    public static final SelenideElement TAB_INFO_PROJECT_TYPE = $(byXpath(TAB_INFO_VALUES+"//strong[contains(.,'Project type')]/following-sibling::span"));
+    public static final SelenideElement TAB_INFO_SELECT_Defining = $(byXpath(TAB_INFO_VALUES+"//strong[text()='Country']/following-sibling::pkm-values-dropdown"));
+    public static final SelenideElement TAB_INFO_INPUT_Defining = $(byXpath(TAB_INFO_VALUES+"//strong[text()='Country']/following-sibling::pkm-values-dropdown//input[@type='search']"));
+    public static final SelenideElement TAB_INFO_SELECT_Type = $(byXpath(TAB_INFO_VALUES+"//strong[text()='Type']/following-sibling::pkm-values-dropdown"));
+    public static final SelenideElement TAB_INFO_INPUT_Type = $(byXpath(TAB_INFO_VALUES+"//strong[text()='Type']/following-sibling::pkm-values-dropdown//input[@type='search']"));
+    public static final SelenideElement TAB_INFO_SELECT_SubType = $(byXpath(TAB_INFO_VALUES+"//strong[text()='Sub Type ']/following-sibling::pkm-values-dropdown"));
+    public static final SelenideElement TAB_INFO_INPUT_SubType = $(byXpath(TAB_INFO_VALUES+"//strong[text()='Sub Type ']/following-sibling::pkm-values-dropdown//input[@type='search']"));
+
+
+    public static final SelenideElement TAB_INFO_Notes = $(byXpath(""));
+    public static final SelenideElement TAB_INFO_Statuses = $(byXpath(""));
+    public static final SelenideElement TAB_INFO_StatusesSearchButton = $("css=button.info-status-seach-btn");
+    public static final SelenideElement TAB_INFO_StatusesSearchInupt = $(byId("searchStatusInput"));
+    public static final SelenideElement TAB_INFO_Statuses1Status = $(byXpath("//ul//*[@id]/span"));
+    public static final SelenideElement TAB_INFO_Statuses2Status = $(byXpath("//ul//*[@id][2]/span"));
+
+
+    public static final SelenideElement TAB_INFO_NumberAdd = $(byXpath("//button[contains(.,'Add')]"));
+    public static final SelenideElement TAB_INFO_NumberRow01Type = $(byXpath("//li[@class='like-tr ng-scope']/div/div[1]"));
+    public static final SelenideElement TAB_INFO_NumberRow01Number = $(byXpath("//li[@class='like-tr ng-scope']/div/div/span"));
+    public static final SelenideElement TAB_INFO_NumberRow01Edit = $(byXpath("//pkm-reference-numbers/ul/li[1]//i[@class='icon pkm-icon-edit']"));
+    public static final SelenideElement TAB_INFO_NumberRow01Delete = $(byXpath("//pkm-reference-numbers/ul/li[1]//i[@class='pkm-icon-cancel icon']"));
+    public static final SelenideElement TAB_INFO_NumberRow01Collapse = $(byXpath("//pkm-reference-numbers/ul/li[1]//i[@class='icon pkm-icon-up-open']"));
+    public static final SelenideElement TAB_INFO_NumberRow02Number = $(byXpath(""));
+    public static final SelenideElement TAB_INFO_NumberRow02Edit = $(byXpath(""));
+    public static final SelenideElement TAB_INFO_NumberRow02Type = $(byXpath(""));
 
 //todo param string and method
-    public static final SelenideElement projectTabMore_NumberEdit = $(byXpath("//*[@class='more-item numbers ng-scope']//ul/li[contains(.,'122')]//a[@class='edit ng-scope']"));
-    public static final SelenideElement projectTabMore_NumberDelete = $(byXpath("//*[@class='more-item numbers ng-scope']//ul/li[contains(.,'122')]//i[@class='pkm-icon-cancel icon']"));
+    public static final SelenideElement TAB_INFO_NumberEdit = $(byXpath("//*[@class='more-item numbers ng-scope']//ul/li[contains(.,'122')]//a[@class='edit ng-scope']"));
+    public static final SelenideElement TAB_INFO_NumberDelete = $(byXpath("//*[@class='more-item numbers ng-scope']//ul/li[contains(.,'122')]//i[@class='pkm-icon-cancel icon']"));
 
-    public static final SelenideElement projectTabMore_NumberNewSelect = $(byXpath("//div[@name='reference_type']/div/span/span[1]"));
-    public static final SelenideElement projectTabMore_NumberNewField = $(byXpath("//div[@name='reference_type']/input[1]"));
-    public static final SelenideElement projectTabMore_NumberReferenceField = $(byXpath("//input[@name='reference_number']"));
-    public static final SelenideElement projectTabMore_Number_EDIT_REFERENCE_TYPE_SELECT = $(byXpath("//*[@class='subrow collapsable ng-scope']//pkm-values-dropdown//span[starts-with(@class, 'btn btn-default form-control ui-select-toggle')]"));
-    public static final SelenideElement projectTabMore_Number_EDIT_REFERENCE_TYPE_INPUT = $(byXpath("//*[@class='subrow collapsable ng-scope']//pkm-values-dropdown//input[@type='search']"));
-    public static final SelenideElement projectTabMore_Number_EDIT_REFERENCE_VALUE_INPUT = $(byXpath("//*[@class='subrow collapsable ng-scope']//div[@class='form-group ng-scope']/input"));
-    public static final SelenideElement projectTabMore_Number_EDIT_REFERENCE_BTN_SAVE = $(byXpath("//*[@class='subrow collapsable ng-scope']//button"));
+    public static final SelenideElement TAB_INFO_NumberNewSelect = $(byXpath("//div[@name='reference_type']/div/span/span[1]"));
+    public static final SelenideElement TAB_INFO_NumberNewField = $(byXpath("//div[@name='reference_type']/input[1]"));
+    public static final SelenideElement TAB_INFO_NumberReferenceField = $(byXpath("//input[@name='reference_number']"));
+    public static final SelenideElement TAB_INFO_Number_EDIT_REFERENCE_TYPE_SELECT = $(byXpath("//*[@class='subrow collapsable ng-scope']//pkm-values-dropdown//span[starts-with(@class, 'btn btn-default form-control ui-select-toggle')]"));
+    public static final SelenideElement TAB_INFO_Number_EDIT_REFERENCE_TYPE_INPUT = $(byXpath("//*[@class='subrow collapsable ng-scope']//pkm-values-dropdown//input[@type='search']"));
+    public static final SelenideElement TAB_INFO_Number_EDIT_REFERENCE_VALUE_INPUT = $(byXpath("//*[@class='subrow collapsable ng-scope']//div[@class='form-group ng-scope']/input"));
+    public static final SelenideElement TAB_INFO_Number_EDIT_REFERENCE_BTN_SAVE = $(byXpath("//*[@class='subrow collapsable ng-scope']//button"));
 
 
-    public static final String projectTabMore_Classes = "//*[@class='more-item classes ng-scope']";
-    public static final SelenideElement projectTabMore_ClassesAdd = $(byXpath(projectTabMore_Classes+"//button[contains(.,'Add')]"));
-    public static final SelenideElement projectTabMore_ClassRow01Number = $(byXpath("//tbody/tr/td[1]"));
-    public static final SelenideElement projectTabMore_ClassRow01Type = $(byXpath("//tbody/tr/td[2]"));
-    public static final SelenideElement projectTabMore_ClassRow01Description = $(byXpath("//tbody/tr/td[3]"));
-    public static final SelenideElement projectTabMore_ClassRow01Edit = $(byXpath("//tbody/tr/td[4]/a[@class='edit ng-scope']"));
-    public static final SelenideElement projectTabMore_ClassRow01delete = $(byXpath(projectTabMore_Classes+"//table//tr[1]//*[@class='pkm-icon-cancel icon']"));
+    public static final String TAB_INFO_Classes = "//*[@class='more-item classes ng-scope']";
+    public static final SelenideElement TAB_INFO_ClassesAdd = $(byXpath(TAB_INFO_Classes +"//button[contains(.,'Add')]"));
+    public static final SelenideElement TAB_INFO_ClassRow01Number = $(byXpath("//tbody/tr/td[1]"));
+    public static final SelenideElement TAB_INFO_ClassRow01Type = $(byXpath("//tbody/tr/td[2]"));
+    public static final SelenideElement TAB_INFO_ClassRow01Description = $(byXpath("//tbody/tr/td[3]"));
+    public static final SelenideElement TAB_INFO_ClassRow01Edit = $(byXpath("//tbody/tr/td[4]/a[@class='edit ng-scope']"));
+    public static final SelenideElement TAB_INFO_ClassRow01delete = $(byXpath(TAB_INFO_Classes +"//table//tr[1]//*[@class='pkm-icon-cancel icon']"));
 
-    public static final SelenideElement projectTabMore_ProejctType = $(byXpath("//section[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div[2]/div/div/div/div[2]/div[2]/form/div/pkm-values-dropdown/div/div/span/span[2]/span"));
-    public static final SelenideElement projectTabMore_SelectDefining = $(byXpath("//section[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div[2]/div/div/div/div[2]/div[2]/form/div/pkm-values-dropdown/div/div/span/span[2]/span"));
-    public static final SelenideElement projectTabMore_SelectType = $(byXpath("//section[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div[2]/div/div/div/div[2]/div[2]/form/div[2]/pkm-values-dropdown/div/div/span/span"));
-    public static final SelenideElement projectTabMore_SelectSubType = $(byXpath("//section[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div[2]/div/div/div/div[2]/div[2]/form/div[3]/pkm-values-dropdown/div/div/span/span"));
-
-    public static final SelenideElement projectTabMore_Community = $(byXpath("//pkm-community-projects"));
-    public static final SelenideElement projectTabMore_CommunityModule = $(byXpath("//pkm-community-projects//h4"));
-    public static final SelenideElement projectTabMore_CommunityBtnNewCase = $(byXpath("link=+ START NEW"));
-    public static final SelenideElement projectTabMore_CommunityCasesList = $(byXpath("//pkm-community-projects//div[@class='request-quote-list']/div"));
-    public static final SelenideElement projectTabMore_CommunityCaseDefining = $(byXpath("//div[@class='patent']/span"));
-    public static final SelenideElement projectTabMore_CommunityCaseStatus = $(byXpath("//div[@class='status']//span"));
+    //COMMUNITY
+    public static final SelenideElement TAB_INFO_COMMUNITY = $(byXpath("//pkm-community-projects"));
+    public static final SelenideElement TAB_INFO_COMMUNITY_TITLE = $(byXpath("//pkm-community-projects//h4"));
+    public static final SelenideElement TAB_INFO_COMMUNITY_BTN_START_NEW = $(byXpath("link=+ START NEW"));
+    public static final SelenideElement TAB_INFO_COMMUNITY_CASES_LIST = $(byXpath("//pkm-community-projects//div[@class='request-quote-list']/div"));
+    public static final SelenideElement TAB_INFO_COMMUNITY_CASE_DEFINING = $(byXpath("//div[@class='patent']/span"));
+    public static final SelenideElement TAB_INFO_COMMUNITY_CASE_SATUS = $(byXpath("//div[@class='status']//span"));
 
 
     //todo - TAB contacts
@@ -250,5 +255,12 @@ public class PekamaProject extends Page {
     public static final SelenideElement TAB_CHARGES01AllZone = $(byXpath("//div[@class='items-list with-caret ng-scope finances']/div[1]//div[@class='organizations-list ng-isolate-scope']//span"));
     public static final SelenideElement TAB_CHARGES01OneTeamZone = $(byXpath(".//*[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div[2]/div/div/ui-view/div[3]/div/div/ng-include/div[2]/ul/li/a"));
 
+        //TAB FAMILY
+    public static final SelenideElement TAB_FAMILY = $(byXpath(""));
+    public static final SelenideElement TAB_FAMILY_NEW = $(byXpath(CONTROLS_ROW+"//button[contains(.,'New')]"));
 
+    //TAB SEARCH
+    public static final SelenideElement TAB_SEARCH = $(byXpath(""));
+    public static final SelenideElement TAB_SEARCH_INPUT = $(byXpath("//*[@id='typeahead-container']/input"));
+    public static final SelenideElement TAB_SEARCH_BTN = $(byXpath("//*[@class='media-right submit-box']/button"));
 }

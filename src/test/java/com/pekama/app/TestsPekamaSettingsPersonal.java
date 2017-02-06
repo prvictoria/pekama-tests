@@ -498,7 +498,7 @@ public class TestsPekamaSettingsPersonal {
         SIGNATURE_TAB_TEXT_EDITOR.shouldHave(Condition.text(LOREM_IPSUM_LONG));
     }
     @Ignore
-    @Test //todo - detecd delete button
+    @Test //todo - detect delete button
     public void tabIMAP_A() {
         IMAP_TAB_TITLE.click();
         sleep(2000);
@@ -525,7 +525,7 @@ public class TestsPekamaSettingsPersonal {
 
     }
     @Ignore
-    @Test //todo - detecd delete button
+    @Test //todo - detect delete button
     public void tabIMAP_B() {
         IMAP_TAB_TITLE.click();
         rootLogger.info("Check Defaults");
