@@ -258,6 +258,8 @@ public class PekamaProject extends Page {
         //TAB FAMILY
     public static final SelenideElement TAB_FAMILY = $(byXpath(""));
     public static final SelenideElement TAB_FAMILY_NEW = $(byXpath(CONTROLS_ROW+"//button[contains(.,'New')]"));
+    public static final SelenideElement TAB_FAMILY_1ST_ROW_TITLE = $(byXpath("//ul[@class='items']/li[1]//h4"));
+
 
     //TAB SEARCH
     public static final SelenideElement TAB_SEARCH = $(byXpath(""));

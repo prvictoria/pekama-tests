@@ -621,7 +621,9 @@ public class TestsPekamaProject {
     public void createProject_N_selectValues() {
         TAB_INFO_PROJECT_TYPE.shouldHave(text(CaseType.TRADEMARK.getValue()));
         selectItemInDropdown(TAB_INFO_SELECT_Defining, TAB_INFO_INPUT_Defining, Countries.NETHERLAND_ANTILES.getValue());
+        sleep(500);
         selectItemInDropdown(TAB_INFO_SELECT_Type, TAB_INFO_INPUT_Type, "Basic Filing");
+        sleep(500);
         selectItemInDropdown(TAB_INFO_SELECT_SubType, TAB_INFO_INPUT_SubType, "Certification Mark");
         sleep(1000);
         checkText(Countries.NETHERLAND_ANTILES.getValue());
@@ -636,18 +638,19 @@ public class TestsPekamaProject {
         waitForModalWindow(TILE_MW_PROJECT);
         rootLogger.info("select project type");
         selectItemInDropdown(MW_Project_SelectType, MW_Project_InputType, CaseType.TRADEMARK.getValue());
-        rootLogger.info("select defining");
-        selectItemInDropdown(MW_Project_SelectDefining, MW_Project_InputDefining, Countries.PITCAIRN_ISLANDS.getValue());
         rootLogger.info("fill title");
         fillField(MW_Project_Title, "FAMILY-"+testProjectTitle);
         rootLogger.info("submit");
         submitEnabledButton(MW_ProjectFinishButton);
         MW.shouldNot(exist);
-        sleep(1000);
-
-        open(defaultProjectURL);
-        projectTabFamily.click();
+        sleep(2000);
+        checkText(Countries.USA.getValue());
         checkText("FAMILY-"+testProjectTitle);
+
+        projectTabFamily.click();
+        String familyText = testProjectTitle.toUpperCase();
+        TAB_FAMILY_1ST_ROW_TITLE.should(matchText(familyText));
+       // checkText(result);
         rootLogger.info("Test passed");
     }
 

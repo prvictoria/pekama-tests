@@ -131,6 +131,8 @@ public class TestsCredentials {
         TRADEMARK_MADRID_PROTOCOL("International Application (Madrid Protocol)"),
         TRADEMARK_CMT("European Union (CTM)"),
         TRADEMARK_CONSUMER_TRADEMARK("Consumer Trademark Defining"),
+        USA("United States"),
+
         GENERIC("");
 
         private String value;
