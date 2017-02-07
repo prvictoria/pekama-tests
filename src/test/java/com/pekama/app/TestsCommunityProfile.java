@@ -110,6 +110,7 @@ public class TestsCommunityProfile {
         MW.waitUntil(not(visible), 15000);
         $(byText(NEW_MEMBER+" (inactive)")).shouldBe(Condition.visible);
         log.info("New Memeber is displayed");
+
     }
     @Ignore
     @Test

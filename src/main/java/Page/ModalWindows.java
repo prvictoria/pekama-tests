@@ -65,8 +65,9 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_checkoutCardDate = $(byXpath(""));
     public static final SelenideElement MW_checkoutCardCVV = $(byXpath(""));
     public static final SelenideElement MW_checkoutSubmit = $(byXpath(""));
-
-// 2 step verifcation
+    //MW Members
+    public static final SelenideElement MW_MEMBERS_EMAIL = $(byXpath(mw+"//input[@name='email']"));
+    // 2 step verifcation
     public static final SelenideElement MW_EnableVerificationTitle = $(byXpath("//h3"));
     public static final SelenideElement MW_EnableVerificationClose = $(byXpath("//button[@type='button'][contains(.,'Close')]"));
     public static final SelenideElement MW_EnableVerificationNext = $(byXpath("//button[@type='submit'][contains(.,'Next')]"));

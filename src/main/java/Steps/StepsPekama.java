@@ -11,6 +11,7 @@ import static Page.ModalWindows.*;
 import static Page.PekamaLogin.*;
 import static Page.PekamaProject.*;
 import static Page.PekamaReports.*;
+import static Page.PekamaTeamSettings.BTN_DELETE_MEMBER;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Steps.StepsHttpAuth.*;
@@ -290,6 +291,7 @@ public class StepsPekama implements StepsFactory{
         $$(byText(textString)).filter(visible).shouldHaveSize(0);
         return true;
     }
+
     public static void selectTeam(String... args) {
         String searchedRadio = String.format(MW_SHARE_PROJECT_SELECT_TEAM, args);
         $(byXpath(searchedRadio)).shouldBe(visible);
@@ -411,6 +413,22 @@ public class StepsPekama implements StepsFactory{
     public static void selectOption(SelenideElement optionSelector,String optionName) {
         optionSelector.selectOption(new String[]{optionName});
     }
+    public static boolean checkMember(String email) {
+        String row = String.format(BTN_DELETE_MEMBER, email);
+        $(byXpath(row)).shouldBe(visible);
+        rootLogger.info(email+" - member is the Team");
+        return true;
+    }
+    public static void deleteMember(String email) {
+        String row = String.format(BTN_DELETE_MEMBER, email);
+        $(byXpath(row)).shouldBe(visible);
+        $(byXpath(row)).click();
+        submitConfirmAction();
+        $(byXpath(row)).shouldNotBe(visible);
+        rootLogger.info(email+" - member was deleted");
+    }
+
+
 
     @Test
     public void fileMenuMakeAction (){

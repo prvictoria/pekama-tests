@@ -25,6 +25,14 @@ public class Emails extends Page {
     public static final String EMAIL_CONFIRM_REGISTRATION_TEXT = "To finish registration, please confirm your account.";
     public static final String EMAIL_CONFIRM_REGISTRATION_BTN = "Confirm Account";
     public static final SelenideElement EMAIL_CONFIRM_REGISTRATION_BACKLINK = $(byXpath("//td/a[contains(@href, '"+SELECT_HOST+"/accounts/confirm/')]"));
+    
+    //Invite in TEAM
+    public static final SelenideElement EMAIL_INVITE_IN_TEAM = $(byXpath(""));
+    public static final SelenideElement EMAIL_INVITE_IN_TEAM_SUBJECT = $(byXpath("//span[contains(.,'invited you to join')]"));
+    public static final String EMAIL_INVITE_IN_TEAM_TITLE = "You're invited to";
+    public static final String EMAIL_INVITE_IN_TEAM_TEXT = " has sent you an invitation to join";
+    public static final String EMAIL_INVITE_IN_TEAM_BTN = "Join";
+    public static final SelenideElement EMAIL_INVITE_IN_TEAM_BACKLINK = $(byXpath("//td/a[contains(@href, '"+SELECT_HOST+"/accounts/invitation/')]"));
 
     //Email Invite in Community
     public static final SelenideElement EMAIL_INVITE_IN_COMMUNITY = $(byXpath(""));
