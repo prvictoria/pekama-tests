@@ -7,7 +7,11 @@ import org.junit.runners.Suite;
         TestsPekamaLanding.class,
         TestsPekamaLogin.class,
         TestsPekamaResetPassword.class,
-        Page.PekamaSignUp.class
+        Page.PekamaSignUp.class,
+        TestsPekamaSettingsPersonal.class,
+        TestsPekamaProject.class,
+        TestsPekamaIntegrationBox.class,
+        TestsPekamaSettingsTeam.class
 })
 public class AllPekamaTestsRunner {
 }
