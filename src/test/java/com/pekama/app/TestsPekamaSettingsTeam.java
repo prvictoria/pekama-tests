@@ -125,6 +125,7 @@ public class TestsPekamaSettingsTeam {
         if (actualBackLink == null) {Assert.fail("Redirect Link not found");}
         rootLogger.info("Test passed");
     }
+
     @Ignore //todo
     @Test
     public void values_testA_GUI() {

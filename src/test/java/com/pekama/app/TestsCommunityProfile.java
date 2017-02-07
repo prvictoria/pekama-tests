@@ -2,6 +2,7 @@ package com.pekama.app;
 import Page.TestsCredentials;
 import Steps.StepsPekama;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Configuration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
@@ -9,14 +10,16 @@ import org.junit.runners.MethodSorters;
 
 import static Page.CommunityDashboard.*;
 import static Page.CommunityProfile.*;
+import static Page.CommunityWizard.*;
 import static Page.ModalWindows.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.TestsUrl.*;
 import static Steps.StepsCommunity.*;
+import static Steps.StepsHttpAuth.httpAuthUrl;
 import static Steps.StepsPekama.*;
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.url;
 import static org.junit.Assert.assertEquals;
@@ -32,21 +35,21 @@ public class TestsCommunityProfile {
 
     @Before
     public void openUrlLogin() {
-//        Configuration test = new Configuration();
-//        test.holdBrowserOpen = true;
+        Configuration test = new Configuration();
+        test.holdBrowserOpen = true;
         log.info("Open host");
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(PEKAMA_USER_EMAIL, PEKAMA_USER_PASSWORD, URL_COMMUNITY_LOGIN);
         log.info("Redirect back after login");
         COMMUNITY_TAB_Profile.shouldBe(Condition.visible).shouldHave(Condition.text("my profile")).click();
     }
-    @After
-    public void openUrlLogout() {
-        open(URL_COMMUNITY_LOGOUT);
-    }
+//    @After
+//    public void openUrlLogout() {
+//        open(URL_COMMUNITY_LOGOUT);
+//    }
 
     @Test
-    public void checkGui() {
+    public void team_checkGui() {
         PROFILE_TEAM_NAME.shouldBe(visible).shouldHave(text(TEAM));
         PROFILE_BTN_SAVE_DESCRIPTION.shouldBe(disabled);
         PROFILE_BTN_ADD.shouldBe(disabled);
@@ -60,6 +63,15 @@ public class TestsCommunityProfile {
     @Test
     public void UploadDeleteAvatar() {
         log.info("");
+    }
+    @Test
+    public void boostScrores() {
+        log.info("Check redirect to wizard");
+        PROFILE_BTN_BOOST_YOUR_SCORE.click();
+        waitForModalWindow(TITLE_MW_BOOST_YOUR_PROFILE);
+        MW_BOOST_YOUR_PROFILE_BTN_START_NEW_CASE.click();
+        WIZARD_BTN_GetStarted.shouldBe(visible).shouldBe(Condition.disabled);
+        log.info("Test passed");
     }
     @Test
     public void editTeamName() {
@@ -93,14 +105,17 @@ public class TestsCommunityProfile {
         PROFILE_INPUT_DESCRIPTION.sendKeys(LOREM_IPSUM_SHORT);
         PROFILE_BTN_SAVE_DESCRIPTION.shouldNot(disabled).click();
         PROFILE_INPUT_DESCRIPTION.shouldHave(Condition.value(LOREM_IPSUM_SHORT));
-        log.info("firm's expertise saved with dummy text");
+        log.info("Saved firm's expertise with dummy text");
     }
-    @Ignore//todo delete members
+
     @Test
     public void testA_addMember() {
-        PROFILE_BTN_SAVE_DESCRIPTION.shouldBe(visible).click();
-        MW.shouldBe(visible);
-        $(byText("Members")).shouldNotBe(Condition.visible);
+        log.info("Check members QTY");
+        String qty = "1";
+        String actualMemberQty = qty+" Members";
+        PROFILE_MEMBERS_COUNT.shouldHave(text(actualMemberQty));
+        PROFILE_BTN_INVITE.shouldBe(visible).click();
+        waitForModalWindow("Members");
         MW_BTN_SUBMIT.click();
         $(byText(ERROR_MSG_BLANK_FIELD)).shouldBe(Condition.visible);
         log.info("Validation for empty EMAIL field present");
@@ -108,19 +123,17 @@ public class TestsCommunityProfile {
         log.info("Add memeber");
         MW_BTN_SUBMIT.click();
         MW.waitUntil(not(visible), 15000);
+
+        qty = "2";
+        actualMemberQty = qty+" Members";
+        PROFILE_MEMBERS_COUNT.shouldHave(text(actualMemberQty));
         $(byText(NEW_MEMBER+" (inactive)")).shouldBe(Condition.visible);
         log.info("New Memeber is displayed");
 
-    }
-    @Ignore
-    @Test
-    public void testB_deleteMember() {
-        log.info("Check QTY and redirect to Pekama");
-        PROFILE_MEMBERS_COUNT.shouldBe(visible).click();
-        String redirectedUrl = url();
-       // assertEquals(urlTSMembers, redirectedUrl);
-        $(byText(NEW_MEMBER+" (inactive)")).shouldBe(Condition.visible);
         log.info("Delete member");
+        httpAuthUrl(URL_Members);
+        deleteMember(NEW_MEMBER);
+
     }
 
     @Test
