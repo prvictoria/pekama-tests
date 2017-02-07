@@ -12,6 +12,7 @@ import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.TestsUrl.*;
 import static Steps.StepsExternal.authGmail;
+import static Steps.StepsPekama.fillField;
 import static Steps.StepsPekama.submitConfirmAction;
 import static Steps.StepsPekama.submitEnabledButton;
 import static com.codeborne.selenide.Condition.visible;
@@ -21,23 +22,19 @@ import static Page.PekamaPersonalSettings.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaSettingsPersonal {
     static final Logger rootLogger = LogManager.getRootLogger();
-    private String PEKAMA_USER_EMAIL = User3.GMAIL_EMAIL.getValue();
-    private String PEKAMA_USER_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
+    private String testUserEmail = User3.GMAIL_EMAIL.getValue();
+    private String testUserPekamaPassword = User3.PEKAMA_PASSWORD.getValue();
+    private String testUserGmailPassword = User3.GMAIL_PASSWORD.getValue();
     private String AUTH_URL = URL_PersonalSettings;
 
-    //    @Before
-//    public void setUp() throws Exception {
-//        selenium = new DefaultSelenium("localhost", 4444, "*chrome", "https://staging.pekama.com/");
-//        selenium.start();
-//    }
     @BeforeClass
-    public static void beforeClass() {
-
-    }
+    public static void beforeClass() { }
     @Before
     public void before() {
+//        Configuration test = new Configuration();
+//        test.holdBrowserOpen = true;
         StepsPekama loginIntoPekama = new StepsPekama();
-        loginIntoPekama.loginByURL(PEKAMA_USER_EMAIL, PEKAMA_USER_PASSWORD, AUTH_URL);
+        loginIntoPekama.loginByURL(testUserEmail, testUserPekamaPassword, AUTH_URL);
     }
     @After
     public void after() {
@@ -497,8 +494,8 @@ public class TestsPekamaSettingsPersonal {
         SIGNATURE_TAB_TITLE.click();
         SIGNATURE_TAB_TEXT_EDITOR.shouldHave(Condition.text(LOREM_IPSUM_LONG));
     }
-    @Ignore
-    @Test //todo - detect delete button
+
+    @Test
     public void tabIMAP_A() {
         IMAP_TAB_TITLE.click();
         sleep(2000);
@@ -519,45 +516,56 @@ public class TestsPekamaSettingsPersonal {
         IMAP_TAB_FIELD_USENAME.shouldBe(Condition.visible);
         IMAP_TAB_BTN_CHECK.shouldBe(Condition.visible);
         IMAP_TAB_SSL.shouldBe(Condition.visible);
-        rootLogger.info("Connect Gmail via Auth2");
 
+        rootLogger.info("Connect email manual");
+        fillField(IMAP_TAB_FIELD_USENAME, testUserEmail);
+        fillField(IMAP_TAB_FIELD_PASSWORD, testUserGmailPassword);
+        fillField(IMAP_TAB_FIELD_SERVER_NAME, "imap.gmail.com");
+        fillField(IMAP_TAB_FIELD_PORT, "993");
+        IMAP_TAB_SSL.click();
+        submitEnabledButton(IMAP_TAB_BTN_SAVE_AND_CHECK);
+        IMAP_TAB_BTN_DELETE.waitUntil(visible, 30000);
 
-
+        rootLogger.info("Delete connected account");
+        submitEnabledButton(IMAP_TAB_BTN_DELETE);
+        submitConfirmAction();
+        sleep(500);
+        IMAP_TAB_BTN_DELETE.shouldNotBe(visible);
     }
-    @Ignore
-    @Test //todo - detect delete button
+
+    @Test
     public void tabIMAP_B() {
         IMAP_TAB_TITLE.click();
         rootLogger.info("Check Defaults");
-        if (IMAP_TAB_BTN_DELETE.isDisplayed())
-        {
-            rootLogger.info("Delete tetected account");
-            IMAP_TAB_BTN_DELETE.click();
-            submitConfirmAction();
-            sleep(500);
-        }
-        if (IMAP_TAB_FIELD_USENAME.isDisplayed()){
-        IMAP_TAB_FIELD_USENAME.shouldBe(Condition.visible);
-        IMAP_TAB_FIELD_PASSWORD.shouldBe(Condition.visible);
-        IMAP_TAB_FIELD_SERVER_NAME.shouldBe(Condition.visible);
-        IMAP_TAB_FIELD_PORT.shouldBe(Condition.visible);
-        IMAP_TAB_BTN_CONNECT_GMAIL.shouldBe(Condition.visible);
-        IMAP_TAB_BTN_SAVE_AND_CHECK.shouldBe(Condition.visible);
-        IMAP_TAB_FIELD_USENAME.shouldBe(Condition.visible);
-        IMAP_TAB_BTN_CHECK.shouldBe(Condition.visible);
-        IMAP_TAB_SSL.shouldBe(Condition.visible);
-        rootLogger.info("Connect email manual");
-        IMAP_TAB_BTN_CONNECT_GMAIL.click();
-        authGmail(User3.GMAIL_EMAIL.getValue());
-        $(IMAP_TAB_BTN_DELETE).shouldNotBe(visible);
-        rootLogger.info("Delete added account");
             if (IMAP_TAB_BTN_DELETE.isDisplayed())
             {
+                rootLogger.info("Delete detected account");
                 IMAP_TAB_BTN_DELETE.click();
                 submitConfirmAction();
                 sleep(500);
             }
-            else Assert.fail("Connect not connected");
+            if (IMAP_TAB_FIELD_USENAME.isDisplayed()){
+            IMAP_TAB_FIELD_USENAME.shouldBe(Condition.visible);
+            IMAP_TAB_FIELD_PASSWORD.shouldBe(Condition.visible);
+            IMAP_TAB_FIELD_SERVER_NAME.shouldBe(Condition.visible);
+            IMAP_TAB_FIELD_PORT.shouldBe(Condition.visible);
+            IMAP_TAB_BTN_CONNECT_GMAIL.shouldBe(Condition.visible);
+            IMAP_TAB_BTN_SAVE_AND_CHECK.shouldBe(Condition.visible);
+            IMAP_TAB_FIELD_USENAME.shouldBe(Condition.visible);
+            IMAP_TAB_BTN_CHECK.shouldBe(Condition.visible);
+            IMAP_TAB_SSL.shouldBe(Condition.visible);
+
+            rootLogger.info("Connect Gmail via Auth2");
+            IMAP_TAB_BTN_CONNECT_GMAIL.click();
+            authGmail(User3.GMAIL_EMAIL.getValue());
+            switchTo().window("Pekama | Projects");
+
+            rootLogger.info("Delete connected account");
+            submitEnabledButton(IMAP_TAB_BTN_DELETE);
+            submitConfirmAction();
+            sleep(500);
+            IMAP_TAB_BTN_DELETE.shouldNotBe(visible);
+
         }
 
     }

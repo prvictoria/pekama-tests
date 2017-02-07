@@ -260,8 +260,11 @@ public class StepsExternal implements StepsFactory{
         logging.info("Submit password");
         GMAIL_SIGNIN_BTN.shouldBe(visible).click();
         logging.info("Inbox opened");
-        $(byXpath("//*[@id='submit_approve_access']")).shouldBe(visible).click();
-        $(byXpath("//*[@id='submit_approve_access']")).shouldNotBe(visible);
+        $(byXpath("//*[@id='submit_approve_access']")).shouldBe(visible);
+        $(byXpath("//*[@id='submit_approve_access']")).shouldBe(enabled).click();
+        sleep(1000);
+        $(byXpath("//*[@id='submit_approve_access']")).waitUntil(not(visible), 15000);
+        sleep(3000);
 //        close();
 //        switchTo().window(0);
 

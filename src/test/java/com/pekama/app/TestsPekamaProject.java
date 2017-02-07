@@ -35,8 +35,8 @@ public class TestsPekamaProject {
     private static String defaultProjectURL;
     @Before
     public void before() {
-        Configuration test = new Configuration();
-        test.holdBrowserOpen = true;
+//        Configuration test = new Configuration();
+//        test.holdBrowserOpen = true;
         rootLogger.info("Open host");
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(User2.GMAIL_EMAIL.getValue(), User2.PEKAMA_PASSWORD.getValue(), URL_LogIn);
