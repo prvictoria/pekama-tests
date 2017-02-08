@@ -22,8 +22,6 @@ public class CommunityWizard extends Page {
     public static final SelenideElement PROFILE_BTN_BOOST_YOUR_PROFILE = $(byXpath("//button[contains(.,'Boost Your Profile')]"));
 
 
-    public static final SelenideElement WIZARD_BTN_YES = $(byXpath("//button[@class='btn btn-lg btn-purple'][contains(.,'Next')]"));
-    public static final SelenideElement WIZARD_BTN_SKIP = $(byXpath("//button[@ class='btn btn-lg btn-warning'][contains(.,'skip')]"));
 
     public static final SelenideElement WIZARD_SELECT_CaseType = $(byXpath("//div[@class='panel-body']//div[@name='matterType']//span"));
     public static final SelenideElement WIZARD_INPUT_CaseType = $(byXpath("//div[@class='panel-body']//div[@name='matterType']//input"));
@@ -35,6 +33,11 @@ public class CommunityWizard extends Page {
     //2nd step
     public static String expertRowLabel = "//div[@profile='profile']//span[contains(.,'Member of %s')]";
     public static final SelenideElement zzz = $(byXpath(""));
+    //3rd step
+    public static final SelenideElement WIZARD_BTN_YES = $(byXpath("//button[@class='btn btn-lg btn-purple'][contains(.,'Next')]"));
+    public static final SelenideElement WIZARD_BTN_SKIP = $(byXpath("//button[@ class='btn btn-lg btn-warning'][contains(.,'skip')]"));
+    public static final SelenideElement WIZARD_FIELD = $(byXpath("//button[@ class='btn btn-lg btn-warning'][contains(.,'skip')]"));
+
     //4 step
     public static final SelenideElement BTN_SEND_INSTRUCTION = $(byXpath("//button[contains(text(),'Send Instructions')]"));
 

@@ -14,9 +14,11 @@ import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.TestsUrl.*;
 import static Steps.StepsCommunity.*;
+import static Steps.StepsCommunity.checkCaseNameFirstRow;
 import static Steps.StepsExternal.*;
 import static Steps.StepsPekama.*;
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
 
@@ -31,11 +33,11 @@ public class TestsCommunityWizard {
         loginIntoPekama.loginByURL(User2.GMAIL_EMAIL.getValue(), User2.PEKAMA_PASSWORD.getValue(), URL_COMMUNITY_LOGIN);
         rootLogger.info("Redirect back after login");
     }
-    @After
-    public void after() {
-        open(URL_COMMUNITY_LOGOUT);
-        rootLogger.info("Open URL - "+URL_COMMUNITY_LOGOUT);
-    }
+//    @After
+//    public void after() {
+//        open(URL_COMMUNITY_LOGOUT);
+//        rootLogger.info("Open URL - "+URL_COMMUNITY_LOGOUT);
+//    }
 
     @Test
     public void boostYourProfileToWizardRedirect() {
@@ -187,21 +189,56 @@ public class TestsCommunityWizard {
         selectExpert(expertTeam);
         submitEnabledButton(WIZARD_BTN_REQUEST_INSTRUCTIONS);
 
-        rootLogger.info("3 select NO");
+        rootLogger.info("3rd select SKIP");
         WIZARD_BTN_SKIP.click();
-        sleep(2000);
+        sleep(3000);
         BTN_SEND_INSTRUCTION.shouldBe(visible);
+
         rootLogger.info("Check Draft");
         COMMUNITY_TAB_Outgoing.click();
+        sleep(3000);
         checkCaseNameFirstRow(caseType, caseCountry);
         checkCaseStatus(caseType, caseCountry, 1, status);
         rootLogger.info(ROW_CONTROL_LABEL_STATUS);
         rootLogger.info("Check Return back");
-
+        String row = getFirstCaseRow(caseType, caseCountry);
+        $(byXpath(row)).click();
+        BTN_SEND_INSTRUCTION.shouldBe(visible).shouldBe(enabled);
         rootLogger.info("Test passed");
     }
     @Test
-    public void createDraftCaseWithDetailes(){
+    public void createDraftCaseWithCustomName(){
+        rootLogger.info("1st Search");
+        String expertTeam = User1.TEAM_NAME.getValue();
+        String caseType = CaseType.PATENT.getValue();
+        String caseCountry = Countries.PITCAIRN_ISLANDS.getValue();
+        String status = COMMUNITY_STATUS_Draft;
+        searchExpertsQuery(caseType, caseCountry);
+        searchExpertsSubmit();
+
+        rootLogger.info("2nd select expert");
+        WIZARD_BTN_REQUEST_INSTRUCTIONS.shouldBe(disabled);
+        selectExpert(expertTeam);
+        submitEnabledButton(WIZARD_BTN_REQUEST_INSTRUCTIONS);
+
+        rootLogger.info("3rd select NEXT");
+        fillField();
+
+        WIZARD_BTN_NEXT.click();
+        sleep(3000);
+        BTN_SEND_INSTRUCTION.shouldBe(visible);
+        rootLogger.info("Test passed");
+
+        rootLogger.info("Check Draft");
+        COMMUNITY_TAB_Outgoing.click();
+        sleep(3000);
+        checkCaseNameFirstRow(caseType, caseCountry);
+        checkCaseStatus(caseType, caseCountry, 1, status);
+        rootLogger.info(ROW_CONTROL_LABEL_STATUS);
+        rootLogger.info("Check Return back");
+        String row = getFirstCaseRow(caseType, caseCountry);
+        $(byXpath(row)).click();
+        BTN_SEND_INSTRUCTION.shouldBe(visible).shouldBe(enabled);
         rootLogger.info("Test passed");
     }
 
@@ -213,7 +250,6 @@ public class TestsCommunityWizard {
     public void createCaseInstructWithDetails(){
         rootLogger.info("Test passed");
     }
-
     @Test
     public void returnBackFrom5thStep(){
         rootLogger.info("Test passed");
