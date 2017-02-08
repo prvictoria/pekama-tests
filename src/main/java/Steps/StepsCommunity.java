@@ -6,7 +6,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Test;
+import sun.util.logging.resources.logging;
 
+import static Page.CommunityOutgoing.*;
 import static Page.CommunityProfile.*;
 import static Page.CommunityWizard.*;
 
@@ -121,5 +123,56 @@ public class StepsCommunity implements StepsFactory{
         MW_COMMUNITY_RETURN_TO_WIZARD_TITLE.shouldNotBe(visible);
         rootLogger.info("MW closed");
     }
+    public static boolean checkIfExpertPresent(String teamName) {
+        String row = String.format(expertRowLabel, teamName);
+        $(byXpath(row)).shouldBe(visible);
+        rootLogger.info(teamName+" - expert present on page");
+        return true;
+    }
+    public static boolean selectExpert(String teamName) {
+        String row = String.format(expertRowLabel, teamName);
+        $(byXpath(row)).shouldBe(visible).click();
+        rootLogger.info(teamName+" - expert selected");
+        return true;
+    }
+    //draft rows
+    public static boolean checkCaseNameFirstRow(String caseType, String caseCountry) {
+        String caseName = caseType+" in "+caseCountry;
+        rootLogger.info(caseName);
+        String row = String.format(caseRowNameFirst, caseName);
+        $(byXpath(row)).shouldBe(visible).shouldHave(text(caseType));
+        rootLogger.info(caseName+" - row with this case name displayed");
+        return true;
+    }
+    public static String getCountedCaseRow(String caseType, String caseCountry, int rowCount) {
+        String count = Integer.toString (rowCount) ;
+        String caseName = caseType+" in "+caseCountry;
+        rootLogger.info(caseName);
+        String row = String.format(caseRowByCount, count, caseName);
+        $(byXpath(row)).shouldBe(visible);
+        rootLogger.info(caseName+" - row with this case name displayed");
+        return row;
+    }
+    public static String getFirstCaseRow(String caseType, String caseCountry) {
+        String count = "1" ;
+        String caseName = caseType+" in "+caseCountry;
+        rootLogger.info(caseName);
+        String row = String.format(caseRowByCount, count, caseName);
+        $(byXpath(row)).shouldBe(visible);
+        rootLogger.info(caseName+" - row with this case name displayed");
+        return row;
+    }
+    public static boolean checkCaseStatus(String caseType, String caseCountry, int rowCount, String status) {
+        String count = Integer.toString (rowCount) ;
+        String caseName = caseType+" in "+caseCountry;
+        rootLogger.info(caseName);
+        String row = String.format(caseRowByCount, count, caseName);
+        $(byXpath(row)).shouldBe(visible);
+        caseRow = row;
+        $(byXpath(ROW_CONTROL_LABEL_STATUS)).shouldHave(text(status));
+        rootLogger.info(caseName+" - row with this case name displayed");
+        return true;
+    }
+
 
 }

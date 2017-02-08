@@ -13,5 +13,5 @@ import org.junit.runners.Suite;
         TestsPekamaIntegrationBox.class,
         TestsPekamaSettingsTeam.class
 })
-public class AllPekamaTestsRunner {
+public class AllPekamaTestsRunner extends AllTestsRunner{
 }

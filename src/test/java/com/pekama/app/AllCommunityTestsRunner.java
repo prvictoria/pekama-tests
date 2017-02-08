@@ -6,8 +6,8 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
         TestsCommunityDashboard.class,
         TestsCommynityLanding.class,
-        TestsComunityWizard.class,
+        TestsCommunityWizard.class,
         TestsCommunityProfile.class
 })
-public class AllCommunityTestsRunner {
+public class AllCommunityTestsRunner extends AllTestsRunner{
 }

@@ -23,7 +23,7 @@ public class CommunityWizard extends Page {
 
 
     public static final SelenideElement WIZARD_BTN_YES = $(byXpath("//button[@class='btn btn-lg btn-purple'][contains(.,'Next')]"));
-    public static final SelenideElement WIZARD_BTN_NO = $(byXpath("//button[@ class='btn btn-lg btn-warning'][contains(.,'skip')]"));
+    public static final SelenideElement WIZARD_BTN_SKIP = $(byXpath("//button[@ class='btn btn-lg btn-warning'][contains(.,'skip')]"));
 
     public static final SelenideElement WIZARD_SELECT_CaseType = $(byXpath("//div[@class='panel-body']//div[@name='matterType']//span"));
     public static final SelenideElement WIZARD_INPUT_CaseType = $(byXpath("//div[@class='panel-body']//div[@name='matterType']//input"));

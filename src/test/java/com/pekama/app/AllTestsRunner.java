@@ -7,8 +7,9 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
         TestsCommunityDashboard.class,
         TestsCommynityLanding.class,
-        TestsComunityWizard.class,
+        TestsCommunityWizard.class,
         TestsCommunityProfile.class,
+        TestsCommunityOutgoing.class,
 
         TestsPekamaLanding.class,
         TestsPekamaLogin.class,

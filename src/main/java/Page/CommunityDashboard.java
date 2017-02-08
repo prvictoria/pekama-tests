@@ -45,13 +45,13 @@ public class CommunityDashboard extends Page {
     public static final SelenideElement COMMUNITY_LABEL_Collaborator = $(byXpath("//span[contains(text(),'Existing Relationship')]"));
     public static final SelenideElement COMMUNITY_LABEL_ = $(byXpath("//span[contains(text(),'')]"));
 
-    public static final SelenideElement COMMUNITY_STATUS_ = $(byXpath("//div[@class='status']//span"));
-    public static final SelenideElement COMMUNITY_STATUS_Draft = $(byXpath("draft"));
-    public static final SelenideElement COMMUNITY_STATUS_Sent = $(byXpath("sent"));
-    public static final SelenideElement COMMUNITY_STATUS_Received = $(byXpath("received"));
-    public static final SelenideElement COMMUNITY_STATUS_Confirmed = $(byXpath("confirmed"));
-    public static final SelenideElement COMMUNITY_STATUS_Completed = $(byXpath("completed"));
-    public static final SelenideElement COMMUNITY_STATUS_Cancelled = $(byXpath("withdrawn"));
+    public static final String COMMUNITY_STATUS_ = "";
+    public static final String COMMUNITY_STATUS_Draft = "draft";
+    public static final String COMMUNITY_STATUS_Sent = "sent";
+    public static final String COMMUNITY_STATUS_Received = "received";
+    public static final String COMMUNITY_STATUS_Confirmed = "confirmed";
+    public static final String COMMUNITY_STATUS_Completed = "completed";
+    public static final String COMMUNITY_STATUS_Cancelled = "withdrawn";
 
     public static final SelenideElement COMMUNITY_CaseList = $(byXpath("//div[@class='request-quote-list ng-scope']/div"));
     public static final SelenideElement COMMUNITY_CaseIconDraft = $(byXpath("//div/i"));

@@ -1,12 +1,12 @@
-package com.pekama.app;/**
- * Created by VatslauX on 04-Jan-17.
- */
+package com.pekama.app;
 import Steps.*;
 import com.codeborne.selenide.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
 
+import static Page.CommunityDashboard.*;
+import static Page.CommunityOutgoing.*;
 import static Page.CommunityWizard.*;
 import static Page.Emails.*;
 import static Page.ModalWindows.*;
@@ -20,7 +20,7 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
 
-public class TestsComunityWizard {
+public class TestsCommunityWizard {
     static final Logger rootLogger = LogManager.getRootLogger();
 
     @Before
@@ -49,7 +49,6 @@ public class TestsComunityWizard {
         MW_BOOST_YOUR_PROFILE_BTN_START_NEW_CASE.click();
         WIZARD_BTN_GetStarted.shouldBe(visible).shouldBe(Condition.disabled);
     }
-
     @Test
     public void boostYourProfileInviteTeam_withCustomText() {
         String caseType = CaseType.PATENT.getValue();
@@ -127,7 +126,6 @@ public class TestsComunityWizard {
         rootLogger.info("Email redirect link is - "+REDIRECT_LINK);
         rootLogger.info("Test passed");
     }
-
     @Test
     public void returnBackFrom3rdStep(){
         String expertTeam = User1.TEAM_NAME.getValue();
@@ -150,7 +148,6 @@ public class TestsComunityWizard {
         WIZARD_SELECT_Defining.shouldHave(text(country));
         rootLogger.info("Test passed");
     }
-
     @Test
     public void returnBackFrom4thStep(){
         rootLogger.info("1st Search");
@@ -166,7 +163,8 @@ public class TestsComunityWizard {
         submitEnabledButton(WIZARD_BTN_REQUEST_INSTRUCTIONS);
 
         rootLogger.info("3 select NO");
-        WIZARD_BTN_NO.click();
+        WIZARD_BTN_SKIP.click();
+        sleep(2000);
         BTN_SEND_INSTRUCTION.shouldBe(visible);
         rootLogger.info("Return to 1-st step");
         WIZARD_STEP1.click();
@@ -176,6 +174,30 @@ public class TestsComunityWizard {
     }
     @Test
     public void createDraftCaseSimpleWay(){
+        rootLogger.info("1st Search");
+        String expertTeam = User1.TEAM_NAME.getValue();
+        String caseType = CaseType.PATENT.getValue();
+        String caseCountry = Countries.PITCAIRN_ISLANDS.getValue();
+        String status = COMMUNITY_STATUS_Draft;
+        searchExpertsQuery(caseType, caseCountry);
+        searchExpertsSubmit();
+
+        rootLogger.info("2nd select expert");
+        WIZARD_BTN_REQUEST_INSTRUCTIONS.shouldBe(disabled);
+        selectExpert(expertTeam);
+        submitEnabledButton(WIZARD_BTN_REQUEST_INSTRUCTIONS);
+
+        rootLogger.info("3 select NO");
+        WIZARD_BTN_SKIP.click();
+        sleep(2000);
+        BTN_SEND_INSTRUCTION.shouldBe(visible);
+        rootLogger.info("Check Draft");
+        COMMUNITY_TAB_Outgoing.click();
+        checkCaseNameFirstRow(caseType, caseCountry);
+        checkCaseStatus(caseType, caseCountry, 1, status);
+        rootLogger.info(ROW_CONTROL_LABEL_STATUS);
+        rootLogger.info("Check Return back");
+
         rootLogger.info("Test passed");
     }
     @Test
@@ -188,7 +210,7 @@ public class TestsComunityWizard {
         rootLogger.info("Test passed");
     }
     @Test
-    public void createCaseInstructWithDetailes(){
+    public void createCaseInstructWithDetails(){
         rootLogger.info("Test passed");
     }
 

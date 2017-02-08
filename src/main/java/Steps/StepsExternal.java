@@ -311,18 +311,7 @@ public class StepsExternal implements StepsFactory{
 
 
     }
-    public static boolean checkIfExpertPresent(String teamName) {
-        String row = String.format(expertRowLabel, teamName);
-        $(byXpath(row)).shouldBe(visible);
-        logging.info(teamName+" - expert present on page");
-        return true;
-    }
-    public static boolean selectExpert(String teamName) {
-        String row = String.format(expertRowLabel, teamName);
-        $(byXpath(row)).shouldBe(visible).click();
-        logging.info(teamName+" - expert selected");
-        return true;
-    }
+
 
 
 }
