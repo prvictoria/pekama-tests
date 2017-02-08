@@ -9,6 +9,7 @@ import static Page.CommunityDashboard.*;
 import static Page.CommunityOutgoing.*;
 import static Page.CommunityWizard.*;
 import static Page.Emails.*;
+import static Page.Emails.EMAIL_SUBJECT;
 import static Page.ModalWindows.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
@@ -17,6 +18,7 @@ import static Steps.StepsCommunity.*;
 import static Steps.StepsCommunity.checkCaseNameFirstRow;
 import static Steps.StepsExternal.*;
 import static Steps.StepsPekama.*;
+import static Utils.Utils.randomString;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
@@ -24,13 +26,15 @@ import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
 
 public class TestsCommunityWizard {
     static final Logger rootLogger = LogManager.getRootLogger();
-
+    String testUserEmail = User2.GMAIL_EMAIL.getValue();
+    String testUserPassword = User2.PEKAMA_PASSWORD.getValue();
     @Before
     public void before() {
+
         holdBrowserAfterTest();
         rootLogger.info("Open host");
         StepsPekama loginIntoPekama = new StepsPekama();
-        loginIntoPekama.loginByURL(User2.GMAIL_EMAIL.getValue(), User2.PEKAMA_PASSWORD.getValue(), URL_COMMUNITY_LOGIN);
+        loginIntoPekama.loginByURL(testUserEmail, testUserPassword, URL_COMMUNITY_LOGIN);
         rootLogger.info("Redirect back after login");
     }
 //    @After
@@ -138,9 +142,9 @@ public class TestsCommunityWizard {
         searchExpertsSubmit();
 
         rootLogger.info("2nd select expert");
-        WIZARD_BTN_REQUEST_INSTRUCTIONS.shouldBe(disabled);
+        WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.shouldBe(disabled);
         selectExpert(expertTeam);
-        submitEnabledButton(WIZARD_BTN_REQUEST_INSTRUCTIONS);
+        submitEnabledButton(WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS);
 
         WIZARD_STEP2.click();
         checkIfExpertPresent(expertTeam);
@@ -160,9 +164,9 @@ public class TestsCommunityWizard {
         searchExpertsSubmit();
 
         rootLogger.info("2nd select expert");
-        WIZARD_BTN_REQUEST_INSTRUCTIONS.shouldBe(disabled);
+        WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.shouldBe(disabled);
         selectExpert(expertTeam);
-        submitEnabledButton(WIZARD_BTN_REQUEST_INSTRUCTIONS);
+        submitEnabledButton(WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS);
 
         rootLogger.info("3 select NO");
         WIZARD_BTN_SKIP.click();
@@ -185,9 +189,9 @@ public class TestsCommunityWizard {
         searchExpertsSubmit();
 
         rootLogger.info("2nd select expert");
-        WIZARD_BTN_REQUEST_INSTRUCTIONS.shouldBe(disabled);
+        WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.shouldBe(disabled);
         selectExpert(expertTeam);
-        submitEnabledButton(WIZARD_BTN_REQUEST_INSTRUCTIONS);
+        submitEnabledButton(WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS);
 
         rootLogger.info("3rd select SKIP");
         WIZARD_BTN_SKIP.click();
@@ -213,46 +217,116 @@ public class TestsCommunityWizard {
         String caseType = CaseType.PATENT.getValue();
         String caseCountry = Countries.PITCAIRN_ISLANDS.getValue();
         String status = COMMUNITY_STATUS_Draft;
+        String caseName = "CUSTOM_NAME"+randomString(10);
         searchExpertsQuery(caseType, caseCountry);
         searchExpertsSubmit();
 
         rootLogger.info("2nd select expert");
-        WIZARD_BTN_REQUEST_INSTRUCTIONS.shouldBe(disabled);
+        WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.shouldBe(disabled);
         selectExpert(expertTeam);
-        submitEnabledButton(WIZARD_BTN_REQUEST_INSTRUCTIONS);
+        submitEnabledButton(WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS);
 
         rootLogger.info("3rd select NEXT");
-        fillField();
+        WIZARD_FIELD_CASE_NAME.shouldHave(value(caseType+" in "+caseCountry));
+        fillField(WIZARD_FIELD_CASE_NAME, caseName);
 
         WIZARD_BTN_NEXT.click();
         sleep(3000);
         BTN_SEND_INSTRUCTION.shouldBe(visible);
-        rootLogger.info("Test passed");
 
         rootLogger.info("Check Draft");
         COMMUNITY_TAB_Outgoing.click();
         sleep(3000);
-        checkCaseNameFirstRow(caseType, caseCountry);
-        checkCaseStatus(caseType, caseCountry, 1, status);
+        checkCaseNameFirstRow(caseName);
+        checkCaseStatus(caseName, 1, status);
         rootLogger.info(ROW_CONTROL_LABEL_STATUS);
         rootLogger.info("Check Return back");
-        String row = getFirstCaseRow(caseType, caseCountry);
+        String row = getFirstCaseRow(caseName);
         $(byXpath(row)).click();
         BTN_SEND_INSTRUCTION.shouldBe(visible).shouldBe(enabled);
         rootLogger.info("Test passed");
     }
+    @Test
+    public void returnBackFrom5thStep(){
+        rootLogger.info("1st Search");
+        String expertTeam = User1.TEAM_NAME.getValue();
+        String caseType = CaseType.PATENT.getValue();
+        String caseCountry = Countries.PITCAIRN_ISLANDS.getValue();
+        String status = COMMUNITY_STATUS_Draft;
+        String caseName = "CUSTOM_NAME"+randomString(10);
+        searchExpertsQuery(caseType, caseCountry);
+        searchExpertsSubmit();
 
+        rootLogger.info("2nd select expert");
+        WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.shouldBe(disabled);
+        selectExpert(expertTeam);
+        submitEnabledButton(WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS);
+
+        rootLogger.info("3rd select NEXT");
+        WIZARD_FIELD_CASE_NAME.shouldHave(value(caseType+" in "+caseCountry));
+        fillField(WIZARD_FIELD_CASE_NAME, caseName);
+
+        WIZARD_BTN_NEXT.click();
+        sleep(3000);
+        BTN_SEND_INSTRUCTION.shouldBe(visible).click();
+        rootLogger.info("Back to 4th Step");
+        WIZARD_STEP4.click();
+        BTN_SEND_INSTRUCTION.shouldBe(visible).click();
+        rootLogger.info("Back to 1st step");
+        WIZARD_STEP1.click();
+        acceptReturnToFirstWizardStep();
+        WIZARD_BTN_GetStarted.shouldBe(visible).shouldBe(disabled);
+        rootLogger.info("Test passed");
+    }
+    @Ignore //no need
     @Test
     public void createCaseInstructSimpleWay(){
         rootLogger.info("Test passed");
     }
     @Test
-    public void createCaseInstructWithDetails(){
+    public void createCaseInstructWithDetails_A(){
+        rootLogger.info("1st Search");
+        String expertTeam = User1.TEAM_NAME.getValue();
+        String caseType = CaseType.PATENT.getValue();
+        String caseCountry = Countries.PITCAIRN_ISLANDS.getValue();
+        String status = COMMUNITY_STATUS_Sent;
+        String caseName = "CUSTOM_NAME"+randomString(10);
+        searchExpertsQuery(caseType, caseCountry);
+        searchExpertsSubmit();
+
+        rootLogger.info("2nd select expert");
+        WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.shouldBe(disabled);
+        selectExpert(expertTeam);
+        submitEnabledButton(WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS);
+
+        rootLogger.info("3rd select NEXT");
+        WIZARD_FIELD_CASE_NAME.shouldHave(value(caseType+" in "+caseCountry));
+        fillField(WIZARD_FIELD_CASE_NAME, caseName);
+
+        WIZARD_BTN_NEXT.click();
+        sleep(3000);
+        BTN_SEND_INSTRUCTION.shouldBe(visible).click();
+        WIZARD_BTN_INSTRUCT_NOW.shouldBe(visible).click();
+        waitForModalWindow("Congratulations!");
+        MW_CONGRATULATION_OK.click();
+        MW.shouldNotBe(visible);
+        sleep(2000);
+        checkCaseNameFirstRow(caseName);
+        checkCaseStatus(caseName, 1, status);
         rootLogger.info("Test passed");
     }
+
     @Test
-    public void returnBackFrom5thStep(){
-        rootLogger.info("Test passed");
+    public void createCaseInstructWithDetails_B_CheckEmail() {
+       checkInboxEmail(
+               testUserEmail,
+               GMAIL_PASSWORD,
+               EMAIL_CONGRATULATION_SUBJECT,
+               EMAIL_CONGRATULATION_TITLE,
+               EMAIL_CONGRATULATION_TEXT);
+
     }
+
+
 
 }

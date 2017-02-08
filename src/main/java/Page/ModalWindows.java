@@ -353,5 +353,6 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_CONFIRM_INVITE_ATTOTNEY_TEXT = $(byText("Notice that the default message doesn't have a name on the first line."));
     public static final SelenideElement MW_CONFIRM_INVITE_ATTOTNEY_DISMISS = $(byXpath(mw+"//button[contains(text(),'No, let me change the message')]"));
     public static final SelenideElement MW_CONFIRM_INVITE_ATTOTNEY_SUBMIT = $(byXpath(mw+"//button[contains(text(),'Yes, I'm sure')]"));
-
+    //MW Congratulations!
+    public static final SelenideElement MW_CONGRATULATION_OK = $(byXpath(mw+"//button"));
 }

@@ -144,6 +144,12 @@ public class StepsCommunity implements StepsFactory{
         rootLogger.info(caseName+" - row with this case name displayed");
         return true;
     }
+    public static boolean checkCaseNameFirstRow(String caseName) {
+        String row = String.format(caseRowNameFirst, caseName);
+        $(byXpath(row)).shouldBe(visible).shouldHave(text(caseName));
+        rootLogger.info(caseName+" - row with this case name displayed");
+        return true;
+    }
     public static String getCountedCaseRow(String caseType, String caseCountry, int rowCount) {
         String count = Integer.toString (rowCount) ;
         String caseName = caseType+" in "+caseCountry;
@@ -162,6 +168,15 @@ public class StepsCommunity implements StepsFactory{
         rootLogger.info(caseName+" - row with this case name displayed");
         return row;
     }
+    public static String getFirstCaseRow(String caseName) {
+        String count = "1" ;
+        rootLogger.debug(caseName);
+        String row = String.format(caseRowByCount, count, caseName);
+        $(byXpath(row)).shouldBe(visible);
+        rootLogger.info(caseName+" - row with this case name displayed");
+        return row;
+    }
+
     public static boolean checkCaseStatus(String caseType, String caseCountry, int rowCount, String status) {
         String count = Integer.toString (rowCount) ;
         String caseName = caseType+" in "+caseCountry;
@@ -184,9 +199,13 @@ public class StepsCommunity implements StepsFactory{
         $(byXpath(row)).shouldBe(visible);
         rootLogger.debug(ROW_CONTROL_LABEL_STATUS);
         SelenideElement statusLabel = $(byXpath(row+ROW_CONTROL_LABEL_STATUS));
-        rootLogger.info(statusLabel);
+        rootLogger.debug(statusLabel);
         statusLabel.shouldHave(text(status));
         rootLogger.info(caseName+" - row with this case name displayed");
+        return true;
+    }
+    public static boolean createCase() {
+
         return true;
     }
 

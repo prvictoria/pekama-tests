@@ -18,7 +18,10 @@ public class CommunityWizard extends Page {
 
     public static final SelenideElement WIZARD_BTN_GetStarted = $(byXpath("//button[contains(text(),'Get Started')]"));
     public static final SelenideElement WIZARD_BTN_NEXT = $(byXpath("//button[contains(text(),'Next')]"));
+    public static final SelenideElement WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS = $(byXpath("//button[contains(text(),'start new conversation') or contains(text(),'request introductions')]"));
     public static final SelenideElement WIZARD_BTN_REQUEST_INSTRUCTIONS = $(byXpath("//button[contains(text(),'request introductions')]"));
+    public static final SelenideElement WIZARD_BTN_REQUEST_INSTRUCTION_OR_START_CONVERSATION = $(byXpath("//button[contains(text(),'request introductions / start a conversation')]"));
+    public static final SelenideElement WIZARD_BTN_START_CONVERSATION = $(byXpath("//button[contains(text(),'start new conversation')]"));
     public static final SelenideElement PROFILE_BTN_BOOST_YOUR_PROFILE = $(byXpath("//button[contains(.,'Boost Your Profile')]"));
 
 
@@ -35,10 +38,11 @@ public class CommunityWizard extends Page {
     public static final SelenideElement zzz = $(byXpath(""));
     //3rd step
     public static final SelenideElement WIZARD_BTN_YES = $(byXpath("//button[@class='btn btn-lg btn-purple'][contains(.,'Next')]"));
-    public static final SelenideElement WIZARD_BTN_SKIP = $(byXpath("//button[@ class='btn btn-lg btn-warning'][contains(.,'skip')]"));
-    public static final SelenideElement WIZARD_FIELD = $(byXpath("//button[@ class='btn btn-lg btn-warning'][contains(.,'skip')]"));
+    public static final SelenideElement WIZARD_BTN_SKIP = $(byXpath("//button[@class='btn btn-lg btn-warning'][contains(.,'skip')]"));
+    public static final SelenideElement WIZARD_FIELD_CASE_NAME = $(byXpath("//input[@name='title']"));
 
     //4 step
     public static final SelenideElement BTN_SEND_INSTRUCTION = $(byXpath("//button[contains(text(),'Send Instructions')]"));
-
+    //5 step
+    public static final SelenideElement WIZARD_BTN_INSTRUCT_NOW = $(byXpath("//button[contains(text(),'Instruct Now!')]"));
 }

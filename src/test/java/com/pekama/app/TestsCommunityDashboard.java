@@ -100,7 +100,7 @@ public class TestsCommunityDashboard {
         assertEquals(searchQueryUrl, urlAfterLogin);
         rootLogger.info("User redirected back to Incoming");
 
-        WIZARD_BTN_REQUEST_INSTRUCTIONS.waitUntil(visible, 10000).shouldBe(disabled);
+        WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.waitUntil(visible, 10000).shouldBe(disabled);
         rootLogger.info("All elements in STEP 2 displayed for authorized user");
 
         COMMUNITY_HEADER_UserDropdown.click();

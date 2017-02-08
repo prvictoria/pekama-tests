@@ -70,6 +70,23 @@ public class StepsExternal implements StepsFactory{
         logging.info("Email deleted");
         return REDIRECT_LINK;
     }
+    public static String checkInboxEmail(String GMAIL_LOGIN, String GMAIL_PASSWORD, SelenideElement EMAIL_SUBJECT, String EMAIL_TITLE, String EMAIL_TEXT) {
+        logging.info("Login");
+        signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
+        detectEmail(EMAIL_SUBJECT);
+        logging.info("Open email");
+        openEmail(EMAIL_SUBJECT);
+        logging.info("Check title");
+        checkEmailTitle(EMAIL_TITLE);
+        logging.info("Check Text");
+        checkEmailText(EMAIL_TEXT);
+        logging.info("Delete email");
+        deleteEmail();
+        logging.info("Empty trash");
+        inboxEmptyTrash();
+        logging.info("Email deleted");
+        return REDIRECT_LINK;
+    }
     public static String checkInboxEmailReport(String GMAIL_LOGIN, String GMAIL_PASSWORD, SelenideElement EMAIL_SUBJECT, String EMAIL_TEXT, String thisMailingListName){
         logging.info("Login");
         signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
@@ -162,7 +179,7 @@ public class StepsExternal implements StepsFactory{
             Assert.fail("Title email is - " + EMAIL_TEXT);
         }
         $$(byText(EMAIL_TEXT)).filter(visible);
-        logging.info(EMAIL_TEXT + "- email present");
+        logging.info(EMAIL_TEXT + " - email present");
     }
     public static void checkEmailButton(String EMAIL_BTN){
         if (EMAIL_BTN == null) {
