@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static Page.CommunityWizard.expertRowLabel;
 import static Page.TestsCredentials.GMAIL_PASSWORD;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
@@ -149,8 +150,6 @@ public class StepsExternal implements StepsFactory{
         }
     }
 
-
-
     public static void checkEmailTitle(String EMAIL_TITLE){
         if (EMAIL_TITLE == null) {
             Assert.fail("Title email is - " + EMAIL_TITLE);
@@ -284,7 +283,6 @@ public class StepsExternal implements StepsFactory{
         SelenideElement a = emailSubject("new test project - ORL9GP");
         System.out.println(a);
     }
-
     public static String emailInviteInProjectTitle(String... args){
         String emailTitle = String.format(EMAIL_INVITE_IN_PROJECT_TITLE, args);
         return emailTitle;
@@ -294,7 +292,6 @@ public class StepsExternal implements StepsFactory{
         String a = emailInviteInProjectTitle("1", "2");
         System.out.println(a);
     }
-
     public static String emailInviteInProjectText(String... args){
         String emailText = String.format(EMAIL_INVITE_IN_PROJECT_TEXT, args);
         return emailText;
@@ -304,7 +301,6 @@ public class StepsExternal implements StepsFactory{
         String a = emailInviteInProjectText("name", "surname", "project title");
         System.out.println(a);
     }
-
     @Test
     public void externalTestDebug() {
             StepsExternal loginGmailInboxApp = new StepsExternal();
@@ -315,5 +311,18 @@ public class StepsExternal implements StepsFactory{
 
 
     }
+    public static boolean checkIfExpertPresent(String teamName) {
+        String row = String.format(expertRowLabel, teamName);
+        $(byXpath(row)).shouldBe(visible);
+        logging.info(teamName+" - expert present on page");
+        return true;
+    }
+    public static boolean selectExpert(String teamName) {
+        String row = String.format(expertRowLabel, teamName);
+        $(byXpath(row)).shouldBe(visible).click();
+        logging.info(teamName+" - expert selected");
+        return true;
+    }
+
 
 }

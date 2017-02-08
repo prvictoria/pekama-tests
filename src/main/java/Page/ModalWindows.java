@@ -336,7 +336,14 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_COMMUNITY_INVITE_FIELD_EMAIL = $(byXpath(mw+"//*[@id='attorneyEmail']"));
     public static final SelenideElement MW_COMMUNITY_INVITE_FIELD_MESSAGE = $(byXpath(mw+"//*[@id='inviteMessage']"));
 
-    //Default standard invitation
+    //Default standard confirmation
+    //MW return to 1st wizard step
+    public static final SelenideElement MW_COMMUNITY_BTN_YES = $(byXpath(mw+"//button[text()='Yes']"));
+    public static final SelenideElement MW_COMMUNITY_BTN_NO = $(byXpath(mw+"//button[text()='No']"));
+    public static final SelenideElement MW_COMMUNITY_RETURN_TO_WIZARD_TITLE = $(byText("Are you sure you want to initiate a new supplier request?"));
+    public static final SelenideElement MW_COMMUNITY_RETURN_TO_WIZARD_TEXT = $(byText("You can always access the draft of the current request from the \"Outgoing Cases\" tab."));
+
+    //MW Boost with standard text
     public static final SelenideElement MW_COMMUNITY_CONFIRM_TITLE = $(byText("Are you sure you want to leave the default invitation message unchaged?"));
     public static final SelenideElement MW_COMMUNITY_CONFIRM_TEXT = $(byText("Notice that the default message doesn't have a name on the first line."));
     public static final SelenideElement MW_COMMUNITY_CONFIRM_DISMISS = $(byXpath(mw+"//button[contains(text(),'No, let me change the message')]"));

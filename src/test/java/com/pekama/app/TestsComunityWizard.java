@@ -1,7 +1,6 @@
 package com.pekama.app;/**
  * Created by VatslauX on 04-Jan-17.
  */
-
 import Steps.*;
 import com.codeborne.selenide.*;
 import org.apache.logging.log4j.LogManager;
@@ -19,14 +18,14 @@ import static Steps.StepsExternal.*;
 import static Steps.StepsPekama.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
+import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
 
 public class TestsComunityWizard {
     static final Logger rootLogger = LogManager.getRootLogger();
 
     @Before
     public void before() {
-//        Configuration test = new Configuration();
-//        test.holdBrowserOpen = true;
+        holdBrowserAfterTest();
         rootLogger.info("Open host");
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(User2.GMAIL_EMAIL.getValue(), User2.PEKAMA_PASSWORD.getValue(), URL_COMMUNITY_LOGIN);
@@ -115,7 +114,7 @@ public class TestsComunityWizard {
         SelenideElement mwTitle = MW_CONFIRM_INVITE_ATTOTNEY_TITLE;
         SelenideElement mwText = MW_CONFIRM_INVITE_ATTOTNEY_TEXT;
         SelenideElement btnAccept = MW_COMMUNITY_CONFIRM_SUBMIT;
-        acceptModalConfirAction(mwTitle, mwText, btnAccept);
+        acceptModalConfirmAction(mwTitle, mwText, btnAccept);
 
         sleep(500);
         rootLogger.info("Check email = invitation email");
@@ -126,6 +125,76 @@ public class TestsComunityWizard {
         SelenideElement EMAIL_REDIRECT_LINK = EMAIL_INVITE_IN_COMMUNITY_BACKLINK;
         checkInboxEmail(User5.GMAIL_EMAIL.getValue(), GMAIL_PASSWORD, EMAIL_SUBJECT, EMAIL_TITLE, EMAIL_TEXT, EMAIL_BTN, EMAIL_REDIRECT_LINK);
         rootLogger.info("Email redirect link is - "+REDIRECT_LINK);
+        rootLogger.info("Test passed");
+    }
+
+    @Test
+    public void returnBackFrom3rdStep(){
+        String expertTeam = User1.TEAM_NAME.getValue();
+        rootLogger.info("1st Search");
+        String caseType = CaseType.PATENT.getValue();
+        String country = Countries.PITCAIRN_ISLANDS.getValue();
+        searchExpertsQuery(caseType, country);
+        searchExpertsSubmit();
+
+        rootLogger.info("2nd select expert");
+        WIZARD_BTN_REQUEST_INSTRUCTIONS.shouldBe(disabled);
+        selectExpert(expertTeam);
+        submitEnabledButton(WIZARD_BTN_REQUEST_INSTRUCTIONS);
+
+        WIZARD_STEP2.click();
+        checkIfExpertPresent(expertTeam);
+
+        WIZARD_STEP1.click();
+        WIZARD_SELECT_CaseType.shouldHave(text(caseType));
+        WIZARD_SELECT_Defining.shouldHave(text(country));
+        rootLogger.info("Test passed");
+    }
+
+    @Test
+    public void returnBackFrom4thStep(){
+        rootLogger.info("1st Search");
+        String expertTeam = User1.TEAM_NAME.getValue();
+        String caseType = CaseType.PATENT.getValue();
+        String country = Countries.PITCAIRN_ISLANDS.getValue();
+        searchExpertsQuery(caseType, country);
+        searchExpertsSubmit();
+
+        rootLogger.info("2nd select expert");
+        WIZARD_BTN_REQUEST_INSTRUCTIONS.shouldBe(disabled);
+        selectExpert(expertTeam);
+        submitEnabledButton(WIZARD_BTN_REQUEST_INSTRUCTIONS);
+
+        rootLogger.info("3 select NO");
+        WIZARD_BTN_NO.click();
+        BTN_SEND_INSTRUCTION.shouldBe(visible);
+        rootLogger.info("Return to 1-st step");
+        WIZARD_STEP1.click();
+        acceptReturnToFirstWizardStep();
+        WIZARD_BTN_GetStarted.shouldBe(visible).shouldBe(disabled);
+        rootLogger.info("Test passed");
+    }
+    @Test
+    public void createDraftCaseSimpleWay(){
+        rootLogger.info("Test passed");
+    }
+    @Test
+    public void createDraftCaseWithDetailes(){
+        rootLogger.info("Test passed");
+    }
+
+    @Test
+    public void createCaseInstructSimpleWay(){
+        rootLogger.info("Test passed");
+    }
+    @Test
+    public void createCaseInstructWithDetailes(){
+        rootLogger.info("Test passed");
+    }
+
+    @Test
+    public void returnBackFrom5thStep(){
+        rootLogger.info("Test passed");
     }
 
 }

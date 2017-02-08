@@ -47,7 +47,7 @@ public class TestsPekamaIntegrationBox {
     public void after() {
 
     }
-
+    @Ignore // TODO: 08-Feb-17
     @Test
     public void testA_PrepareProject() {
         String testProjectName = nameProjectBOX+Utils.randomString(5);
@@ -80,7 +80,7 @@ public class TestsPekamaIntegrationBox {
 
         pekamaProjectUrl = url();
     }
-
+    @Ignore // TODO: 08-Feb-17
     @Test
     public void testB_ConnectToBOX() {
         if (pekamaProjectUrl ==null){
@@ -117,7 +117,7 @@ public class TestsPekamaIntegrationBox {
 
         rootLogger.info("");
     }
-
+    @Ignore // TODO: 08-Feb-17
     @Test
     public void testC_AddFilesInProject() {
         rootLogger.info("Add files after connect");
@@ -132,6 +132,7 @@ public class TestsPekamaIntegrationBox {
 
         rootLogger.info("");
     }
+    @Ignore // TODO: 08-Feb-17
     @Test
     public void testD_checkSyncFromPekama() {
         rootLogger.info("Check created files and folders in BOX");
@@ -222,6 +223,7 @@ public class TestsPekamaIntegrationBox {
         String boxProjectFolderUrl = url();
 
     }
+    @Ignore // TODO: 08-Feb-17
     @Test
     public void testE_DeleteFilesAndCheckBOX() {
         rootLogger.info("Delete files and folders");
@@ -253,6 +255,7 @@ public class TestsPekamaIntegrationBox {
         boxNoFilesPlaceholder.shouldBe(Condition.visible);
         rootLogger.info("Files were deleted from BOX");
      }
+    @Ignore // TODO: 08-Feb-17
     @Test
     public void testF_DeleteProjectAndCheckBOX() {
         rootLogger.info("Delete files and folders");

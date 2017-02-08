@@ -98,18 +98,28 @@ public class StepsCommunity implements StepsFactory{
         rootLogger.info("Check that MW '"+mwTitle+"' is present");
         mwTitle.shouldBe(visible);
         mwText.shouldBe(visible);
-        rootLogger.info("Check dismiss modal window - "+mwTitle);
+        rootLogger.info("Dismiss modal window - "+mwTitle);
         btnDismiss.click();
         mwTitle.shouldNotBe(visible);
         rootLogger.info("MW '"+mwTitle+"' closed");
     }
-    public static void acceptModalConfirAction(SelenideElement mwTitle, SelenideElement mwText, SelenideElement btnAccept) {
+    public static void acceptModalConfirmAction(SelenideElement mwTitle, SelenideElement mwText, SelenideElement btnAccept) {
         rootLogger.info("Check that MW '"+mwTitle+"' is present");
         mwTitle.shouldBe(visible);
         mwText.shouldBe(visible);
-        rootLogger.info("Check confirm modal window - "+mwTitle);
+        rootLogger.info("Accept confirm modal window - "+mwTitle);
         btnAccept.click();
         mwTitle.shouldNotBe(visible);
-        rootLogger.info("MW '"+mwTitle+"' closed");
+        rootLogger.info("MW closed");
     }
+    public static void acceptReturnToFirstWizardStep() {
+        rootLogger.info("Check that MW '"+MW_COMMUNITY_RETURN_TO_WIZARD_TITLE+"' is present");
+        MW_COMMUNITY_RETURN_TO_WIZARD_TITLE.shouldBe(visible);
+        MW_COMMUNITY_RETURN_TO_WIZARD_TEXT.shouldBe(visible);
+        rootLogger.info("Accept confirm modal window - "+MW_COMMUNITY_RETURN_TO_WIZARD_TITLE);
+        MW_COMMUNITY_BTN_YES.click();
+        MW_COMMUNITY_RETURN_TO_WIZARD_TITLE.shouldNotBe(visible);
+        rootLogger.info("MW closed");
+    }
+
 }

@@ -1,4 +1,5 @@
 package com.pekama.app;
+import com.codeborne.selenide.Configuration;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -19,4 +20,12 @@ import org.junit.runners.Suite;
         TestsPekamaSettingsTeam.class
 })
 public class AllTestsRunner {
+    public static void holdBrowserAfterTest() {
+        Configuration test = new Configuration();
+        test.holdBrowserOpen = true;
+    }
+    public static void holdBrowserAfterTest(boolean value) {
+        Configuration test = new Configuration();
+        test.holdBrowserOpen = value;
+    }
 }
