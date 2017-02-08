@@ -15,7 +15,6 @@ public class Emails extends Page {
     public static final SelenideElement EMAIL_RESET_PASSWORD_SUBJECT = $(byXpath("//span[contains(.,'Password Restoration [Pekama]')]"));
     public static final SelenideElement EMAIL_RESET_PASSWORD_BACKLINK = $(byXpath("//td/a[contains(@href, '"+SELECT_HOST+"/accounts/password/reset/')]"));
 
-    //        SelenideElement thisEmailSubject = $(byXpath(buildSubject));
     public static String EMAIL_SUBJECT = "//span[contains(.,'%1$s')]";
 
     //Email confirm registration
@@ -54,7 +53,7 @@ public class Emails extends Page {
     public static String EMAIL_INVITE_IN_PROJECT_TEXT = "%s %s from created a project for %s and invites you to join in."; //User name, Surname, ProjectValues name
     public static final String EMAIL_INVITE_IN_PROJECT_BTN = "Join ProjectValues";
     public static final SelenideElement EMAIL_INVITE_IN_PROJECT_BACKLINK = $(byXpath("//td/a[contains(@href, '"+SELECT_HOST+"/n/legal/submatter/')]"));
-    //https://staging.pekama.com/n/legal/submatter/28318/?user=7557
+
 
     // Report email
     public static final String EMAIL_REPORT = "Pekama Report";
