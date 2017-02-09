@@ -57,6 +57,7 @@ public class StepsPekama implements StepsFactory{
         sleep(1000);
         btnLogin.shouldBe(Condition.not(visible));
         rootLogger.info("Valid Credentials were submitted");
+        sleep(2000);
     }
     public void  submitLoginCredentials(String PEKAMA_USER_EMAIL){
         submitCookie();

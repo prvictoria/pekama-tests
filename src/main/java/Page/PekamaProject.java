@@ -122,8 +122,10 @@ public class PekamaProject extends Page {
     public static final SelenideElement TAB_INFO_COMMUNITY_TITLE = $(byXpath("//pkm-community-projects//h4"));
     public static final SelenideElement TAB_INFO_COMMUNITY_BTN_START_NEW = $(byXpath("link=+ START NEW"));
     public static final SelenideElement TAB_INFO_COMMUNITY_CASES_LIST = $(byXpath("//pkm-community-projects//div[@class='request-quote-list']/div"));
-    public static final SelenideElement TAB_INFO_COMMUNITY_CASE_DEFINING = $(byXpath("//div[@class='patent']/span"));
-    public static final SelenideElement TAB_INFO_COMMUNITY_CASE_SATUS = $(byXpath("//div[@class='status']//span"));
+    public static final SelenideElement TAB_INFO_COMMUNITY_CASE_NAME = $(byXpath("//div[@class='name']"));
+    public static final SelenideElement TAB_INFO_COMMUNITY_CASE_TYPE = $(byXpath("//div[@class='patent']/span"));
+    public static final SelenideElement TAB_INFO_COMMUNITY_CASE_ACTION = $(byXpath("//div[@class='status']/button"));
+    public static final SelenideElement TAB_INFO_COMMUNITY_CASE_STATUS = $(byXpath("//div[@class='status']//span"));
 
 
     //todo - TAB contacts
@@ -232,18 +234,9 @@ public class PekamaProject extends Page {
     public static final SelenideElement TAB_TASKS_BTN_UPDATE_IMPORTANCE = $(byXpath("//button[@class='btn-link' and contains(.,'Update Importance')]"));
     public static final SelenideElement TAB_TASKS_BTN_UPDATE_ASSIGNOR = $(byXpath("//button[@class='btn-link' and contains(.,'Update Assignor')]"));
     public static final SelenideElement TAB_TASKS_BTN_UPDATE_ASSIGNEE = $(byXpath("//button[@class='btn-link' and contains(.,'Update Assignee')]"));
-    public static final SelenideElement projectTabTask_DatepickerCall = $(byXpath(""));
-    public static final SelenideElement projectTabTask_ButtonStatus = $(byXpath(""));
-    public static final SelenideElement projectTabTask_MenuStatus = $(byXpath("//pkm-task-change-status/div/div"));
-    public static final SelenideElement projectTabTask_NoTaskText = $(byXpath(""));
-    public static final SelenideElement projectTabTask_01TaskButtonStatus = $(byXpath("//pkm-task-change-status/div/div[2]/button"));
-    public static final SelenideElement projectTabTask_ListActive = $(byXpath("//div/div/div/div/div/button"));
-    public static final SelenideElement projectTabTask_ListAll = $(byXpath("//div/div/div/div/div[2]/button"));
-    public static final SelenideElement projectTabTask_ = $(byXpath(""));
 
 
     //TAB CHARGES
-
     public static SelenideElement TAB_CHARGES_ACTUAL_ORDER = $(byXpath(CONTROLS_ROW+"//a[contains(.,'"+TASKS_ORDER+"')]"));        //order value
 
     public static final SelenideElement TAB_CHARGES = $(byXpath(""));

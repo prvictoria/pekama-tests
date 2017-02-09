@@ -46,12 +46,14 @@ public class CommunityDashboard extends Page {
     public static final SelenideElement COMMUNITY_LABEL_ = $(byXpath("//span[contains(text(),'')]"));
 
     public static final String COMMUNITY_STATUS_ = "";
-    public static final String COMMUNITY_STATUS_Draft = "draft";
-    public static final String COMMUNITY_STATUS_Sent = "sent";
-    public static final String COMMUNITY_STATUS_Received = "received";
-    public static final String COMMUNITY_STATUS_Confirmed = "confirmed";
-    public static final String COMMUNITY_STATUS_Completed = "completed";
-    public static final String COMMUNITY_STATUS_Cancelled = "withdrawn";
+    public static final String COMMUNITY_STATUS_DRAFT = "draft";
+    public static final String COMMUNITY_STATUS_SENT = "sent";
+    public static final String COMMUNITY_STATUS_RECEIVED = "received";
+    public static final String COMMUNITY_STATUS_CONFIRMED = "confirmed";
+    public static final String COMMUNITY_STATUS_COMPLETED = "completed";
+    public static final String COMMUNITY_STATUS_WITHDRAWN = "withdrawn";
+    public static final String COMMUNITY_STATUS_INQUIRY = "inquiry";
+    public static final String COMMUNITY_STATUS_CANCELLED = "";
 
     public static final SelenideElement COMMUNITY_CaseList = $(byXpath("//div[@class='request-quote-list ng-scope']/div"));
     public static final SelenideElement COMMUNITY_CaseIconDraft = $(byXpath("//div/i"));

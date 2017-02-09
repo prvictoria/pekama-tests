@@ -4,12 +4,12 @@ import com.codeborne.selenide.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
+import org.junit.runners.MethodSorters;
 
 import static Page.CommunityDashboard.*;
 import static Page.CommunityOutgoing.*;
 import static Page.CommunityWizard.*;
 import static Page.Emails.*;
-import static Page.Emails.EMAIL_SUBJECT;
 import static Page.ModalWindows.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
@@ -24,24 +24,24 @@ import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsCommunityWizard {
     static final Logger rootLogger = LogManager.getRootLogger();
     String testUserEmail = User2.GMAIL_EMAIL.getValue();
     String testUserPassword = User2.PEKAMA_PASSWORD.getValue();
     @Before
     public void before() {
-
-        holdBrowserAfterTest();
+        holdBrowserAfterTest(false);
         rootLogger.info("Open host");
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(testUserEmail, testUserPassword, URL_COMMUNITY_LOGIN);
         rootLogger.info("Redirect back after login");
     }
-//    @After
-//    public void after() {
-//        open(URL_COMMUNITY_LOGOUT);
-//        rootLogger.info("Open URL - "+URL_COMMUNITY_LOGOUT);
-//    }
+    @After
+    public void after() {
+        open(URL_COMMUNITY_LOGOUT);
+        rootLogger.info("Open URL - "+URL_COMMUNITY_LOGOUT);
+    }
 
     @Test
     public void boostYourProfileToWizardRedirect() {
@@ -184,7 +184,7 @@ public class TestsCommunityWizard {
         String expertTeam = User1.TEAM_NAME.getValue();
         String caseType = CaseType.PATENT.getValue();
         String caseCountry = Countries.PITCAIRN_ISLANDS.getValue();
-        String status = COMMUNITY_STATUS_Draft;
+        String status = COMMUNITY_STATUS_DRAFT;
         searchExpertsQuery(caseType, caseCountry);
         searchExpertsSubmit();
 
@@ -216,7 +216,7 @@ public class TestsCommunityWizard {
         String expertTeam = User1.TEAM_NAME.getValue();
         String caseType = CaseType.PATENT.getValue();
         String caseCountry = Countries.PITCAIRN_ISLANDS.getValue();
-        String status = COMMUNITY_STATUS_Draft;
+        String status = COMMUNITY_STATUS_DRAFT;
         String caseName = "CUSTOM_NAME"+randomString(10);
         searchExpertsQuery(caseType, caseCountry);
         searchExpertsSubmit();
@@ -252,7 +252,7 @@ public class TestsCommunityWizard {
         String expertTeam = User1.TEAM_NAME.getValue();
         String caseType = CaseType.PATENT.getValue();
         String caseCountry = Countries.PITCAIRN_ISLANDS.getValue();
-        String status = COMMUNITY_STATUS_Draft;
+        String status = COMMUNITY_STATUS_DRAFT;
         String caseName = "CUSTOM_NAME"+randomString(10);
         searchExpertsQuery(caseType, caseCountry);
         searchExpertsSubmit();
@@ -289,7 +289,7 @@ public class TestsCommunityWizard {
         String expertTeam = User1.TEAM_NAME.getValue();
         String caseType = CaseType.PATENT.getValue();
         String caseCountry = Countries.PITCAIRN_ISLANDS.getValue();
-        String status = COMMUNITY_STATUS_Sent;
+        String status = COMMUNITY_STATUS_SENT;
         String caseName = "CUSTOM_NAME"+randomString(10);
         searchExpertsQuery(caseType, caseCountry);
         searchExpertsSubmit();

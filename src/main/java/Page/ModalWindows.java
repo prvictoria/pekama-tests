@@ -337,11 +337,27 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_COMMUNITY_INVITE_FIELD_MESSAGE = $(byXpath(mw+"//*[@id='inviteMessage']"));
 
     //Default standard confirmation
-    //MW return to 1st wizard step
     public static final SelenideElement MW_COMMUNITY_BTN_YES = $(byXpath(mw+"//button[text()='Yes']"));
     public static final SelenideElement MW_COMMUNITY_BTN_NO = $(byXpath(mw+"//button[text()='No']"));
+    //MW return to 1st wizard step
     public static final SelenideElement MW_COMMUNITY_RETURN_TO_WIZARD_TITLE = $(byText("Are you sure you want to initiate a new supplier request?"));
     public static final SelenideElement MW_COMMUNITY_RETURN_TO_WIZARD_TEXT = $(byText("You can always access the draft of the current request from the \"Outgoing Cases\" tab."));
+
+    //MW withdraw case
+    public static final SelenideElement MW_WITHDRAW_CASE_TITLE = $(byText("Are you sure you want to withdraw instructions for this case?"));
+    public static final SelenideElement MW_WITHDRAW_CASE_TEXT = $(byText("We will immediately send a message")); //Have team name
+    public static final SelenideElement MW_WITHDRAW_LINK_SUBMIT_WITHOUT_MSG = $(byXpath("//a[contains(@href, '')]"));
+    public static final String MW_WITHDRAW_LINK_TEXT = "I already asked the expert not to proceed";
+    //MW confirm instruction
+    public static final SelenideElement MW_CONFIRM_INSTRUCTIONS_TITLE = $(byText("Are you sure you want to confirm the receipt of instructions for this case?"));
+    public static final SelenideElement MW_CONFIRM_INSTRUCTIONS_TEXT = $(byText("We will immediately send a message telling Iosif Franz that the instructions are received and you are able to execute them on time.")); //Have team name
+    public static final SelenideElement MW_CONFIRM_INSTRUCTIONS_LINK_SUBMIT_WITHOUT_MSG = $(byXpath("//a[contains(@href, '')]"));
+    public static final String MW_CONFIRM_INSTRUCTIONS_LINK_TEXT = "I already confirmed instructions and timely execution";
+    //MW confirm completion
+    public static final SelenideElement MW_CONFIRM_COMPLETION_TITLE = $(byText("Are you sure you want to confirm that you completed the instructions for this case?"));
+    public static final SelenideElement MW_CONFIRM_COMPLETION_TEXT = $(byText("We will immediately send a message telling Iosif Franz that the instructions are fully executed and the work has been completed.")); //Have team name
+    public static final SelenideElement MW_CONFIRM_COMPLETION_LINK_SUBMIT_WITHOUT_MSG = $(byXpath("//a[contains(@href, '')]"));
+    public static final String MW_CONFIRM_COMPLETION_LINK_TEXT = "I already confirmed completion";
 
     //MW Boost with standard text
     public static final SelenideElement MW_COMMUNITY_CONFIRM_TITLE = $(byText("Are you sure you want to leave the default invitation message unchaged?"));
