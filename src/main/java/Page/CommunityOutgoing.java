@@ -37,6 +37,7 @@ public class CommunityOutgoing extends Page {
     public static final String MSG_DEFAULT_INSTRUCTION = "Thank you for all the information. Please consider this as instructions to proceed with this case as discussed.";
     public static final String MSG_DEFAULT_CONFIRM_INSTRUCTIONS = "I'm pleased to confirm safe receipt of your instructions and will execute them on time. I will report immediately once the work is completed.";
     public static final String MSG_DEFAULT_CONFIRM_COMPLETION = "I'm pleased to confirm that your instructions were executed and the work was completed on time.";
+    public static final String MSG_DEFAULT_WITHDRAW = "Please DO NOT proceed with this filing. Kindly confirm immediately.";
 
 
 }

@@ -200,7 +200,7 @@ public class StepsCommunity implements StepsFactory{
     }
     public static boolean checkCaseNameFirstRow(String caseName) {
         String row = String.format(caseRowNameFirst, caseName);
-        $(byXpath(row)).shouldBe(visible).shouldHave(text(caseName));
+        $(byXpath(row)).waitUntil(visible, 15000).shouldHave(text(caseName));
         rootLogger.info(caseName+" - row with this case name displayed");
         return true;
     }

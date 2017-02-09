@@ -77,7 +77,7 @@ public class TestsCommunityOutgoing {
     public void testD1_WithdrawCase() {
         rootLogger.info("Create case");
         String caseName = createCase();
-        rootLogger.info("Cancel case");
+        rootLogger.info("Withdraw case");
         withdrawCase(caseName, true);
         rootLogger.info("Test passed");
     }

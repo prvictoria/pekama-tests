@@ -31,7 +31,7 @@ public class TestsCommunityIncoming {
     private static String caseName;
     @Before
     public void before() {
-        holdBrowserAfterTest(false);
+        holdBrowserAfterTest();
         rootLogger.info("Open host");
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(
@@ -41,15 +41,7 @@ public class TestsCommunityIncoming {
         rootLogger.info("Redirect back after login");
         rootLogger.info("Create case");
         caseName = createCase(expertTeam);
-        open(URL_COMMUNITY_LOGOUT);
-        rootLogger.info("Open URL - "+URL_COMMUNITY_LOGOUT);
 
-        loginIntoPekama.loginByURL(
-                User1.GMAIL_EMAIL.getValue(),
-                User1.PEKAMA_PASSWORD.getValue(),
-                URL_COMMUNITY_LOGIN);
-        COMMUNITY_TAB_Incoming.waitUntil(visible, 15000).click();
-        checkCaseNameFirstRow(caseName);
     }
 //    @After
 //    public void after() {
@@ -59,6 +51,14 @@ public class TestsCommunityIncoming {
 
     @Test
     public void testA_ArchiveCase() {
+        StepsPekama loginIntoPekama = new StepsPekama();
+        loginIntoPekama.loginByURL(
+                User1.GMAIL_EMAIL.getValue(),
+                User1.PEKAMA_PASSWORD.getValue(),
+                URL_COMMUNITY_LOGIN);
+        COMMUNITY_TAB_Incoming.waitUntil(visible, 15000).click();
+        checkCaseNameFirstRow(caseName);
+
         rootLogger.info("Archive case");
         archiveCase(caseName);
         rootLogger.info("Test passed");
@@ -66,6 +66,14 @@ public class TestsCommunityIncoming {
 
     @Test
     public void testB1_ConfirmInstruction() {
+        StepsPekama loginIntoPekama = new StepsPekama();
+        loginIntoPekama.loginByURL(
+                User1.GMAIL_EMAIL.getValue(),
+                User1.PEKAMA_PASSWORD.getValue(),
+                URL_COMMUNITY_LOGIN);
+        COMMUNITY_TAB_Incoming.waitUntil(visible, 15000).click();
+        checkCaseNameFirstRow(caseName);
+
         rootLogger.info("Confirm instructions with message");
         confirmInstruction(caseName, true);
 
@@ -78,6 +86,14 @@ public class TestsCommunityIncoming {
     }
     @Test
     public void testB2_ConfirmInstruction() {
+        StepsPekama loginIntoPekama = new StepsPekama();
+        loginIntoPekama.loginByURL(
+                User1.GMAIL_EMAIL.getValue(),
+                User1.PEKAMA_PASSWORD.getValue(),
+                URL_COMMUNITY_LOGIN);
+        COMMUNITY_TAB_Incoming.waitUntil(visible, 15000).click();
+        checkCaseNameFirstRow(caseName);
+
         rootLogger.info("Confirm instructions with message");
         confirmInstruction(caseName, false);
 
@@ -90,6 +106,14 @@ public class TestsCommunityIncoming {
     }
     @Test
     public void testC1_ConfirmCompletion() {
+        StepsPekama loginIntoPekama = new StepsPekama();
+        loginIntoPekama.loginByURL(
+                User1.GMAIL_EMAIL.getValue(),
+                User1.PEKAMA_PASSWORD.getValue(),
+                URL_COMMUNITY_LOGIN);
+        COMMUNITY_TAB_Incoming.waitUntil(visible, 15000).click();
+        checkCaseNameFirstRow(caseName);
+
         rootLogger.info("Confirm Completion with message");
         confirmInstruction(caseName, true);
         confirmCompletion(caseName, true);
@@ -103,6 +127,14 @@ public class TestsCommunityIncoming {
     }
     @Test
     public void testC2_ConfirmCompletion() {
+        StepsPekama loginIntoPekama = new StepsPekama();
+        loginIntoPekama.loginByURL(
+                User1.GMAIL_EMAIL.getValue(),
+                User1.PEKAMA_PASSWORD.getValue(),
+                URL_COMMUNITY_LOGIN);
+        COMMUNITY_TAB_Incoming.waitUntil(visible, 15000).click();
+        checkCaseNameFirstRow(caseName);
+
         rootLogger.info("Confirm Completion with message");
         confirmInstruction(caseName, false);
         confirmCompletion(caseName, false);
@@ -114,19 +146,51 @@ public class TestsCommunityIncoming {
         $(byText(MSG_DEFAULT_CONFIRM_COMPLETION)).shouldNotBe(visible);
         rootLogger.info("Test passed");
     }
-
-
-    @Ignore // TODO: 09-Feb-17
     @Test
-    public void testD1_WithdarwnCase() {
+    public void testD1_WithdrawnCase() {
+        rootLogger.info("Withdraw case");
+        withdrawCase(caseName, true);
+
+        StepsPekama loginIntoPekama = new StepsPekama();
+        loginIntoPekama.loginByURL(
+                User1.GMAIL_EMAIL.getValue(),
+                User1.PEKAMA_PASSWORD.getValue(),
+                URL_COMMUNITY_LOGIN);
+        COMMUNITY_TAB_Incoming.waitUntil(visible, 15000).click();
+        sleep(2000);
+        checkCaseNameFirstRow(caseName);
+
+
+        rootLogger.info("Open case row");
+        String row = getFirstCaseRow(caseName);
+        $(byXpath(row)).click();
+        rootLogger.info("Check message");
+        $(byText(MSG_DEFAULT_WITHDRAW)).shouldBe(visible);
 
         rootLogger.info("Check default message present");
         rootLogger.info("Test passed");
     }
-
-    @Ignore // TODO: 09-Feb-17
     @Test
-    public void testD2_WithdarwnCase() {
+    public void testD2_WithdrawnCase() {
+        rootLogger.info("Withdraw case");
+        withdrawCase(caseName, false);
+
+        StepsPekama loginIntoPekama = new StepsPekama();
+        loginIntoPekama.loginByURL(
+                User1.GMAIL_EMAIL.getValue(),
+                User1.PEKAMA_PASSWORD.getValue(),
+                URL_COMMUNITY_LOGIN);
+        COMMUNITY_TAB_Incoming.waitUntil(visible, 15000).click();
+        sleep(2000);
+        checkCaseNameFirstRow(caseName);
+
+        rootLogger.info("Open case row");
+        String row = getFirstCaseRow(caseName);
+        $(byXpath(row)).click();
+        rootLogger.info("Check message");
+        $(byText(MSG_DEFAULT_WITHDRAW)).shouldNotBe(visible);
+
+
 
         rootLogger.info("Check default message NOT present");
         rootLogger.info("Test passed");
