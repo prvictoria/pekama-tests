@@ -175,6 +175,27 @@ public class StepsPekama implements StepsFactory{
 
         return actualMailingListRow;
     }
+    public static boolean mailingListCheckboxValue(String thisMailingListName){
+        String mailingListRowByName = "//li[//a[contains(.,'"+thisMailingListName+"')]]";
+        String pathToReport = "//*[@class='search-list']//button[@uib-dropdown-toggle]";
+        String actualMailingListRow = REPORTS_MAILING_LISTS+ mailingListRowByName;
+        if($(byXpath(pathToReport)).isDisplayed()==false){
+            $(byLinkText(thisMailingListName)).click();
+            sleep(3000);}
+        $(byXpath(pathToReport)).click();
+        REPORTS_MAILING_LISTS_CALL_MW.click();
+
+        MW.shouldBe(visible);
+        $(byText("Mailing List")).shouldBe(Condition.visible);
+        rootLogger.info("Verify checkbox value");
+            if ( MW_MAILING_1USER_SELECT.is(not(checked))) {
+                MW.pressEscape();
+                $(byText("Mailing List")).shouldNotBe(Condition.visible);
+                sleep(500);
+                return true;
+            }
+            else{return false;}
+    }
     public static void mailingListDeleteReport(String thisMailingListName){
         String REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME = "//li[//a[contains(.,'"+ thisMailingListName +"')]]";
         String pathToReportRowMenu = REPORTS_MAILING_LISTS+REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME+REPORTS_MAILING_LISTS_BTN_CALL_ML;

@@ -63,6 +63,7 @@ public class Emails extends Page {
     public static final SelenideElement EMAIL_REPORT_ATTACHMENT = $(byXpath("//div[@title][contains(.,'csv')]"));
     public static final SelenideElement EMAIL_REPORT_ATTACHMENT_ABSOLUTE_PATH = $(byXpath("//div[@title][contains(.,'Projects Report Mailing List')][contains(.,'csv')]"));
     public static final SelenideElement EMAIL_REPORT_BACKLINK = $(byXpath("//a[contains(@href, '"+SELECT_HOST+"/filters/mailinglist/edit/')]"));
+    public static final SelenideElement EMAIL_UNSUBSCRIBE_LINK = $(byXpath("//a[@class='gmail_msg' and contains(@href, '"+SELECT_HOST+"/filters/mailinglist/unsubscribe/') and @target='_blank' and text()='here']"));
 
     //INBOX gmail app
     public static final String INBOX_URL = "https://www.google.com/inbox/";

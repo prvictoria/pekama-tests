@@ -87,7 +87,10 @@ public class StepsExternal implements StepsFactory{
         logging.info("Email deleted");
         return REDIRECT_LINK;
     }
-    public static String checkInboxEmailReport(String GMAIL_LOGIN, String GMAIL_PASSWORD, SelenideElement EMAIL_SUBJECT, String EMAIL_TITLE, String EMAIL_TEXT, String thisMailingListName){
+    public static String checkEmailReport(String GMAIL_LOGIN, String GMAIL_PASSWORD, String thisMailingListName){
+        SelenideElement EMAIL_SUBJECT = EMAIL_REPORT_SUBJECT;
+        String EMAIL_TEXT = EMAIL_REPORT_TEXT;
+        String EMAIL_TITLE = "Pekama Report \""+thisMailingListName+"\"";
         logging.info("Login");
         signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
         logging.info("Detect email");
@@ -221,6 +224,12 @@ public class StepsExternal implements StepsFactory{
             Assert.fail("Redirect Link not found");
         }
         return attachmentFullTitle;
+    }
+    public static String checkUnsubscribeLink(){
+        EMAIL_UNSUBSCRIBE_LINK.shouldBe(visible);
+        String link = EMAIL_UNSUBSCRIBE_LINK.getAttribute("href");
+        logging.info("Unsubscribe link is - " +link);
+        return link;
     }
     public static void deleteEmail() {
         INBOX_BTN_DELETE.waitUntil(visible, 10000).click();
