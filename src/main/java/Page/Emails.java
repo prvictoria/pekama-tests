@@ -40,7 +40,7 @@ public class Emails extends Page {
     public static final String EMAIL_INVITE_IN_COMMUNITY_TEXT = "Entered by user text";
     public static final String EMAIL_INVITE_IN_COMMUNITY_BTN = "Join Pekama Community";
     public static final SelenideElement EMAIL_INVITE_IN_COMMUNITY_BACKLINK = $(byXpath("//td/a[contains(@href, '"+COMMUNITY+"/community/activate/')]"));
-    //Emails congratulation
+    //Emails congratulation - supplier was instructed
     public static final SelenideElement EMAIL_CONGRATULATION_SUBJECT = $(byXpath("//span[contains(.,'Case successfully instructed via Pekama!')]"));
     public static final String EMAIL_CONGRATULATION_TITLE = "Congratulations, you instructed";
     public static final String EMAIL_CONGRATULATION_TEXT = "Your community score will be raised once the work is marked as completed";

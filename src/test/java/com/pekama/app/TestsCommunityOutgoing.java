@@ -89,7 +89,7 @@ public class TestsCommunityOutgoing {
         withdrawCase(caseName, false);
         rootLogger.info("Test passed");
     }
-   @Test
+    @Test
     public void testE_OpenCaseRow() {
         rootLogger.info("Create case");
         String caseName = createCase();

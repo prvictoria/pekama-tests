@@ -31,7 +31,7 @@ public class TestsCommunityIncoming {
     private static String caseName;
     @Before
     public void before() {
-        holdBrowserAfterTest();
+        holdBrowserAfterTest(false);
         rootLogger.info("Open host");
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(

@@ -7,7 +7,8 @@ import org.junit.runners.Suite;
         TestsCommunityDashboard.class,
         TestsCommynityLanding.class,
         TestsCommunityWizard.class,
-        TestsCommunityProfile.class
+        TestsCommunityProfile.class,
+        TestsCommunityOutgoing.class
 })
 public class AllCommunityTestsRunner extends AllTestsRunner{
 }

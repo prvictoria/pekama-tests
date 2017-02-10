@@ -17,6 +17,7 @@ import org.junit.runners.Suite;
         Page.PekamaSignUp.class,
         TestsPekamaSettingsPersonal.class,
         TestsPekamaProject.class,
+        TestsPekamaReports.class,
         TestsPekamaIntegrationBox.class,
         TestsPekamaSettingsTeam.class
 })
