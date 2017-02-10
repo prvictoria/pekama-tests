@@ -15,7 +15,6 @@ import static Page.PekamaTeamSettings.BTN_DELETE_MEMBER;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Steps.StepsHttpAuth.*;
-import static Utils.Utils.getCurrentDate;
 import static Utils.Utils.getDate;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
@@ -61,6 +60,8 @@ public class StepsPekama implements StepsFactory{
     }
     public void  submitLoginCredentials(String PEKAMA_USER_EMAIL){
         submitCookie();
+        //collapseZopim(true);
+        hideZopim();
         loginField_Email.sendKeys(PEKAMA_USER_EMAIL);
         rootLogger.info(PEKAMA_USER_EMAIL+ " - login selected");
         loginField_Password.sendKeys(GENERIC_PEKAMA_PASSWORD);
@@ -113,20 +114,12 @@ public class StepsPekama implements StepsFactory{
         sleep(500);
         MW.shouldNotBe(visible);
     }
-    public static void collapseChatWidget(){
-        sleep(500);
-        MW.shouldBe(visible);
-        $(byText("Are you sure?")).shouldBe(Condition.visible);
-        rootLogger.info("Confirm action modal window opened");
-        MW_BTN_YES.shouldBe(visible).click();
-        sleep(500);
-        MW.shouldNotBe(visible);
-    }
-    public String mailingListCreateNew(String thisMailingListName){
+    public static String mailingListCreateNew(String thisMailingListName){
         rootLogger.info("click"+REPORTS_MAILING_SAVE_SEARCH);
         REPORTS_MAILING_SAVE_SEARCH.waitUntil(visible, 5000).click();
         sleep(3000);
-        REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_SAVE.shouldBe(disabled, visible);
+        scrollDown();
+        REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_SAVE.waitUntil(visible, 10000).shouldBe(disabled);
         rootLogger.info("type"+thisMailingListName);
         REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_INPUT.sendKeys(thisMailingListName);
         rootLogger.info("click"+REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_SAVE);
@@ -134,17 +127,19 @@ public class StepsPekama implements StepsFactory{
         sleep(3000);
         $$(byText(thisMailingListName));
         $(byLinkText(thisMailingListName)).waitUntil(visible, 10000);
-        REPORTS_MAILING_SAVE_SEARCH_DROPDOWN.pressEscape();
+        REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_SAVE.pressEscape();
         sleep(500);
         rootLogger.info("Mailing List was created - "+ thisMailingListName);
         return thisMailingListName;
     }
     public static String mailingListSendReport(String thisMailingListName){
-        String REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME = "//li[//a[contains(.,'"+ thisMailingListName +"')]]";
-        String pathToReport = REPORTS_MAILING_LISTS+REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME+REPORTS_MAILING_LISTS_BTN_CALL_ML;
-        String actualMailingListRow = REPORTS_MAILING_LISTS+REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME;
-
-        $(byLinkText(thisMailingListName)).click();
+        String mailingListRowByName = "//li[//a[contains(.,'"+thisMailingListName+"')]]";
+//        String pathToReport = REPORTS_MAILING_LISTS+mailingListRowByName+REPORTS_MAILING_LISTS_BTN_CALL_ML;
+        String pathToReport = "//*[@class='search-list']//button[@uib-dropdown-toggle]";
+        String actualMailingListRow = REPORTS_MAILING_LISTS+ mailingListRowByName;
+            if($(byXpath(pathToReport)).isDisplayed()==false){
+                $(byLinkText(thisMailingListName)).click();
+                sleep(3000);}
         $(byXpath(pathToReport)).click();
         REPORTS_MAILING_LISTS_CALL_MW.click();
 
@@ -268,6 +263,19 @@ public class StepsPekama implements StepsFactory{
     }
     public static void scrollDown() {
         executeJavaScript("scrollTo(0, 1000)");
+    }
+    public static void collapseZopim(boolean collapse) {
+        if(collapse==true){
+            executeJavaScript("$zopim.livechat.window.hide()");
+            rootLogger.info("Zopim collapsed");}
+        if(collapse==false){
+            executeJavaScript("$zopim.livechat.window.show()");
+            rootLogger.info("Zopim displayed");}
+        //JQuery=kill document.querySelectorAll('.zopim').forEach(function(elm){elm.parentNode.removeChild(elm)})
+    }
+    public static void hideZopim(){
+        executeJavaScript("$zopim.livechat.hideAll()");
+        rootLogger.info("Zopim collapsed");
     }
     public static void scrollCustom(int value) {
         executeJavaScript("scrollTo(0, "+value+")");

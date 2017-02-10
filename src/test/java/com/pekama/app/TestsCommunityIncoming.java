@@ -43,11 +43,11 @@ public class TestsCommunityIncoming {
         caseName = createCase(expertTeam);
 
     }
-//    @After
-//    public void after() {
-//        open(URL_COMMUNITY_LOGOUT);
-//        rootLogger.info("Open URL - "+URL_COMMUNITY_LOGOUT);
-//    }
+    @After
+    public void after() {
+        open(URL_COMMUNITY_LOGOUT);
+        rootLogger.info("Open URL - "+URL_COMMUNITY_LOGOUT);
+    }
 
     @Test
     public void testA_ArchiveCase() {
@@ -164,10 +164,10 @@ public class TestsCommunityIncoming {
         rootLogger.info("Open case row");
         String row = getFirstCaseRow(caseName);
         $(byXpath(row)).click();
-        rootLogger.info("Check message");
-        $(byText(MSG_DEFAULT_WITHDRAW)).shouldBe(visible);
 
         rootLogger.info("Check default message present");
+        $(byText(MSG_DEFAULT_WITHDRAW)).shouldBe(visible);
+
         rootLogger.info("Test passed");
     }
     @Test
@@ -187,12 +187,10 @@ public class TestsCommunityIncoming {
         rootLogger.info("Open case row");
         String row = getFirstCaseRow(caseName);
         $(byXpath(row)).click();
-        rootLogger.info("Check message");
-        $(byText(MSG_DEFAULT_WITHDRAW)).shouldNotBe(visible);
-
-
 
         rootLogger.info("Check default message NOT present");
+        $(byText(MSG_DEFAULT_WITHDRAW)).shouldNotBe(visible);
+
         rootLogger.info("Test passed");
     }
 

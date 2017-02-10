@@ -45,19 +45,19 @@ public class PekamaReports extends Page {
     public static final SelenideElement REPORTS_SEARCH_SIDEBAR = $(byXpath("//*[@class='search-sidebar']"));
     public static final SelenideElement REPORTS_MAILING_AREA = $(byXpath("//*[@class='saved']"));
     public static final SelenideElement REPORTS_MAILING_SAVE_SEARCH = $(byXpath("//*[@type='button' and contains(.,'Save search...')]"));
-    public static final SelenideElement REPORTS_MAILING_LISTS = $(byXpath("//*[@class='search-list']"));
+    public static final String REPORTS_MAILING_LISTS = "//*[@class='search-list']";
     public static SelenideElement reportName;
     public static SelenideElement REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME = $(byXpath("//li[//a[contains(.,'"+ reportName +"')]]")); //ML+
-    public static SelenideElement REPORTS_MAILING_LISTS_BTN_UPDATE = $(byXpath("//button[contains(.,'Update')]")); //REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME+
-    public static SelenideElement REPORTS_MAILING_LISTS_BTN_CALL_ML = $(byXpath("//button[@uib-dropdown-toggle]")); //REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME+
+    public static SelenideElement REPORTS_MAILING_LISTS_BTN_UPDATE = $(byXpath("//button[contains(.,'Update')]"));
+    public static String REPORTS_MAILING_LISTS_BTN_CALL_ML = "//button[@uib-dropdown-toggle]";
     public static SelenideElement REPORTS_MAILING_LISTS_CALL_MW = $(byLinkText("Mailing List"));
     public static SelenideElement REPORTS_MAILING_LISTS_DELETE_MW = $(byLinkText("Delete"));
 
-    public static final SelenideElement REPORTS_MAILING_SAVE_SEARCH_DROPDOWN = $(byXpath("//*[@class='save-search-dropdown']"));
+    public static final String REPORTS_MAILING_SAVE_SEARCH_DROPDOWN = "//*[@class='save-search-dropdown']";
     public static final SelenideElement REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_INPUT = $(byXpath(REPORTS_MAILING_SAVE_SEARCH_DROPDOWN+"//input"));
-    public static final SelenideElement REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_SAVE = $(byXpath(REPORTS_MAILING_SAVE_SEARCH_DROPDOWN+"//button[contains(.,'Save')]"));
-    public static final SelenideElement REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_SAVE_NEW = $(byXpath(REPORTS_MAILING_SAVE_SEARCH_DROPDOWN+"//button[contains(.,'Save as New')]"));
-
+    public static final SelenideElement REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_SAVE = $(byXpath(REPORTS_MAILING_SAVE_SEARCH_DROPDOWN+"//button[text()='Save']"));
+    public static final SelenideElement REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_SAVE_NEW = $(byXpath(REPORTS_MAILING_SAVE_SEARCH_DROPDOWN+"//button[text()='Save as New']"));
+// //button[text()='Save as New']
 //    public static final SelenideElement REPORTS_MAILING_ = $(byXpath(""));
 //    public static final SelenideElement REPORTS_MAILING_ = $(byXpath(""));
 

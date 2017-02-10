@@ -87,7 +87,7 @@ public class StepsExternal implements StepsFactory{
         logging.info("Email deleted");
         return REDIRECT_LINK;
     }
-    public static String checkInboxEmailReport(String GMAIL_LOGIN, String GMAIL_PASSWORD, SelenideElement EMAIL_SUBJECT, String EMAIL_TEXT, String thisMailingListName){
+    public static String checkInboxEmailReport(String GMAIL_LOGIN, String GMAIL_PASSWORD, SelenideElement EMAIL_SUBJECT, String EMAIL_TITLE, String EMAIL_TEXT, String thisMailingListName){
         logging.info("Login");
         signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
         logging.info("Detect email");
@@ -95,6 +95,8 @@ public class StepsExternal implements StepsFactory{
         logging.info("Open email");
         openEmail(EMAIL_SUBJECT);
         logging.info("Check title");
+        checkEmailTitle(EMAIL_TITLE);
+        logging.info("Check Text");
         checkEmailText(EMAIL_TEXT);
         logging.info("Check report back Link");
         checkReportTitleAndBackLink(EMAIL_TEXT, thisMailingListName);
@@ -108,7 +110,8 @@ public class StepsExternal implements StepsFactory{
         open(GMAIL_URL_SIGN_OUT);
         return checkReportBackLink;
     }
-    //Steps
+
+    //Inbox Steps
     public static void signInGmailInbox(String GMAIL_LOGIN, String GMAIL_PASSWORD) { //Logic for open INBOX twice or more times in one session without logout
         logging.info("Start browser");
         open(INBOX_URL);

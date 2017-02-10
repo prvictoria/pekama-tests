@@ -59,7 +59,7 @@ public class Emails extends Page {
     public static final String EMAIL_REPORT = "Pekama Report";
     public static final SelenideElement EMAIL_REPORT_SUBJECT = $(byXpath("//span[contains(.,'Pekama Report')]"));
     public static final SelenideElement EMAIL_REPORT_TITLE = $(byXpath(""));
-    public static final String EMAIL_REPORT_TEXT = "This is the report that you configured in Pekama. You will get it every 999 days.";
+    public static final String EMAIL_REPORT_TEXT = "This is the report that you configured in Pekama.";
     public static final SelenideElement EMAIL_REPORT_ATTACHMENT = $(byXpath("//div[@title][contains(.,'csv')]"));
     public static final SelenideElement EMAIL_REPORT_ATTACHMENT_ABSOLUTE_PATH = $(byXpath("//div[@title][contains(.,'Projects Report Mailing List')][contains(.,'csv')]"));
     public static final SelenideElement EMAIL_REPORT_BACKLINK = $(byXpath("//a[contains(@href, '"+SELECT_HOST+"/filters/mailinglist/edit/')]"));

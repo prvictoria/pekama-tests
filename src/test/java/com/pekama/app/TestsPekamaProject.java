@@ -25,6 +25,7 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.*;
+import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaProject {
@@ -35,8 +36,7 @@ public class TestsPekamaProject {
     private static String defaultProjectURL;
     @Before
     public void before() {
-//        Configuration test = new Configuration();
-//        test.holdBrowserOpen = true;
+        holdBrowserAfterTest(false);
         rootLogger.info("Open host");
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(User2.GMAIL_EMAIL.getValue(), User2.PEKAMA_PASSWORD.getValue(), URL_LogIn);
@@ -56,6 +56,7 @@ public class TestsPekamaProject {
         MW.shouldNot(exist);
         sleep(1000);
         defaultProjectURL = getActualUrl ();
+        rootLogger.info("Project url: "+defaultProjectURL);
         rootLogger.info("ProjectValues '"+testProjectTitle+"' created");
         waitForTextPresent(testProjectTitle);
     }

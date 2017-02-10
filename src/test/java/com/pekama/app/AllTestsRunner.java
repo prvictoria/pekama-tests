@@ -17,9 +17,9 @@ import org.junit.runners.Suite;
         Page.PekamaSignUp.class,
         TestsPekamaSettingsPersonal.class,
         TestsPekamaProject.class,
-        TestsPekamaReports.class,
         TestsPekamaIntegrationBox.class,
-        TestsPekamaSettingsTeam.class
+        TestsPekamaSettingsTeam.class,
+        TestsPekamaReports.class //last suite
 })
 public class AllTestsRunner {
     public static void holdBrowserAfterTest() {
