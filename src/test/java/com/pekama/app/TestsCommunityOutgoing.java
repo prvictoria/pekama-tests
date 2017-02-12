@@ -1,4 +1,5 @@
 package com.pekama.app;
+import Page.TestsCredentials;
 import Steps.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,13 +22,16 @@ import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsCommunityOutgoing {
     static final Logger rootLogger = LogManager.getRootLogger();
-
+    String expertTeam = TestsCredentials.User3.TEAM_NAME.getValue();
     @Before
     public void before() {
         holdBrowserAfterTest(false);
         rootLogger.info("Open host");
         StepsPekama loginIntoPekama = new StepsPekama();
-        loginIntoPekama.loginByURL(User2.GMAIL_EMAIL.getValue(),             User2.PEKAMA_PASSWORD.getValue(), URL_COMMUNITY_LOGIN);
+        loginIntoPekama.loginByURL(
+                User2.GMAIL_EMAIL.getValue(),
+                User2.PEKAMA_PASSWORD.getValue(),
+                URL_COMMUNITY_LOGIN);
         rootLogger.info("Redirect back after login");
     }
     @After
@@ -66,7 +70,6 @@ public class TestsCommunityOutgoing {
     }
     @Test
     public void testC_ArchiveCase() {
-
         rootLogger.info("Create case");
         String caseName = createCase();
         rootLogger.info("Archive case");
@@ -99,6 +102,28 @@ public class TestsCommunityOutgoing {
         rootLogger.info("Check expanded row");
         $(byText(MSG_DEFAULT_INSTRUCTION)).shouldBe(visible);
         rootLogger.info("Test passed");
+    }
+    @Test
+    public void testF1_cancelCaseRow() {
+        rootLogger.info("Create draft case");
+        String caseName = createDraftCase(expertTeam);
+        COMMUNITY_TAB_Outgoing.click();
+        sleep(3000);
+        rootLogger.info("Cancel case");
+        cancelCase(caseName, true);
+        rootLogger.info("Test passed");
+        // TODO: 12-Feb-17 ad checks for Pekama and Wizard
+    }
+    @Test
+    public void testF2_cancelCaseRow() {
+        rootLogger.info("Create draft case");
+        String caseName = createDraftCase(expertTeam);
+        COMMUNITY_TAB_Outgoing.click();
+        sleep(3000);
+        rootLogger.info("Cancel case");
+        cancelCase(caseName, false);
+        rootLogger.info("Test passed");
+        // TODO: 12-Feb-17 ad checks for Pekama and Wizard
     }
 
 }

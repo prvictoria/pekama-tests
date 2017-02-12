@@ -126,6 +126,23 @@ public class StepsCommunity implements StepsFactory{
         MW_COMMUNITY_RETURN_TO_WIZARD_TITLE.shouldNotBe(visible);
         rootLogger.info("MW closed");
     }
+    public static boolean acceptCancelCase(boolean sendMsgToCollaborator) {
+        rootLogger.info("Check that MW '"+MW_CANCEL_CASE_TITLE+"' is present");
+        MW_CANCEL_CASE_TITLE.shouldBe(visible);
+        //MW_CANCEL_CASE_TEXT.shouldBe(visible);
+        MW_CANCEL_LINK_SUBMIT_WITHOUT_MSG.shouldHave(text(MW_CANCEL_LINK_TEXT));
+        rootLogger.info("Accept confirm modal window - "+MW_CANCEL_CASE_TITLE);
+        if (sendMsgToCollaborator==true){
+            rootLogger.info("Message will send to Collaborator");
+            MW_COMMUNITY_BTN_YES.click();}
+        if (sendMsgToCollaborator==false){
+            rootLogger.info("Withdraw case without notification");
+            MW_CANCEL_LINK_SUBMIT_WITHOUT_MSG.click();}
+        MW_CANCEL_CASE_TITLE.shouldNotBe(visible);
+        rootLogger.info("MW closed");
+        sleep(1000);
+        return true;
+    }
     public static boolean acceptWithdrawCase(boolean sendMsgToCollaborator) {
         rootLogger.info("Check that MW '"+MW_WITHDRAW_CASE_TITLE+"' is present");
         MW_WITHDRAW_CASE_TITLE.shouldBe(visible);
@@ -326,6 +343,22 @@ public class StepsCommunity implements StepsFactory{
         rootLogger.info(caseName+" - case archived");
         return true;
     }
+    public static boolean cancelCase(String caseName, boolean sendMsgToCollaborator) {
+        String status = COMMUNITY_STATUS_CANCELLED;
+        rootLogger.info(caseName);
+        String row = String.format(caseRowByName, caseName);
+        rootLogger.info(row);
+        $(byXpath(row)).shouldBe(visible);
+        rootLogger.debug(ROW_CONTROL_BTN_ACTION);
+        SelenideElement btn = $(byXpath(row+ROW_CONTROL_BTN_ACTION));
+        rootLogger.debug(btn);
+        btn.click();
+        acceptCancelCase(sendMsgToCollaborator);
+        sleep(1000);
+        checkCaseStatus(caseName, status);
+        rootLogger.info(caseName+" - case was canceled");
+        return true;
+    }
     public static boolean withdrawCase(String caseName, boolean sendMsgToCollaborator) {
         String status = COMMUNITY_STATUS_WITHDRAWN;
         rootLogger.info(caseName);
@@ -413,7 +446,6 @@ public class StepsCommunity implements StepsFactory{
     }
     public static String createCase(String expertTeam) {
         rootLogger.info("1st Step - Search");
-        //String expertTeam = TestsCredentials.User1.TEAM_NAME.getValue();
         String caseType = TestsCredentials.CaseType.PATENT.getValue();
         String caseCountry = TestsCredentials.Countries.PITCAIRN_ISLANDS.getValue();
         String status = COMMUNITY_STATUS_SENT;
@@ -446,6 +478,30 @@ public class StepsCommunity implements StepsFactory{
         sleep(2000);
         checkCaseNameFirstRow(caseName);
         checkCaseStatus(caseName, 1, status);
+        return caseName;
+    }
+    public static String createDraftCase(String expertTeam) {
+        rootLogger.info("1st Step - Search");
+        String caseType = TestsCredentials.CaseType.PATENT.getValue();
+        String caseCountry = TestsCredentials.Countries.PITCAIRN_ISLANDS.getValue();
+        String caseName = "DEFAULT_DRAFT_CASE" + randomString(10);
+
+        searchExpertsQuery(caseType, caseCountry);
+        searchExpertsSubmit();
+
+        rootLogger.info("2nd Step - select expert");
+        WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.shouldBe(disabled);
+        selectExpert(expertTeam);
+        submitEnabledButton(WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS);
+
+        rootLogger.info("3rd Step - select NEXT");
+        WIZARD_FIELD_CASE_NAME.shouldHave(value(caseType + " in " + caseCountry));
+        fillField(WIZARD_FIELD_CASE_NAME, caseName);
+        WIZARD_BTN_NEXT.click();
+        sleep(3000);
+
+        rootLogger.info("4th Step - select NEXT");
+        BTN_SEND_INSTRUCTION.shouldBe(visible);
         return caseName;
     }
 

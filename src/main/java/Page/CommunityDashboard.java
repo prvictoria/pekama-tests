@@ -53,7 +53,7 @@ public class CommunityDashboard extends Page {
     public static final String COMMUNITY_STATUS_COMPLETED = "completed";
     public static final String COMMUNITY_STATUS_WITHDRAWN = "withdrawn";
     public static final String COMMUNITY_STATUS_INQUIRY = "inquiry";
-    public static final String COMMUNITY_STATUS_CANCELLED = "";
+    public static final String COMMUNITY_STATUS_CANCELLED = "cancelled";
 
     public static final SelenideElement COMMUNITY_CaseList = $(byXpath("//div[@class='request-quote-list ng-scope']/div"));
     public static final SelenideElement COMMUNITY_CaseIconDraft = $(byXpath("//div/i"));
