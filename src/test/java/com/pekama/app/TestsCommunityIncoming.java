@@ -63,7 +63,6 @@ public class TestsCommunityIncoming {
         archiveCase(caseName);
         rootLogger.info("Test passed");
     }
-
     @Test
     public void testB1_ConfirmInstruction() {
         StepsPekama loginIntoPekama = new StepsPekama();
@@ -193,5 +192,60 @@ public class TestsCommunityIncoming {
 
         rootLogger.info("Test passed");
     }
+    @Ignore // TODO: 12-Feb-17 BUG - not fixed
+    @Test
+    public void testF1_cancelCase() {
+        rootLogger.info("Create draft case");
+        String caseName = createDraftCase(expertTeam);
 
+        StepsPekama loginIntoPekama = new StepsPekama();
+        loginIntoPekama.loginByURL(
+                User1.GMAIL_EMAIL.getValue(),
+                User1.PEKAMA_PASSWORD.getValue(),
+                URL_COMMUNITY_LOGIN);
+        COMMUNITY_TAB_Incoming.waitUntil(visible, 15000).click();
+        sleep(2000);
+        checkCaseNameFirstRow(caseName);
+        checkCaseStatus(caseName, COMMUNITY_STATUS_CANCELLED);
+
+        sleep(3000);
+        rootLogger.info("Cancel case");
+        cancelCase(caseName, true);
+
+        rootLogger.info("Open case row");
+        String row = getFirstCaseRow(caseName);
+        $(byXpath(row)).click();
+
+        rootLogger.info("Check default message present");
+        $(byText(MSG_DEFAULT_CANCEL)).shouldBe(visible);
+        rootLogger.info("Test passed");
+    }
+    @Ignore // TODO: 12-Feb-17 BUG - not fixed
+    @Test
+    public void testF2_cancelCase() {
+        rootLogger.info("Create draft case");
+        String caseName = createDraftCase(expertTeam);
+
+        StepsPekama loginIntoPekama = new StepsPekama();
+        loginIntoPekama.loginByURL(
+                User1.GMAIL_EMAIL.getValue(),
+                User1.PEKAMA_PASSWORD.getValue(),
+                URL_COMMUNITY_LOGIN);
+        COMMUNITY_TAB_Incoming.waitUntil(visible, 15000).click();
+        sleep(2000);
+        checkCaseNameFirstRow(caseName);
+        checkCaseStatus(caseName, COMMUNITY_STATUS_CANCELLED);
+
+        sleep(3000);
+        rootLogger.info("Cancel case");
+        cancelCase(caseName, false);
+
+        rootLogger.info("Open case row");
+        String row = getFirstCaseRow(caseName);
+        $(byXpath(row)).click();
+
+        rootLogger.info("Check default message NOT present");
+        $(byText(MSG_DEFAULT_CANCEL)).shouldNotBe(visible);
+        rootLogger.info("Test passed");
+    }
 }

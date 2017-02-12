@@ -104,7 +104,7 @@ public class TestsCommunityOutgoing {
         rootLogger.info("Test passed");
     }
     @Test
-    public void testF1_cancelCaseRow() {
+    public void testF1_cancelCase() {
         rootLogger.info("Create draft case");
         String caseName = createDraftCase(expertTeam);
         COMMUNITY_TAB_Outgoing.click();
@@ -115,7 +115,7 @@ public class TestsCommunityOutgoing {
         // TODO: 12-Feb-17 ad checks for Pekama and Wizard
     }
     @Test
-    public void testF2_cancelCaseRow() {
+    public void testF2_cancelCase() {
         rootLogger.info("Create draft case");
         String caseName = createDraftCase(expertTeam);
         COMMUNITY_TAB_Outgoing.click();

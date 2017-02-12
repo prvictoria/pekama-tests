@@ -7,9 +7,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2fcdccdc-4d95-4ab7-8153-9ec9d616e50f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pekama-tests.iws" afterPath="$PROJECT_DIR$/pekama-tests.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/CommunityDashboard.java" afterPath="$PROJECT_DIR$/src/main/java/Page/CommunityDashboard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/ModalWindows.java" afterPath="$PROJECT_DIR$/src/main/java/Page/ModalWindows.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Steps/StepsCommunity.java" afterPath="$PROJECT_DIR$/src/main/java/Steps/StepsCommunity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityIncoming.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityIncoming.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityOutgoing.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityOutgoing.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -249,11 +247,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="TestsCommunityOutgoing.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="TestsCommunityOutgoing.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityOutgoing.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="501">
-                  <caret line="119" column="33" lean-forward="true" selection-start-line="119" selection-start-column="33" selection-end-line="119" selection-end-column="33" />
+                <state relative-caret-position="331">
+                  <caret line="115" column="5" lean-forward="true" selection-start-line="105" selection-start-column="3" selection-end-line="115" selection-end-column="5" />
                   <folding>
                     <element signature="method#after#0;class#TestsCommunityOutgoing#0" expanded="false" />
                     <element signature="method#testA_EditCaseName#0;class#TestsCommunityOutgoing#0" expanded="false" />
@@ -272,19 +270,27 @@
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="323">
                   <caret line="21" column="45" lean-forward="false" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
-                  <folding>
-                    <element signature="imports" expanded="false" />
-                  </folding>
+                  <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="TestsCommunityIncoming.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="TestsCommunityIncoming.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityIncoming.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="561">
-                  <caret line="33" column="36" lean-forward="false" selection-start-line="33" selection-start-column="7" selection-end-line="33" selection-end-column="36" />
-                  <folding />
+                <state relative-caret-position="705">
+                  <caret line="247" column="49" lean-forward="false" selection-start-line="247" selection-start-column="49" selection-end-line="247" selection-end-column="49" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="method#before#0;class#TestsCommunityIncoming#0" expanded="false" />
+                    <element signature="method#after#0;class#TestsCommunityIncoming#0" expanded="false" />
+                    <element signature="method#testA_ArchiveCase#0;class#TestsCommunityIncoming#0" expanded="false" />
+                    <element signature="method#testB1_ConfirmInstruction#0;class#TestsCommunityIncoming#0" expanded="false" />
+                    <element signature="method#testB2_ConfirmInstruction#0;class#TestsCommunityIncoming#0" expanded="false" />
+                    <element signature="method#testC1_ConfirmCompletion#0;class#TestsCommunityIncoming#0" expanded="false" />
+                    <element signature="method#testC2_ConfirmCompletion#0;class#TestsCommunityIncoming#0" expanded="false" />
+                    <element signature="method#testD1_WithdrawnCase#0;class#TestsCommunityIncoming#0" expanded="false" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -404,8 +410,8 @@
           <file leaf-file-name="StepsCommunity.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/Steps/StepsCommunity.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="218">
-                  <caret line="488" column="50" lean-forward="true" selection-start-line="488" selection-start-column="50" selection-end-line="488" selection-end-column="50" />
+                <state relative-caret-position="225">
+                  <caret line="277" column="26" lean-forward="false" selection-start-line="277" selection-start-column="26" selection-end-line="277" selection-end-column="26" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="docComment;class#StepsCommunity#0" expanded="false" />
@@ -428,7 +434,6 @@
                     <element signature="method#getFirstCaseRow#1;class#StepsCommunity#0" expanded="false" />
                     <element signature="method#checkCaseStatus#0;class#StepsCommunity#0" expanded="false" />
                     <element signature="method#checkCaseStatus#1;class#StepsCommunity#0" expanded="false" />
-                    <element signature="method#checkCaseStatus#2;class#StepsCommunity#0" expanded="false" />
                     <element signature="method#editCaseName#0;class#StepsCommunity#0" expanded="false" />
                     <element signature="method#editCaseName#1;class#StepsCommunity#0" expanded="false" />
                     <element signature="method#archiveCase#0;class#StepsCommunity#0" expanded="false" />
@@ -675,7 +680,6 @@
         <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityWizard.java" />
         <option value="$PROJECT_DIR$/src/main/java/Page/PekamaProject.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/AllCommunityTestsRunner.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityIncoming.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/AllTestsRunner.java" />
         <option value="$PROJECT_DIR$/src/main/java/Page/PekamaReports.java" />
@@ -687,8 +691,9 @@
         <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaReports.java" />
         <option value="$PROJECT_DIR$/src/main/java/Page/CommunityDashboard.java" />
         <option value="$PROJECT_DIR$/src/main/java/Page/ModalWindows.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityOutgoing.java" />
         <option value="$PROJECT_DIR$/src/main/java/Steps/StepsCommunity.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityOutgoing.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityIncoming.java" />
       </list>
     </option>
   </component>
@@ -1613,14 +1618,7 @@
       <workItem from="1486241221442" duration="12303000" />
       <workItem from="1486372683758" duration="132152000" />
       <workItem from="1486837932509" duration="599000" />
-      <workItem from="1486901625633" duration="5179000" />
-    </task>
-    <task id="LOCAL-00121" summary="Confirm modal method">
-      <created>1485194910935</created>
-      <option name="number" value="00121" />
-      <option name="presentableId" value="LOCAL-00121" />
-      <option name="project" value="LOCAL" />
-      <updated>1485194910936</updated>
+      <workItem from="1486901625633" duration="5772000" />
     </task>
     <task id="LOCAL-00122" summary="Wizard invite test">
       <created>1485253813228</created>
@@ -1958,7 +1956,14 @@
       <option name="project" value="LOCAL" />
       <updated>1486920629659</updated>
     </task>
-    <option name="localTasksCounter" value="170" />
+    <task id="LOCAL-00170" summary="Cancel case tests">
+      <created>1486922236587</created>
+      <option name="number" value="00170" />
+      <option name="presentableId" value="LOCAL-00170" />
+      <option name="project" value="LOCAL" />
+      <updated>1486922236587</updated>
+    </task>
+    <option name="localTasksCounter" value="171" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1994,7 +1999,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="515830000" />
+    <option name="totallyTimeSpent" value="516423000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2115,7 +2120,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="ProjectTests - Check invite in project email test" />
     <MESSAGE value="ProjectTests - Create contact  test" />
     <MESSAGE value="ProjectTests - Naming refactor" />
     <MESSAGE value="ProjectTests - CRUD file test" />
@@ -2140,7 +2144,8 @@
     <MESSAGE value="Zopim hide method&#10;Reports check mail test&#10;" />
     <MESSAGE value="Unsubscribe link test" />
     <MESSAGE value="All reports tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="All reports tests" />
+    <MESSAGE value="Cancel case tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cancel case tests" />
   </component>
   <component name="VssConfiguration">
     <CheckoutOptions>
@@ -2427,25 +2432,25 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityIncoming.java</url>
-          <line>160</line>
+          <line>159</line>
           <properties />
           <option name="timeStamp" value="535" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityIncoming.java</url>
-          <line>158</line>
+          <line>157</line>
           <properties />
           <option name="timeStamp" value="536" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityIncoming.java</url>
-          <line>151</line>
+          <line>150</line>
           <properties />
           <option name="timeStamp" value="540" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityIncoming.java</url>
-          <line>163</line>
+          <line>162</line>
           <properties />
           <option name="timeStamp" value="546" />
         </line-breakpoint>
@@ -2471,7 +2476,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="561" />
+      <option name="time" value="562" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -2696,14 +2701,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityIncoming.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" column="36" lean-forward="false" selection-start-line="33" selection-start-column="7" selection-end-line="33" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Page/TestsUrl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -2745,16 +2742,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="15" column="56" lean-forward="false" selection-start-line="15" selection-start-column="56" selection-end-line="15" selection-end-column="56" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/AllTestsRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="21" column="45" lean-forward="false" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="false" />
           </folding>
@@ -2976,10 +2963,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/AllTestsRunner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="21" column="45" lean-forward="false" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityOutgoing.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="501">
-          <caret line="119" column="33" lean-forward="true" selection-start-line="119" selection-start-column="33" selection-end-line="119" selection-end-column="33" />
+        <state relative-caret-position="331">
+          <caret line="115" column="5" lean-forward="true" selection-start-line="105" selection-start-column="3" selection-end-line="115" selection-end-column="5" />
           <folding>
             <element signature="method#after#0;class#TestsCommunityOutgoing#0" expanded="false" />
             <element signature="method#testA_EditCaseName#0;class#TestsCommunityOutgoing#0" expanded="false" />
@@ -2994,8 +2989,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Steps/StepsCommunity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="488" column="50" lean-forward="true" selection-start-line="488" selection-start-column="50" selection-end-line="488" selection-end-column="50" />
+        <state relative-caret-position="225">
+          <caret line="277" column="26" lean-forward="false" selection-start-line="277" selection-start-column="26" selection-end-line="277" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;class#StepsCommunity#0" expanded="false" />
@@ -3018,10 +3013,27 @@
             <element signature="method#getFirstCaseRow#1;class#StepsCommunity#0" expanded="false" />
             <element signature="method#checkCaseStatus#0;class#StepsCommunity#0" expanded="false" />
             <element signature="method#checkCaseStatus#1;class#StepsCommunity#0" expanded="false" />
-            <element signature="method#checkCaseStatus#2;class#StepsCommunity#0" expanded="false" />
             <element signature="method#editCaseName#0;class#StepsCommunity#0" expanded="false" />
             <element signature="method#editCaseName#1;class#StepsCommunity#0" expanded="false" />
             <element signature="method#archiveCase#0;class#StepsCommunity#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityIncoming.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="705">
+          <caret line="247" column="49" lean-forward="false" selection-start-line="247" selection-start-column="49" selection-end-line="247" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#before#0;class#TestsCommunityIncoming#0" expanded="false" />
+            <element signature="method#after#0;class#TestsCommunityIncoming#0" expanded="false" />
+            <element signature="method#testA_ArchiveCase#0;class#TestsCommunityIncoming#0" expanded="false" />
+            <element signature="method#testB1_ConfirmInstruction#0;class#TestsCommunityIncoming#0" expanded="false" />
+            <element signature="method#testB2_ConfirmInstruction#0;class#TestsCommunityIncoming#0" expanded="false" />
+            <element signature="method#testC1_ConfirmCompletion#0;class#TestsCommunityIncoming#0" expanded="false" />
+            <element signature="method#testC2_ConfirmCompletion#0;class#TestsCommunityIncoming#0" expanded="false" />
+            <element signature="method#testD1_WithdrawnCase#0;class#TestsCommunityIncoming#0" expanded="false" />
           </folding>
         </state>
       </provider>
