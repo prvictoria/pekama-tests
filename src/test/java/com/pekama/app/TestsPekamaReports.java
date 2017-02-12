@@ -22,24 +22,21 @@ import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
 public class TestsPekamaReports {
     static final Logger rootLogger = LogManager.getRootLogger();
     private String PEKAMA_USER_EMAIL = User3.GMAIL_EMAIL.getValue();
-
     String GMAIL_LOGIN = User3.GMAIL_EMAIL.getValue();
 
     @Before
     public void login() {
-        holdBrowserAfterTest();
+        holdBrowserAfterTest(false);
         rootLogger.info("Open URL - " +URL_Dashboard);
-//        StepsHttpAuth openHost = new StepsHttpAuth();
         String AUTH_URL = URL_Dashboard;
         httpAuthUrl(AUTH_URL);
         StepsPekama login = new StepsPekama();
         login.submitLoginCredentials(PEKAMA_USER_EMAIL);
         rootLogger.info("Redirect after login to - "+URL_Dashboard);
         sleep(100);
-
     }
-//    @After
-//    public void logout(){open(URL_Logout);}
+    @After
+    public void logout(){open(URL_Logout);}
 
 
     @Test
@@ -65,31 +62,114 @@ public class TestsPekamaReports {
         rootLogger.info("Email - report present in inbox");
         rootLogger.info("Test passed");
     }
-    @Ignore
+
     @Test
     public void sendTasksReport() {
-        open(URL_ReportsTasks);
         rootLogger.info("Open Tasks reports");
+        open(URL_ReportsTasks);
+
+        String thisMailingListName = "Tasks Test Mailing List";
+        rootLogger.info("Open ProjectValues reports, opened URL - "+URL_ReportsProjects);
+        open(URL_ReportsProjects);
+        sleep(3000);
+        waitForSpinnerNotPresent();
+
+        rootLogger.info("Open Dropdown and create new mailing list");
+        mailingListCreateNew(thisMailingListName);
+        rootLogger.info("Send report");
+        mailingListSendReport(thisMailingListName);
+        rootLogger.info("Delete mailing list");
+        mailingListDeleteReport(thisMailingListName);
+
+        rootLogger.info("Check email - report");
+        checkEmailReport(
+                GMAIL_LOGIN,
+                GMAIL_PASSWORD,
+                thisMailingListName);
+        rootLogger.info("Email - report present in inbox");
+        rootLogger.info("Test passed");
     }
-    @Ignore
+
     @Test
     public void sendEventsReport() {
+        rootLogger.info("Open Event reports");
         open(URL_ReportsEvents);
-        rootLogger.info("Open ProjectValues reports");
+
+        String thisMailingListName = "Events Test Mailing List";
+        rootLogger.info("Open ProjectValues reports, opened URL - "+URL_ReportsProjects);
+        open(URL_ReportsProjects);
+        sleep(3000);
+        waitForSpinnerNotPresent();
+
+        rootLogger.info("Open Dropdown and create new mailing list");
+        mailingListCreateNew(thisMailingListName);
+        rootLogger.info("Send report");
+        mailingListSendReport(thisMailingListName);
+        rootLogger.info("Delete mailing list");
+        mailingListDeleteReport(thisMailingListName);
+
+        rootLogger.info("Check email - report");
+        checkEmailReport(
+                GMAIL_LOGIN,
+                GMAIL_PASSWORD,
+                thisMailingListName);
+        rootLogger.info("Email - report present in inbox");
+        rootLogger.info("Test passed");
 
     }
-    @Ignore
+
     @Test
     public void sendChargesReport() {
         open(URL_ReportsCharges);
-        rootLogger.info("Open ProjectValues reports");
+        rootLogger.info("Open Charges reports");
 
+        String thisMailingListName = "Charges Test Mailing List";
+        rootLogger.info("Open ProjectValues reports, opened URL - "+URL_ReportsProjects);
+        open(URL_ReportsProjects);
+        sleep(3000);
+        waitForSpinnerNotPresent();
+
+        rootLogger.info("Open Dropdown and create new mailing list");
+        mailingListCreateNew(thisMailingListName);
+        rootLogger.info("Send report");
+        mailingListSendReport(thisMailingListName);
+        rootLogger.info("Delete mailing list");
+        mailingListDeleteReport(thisMailingListName);
+
+        rootLogger.info("Check email - report");
+        checkEmailReport(
+                GMAIL_LOGIN,
+                GMAIL_PASSWORD,
+                thisMailingListName);
+        rootLogger.info("Email - report present in inbox");
+        rootLogger.info("Test passed");
     }
-    @Ignore
+
     @Test
     public void sendContactsReport() {
         rootLogger.info("Open Contacts reports");
         open(URL_ReportsContacts);
+
+        String thisMailingListName = "Contacts Test Mailing List";
+        rootLogger.info("Open ProjectValues reports, opened URL - "+URL_ReportsProjects);
+        open(URL_ReportsProjects);
+        sleep(3000);
+        waitForSpinnerNotPresent();
+
+        rootLogger.info("Open Dropdown and create new mailing list");
+        mailingListCreateNew(thisMailingListName);
+        rootLogger.info("Send report");
+        mailingListSendReport(thisMailingListName);
+        rootLogger.info("Delete mailing list");
+        mailingListDeleteReport(thisMailingListName);
+
+        rootLogger.info("Check email - report");
+        checkEmailReport(
+                GMAIL_LOGIN,
+                GMAIL_PASSWORD,
+                thisMailingListName);
+        rootLogger.info("Email - report present in inbox");
+        rootLogger.info("Test passed");
     }
 
     @Test
