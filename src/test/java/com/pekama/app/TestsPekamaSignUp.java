@@ -18,6 +18,7 @@ import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
+import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
 
 public class TestsPekamaSignUp {
     static final Logger rootLogger = LogManager.getRootLogger();
@@ -33,6 +34,7 @@ public class TestsPekamaSignUp {
 
     @Before
     public void selectAgreeCheckbox() {
+        holdBrowserAfterTest();
         rootLogger.info("Open URL - "+URL_SingUp);
         StepsHttpAuth openHost = new StepsHttpAuth();
         String AUTH_URL = URL_SingUp;
@@ -51,7 +53,7 @@ public class TestsPekamaSignUp {
         $(signupCompany).shouldBe(visible).shouldBe(empty);
         $(signupPassword).shouldBe(visible).shouldBe(empty);
         $(signupUpload).shouldBe(visible).shouldBe();
-        $(signupSubcribeNews).shouldBe(visible).shouldBe(selected);
+        $(signupSubscribeNews).shouldBe(visible).shouldBe(selected);
     //        $(signupAgree).shouldBe(visible).shouldNot(selected);
         signupTerms.shouldBe(visible);
     //  $(signupNext).shouldBe(visible).shouldBe(disabled);

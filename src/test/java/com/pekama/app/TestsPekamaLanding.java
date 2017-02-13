@@ -11,10 +11,12 @@ import static Page.TestsUrlConfiguration.*;
 import static Page.TestsCredentials.*;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
+import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
 
 public class TestsPekamaLanding {
     @Before
     public void openUrlLogin() {
+        holdBrowserAfterTest();
         StepsHttpAuth openHost = new StepsHttpAuth();
         String AUTH_URL = PEKAMA;
         openHost.httpAuthUrl(AUTH_URL);

@@ -26,7 +26,7 @@ public class TestsPekamaReports {
 
     @Before
     public void login() {
-        holdBrowserAfterTest(false);
+        holdBrowserAfterTest();
         rootLogger.info("Open URL - " +URL_Dashboard);
         String AUTH_URL = URL_Dashboard;
         httpAuthUrl(AUTH_URL);
@@ -37,7 +37,6 @@ public class TestsPekamaReports {
     }
     @After
     public void logout(){open(URL_Logout);}
-
 
     @Test
     public void sendProjectReport() {
@@ -65,12 +64,9 @@ public class TestsPekamaReports {
 
     @Test
     public void sendTasksReport() {
-        rootLogger.info("Open Tasks reports");
-        open(URL_ReportsTasks);
-
         String thisMailingListName = "Tasks Test Mailing List";
-        rootLogger.info("Open ProjectValues reports, opened URL - "+URL_ReportsProjects);
-        open(URL_ReportsProjects);
+        rootLogger.info("Open Tasks reports, opened URL - "+URL_ReportsTasks);
+        open(URL_ReportsTasks);
         sleep(3000);
         waitForSpinnerNotPresent();
 
@@ -92,12 +88,9 @@ public class TestsPekamaReports {
 
     @Test
     public void sendEventsReport() {
-        rootLogger.info("Open Event reports");
-        open(URL_ReportsEvents);
-
         String thisMailingListName = "Events Test Mailing List";
-        rootLogger.info("Open ProjectValues reports, opened URL - "+URL_ReportsProjects);
-        open(URL_ReportsProjects);
+        rootLogger.info("Open Event reports, opened URL - "+URL_ReportsEvents);
+        open(URL_ReportsEvents);
         sleep(3000);
         waitForSpinnerNotPresent();
 
@@ -115,17 +108,12 @@ public class TestsPekamaReports {
                 thisMailingListName);
         rootLogger.info("Email - report present in inbox");
         rootLogger.info("Test passed");
-
     }
-
     @Test
     public void sendChargesReport() {
-        open(URL_ReportsCharges);
-        rootLogger.info("Open Charges reports");
-
         String thisMailingListName = "Charges Test Mailing List";
-        rootLogger.info("Open ProjectValues reports, opened URL - "+URL_ReportsProjects);
-        open(URL_ReportsProjects);
+        rootLogger.info("Open Charges reports, opened URL - "+URL_ReportsCharges);
+        open(URL_ReportsCharges);
         sleep(3000);
         waitForSpinnerNotPresent();
 
@@ -144,15 +132,11 @@ public class TestsPekamaReports {
         rootLogger.info("Email - report present in inbox");
         rootLogger.info("Test passed");
     }
-
     @Test
     public void sendContactsReport() {
-        rootLogger.info("Open Contacts reports");
-        open(URL_ReportsContacts);
-
         String thisMailingListName = "Contacts Test Mailing List";
-        rootLogger.info("Open ProjectValues reports, opened URL - "+URL_ReportsProjects);
-        open(URL_ReportsProjects);
+        rootLogger.info("Open Contacts reports, opened URL - "+URL_ReportsContacts);
+        open(URL_ReportsContacts);
         sleep(3000);
         waitForSpinnerNotPresent();
 
@@ -171,7 +155,6 @@ public class TestsPekamaReports {
         rootLogger.info("Email - report present in inbox");
         rootLogger.info("Test passed");
     }
-
     @Test
     public void unsubscribeLink() {
         String thisMailingListName = "Projects Test unsubscribe link";

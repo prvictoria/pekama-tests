@@ -118,7 +118,8 @@ public class StepsExternal implements StepsFactory{
     public static void signInGmailInbox(String GMAIL_LOGIN, String GMAIL_PASSWORD) { //Logic for open INBOX twice or more times in one session without logout
         logging.info("Start browser");
         open(INBOX_URL);
-        INBOX_SIGNIN.waitUntil(visible, 10000).click();
+        sleep(2000);
+        INBOX_SIGNIN.waitUntil(visible, 15000).click();
         sleep(3000);
         if (INBOX_BTN_TRASH.is(visible) == true){
             logging.info("User is logged in and inbox is opened");
@@ -232,8 +233,8 @@ public class StepsExternal implements StepsFactory{
         return link;
     }
     public static void deleteEmail() {
+        sleep(1000);
         INBOX_BTN_DELETE.waitUntil(visible, 10000).click();
-        sleep(500);
         INBOX_BTN_DELETE.waitUntil(not(visible), 10000);
     }
     public static void inboxEmptyTrash(){

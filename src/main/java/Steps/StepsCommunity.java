@@ -51,9 +51,9 @@ public class StepsCommunity implements StepsFactory{
         fillField(PROFILE_INPUT_CaseType, PROFILE_SERVICE_CASE_TYPE);
         CSS_SelectHighlighted.click();
         rootLogger.info("Selected case type - "+PROFILE_SERVICE_CASE_TYPE);
-        PROFILE_SELECT_Defining.click();
-        fillField(PROFILE_INPUT_Defining, PROFILE_SERVICE_COUNTRY);
-        CSS_SelectHighlighted.click();
+//        PROFILE_SELECT_Defining.click();
+//        fillField(PROFILE_INPUT_Defining, PROFILE_SERVICE_COUNTRY);
+//        CSS_SelectHighlighted.click();
         PROFILE_INPUT_PRICE.clear();
         PROFILE_INPUT_PRICE.sendKeys(price);
         rootLogger.info("Selected case type - "+PROFILE_SERVICE_COUNTRY);
@@ -348,7 +348,7 @@ public class StepsCommunity implements StepsFactory{
         rootLogger.info(caseName);
         String row = String.format(caseRowByName, caseName);
         rootLogger.info(row);
-        $(byXpath(row)).shouldBe(visible);
+        $(byXpath(row)).waitUntil(visible, 20000);
         rootLogger.debug(ROW_CONTROL_BTN_ACTION);
         SelenideElement btn = $(byXpath(row+ROW_CONTROL_BTN_ACTION));
         rootLogger.debug(btn);

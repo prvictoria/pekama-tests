@@ -52,7 +52,7 @@ public class Emails extends Page {
     public static String EMAIL_INVITE_IN_PROJECT_TITLE = "%s %s invited you to collaborate";
     public static String EMAIL_INVITE_IN_PROJECT_TEXT = "%s %s from created a project for %s and invites you to join in."; //User name, Surname, ProjectValues name
     public static final String EMAIL_INVITE_IN_PROJECT_BTN = "Join ProjectValues";
-    public static final SelenideElement EMAIL_INVITE_IN_PROJECT_BACKLINK = $(byXpath("//td/a[contains(@href, '"+SELECT_HOST+"/n/legal/submatter/')]"));
+    public static final SelenideElement EMAIL_INVITE_IN_PROJECT_BACKLINK = $(byXpath("//td/a[contains(@href, '/n/legal/submatter/')]"));
 
 
     // Report email

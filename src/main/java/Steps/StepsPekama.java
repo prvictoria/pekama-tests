@@ -25,6 +25,7 @@ public class StepsPekama implements StepsFactory{
     static final Logger rootLogger = LogManager.getRootLogger();
     public void  loginIntoPekamaByUrl(String PEKAMA_USER_EMAIL, String urlLogIn){
         httpAuthUrl(urlLogIn);
+        hideZopim();
         rootLogger.info(urlLogIn+ "opened");
         $(loginField_Email).sendKeys(PEKAMA_USER_EMAIL);
         rootLogger.info(PEKAMA_USER_EMAIL+ " - login selected");
@@ -36,6 +37,7 @@ public class StepsPekama implements StepsFactory{
     }
     public void  loginIntoPekamaByUrl(String PEKAMA_USER_EMAIL, String USER_PEKAMA_PASSWORD, String urlLogIn){
         httpAuthUrl(urlLogIn);
+        hideZopim();
         rootLogger.info(urlLogIn+ "opened");
         $(loginField_Email).sendKeys(PEKAMA_USER_EMAIL);
         rootLogger.info(PEKAMA_USER_EMAIL+ " - login selected");
@@ -49,6 +51,7 @@ public class StepsPekama implements StepsFactory{
         httpAuthUrl(AUTH_URL);
         rootLogger.info(AUTH_URL+"URL opened");
         submitCookie();
+        hideZopim();
         loginField_Email.sendKeys(PEKAMA_USER_EMAIL);
         rootLogger.info(PEKAMA_USER_EMAIL+ " - login selected");
         loginField_Password.sendKeys(PEKAMA_USER_PASSWORD);
@@ -60,7 +63,6 @@ public class StepsPekama implements StepsFactory{
     }
     public void  submitLoginCredentials(String PEKAMA_USER_EMAIL){
         submitCookie();
-        //collapseZopim(true);
         hideZopim();
         loginField_Email.sendKeys(PEKAMA_USER_EMAIL);
         rootLogger.info(PEKAMA_USER_EMAIL+ " - login selected");
@@ -73,6 +75,7 @@ public class StepsPekama implements StepsFactory{
     }
     public void  submitLoginCredentials(String PEKAMA_USER_EMAIL, String USER_PEKAMA_PASSWORD){
         submitCookie();
+        hideZopim();
         loginField_Email.sendKeys(PEKAMA_USER_EMAIL);
         rootLogger.info(PEKAMA_USER_EMAIL+ " - login selected");
         $(loginField_Password).sendKeys(USER_PEKAMA_PASSWORD);
@@ -116,7 +119,7 @@ public class StepsPekama implements StepsFactory{
     }
     public static String mailingListCreateNew(String thisMailingListName){
         rootLogger.info("click"+REPORTS_MAILING_SAVE_SEARCH);
-        REPORTS_MAILING_SAVE_SEARCH.waitUntil(visible, 5000).click();
+        REPORTS_MAILING_SAVE_SEARCH.waitUntil(visible, 15000).click();
         sleep(3000);
         scrollDown();
         REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_SAVE.waitUntil(visible, 10000).shouldBe(disabled);
@@ -162,10 +165,10 @@ public class StepsPekama implements StepsFactory{
             MW_MAILING_1USER_INTERVAL.sendKeys("999");
             rootLogger.info("Send ProjectValues report - new report");
             sleep(500);
-            MW_MAILING_LIST_BTN_SAVE_AND_SEND_NOW.waitUntil(enabled, 10000).click();
+            MW_MAILING_LIST_BTN_SAVE_AND_SEND_NOW.waitUntil(enabled, 20000).click();
             MW_MAILING_LIST_BTN_SAVE_AND_SEND_NOW.waitUntil(hidden, 20000);
             sleep(5000);
-            MW_MAILING_LIST_BTN_SEND_NOW.waitUntil(visible, 10000).waitUntil(enabled, 10000);
+            MW_MAILING_LIST_BTN_SEND_NOW.waitUntil(visible, 20000).waitUntil(enabled, 20000);
             sleep(1000);
         }
         rootLogger.info("Report was sent");

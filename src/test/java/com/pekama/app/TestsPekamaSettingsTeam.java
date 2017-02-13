@@ -12,12 +12,15 @@ import static Page.Emails.*;
 import static Page.ModalWindows.*;
 import static Page.PekamaTeamSettings.*;
 import static Page.TestsCredentials.*;
+import static Page.TestsStrings.*;
 import static Page.TestsUrl.*;
-import static Steps.StepsExternal.checkInboxEmail;
+import static Steps.StepsExternal.*;
 import static Steps.StepsPekama.*;
+import static Utils.Utils.randomString;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
+import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaSettingsTeam {
@@ -25,8 +28,7 @@ public class TestsPekamaSettingsTeam {
 
     @Before
     public void before() {
-        Configuration test = new Configuration();
-        test.holdBrowserOpen = true;
+        holdBrowserAfterTest();
         rootLogger.info("Open host");
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(
@@ -35,10 +37,10 @@ public class TestsPekamaSettingsTeam {
                 URL_TeamSettings);
     }
 
-//    @After
-//    public void after() {
-//        open(URL_COMMUNITY_LOGOUT);
-//    }
+    @After
+    public void after() {
+        open(URL_Logout);
+    }
 
     @Test
     public void profile_testA_GUI() {
@@ -52,7 +54,7 @@ public class TestsPekamaSettingsTeam {
         SETTINGS_TEAM_TAB_EVENT_TEMPLATES.waitUntil(visible, 15000).shouldHave(Condition.text("Event Templates"));
         SETTINGS_TEAM_TAB_DOCUMENT_TEMPLATES.waitUntil(visible, 15000).shouldHave(Condition.text("Document Templates"));
         SETTINGS_TEAM_TAB_STORAGE.waitUntil(visible, 15000).shouldHave(Condition.text("Storage"));
-        rootLogger.info("Textes and tabs present");
+        rootLogger.info("Texts and tabs present");
 
     }
 
@@ -151,63 +153,49 @@ public class TestsPekamaSettingsTeam {
 
         rootLogger.info("Defauls state passed");
     }
-    @Ignore // TODO: 07-Feb-17
-    @Test
-    public void tabProfile_testB_() {
 
-        rootLogger.info("");
+    @Test
+    public void tabProfile_testB_Validation() {
+        String longString = randomString(256);
+        rootLogger.info("Check max length validation");
+        TAB_PROFILE_BTN_SAVE.waitUntil(visible, 20000).shouldBe(disabled);
         $(byText("Title:")).shouldBe(visible);
+        fillField(TAB_PROFILE_TITLE, longString);
         $(byText("Code:")).shouldBe(visible);
+        fillField(TAB_PROFILE_CODE, longString);
         $(byText("Organization type:")).shouldBe(visible);
         $(byText("This organization is:")).shouldBe(visible);
         $(byText("Email:")).shouldBe(visible);
+        fillField(TAB_PROFILE_EMAIL, longString);
         $(byText("@organizations.pekama.com")).shouldBe(visible);
         $(byText("Additional Info")).shouldBe(visible);
         $(byText("Street address:")).shouldBe(visible);
+        fillField(TAB_PROFILE_STREET, longString);
         $(byText("Post code:")).shouldBe(visible);
+        fillField(TAB_PROFILE_ZIP, longString);
         $(byText("City:")).shouldBe(visible);
+        fillField(TAB_PROFILE_CITY, longString);
         $(byText("State/Region")).shouldBe(visible);
+        fillField(TAB_PROFILE_REGION, longString);
         $(byText("Country:")).shouldBe(visible);
-        $(byText("Title")).shouldBe(visible);
-        $(byText("Title")).shouldBe(visible);
-
-        rootLogger.info("");
+        TAB_PROFILE_BTN_SAVE.shouldBe(enabled).click();
+        checkText(ERROR_MSG_VALIDATION_LENGTH_255, 4);
+        checkText(ERROR_MSG_VALIDATION_LENGTH_4);
+        checkText(ERROR_MSG_VALIDATION_LENGTH_64);
+        checkText(ERROR_MSG_VALIDATION_LENGTH_20);
+        rootLogger.info("Test passed");
     }
-
-    @Ignore //todo
     @Test
-    public void testC_() {
-
-        rootLogger.info("");
-        open("");
-        $(By.xpath("")).sendKeys("");
-        $(By.xpath("")).shouldBe(visible);
-        $(By.xpath("")).click();
-        rootLogger.info("");
+    public void tabProfile_testC_ValidationEmpty() {
+        String teamName = "";
+        String code = "";
+        rootLogger.info("Check max length validation");
+        TAB_PROFILE_BTN_SAVE.waitUntil(visible, 20000).shouldBe(disabled);
+        $(byText("Title:")).shouldBe(visible);
+        fillField(TAB_PROFILE_TITLE, teamName);
+        $(byText("Code:")).shouldBe(visible);
+        fillField(TAB_PROFILE_CODE, code);
+        TAB_PROFILE_BTN_SAVE.shouldBe(enabled).click();
+        checkText(ERROR_MSG_BLANK_FIELD, 2);
     }
-
-    @Ignore //todo
-    @Test
-    public void testD_() {
-
-        rootLogger.info("");
-        open("");
-        $(By.xpath("")).sendKeys("");
-        $(By.xpath("")).shouldBe(visible);
-        $(By.xpath("")).click();
-        rootLogger.info("");
-    }
-
-    @Ignore //todo
-    @Test
-    public void testE_() {
-
-        rootLogger.info("");
-        open("");
-        $(By.xpath("")).sendKeys("");
-        $(By.xpath("")).shouldBe(visible);
-        $(By.xpath("")).click();
-        rootLogger.info("");
-    }
-
 }

@@ -36,7 +36,7 @@ public class TestsPekamaProject {
     private static String defaultProjectURL;
     @Before
     public void before() {
-        holdBrowserAfterTest(false);
+        holdBrowserAfterTest();
         rootLogger.info("Open host");
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(User2.GMAIL_EMAIL.getValue(), User2.PEKAMA_PASSWORD.getValue(), URL_LogIn);
@@ -60,16 +60,7 @@ public class TestsPekamaProject {
         rootLogger.info("ProjectValues '"+testProjectTitle+"' created");
         waitForTextPresent(testProjectTitle);
     }
-//    @After
-//    public void after() {
-//        rootLogger.info("delete project - '"+testProjectTitle"'");
-//
-//        scrollUp();
-//        PROJECT_BTN_DELETE.shouldBe(visible).click();
-//        StepsPekama.submitConfirmAction();
-//        open(URL_Dashboard);
-//        rootLogger.info("Open URL - " +URL_Dashboard);
-//    }
+
     @Test
     public void createProject_A_CheckDefaultState() {
         $$(byText(testProjectTitle)).filter(visible).shouldHaveSize(1);
@@ -146,7 +137,7 @@ public class TestsPekamaProject {
         String classNumber = "12";
         String classDescripton = "old description";
         scrollDown();
-        TAB_INFO_ClassesAdd.click();
+        TAB_INFO_ClassesAdd.waitUntil(visible, 20000).click();
         waitForModalWindow(mwClasses_Title);
         MW_BTN_OK.shouldBe(disabled);
         mwClasses_SelectClassType.shouldHave(text("Up-to-date"));
@@ -245,11 +236,7 @@ public class TestsPekamaProject {
 
         rootLogger.info("Check email - set vars");
         String USER_EMAIL = User5.GMAIL_EMAIL.getValue();
-//        String thisEmailSubject = emailSubject(testProjectTitle);
-  //      SelenideElement EMAIL_SUBJECT = $(byXpath(thisEmailSubject));
-       // SelenideElement EMAIL_SUBJECT = $(byXpath(emailSubject(testProjectTitle)));
         SelenideElement EMAIL_SUBJECT = emailSubject(testProjectTitle);
-
         String EMAIL_TITLE = emailInviteInProjectTitle(
                 User2.NAME.getValue(),
                 User2.SURNAME.getValue());
@@ -622,11 +609,18 @@ public class TestsPekamaProject {
     @Test
     public void createProject_N_selectValues() {
         TAB_INFO_PROJECT_TYPE.shouldHave(text(CaseType.TRADEMARK.getValue()));
-        selectItemInDropdown(TAB_INFO_SELECT_Defining, TAB_INFO_INPUT_Defining, Countries.NETHERLAND_ANTILES.getValue());
-        sleep(500);
-        selectItemInDropdown(TAB_INFO_SELECT_Type, TAB_INFO_INPUT_Type, "Basic Filing");
-        sleep(500);
-        selectItemInDropdown(TAB_INFO_SELECT_SubType, TAB_INFO_INPUT_SubType, "Certification Mark");
+        selectItemInDropdown(
+                TAB_INFO_SELECT_Defining,
+                TAB_INFO_INPUT_Defining,
+                Countries.NETHERLAND_ANTILES.getValue());
+        sleep(2000);
+        selectItemInDropdown(
+                TAB_INFO_SELECT_Type,
+                TAB_INFO_INPUT_Type,"Basic Filing");
+        sleep(2000);
+        selectItemInDropdown(
+                TAB_INFO_SELECT_SubType,
+                TAB_INFO_INPUT_SubType, "Certification Mark");
         sleep(1000);
         checkText(Countries.NETHERLAND_ANTILES.getValue());
         checkText("Basic Filing");
