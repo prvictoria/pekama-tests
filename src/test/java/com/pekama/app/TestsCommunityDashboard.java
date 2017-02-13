@@ -23,7 +23,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.url;
 import static org.junit.Assert.assertEquals;
-public class CommunityDashboard {
+public class TestsCommunityDashboard {
     static final Logger rootLogger = LogManager.getRootLogger();
     String userEmail = User2.GMAIL_EMAIL.getValue();
     @Before
@@ -100,7 +100,7 @@ public class CommunityDashboard {
         assertEquals(searchQueryUrl, urlAfterLogin);
         rootLogger.info("User redirected back to Incoming");
 
-        WIZARD_BTN_REQUEST_INSTRUCTIONS.waitUntil(visible, 10000).shouldBe(disabled);
+        WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.waitUntil(visible, 10000).shouldBe(disabled);
         rootLogger.info("All elements in STEP 2 displayed for authorized user");
 
         COMMUNITY_HEADER_UserDropdown.click();

@@ -23,7 +23,7 @@ import static com.codeborne.selenide.WebDriverRunner.url;
 
 //todo draft cases
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class PekamaIntegrationBox {
+public class TestsPekamaIntegrationBox {
     static final Logger rootLogger = LogManager.getRootLogger();
     private String PEKAMA_USER_EMAIL = User1.GMAIL_EMAIL.getValue();
     private String PEKAMA_USER_PASSWORD = User1.PEKAMA_PASSWORD.getValue();
@@ -47,10 +47,10 @@ public class PekamaIntegrationBox {
     public void after() {
 
     }
-
+    @Ignore // TODO: 08-Feb-17
     @Test
     public void testA_PrepareProject() {
-        String testProjectName = nameProjectBOX+Utils.getRandomString(5);
+        String testProjectName = nameProjectBOX+Utils.randomString(5);
         rootLogger.info("Create project - full path via MW");
 
 
@@ -59,32 +59,32 @@ public class PekamaIntegrationBox {
 
         rootLogger.info("Add folder");
         //todo - random+name
-        buttonAddNewFile.click();
-        linkCreateNewFolder.shouldBe(Condition.visible).click();
+        TAB_DOCS_BTN_ADD.click();
+        TAB_DOC_ADD_FOLDER.shouldBe(Condition.visible).click();
         MW.shouldBe(Condition.visible);
-        $(byText(mwTitleNewFolder)).shouldBe(Condition.visible);
+        $(byText(TITLE_MW_NEW_FOLDER)).shouldBe(Condition.visible);
         $(byName("name")).sendKeys(FolderNameBeforeConnect);
         MW_BTN_SAVE.click();
         MW.shouldNotBe(Condition.visible);
         $(byText(FolderNameBeforeConnect)).shouldBe(Condition.visible);
         rootLogger.info("Add folder");
         //todo - random+name
-        buttonAddNewFile.click();
-        linkCreateNewDoc.shouldBe(Condition.visible).click();
+        TAB_DOCS_BTN_ADD.click();
+        TAB_DOC_NEW_DOCUMENT.shouldBe(Condition.visible).click();
         MW.shouldBe(Condition.visible);
         MW_DeployDoc_01TemplateWord.shouldBe(Condition.visible).click();
         $(byName("name")).sendKeys(FileNameBeforeConnect);
-        MW_DeployDoc_ButtonCreate.click();
+        MW_DEPLOY_DOC_BTN_CREATE.click();
         MW.shouldNotBe(Condition.visible);
         $(byText(FileNameBeforeConnect)).shouldBe(Condition.visible);
 
         pekamaProjectUrl = url();
     }
-
+    @Ignore // TODO: 08-Feb-17
     @Test
     public void testB_ConnectToBOX() {
         if (pekamaProjectUrl ==null){
-            Assert.fail("Project url not found");
+            Assert.fail("ProjectValues url not found");
         }
         if(boxConnectProjectButton.isDisplayed()) {
             boxConnectProjectButton.click();
@@ -117,21 +117,22 @@ public class PekamaIntegrationBox {
 
         rootLogger.info("");
     }
-
+    @Ignore // TODO: 08-Feb-17
     @Test
     public void testC_AddFilesInProject() {
         rootLogger.info("Add files after connect");
         if (pekamaProjectUrl ==null){
-            Assert.fail("Project url not found");
+            Assert.fail("ProjectValues url not found");
         }
         open(pekamaProjectUrl);
         sleep(4000);
         if (boxConnectProjectButton!=null){
-            Assert.fail("Project not connected to BOX");
+            Assert.fail("ProjectValues not connected to BOX");
         }
 
         rootLogger.info("");
     }
+    @Ignore // TODO: 08-Feb-17
     @Test
     public void testD_checkSyncFromPekama() {
         rootLogger.info("Check created files and folders in BOX");
@@ -222,19 +223,20 @@ public class PekamaIntegrationBox {
         String boxProjectFolderUrl = url();
 
     }
+    @Ignore // TODO: 08-Feb-17
     @Test
     public void testE_DeleteFilesAndCheckBOX() {
         rootLogger.info("Delete files and folders");
         if (pekamaProjectUrl ==null){
-            Assert.fail("Project url not found");
+            Assert.fail("ProjectValues url not found");
         }
         sleep(4000);
         if (boxConnectProjectButton!=null){
-            Assert.fail("Project not connected to BOX");
+            Assert.fail("ProjectValues not connected to BOX");
         }
         open(boxProjectFolderUrl);
         projectAllCheckbox.click();
-        linkDelete.click();
+        LINK_DELETE.click();
         StepsPekama.submitConfirmAction();
         $(byText(placeholderNoFiles)).shouldBe(Condition.visible);
 
@@ -253,15 +255,16 @@ public class PekamaIntegrationBox {
         boxNoFilesPlaceholder.shouldBe(Condition.visible);
         rootLogger.info("Files were deleted from BOX");
      }
+    @Ignore // TODO: 08-Feb-17
     @Test
     public void testF_DeleteProjectAndCheckBOX() {
         rootLogger.info("Delete files and folders");
         if (pekamaProjectUrl ==null){
-            Assert.fail("Project url not found");
+            Assert.fail("ProjectValues url not found");
         }
         sleep(4000);
         if (boxConnectProjectButton!=null){
-            Assert.fail("Project not connected to BOX");
+            Assert.fail("ProjectValues not connected to BOX");
         }
         open(boxProjectFolderUrl);
         //todo delete project method

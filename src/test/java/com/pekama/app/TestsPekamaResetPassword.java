@@ -31,7 +31,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class PekamaResetPassword {
+public class TestsPekamaResetPassword {
     static final Logger rootLogger = LogManager.getLogger(LoginGmail.class);
     public static String SELECT_HOST = PEKAMA;
     public static String NEW_PASSWORD = null;
@@ -229,7 +229,7 @@ public class PekamaResetPassword {
             openHost.httpAuthUrl(AUTH_URL);
             sleep(1000);
             rootLogger.info("Validation test");
-            String RANDOM_129_LETTER = Utils.getRandomString(129);
+            String RANDOM_129_LETTER = Utils.randomString(129);
            NEWPASSWORD_PAGE_NEW_PASSWORD.waitUntil(visible, 10000).sendKeys(RANDOM_129_LETTER);
            NEWPASSWORD_PAGE_CONFIRM_PASSWORD.shouldBe(Condition.visible).sendKeys(RANDOM_129_LETTER);
            NEWPASSWORD_PAGE_RESTORE_BTN.click();
@@ -249,7 +249,7 @@ public class PekamaResetPassword {
             sleep(1000);
             rootLogger.info("Positive test");
             //need random passwrord +constant
-            String RANDOM_8_LETTER = Utils.getRandomString(8);
+            String RANDOM_8_LETTER = Utils.randomString(8);
             NEW_PASSWORD = VALID_PASSWORD+RANDOM_8_LETTER;
            NEWPASSWORD_PAGE_NEW_PASSWORD.shouldBe(Condition.visible).sendKeys(NEW_PASSWORD);
            NEWPASSWORD_PAGE_CONFIRM_PASSWORD.shouldBe(Condition.visible).sendKeys(NEW_PASSWORD);

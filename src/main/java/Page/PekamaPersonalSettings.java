@@ -71,7 +71,7 @@ public class PekamaPersonalSettings extends Page {
     public static final SelenideElement IMAP_TAB_BTN_CONNECT_GMAIL = $(byXpath(personalSettingsTabIMAP+"//button[contains(./text(),'Connect Gmail')]"));
     public static final SelenideElement IMAP_TAB_BTN_SAVE_AND_CHECK = $(byXpath("//button[contains(.,'Save & Check')]"));
     public static final SelenideElement IMAP_TAB_BTN_CHECK = $(byXpath("//div[@class='pull-right']/button[contains(.,'Check')]"));
-    public static final SelenideElement IMAP_TAB_BTN_DELETE = $(byXpath("//button[contains(.,'Delete')]"));
+    public static final SelenideElement IMAP_TAB_BTN_DELETE = $(byXpath("//div[@id='imap']//button[contains(.,'Delete')]"));
     public static final SelenideElement IMAP_TAB_SSL = $(byXpath("//input[@name='use_ssl']"));
 
 

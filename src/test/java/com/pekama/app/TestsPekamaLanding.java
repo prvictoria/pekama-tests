@@ -12,7 +12,7 @@ import static Page.TestsCredentials.*;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
-public class PekamaLanding {
+public class TestsPekamaLanding {
     @Before
     public void openUrlLogin() {
         StepsHttpAuth openHost = new StepsHttpAuth();

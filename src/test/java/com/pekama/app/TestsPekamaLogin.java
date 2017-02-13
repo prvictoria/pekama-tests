@@ -23,7 +23,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by VatslauX on 26-Dec-16.
  */
-public class PekamaLogin {
+public class TestsPekamaLogin {
     String testDashboardUrl = "";
     static final Logger rootLogger = LogManager.getRootLogger();
     @Before

@@ -20,34 +20,38 @@ public class PekamaProject extends Page {
     public static final SelenideElement projectPlusNewConversation = $(byLinkText("New Conversation"));
     public static final SelenideElement projectPlusNewTask = $(byLinkText("New Task"));
     public static final SelenideElement projectPlusNewDocument = $(byLinkText("New Document"));
-    public static final SelenideElement projectPlusNewFinancial = $(byLinkText("New financial"));
+    public static final SelenideElement projectPlusNewFinancial = $(byLinkText("New Charge"));
     public static final SelenideElement projectPlusNewNumber = $(byLinkText("New Number"));
     public static final SelenideElement projectPlusNewContact = $(byLinkText("New Contact"));
-    public static final SelenideElement projectAllCheckbox = $("css=i.pkm-icon-checkbox");
+    public static final SelenideElement projectAllCheckbox = $("i.pkm-icon-checkbox");
     public static final SelenideElement projectAllCheckboxFiles = $(byXpath("//div[@class='checkbox-holder fancy main-checkbox pull-left']//input"));
 
-    public static final SelenideElement timelineLine = $("css=.slider-selection");
-    public static final SelenideElement timelineCheckboxLessImportant = $(byXpath("//*[@ng-model='showLessImportant']"));
-    public static final SelenideElement timelineCheckboxAutoPopulated = $(byXpath("//*[@ng-model='showPopulated']"));
-    public static final SelenideElement timelineCheckboxManuallyAdded = $(byXpath("//*[@ng-model='showManual']"));
-    public static final SelenideElement timelineCheckboxShrinkedEventsView = $(byXpath("//*[@ng-model='shrinkedEventsView']"));
-    public static final SelenideElement timelineDeleteEvent = $(byXpath("//*[@pkm-confirm-click='remove event ']"));
-    public static final SelenideElement timelineEditEvent = $(byXpath("//*[@ng-click='update event ']"));
-    public static final SelenideElement timelineArrowLeft = $(byXpath(""));
-    public static final SelenideElement timelineArrowRight = $(byXpath(""));
+    public static final SelenideElement TIMELINE__Line = $(".slider-selection");
+    public static final SelenideElement TIMELINE_DeleteEvent = $(byXpath("//*[@id='timeline']//a[@class='delete ng-scope']"));
+    public static final SelenideElement TIMELINE_EditEvent = $(byXpath("//*[@id='timeline']//a[@class='edit ng-scope']"));
+    public static final SelenideElement TIMELINE_ArrowLeft = $(byXpath(""));
+    public static final SelenideElement TIMELINE_ArrowRight = $(byXpath(""));
+    public static final SelenideElement BTN_HIDE_TIMELINE = $(byXpath("//button[text()='hide timeline']"));
+    public static final SelenideElement BTN_SHOW_TIMELINE = $(byXpath("//button[text()='show timeline']"));
+    public static final SelenideElement TIMELINE_Line = $("css=.slider-selection");
+    public static final SelenideElement TIMELINE_CheckboxLessImportant = $(byXpath("//div[@class='check-filters-holder form-inline']/div[1]//span"));
+    public static final SelenideElement TIMELINE_CheckboxAutoPopulated = $(byXpath("//div[@class='check-filters-holder form-inline']/div[2]//span"));
+    public static final SelenideElement TIMELINE_CheckboxManuallyAdded = $(byXpath("//div[@class='check-filters-holder form-inline']/div[3]//span"));
+    public static final SelenideElement TIMELINE_CheckboxShrinkedEventsView = $(byXpath("//div[@class='check-filters-holder form-inline']/div[4]//span"));
+    public static final SelenideElement TIMELINE_EventToday = $(byXpath("//ul[@id='timeline']/li/a/span"));
 
-    public static final SelenideElement projectTimeline_ShowHide = $(byXpath("//button[@type='button'][contains(.,'timeline')]"));
-    public static final SelenideElement projectTimeline_Line = $("css=.slider-selection");
-    public static final SelenideElement projectTimeline_CheckboxLessImportant = $(byXpath("//div[@class='check-filters-holder form-inline']/div[1]//input"));
-    public static final SelenideElement projectTimeline_CheckboxAutoPopulated = $(byXpath("//div[@class='check-filters-holder form-inline']/div[2]//input"));
-    public static final SelenideElement projectTimeline_CheckboxManuallyAdded = $(byXpath("//div[@class='check-filters-holder form-inline']/div[3]//input"));
-    public static final SelenideElement projectTimeline_CheckboxShrinkedEventsView = $(byXpath("//div[@class='check-filters-holder form-inline']/div[4]//input"));
-    public static final SelenideElement projectTimeline_DeleteEvent = $(byXpath("//*[@pkm-confirm-click='remove(event)']"));
-    public static final SelenideElement projectTimeline_EditEvent = $(byXpath("//*[@ng-click='update(event)']"));
-    public static final SelenideElement projectTimeline_ArrowLeft = $(byXpath(""));
-    public static final SelenideElement projectTimeline_ArrowRight = $(byXpath(""));
-    public static final SelenideElement projectTimeline_EventToday = $(byXpath("//ul[@id='timeline']/li/a/span"));
+    public static final String CONTROLS_ROW = "//div[@class='clearfix-row zone-controls-holder']";
+    public static final SelenideElement TAB_CONTROL_DELETE = $(byXpath("//button[@class='btn-link' and contains(.,'Delete')]"));
+    public static final SelenideElement TAB_CONTROL_XERO = $(byXpath("//button[@class='btn-link' and contains(.,'To Xero')]"));
+    public static final SelenideElement TAB_CONTROL_DOWNLOAD = $(byXpath(""));
+    public static final SelenideElement TAB_CONTROL_ADD = $(byXpath(CONTROLS_ROW+"//button[contains(.,'add')]"));
+    public static final SelenideElement TAB_CONTROL_SELECT_ALL = $("i.pkm-icon-checkbox");
+    public static final SelenideElement TAB_CONTROL_1 = $(byXpath(CONTROLS_ROW+""));
+    public static final SelenideElement TAB_CONTROL_2 = $(byXpath(CONTROLS_ROW+""));
+    public static final SelenideElement TAB_CONTROL_3 = $(byXpath(CONTROLS_ROW+""));
 
+    public static final SelenideElement TAB_CHARGES_ADD = TAB_CONTROL_ADD;
+    public static final SelenideElement TAB_CHARGES_CHECKBOX_ALL = $(byXpath(CONTROLS_ROW+""));
     public static final SelenideElement projectTabMore = $(byXpath("//i[@class='icon pkm-icon-info-square']"));
     public static final SelenideElement projectTabContacts = $(byXpath("//i[@class='icon pkm-icon-users-square']"));
     public static final SelenideElement projectTabDocs = $(byXpath("//i[@class='icon pkm-icon-documents-square']"));
@@ -57,64 +61,71 @@ public class PekamaProject extends Page {
     public static final SelenideElement projectTabSearch = $(byXpath("//i[@class='icon pkm-icon-search-square']"));
     public static final SelenideElement projectTabNoContentPlaceholder = $(byXpath("//div[@class='project-content-body ng-scope']//div[starts-with(@class, 'alert alert-empty')]"));
 
-    public static final SelenideElement projectTabMore_ = $(byXpath(""));
-    public static final SelenideElement projectTabMore_ProjectTitle = $(byXpath("//pkm-editable-title//h4"));
-    public static final SelenideElement projectTabMore_TitleEditButton = $(byXpath("//*[@class='info-section project-details ng-scope']//button[contains(.,'Edit')]"));
-    public static final SelenideElement projectTabMore_TitleInput = $(byXpath("//input[@name='title']"));
-    public static final SelenideElement projectTabMore_TitleSave = $(byXpath("//button[contains(.,'Save')]"));
-    public static final SelenideElement projectTabMore_TitleCancel = $(byXpath("//button[contains(.,'Cancel')]"));
-    public static final SelenideElement projectTabMore_Notes = $(byXpath(""));
-    public static final SelenideElement projectTabMore_Statuses = $(byXpath(""));
-    public static final SelenideElement projectTabMore_StatusesSearchButton = $("css=button.info-status-seach-btn");
-    public static final SelenideElement projectTabMore_StatusesSearchInupt = $(byId("searchStatusInput"));
-    public static final SelenideElement projectTabMore_Statuses1Status = $(byXpath("//ul//*[@id]/span"));
-    public static final SelenideElement projectTabMore_Statuses2Status = $(byXpath("//ul//*[@id][2]/span"));
 
-    public static final SelenideElement projectTabMore_NumberNoNumbers = $(byXpath("//pkm-reference-numbers/div[2]/div/div[2]"));
-    public static final SelenideElement projectTabMore_NumberNoClasses = $(byXpath("//pkm-classes/div[2]/div/div[2]"));
+    public static final SelenideElement TAB_INFO_ProjectTitle = $(byXpath("//pkm-editable-title//h4"));
+    public static final SelenideElement TAB_INFO_TitleEditButton = $(byXpath("//*[@class='info-section project-details ng-scope']//button[contains(.,'Edit')]"));
+    public static final SelenideElement TAB_INFO_TitleInput = $(byXpath("//input[@name='title']"));
+    public static final SelenideElement TAB_INFO_TitleSave = $(byXpath("//button[contains(.,'Save')]"));
+    public static final SelenideElement TAB_INFO_TitleCancel = $(byXpath("//button[contains(.,'Cancel')]"));
 
-    public static final SelenideElement projectTabMore_NumberAdd = $(byXpath("//button[contains(.,'Add')]"));
-    public static final SelenideElement projectTabMore_NumberRow01Type = $(byXpath("//li[@class='like-tr ng-scope']/div/div[1]"));
-    public static final SelenideElement projectTabMore_NumberRow01Number = $(byXpath("//li[@class='like-tr ng-scope']/div/div/span"));
-    public static final SelenideElement projectTabMore_NumberRow01Edit = $(byXpath("//pkm-reference-numbers/ul/li[1]//i[@class='icon pkm-icon-edit']"));
-    public static final SelenideElement projectTabMore_NumberRow01Delete = $(byXpath("//pkm-reference-numbers/ul/li[1]//i[@class='pkm-icon-cancel icon']"));
-    public static final SelenideElement projectTabMore_NumberRow01Collapse = $(byXpath("//pkm-reference-numbers/ul/li[1]//i[@class='icon pkm-icon-up-open']"));
-    public static final SelenideElement projectTabMore_NumberRow02Number = $(byXpath(""));
-    public static final SelenideElement projectTabMore_NumberRow02Edit = $(byXpath(""));
-    public static final SelenideElement projectTabMore_NumberRow02Type = $(byXpath(""));
+    public static final String TAB_INFO_VALUES= "//*[@class='details-list clearfix']";
+    public static final SelenideElement TAB_INFO_PROJECT_TYPE = $(byXpath(TAB_INFO_VALUES+"//strong[contains(.,'Project type')]/following-sibling::span"));
+    public static final SelenideElement TAB_INFO_SELECT_Defining = $(byXpath(TAB_INFO_VALUES+"//strong[text()='Country']/following-sibling::pkm-values-dropdown"));
+    public static final SelenideElement TAB_INFO_INPUT_Defining = $(byXpath(TAB_INFO_VALUES+"//strong[text()='Country']/following-sibling::pkm-values-dropdown//input[@type='search']"));
+    public static final SelenideElement TAB_INFO_SELECT_Type = $(byXpath(TAB_INFO_VALUES+"//strong[text()='Type']/following-sibling::pkm-values-dropdown"));
+    public static final SelenideElement TAB_INFO_INPUT_Type = $(byXpath(TAB_INFO_VALUES+"//strong[text()='Type']/following-sibling::pkm-values-dropdown//input[@type='search']"));
+    public static final SelenideElement TAB_INFO_SELECT_SubType = $(byXpath(TAB_INFO_VALUES+"//strong[text()='Sub Type ']/following-sibling::pkm-values-dropdown"));
+    public static final SelenideElement TAB_INFO_INPUT_SubType = $(byXpath(TAB_INFO_VALUES+"//strong[text()='Sub Type ']/following-sibling::pkm-values-dropdown//input[@type='search']"));
+
+
+    public static final SelenideElement TAB_INFO_Notes = $(byXpath(""));
+    public static final SelenideElement TAB_INFO_Statuses = $(byXpath(""));
+    public static final SelenideElement TAB_INFO_StatusesSearchButton = $("css=button.info-status-seach-btn");
+    public static final SelenideElement TAB_INFO_StatusesSearchInupt = $(byId("searchStatusInput"));
+    public static final SelenideElement TAB_INFO_Statuses1Status = $(byXpath("//ul//*[@id]/span"));
+    public static final SelenideElement TAB_INFO_Statuses2Status = $(byXpath("//ul//*[@id][2]/span"));
+
+
+    public static final SelenideElement TAB_INFO_NumberAdd = $(byXpath("//button[contains(.,'Add')]"));
+    public static final SelenideElement TAB_INFO_NumberRow01Type = $(byXpath("//li[@class='like-tr ng-scope']/div/div[1]"));
+    public static final SelenideElement TAB_INFO_NumberRow01Number = $(byXpath("//li[@class='like-tr ng-scope']/div/div/span"));
+    public static final SelenideElement TAB_INFO_NumberRow01Edit = $(byXpath("//pkm-reference-numbers/ul/li[1]//i[@class='icon pkm-icon-edit']"));
+    public static final SelenideElement TAB_INFO_NumberRow01Delete = $(byXpath("//pkm-reference-numbers/ul/li[1]//i[@class='pkm-icon-cancel icon']"));
+    public static final SelenideElement TAB_INFO_NumberRow01Collapse = $(byXpath("//pkm-reference-numbers/ul/li[1]//i[@class='icon pkm-icon-up-open']"));
+    public static final SelenideElement TAB_INFO_NumberRow02Number = $(byXpath(""));
+    public static final SelenideElement TAB_INFO_NumberRow02Edit = $(byXpath(""));
+    public static final SelenideElement TAB_INFO_NumberRow02Type = $(byXpath(""));
 
 //todo param string and method
-    public static final SelenideElement projectTabMore_NumberEdit = $(byXpath("//*[@class='more-item numbers ng-scope']//ul/li[contains(.,'122')]//a[@class='edit ng-scope']"));
-    public static final SelenideElement projectTabMore_NumberDelete = $(byXpath("//*[@class='more-item numbers ng-scope']//ul/li[contains(.,'122')]//i[@class='pkm-icon-cancel icon']"));
+    public static final SelenideElement TAB_INFO_NumberEdit = $(byXpath("//*[@class='more-item numbers ng-scope']//ul/li[contains(.,'122')]//a[@class='edit ng-scope']"));
+    public static final SelenideElement TAB_INFO_NumberDelete = $(byXpath("//*[@class='more-item numbers ng-scope']//ul/li[contains(.,'122')]//i[@class='pkm-icon-cancel icon']"));
 
-    public static final SelenideElement projectTabMore_NumberNewSelect = $(byXpath("//div[@name='reference_type']/div/span/span[1]"));
-    public static final SelenideElement projectTabMore_NumberNewField = $(byXpath("//div[@name='reference_type']/input[1]"));
-    public static final SelenideElement projectTabMore_NumberReferenceField = $(byXpath("//input[@name='reference_number']"));
-    public static final SelenideElement projectTabMore_Number_EDIT_REFERENCE_TYPE_SELECT = $(byXpath("//*[@class='subrow collapsable ng-scope']//pkm-values-dropdown//span[starts-with(@class, 'btn btn-default form-control ui-select-toggle')]"));
-    public static final SelenideElement projectTabMore_Number_EDIT_REFERENCE_TYPE_INPUT = $(byXpath("//*[@class='subrow collapsable ng-scope']//pkm-values-dropdown//input[@type='search']"));
-    public static final SelenideElement projectTabMore_Number_EDIT_REFERENCE_VALUE_INPUT = $(byXpath("//*[@class='subrow collapsable ng-scope']//div[@class='form-group ng-scope']/input"));
-    public static final SelenideElement projectTabMore_Number_EDIT_REFERENCE_BTN_SAVE = $(byXpath("//*[@class='subrow collapsable ng-scope']//button"));
+    public static final SelenideElement TAB_INFO_NumberNewSelect = $(byXpath("//div[@name='reference_type']/div/span/span[1]"));
+    public static final SelenideElement TAB_INFO_NumberNewField = $(byXpath("//div[@name='reference_type']/input[1]"));
+    public static final SelenideElement TAB_INFO_NumberReferenceField = $(byXpath("//input[@name='reference_number']"));
+    public static final SelenideElement TAB_INFO_Number_EDIT_REFERENCE_TYPE_SELECT = $(byXpath("//*[@class='subrow collapsable ng-scope']//pkm-values-dropdown//span[starts-with(@class, 'btn btn-default form-control ui-select-toggle')]"));
+    public static final SelenideElement TAB_INFO_Number_EDIT_REFERENCE_TYPE_INPUT = $(byXpath("//*[@class='subrow collapsable ng-scope']//pkm-values-dropdown//input[@type='search']"));
+    public static final SelenideElement TAB_INFO_Number_EDIT_REFERENCE_VALUE_INPUT = $(byXpath("//*[@class='subrow collapsable ng-scope']//div[@class='form-group ng-scope']/input"));
+    public static final SelenideElement TAB_INFO_Number_EDIT_REFERENCE_BTN_SAVE = $(byXpath("//*[@class='subrow collapsable ng-scope']//button"));
 
 
-    public static final String projectTabMore_Classes = "//*[@class='more-item classes ng-scope']";
-    public static final SelenideElement projectTabMore_ClassesAdd = $(byXpath(projectTabMore_Classes+"//button[contains(.,'Add')]"));
-    public static final SelenideElement projectTabMore_ClassRow01Number = $(byXpath("//tbody/tr/td[1]"));
-    public static final SelenideElement projectTabMore_ClassRow01Type = $(byXpath("//tbody/tr/td[2]"));
-    public static final SelenideElement projectTabMore_ClassRow01Description = $(byXpath("//tbody/tr/td[3]"));
-    public static final SelenideElement projectTabMore_ClassRow01Edit = $(byXpath("//tbody/tr/td[4]/a[@class='edit ng-scope']"));
-    public static final SelenideElement projectTabMore_ClassRow01delete = $(byXpath(projectTabMore_Classes+"//table//tr[1]//*[@class='pkm-icon-cancel icon']"));
+    public static final String TAB_INFO_Classes = "//*[@class='more-item classes ng-scope']";
+    public static final SelenideElement TAB_INFO_ClassesAdd = $(byXpath(TAB_INFO_Classes +"//button[contains(.,'Add')]"));
+    public static final SelenideElement TAB_INFO_ClassRow01Number = $(byXpath("//tbody/tr/td[1]"));
+    public static final SelenideElement TAB_INFO_ClassRow01Type = $(byXpath("//tbody/tr/td[2]"));
+    public static final SelenideElement TAB_INFO_ClassRow01Description = $(byXpath("//tbody/tr/td[3]"));
+    public static final SelenideElement TAB_INFO_ClassRow01Edit = $(byXpath("//tbody/tr/td[4]/a[@class='edit ng-scope']"));
+    public static final SelenideElement TAB_INFO_ClassRow01delete = $(byXpath(TAB_INFO_Classes +"//table//tr[1]//*[@class='pkm-icon-cancel icon']"));
 
-    public static final SelenideElement projectTabMore_ProejctType = $(byXpath("//section[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div[2]/div/div/div/div[2]/div[2]/form/div/pkm-values-dropdown/div/div/span/span[2]/span"));
-    public static final SelenideElement projectTabMore_SelectDefining = $(byXpath("//section[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div[2]/div/div/div/div[2]/div[2]/form/div/pkm-values-dropdown/div/div/span/span[2]/span"));
-    public static final SelenideElement projectTabMore_SelectType = $(byXpath("//section[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div[2]/div/div/div/div[2]/div[2]/form/div[2]/pkm-values-dropdown/div/div/span/span"));
-    public static final SelenideElement projectTabMore_SelectSubType = $(byXpath("//section[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div[2]/div/div/div/div[2]/div[2]/form/div[3]/pkm-values-dropdown/div/div/span/span"));
-
-    public static final SelenideElement projectTabMore_Community = $(byXpath("//pkm-community-projects"));
-    public static final SelenideElement projectTabMore_CommunityModule = $(byXpath("//pkm-community-projects//h4"));
-    public static final SelenideElement projectTabMore_CommunityBtnNewCase = $(byXpath("link=+ START NEW"));
-    public static final SelenideElement projectTabMore_CommunityCasesList = $(byXpath("//pkm-community-projects//div[@class='request-quote-list']/div"));
-    public static final SelenideElement projectTabMore_CommunityCaseDefining = $(byXpath("//div[@class='patent']/span"));
-    public static final SelenideElement projectTabMore_CommunityCaseStatus = $(byXpath("//div[@class='status']//span"));
+    //COMMUNITY
+    public static final SelenideElement TAB_INFO_COMMUNITY = $(byXpath("//pkm-community-projects"));
+    public static final SelenideElement TAB_INFO_COMMUNITY_TITLE = $(byXpath("//pkm-community-projects//h4"));
+    public static final SelenideElement TAB_INFO_COMMUNITY_BTN_START_NEW = $(byXpath("link=+ START NEW"));
+    public static final SelenideElement TAB_INFO_COMMUNITY_CASES_LIST = $(byXpath("//pkm-community-projects//div[@class='request-quote-list']/div"));
+    public static final SelenideElement TAB_INFO_COMMUNITY_CASE_NAME = $(byXpath("//div[@class='name']"));
+    public static final SelenideElement TAB_INFO_COMMUNITY_CASE_TYPE = $(byXpath("//div[@class='patent']/span"));
+    public static final SelenideElement TAB_INFO_COMMUNITY_CASE_ACTION = $(byXpath("//div[@class='status']/button"));
+    public static final SelenideElement TAB_INFO_COMMUNITY_CASE_STATUS = $(byXpath("//div[@class='status']//span"));
 
 
     //todo - TAB contacts
@@ -124,9 +135,16 @@ public class PekamaProject extends Page {
     public static final SelenideElement projectTabContacts_TeamRow = $(byXpath("//tr[@ng-repeat='collaborator in collaborators']"));
     public static final SelenideElement projectTabContacts_TeamName = $(byXpath("/td[1]"));
     public static final SelenideElement projectTabContacts_TeamStatus = $(byXpath("/td[2]"));
-    public static final SelenideElement projectTabContacts_TeamEdit = $(byXpath("/td[3]/a[1]"));
-    public static final SelenideElement projectTabContacts_TeamDelete = $(byXpath("/td[3]/a[2]"));
+    public static final SelenideElement projectTabContacts_TeamEdit = $(byXpath("//pkm-collaborators//tbody//tr[2]//a[1]"));
+    public static final SelenideElement projectTabContacts_TeamDelete = $(byXpath("//pkm-collaborators//tbody//tr[2]//a[2]"));
+    public static final String OWNER = "OWNER";
+    public static final String ADMIN = "ADMIN";
+    public static final String COLLABORATOR = "COLLABORATOR";
+    public static final String VIEWER = "VIEWER";
 
+    public static final String TAB_CONTACTS = "//pkm-contact-relations/ul"; //table
+    public static final String TAB_CONTACTS_SELECTION_ROW = TAB_CONTACTS+"/li[last()]";
+    public static final String TAB_CONTACTS_FIRST_ROW = TAB_CONTACTS+"/li[1]";
 
     public static final SelenideElement projectTabContacts_RelationNoData = $(byXpath("//pkm-contact-relations/div[2]/div/div[2]"));
     public static final SelenideElement projectTabContacts_AddSelectContact = $(byXpath("//div[@name='contact']/div/span"));
@@ -134,16 +152,17 @@ public class PekamaProject extends Page {
     public static final SelenideElement projectTabContacts_AddSelectRelation = $(byXpath("//div[@name='relation']/div/span"));
     public static final SelenideElement projectTabContacts_AddRelationInput = $(byXpath("//div[@name='relation']/input[1]"));
     public static final SelenideElement projectTabContacts_AddContactButton = $(byXpath("//pkm-contact-relations//button[contains(.,'Add')]"));
+    public static final SelenideElement projectTabContacts_CREATE_NEW_CONTACT = $(byXpath("//pkm-values-dropdown//span[text()='Create new']"));
 
     public static final SelenideElement projectTabContacts_ContactRow = $(byXpath("//li[starts-with(@ng-repeat, 'contactRelation')]"));
     public static final SelenideElement projectTabContacts_ContactIconPerson = $(byXpath("css=i.pkm-icon-user"));
     public static final SelenideElement projectTabContacts_ContactIconCompany = $(byXpath("css=i.pkm-icon-building"));
-    public static final SelenideElement projectTabContacts_ContactName = $(byXpath("/div/div[1]"));
-    public static final SelenideElement projectTabContacts_ContactRelation = $(byXpath("/div/div[2]"));
-    public static final SelenideElement projectTabContacts_ContactCollaborate = $(byXpath("//button[contains(.,'+COLLABORATE')]"));
-    public static final SelenideElement projectTabContacts_ContactDrop = $(byXpath("//a[@class='first']"));
-    public static final SelenideElement projectTabContacts_ContactEdit = $(byXpath("//a[@class='edit']"));
-    public static final SelenideElement projectTabContacts_ContactDelete = $(byXpath("//a[@class='cancel']"));
+    public static final SelenideElement projectTabContacts_ContactName = $(byXpath(TAB_CONTACTS_FIRST_ROW+"/div/div[1]"));
+    public static final SelenideElement projectTabContacts_ContactRelation = $(byXpath(TAB_CONTACTS_FIRST_ROW+"/div/div[2]"));
+    public static final SelenideElement projectTabContacts_Contact_BTN_COLLABORATE = $(byXpath(TAB_CONTACTS_FIRST_ROW+"//button[text()='+COLLABORATE']"));
+    public static final SelenideElement projectTabContacts_ContactDrop = $(byXpath(TAB_CONTACTS_FIRST_ROW+"//a[@class='first']"));
+    public static final SelenideElement projectTabContacts_ContactEdit = $(byXpath(TAB_CONTACTS_FIRST_ROW+"//a[@class='edit']"));
+    public static final SelenideElement projectTabContacts_ContactDelete = $(byXpath(TAB_CONTACTS_FIRST_ROW+"//a[@class='cancel']"));
 
     public static final SelenideElement projectTabContacts_Form = $(byXpath(""));
     public static final SelenideElement projectTabContacts_FormRelationSelect = $(byXpath("//select[@name='relation']"));
@@ -164,64 +183,84 @@ public class PekamaProject extends Page {
     public static final SelenideElement projectTabContacts_FormRegion = $(byXpath("//input[@name='contact.region']"));
     public static final SelenideElement projectTabContacts_FormCountrySelect = $(byXpath("//div[@name='contact.country']//div/span"));
     public static final SelenideElement projectTabContacts_FormCountryInput = $(byXpath("//div[@name='contact.country']//input"));
+    //TAB DOCS
+    public static final SelenideElement TAB_DOCS_BTN_ADD = $(byId("file-controls"));
+    public static final SelenideElement TAB_DOC_ADD_FOLDER = $(byLinkText("Add Folder"));
+    public static final SelenideElement TAB_DOC_NEW_DOCUMENT = $(byLinkText("New document"));
+    public static final SelenideElement LINK_DELETE = $(byLinkText("Delete"));
+    public static final SelenideElement TAB_DOCS = $(byXpath(""));
 
-
-    public static final SelenideElement projectTabDocs_ = $(byXpath(""));
     public static final SelenideElement projectTabDocs_Row = $(byXpath("//div[@class='items-list files ng-scope angular-ui-tree']/ol/li"));
     public static final SelenideElement projectTabDocs_RowName = $(byXpath("//div[@class='file-info-holder']/a[1]"));
 
-    public static final SelenideElement projectTabDocs_01Row = $(byXpath("//li[@ng-repeat='node in data'][1]//div[@class='file-info-holder']/a"));
-    public static final SelenideElement projectTabDocs_01RowMenu = $(byXpath("//li[4]/div[2]/button"));
-    public static final SelenideElement projectTabDocs_01RowPermission = $(byXpath("//li[4]/div/ul/li/span"));
-    public static final SelenideElement projectTabDocs_01RowNameExpanded = $(byXpath("//pkm-files-editable-title/div/h5"));
-    public static final SelenideElement projectTabDocs_02Row = $(byXpath("//section[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div[2]/div/div/pkm-files/div/div[3]/div/ol/li[2]/div/div/ul/li[3]/div/a"));
-    public static final SelenideElement projectTabDocs_03Row = $(byXpath("//section[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div[2]/div/div/pkm-files/div/div[3]/div/ol/li[3]/div/div/ul/li[3]/div/a/span"));
-    public static final SelenideElement projectTabDocs_RenameExpanded = $(byXpath("//a[contains(text(),'Rename')]"));
-    public static final SelenideElement projectTabDocs_NameExpanded = $(byXpath("//input[@name='name']"));
-    public static final SelenideElement projectTabDocs_SaveExpanded = $(byXpath("//pkm-files-editable-title/div/form/div/a[contains(text(),'Save')]"));
+    public static String TAB_DOCS_FILES_SELECT_ROW = "//ul[@class='doc-list-table' and contains(.,'%s')]//input[@type='checkbox']";
+    public static String TAB_DOCS_FILES_EXPAND_FOLDER = "//ul[@class='doc-list-table' and contains(.,'%s')]//ng-pluralize";
+    public static String TAB_DOCS_FILES_EXPAND_FILE = "//ul[@class='doc-list-table' and contains(.,'%s')]//*[@class='link-file ng-scope']";
 
-    public static final SelenideElement projectTabTask_New = $(byLinkText("Create task"));
-    public static final SelenideElement projectTabTask_BulkSelectAll = $(byXpath("xpath=(//input[@type='checkbox'])[5]"));
-    public static final SelenideElement projectTabTask_BulkSelect01 = $(byXpath(""));
-    public static final SelenideElement projectTabTask_BulkSelect02 = $(byXpath(""));
-    public static final SelenideElement projectTabTask_BulkSelect03 = $(byXpath(""));
-    public static final SelenideElement projectTabTask_BulkSelect04 = $(byXpath(""));
-    public static final SelenideElement projectTabTask_BulkSelect05 = $(byXpath(""));
-    public static final SelenideElement projectTabTask_BulkDelete = $(byXpath("//button[@pkm-confirm-click='bulkDelete()']"));
-    public static final SelenideElement projectTabTask_BulkStatus = $(byXpath("//button[@ng-click='bulkUpdate('status')']"));
-    public static final SelenideElement projectTabTask_BulkImportance = $(byXpath("//button[@ng-click='bulkUpdate('importance')']"));
-    public static final SelenideElement projectTabTask_BulkAssignor = $(byXpath("//button[@ng-click='bulkUpdate('assignor')']"));
-    public static final SelenideElement projectTabTask_BulkAssignee = $(byXpath("//button[@ng-click='bulkUpdate('assignee')']"));
-    public static final SelenideElement projectTabTask_DatepickerCall = $(byXpath(""));
-    public static final SelenideElement projectTabTask_ButtonStatus = $(byXpath(""));
-    public static final SelenideElement projectTabTask_MenuStatus = $(byXpath("//pkm-task-change-status/div/div"));
-    public static final SelenideElement projectTabTask_NoTaskText = $(byXpath(""));
-    public static final SelenideElement projectTabTask_01TaskButtonStatus = $(byXpath("//pkm-task-change-status/div/div[2]/button"));
-    public static final SelenideElement projectTabTask_ListActive = $(byXpath("//div/div/div/div/div/button"));
-    public static final SelenideElement projectTabTask_ListAll = $(byXpath("//div/div/div/div/div[2]/button"));
-    public static final SelenideElement projectTabTask_ = $(byXpath(""));
+    public static String TAB_DOCS_FILES_MENU = "//ul[@class='doc-list-table' and contains(.,'%s')]//div[@id]";
+    public static String TAB_DOCS_FILES_MENU_OPEN = TAB_DOCS_FILES_MENU+"/button";
+    public static String TAB_DOCS_FILES_MENU_DOWNLOAD = TAB_DOCS_FILES_MENU+"//a[contains(.,'Download')]";
+    public static String TAB_DOCS_FILES_MENU_RENAME = TAB_DOCS_FILES_MENU+"//a[contains(.,'Rename')]";
+    public static String TAB_DOCS_FILES_MENU_DELETE = TAB_DOCS_FILES_MENU+"//a[contains(.,'Delete')]";
+    public static String TAB_DOCS_FILES_MENU_UPLOAD = TAB_DOCS_FILES_MENU+"//a[contains(.,'Upload New Version')]";
+    public static String TAB_DOCS_FILES_MENU_DOWNLOAD_ZIP = TAB_DOCS_FILES_MENU+"//a[contains(.,'Download ZIP')]";
+    public static String TAB_DOCS_FILES_MENU_ADD_SUBFOLDER = TAB_DOCS_FILES_MENU+"//a[contains(.,'Add Sub Folder')]";
 
-    public static final SelenideElement buttonAddNewFile = $(byId("file-controls"));
-    public static final SelenideElement buttonAddNewTask = $(byId("file-controls"));
-    public static final SelenideElement linkCreateNewTask = $(byLinkText("Create task"));
-    public static final SelenideElement linkCreateNewFolder = $(byLinkText("Add Folder"));
-    public static final SelenideElement linkCreateNewDoc = $(byLinkText("New document"));
-    public static final SelenideElement linkDelete = $(byLinkText("Delete"));
+    //SIMPLE IN RWO CONTRLOS
+        public static final SelenideElement TAB_DOCS_FILE_INPUT_NAME_IN_ROW = $(byXpath("//pkm-simple-files-editable-title//input[@name='name']"));
+    public static final SelenideElement TAB_DOCS_FILE_SAVE_IN_ROW = $(byXpath("//pkm-simple-files-editable-title//a[contains(.,'Save')]"));
 
+    //EXPANDED CONTROLS
+    public static final SelenideElement TAB_DOCS_FILE_RENAME = $(byXpath("//pkm-files-editable-title//a[contains(.,'Rename')]"));
+    public static final SelenideElement TAB_DOCS_FILE_INPUT_NAME = $(byXpath("//pkm-files-editable-title//input[@name='name']"));
+    public static final SelenideElement TAB_DOCS_FILE_SAVE = $(byXpath("//pkm-files-editable-title//a[contains(.,'Save')]"));
+    public static final SelenideElement TAB_DOCS_FILE_DELETE = $(byXpath("//pkm-files-editable-title//a[contains(.,'Delete')]"));
+    //TAB TASKS
 
+    public static final String TASKS_ORDER = "";
+    public static final String TASKS_ORDER_DUE_DATE = "Due date";
+    public static final String TASKS_ORDER_LAST_CREATED = "Last created";
+    public static final String TASKS_ORDER_LAST_MODIFIED = "Last modified";
+    public static final String TASKS_ORDER_TIRLE = "Title";
+    public static final String TASKS_ORDER_ASSIGNEE = "Assignee";
+    public static final SelenideElement TAB_TASKS_ACTIVE = $(byXpath(CONTROLS_ROW+"//button[contains(.,'Active')]"));
+    public static final SelenideElement TAB_TASKS_ALL = $(byXpath(CONTROLS_ROW+"//button[contains(.,'All')]"));
+    public static SelenideElement TAB_TASKS_ACTUAL_ORDER = $(byXpath(CONTROLS_ROW+"//a[contains(.,'"+TASKS_ORDER+"')]"));        //order value
+    public static final SelenideElement TAB_TASKS_ADD = $(byXpath(CONTROLS_ROW+"//button[contains(.,'add')]"));
+    public static final SelenideElement TAB_TASKS_NEW_TASK = $(byLinkText("Create task"));
 
-    public static final SelenideElement projectTabFin_ = $(byXpath(""));
-    public static final SelenideElement projectTabFin_CollapseForm = $(byXpath("//div/ng-include/div/a[@class='link-task']"));
-    public static final SelenideElement projectTabFin_BackToListLink = $(byLinkText("link=Back to all finances"));
-    public static final SelenideElement projectTabFin_ToXero = $(byXpath("//button[@ng-click='bulkToXero()']"));
-
-    public static final SelenideElement projectTabFin_01From = $(byXpath("//div[@class='items-list with-caret ng-scope finances']/div[1]//span[@class='name ng-binding']"));
-    public static final SelenideElement projectTabFin_01Type = $(byXpath("//div[@class='items-list with-caret ng-scope finances']/div[1]//span[@class='task-title ng-binding']"));
-    public static final SelenideElement projectTabFin_01Total = $(byXpath("//div[@class='items-list with-caret ng-scope finances']/div[1]//span[@class='price ng-binding']"));
-    public static final SelenideElement projectTabFin_01Date = $(byXpath("//div[@class='items-list with-caret ng-scope finances']/div[1]//span[@class='date ng-binding']"));
-    public static final SelenideElement projectTabFin_01To = $(byXpath(""));
-    public static final SelenideElement projectTabFin_01AllZone = $(byXpath("//div[@class='items-list with-caret ng-scope finances']/div[1]//div[@class='organizations-list ng-isolate-scope']//span"));
-    public static final SelenideElement projectTabFin_01OneTeamZone = $(byXpath(".//*[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div[2]/div/div/ui-view/div[3]/div/div/ng-include/div[2]/ul/li/a"));
+    public static final SelenideElement TAB_TASKS_BTN_DELETE = $(byXpath("//button[@class='btn-link' and contains(.,'Delete')]"));
+    public static final SelenideElement TAB_TASKS_BTN_UPDATE_STATUS = $(byXpath("//button[@class='btn-link' and contains(.,'Update Status')]"));
+    public static final SelenideElement TAB_TASKS_BTN_UPDATE_IMPORTANCE = $(byXpath("//button[@class='btn-link' and contains(.,'Update Importance')]"));
+    public static final SelenideElement TAB_TASKS_BTN_UPDATE_ASSIGNOR = $(byXpath("//button[@class='btn-link' and contains(.,'Update Assignor')]"));
+    public static final SelenideElement TAB_TASKS_BTN_UPDATE_ASSIGNEE = $(byXpath("//button[@class='btn-link' and contains(.,'Update Assignee')]"));
 
 
+    //TAB CHARGES
+    public static SelenideElement TAB_CHARGES_ACTUAL_ORDER = $(byXpath(CONTROLS_ROW+"//a[contains(.,'"+TASKS_ORDER+"')]"));        //order value
+
+    public static final SelenideElement TAB_CHARGES = $(byXpath(""));
+    public static final SelenideElement TAB_CHARGES_CollapseForm = $(byXpath("//div/ng-include/div/a[@class='link-task']"));
+    public static final SelenideElement TAB_CHARGES_BackToListLink = $(byLinkText("link=Back to all finances"));
+    public static final SelenideElement TAB_CHACRGES_BTN_DELETE = TAB_CONTROL_DELETE;
+    public static final SelenideElement TAB_CHARGES_ToXero = $(byXpath("//button[@ng-click='bulkToXero()']"));
+
+    public static final SelenideElement TAB_CHARGES01From = $(byXpath("//div[@class='items-list with-caret ng-scope finances']/div[1]//span[@class='name ng-binding']"));
+    public static final SelenideElement TAB_CHARGES01Type = $(byXpath("//div[@class='items-list with-caret ng-scope finances']/div[1]//span[@class='task-title ng-binding']"));
+    public static final SelenideElement TAB_CHARGES01Total = $(byXpath("//div[@class='items-list with-caret ng-scope finances']/div[1]//span[@class='price ng-binding']"));
+    public static final SelenideElement TAB_CHARGES01Date = $(byXpath("//div[@class='items-list with-caret ng-scope finances']/div[1]//span[@class='date ng-binding']"));
+    public static final SelenideElement TAB_CHARGES01To = $(byXpath(""));
+    public static final SelenideElement TAB_CHARGES01AllZone = $(byXpath("//div[@class='items-list with-caret ng-scope finances']/div[1]//div[@class='organizations-list ng-isolate-scope']//span"));
+    public static final SelenideElement TAB_CHARGES01OneTeamZone = $(byXpath(".//*[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div[2]/div/div/ui-view/div[3]/div/div/ng-include/div[2]/ul/li/a"));
+
+        //TAB FAMILY
+    public static final SelenideElement TAB_FAMILY = $(byXpath(""));
+    public static final SelenideElement TAB_FAMILY_NEW = $(byXpath(CONTROLS_ROW+"//button[contains(.,'New')]"));
+    public static final SelenideElement TAB_FAMILY_1ST_ROW_TITLE = $(byXpath("//ul[@class='items']/li[1]//h4"));
+
+
+    //TAB SEARCH
+    public static final SelenideElement TAB_SEARCH = $(byXpath(""));
+    public static final SelenideElement TAB_SEARCH_INPUT = $(byXpath("//*[@id='typeahead-container']/input"));
+    public static final SelenideElement TAB_SEARCH_BTN = $(byXpath("//*[@class='media-right submit-box']/button"));
 }

@@ -1,6 +1,8 @@
 package Page;
 import org.junit.Test;
 
+
+
 public class TestsCredentials {
     public enum User1 {
         GMAIL_EMAIL("testqweeco001@gmail.com"),
@@ -31,7 +33,7 @@ public class TestsCredentials {
         SURNAME("Quality02"),
         TEAM_NAME("QweecoTeam02"),
         TEAM_CODE("QT02"),
-        FULL_TEAM_NAME("Qweeco02 (QT02)");
+        FULL_TEAM_NAME("QweecoTeam02 (QT02)");
         private String value;
         User2(String value) {
             this.value = value;
@@ -129,6 +131,8 @@ public class TestsCredentials {
         TRADEMARK_MADRID_PROTOCOL("International Application (Madrid Protocol)"),
         TRADEMARK_CMT("European Union (CTM)"),
         TRADEMARK_CONSUMER_TRADEMARK("Consumer Trademark Defining"),
+        USA("United States"),
+
         GENERIC("");
 
         private String value;
@@ -163,13 +167,47 @@ public class TestsCredentials {
             return value;
         }
     }
+    public enum ContactRelation {
+        ATTORNEY("Attorney of Record"),
+        INVESTOR("Investor"),
+        CLIENT_COMPANY("Client (Company)"),
+        OWNER_PERSON("Owner (Person)"),
+        REGIXTERED_OWNER("Registered Owner"),
+        CONTACT_PERSON("Contact Person"),
+        OPPONENT_REPRESENTATIVE("opponent representative"),
+        OWNER_COMPANY("Owner (Company)"),
+        DOMESTIC_REPRESENTATIVE("Domestic Representative");
+        private String value;
+        ContactRelation(String value) {
+            this.value = value;
+        }
+        public String getValue() {
+            return value;
+        }
+    }
+    public enum TrademarkEvents {
+        CASE_SUSPENDED("Case still suspended"),
+        PRIORITY_APLICATION_FILED("Priority Application Filed"),
+        OPPSITION_END_DATE("Opposition end date"),
+        APPLICATION_REGISTERED("Application Registered"),
+        MARK_CREATED("Mark Created");
+
+        private String eventName;
+        TrademarkEvents(String value) {
+            this.eventName = value;
+        }
+        public String getValue() {
+            return eventName;
+        }
+    }
     @Test
     public  void enumTest() {
-        System.out.println(User1.GMAIL_EMAIL.value);
-        System.out.println(User1.FULL_TEAM_NAME.value);
-        System.out.println(User1.GMAIL_PASSWORD.value);
-        System.out.println(User1.TEAM_CODE.value);
-        System.out.println(User1.FULL_TEAM_NAME.value);
+        System.out.println(TrademarkEvents.APPLICATION_REGISTERED.eventName);
+        System.out.println(TrademarkEvents.APPLICATION_REGISTERED.toString());
+        System.out.println(TrademarkEvents.APPLICATION_REGISTERED.getValue());
+//        System.out.println(User1.GMAIL_PASSWORD.value);
+//        System.out.println(User1.TEAM_CODE.value);
+//        System.out.println(User1.FULL_TEAM_NAME.value);
 
     }
 

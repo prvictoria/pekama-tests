@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static Page.CommunityWizard.expertRowLabel;
 import static Page.TestsCredentials.GMAIL_PASSWORD;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
@@ -21,6 +22,7 @@ public class StepsExternal implements StepsFactory{
     static final Logger logging = LogManager.getLogger(StepsExternal.class);
     public static String REDIRECT_LINK;
     public static String checkReportBackLink;
+    private static String[] args;
 
     public static void checkEmailGeneric(String GMAIL_LOGIN, String GMAIL_PASSWORD, SelenideElement EMAIL_SUBJECT, String EMAIL_TITLE, String EMAIL_TEXT, String EMAIL_BTN, SelenideElement EMAIL_REDIRECT_LINK, String thisMailingListName){
         logging.info("Login");
@@ -68,7 +70,27 @@ public class StepsExternal implements StepsFactory{
         logging.info("Email deleted");
         return REDIRECT_LINK;
     }
-    public static String checkInboxEmailReport(String GMAIL_LOGIN, String GMAIL_PASSWORD, SelenideElement EMAIL_SUBJECT, String EMAIL_TEXT, String thisMailingListName){
+    public static String checkInboxEmail(String GMAIL_LOGIN, String GMAIL_PASSWORD, SelenideElement EMAIL_SUBJECT, String EMAIL_TITLE, String EMAIL_TEXT) {
+        logging.info("Login");
+        signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
+        detectEmail(EMAIL_SUBJECT);
+        logging.info("Open email");
+        openEmail(EMAIL_SUBJECT);
+        logging.info("Check title");
+        checkEmailTitle(EMAIL_TITLE);
+        logging.info("Check Text");
+        checkEmailText(EMAIL_TEXT);
+        logging.info("Delete email");
+        deleteEmail();
+        logging.info("Empty trash");
+        inboxEmptyTrash();
+        logging.info("Email deleted");
+        return REDIRECT_LINK;
+    }
+    public static String checkEmailReport(String GMAIL_LOGIN, String GMAIL_PASSWORD, String thisMailingListName){
+        SelenideElement EMAIL_SUBJECT = EMAIL_REPORT_SUBJECT;
+        String EMAIL_TEXT = EMAIL_REPORT_TEXT;
+        String EMAIL_TITLE = "Pekama Report \""+thisMailingListName+"\"";
         logging.info("Login");
         signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
         logging.info("Detect email");
@@ -76,6 +98,8 @@ public class StepsExternal implements StepsFactory{
         logging.info("Open email");
         openEmail(EMAIL_SUBJECT);
         logging.info("Check title");
+        checkEmailTitle(EMAIL_TITLE);
+        logging.info("Check Text");
         checkEmailText(EMAIL_TEXT);
         logging.info("Check report back Link");
         checkReportTitleAndBackLink(EMAIL_TEXT, thisMailingListName);
@@ -89,7 +113,8 @@ public class StepsExternal implements StepsFactory{
         open(GMAIL_URL_SIGN_OUT);
         return checkReportBackLink;
     }
-    //Steps
+
+    //Inbox Steps
     public static void signInGmailInbox(String GMAIL_LOGIN, String GMAIL_PASSWORD) { //Logic for open INBOX twice or more times in one session without logout
         logging.info("Start browser");
         open(INBOX_URL);
@@ -135,6 +160,7 @@ public class StepsExternal implements StepsFactory{
         }
     }
     public static void openEmail(SelenideElement EMAIL_SUBJECT){
+
         if (EMAIL_SUBJECT == null) {
             Assert.fail("Subject email is - " + EMAIL_SUBJECT);
         }
@@ -146,6 +172,7 @@ public class StepsExternal implements StepsFactory{
             logging.info("Email opened");
         }
     }
+
     public static void checkEmailTitle(String EMAIL_TITLE){
         if (EMAIL_TITLE == null) {
             Assert.fail("Title email is - " + EMAIL_TITLE);
@@ -158,7 +185,7 @@ public class StepsExternal implements StepsFactory{
             Assert.fail("Title email is - " + EMAIL_TEXT);
         }
         $$(byText(EMAIL_TEXT)).filter(visible);
-        logging.info(EMAIL_TEXT + "- email present");
+        logging.info(EMAIL_TEXT + " - email present");
     }
     public static void checkEmailButton(String EMAIL_BTN){
         if (EMAIL_BTN == null) {
@@ -197,6 +224,12 @@ public class StepsExternal implements StepsFactory{
             Assert.fail("Redirect Link not found");
         }
         return attachmentFullTitle;
+    }
+    public static String checkUnsubscribeLink(){
+        EMAIL_UNSUBSCRIBE_LINK.shouldBe(visible);
+        String link = EMAIL_UNSUBSCRIBE_LINK.getAttribute("href");
+        logging.info("Unsubscribe link is - " +link);
+        return link;
     }
     public static void deleteEmail() {
         INBOX_BTN_DELETE.waitUntil(visible, 10000).click();
@@ -255,8 +288,11 @@ public class StepsExternal implements StepsFactory{
         logging.info("Submit password");
         GMAIL_SIGNIN_BTN.shouldBe(visible).click();
         logging.info("Inbox opened");
-        $(byXpath("//*[@id='submit_approve_access']")).shouldBe(visible).click();
-        $(byXpath("//*[@id='submit_approve_access']")).shouldNotBe(visible);
+        $(byXpath("//*[@id='submit_approve_access']")).shouldBe(visible);
+        $(byXpath("//*[@id='submit_approve_access']")).shouldBe(enabled).click();
+        sleep(1000);
+        $(byXpath("//*[@id='submit_approve_access']")).waitUntil(not(visible), 15000);
+        sleep(3000);
 //        close();
 //        switchTo().window(0);
 
@@ -266,9 +302,36 @@ public class StepsExternal implements StepsFactory{
     public static void authLinkedin(){
     }
 
+    public static SelenideElement emailSubject(String... args) {
+        String buildSubject = String.format(EMAIL_SUBJECT, args);
+        SelenideElement actualSubject = $(byXpath(buildSubject));
+        return actualSubject;
+    }
+    @Test
+    public void emailSubject (){
+        SelenideElement a = emailSubject("new test project - ORL9GP");
+        System.out.println(a);
+    }
+    public static String emailInviteInProjectTitle(String... args){
+        String emailTitle = String.format(EMAIL_INVITE_IN_PROJECT_TITLE, args);
+        return emailTitle;
+    }
+    @Test
+    public void emailInviteInProjectTitle (){
+        String a = emailInviteInProjectTitle("1", "2");
+        System.out.println(a);
+    }
+    public static String emailInviteInProjectText(String... args){
+        String emailText = String.format(EMAIL_INVITE_IN_PROJECT_TEXT, args);
+        return emailText;
+    }
+    @Test
+    public void emailInviteInProjectText (){
+        String a = emailInviteInProjectText("name", "surname", "project title");
+        System.out.println(a);
+    }
     @Test
     public void externalTestDebug() {
-
             StepsExternal loginGmailInboxApp = new StepsExternal();
             String GMAIL_LOGIN = TestsCredentials.User4.GMAIL_EMAIL.getValue();
             loginGmailInboxApp.signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
@@ -277,5 +340,7 @@ public class StepsExternal implements StepsFactory{
 
 
     }
+
+
 
 }

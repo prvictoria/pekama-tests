@@ -21,7 +21,7 @@ public class TestsUrl {
 
     public static final String URL_PersonalSettings = PEKAMA+"/a/settings/profile";
     public static final String URL_TeamSettings = PEKAMA+"/a/settings/team";
-    public static final String URL_TSMembers = PEKAMA+"/a/settings/team/members";
+    public static final String URL_Members = PEKAMA+"/a/settings/team/members";
 
     public static final String URL_COMMUNITY_PATH = COMMUNITY;
     public static final String URL_COMMUNITY_DASHBOARD = COMMUNITY+"/a";

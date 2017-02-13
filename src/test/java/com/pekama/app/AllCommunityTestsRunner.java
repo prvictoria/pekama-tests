@@ -4,10 +4,11 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        CommunityDashboard.class,
-        CommynityLanding.class,
-        ComunityWizard.class,
-        CommunityProfile.class
+        TestsCommunityDashboard.class,
+        TestsCommynityLanding.class,
+        TestsCommunityWizard.class,
+        TestsCommunityProfile.class,
+        TestsCommunityOutgoing.class
 })
-public class AllCommunityTestsRunner {
+public class AllCommunityTestsRunner extends AllTestsRunner{
 }

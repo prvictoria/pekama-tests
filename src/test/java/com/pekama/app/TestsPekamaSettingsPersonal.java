@@ -12,6 +12,7 @@ import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.TestsUrl.*;
 import static Steps.StepsExternal.authGmail;
+import static Steps.StepsPekama.fillField;
 import static Steps.StepsPekama.submitConfirmAction;
 import static Steps.StepsPekama.submitEnabledButton;
 import static com.codeborne.selenide.Condition.visible;
@@ -19,25 +20,21 @@ import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static Page.PekamaPersonalSettings.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class PekamaSettingsPersonal {
+public class TestsPekamaSettingsPersonal {
     static final Logger rootLogger = LogManager.getRootLogger();
-    private String PEKAMA_USER_EMAIL = User3.GMAIL_EMAIL.getValue();
-    private String PEKAMA_USER_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
+    private String testUserEmail = User3.GMAIL_EMAIL.getValue();
+    private String testUserPekamaPassword = User3.PEKAMA_PASSWORD.getValue();
+    private String testUserGmailPassword = User3.GMAIL_PASSWORD.getValue();
     private String AUTH_URL = URL_PersonalSettings;
 
-    //    @Before
-//    public void setUp() throws Exception {
-//        selenium = new DefaultSelenium("localhost", 4444, "*chrome", "https://staging.pekama.com/");
-//        selenium.start();
-//    }
     @BeforeClass
-    public static void beforeClass() {
-
-    }
+    public static void beforeClass() { }
     @Before
     public void before() {
+//        Configuration test = new Configuration();
+//        test.holdBrowserOpen = true;
         StepsPekama loginIntoPekama = new StepsPekama();
-        loginIntoPekama.loginByURL(PEKAMA_USER_EMAIL, PEKAMA_USER_PASSWORD, AUTH_URL);
+        loginIntoPekama.loginByURL(testUserEmail, testUserPekamaPassword, AUTH_URL);
     }
     @After
     public void after() {
@@ -129,7 +126,7 @@ public class PekamaSettingsPersonal {
     public void personalDetails_Name_A() {
         rootLogger.info("Validation Name field");
         $(byText("First name:")).shouldBe(Condition.visible);
-        String RANDOM_20_LETTER = Utils.getRandomString(20);
+        String RANDOM_20_LETTER = Utils.randomString(20);
         PERSONAL_DETAILS_INPUT_SURNAME.sendKeys(RANDOM_20_LETTER);
         PERSONAL_DETAILS_INPUT_NAME.clear();
         sleep(1000);
@@ -143,7 +140,7 @@ public class PekamaSettingsPersonal {
     public void personalDetails_Name_B() {
         rootLogger.info("Validation maxlength Name field");
         $(byText("First name:")).shouldBe(Condition.visible);
-        String RANDOM_101_LETTER = Utils.getRandomString(101);
+        String RANDOM_101_LETTER = Utils.randomString(101);
         PERSONAL_DETAILS_INPUT_NAME.clear();
         PERSONAL_DETAILS_INPUT_NAME.sendKeys(RANDOM_101_LETTER);
         submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
@@ -169,7 +166,7 @@ public class PekamaSettingsPersonal {
     public void personalDetails_Surname_A() {
         rootLogger.info("Validation Name field");
         $(byText("Last name:")).shouldBe(Condition.visible);
-        String RANDOM_20_LETTER = Utils.getRandomString(20);
+        String RANDOM_20_LETTER = Utils.randomString(20);
         PERSONAL_DETAILS_INPUT_NAME.sendKeys(RANDOM_20_LETTER);
         PERSONAL_DETAILS_INPUT_SURNAME.clear();
         submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
@@ -181,7 +178,7 @@ public class PekamaSettingsPersonal {
     public void personalDetails_Surname_B() {
         rootLogger.info("Validation maxlength Surname field");
         $(byText("Last name:")).shouldBe(Condition.visible);
-        String RANDOM_101_LETTER = Utils.getRandomString(101);
+        String RANDOM_101_LETTER = Utils.randomString(101);
         PERSONAL_DETAILS_INPUT_SURNAME.clear();
         PERSONAL_DETAILS_INPUT_SURNAME.sendKeys(RANDOM_101_LETTER);
         submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
@@ -192,7 +189,7 @@ public class PekamaSettingsPersonal {
     public void personalDetails_Phone_A() {
         rootLogger.info("Validation maxlength Phone field");
         $(byText("Phone #")).shouldBe(Condition.visible);
-        String RANDOM_101_LETTER = Utils.getRandomString(21);
+        String RANDOM_101_LETTER = Utils.randomString(21);
         PERSONAL_DETAILS_INPUT_PHONE.clear();
         PERSONAL_DETAILS_INPUT_PHONE.sendKeys(RANDOM_101_LETTER);
         submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
@@ -203,7 +200,7 @@ public class PekamaSettingsPersonal {
     public void personalDetails_Fax_A() {
         rootLogger.info("Validation maxlength Fax field");
         $(byText("Fax #")).shouldBe(Condition.visible);
-        String RANDOM_21_LETTER = Utils.getRandomString(21);
+        String RANDOM_21_LETTER = Utils.randomString(21);
         PERSONAL_DETAILS_INPUT_FAX.clear();
         PERSONAL_DETAILS_INPUT_FAX.sendKeys(RANDOM_21_LETTER);
         submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
@@ -214,7 +211,7 @@ public class PekamaSettingsPersonal {
     public void personalDetails_Mobile_A() {
         rootLogger.info("Validation maxlength Mobile field");
         $(byText("Mobile #")).shouldBe(Condition.visible);
-        String RANDOM_21_LETTER = Utils.getRandomString(21);
+        String RANDOM_21_LETTER = Utils.randomString(21);
         PERSONAL_DETAILS_INPUT_MOBILE.clear();
         PERSONAL_DETAILS_INPUT_MOBILE.sendKeys(RANDOM_21_LETTER);
         submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
@@ -225,7 +222,7 @@ public class PekamaSettingsPersonal {
     public void personalDetails_LegalEntity_A() {
         rootLogger.info("Validation maxlength Legal entity field");
         $(byText("Legal entity:")).shouldBe(Condition.visible);
-        String RANDOM_256_LETTER = Utils.getRandomString(256);
+        String RANDOM_256_LETTER = Utils.randomString(256);
         PERSONAL_DETAILS_INPUT_LEGAL_ENTITY.clear();
         PERSONAL_DETAILS_INPUT_LEGAL_ENTITY.sendKeys(RANDOM_256_LETTER);
         submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
@@ -236,7 +233,7 @@ public class PekamaSettingsPersonal {
     public void personalDetails_StreetAddress_A() {
         rootLogger.info("Validation maxlength Legal entity field");
         $(byText("Street address:")).shouldBe(Condition.visible);
-        String RANDOM_256_LETTER = Utils.getRandomString(256);
+        String RANDOM_256_LETTER = Utils.randomString(256);
         PERSONAL_DETAILS_INPUT_STREET.clear();
         PERSONAL_DETAILS_INPUT_STREET.sendKeys(RANDOM_256_LETTER);
         submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
@@ -247,7 +244,7 @@ public class PekamaSettingsPersonal {
     public void personalDetails_PostalCode_A() {
         rootLogger.info("Validation maxlength Post code field");
         $(byText("Post code:")).shouldBe(Condition.visible);
-        String RANDOM_21_LETTER = Utils.getRandomString(21);
+        String RANDOM_21_LETTER = Utils.randomString(21);
         PERSONAL_DETAILS_INPUT_ZIP.clear();
         PERSONAL_DETAILS_INPUT_ZIP.sendKeys(RANDOM_21_LETTER);
         submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
@@ -258,7 +255,7 @@ public class PekamaSettingsPersonal {
     public void personalDetails_City_A() {
         rootLogger.info("Validation maxlength City field");
         $(byText("City:")).shouldBe(Condition.visible);
-        String RANDOM_256_LETTER = Utils.getRandomString(256);
+        String RANDOM_256_LETTER = Utils.randomString(256);
         PERSONAL_DETAILS_INPUT_CITY.clear();
         PERSONAL_DETAILS_INPUT_CITY.sendKeys(RANDOM_256_LETTER);
         submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
@@ -269,7 +266,7 @@ public class PekamaSettingsPersonal {
     public void personalDetails_Region_A() {
         rootLogger.info("Validation maxlength Region entity field");
         $(byText("State/Region")).shouldBe(Condition.visible);
-        String RANDOM_256_LETTER = Utils.getRandomString(256);
+        String RANDOM_256_LETTER = Utils.randomString(256);
         PERSONAL_DETAILS_INPUT_REGION.clear();
         PERSONAL_DETAILS_INPUT_REGION.sendKeys(RANDOM_256_LETTER);
         submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
@@ -311,7 +308,7 @@ public class PekamaSettingsPersonal {
         $(byText("Disabled")).shouldBe(Condition.visible);
         rootLogger.info("State by default - PASSED");
 
-        String validPassword = Utils.getRandomString(8)+VALID_PASSWORD;
+        String validPassword = Utils.randomString(8)+VALID_PASSWORD;
         rootLogger.info("Validation empty fields New password & Confirm Password");
         SECURITY_TAB_CURRENT_PASSWORD.waitUntil(Condition.visible, 10000).sendKeys(validPassword);
         submitEnabledButton(SECURITY_SAVE_BTN);
@@ -322,7 +319,7 @@ public class PekamaSettingsPersonal {
     }
     @Test
     public void tabSecurity_PasswordValidations_B() {
-        String validPassword = Utils.getRandomString(8)+VALID_PASSWORD;
+        String validPassword = Utils.randomString(8)+VALID_PASSWORD;
         rootLogger.info("Validation empty fields Current password & Confirm Password");
         SECURITY_TAB_TITLE.click();
         SECURITY_TAB_NEW_PASSWORD.waitUntil(Condition.visible, 10000).sendKeys(validPassword);
@@ -332,7 +329,7 @@ public class PekamaSettingsPersonal {
     }
     @Test
     public void tabSecurity_PasswordValidations_C() {
-        String validPassword = Utils.getRandomString(8)+VALID_PASSWORD;
+        String validPassword = Utils.randomString(8)+VALID_PASSWORD;
         rootLogger.info("Validation empty fields Current password & New Password");
         SECURITY_TAB_TITLE.click();
         SECURITY_TAB_CONFIRM_PASSWORD.waitUntil(Condition.visible, 10000).sendKeys(validPassword);
@@ -342,7 +339,7 @@ public class PekamaSettingsPersonal {
     }
     @Test
     public void tabSecurity_PasswordValidations_D() {
-        String validPassword = Utils.getRandomString(8)+VALID_PASSWORD;
+        String validPassword = Utils.randomString(8)+VALID_PASSWORD;
         rootLogger.info("Change Password - BUG noValidation - No Current password checks MAJOR(Not reproduced)");
         SECURITY_TAB_TITLE.click();
         SECURITY_TAB_NEW_PASSWORD.waitUntil(Condition.visible, 10000).sendKeys(validPassword);
@@ -353,7 +350,7 @@ public class PekamaSettingsPersonal {
     }
     @Test
     public void tabSecurity_PasswordValidations_E() {
-        String validPassword = Utils.getRandomString(8)+VALID_PASSWORD;
+        String validPassword = Utils.randomString(8)+VALID_PASSWORD;
         rootLogger.info("Change Password - no New password");
         SECURITY_TAB_TITLE.click();
         SECURITY_TAB_CURRENT_PASSWORD.waitUntil(Condition.visible, 10000).sendKeys(User3.PEKAMA_PASSWORD.getValue());
@@ -364,7 +361,7 @@ public class PekamaSettingsPersonal {
     }
     @Test
     public void tabSecurity_PasswordValidations_F() {
-        String validPassword = Utils.getRandomString(8)+VALID_PASSWORD;
+        String validPassword = Utils.randomString(8)+VALID_PASSWORD;
         rootLogger.info("Change Password - no Confirm password");
         SECURITY_TAB_TITLE.click();
         SECURITY_TAB_CURRENT_PASSWORD.waitUntil(Condition.visible, 10000).sendKeys(User3.PEKAMA_PASSWORD.getValue());
@@ -401,7 +398,7 @@ public class PekamaSettingsPersonal {
     @Test
     public void tabSecurity_PasswordValidations_K() {
         rootLogger.info("Max length validation");
-        String RANDOM_129_LETTER = Utils.getRandomString(129);
+        String RANDOM_129_LETTER = Utils.randomString(129);
         SECURITY_TAB_TITLE.click();
         SECURITY_TAB_CURRENT_PASSWORD.sendKeys(User3.PEKAMA_PASSWORD.getValue());
         SECURITY_TAB_NEW_PASSWORD.sendKeys(RANDOM_129_LETTER);
@@ -497,8 +494,8 @@ public class PekamaSettingsPersonal {
         SIGNATURE_TAB_TITLE.click();
         SIGNATURE_TAB_TEXT_EDITOR.shouldHave(Condition.text(LOREM_IPSUM_LONG));
     }
-    @Ignore
-    @Test //todo - detecd delete button
+
+    @Test
     public void tabIMAP_A() {
         IMAP_TAB_TITLE.click();
         sleep(2000);
@@ -519,45 +516,56 @@ public class PekamaSettingsPersonal {
         IMAP_TAB_FIELD_USENAME.shouldBe(Condition.visible);
         IMAP_TAB_BTN_CHECK.shouldBe(Condition.visible);
         IMAP_TAB_SSL.shouldBe(Condition.visible);
-        rootLogger.info("Connect Gmail via Auth2");
 
+        rootLogger.info("Connect email manual");
+        fillField(IMAP_TAB_FIELD_USENAME, testUserEmail);
+        fillField(IMAP_TAB_FIELD_PASSWORD, testUserGmailPassword);
+        fillField(IMAP_TAB_FIELD_SERVER_NAME, "imap.gmail.com");
+        fillField(IMAP_TAB_FIELD_PORT, "993");
+        IMAP_TAB_SSL.click();
+        submitEnabledButton(IMAP_TAB_BTN_SAVE_AND_CHECK);
+        IMAP_TAB_BTN_DELETE.waitUntil(visible, 30000);
 
-
+        rootLogger.info("Delete connected account");
+        submitEnabledButton(IMAP_TAB_BTN_DELETE);
+        submitConfirmAction();
+        sleep(500);
+        IMAP_TAB_BTN_DELETE.shouldNotBe(visible);
     }
-    @Ignore
-    @Test //todo - detecd delete button
+
+    @Test
     public void tabIMAP_B() {
         IMAP_TAB_TITLE.click();
         rootLogger.info("Check Defaults");
-        if (IMAP_TAB_BTN_DELETE.isDisplayed())
-        {
-            rootLogger.info("Delete tetected account");
-            IMAP_TAB_BTN_DELETE.click();
-            submitConfirmAction();
-            sleep(500);
-        }
-        if (IMAP_TAB_FIELD_USENAME.isDisplayed()){
-        IMAP_TAB_FIELD_USENAME.shouldBe(Condition.visible);
-        IMAP_TAB_FIELD_PASSWORD.shouldBe(Condition.visible);
-        IMAP_TAB_FIELD_SERVER_NAME.shouldBe(Condition.visible);
-        IMAP_TAB_FIELD_PORT.shouldBe(Condition.visible);
-        IMAP_TAB_BTN_CONNECT_GMAIL.shouldBe(Condition.visible);
-        IMAP_TAB_BTN_SAVE_AND_CHECK.shouldBe(Condition.visible);
-        IMAP_TAB_FIELD_USENAME.shouldBe(Condition.visible);
-        IMAP_TAB_BTN_CHECK.shouldBe(Condition.visible);
-        IMAP_TAB_SSL.shouldBe(Condition.visible);
-        rootLogger.info("Connect email manual");
-        IMAP_TAB_BTN_CONNECT_GMAIL.click();
-        authGmail(User3.GMAIL_EMAIL.getValue());
-        $(IMAP_TAB_BTN_DELETE).shouldNotBe(visible);
-        rootLogger.info("Delete added account");
             if (IMAP_TAB_BTN_DELETE.isDisplayed())
             {
+                rootLogger.info("Delete detected account");
                 IMAP_TAB_BTN_DELETE.click();
                 submitConfirmAction();
                 sleep(500);
             }
-            else Assert.fail("Connect not connected");
+            if (IMAP_TAB_FIELD_USENAME.isDisplayed()){
+            IMAP_TAB_FIELD_USENAME.shouldBe(Condition.visible);
+            IMAP_TAB_FIELD_PASSWORD.shouldBe(Condition.visible);
+            IMAP_TAB_FIELD_SERVER_NAME.shouldBe(Condition.visible);
+            IMAP_TAB_FIELD_PORT.shouldBe(Condition.visible);
+            IMAP_TAB_BTN_CONNECT_GMAIL.shouldBe(Condition.visible);
+            IMAP_TAB_BTN_SAVE_AND_CHECK.shouldBe(Condition.visible);
+            IMAP_TAB_FIELD_USENAME.shouldBe(Condition.visible);
+            IMAP_TAB_BTN_CHECK.shouldBe(Condition.visible);
+            IMAP_TAB_SSL.shouldBe(Condition.visible);
+
+            rootLogger.info("Connect Gmail via Auth2");
+            IMAP_TAB_BTN_CONNECT_GMAIL.click();
+            authGmail(User3.GMAIL_EMAIL.getValue());
+            switchTo().window("Pekama | Projects");
+
+            rootLogger.info("Delete connected account");
+            submitEnabledButton(IMAP_TAB_BTN_DELETE);
+            submitConfirmAction();
+            sleep(500);
+            IMAP_TAB_BTN_DELETE.shouldNotBe(visible);
+
         }
 
     }

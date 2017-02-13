@@ -1,11 +1,13 @@
 package Page;
 
 import com.codeborne.selenide.SelenideElement;
+import org.junit.FixMethodOrder;
+import org.junit.runners.MethodSorters;
 
 import static com.codeborne.selenide.Selectors.byLinkText;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
-
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PekamaReports extends Page {
 
     public static final SelenideElement REPORTS_AllCheckbox = $(byXpath("//li[@class='items-header clearfix clearfix']//input[@type='checkbox']"));
@@ -43,19 +45,19 @@ public class PekamaReports extends Page {
     public static final SelenideElement REPORTS_SEARCH_SIDEBAR = $(byXpath("//*[@class='search-sidebar']"));
     public static final SelenideElement REPORTS_MAILING_AREA = $(byXpath("//*[@class='saved']"));
     public static final SelenideElement REPORTS_MAILING_SAVE_SEARCH = $(byXpath("//*[@type='button' and contains(.,'Save search...')]"));
-    public static final SelenideElement REPORTS_MAILING_LISTS = $(byXpath("//*[@class='search-list']"));
+    public static final String REPORTS_MAILING_LISTS = "//*[@class='search-list']";
     public static SelenideElement reportName;
     public static SelenideElement REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME = $(byXpath("//li[//a[contains(.,'"+ reportName +"')]]")); //ML+
-    public static SelenideElement REPORTS_MAILING_LISTS_BTN_UPDATE = $(byXpath("//button[contains(.,'Update')]")); //REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME+
-    public static SelenideElement REPORTS_MAILING_LISTS_BTN_CALL_ML = $(byXpath("//button[@uib-dropdown-toggle]")); //REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME+
+    public static SelenideElement REPORTS_MAILING_LISTS_BTN_UPDATE = $(byXpath("//button[contains(.,'Update')]"));
+    public static String REPORTS_MAILING_LISTS_BTN_CALL_ML = "//button[@uib-dropdown-toggle]";
     public static SelenideElement REPORTS_MAILING_LISTS_CALL_MW = $(byLinkText("Mailing List"));
     public static SelenideElement REPORTS_MAILING_LISTS_DELETE_MW = $(byLinkText("Delete"));
 
-    public static final SelenideElement REPORTS_MAILING_SAVE_SEARCH_DROPDOWN = $(byXpath("//*[@class='save-search-dropdown']"));
+    public static final String REPORTS_MAILING_SAVE_SEARCH_DROPDOWN = "//*[@class='save-search-dropdown']";
     public static final SelenideElement REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_INPUT = $(byXpath(REPORTS_MAILING_SAVE_SEARCH_DROPDOWN+"//input"));
-    public static final SelenideElement REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_SAVE = $(byXpath(REPORTS_MAILING_SAVE_SEARCH_DROPDOWN+"//button[contains(.,'Save')]"));
-    public static final SelenideElement REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_SAVE_NEW = $(byXpath(REPORTS_MAILING_SAVE_SEARCH_DROPDOWN+"//button[contains(.,'Save as New')]"));
-
+    public static final SelenideElement REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_SAVE = $(byXpath(REPORTS_MAILING_SAVE_SEARCH_DROPDOWN+"//button[text()='Save']"));
+    public static final SelenideElement REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_SAVE_NEW = $(byXpath(REPORTS_MAILING_SAVE_SEARCH_DROPDOWN+"//button[text()='Save as New']"));
+// //button[text()='Save as New']
 //    public static final SelenideElement REPORTS_MAILING_ = $(byXpath(""));
 //    public static final SelenideElement REPORTS_MAILING_ = $(byXpath(""));
 
@@ -71,7 +73,7 @@ public class PekamaReports extends Page {
 
     public static final SelenideElement REPORTS_ = $(byXpath(""));
 //Specific pages
-public static final SelenideElement REPORTS_ContactTailsPath = $(byXpath(""));
+    public static final SelenideElement REPORTS_ContactTailsPath = $(byXpath(""));
     public static final SelenideElement REPORTS_ContactRowName = $(byXpath("same"));
     public static final SelenideElement REPORTS_ContactRowSurname = $(byXpath("same"));
     public static final SelenideElement REPORTS_ContactName = $(byXpath("//*[@class='name ng-binding']"));
@@ -81,7 +83,7 @@ public static final SelenideElement REPORTS_ContactTailsPath = $(byXpath(""));
     public static final SelenideElement REPORTS_ContactProjects = $(byXpath("//span[@ng-switch='contact.number_of_projects']"));
     public static final SelenideElement REPORTS_ContactCharges = $(byXpath("//span[@ng-switch='!contact.total_charges']"));
     public static final SelenideElement REPORTS_ContactCheckbox = $(byXpath("//input[@type='checkbox']"));
-    public static final SelenideElement REPORTS_ContactNewProject = $(byXpath("//button[contains(.,'+ New Project')]"));
+    public static final SelenideElement REPORTS_ContactNewProject = $(byXpath("//button[contains(.,'+ New ProjectValues')]"));
     public static final SelenideElement REPORTS_ContactEdit = $(byXpath("//div[@class='contact-page-invite-edit']/i[1]"));
     public static final SelenideElement REPORTS_ContactDelete = $(byXpath("//div[@class='contact-page-invite-edit']/i[2]"));
 }

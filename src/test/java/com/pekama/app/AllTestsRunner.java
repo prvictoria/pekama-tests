@@ -1,20 +1,33 @@
 package com.pekama.app;
+import com.codeborne.selenide.Configuration;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        CommunityDashboard.class,
-        CommynityLanding.class,
-        ComunityWizard.class,
-        CommunityProfile.class,
+        TestsCommunityDashboard.class,
+        TestsCommynityLanding.class,
+        TestsCommunityWizard.class,
+        TestsCommunityProfile.class,
+        TestsCommunityOutgoing.class,
 
-        PekamaLanding.class,
-        PekamaLogin.class,
-        PekamaResetPassword.class,
+        TestsPekamaLanding.class,
+        TestsPekamaLogin.class,
+        TestsPekamaResetPassword.class,
         Page.PekamaSignUp.class,
-        PekamaSettingsPersonal.class,
-        PekamaSettingsTeam.class
+        TestsPekamaSettingsPersonal.class,
+        TestsPekamaProject.class,
+        TestsPekamaIntegrationBox.class,
+        TestsPekamaSettingsTeam.class,
+        TestsPekamaReports.class //last suite
 })
 public class AllTestsRunner {
+    public static void holdBrowserAfterTest() {
+        Configuration test = new Configuration();
+        test.holdBrowserOpen = true;
+    }
+    public static void holdBrowserAfterTest(boolean value) {
+        Configuration test = new Configuration();
+        test.holdBrowserOpen = value;
+    }
 }

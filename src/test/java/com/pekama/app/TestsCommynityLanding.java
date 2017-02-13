@@ -21,7 +21,7 @@ import static com.codeborne.selenide.Selenide.sleep;
 /**
  * Created by VatslauX on 27-Dec-16.
  */
-public class CommynityLanding {
+public class TestsCommynityLanding {
     static final Logger rootLogger = LogManager.getRootLogger();
     @Before
     public void before() {
