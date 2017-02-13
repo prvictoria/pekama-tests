@@ -71,11 +71,6 @@ public class StepsCommunity implements StepsFactory{
             Assert.fail("Service present element state is - "+$(byXpath(profileServiceRow)).exists());
         }
     }
-    @Test
-    public void testParam(){
-        findServiceRow(false, "123", "456");
-    }
-
     public static void clickServiceRowEdit(String profileServiceCaseType, String profileServiceCountry) {
         //       String profileServiceRow = "//div[contains(.,'"+profileServiceCaseType+"')]/following-sibling::div[contains(.,'"+profileServiceCountry+"')]/following-sibling::div//button[1]";
         String profileServiceRow = "//div[@class='row' and contains(.,'"+ profileServiceCaseType +"') and contains(.,'"+ profileServiceCountry +"')]//button[1]";
@@ -504,6 +499,5 @@ public class StepsCommunity implements StepsFactory{
         BTN_SEND_INSTRUCTION.shouldBe(visible);
         return caseName;
     }
-
 
 }
