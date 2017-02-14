@@ -2,7 +2,6 @@ package com.pekama.app;
 import Page.TestsCredentials;
 import Steps.StepsPekama;
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
@@ -22,7 +21,6 @@ import static Utils.Utils.randomString;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.url;
 import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -154,7 +152,7 @@ public class TestsCommunityProfile {
         String price = "100000";
         PROFILE_BTN_ADD.shouldBe(disabled);
         log.info("Select new service - "+CaseType.TRADEMARK.getValue());
-        searchServicesQuery(CaseType.TRADEMARK.getValue(),  Countries.AFGANISTAN.getValue(),  price);
+        searchServicesQuery(CaseType.TRADEMARK.getValue(),  Countries.AFGHANISTAN.getValue(),  price);
         log.info("Service added");
         PROFILE_BTN_ADD.shouldBe(disabled);
     }

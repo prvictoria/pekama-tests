@@ -21,6 +21,8 @@ import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.TestsUrlConfiguration.*;
 import static Steps.StepsExternal.REDIRECT_LINK;
+import static Steps.StepsExternal.checkInboxEmail;
+import static Steps.StepsHttpAuth.httpAuthUrl;
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.value;
 import static com.codeborne.selenide.Condition.visible;
@@ -35,36 +37,33 @@ import static org.junit.Assert.assertThat;
 public class TestsPekamaResetPassword {
     static final Logger rootLogger = LogManager.getLogger(LoginGmail.class);
     public static String SELECT_HOST = PEKAMA;
-    public static String NEW_PASSWORD = null;
-    String GMAIL_LOGIN = User4.GMAIL_EMAIL.getValue();
-    String GMAIL_PASSWORD = User4.GMAIL_PASSWORD.getValue();
-    SelenideElement EMAIL_SUBJECT = EMAIL_RESET_PASSWORD_SUBJECT;
-    String EMAIL_TITLE = EMAIL_RESET_PASSWORD_TITLE;
-    String EMAIL_TEXT = EMAIL_RESET_PASSWORD_TEXT;
-    String EMAIL_BTN = EMAIL_RESET_PASSWORD_BTN;
-    SelenideElement EMAIL_REDIRECT_LINK = EMAIL_RESET_PASSWORD_BACKLINK;
-    String PEKAMA_USER_EMAIL = User4.GMAIL_EMAIL.getValue();
-
+    private static String NEW_PASSWORD = null;
+    private String GMAIL_LOGIN = User4.GMAIL_EMAIL.getValue();
+    private String GMAIL_PASSWORD = User4.GMAIL_PASSWORD.getValue();
+    private SelenideElement EMAIL_SUBJECT = EMAIL_RESET_PASSWORD_SUBJECT;
+    private String EMAIL_TITLE = EMAIL_RESET_PASSWORD_TITLE;
+    private String EMAIL_TEXT = EMAIL_RESET_PASSWORD_TEXT;
+    private String EMAIL_BTN = EMAIL_RESET_PASSWORD_BTN;
+    private SelenideElement EMAIL_REDIRECT_LINK = EMAIL_RESET_PASSWORD_BACKLINK;
+    private String PEKAMA_USER_EMAIL = User4.GMAIL_EMAIL.getValue();
+    private static final String USERNAME = User4.NAME.getValue();
+    private static final String USERSURNAME = User4.SURNAME.getValue();
     @Before
     public void before(){holdBrowserAfterTest();}
 
     @Test
     public void openResetPassword() {
         rootLogger.info("Open URL - " +URL_LogIn);
-        StepsHttpAuth openHost = new StepsHttpAuth();
-        String AUTH_URL = URL_LogIn;
-        openHost.httpAuthUrl(AUTH_URL);
+        httpAuthUrl(URL_LogIn);
         sleep(1000);
-       lOGIN_TITLE.shouldBe(Condition.visible).shouldHave(Condition.text(lOGIN_TITLE_TEXT));
-       LINK_FORGOT_PASSWORD.click();
+        lOGIN_TITLE.shouldBe(Condition.visible).shouldHave(Condition.text(lOGIN_TITLE_TEXT));
+        LINK_FORGOT_PASSWORD.click();
         sleep(1000);
     }
     @Test
     public void invalidEmailResetPassword() {
         rootLogger.info("Open URL - " +URL_ResetPassword);
-        StepsHttpAuth openHost = new StepsHttpAuth();
-        String AUTH_URL = URL_ResetPassword;
-        openHost.httpAuthUrl(AUTH_URL);
+        httpAuthUrl(URL_ResetPassword);
         sleep(1000);
        RESET_PAGE_TITLE.shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_TITLE_TEXT));
        RESET_PAGE_EMAIL.sendKeys("123@123");
@@ -77,9 +76,7 @@ public class TestsPekamaResetPassword {
     public void resetPassword_A() {
         REDIRECT_LINK = null;
         rootLogger.info("Open URL - " + URL_ResetPassword);
-        StepsHttpAuth openHost = new StepsHttpAuth();
-        String AUTH_URL = URL_ResetPassword;
-        openHost.httpAuthUrl(AUTH_URL);
+        httpAuthUrl(URL_ResetPassword);
         sleep(1000);
        RESET_PAGE_TITLE.shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_TITLE_TEXT));
        RESET_PAGE_EMAIL.sendKeys(User4.GMAIL_EMAIL.getValue());
@@ -90,7 +87,7 @@ public class TestsPekamaResetPassword {
         rootLogger.info(testSuccessMsg + " displayed, valid email submitted");
         sleep(5000);
         StepsExternal loginGmailInboxApp = new StepsExternal();
-        loginGmailInboxApp.checkInboxEmail(
+        checkInboxEmail(
                 GMAIL_LOGIN,
                 GMAIL_PASSWORD,
                 EMAIL_SUBJECT,
@@ -104,9 +101,7 @@ public class TestsPekamaResetPassword {
     public void resetPassword_B() {
         if (REDIRECT_LINK != null) {
             rootLogger.info("Open URL - " +REDIRECT_LINK);
-            StepsHttpAuth openHost = new StepsHttpAuth();
-            String AUTH_URL = REDIRECT_LINK;
-            openHost.httpAuthUrl(AUTH_URL);
+            httpAuthUrl(REDIRECT_LINK);
             sleep(1000);
             rootLogger.info("Set up new password page opened");
            NEWPASSWORD_TITLE.shouldBe(Condition.visible).shouldHave(Condition.text(NEWPASSWORD_TITLE_TEXT));
@@ -122,9 +117,7 @@ public class TestsPekamaResetPassword {
     public void resetPassword_C() {
         if (REDIRECT_LINK != null) {
             rootLogger.info("Open URL - " +REDIRECT_LINK);
-            StepsHttpAuth openHost = new StepsHttpAuth();
-            String AUTH_URL = REDIRECT_LINK;
-            openHost.httpAuthUrl(AUTH_URL);
+            httpAuthUrl(REDIRECT_LINK);
             sleep(1000);
             rootLogger.info("Validation test");
            NEWPASSWORD_PAGE_RESTORE_BTN.waitUntil(visible, 10000).click();
@@ -138,9 +131,7 @@ public class TestsPekamaResetPassword {
     public void resetPassword_D() {
         if (REDIRECT_LINK != null) {
             rootLogger.info("Open URL - " +REDIRECT_LINK);
-            StepsHttpAuth openHost = new StepsHttpAuth();
-            String AUTH_URL = REDIRECT_LINK;
-            openHost.httpAuthUrl(AUTH_URL);
+            httpAuthUrl(REDIRECT_LINK);
             sleep(1000);
             rootLogger.info("Validation test");
            NEWPASSWORD_PAGE_NEW_PASSWORD.waitUntil(visible, 10000).sendKeys("12345");
@@ -156,9 +147,7 @@ public class TestsPekamaResetPassword {
     public void resetPassword_E() {
         if (REDIRECT_LINK != null) {
             rootLogger.info("Open URL - " +REDIRECT_LINK);
-            StepsHttpAuth openHost = new StepsHttpAuth();
-            String AUTH_URL = REDIRECT_LINK;
-            openHost.httpAuthUrl(AUTH_URL);
+            httpAuthUrl(REDIRECT_LINK);
             sleep(1000);
             rootLogger.info("Validation test");
            NEWPASSWORD_PAGE_NEW_PASSWORD.waitUntil(visible, 10000).sendKeys(User1.GMAIL_EMAIL.getValue());
@@ -177,9 +166,7 @@ public class TestsPekamaResetPassword {
         if (REDIRECT_LINK != null) {
             rootLogger.info("Start test - "+"User submitted invalid password");
             rootLogger.info("Open URL - " +REDIRECT_LINK);
-            StepsHttpAuth openHost = new StepsHttpAuth();
-            String AUTH_URL = REDIRECT_LINK;
-            openHost.httpAuthUrl(AUTH_URL);
+            httpAuthUrl(REDIRECT_LINK);
             sleep(1000);
 
             rootLogger.info("Validation Loop");
@@ -199,13 +186,11 @@ public class TestsPekamaResetPassword {
     public void resetPassword_G() {
         if (REDIRECT_LINK != null) {
             rootLogger.info("Open URL - " +REDIRECT_LINK);
-            StepsHttpAuth openHost = new StepsHttpAuth();
-            String AUTH_URL = REDIRECT_LINK;
-            openHost.httpAuthUrl(AUTH_URL);
+            httpAuthUrl(REDIRECT_LINK);
             sleep(1000);
             rootLogger.info("Validation test - name");
-           NEWPASSWORD_PAGE_NEW_PASSWORD.waitUntil(visible, 10000).sendKeys(User4.NAME.getValue());
-           NEWPASSWORD_PAGE_CONFIRM_PASSWORD.shouldBe(Condition.visible).sendKeys(User4.NAME.getValue());
+           NEWPASSWORD_PAGE_NEW_PASSWORD.waitUntil(visible, 10000).sendKeys(USERNAME);
+           NEWPASSWORD_PAGE_CONFIRM_PASSWORD.shouldBe(Condition.visible).sendKeys(USERNAME);
            NEWPASSWORD_PAGE_RESTORE_BTN.click();
             $$(RESET_PAGE_ERROR).filter(visible).shouldHave(size(3));
             $(byText("The password is too similar to the first name.")).shouldBe(visible);
@@ -217,13 +202,11 @@ public class TestsPekamaResetPassword {
     public void resetPassword_H() {
         if (REDIRECT_LINK != null) {
             rootLogger.info("Open URL - " +REDIRECT_LINK);
-            StepsHttpAuth openHost = new StepsHttpAuth();
-            String AUTH_URL = REDIRECT_LINK;
-            openHost.httpAuthUrl(AUTH_URL);
+            httpAuthUrl(REDIRECT_LINK);
             sleep(1000);
             rootLogger.info("Validation test");
-           NEWPASSWORD_PAGE_NEW_PASSWORD.waitUntil(visible, 10000).sendKeys(User4.SURNAME.getValue());
-           NEWPASSWORD_PAGE_CONFIRM_PASSWORD.shouldBe(Condition.visible).sendKeys(User4.SURNAME.getValue());
+           NEWPASSWORD_PAGE_NEW_PASSWORD.waitUntil(visible, 10000).sendKeys(USERSURNAME);
+           NEWPASSWORD_PAGE_CONFIRM_PASSWORD.shouldBe(Condition.visible).sendKeys(USERSURNAME);
            NEWPASSWORD_PAGE_RESTORE_BTN.click();
             $$(RESET_PAGE_ERROR).filter(visible).shouldHave(size(2));
             $(byText("The password is too similar to the last name.")).shouldBe(visible);
@@ -235,9 +218,7 @@ public class TestsPekamaResetPassword {
     public void resetPassword_I() {
         if (REDIRECT_LINK != null) {
             rootLogger.info("Open URL - " +REDIRECT_LINK);
-            StepsHttpAuth openHost = new StepsHttpAuth();
-            String AUTH_URL = REDIRECT_LINK;
-            openHost.httpAuthUrl(AUTH_URL);
+            httpAuthUrl(REDIRECT_LINK);
             sleep(1000);
             rootLogger.info("Validation test");
             String RANDOM_129_LETTER = Utils.randomString(129);
@@ -254,12 +235,9 @@ public class TestsPekamaResetPassword {
     public void resetPassword_P() {
         if (REDIRECT_LINK != null) {
             rootLogger.info("Open URL - " +REDIRECT_LINK);
-            StepsHttpAuth openHost = new StepsHttpAuth();
-            String AUTH_URL = REDIRECT_LINK;
-            openHost.httpAuthUrl(AUTH_URL);
+            httpAuthUrl(REDIRECT_LINK);
             sleep(1000);
             rootLogger.info("Positive test");
-            //need random passwrord +constant
             String RANDOM_8_LETTER = Utils.randomString(8);
             NEW_PASSWORD = VALID_PASSWORD+RANDOM_8_LETTER;
            NEWPASSWORD_PAGE_NEW_PASSWORD.shouldBe(Condition.visible).sendKeys(NEW_PASSWORD);
@@ -281,7 +259,7 @@ public class TestsPekamaResetPassword {
             rootLogger.info("Open URL - " +URL_Dashboard);
             StepsHttpAuth openHost = new StepsHttpAuth();
             String AUTH_URL = URL_Dashboard;
-            openHost.httpAuthUrl(AUTH_URL);
+            httpAuthUrl(AUTH_URL);
             sleep(1000);
 
             StepsPekama loginWithNewPassword = new StepsPekama();
@@ -301,9 +279,7 @@ public class TestsPekamaResetPassword {
         if (NEW_PASSWORD != null) {
             REDIRECT_LINK = null;
             rootLogger.info("User password - " +NEW_PASSWORD);
-            StepsHttpAuth openHost = new StepsHttpAuth();
-            String AUTH_URL = URL_ResetPassword;
-            openHost.httpAuthUrl(AUTH_URL);
+            httpAuthUrl(URL_ResetPassword);
             sleep(1000);
            RESET_PAGE_TITLE.shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_TITLE_TEXT));
            RESET_PAGE_EMAIL.sendKeys(User4.GMAIL_EMAIL.getValue());
@@ -312,9 +288,7 @@ public class TestsPekamaResetPassword {
            RESET_PAGE_SUCCESS.shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_SUCCESS_MSG));
             String testSuccessMsg = RESET_PAGE_SUCCESS.getText();
             rootLogger.info(testSuccessMsg + " displayed, valid email submitted");
-            StepsExternal loginGmailInboxApp = new StepsExternal();
-
-            loginGmailInboxApp.checkInboxEmail(GMAIL_LOGIN, GMAIL_PASSWORD,EMAIL_SUBJECT, EMAIL_TITLE, EMAIL_TEXT, EMAIL_BTN, EMAIL_REDIRECT_LINK);
+            checkInboxEmail(GMAIL_LOGIN, GMAIL_PASSWORD,EMAIL_SUBJECT, EMAIL_TITLE, EMAIL_TEXT, EMAIL_BTN, EMAIL_REDIRECT_LINK);
             rootLogger.info("Email and links correspond requirements");
 
             open(REDIRECT_LINK);
@@ -331,9 +305,7 @@ public class TestsPekamaResetPassword {
     public void resetPassword_Z() {
         if (REDIRECT_LINK != null) {
             rootLogger.info("Open URL - " +REDIRECT_LINK);
-            StepsHttpAuth openHost = new StepsHttpAuth();
-            String AUTH_URL = REDIRECT_LINK;
-            openHost.httpAuthUrl(AUTH_URL);
+            httpAuthUrl(REDIRECT_LINK);
             sleep(1000);
 
             rootLogger.info("Validation test - link was used");

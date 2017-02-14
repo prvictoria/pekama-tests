@@ -212,6 +212,24 @@ public class StepsPekama implements StepsFactory{
         submitConfirmAction();
         //       $(byText(thisMailingListName)).shouldNotBe(Condition.visible);
     }
+    public static void mailingListDetectAndDelete(String thisMailingListName){
+        String REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME = "//li[//a[contains(.,'"+ thisMailingListName +"')]]";
+        String pathToReportRowMenu = REPORTS_MAILING_LISTS+REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME+REPORTS_MAILING_LISTS_BTN_CALL_ML;
+        if ($(byLinkText(thisMailingListName)).isDisplayed()==false){
+            sleep(5000);}
+        while ($(byLinkText(thisMailingListName)).is(visible)) {
+            rootLogger.info("Mailing list detected: "+thisMailingListName);
+            $(byLinkText(thisMailingListName)).click();
+            sleep(1000);
+
+            $(byXpath(pathToReportRowMenu)).click();
+            rootLogger.info("Delete list");
+            REPORTS_MAILING_LISTS_DELETE_MW.click();
+            sleep(500);
+            submitConfirmAction();
+        }
+        rootLogger.info("Reports not present");
+    }
 
     public static void validationFieldByName(int randomLength, String fieldName, String submitButton, String errorMsg) {
         rootLogger.info("Validation field test for - "+fieldName);

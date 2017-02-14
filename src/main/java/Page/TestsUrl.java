@@ -16,7 +16,7 @@ public class TestsUrl {
     public static final String URL_ReportsProjects = PEKAMA+"/a/reports/projects";
     public static final String URL_ReportsTasks = PEKAMA+"/a/reports/tasks";
     public static final String URL_ReportsEvents = PEKAMA+"/a/reports/events";
-    public static final String URL_ReportsCharges = PEKAMA+"/a/reports/financials";
+    public static final String URL_ReportsCharges = PEKAMA+"/a/reports/charges";
     public static final String URL_ReportsContacts = PEKAMA+"/a/reports/contacts";
 
     public static final String URL_PersonalSettings = PEKAMA+"/a/settings/profile";

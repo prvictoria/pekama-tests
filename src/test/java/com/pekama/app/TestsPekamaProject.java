@@ -17,7 +17,6 @@ import static Page.TestsCredentials.*;
 import static Page.TestsCredentials.TrademarkEvents.*;
 import static Page.TestsStrings.*;
 import static Page.TestsUrl.*;
-import static Steps.StepsCommunity.*;
 import static Steps.StepsExternal.*;
 import static Steps.StepsPekama.*;
 import static Utils.Utils.*;
@@ -612,7 +611,7 @@ public class TestsPekamaProject {
         selectItemInDropdown(
                 TAB_INFO_SELECT_Defining,
                 TAB_INFO_INPUT_Defining,
-                Countries.NETHERLAND_ANTILES.getValue());
+                Countries.NETHERLANDS_ANTILES.getValue());
         sleep(2000);
         selectItemInDropdown(
                 TAB_INFO_SELECT_Type,
@@ -622,7 +621,7 @@ public class TestsPekamaProject {
                 TAB_INFO_SELECT_SubType,
                 TAB_INFO_INPUT_SubType, "Certification Mark");
         sleep(1000);
-        checkText(Countries.NETHERLAND_ANTILES.getValue());
+        checkText(Countries.NETHERLANDS_ANTILES.getValue());
         checkText("Basic Filing");
         checkText("Certification Mark");
         rootLogger.info("Test passed");

@@ -4,6 +4,7 @@ import org.junit.Test;
 
 
 public class TestsCredentials {
+    //need valid accounts on server
     public enum User1 {
         GMAIL_EMAIL("testqweeco001@gmail.com"),
         GMAIL_PASSWORD("123456789qasw1"),
@@ -14,7 +15,9 @@ public class TestsCredentials {
         SURNAME("Quality01"),
         TEAM_NAME("QweecoTeam01"),
         TEAM_CODE("QT01"),
-        FULL_TEAM_NAME("QweecoTeam01 (QT01)");
+        FULL_TEAM_NAME("QweecoTeam01 (QT01)"),
+        COMMUNITY_CASE_TYPE("Patent"),
+        COMMUNITY_CASE_COUNTRY("Pitcairn Islands");
         private String value;
         User1(String value) {
             this.value = value;
@@ -22,7 +25,7 @@ public class TestsCredentials {
         public String getValue() {
             return value;
         }
-    } //has linkedin
+    } //Requester
     public enum User2 {
         GMAIL_EMAIL("testqweeco002@gmail.com"),
         GMAIL_PASSWORD("123456789qasw1"),
@@ -33,7 +36,9 @@ public class TestsCredentials {
         SURNAME("Quality02"),
         TEAM_NAME("QweecoTeam02"),
         TEAM_CODE("QT02"),
-        FULL_TEAM_NAME("QweecoTeam02 (QT02)");
+        FULL_TEAM_NAME("QweecoTeam02 (QT02)"),
+        COMMUNITY_CASE_TYPE("Patent"),
+        COMMUNITY_CASE_COUNTRY("Pitcairn Islands");
         private String value;
         User2(String value) {
             this.value = value;
@@ -41,7 +46,7 @@ public class TestsCredentials {
         public String getValue() {
             return value;
         }
-    }
+    } //Expert
     public enum User3 {
         GMAIL_EMAIL("testqweeco003@gmail.com"),
         GMAIL_PASSWORD("123456789qasw1"),
@@ -61,7 +66,9 @@ public class TestsCredentials {
         COUNTRY("United States"),
         TEAM_NAME("QweecoTeam03"),
         TEAM_CODE("QT03"),
-        FULL_TEAM_NAME("QweecoTeam03 (QT03)");
+        FULL_TEAM_NAME("QweecoTeam03 (QT03)"),
+        COMMUNITY_CASE_TYPE("Patent"),
+        COMMUNITY_CASE_COUNTRY("Pitcairn Islands");
         private String value;
         User3(String value) {
             this.value = value;
@@ -69,7 +76,7 @@ public class TestsCredentials {
         public String getValue() {
             return value;
         }
-    }
+    } //Requester
     public enum User4 {
         GMAIL_EMAIL("testqweeco004@gmail.com"),
         GMAIL_PASSWORD("123456789qasw1"),
@@ -89,7 +96,9 @@ public class TestsCredentials {
         COUNTRY("United States"),
         TEAM_NAME("QweecoTeam04"),
         TEAM_CODE("QT04"),
-        FULL_TEAM_NAME("QweecoTeam04 (QT04)");
+        FULL_TEAM_NAME("QweecoTeam04 (QT04)"),
+        COMMUNITY_CASE_TYPE("Patent"),
+        COMMUNITY_CASE_COUNTRY("Pitcairn Islands");
 
         private String value;
         User4(String value) {
@@ -98,18 +107,30 @@ public class TestsCredentials {
         public String getValue() {
             return value;
         }
-    }//for password restoration tests
+    } //Expert
     public enum User5 {
         GMAIL_EMAIL("testqweeco005@gmail.com"),
         GMAIL_PASSWORD("123456789qasw1"),
-        PEKAMA_PASSWORD(""),
-        LINKEDIN_PASSWORD(""),
-        BOX_PASSWORD(""),
-        NAME(""),
-        SURNAME(""),
-        TEAM_NAME(""),
-        TEAM_CODE(""),
-        FULL_TEAM_NAME("");
+        PEKAMA_PASSWORD("asui67we34"),
+        LINKEDIN_PASSWORD("123456789qasw"),
+        BOX_PASSWORD("32qew8127a12a"),
+        NAME("Test005"),
+        SURNAME("Quality05"),
+        PHONE("205-780-5656"),
+        FAX("(205) 254-2294"),
+        MOBILE("205- 324-8712"),
+        LEGAL_ENTITY("Arlington House"),
+        STREET("331 Cotton Avenue, Southwest"),
+        ZIP("35211"),
+        CITY("Birmingham"),
+        REGION("Alabama"),
+        COUNTRY("United States"),
+        TEAM_NAME("QweecoTeam05"),
+        TEAM_CODE("QT05"),
+        FULL_TEAM_NAME("QweecoTeam05 (QT05)"),
+        COMMUNITY_CASE_TYPE("Patent"),
+        COMMUNITY_CASE_COUNTRY("Pitcairn Islands");
+
         private String value;
         User5(String value) {
             this.value = value;
@@ -117,14 +138,80 @@ public class TestsCredentials {
         public String getValue() {
             return value;
         }
-    }//Unregistered for SignUp links tests
+    } //Edit profile flow
+    public enum User6 {
+        GMAIL_EMAIL("testqweeco006@gmail.com"),
+        GMAIL_PASSWORD("123456789qasw1"),
+        PEKAMA_PASSWORD("asui67we34"),
+        LINKEDIN_PASSWORD("123456789qasw"),
+        BOX_PASSWORD("32qew8127a12a"),
+        NAME("Test006"),
+        SURNAME("Quality06"),
+        PHONE("205-780-5656"),
+        FAX("(205) 254-2294"),
+        MOBILE("205- 324-8712"),
+        LEGAL_ENTITY("Arlington House"),
+        STREET("331 Cotton Avenue, Southwest"),
+        ZIP("35211"),
+        CITY("Birmingham"),
+        REGION("Alabama"),
+        COUNTRY("United States"),
+        TEAM_NAME("QweecoTeam06"),
+        TEAM_CODE("QT06"),
+        FULL_TEAM_NAME("QweecoTeam06 (QT06)"),
+        COMMUNITY_CASE_TYPE("Patent"),
+        COMMUNITY_CASE_COUNTRY("Pitcairn Islands");
+
+        private String value;
+        User6(String value) {
+            this.value = value;
+        }
+        public String getValue() {
+            return value;
+        }
+    } //Reset password flow, login with Auth2 flow
+    //No need accounts on server
+    public enum User7 {
+        GMAIL_EMAIL("");
+
+        private String value;
+        User7(String value) {
+            this.value = value;
+        }
+        public String getValue() {
+            return value;
+        }
+    } //SignUp flow
+    public enum User8 {
+    GMAIL_EMAIL("");
+
+    private String value;
+        User8(String value) {
+            this.value = value;
+        }
+        public String getValue() {
+            return value;
+        }
+    } //Invite flow
+    public enum User9 {
+        GMAIL_EMAIL("");
+
+        private String value;
+        User9(String value) {
+            this.value = value;
+        }
+        public String getValue() {
+            return value;
+        }
+    } //Guest flow
+
     public enum Countries {
-        AFGANISTAN("Afghanistan"),
+        AFGHANISTAN("Afghanistan"),
         ALL_COUNTRIES("All countries"),
         AMERICAN_SAMOA("American Samoa"),
         GREENLAND("Greenland"),
         PITCAIRN_ISLANDS("Pitcairn Islands"),
-        NETHERLAND_ANTILES("Netherlands Antilles"),
+        NETHERLANDS_ANTILES("Netherlands Antilles"),
         PATENT_COOPERATION_TREATY("Patent Cooperation Treaty"),
         CRM_CONFERENCE("Conference Lead"),
         CRM_PROSPECT("Prospect"),
