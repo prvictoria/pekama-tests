@@ -43,7 +43,7 @@ public class TestsCommunityOutgoing {
     @Test
     public void testA_EditCaseName() {
         rootLogger.info("Create case");
-        String caseName = createCase();
+        String caseName = createCase(expertTeam);
         rootLogger.info("Edit case name");
         String newName = editCaseName(caseName);
         rootLogger.info("Check max length field validation");
@@ -53,7 +53,7 @@ public class TestsCommunityOutgoing {
     @Test
     public void testB_RedirectToPekamaProject() {
         rootLogger.info("Create case");
-        String caseName = createCase();
+        String caseName = createCase(expertTeam);
         rootLogger.info("Follow project link");
         String link = $(byXpath(ROW_CONTROL_CASE_ROW_FIRST+ROW_CONTROL_LINK_PROJECT)).getAttribute("href");
         rootLogger.info("project link is: "+link);
@@ -71,7 +71,7 @@ public class TestsCommunityOutgoing {
     @Test
     public void testC_ArchiveCase() {
         rootLogger.info("Create case");
-        String caseName = createCase();
+        String caseName = createCase(expertTeam);
         rootLogger.info("Archive case");
         archiveCase(caseName);
         rootLogger.info("Test passed");
@@ -79,7 +79,7 @@ public class TestsCommunityOutgoing {
     @Test
     public void testD1_WithdrawCase() {
         rootLogger.info("Create case");
-        String caseName = createCase();
+        String caseName = createCase(expertTeam);
         rootLogger.info("Withdraw case");
         withdrawCase(caseName, true);
         rootLogger.info("Test passed");
@@ -87,7 +87,7 @@ public class TestsCommunityOutgoing {
     @Test
     public void testD2_WithdrawCase() {
         rootLogger.info("Create case");
-        String caseName = createCase();
+        String caseName = createCase(expertTeam);
         rootLogger.info("Cancel case");
         withdrawCase(caseName, false);
         rootLogger.info("Test passed");
@@ -95,7 +95,7 @@ public class TestsCommunityOutgoing {
     @Test
     public void testE_OpenCaseRow() {
         rootLogger.info("Create case");
-        String caseName = createCase();
+        String caseName = createCase(expertTeam);
         rootLogger.info("Open case row");
         String row = getFirstCaseRow(caseName);
         $(byXpath(row)).click();

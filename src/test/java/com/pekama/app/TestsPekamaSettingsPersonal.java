@@ -558,6 +558,7 @@ public class TestsPekamaSettingsPersonal {
             rootLogger.info("Connect Gmail via Auth2");
             IMAP_TAB_BTN_CONNECT_GMAIL.click();
             authGmail(User3.GMAIL_EMAIL.getValue());
+            sleep(1000);
             switchTo().window("Pekama | Projects");
 
             rootLogger.info("Delete connected account");

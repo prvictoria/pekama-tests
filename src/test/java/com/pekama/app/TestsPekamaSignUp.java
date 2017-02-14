@@ -120,6 +120,7 @@ public class TestsPekamaSignUp {
             }
         rootLogger.info("Email validation LOOP - Passed");
     }
+    @Ignore // TODO: 2/14/2017 not actual for daily tests - need refactoring
     @Test
     public void validationPassword() {
 
@@ -131,7 +132,7 @@ public class TestsPekamaSignUp {
             $(signupPassword).shouldBe(visible).sendKeys(arrayInvalidPasswords[arrayLength]);
             $(signupNext).shouldBe(visible).shouldNot(disabled).click();
             sleep(1500);
-            $$(signupError).shouldHave(size(1));
+            signupError.shouldHave(size(1));
 //            $(signupNext).shouldBe(disabled);
             refresh();
 //            $(signupAgree).shouldBe(visible).shouldNot(selected);

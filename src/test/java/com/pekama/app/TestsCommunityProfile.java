@@ -60,11 +60,7 @@ public class TestsCommunityProfile {
         PROFILE_BTN_INVITE.shouldBe(visible).shouldBe(enabled);
         log.info("Gui elements present");
     }
-    @Ignore("not ready")
-    @Test
-    public void UploadDeleteAvatar() {
-        log.info("");
-    }
+
     @Test
     public void boostScrores() {
         log.info("Check redirect to wizard");

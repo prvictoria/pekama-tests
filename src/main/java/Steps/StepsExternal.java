@@ -150,7 +150,7 @@ public class StepsExternal implements StepsFactory{
         if (EMAIL_SUBJECT.exists() == false) {
             int count = 1;
             do {
-                sleep(15000);
+                sleep(20000);
                 refresh();
                 count++;
                 logging.info("Email by subject NOT found loop" + count);
@@ -196,6 +196,7 @@ public class StepsExternal implements StepsFactory{
         logging.info(EMAIL_BTN + "- email present");
     }
     public static String checkRedirectLink(SelenideElement EMAIL_REDIRECT_LINK){
+        EMAIL_REDIRECT_LINK.waitUntil(visible, 20000);
         REDIRECT_LINK = null;
         REDIRECT_LINK = EMAIL_REDIRECT_LINK.getAttribute("href");
         logging.info("This link present in mail - " + REDIRECT_LINK);
@@ -234,7 +235,7 @@ public class StepsExternal implements StepsFactory{
     }
     public static void deleteEmail() {
         sleep(1000);
-        INBOX_BTN_DELETE.waitUntil(visible, 10000).click();
+        INBOX_BTN_DELETE.waitUntil(visible, 20000).click();
         INBOX_BTN_DELETE.waitUntil(not(visible), 10000);
     }
     public static void inboxEmptyTrash(){
@@ -279,11 +280,12 @@ public class StepsExternal implements StepsFactory{
     }
 
     public static void authGmail(String GMAIL_LOGIN){
+        sleep(5000);
         switchTo().window("Sign in - Google Accounts");
         logging.info("Type email");
-        GMAIL_LOGIN_FIELD.sendKeys(GMAIL_LOGIN);
+        GMAIL_LOGIN_FIELD.shouldBe(visible).sendKeys(GMAIL_LOGIN);
         logging.info("Submit email");
-        GMAIL_NEXT_BTN.click();
+        GMAIL_NEXT_BTN.shouldBe(visible).click();
         logging.info("Type password");
         GMAIL_PASSWORD_FIELD.shouldBe(visible).sendKeys(GMAIL_PASSWORD);
         logging.info("Submit password");

@@ -52,11 +52,11 @@ public class StepsPekama implements StepsFactory{
         rootLogger.info(AUTH_URL+"URL opened");
         submitCookie();
         hideZopim();
-        loginField_Email.sendKeys(PEKAMA_USER_EMAIL);
+        fillField(loginField_Email,PEKAMA_USER_EMAIL);
         rootLogger.info(PEKAMA_USER_EMAIL+ " - login selected");
-        loginField_Password.sendKeys(PEKAMA_USER_PASSWORD);
-        loginButton_Login.click();
-        sleep(1000);
+        fillField(loginField_Password, PEKAMA_USER_PASSWORD);
+        submitEnabledButton(loginButton_Login);
+        sleep(4000);
         btnLogin.shouldBe(Condition.not(visible));
         rootLogger.info("Valid Credentials were submitted");
         sleep(2000);
@@ -235,6 +235,7 @@ public class StepsPekama implements StepsFactory{
         rootLogger.info("Validation present - "+errorMsg);
     }
     public static void fillField(SelenideElement fieldName, String enteredValue) {
+        fieldName.waitUntil(visible, 30000);
         rootLogger.info("Input data");
         fieldName.clear();
         fieldName.shouldHave(Condition.value("")).val(enteredValue);

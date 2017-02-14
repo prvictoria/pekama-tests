@@ -197,7 +197,7 @@ public class StepsCommunity implements StepsFactory{
     }
     public static boolean selectExpert(String teamName) {
         String row = String.format(expertRowLabel, teamName);
-        $(byXpath(row)).shouldBe(visible).click();
+        $(byXpath(row)).waitUntil(visible, 20000).click();
         rootLogger.info(teamName+" - expert selected");
         return true;
     }

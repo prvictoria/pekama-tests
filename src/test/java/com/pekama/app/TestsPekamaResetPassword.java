@@ -88,7 +88,7 @@ public class TestsPekamaResetPassword {
        RESET_PAGE_SUCCESS.shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_SUCCESS_MSG));
         String testSuccessMsg = RESET_PAGE_SUCCESS.getText();
         rootLogger.info(testSuccessMsg + " displayed, valid email submitted");
-
+        sleep(5000);
         StepsExternal loginGmailInboxApp = new StepsExternal();
         loginGmailInboxApp.checkInboxEmail(
                 GMAIL_LOGIN,
@@ -291,6 +291,7 @@ public class TestsPekamaResetPassword {
                 String thisUrl = url();
                 assertEquals(thisUrl, URL_Dashboard);
         rootLogger.info("Login into Pekama with NEW valid credentials");
+        open(URL_Logout);
         }
         else Assert.fail("password - "+NEW_PASSWORD);
     }
@@ -317,9 +318,9 @@ public class TestsPekamaResetPassword {
             rootLogger.info("Email and links correspond requirements");
 
             open(REDIRECT_LINK);
-           NEWPASSWORD_PAGE_NEW_PASSWORD.waitUntil(visible, 10000).sendKeys(NEW_PASSWORD);
-           NEWPASSWORD_PAGE_CONFIRM_PASSWORD.shouldBe(Condition.visible).sendKeys(NEW_PASSWORD);
-           NEWPASSWORD_PAGE_RESTORE_BTN.click();
+            NEWPASSWORD_PAGE_NEW_PASSWORD.waitUntil(visible, 10000).sendKeys(NEW_PASSWORD);
+            NEWPASSWORD_PAGE_CONFIRM_PASSWORD.shouldBe(Condition.visible).sendKeys(NEW_PASSWORD);
+            NEWPASSWORD_PAGE_RESTORE_BTN.click();
             $$(byText(ERROR_MSG_NEW_PASSOWRD_EQUALS_TO_OLD)).shouldHaveSize(1);
             rootLogger.info("Validation old password present");
         }
