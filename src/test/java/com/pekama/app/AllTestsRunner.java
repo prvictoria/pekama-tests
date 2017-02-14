@@ -26,7 +26,7 @@ import org.junit.runners.Suite;
 public class AllTestsRunner {
     public static void holdBrowserAfterTest() {
         Configuration test = new Configuration();
-        test.holdBrowserOpen = true;
+        test.holdBrowserOpen = false;
     }
     public static void holdBrowserAfterTest(boolean value) {
         Configuration test = new Configuration();
