@@ -1,4 +1,5 @@
 package com.pekama.app;
+import Page.PekamaSignUp;
 import com.codeborne.selenide.Configuration;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -10,11 +11,12 @@ import org.junit.runners.Suite;
         TestsCommunityWizard.class,
         TestsCommunityProfile.class,
         TestsCommunityOutgoing.class,
+        TestsCommunityIncoming.class,
 
         TestsPekamaLanding.class,
         TestsPekamaLogin.class,
         TestsPekamaResetPassword.class,
-        Page.PekamaSignUp.class,
+        TestsPekamaSignUp.class,
         TestsPekamaSettingsPersonal.class,
         TestsPekamaProject.class,
         TestsPekamaIntegrationBox.class,

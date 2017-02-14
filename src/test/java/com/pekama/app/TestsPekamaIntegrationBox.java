@@ -20,6 +20,7 @@ import static com.codeborne.selenide.Selectors.byName;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.url;
+import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
 
 //todo draft cases
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -38,6 +39,7 @@ public class TestsPekamaIntegrationBox {
 
     @Before
     public void before() {
+        holdBrowserAfterTest();
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(PEKAMA_USER_EMAIL, PEKAMA_USER_PASSWORD, AUTH_URL);
         rootLogger.info("");

@@ -18,10 +18,12 @@ import static Page.TestsUrl.*;
 import static Steps.StepsCommunity.*;
 import static Steps.StepsHttpAuth.httpAuthUrl;
 import static Steps.StepsPekama.*;
+import static Utils.Utils.randomString;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.url;
+import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
@@ -35,18 +37,17 @@ public class TestsCommunityProfile {
 
     @Before
     public void openUrlLogin() {
-        Configuration test = new Configuration();
-        test.holdBrowserOpen = true;
+        holdBrowserAfterTest();
         log.info("Open host");
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(PEKAMA_USER_EMAIL, PEKAMA_USER_PASSWORD, URL_COMMUNITY_LOGIN);
         log.info("Redirect back after login");
         COMMUNITY_TAB_Profile.shouldBe(Condition.visible).shouldHave(Condition.text("my profile")).click();
     }
-//    @After
-//    public void openUrlLogout() {
-//        open(URL_COMMUNITY_LOGOUT);
-//    }
+    @After
+    public void openUrlLogout() {
+        open(URL_COMMUNITY_LOGOUT);
+    }
 
     @Test
     public void team_checkGui() {
@@ -140,7 +141,7 @@ public class TestsCommunityProfile {
     public void service_testA_addService() {
         log.info("Add new service");
         String profileServiceCaseType = CaseType.TRADEMARK.getValue();
-        String profileServiceCountry = Countries.AFGANISTAN.getValue();
+        String profileServiceCountry = Countries.ALL.getValue();
         String price = "100000";
         boolean rowPresentOnPage = true;
         PROFILE_BTN_ADD.shouldBe(disabled);
@@ -166,7 +167,7 @@ public class TestsCommunityProfile {
         log.info("Edit service");
         sleep(2000);
         String profileServiceCaseType = CaseType.TRADEMARK.getValue();
-        String profileServiceCountry = Countries.AFGANISTAN.getValue();
+        String profileServiceCountry = Countries.ALL.getValue();
         String price = "100000";
         String newPrice = "99999";
         clickServiceRowEdit(profileServiceCaseType, profileServiceCountry);
@@ -179,7 +180,7 @@ public class TestsCommunityProfile {
     public void service_testD_deleteService() {
         log.info("Delete service");
         String profileServiceCaseType = CaseType.TRADEMARK.getValue();
-        String profileServiceCountry = Countries.AFGANISTAN.getValue();
+        String profileServiceCountry = Countries.ALL.getValue();
         boolean rowPresentOnPage = false;
         clickServiceRowDelete(profileServiceCaseType, profileServiceCountry);
         submitConfirmAction();
@@ -190,40 +191,66 @@ public class TestsCommunityProfile {
 
     @Test
     public void yourProfileSaveNewName_A_SetNewName() {
-        log.info("open Yuor profile tab");
+        log.info("open Your profile tab");
         String newName = "new name";
         String newSurname = "new surname";
         PROFILE_PROFILE_TAB.click();
-        PROFILE_FIELD_NAME.shouldHave(value(User3.NAME.getValue()));
-        PROFILE_FIELD_SURNAME.shouldHave(value(User3.SURNAME.getValue()));
+        log.info("Set new name and surname");
         fillField(PROFILE_FIELD_NAME, newName);
         fillField(PROFILE_FIELD_SURNAME, newSurname);
         submitEnabledButton(PROFILE_BTN_SAVE_NAME_AND_SURNAME);
         PROFILE_BTN_SAVE_NAME_AND_SURNAME.shouldBe(disabled);
+
+        log.info("Check changes");
         sleep(2000);
         refresh();
-        PROFILE_FIELD_NAME.shouldHave(value(newName));
-        PROFILE_FIELD_SURNAME.shouldHave(value(newSurname));
-        log.info("Service was deleted");
+        PROFILE_FIELD_NAME.waitUntil(visible, 20000).shouldHave(value(newName));
+        PROFILE_FIELD_SURNAME.waitUntil(visible, 20000).shouldHave(value(newSurname));
+
+        log.info("Restore user name and surname");
+        fillField(PROFILE_FIELD_NAME, User3.NAME.getValue());
+        fillField(PROFILE_FIELD_SURNAME,User3.SURNAME.getValue());
+        submitEnabledButton(PROFILE_BTN_SAVE_NAME_AND_SURNAME);
+        PROFILE_FIELD_NAME.shouldHave(value(User3.NAME.getValue()));
+        PROFILE_FIELD_SURNAME.shouldHave(value(User3.SURNAME.getValue()));
+        PROFILE_BTN_SAVE_NAME_AND_SURNAME.shouldBe(disabled);
+        sleep(2000);
+        log.info("Test passed");
 
     }
     @Test
-    public void yourProfileSaveNewName_B_returnUserName() {
-        log.info("open Yuor profile tab");
-        String newName = "new name";
-        String newSurname = "new surname";
+    public void yourProfileSaveNewName_B_checkValidationMaxLength() {
+        log.info("Open Your profile tab");
+        String newName = randomString(101);
+        String newSurname = randomString(101);
         PROFILE_PROFILE_TAB.click();
-        PROFILE_FIELD_NAME.shouldHave(value(newName));
-        PROFILE_FIELD_SURNAME.shouldHave(value(newSurname));
-        fillField(PROFILE_FIELD_NAME, User3.NAME.getValue());
-        fillField(PROFILE_FIELD_SURNAME, User3.SURNAME.getValue());
+        fillField(PROFILE_FIELD_NAME, newName);
+        fillField(PROFILE_FIELD_SURNAME, newSurname);
+
+        log.info("Check validation");
         submitEnabledButton(PROFILE_BTN_SAVE_NAME_AND_SURNAME);
         PROFILE_BTN_SAVE_NAME_AND_SURNAME.shouldBe(disabled);
-        sleep(2000);
-        refresh();
-        PROFILE_FIELD_NAME.shouldHave(value(User3.NAME.getValue()));
-        PROFILE_FIELD_SURNAME.shouldHave(value(User3.SURNAME.getValue()));
-        log.info("Service was deleted");
+        sleep(3000);
+        $$(byText(ERROR_MSG_VALIDATION_LENGTH_100)).shouldHaveSize(2);
+        log.info("Test passed");
+
+    }
+    @Test
+    public void yourProfileSaveNewName_B_checkValidationEmptyFields() {
+        log.info("Open Your profile tab");
+        String newName = "";
+        String newSurname = "";
+        PROFILE_PROFILE_TAB.click();
+        fillField(PROFILE_FIELD_NAME, newName);
+        fillField(PROFILE_FIELD_SURNAME, newSurname);
+
+        log.info("Check validation");
+        submitEnabledButton(PROFILE_BTN_SAVE_NAME_AND_SURNAME);
+        PROFILE_BTN_SAVE_NAME_AND_SURNAME.shouldBe(disabled);
+        sleep(3000);
+        $$(byText("First name can not be blank")).shouldHaveSize(1);
+        $$(byText("Last name can not be blank")).shouldHaveSize(1);
+        log.info("Test passed");
 
     }
 }

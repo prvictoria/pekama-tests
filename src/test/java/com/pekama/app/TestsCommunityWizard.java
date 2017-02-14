@@ -31,7 +31,7 @@ public class TestsCommunityWizard {
     String testUserPassword = User2.PEKAMA_PASSWORD.getValue();
     @Before
     public void before() {
-        holdBrowserAfterTest(false);
+        holdBrowserAfterTest();
         rootLogger.info("Open host");
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(testUserEmail, testUserPassword, URL_COMMUNITY_LOGIN);

@@ -132,6 +132,7 @@ public class TestsCredentials {
         TRADEMARK_CMT("European Union (CTM)"),
         TRADEMARK_CONSUMER_TRADEMARK("Consumer Trademark Defining"),
         USA("United States"),
+        ALL("All countries"),
 
         GENERIC("");
 

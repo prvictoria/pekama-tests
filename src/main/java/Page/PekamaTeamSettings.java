@@ -3,9 +3,7 @@ package Page;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selectors.byLinkText;
-import static com.codeborne.selenide.Selectors.byPartialLinkText;
-import static com.codeborne.selenide.Selectors.byXpath;
+import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 
 /**
@@ -36,22 +34,22 @@ public class PekamaTeamSettings extends Page {
     public static final SelenideElement SETTINGS_TEAM_TAB_DOCUMENT_TEMPLATES = $(byLinkText("Document Templates"));
     public static final SelenideElement SETTINGS_TEAM_TAB_STORAGE = $(byLinkText("Storage"));
 
-    public static final SelenideElement TAB_PROFILE_TITLE = $(byXpath(""));
-    public static final SelenideElement TAB_PROFILE_CODE = $(byXpath(""));
+    public static final SelenideElement TAB_PROFILE_TITLE = $(byName("title"));
+    public static final SelenideElement TAB_PROFILE_CODE = $(byName("code"));
     public static final SelenideElement TAB_PROFILE_SELECT_ORG_TYPE = $(byXpath(""));
     public static final SelenideElement TAB_PROFILE_INPUT_ORG_TYPE = $(byXpath(""));
     public static final SelenideElement TAB_PROFILE_SELECT_ORG_RELATION = $(byXpath(""));
     public static final SelenideElement TAB_PROFILE_INPUT_ORG_RELATION = $(byXpath(""));
-    public static final SelenideElement TAB_PROFILE_EMAIL = $(byXpath(""));
-    public static final SelenideElement TAB_PROFILE_STREET = $(byXpath(""));
-    public static final SelenideElement TAB_PROFILE_ZIP = $(byXpath(""));
-    public static final SelenideElement TAB_PROFILE_CITY = $(byXpath(""));
-    public static final SelenideElement TAB_PROFILE_REGION = $(byXpath(""));
+    public static final SelenideElement TAB_PROFILE_EMAIL = $(byName("email_local_part"));
+    public static final SelenideElement TAB_PROFILE_STREET = $(byName("street_address"));
+    public static final SelenideElement TAB_PROFILE_ZIP = $(byName("postal_code"));
+    public static final SelenideElement TAB_PROFILE_CITY = $(byName("city"));
+    public static final SelenideElement TAB_PROFILE_REGION = $(byName("region"));
     public static final SelenideElement TAB_PROFILE_SELECT_COUNTRY = $(byXpath(""));
     public static final SelenideElement TAB_PROFILE_INPUT_COUNTRY = $(byXpath(""));
     public static final SelenideElement TAB_PROFILE_SELECT_DEFAULT_CHARGES = $(byXpath(""));
     public static final SelenideElement TAB_PROFILE_INPUT_DEFAULT_CHARGES = $(byXpath(""));
-    public static final SelenideElement TAB_PROFILE_BTN_SAVE = $(byXpath(""));
+    public static final SelenideElement TAB_PROFILE_BTN_SAVE = $(byXpath("//button[text()='Save']"));
 
     public static final SelenideElement TAB_MEMBERS_BTN_ADD = $(byXpath("//button[text()='Add']"));
     public static String BTN_DELETE_MEMBER = "//div[@class='cells-row']//div[contains(.,'%s')]/following-sibling::div//i";

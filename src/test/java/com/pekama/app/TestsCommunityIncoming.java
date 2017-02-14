@@ -25,36 +25,35 @@ import static com.pekama.app.AllTestsRunner.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsCommunityIncoming {
     static final Logger rootLogger = LogManager.getRootLogger();
-    String expertTeam = TestsCredentials.User1.TEAM_NAME.getValue();
-    String expertEmail = User1.GMAIL_EMAIL.getValue();
-    String expertPassword = User1.PEKAMA_PASSWORD.getValue();
+    private String expertTeam = TestsCredentials.User2.TEAM_NAME.getValue();
+    private String expertEmail = User2.GMAIL_EMAIL.getValue();
+    private String expertPassword = User2.PEKAMA_PASSWORD.getValue();
+    private String supplierEmail = User1.GMAIL_EMAIL.getValue();
+    private String supplierPassword = User1.PEKAMA_PASSWORD.getValue();
     private static String caseName;
     @Before
     public void before() {
-        holdBrowserAfterTest(false);
+        holdBrowserAfterTest();
         rootLogger.info("Open host");
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(
-                User2.GMAIL_EMAIL.getValue(),
-                User2.PEKAMA_PASSWORD.getValue(),
+                supplierEmail,
+                supplierPassword,
                 URL_COMMUNITY_LOGIN);
         rootLogger.info("Redirect back after login");
-        rootLogger.info("Create case");
-        caseName = createCase(expertTeam);
-
     }
     @After
-    public void after() {
-        open(URL_COMMUNITY_LOGOUT);
-        rootLogger.info("Open URL - "+URL_COMMUNITY_LOGOUT);
-    }
+    public void after() {open(URL_COMMUNITY_LOGOUT);}
 
     @Test
     public void testA_ArchiveCase() {
+        rootLogger.info("Supplier Create case");
+        caseName = createCase(expertTeam);
+        rootLogger.info("Expert login");
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(
-                User1.GMAIL_EMAIL.getValue(),
-                User1.PEKAMA_PASSWORD.getValue(),
+                expertEmail,
+                expertPassword,
                 URL_COMMUNITY_LOGIN);
         COMMUNITY_TAB_Incoming.waitUntil(visible, 15000).click();
         checkCaseNameFirstRow(caseName);
@@ -65,10 +64,13 @@ public class TestsCommunityIncoming {
     }
     @Test
     public void testB1_ConfirmInstruction() {
+        rootLogger.info("Supplier Create case");
+        caseName = createCase(expertTeam);
+        rootLogger.info("Expert login");
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(
-                User1.GMAIL_EMAIL.getValue(),
-                User1.PEKAMA_PASSWORD.getValue(),
+                expertEmail,
+                expertPassword,
                 URL_COMMUNITY_LOGIN);
         COMMUNITY_TAB_Incoming.waitUntil(visible, 15000).click();
         checkCaseNameFirstRow(caseName);
@@ -85,10 +87,13 @@ public class TestsCommunityIncoming {
     }
     @Test
     public void testB2_ConfirmInstruction() {
+        rootLogger.info("Supplier Create case");
+        caseName = createCase(expertTeam);
+        rootLogger.info("Expert login");
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(
-                User1.GMAIL_EMAIL.getValue(),
-                User1.PEKAMA_PASSWORD.getValue(),
+                expertEmail,
+                expertPassword,
                 URL_COMMUNITY_LOGIN);
         COMMUNITY_TAB_Incoming.waitUntil(visible, 15000).click();
         checkCaseNameFirstRow(caseName);
@@ -105,10 +110,13 @@ public class TestsCommunityIncoming {
     }
     @Test
     public void testC1_ConfirmCompletion() {
+        rootLogger.info("Supplier Create case");
+        caseName = createCase(expertTeam);
+        rootLogger.info("Expert login");
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(
-                User1.GMAIL_EMAIL.getValue(),
-                User1.PEKAMA_PASSWORD.getValue(),
+                expertEmail,
+                expertPassword,
                 URL_COMMUNITY_LOGIN);
         COMMUNITY_TAB_Incoming.waitUntil(visible, 15000).click();
         checkCaseNameFirstRow(caseName);
@@ -126,10 +134,13 @@ public class TestsCommunityIncoming {
     }
     @Test
     public void testC2_ConfirmCompletion() {
+        rootLogger.info("Supplier Create case");
+        caseName = createCase(expertTeam);
+        rootLogger.info("Expert login");
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(
-                User1.GMAIL_EMAIL.getValue(),
-                User1.PEKAMA_PASSWORD.getValue(),
+                expertEmail,
+                expertPassword,
                 URL_COMMUNITY_LOGIN);
         COMMUNITY_TAB_Incoming.waitUntil(visible, 15000).click();
         checkCaseNameFirstRow(caseName);
@@ -147,18 +158,19 @@ public class TestsCommunityIncoming {
     }
     @Test
     public void testD1_WithdrawnCase() {
-        rootLogger.info("Withdraw case");
+        rootLogger.info("Supplier Create case");
+        caseName = createCase(expertTeam);
         withdrawCase(caseName, true);
 
+        rootLogger.info("Expert login");
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(
-                User1.GMAIL_EMAIL.getValue(),
-                User1.PEKAMA_PASSWORD.getValue(),
+                expertEmail,
+                expertPassword,
                 URL_COMMUNITY_LOGIN);
         COMMUNITY_TAB_Incoming.waitUntil(visible, 15000).click();
         sleep(2000);
         checkCaseNameFirstRow(caseName);
-
 
         rootLogger.info("Open case row");
         String row = getFirstCaseRow(caseName);
@@ -171,13 +183,16 @@ public class TestsCommunityIncoming {
     }
     @Test
     public void testD2_WithdrawnCase() {
+        rootLogger.info("Supplier Create case");
+        caseName = createCase(expertTeam);
         rootLogger.info("Withdraw case");
         withdrawCase(caseName, false);
 
+        rootLogger.info("Expert login");
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(
-                User1.GMAIL_EMAIL.getValue(),
-                User1.PEKAMA_PASSWORD.getValue(),
+                expertEmail,
+                expertPassword,
                 URL_COMMUNITY_LOGIN);
         COMMUNITY_TAB_Incoming.waitUntil(visible, 15000).click();
         sleep(2000);
@@ -192,25 +207,26 @@ public class TestsCommunityIncoming {
 
         rootLogger.info("Test passed");
     }
-    @Ignore // TODO: 12-Feb-17 BUG - not fixed
+    @Ignore // TODO: 13-Feb-17 BUG
     @Test
     public void testF1_cancelCase() {
         rootLogger.info("Create draft case");
         String caseName = createDraftCase(expertTeam);
+        COMMUNITY_TAB_Outgoing.click();
+        rootLogger.info("Cancel case");
+        cancelCase(caseName, true);
 
+        rootLogger.info("Expert login");
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(
-                User1.GMAIL_EMAIL.getValue(),
-                User1.PEKAMA_PASSWORD.getValue(),
+                expertEmail,
+                expertPassword,
                 URL_COMMUNITY_LOGIN);
         COMMUNITY_TAB_Incoming.waitUntil(visible, 15000).click();
         sleep(2000);
         checkCaseNameFirstRow(caseName);
         checkCaseStatus(caseName, COMMUNITY_STATUS_CANCELLED);
 
-        sleep(3000);
-        rootLogger.info("Cancel case");
-        cancelCase(caseName, true);
 
         rootLogger.info("Open case row");
         String row = getFirstCaseRow(caseName);
@@ -220,25 +236,27 @@ public class TestsCommunityIncoming {
         $(byText(MSG_DEFAULT_CANCEL)).shouldBe(visible);
         rootLogger.info("Test passed");
     }
-    @Ignore // TODO: 12-Feb-17 BUG - not fixed
+    @Ignore // TODO: 13-Feb-17 BUG
     @Test
     public void testF2_cancelCase() {
         rootLogger.info("Create draft case");
         String caseName = createDraftCase(expertTeam);
+        COMMUNITY_TAB_Outgoing.click();
+        sleep(3000);
+        rootLogger.info("Cancel case");
+        cancelCase(caseName, false);
 
+        rootLogger.info("Expert login");
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(
-                User1.GMAIL_EMAIL.getValue(),
-                User1.PEKAMA_PASSWORD.getValue(),
+                expertEmail,
+                expertPassword,
                 URL_COMMUNITY_LOGIN);
         COMMUNITY_TAB_Incoming.waitUntil(visible, 15000).click();
         sleep(2000);
         checkCaseNameFirstRow(caseName);
         checkCaseStatus(caseName, COMMUNITY_STATUS_CANCELLED);
 
-        sleep(3000);
-        rootLogger.info("Cancel case");
-        cancelCase(caseName, false);
 
         rootLogger.info("Open case row");
         String row = getFirstCaseRow(caseName);

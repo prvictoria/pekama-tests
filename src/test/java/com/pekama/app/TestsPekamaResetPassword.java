@@ -27,6 +27,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.url;
+import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
@@ -44,6 +45,8 @@ public class TestsPekamaResetPassword {
     SelenideElement EMAIL_REDIRECT_LINK = EMAIL_RESET_PASSWORD_BACKLINK;
     String PEKAMA_USER_EMAIL = User4.GMAIL_EMAIL.getValue();
 
+    @Before
+    public void before(){holdBrowserAfterTest();}
 
     @Test
     public void openResetPassword() {
@@ -83,10 +86,18 @@ public class TestsPekamaResetPassword {
        RESET_PAGE_RESET_BTN.click();
         sleep(1000);
        RESET_PAGE_SUCCESS.shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_SUCCESS_MSG));
-        String testSuccessMsg =RESET_PAGE_SUCCESS.getText();
+        String testSuccessMsg = RESET_PAGE_SUCCESS.getText();
         rootLogger.info(testSuccessMsg + " displayed, valid email submitted");
+
         StepsExternal loginGmailInboxApp = new StepsExternal();
-        loginGmailInboxApp.checkInboxEmail(GMAIL_LOGIN, GMAIL_PASSWORD,EMAIL_SUBJECT, EMAIL_TITLE, EMAIL_TEXT, EMAIL_BTN, EMAIL_REDIRECT_LINK);
+        loginGmailInboxApp.checkInboxEmail(
+                GMAIL_LOGIN,
+                GMAIL_PASSWORD,
+                EMAIL_SUBJECT,
+                EMAIL_TITLE,
+                EMAIL_TEXT,
+                EMAIL_BTN,
+                EMAIL_REDIRECT_LINK);
         rootLogger.info("Email and links correspond requirements");
     }
     @Test

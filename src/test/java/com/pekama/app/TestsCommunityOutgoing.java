@@ -22,15 +22,15 @@ import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsCommunityOutgoing {
     static final Logger rootLogger = LogManager.getRootLogger();
-    String expertTeam = TestsCredentials.User3.TEAM_NAME.getValue();
+    String expertTeam = TestsCredentials.User2.TEAM_NAME.getValue();
     @Before
     public void before() {
-        holdBrowserAfterTest(false);
+        holdBrowserAfterTest();
         rootLogger.info("Open host");
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(
-                User2.GMAIL_EMAIL.getValue(),
-                User2.PEKAMA_PASSWORD.getValue(),
+                User1.GMAIL_EMAIL.getValue(),
+                User1.PEKAMA_PASSWORD.getValue(),
                 URL_COMMUNITY_LOGIN);
         rootLogger.info("Redirect back after login");
     }

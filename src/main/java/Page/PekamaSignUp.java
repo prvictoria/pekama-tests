@@ -34,7 +34,7 @@ public class PekamaSignUp extends Page {
     public static final SelenideElement signupPassword = $(byId("inputPassword"));
     public static final SelenideElement signupUpload = $(byId("avatar-upload-link"));
     public static final SelenideElement signupAgree = $(byId("agree_to_tou"));
-    public static final SelenideElement signupSubcribeNews = $(byName("user_info-receive_news"));
+    public static final SelenideElement signupSubscribeNews = $(byName("user_info-receive_news"));
     public static final SelenideElement signupTerms = $(byXpath("//a[@href='/accounts/terms_of_use/']"));
     public static final SelenideElement signupNext = $(byId("next-button"));
     public static final ElementsCollection signupError = $$(".list-unstyled.error-list>li");

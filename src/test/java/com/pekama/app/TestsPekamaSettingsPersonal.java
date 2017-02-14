@@ -19,6 +19,8 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static Page.PekamaPersonalSettings.*;
+import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
+
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaSettingsPersonal {
     static final Logger rootLogger = LogManager.getRootLogger();
@@ -31,8 +33,7 @@ public class TestsPekamaSettingsPersonal {
     public static void beforeClass() { }
     @Before
     public void before() {
-//        Configuration test = new Configuration();
-//        test.holdBrowserOpen = true;
+        holdBrowserAfterTest();
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(testUserEmail, testUserPekamaPassword, AUTH_URL);
     }
@@ -44,8 +45,8 @@ public class TestsPekamaSettingsPersonal {
     @Test
     public void checkGui() {
         rootLogger.info("Start test GUI and links");
-        PERSONAL_SETTINGS_BTN.shouldBe(Condition.visible);
-        TEAM_SETTINGS_BTN.shouldBe(Condition.visible);
+        PERSONAL_SETTINGS_BTN.waitUntil(visible, 20000).shouldBe(Condition.visible);
+        TEAM_SETTINGS_BTN.waitUntil(visible, 20000).shouldBe(Condition.visible);
         PERSONAL_DETAILS_TAB_TITLE.shouldHave(Condition.text("Personal details"));
         SECURITY_TAB_TITLE.shouldHave(Condition.text("Login & Security"));
         EMAILS_TAB_TITLE.shouldHave(Condition.text("Emails"));
@@ -53,7 +54,6 @@ public class TestsPekamaSettingsPersonal {
         IMAP_TAB_TITLE.shouldHave(Condition.text("IMAP"));
         TIME_TRACKER_TAB_TITLE.shouldHave(Condition.text("Time Tracker"));
         rootLogger.info("Perosnal settings GUI is consistent");
-
     }
     @Test
     public void personalDetails_Y_SaveUserData() {
@@ -496,7 +496,7 @@ public class TestsPekamaSettingsPersonal {
     }
 
     @Test
-    public void tabIMAP_A() {
+    public void tabIMAP_A_ManualConnect() {
         IMAP_TAB_TITLE.click();
         sleep(2000);
         if (IMAP_TAB_BTN_DELETE.isDisplayed())
@@ -534,7 +534,7 @@ public class TestsPekamaSettingsPersonal {
     }
 
     @Test
-    public void tabIMAP_B() {
+    public void tabIMAP_B_GoggleAuthConnect() {
         IMAP_TAB_TITLE.click();
         rootLogger.info("Check Defaults");
             if (IMAP_TAB_BTN_DELETE.isDisplayed())

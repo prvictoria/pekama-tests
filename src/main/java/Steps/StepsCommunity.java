@@ -51,9 +51,9 @@ public class StepsCommunity implements StepsFactory{
         fillField(PROFILE_INPUT_CaseType, PROFILE_SERVICE_CASE_TYPE);
         CSS_SelectHighlighted.click();
         rootLogger.info("Selected case type - "+PROFILE_SERVICE_CASE_TYPE);
-        PROFILE_SELECT_Defining.click();
-        fillField(PROFILE_INPUT_Defining, PROFILE_SERVICE_COUNTRY);
-        CSS_SelectHighlighted.click();
+//        PROFILE_SELECT_Defining.click();
+//        fillField(PROFILE_INPUT_Defining, PROFILE_SERVICE_COUNTRY);
+//        CSS_SelectHighlighted.click();
         PROFILE_INPUT_PRICE.clear();
         PROFILE_INPUT_PRICE.sendKeys(price);
         rootLogger.info("Selected case type - "+PROFILE_SERVICE_COUNTRY);
@@ -71,11 +71,6 @@ public class StepsCommunity implements StepsFactory{
             Assert.fail("Service present element state is - "+$(byXpath(profileServiceRow)).exists());
         }
     }
-    @Test
-    public void testParam(){
-        findServiceRow(false, "123", "456");
-    }
-
     public static void clickServiceRowEdit(String profileServiceCaseType, String profileServiceCountry) {
         //       String profileServiceRow = "//div[contains(.,'"+profileServiceCaseType+"')]/following-sibling::div[contains(.,'"+profileServiceCountry+"')]/following-sibling::div//button[1]";
         String profileServiceRow = "//div[@class='row' and contains(.,'"+ profileServiceCaseType +"') and contains(.,'"+ profileServiceCountry +"')]//button[1]";
@@ -348,7 +343,7 @@ public class StepsCommunity implements StepsFactory{
         rootLogger.info(caseName);
         String row = String.format(caseRowByName, caseName);
         rootLogger.info(row);
-        $(byXpath(row)).shouldBe(visible);
+        $(byXpath(row)).waitUntil(visible, 20000);
         rootLogger.debug(ROW_CONTROL_BTN_ACTION);
         SelenideElement btn = $(byXpath(row+ROW_CONTROL_BTN_ACTION));
         rootLogger.debug(btn);
@@ -504,6 +499,5 @@ public class StepsCommunity implements StepsFactory{
         BTN_SEND_INSTRUCTION.shouldBe(visible);
         return caseName;
     }
-
 
 }
