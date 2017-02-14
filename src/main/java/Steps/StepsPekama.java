@@ -95,8 +95,7 @@ public class StepsPekama implements StepsFactory{
         }
     }
     public static void waitForSpinnerNotPresent(){
-        $(byXpath("//*[@id='progress-indicator']/span")).waitUntil(not(visible), 5000);
-        rootLogger.info("spiner not present, page loaded");
+        $(byXpath("//*[@id='progress-indicator']/span")).waitUntil(not(visible), 10000);
     }
     public static void submitConfirmAction(){
         sleep(500);
@@ -461,6 +460,12 @@ public class StepsPekama implements StepsFactory{
         $(byXpath(row)).shouldNotBe(visible);
         rootLogger.info(email+" - member was deleted");
     }
+    public static void openReportPage(String reportPage){
+        open(reportPage);
+        sleep(3000);
+        waitForSpinnerNotPresent();
+        rootLogger.info(reportPage+" - is opened");
+    };
 
 
 

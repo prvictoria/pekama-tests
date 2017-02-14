@@ -10,12 +10,19 @@ import sun.util.logging.resources.logging;
 import static Page.Emails.EMAIL_REPORT_SUBJECT;
 import static Page.Emails.EMAIL_REPORT_TEXT;
 import static Page.Emails.GMAIL_URL_SIGN_OUT;
+import static Page.PekamaReports.REPORTS_MAILING_LISTS;
+import static Page.PekamaReports.REPORTS_MAILING_LISTS_BTN_CALL_ML;
+import static Page.PekamaReports.REPORTS_MAILING_LISTS_DELETE_MW;
 import static Page.TestsCredentials.GMAIL_PASSWORD;
 import static Page.TestsUrl.*;
 import static Steps.StepsExternal.*;
 import static Steps.StepsPekama.*;
 import static Steps.StepsHttpAuth.httpAuthUrl;
+import static com.codeborne.selenide.Condition.not;
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selectors.byLinkText;
 import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.*;
 import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -37,6 +44,28 @@ public class TestsPekamaReports {
     }
     @After
     public void logout(){open(URL_Logout);}
+
+    @Test //1-st test in stack
+    public void deleteAllMailingLists(){
+        openReportPage(URL_ReportsProjects);
+        String thisMailingListName = "Projects Test Mailing List";
+        String REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME = "//li[//a[contains(.,'"+ thisMailingListName +"')]]";
+        String pathToReportRowMenu = REPORTS_MAILING_LISTS+REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME+REPORTS_MAILING_LISTS_BTN_CALL_ML;
+        if ($(byLinkText(thisMailingListName)).isDisplayed()==false){
+        sleep(5000);}
+        while ($(byLinkText(thisMailingListName)).is(visible)) {
+            rootLogger.info("Mailing list detected: "+thisMailingListName);
+            $(byLinkText(thisMailingListName)).click();
+            sleep(1000);
+
+            $(byXpath(pathToReportRowMenu)).click();
+            rootLogger.info("Delete list");
+            REPORTS_MAILING_LISTS_DELETE_MW.click();
+            sleep(500);
+            submitConfirmAction();
+        }
+        rootLogger.info("Project reports not present");
+    }
 
     @Test
     public void sendProjectReport() {
