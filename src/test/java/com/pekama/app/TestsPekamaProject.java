@@ -33,13 +33,17 @@ public class TestsPekamaProject {
     private static String testContactName = "name"+ randomString(10);
     private static String testContactSurname = "surname"+ randomString(10);
     private static String defaultProjectURL;
+    private final static String testUserEmail = User2.GMAIL_EMAIL.getValue();
+    private final static String testUserPassword = User2.PEKAMA_PASSWORD.getValue();
     @Before
     public void before() {
         holdBrowserAfterTest();
         rootLogger.info("Open host");
         StepsPekama loginIntoPekama = new StepsPekama();
-        loginIntoPekama.loginByURL(User2.GMAIL_EMAIL.getValue(), User2.PEKAMA_PASSWORD.getValue(), URL_LogIn);
-
+        loginIntoPekama.loginByURL(
+                testUserEmail,
+                testUserPassword,
+                URL_LogIn);
         rootLogger.info("Create project");
         dashboardNewProject.waitUntil(visible, 15000).click();
         rootLogger.info("NW - New project");

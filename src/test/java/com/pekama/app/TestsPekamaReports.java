@@ -7,21 +7,20 @@ import org.junit.*;
 import org.junit.runners.MethodSorters;
 import sun.util.logging.resources.logging;
 
-import static Page.Emails.EMAIL_REPORT_SUBJECT;
+import static Page.Emails.*;
 import static Page.Emails.EMAIL_REPORT_TEXT;
-import static Page.Emails.GMAIL_URL_SIGN_OUT;
-import static Page.PekamaReports.REPORTS_MAILING_LISTS;
-import static Page.PekamaReports.REPORTS_MAILING_LISTS_BTN_CALL_ML;
-import static Page.PekamaReports.REPORTS_MAILING_LISTS_DELETE_MW;
-import static Page.TestsCredentials.GMAIL_PASSWORD;
+import static Page.Emails.*;
+import static Page.PekamaReports.*;
+import static Page.TestsCredentials.*;
 import static Page.TestsUrl.*;
 import static Steps.StepsExternal.*;
 import static Steps.StepsPekama.*;
-import static Steps.StepsHttpAuth.httpAuthUrl;
+import static Steps.StepsHttpAuth.*;
+import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.not;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byLinkText;
-import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.*;
 import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
@@ -40,7 +39,7 @@ public class TestsPekamaReports {
         StepsPekama login = new StepsPekama();
         login.submitLoginCredentials(PEKAMA_USER_EMAIL);
         rootLogger.info("Redirect after login to - "+URL_Dashboard);
-        sleep(100);
+        sleep(1000);
     }
     @After
     public void logout(){open(URL_Logout);}
@@ -77,9 +76,7 @@ public class TestsPekamaReports {
     public void sendProjectReport() {
         String thisMailingListName = "Projects Test Mailing List";
         rootLogger.info("Open ProjectValues reports, opened URL - "+URL_ReportsProjects);
-        open(URL_ReportsProjects);
-        sleep(3000);
-        waitForSpinnerNotPresent();
+        openReportPage(URL_ReportsProjects);
 
         rootLogger.info("Open Dropdown and create new mailing list");
         mailingListCreateNew(thisMailingListName);
@@ -101,9 +98,7 @@ public class TestsPekamaReports {
     public void sendTasksReport() {
         String thisMailingListName = "Tasks Test Mailing List";
         rootLogger.info("Open Tasks reports, opened URL - "+URL_ReportsTasks);
-        open(URL_ReportsTasks);
-        sleep(3000);
-        waitForSpinnerNotPresent();
+        openReportPage(URL_ReportsTasks);
 
         rootLogger.info("Open Dropdown and create new mailing list");
         mailingListCreateNew(thisMailingListName);
@@ -125,9 +120,7 @@ public class TestsPekamaReports {
     public void sendEventsReport() {
         String thisMailingListName = "Events Test Mailing List";
         rootLogger.info("Open Event reports, opened URL - "+URL_ReportsEvents);
-        open(URL_ReportsEvents);
-        sleep(3000);
-        waitForSpinnerNotPresent();
+        openReportPage(URL_ReportsEvents);
 
         rootLogger.info("Open Dropdown and create new mailing list");
         mailingListCreateNew(thisMailingListName);
@@ -148,9 +141,7 @@ public class TestsPekamaReports {
     public void sendChargesReport() {
         String thisMailingListName = "Charges Test Mailing List";
         rootLogger.info("Open Charges reports, opened URL - "+URL_ReportsCharges);
-        open(URL_ReportsCharges);
-        sleep(3000);
-        waitForSpinnerNotPresent();
+        openReportPage(URL_ReportsCharges);
 
         rootLogger.info("Open Dropdown and create new mailing list");
         mailingListCreateNew(thisMailingListName);
@@ -171,9 +162,7 @@ public class TestsPekamaReports {
     public void sendContactsReport() {
         String thisMailingListName = "Contacts Test Mailing List";
         rootLogger.info("Open Contacts reports, opened URL - "+URL_ReportsContacts);
-        open(URL_ReportsContacts);
-        sleep(3000);
-        waitForSpinnerNotPresent();
+        openReportPage(URL_ReportsContacts);
 
         rootLogger.info("Open Dropdown and create new mailing list");
         mailingListCreateNew(thisMailingListName);
@@ -194,9 +183,7 @@ public class TestsPekamaReports {
     public void unsubscribeLink() {
         String thisMailingListName = "Projects Test unsubscribe link";
         rootLogger.info("Open ProjectValues reports, opened URL - "+URL_ReportsProjects);
-        open(URL_ReportsProjects);
-        sleep(3000);
-        waitForSpinnerNotPresent();
+        openReportPage(URL_ReportsProjects);
 
         rootLogger.info("Open Dropdown and create new mailing list");
         mailingListCreateNew(thisMailingListName);
@@ -234,4 +221,27 @@ public class TestsPekamaReports {
             {Assert.fail("Checkbox sending interval is still - has ON value");}
         rootLogger.info("Test passed");
     }
+    @Test
+    public void objectProjectDeleteAll(){
+        openReportPage(URL_ReportsProjects);
+        rootLogger.info("Create project");
+        submitEnabledButton(REPORTS_BTN_New);
+        String projectName = createProject();
+        openReportPage(URL_ReportsProjects);
+        REPORTS_SORT_BY_NONE.waitUntil(visible, 15000).click();
+        REPORTS_SORT_BY_LAST_CREATED.shouldBe(visible).click();
+        String actualTitle = REPORTS_LIST_PROJECT_TILE_ROW1.getText();
+        rootLogger.info("Actual title in row: "+actualTitle);
+        REPORTS_LIST_PROJECT_TILE_ROW1.shouldHave(matchText(projectName));
+
+        rootLogger.info("Delete all projects");
+        REPORTS_AllCheckbox.setSelected(true);
+        REPORTS_DELETE.click();
+        submitConfirmAction();
+        sleep(4000);
+        checkText("Projects", 2);
+        waitForSpinnerNotPresent();
+        REPORTS_LIST_PROJECT_TILE_ROW1.shouldNotHave(matchText(projectName));
+    }
+
 }

@@ -16,6 +16,7 @@ import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Steps.StepsHttpAuth.*;
 import static Utils.Utils.getDate;
+import static Utils.Utils.randomString;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
@@ -323,15 +324,16 @@ public class StepsPekama implements StepsFactory{
         executeJavaScript("scrollTo(0, "+value+")");
     }
     public static boolean checkText(String textString, int size) {
-        $(byText(textString)).waitUntil(visible, 10000);
+        $(byText(textString)).waitUntil(visible, 20000);
         $$(byText(textString)).filter(visible).shouldHaveSize(size);
         return true;
     }
     public static boolean checkText(String textString) {
-        $(byText(textString)).waitUntil(visible, 15000);
+        $(byText(textString)).waitUntil(visible, 20000);
         $$(byText(textString)).filter(visible).shouldHaveSize(1);
         return true;
     }
+
     public static boolean checkTextNotPresent(String textString, int waitTime) {
         sleep(waitTime);
         $$(byText(textString)).filter(visible).shouldHaveSize(0);
@@ -370,7 +372,10 @@ public class StepsPekama implements StepsFactory{
         $(byXpath(row)).click();
         rootLogger.info(args+" - row opened");
     }
-    public static void createProject(String projectType, String projectDefining, String projectName) {
+    public static void createProject(
+            String projectType,
+            String projectDefining,
+            String projectName) {
         waitForModalWindow(TILE_MW_PROJECT);
         rootLogger.info("Select project type, actual: "+projectType);
         selectItemInDropdown(MW_Project_SelectType, MW_Project_InputType, projectType);
@@ -383,6 +388,24 @@ public class StepsPekama implements StepsFactory{
         sleep(1000);
         checkText(projectName);
         rootLogger.info("Created project: "+projectName);
+    }
+    public static String createProject() {
+        String projectType = CaseType.TRADEMARK.getValue();
+        String projectDefining = Countries.PITCAIRN_ISLANDS.getValue();
+        String projectName = "DEFAULT_PROJECT_"+randomString(10);
+        waitForModalWindow(TILE_MW_PROJECT);
+        rootLogger.info("Select project type, actual: "+projectType);
+        selectItemInDropdown(MW_Project_SelectType, MW_Project_InputType, projectType);
+        rootLogger.info("Select defining, actual: "+projectDefining);
+        selectItemInDropdown(MW_Project_SelectDefining, MW_Project_InputDefining, projectDefining);
+        rootLogger.info("Fill title");
+        fillField(MW_Project_Title, projectName);
+        submitEnabledButton(MW_ProjectFinishButton);
+        MW.shouldNot(exist);
+        sleep(1000);
+        checkText(projectName);
+        rootLogger.info("Created project: "+projectName);
+        return projectName;
     }
     //in root
     public static void createFileInRoot(SelenideElement fileType, String fileName) {
