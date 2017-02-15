@@ -131,7 +131,7 @@ public class TestsStrings {
     public static final String ERROR_MSG_VALIDATION_LENGTH_128 = "Ensure this field has no more than 128 characters.";
     public static final String ERROR_MSG_VALIDATION_LENGTH_4 = "Ensure this field has no more than 4 characters.";
     public static final String ERROR_MSG_VALIDATION_LENGTH_64 = "Ensure this field has no more than 64 characters.";
-    public static final String ERROR_MSG_VALIDATION_LENGTH_0 = "";
+    public static final String ERROR_MSG_VALIDATION_LENGTH_2 = "Ensure this field has no more than 2 characters.";
 
     public static String PROFILE_SERVICE_CASE_TYPE;
     public static String PROFILE_SERVICE_COUNTRY;

@@ -325,10 +325,20 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_STATUS_SELECT_STATE = $(byXpath(mw+"//select"));
     //MW type
     public static final String MW_TYPE_TITLE = "Type";
+    public static final String MW_SUBTYPE_TITLE = "Sub Type";
+    public static final String MW_EVENT_TYPE_TITLE = "Event Type";
+    public static final String MW_REFERENCE_TYPE_TITLE = "Reference Type";
     public static final SelenideElement MW_STATUS_RELEVANT_ALL = $(byXpath(mw+"//label[contains(., 'Relevant to all')]/input"));
     public static final SelenideElement MW_STATUS_INPUT_RELEVANT = $(byXpath(mw+"//input[@role='combobox']"));
+    //Mw defining country
+    public static final String MW_COUNTRY_TITLE = "Country";
+    public static final SelenideElement MW_STATUS_INPUT_COUNTRY = $(byXpath(mw+"//input[@name='value']"));
+    public static final SelenideElement MW_STATUS_INPUT_CODE = $(byXpath(mw+"//input[@name='code']"));
+    public static final SelenideElement MW_STATUS_INPUT_NUMBER = $(byXpath(mw+"//input[@name='number']"));
+    public static final SelenideElement MW_STATUS_IS_GROUP = $(byXpath(mw+"//input[@type='checkbox']"));
 
 
+    //Community
     public static final SelenideElement MW_COMMUNITY_Title = $(byXpath(mw+"//h2"));
     public static final SelenideElement MW_COMMUNITY_Text = $(byXpath(mw+"//p"));
     public static final SelenideElement MW_COMMUNITY_Link = $(byXpath(mw+"/div[@class='link']"));
