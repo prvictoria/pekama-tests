@@ -539,12 +539,17 @@ public class StepsPekama implements StepsFactory{
         }
         return true;
     }
+    public static boolean valueCheckStatusState(String valueName, String state) {
+        SelenideElement row = valueGetRowState(valueName);
+        row.waitUntil(visible, 20000);
+        row.shouldHave(text(state));
+        return true;
+    }
     public static boolean valueDelete(String valueName) {
         SelenideElement btnDelete = valueGetRowDelete(valueName);
         rootLogger.info(btnDelete);
         btnDelete.click();
         submitConfirmAction();
-        valueCheckRowIsDisplayed(valueName, false);
         return true;
     }
 

@@ -46,24 +46,27 @@ public class TestsPekamaSettingValues {
 
     @Test
     public void crudStatus(){
-        String value1 = "A-status";
+        String randomStatus = randomString(16);
+        //String value1 = "A-status";
         //String value2 = "Z-status";
 
         rootLogger.info("Open Matter type - " +TEST_MATTER_TYPE);
         checkText(TEST_MATTER_TYPE);
         $(byLinkText(TEST_MATTER_TYPE)).click();
         rootLogger.info("Check Matter statuses - ");
+        scrollUp();
         submitEnabledButton(SETTINGS_VALUES_ADD);
+
         waitForModalWindow(MW_STATUS_TITLE);
         MW_BTN_OK.shouldBe(disabled);
-        fillField(MW_STATUS_VALUE, value1);
+        fillField(MW_STATUS_VALUE, randomStatus);
         MW_STATUS_SELECT_STATE.selectOptionByValue(PROJECT_STATUS_STATE_ACTIVE);
         submitEnabledButton(MW_BTN_OK);
         MW.shouldNotBe(visible);
-
-        valueDelete(value1);
-
-
+        valueCheckRowIsDisplayed(randomStatus, true);
+        valueCheckStatusState(randomStatus, PROJECT_STATUS_STATE_ACTIVE);
+        valueDelete(randomStatus);
+        valueCheckRowIsDisplayed(randomStatus, false);
     }
 
 
