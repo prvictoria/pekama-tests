@@ -35,6 +35,8 @@ Delete</button>
 //div[@name='relation']/span[@class = 'btn btn-default form-control ui-select-toggle']
 /span[@class = 'ui-select-placeholder text-muted ng-binding']
 
+//div[@class='cells-row' and contains(.,'A-status')]/div[2]
+
 //i[@class='pkm-icon-spinner icon-spin']
 //button[@class="btn-link"][contains(.,'Update Status')]
 <button class="btn-link" ng-click="bulkUpdate('status')">Update Status

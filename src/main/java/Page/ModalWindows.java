@@ -282,15 +282,15 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_TaskStatusApproved = $(byXpath("//span[text()='Approved']"));
     public static final SelenideElement MW_TaskStatusRejected = $(byXpath("//span[text()='Rejected']"));
     public static final SelenideElement MW_TaskStatusCancelled = $(byXpath("//span[text()='Cancelled']"));
-    //MW Status
-    public static final SelenideElement mwUpdateSatus_Select = $(byXpath(""));
-    public static final SelenideElement mwUpdateSatus_Input = $(byXpath(""));
-    public static final SelenideElement mwUpdateImportance_Select = $(byXpath(""));
-    public static final SelenideElement mwUpdateImportance_Input = $(byXpath(""));
-    public static final SelenideElement mwUpdateAssignor_Select = $(byXpath(""));
-    public static final SelenideElement mwUpdateAssignor_Input = $(byXpath(""));
-    public static final SelenideElement mwUpdateAssignee_Select = $(byXpath(""));
-    public static final SelenideElement mwUpdateAssignee_Input = $(byXpath(""));
+
+    public static final SelenideElement mwUpdateStatus_Select = $(byXpath(mw+""));
+    public static final SelenideElement mwUpdateStatus_Input = $(byXpath(mw+""));
+    public static final SelenideElement mwUpdateImportance_Select = $(byXpath(mw+""));
+    public static final SelenideElement mwUpdateImportance_Input = $(byXpath(mw+""));
+    public static final SelenideElement mwUpdateAssignor_Select = $(byXpath(mw+""));
+    public static final SelenideElement mwUpdateAssignor_Input = $(byXpath(mw+""));
+    public static final SelenideElement mwUpdateAssignee_Select = $(byXpath(mw+""));
+    public static final SelenideElement mwUpdateAssignee_Input = $(byXpath(mw+""));
     //New Class
     public static final String mwClasses_Title = "Classes & Goods";
     public static final SelenideElement mwClasses_SelectClassType = $(byXpath(mw+"//label[contains(.,'Class Type')]/following-sibling::div//span[@class='ng-binding ng-scope']"));
@@ -314,6 +314,16 @@ public class ModalWindows extends Page {
     public static final String ROLE_VIEWER = "Viewer";
     public static final String ROLE_COLLABORATOR = "Collaborator";
     public static final String ROLE_ADMIN = "Admin";
+
+    //Team settings
+    //MW Status
+    public static final String MW_STATUS_TITLE = "Status";
+    public static final String PROJECT_STATUS_STATE_ACTIVE = "Active";
+    public static final String PROJECT_STATUS_STATE_CLOSED = "Closed";
+    public static final String MW_STATUS_UNDEFINED = "? undefined:undefined ?";
+    public static final SelenideElement MW_STATUS_VALUE = $(byXpath(mw+"//input[@name='value']"));
+    public static final SelenideElement MW_STATUS_SELECT_STATE = $(byXpath(mw+"//select"));
+
 
 
     public static final SelenideElement MW_COMMUNITY_Title = $(byXpath(mw+"//h2"));

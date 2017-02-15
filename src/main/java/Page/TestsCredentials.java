@@ -290,6 +290,14 @@ public class TestsCredentials {
             return eventName;
         }
     }
+    /* new enum - USER1 (
+    "EMAIL",
+    "EMAIL_PASSWORD",
+    "PEKAMA_PASSWORD",
+    "LINKEDIN_PASSWORD",
+    "BOX_PASSWORD"
+    ETC) */
+
     @Test
     public  void enumTest() {
         System.out.println(TrademarkEvents.APPLICATION_REGISTERED.eventName);

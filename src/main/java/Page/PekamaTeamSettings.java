@@ -58,10 +58,25 @@ public class PekamaTeamSettings extends Page {
     public static final SelenideElement TAB_MEMEBERS_ROW = $(byXpath(""));
     public static final SelenideElement TAB_MEMEBERS_DELETE = $(byXpath(""));
 
+    //Values
+    public static String settingsValueRow = "//div[@class='cells-row' and contains(.,'%s')]";
+    public static String settingsValueState = "//div[@class='cells-row' and contains(.,'%s')]/div[2]";
+    public static String settingsValueEdit = "//div[@class='cells-row' and contains(.,'%s')]//i[@class='pkm-icon-edit']";
+    public static String settingsValueDelete = "//div[@class='cells-row' and contains(.,'%s')]//i[@class='pkm-icon-cancel']";
+
+    public static final SelenideElement SETTINGS_VALUES_ROW = $(byXpath(""));
+    public static final SelenideElement SETTINGS_VALUES_ADD = $(byXpath("//button[contains(.,'Add') and ./i]"));
+    public static final SelenideElement SETTINGS_VALUES_SORT_BY_ = $(byLinkText(""));
+    public static final SelenideElement SETTINGS_VALUES_SORT_BY_VALUE = $(byLinkText("value"));
+    public static final SelenideElement SETTINGS_VALUES_SORT_BY_STATE = $(byLinkText("state"));
+
+    //public static SelenideElement SETTINGS_VALUES_ = $(byXpath(String.format(valueRow, "")));
 
 
 
 
+
+    //Templates
     public static final SelenideElement projectTemplatesRow01 = $(byXpath("//div[@class='cells-row'][1]"));
     public static final SelenideElement templatesTable = $(byXpath("//ul[@class and 'like-table']/li"));
     public static final SelenideElement templateRow = $(byXpath("//div[@ng-click]"));

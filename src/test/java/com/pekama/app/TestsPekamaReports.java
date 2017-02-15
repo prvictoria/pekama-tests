@@ -8,8 +8,6 @@ import org.junit.runners.MethodSorters;
 import sun.util.logging.resources.logging;
 
 import static Page.Emails.*;
-import static Page.Emails.EMAIL_REPORT_TEXT;
-import static Page.Emails.*;
 import static Page.ModalWindows.*;
 import static Page.PekamaReports.*;
 import static Page.TestsCredentials.*;
@@ -34,8 +32,7 @@ public class TestsPekamaReports {
     public void login() {
         holdBrowserAfterTest();
         rootLogger.info("Open URL - " +URL_Dashboard);
-        String AUTH_URL = URL_Dashboard;
-        httpAuthUrl(AUTH_URL);
+        httpAuthUrl(URL_Dashboard);
         StepsPekama login = new StepsPekama();
         login.submitLoginCredentials(PEKAMA_USER_EMAIL);
         rootLogger.info("Redirect after login to - "+URL_Dashboard);
@@ -246,6 +243,9 @@ public class TestsPekamaReports {
     @Test
     public void objectContactDelete(){
         openReportPage(URL_ReportsContacts);
+        rootLogger.info("Check default sort by name");
+        REPORTS_SORT_BY_NAME.waitUntil(visible, 30000);
+
         if ($(byLinkText(PLACEHOLDER_NO_DATA)).isDisplayed()==false){
             sleep(5000);}
         while ($(byText(PLACEHOLDER_NO_DATA)).isDisplayed()==false) {

@@ -11,7 +11,7 @@ import static Page.ModalWindows.*;
 import static Page.PekamaLogin.*;
 import static Page.PekamaProject.*;
 import static Page.PekamaReports.*;
-import static Page.PekamaTeamSettings.BTN_DELETE_MEMBER;
+import static Page.PekamaTeamSettings.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Steps.StepsHttpAuth.*;
@@ -232,16 +232,6 @@ public class StepsPekama implements StepsFactory{
         rootLogger.info("Reports not present");
     }
 
-    public static void validationFieldByName(int randomLength, String fieldName, String submitButton, String errorMsg) {
-        rootLogger.info("Validation field test for - "+fieldName);
-        $(byName(fieldName)).clear();
-        $(byName(fieldName)).sendKeys(Utils.randomString(randomLength));
-        rootLogger.info("Entered random string - "+randomLength+"letter length" );
-        $(byXpath(submitButton)).shouldBe(Condition.enabled).click();
-        sleep(500);
-        $(byText(errorMsg)).shouldBe(Condition.visible);
-        rootLogger.info("Validation present - "+errorMsg);
-    }
     public static void validationFieldByXpath(int randomLength, String fieldName, String submitButton, String errorMsg) {
         rootLogger.info("Validation field test for - "+fieldName);
         $(byXpath(fieldName)).clear();
@@ -517,6 +507,45 @@ public class StepsPekama implements StepsFactory{
         contactEmail.shouldHave(text(email));
         contactCountry.shouldHave(text(country));
         return  true;
+    }
+    public static SelenideElement valueGetRowByName(String valueName) {
+        String row = String.format(settingsValueRow, valueName);
+        SelenideElement valueRow = $(byXpath(row));
+        return valueRow;
+    }
+    public static SelenideElement valueGetRowState(String valueName) {
+        String row = String.format(settingsValueState, valueName);
+        SelenideElement valueRow = $(byXpath(row));
+        return valueRow;
+    }
+    public static SelenideElement valueGetRowEdit(String valueName) {
+        String row = String.format(settingsValueEdit, valueName);
+        SelenideElement valueRow = $(byXpath(row));
+        return valueRow;
+    }
+    public static SelenideElement valueGetRowDelete(String valueName) {
+        String row = String.format(settingsValueDelete, valueName);
+        SelenideElement valueRow = $(byXpath(row));
+        return valueRow;
+    }
+
+    public static boolean valueCheckRowIsDisplayed(String valueName, boolean present) {
+        SelenideElement row = valueGetRowByName(valueName);
+        sleep(1000);
+        if (present){
+            row.waitUntil(visible, 20000);}
+        if (!present){
+            row.waitUntil(not(visible), 20000);
+        }
+        return true;
+    }
+    public static boolean valueDelete(String valueName) {
+        SelenideElement btnDelete = valueGetRowDelete(valueName);
+        rootLogger.info(btnDelete);
+        btnDelete.click();
+        submitConfirmAction();
+        valueCheckRowIsDisplayed(valueName, false);
+        return true;
     }
 
 
