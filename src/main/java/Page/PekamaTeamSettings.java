@@ -59,6 +59,8 @@ public class PekamaTeamSettings extends Page {
     public static final SelenideElement TAB_MEMEBERS_DELETE = $(byXpath(""));
 
     //Values
+    public static final SelenideElement SETTINGS_VALUES_DROPDOWN = $(byXpath("//button[./span[@class='caret']]"));
+
     public static String settingsValueRow = "//div[@class='cells-row' and contains(.,'%s')]";
     public static String settingsValueState = "//div[@class='cells-row' and contains(.,'%s')]/div[2]";
     public static String settingsValueEdit = "//div[@class='cells-row' and contains(.,'%s')]//i[@class='pkm-icon-edit']";

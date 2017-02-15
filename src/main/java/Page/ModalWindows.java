@@ -323,7 +323,10 @@ public class ModalWindows extends Page {
     public static final String MW_STATUS_UNDEFINED = "? undefined:undefined ?";
     public static final SelenideElement MW_STATUS_VALUE = $(byXpath(mw+"//input[@name='value']"));
     public static final SelenideElement MW_STATUS_SELECT_STATE = $(byXpath(mw+"//select"));
-
+    //MW type
+    public static final String MW_TYPE_TITLE = "Type";
+    public static final SelenideElement MW_STATUS_RELEVANT_ALL = $(byXpath(mw+"//label[contains(., 'Relevant to all')]/input"));
+    public static final SelenideElement MW_STATUS_INPUT_RELEVANT = $(byXpath(mw+"//input[@role='combobox']"));
 
 
     public static final SelenideElement MW_COMMUNITY_Title = $(byXpath(mw+"//h2"));
