@@ -21,6 +21,7 @@ import org.junit.runners.Suite;
         TestsPekamaProject.class,
         TestsPekamaIntegrationBox.class,
         TestsPekamaSettingsTeam.class,
+        TestsPekamaSettingValues.class,
         TestsPekamaReports.class //last suite
 })
 public class AllTestsRunner {

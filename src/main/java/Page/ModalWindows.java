@@ -1,14 +1,9 @@
 package Page;
-
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
-
-/**
- * Created by VatslauX on 29-Dec-16.
- */
 public class ModalWindows extends Page {
     private static final String mw = "//div[@class='modal-content']";
     public static final SelenideElement MW = $(byXpath("//div[@class='modal-content']"));

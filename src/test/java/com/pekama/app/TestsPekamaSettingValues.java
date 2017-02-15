@@ -31,7 +31,7 @@ public class TestsPekamaSettingValues {
 
     @Before
     public void before() {
-        holdBrowserAfterTest(true);
+        holdBrowserAfterTest();
         rootLogger.info("Open host");
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(
@@ -241,7 +241,7 @@ public class TestsPekamaSettingValues {
         submitEnabledButton(SETTINGS_VALUES_ADD);
         String value = randomString(256);
         rootLogger.info("Check MW Event Type validation");
-        waitForModalWindow(MW_REFERENCE_TYPE_TITLE);
+        waitForModalWindow(MW_EVENT_TYPE_TITLE);
         MW_BTN_OK.shouldBe(disabled);
         fillField(MW_STATUS_VALUE, value);
         submitEnabledButton(MW_BTN_OK);
@@ -263,7 +263,7 @@ public class TestsPekamaSettingValues {
 
         rootLogger.info("Create Event Type - relevant to ALL");
         value = randomString(20);
-        waitForModalWindow(MW_REFERENCE_TYPE_TITLE);
+        waitForModalWindow(MW_EVENT_TYPE_TITLE);
         MW_BTN_OK.shouldBe(disabled);
         fillField(MW_STATUS_VALUE, value);
         MW_STATUS_RELEVANT_ALL.setSelected(true);
@@ -275,7 +275,7 @@ public class TestsPekamaSettingValues {
         rootLogger.info("Edit Event Type - set relevant to");
         valueGetRowEdit(value).click();
         value = randomString(15);
-        waitForModalWindow(MW_REFERENCE_TYPE_TITLE);
+        waitForModalWindow(MW_EVENT_TYPE_TITLE);
         MW_BTN_OK.shouldBe(disabled);
         fillField(MW_STATUS_VALUE, value);
         MW_STATUS_RELEVANT_ALL.setSelected(false);
