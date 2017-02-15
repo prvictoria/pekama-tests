@@ -507,7 +507,17 @@ public class StepsPekama implements StepsFactory{
         waitForSpinnerNotPresent();
         rootLogger.info(reportPage+" - is opened");
     };
-
+    public static boolean reportsCheckContactRow(int rowCount, String name, String surname, String email, String country) {
+        String count = Integer.toString (rowCount);
+        String row = String.format(REPORTS_ContactRowByCount, count);
+        SelenideElement contactName = $(byXpath(row+REPORTS_ContactNameSurname));
+        SelenideElement contactEmail = $(byXpath(row+REPORTS_ContactEmail));
+        SelenideElement contactCountry = $(byXpath(row+REPORTS_ContactCountry));
+        contactName.shouldHave(text(name+" "+surname));
+        contactEmail.shouldHave(text(email));
+        contactCountry.shouldHave(text(country));
+        return  true;
+    }
 
 
     @Test

@@ -1,6 +1,7 @@
 package Page;
 import org.junit.Test;
 
+import static Page.TestsCredentials.User1.GMAIL_EMAIL;
 
 
 public class TestsCredentials {
@@ -26,6 +27,7 @@ public class TestsCredentials {
             return value;
         }
     } //Requester
+
     public enum User2 {
         GMAIL_EMAIL("testqweeco002@gmail.com"),
         GMAIL_PASSWORD("123456789qasw1"),

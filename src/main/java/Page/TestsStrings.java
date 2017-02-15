@@ -80,6 +80,7 @@ public class TestsStrings {
     public static final String TITLE_MW_DELETE_MESSAGE = "Delete message?";
     public static final String TITLE_MW_SHARE_PROJECT = "Share Project";
     public static final String TITLE_MW_CHANGE_COLLABORATOR = "Change Collaborator";
+    public static final String TITLE_MW_CONTACT = "Contact";
 
     public static final String placeholderNoFiles = "No files found.";
     public static final String placeholderEmptyList = "Empty list.";

@@ -38,7 +38,7 @@ public class PekamaReports extends Page {
     public static SelenideElement REPORTS_LIST_PROJECT_SELECT_ROW1 = $(byXpath(REPORTS_ListRow01+"//input[@type='checkbox']/following-sibling::i"));
 
     public static final SelenideElement REPORTS_Contacts = $(byXpath(""));
-    public static final SelenideElement REPORTS_1RowNameSurname = $(byXpath("css=div.conact-page-name.ng-binding"));
+    public static final SelenideElement REPORTS_1RowNameSurname = $("div.conact-page-name.ng-binding");
     public static final SelenideElement REPORTS_1RowCountry = $(byXpath(".//*[@class='contact-page-country ng-binding'][contains(.,'Ireland')]"));
     public static final SelenideElement REPORTS_FiltersFreeText = $(byXpath("//pkm-filtering//input"));
 
@@ -74,17 +74,18 @@ public class PekamaReports extends Page {
 
     public static final SelenideElement REPORTS_ = $(byXpath(""));
 //Specific pages
-    public static final SelenideElement REPORTS_ContactTailsPath = $(byXpath(""));
-    public static final SelenideElement REPORTS_ContactRowName = $(byXpath("same"));
-    public static final SelenideElement REPORTS_ContactRowSurname = $(byXpath("same"));
-    public static final SelenideElement REPORTS_ContactName = $(byXpath("//*[@class='name ng-binding']"));
-    public static final SelenideElement REPORTS_ContactEmail = $(byXpath("//span[@ng-if='contact.email']"));
-    public static final SelenideElement REPORTS_ContactCountry = $(byXpath("//span[@ng-if='contact.country']"));
-    public static final SelenideElement REPORTS_ContactLinkedCompany = $(byXpath("//span[@ng-if='contact.company']"));
-    public static final SelenideElement REPORTS_ContactProjects = $(byXpath("//span[@ng-switch='contact.number_of_projects']"));
-    public static final SelenideElement REPORTS_ContactCharges = $(byXpath("//span[@ng-switch='!contact.total_charges']"));
-    public static final SelenideElement REPORTS_ContactCheckbox = $(byXpath("//input[@type='checkbox']"));
-    public static final SelenideElement REPORTS_ContactNewProject = $(byXpath("//button[contains(.,'+ New ProjectValues')]"));
-    public static final SelenideElement REPORTS_ContactEdit = $(byXpath("//div[@class='contact-page-invite-edit']/i[1]"));
-    public static final SelenideElement REPORTS_ContactDelete = $(byXpath("//div[@class='contact-page-invite-edit']/i[2]"));
+    
+    public static String REPORTS_ContactRowByCount = "//ng-include[@src='reportParams.listTemplate']/li[%s]";
+    public static final String REPORTS_ContactRowName = "";
+    public static final String REPORTS_ContactRowSurname = "";
+    public static final String REPORTS_ContactNameSurname = "//*[@class='name ng-binding']";
+    public static final String REPORTS_ContactEmail = "//span[@ng-if='contact.email']";
+    public static final String REPORTS_ContactCountry = "//span[@ng-if='contact.country']";
+    public static final String REPORTS_ContactLinkedCompany = "//span[@ng-if='contact.company']";
+    public static final String REPORTS_ContactProjects = "//span[@ng-switch='contact.number_of_projects']";
+    public static final String REPORTS_ContactCharges = "//span[@ng-switch='!contact.total_charges']";
+    public static final String REPORTS_ContactCheckbox = "//input[@type='checkbox']";
+    public static final String REPORTS_ContactNewProject = "//button[contains(.,'+ New ProjectValues')]";
+    public static final String REPORTS_ContactEdit = "//div[@class='contact-page-invite-edit']/i[1]";
+    public static final String REPORTS_ContactDelete = "//div[@class='contact-page-invite-edit']/i[2]";
 }

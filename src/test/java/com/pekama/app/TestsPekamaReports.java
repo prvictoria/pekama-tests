@@ -10,15 +10,15 @@ import sun.util.logging.resources.logging;
 import static Page.Emails.*;
 import static Page.Emails.EMAIL_REPORT_TEXT;
 import static Page.Emails.*;
+import static Page.ModalWindows.*;
 import static Page.PekamaReports.*;
 import static Page.TestsCredentials.*;
+import static Page.TestsStrings.*;
 import static Page.TestsUrl.*;
 import static Steps.StepsExternal.*;
 import static Steps.StepsPekama.*;
 import static Steps.StepsHttpAuth.*;
-import static com.codeborne.selenide.Condition.matchText;
-import static com.codeborne.selenide.Condition.not;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byLinkText;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selectors.byXpath;
@@ -243,5 +243,89 @@ public class TestsPekamaReports {
         waitForSpinnerNotPresent();
         REPORTS_LIST_PROJECT_TILE_ROW1.shouldNotHave(matchText(projectName));
     }
+    @Test
+    public void objectContactDelete(){
+        openReportPage(URL_ReportsContacts);
+        if ($(byLinkText(PLACEHOLDER_NO_DATA)).isDisplayed()==false){
+            sleep(5000);}
+        while ($(byText(PLACEHOLDER_NO_DATA)).isDisplayed()==false) {
+            REPORTS_AllCheckbox.waitUntil(visible, 20000).click();
+            REPORTS_DELETE.shouldBe(visible).click();
+            submitConfirmAction();
+            checkText(PLACEHOLDER_NO_DATA);
+        }
+        checkText(PLACEHOLDER_NO_DATA);
+        rootLogger.info("All contacts were deleted");
+    }
 
+    @Test
+    public void objectContactMerge(){
+        String ContactEmail1 = "email01@new.test";
+        String ContactEmail2 = "email02@new.test";
+        String Contact1NameSurname = nameContactName+"Z"+" "+nameContactSurname+"Z";
+        String Contact2NameSurname = nameContactName+"A"+" "+nameContactSurname+"A";
+
+        rootLogger.info("Create 1st contact");
+        openReportPage(URL_ReportsContacts);
+        submitEnabledButton(REPORTS_BTN_AddContact);
+        waitForModalWindow(TITLE_MW_CONTACT);
+        fillField(MW_Contact_NAME, nameContactName+"Z");
+        fillField(MW_Contact_SURNAME, nameContactSurname+"Z");
+        fillField(MW_Contact_EMAIL, ContactEmail1);
+        selectItemInDropdown(
+                MW_Contact_SelectCountry,
+                MW_Contact_InputCountry,
+                Countries.PITCAIRN_ISLANDS.getValue());
+        MW_Contact_SelectCountryName.shouldHave(text(Countries.PITCAIRN_ISLANDS.getValue()));
+        submitEnabledButton(MW_BTN_OK);
+        MW.shouldNotBe(visible);
+        rootLogger.info("Check 1-st contact row");
+        reportsCheckContactRow(
+                1,
+                nameContactName+"Z",
+                nameContactSurname+"Z",
+                ContactEmail1,
+                Countries.PITCAIRN_ISLANDS.getValue());
+
+        rootLogger.info("Create 2nd contact");
+        submitEnabledButton(REPORTS_BTN_AddContact);
+        waitForModalWindow(TITLE_MW_CONTACT);
+        fillField(MW_Contact_NAME, nameContactName+"A");
+        fillField(MW_Contact_SURNAME, nameContactSurname+"A");
+        fillField(MW_Contact_EMAIL, ContactEmail2);
+        selectItemInDropdown(
+                MW_Contact_SelectCountry,
+                MW_Contact_InputCountry,
+                Countries.NETHERLANDS_ANTILES.getValue());
+        MW_Contact_SelectCountryName.shouldHave(text(Countries.NETHERLANDS_ANTILES.getValue()));
+        submitEnabledButton(MW_BTN_OK);
+        MW.shouldNotBe(visible);
+        rootLogger.info("Check 1-st contact row - default sort by name - ascending");
+        reportsCheckContactRow(
+                1,
+                nameContactName+"A",
+                nameContactSurname+"A",
+                ContactEmail2,
+                Countries.NETHERLANDS_ANTILES.getValue());
+
+        REPORTS_AllCheckbox.click();
+        rootLogger.info("Merge contacts, base - 1-st");
+        REPORTS_MERGE.shouldBe(visible).click();
+        waitForModalWindow("Merge Contacts");
+        MW_BTN_OK.shouldBe(disabled);
+        selectItemInDropdown(
+                MW_MergeContact_Select,
+                MW_MergeContact_Input,
+                Contact1NameSurname);
+        submitEnabledButton(MW_BTN_OK);
+        MW.shouldNotBe(visible);
+
+        rootLogger.info("Cech merge result if 1-st contact present");
+        reportsCheckContactRow(
+                1,
+                nameContactName+"Z",
+                nameContactSurname+"Z",
+                ContactEmail1,
+                Countries.PITCAIRN_ISLANDS.getValue());
+ }
 }

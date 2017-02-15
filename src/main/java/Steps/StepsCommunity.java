@@ -258,7 +258,7 @@ public class StepsCommunity implements StepsFactory{
         return true;
     }
     public static boolean checkCaseStatus(String caseName, int rowCount, String status) {
-        String count = Integer.toString (rowCount) ;
+        String count = Integer.toString (rowCount);
         rootLogger.info(caseName);
         String row = String.format(caseRowByCount, count, caseName);
         rootLogger.info(row);
