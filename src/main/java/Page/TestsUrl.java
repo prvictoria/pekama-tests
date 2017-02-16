@@ -23,6 +23,7 @@ public class TestsUrl {
     public static final String URL_TeamSettings = PEKAMA+"/a/settings/team";
     public static final String URL_Members = PEKAMA+"/a/settings/team/members";
     public static final String URL_VALUES = PEKAMA+"/a/settings/team/values/";
+    public static final String URL_TEMPLATES_PROJECT = PEKAMA+"/a/settings/team/templates/projects";
 
     public static final String URL_COMMUNITY_PATH = COMMUNITY;
     public static final String URL_COMMUNITY_DASHBOARD = COMMUNITY+"/a";

@@ -75,7 +75,7 @@ public class PekamaTeamSettings extends Page {
     //public static SelenideElement SETTINGS_VALUES_ = $(byXpath(String.format(valueRow, "")));
 
 
-
+    public static final SelenideElement SETTINGS_DELETE_X = $(byXpath("//i[@class='pkm-icon-cancel']"));
 
 
     //Templates

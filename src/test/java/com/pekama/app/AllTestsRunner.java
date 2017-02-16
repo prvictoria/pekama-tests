@@ -19,9 +19,10 @@ import org.junit.runners.Suite;
         TestsPekamaSignUp.class,
         TestsPekamaSettingsPersonal.class,
         TestsPekamaProject.class,
-        TestsPekamaIntegrationBox.class,
+        //TestsPekamaIntegrationBox.class,
         TestsPekamaSettingsTeam.class,
         TestsPekamaSettingValues.class,
+        TestsPekamaTemplates.class,
         TestsPekamaReports.class //last suite
 })
 public class AllTestsRunner {

@@ -264,7 +264,7 @@ public class StepsPekama implements StepsFactory{
     }
     public static boolean waitForModalWindow(String modalTitle) {
         rootLogger.info("Wait for '"+modalTitle+"' modal window");
-        MW.shouldBe(visible);
+        MW.waitUntil(visible, 15000).shouldBe(visible);
         //MW.should(matchText(modalTitle));
         MW.shouldHave(text(modalTitle));
         rootLogger.info("modal window '"+modalTitle+"' was opened");
@@ -491,12 +491,13 @@ public class StepsPekama implements StepsFactory{
         $(byXpath(row)).shouldNotBe(visible);
         rootLogger.info(email+" - member was deleted");
     }
-    public static void openReportPage(String reportPage){
+    public static void openPageWithSpinner(String reportPage){
         open(reportPage);
         sleep(3000);
         waitForSpinnerNotPresent();
         rootLogger.info(reportPage+" - is opened");
     };
+
     public static boolean reportsCheckContactRow(int rowCount, String name, String surname, String email, String country) {
         String count = Integer.toString (rowCount);
         String row = String.format(REPORTS_ContactRowByCount, count);

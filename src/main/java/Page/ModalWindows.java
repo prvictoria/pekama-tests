@@ -71,7 +71,8 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_EnableVerificationCoutryField = $(byXpath("//div/div/div/div/input"));
     public static final SelenideElement MW_EnableVerificationConfirmCodeField = $(byName("two_factor_code"));
     public static final SelenideElement MW_EnableVerificationErrorArea = $(byXpath("//div[2]/form/div"));
-//templates
+
+    //templates
     public static final SelenideElement MW_TaskTemplateSet = $(byXpath(""));
     public static final SelenideElement MW_TaskTemplateSet_FieldTitle = $(byXpath("//div[@class='modal-body']//input[@name]"));
     public static final SelenideElement MW_TaskTemplateSet_FieldDefining = $(byXpath("//div[@class='modal-body']/div[3]//input"));
@@ -114,15 +115,34 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_CONVERSATION_FollowerField = $(byXpath(mw+"//li/input"));
     public static final SelenideElement MW_CONVERSATION_FollowerSelect =  $(byXpath(mw+""));
 
+    //Team settings
+    //Project templates
+    public static final String MW_PROJECT_TEMPLATE_TITLE = "Project Template";
+    public static final SelenideElement MW_ProjectTemplateProjectTypeInput = $(byXpath(mw+"//div[@name='matter_type']/input[1]"));
+    public static final SelenideElement MW_ProjectTemplateProjectDefiningInput = $(byXpath(mw+"//div[@name='defining']/input[1]"));
+    //MW Status
+    public static final String MW_STATUS_TITLE = "Status";
+    public static final String PROJECT_STATUS_STATE_ACTIVE = "Active";
+    public static final String PROJECT_STATUS_STATE_CLOSED = "Closed";
+    public static final String MW_STATUS_UNDEFINED = "? undefined:undefined ?";
+    public static final SelenideElement MW_STATUS_VALUE = $(byXpath(mw+"//input[@name='value']"));
+    public static final SelenideElement MW_STATUS_SELECT_STATE = $(byXpath(mw+"//select"));
+    //MW type
+    public static final String MW_TYPE_TITLE = "Type";
+    public static final String MW_SUBTYPE_TITLE = "Sub Type";
+    public static final String MW_EVENT_TYPE_TITLE = "Event Type";
+    public static final String MW_REFERENCE_TYPE_TITLE = "Reference Type";
+    public static final SelenideElement MW_STATUS_RELEVANT_ALL = $(byXpath(mw+"//label[contains(., 'Relevant to all')]/input"));
+    public static final SelenideElement MW_STATUS_INPUT_RELEVANT = $(byXpath(mw+"//input[@role='combobox']"));
+    //Mw defining country
+    public static final String MW_COUNTRY_TITLE = "Country";
+    public static final SelenideElement MW_STATUS_INPUT_COUNTRY = $(byXpath(mw+"//input[@name='value']"));
+    public static final SelenideElement MW_STATUS_INPUT_CODE = $(byXpath(mw+"//input[@name='code']"));
+    public static final SelenideElement MW_STATUS_INPUT_NUMBER = $(byXpath(mw+"//input[@name='number']"));
+    public static final SelenideElement MW_STATUS_IS_GROUP = $(byXpath(mw+"//input[@type='checkbox']"));
 
-
-    //ProjectValues templates
-    public static final SelenideElement modalProjectTemplateCancelButton = $(byXpath("//div[2]/button[2]"));
-    public static final SelenideElement modalProjectTemplateOklButton = $(byXpath("//div[2]/button"));
-    public static final SelenideElement MW_ProjectTemplateProjectTypeInput = $(byXpath("//div[@name='matter_type']/input[1]"));
-    public static final SelenideElement MW_ProjectTemplateProjectDefiningInput = $(byXpath("//div[@name='defining']/input[1]"));
+    //NEW
     //New project
-
     public static final SelenideElement MW_ProjectFinishButton = $(byXpath(mw+"//button[@type='submit'][contains(.,'FINISH')]"));
     public static final SelenideElement MW_Project_SelectType = $(byXpath(mw+"//div[@name='matter_type']/div/span/span[1]"));
     public static final SelenideElement MW_Project_InputType = $(byXpath(mw+"//div[@name='matter_type']/input[1]"));
@@ -309,29 +329,6 @@ public class ModalWindows extends Page {
     public static final String ROLE_VIEWER = "Viewer";
     public static final String ROLE_COLLABORATOR = "Collaborator";
     public static final String ROLE_ADMIN = "Admin";
-
-    //Team settings
-    //MW Status
-    public static final String MW_STATUS_TITLE = "Status";
-    public static final String PROJECT_STATUS_STATE_ACTIVE = "Active";
-    public static final String PROJECT_STATUS_STATE_CLOSED = "Closed";
-    public static final String MW_STATUS_UNDEFINED = "? undefined:undefined ?";
-    public static final SelenideElement MW_STATUS_VALUE = $(byXpath(mw+"//input[@name='value']"));
-    public static final SelenideElement MW_STATUS_SELECT_STATE = $(byXpath(mw+"//select"));
-    //MW type
-    public static final String MW_TYPE_TITLE = "Type";
-    public static final String MW_SUBTYPE_TITLE = "Sub Type";
-    public static final String MW_EVENT_TYPE_TITLE = "Event Type";
-    public static final String MW_REFERENCE_TYPE_TITLE = "Reference Type";
-    public static final SelenideElement MW_STATUS_RELEVANT_ALL = $(byXpath(mw+"//label[contains(., 'Relevant to all')]/input"));
-    public static final SelenideElement MW_STATUS_INPUT_RELEVANT = $(byXpath(mw+"//input[@role='combobox']"));
-    //Mw defining country
-    public static final String MW_COUNTRY_TITLE = "Country";
-    public static final SelenideElement MW_STATUS_INPUT_COUNTRY = $(byXpath(mw+"//input[@name='value']"));
-    public static final SelenideElement MW_STATUS_INPUT_CODE = $(byXpath(mw+"//input[@name='code']"));
-    public static final SelenideElement MW_STATUS_INPUT_NUMBER = $(byXpath(mw+"//input[@name='number']"));
-    public static final SelenideElement MW_STATUS_IS_GROUP = $(byXpath(mw+"//input[@type='checkbox']"));
-
 
     //Community
     public static final SelenideElement MW_COMMUNITY_Title = $(byXpath(mw+"//h2"));
