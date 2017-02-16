@@ -774,19 +774,6 @@ public class TestsPekamaProject {
         rootLogger.info("Test passed");
     }
 
-    @Ignore
-    @Test  //todo
-    public void createCommunityCase() {
-        TAB_INFO_COMMUNITY_TITLE.shouldHave(text("Services from the Pekama IP Community"));
-        TAB_INFO_COMMUNITY_BTN_START_NEW.click();
 
-
-
-
-
-
-
-        rootLogger.info("Test passed");
-    }
 
 }

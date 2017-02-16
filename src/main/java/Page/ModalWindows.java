@@ -391,4 +391,5 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_CONFIRM_INVITE_ATTOTNEY_SUBMIT = $(byXpath(mw+"//button[contains(text(),'Yes, I'm sure')]"));
     //MW Congratulations!
     public static final SelenideElement MW_CONGRATULATION_OK = $(byXpath(mw+"//button"));
+    public static final SelenideElement MW_BTN_NEXT = $(byXpath(mw+"//button[contains(text(),'next')]"));
 }

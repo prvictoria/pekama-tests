@@ -5,20 +5,18 @@ package com.pekama.app;
 import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 
 import static Page.CommunityDashboard.*;
 import static Page.CommunityWizard.*;
+import static Page.ModalWindows.MW_BTN_NEXT;
 import static Page.TestsUrl.*;
 import static Page.PekamaLogin.*;
 import static Page.TestsUrlConfiguration.*;
 import static Page.TestsCredentials.*;
-import static Steps.StepsCommunity.searchExpertsQuery;
-import static Steps.StepsCommunity.searchExpertsSubmit;
-import static Steps.StepsCommunity.searchQueryUrl;
-import static com.codeborne.selenide.Condition.disabled;
+import static Steps.StepsCommunity.*;
+import static Steps.StepsPekama.*;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.url;
@@ -49,6 +47,12 @@ public class TestsCommunityDashboard {
         COMMUNITY_TAB_Outgoing.shouldBe(Condition.visible).shouldHave(Condition.text("outgoing cases"));
         COMMUNITY_TAB_Profile.shouldBe(Condition.visible).shouldHave(Condition.text("become a supplier"));
         rootLogger.info("Tabs names correct and user isn`t logged in");
+
+        COMMUNITY_HEADER_MANAGEMENT.click();
+        waitForModalWindow("You are about to be taken to Pekama's case management platform.");
+        checkText("This is an advanced platform to manage IP cases, docket deadline and store documents.");
+        MW_BTN_NEXT.shouldBe(visible).pressEscape();
+        checkTextNotPresent("You are about to be taken to Pekama's case management platform.");
     }
 
     @Test
