@@ -774,6 +774,26 @@ public class TestsPekamaProject {
         rootLogger.info("Test passed");
     }
 
+    @Ignore
+    @Test  //todo
+    public void createProject_ChargesXero() {
 
+    }
+    @Ignore
+    @Test  //todo
+    public void createProject_ChargesSorting() {
+
+    }
+
+    @Ignore
+    @Test  //todo
+    public void createProject_TasksEditStatus() {
+
+    }
+    @Ignore
+    @Test  //todo
+    public void createProject_TasksSorting() {
+
+    }
 
 }
