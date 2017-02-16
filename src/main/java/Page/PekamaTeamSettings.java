@@ -90,4 +90,5 @@ public class PekamaTeamSettings extends Page {
     public static final SelenideElement templatesRow003 = $(byXpath("//li[3]/div/div"));
     public static final SelenideElement projectTypeRow001 = $(byXpath("//div[2]/div/div/div/span/span[2]/span"));
     public static final SelenideElement BTN_TEMPLATE_ADD_IN_1st_ROW = $(byXpath("//*[@class='inner']//button[contains(.,'Add') and ./i]"));
+    public static final SelenideElement TEMPLATES_TEXT_FIELD = $(byXpath("//textarea"));
 }

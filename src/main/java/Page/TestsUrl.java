@@ -26,7 +26,7 @@ public class TestsUrl {
     public static final String URL_TEMPLATES_PROJECT = PEKAMA+"/a/settings/team/templates/projects";
     public static final String URL_TEMPLATES_TASKS = PEKAMA+"/a/settings/team/templates/tasks";
     public static final String URL_TEMPLATES_MSG = PEKAMA+"/a/settings/team/templates/messages";
-    public static final String URL_TEMPLATES_EVANT = PEKAMA+"/a/settings/team/templates/events";
+    public static final String URL_TEMPLATES_EVENT = PEKAMA+"/a/settings/team/templates/events";
     public static final String URL_TEMPLATES_DOC = PEKAMA+"/a/settings/team/templates/documents";
     public static final String URL_TEMPLATES_STORAGE = PEKAMA+"/a/settings/team/templates/storage";
 

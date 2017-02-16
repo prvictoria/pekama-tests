@@ -72,12 +72,20 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_EnableVerificationConfirmCodeField = $(byName("two_factor_code"));
     public static final SelenideElement MW_EnableVerificationErrorArea = $(byXpath("//div[2]/form/div"));
 
+    //MW template set
     //templates Task Template Set
     public static final String MW_TASK_SET_TITLE = "Task Template Set";
-    public static final SelenideElement MW_TASK_SET_NAME = $(byXpath("//div[@class='modal-body']//input[@name]"));
-    public static final SelenideElement MW_TASK_SET_DEFINING = $(byXpath("//div[@class='modal-body']/div[3]//input"));
-    public static final SelenideElement MW_TASK_SET_TYPE = $(byXpath("//div[@class='modal-body']/div[4]//input"));
-    public static final SelenideElement MW_TASK_SET_EVENT = $(byXpath("//div[@class='modal-body']/div[5]//input"));
+    public static final String MW_MESSAGE_TEMPLATE_TITLE = "Message Template";
+    public static final String MW_EVENT_SET_TITLE = "Event Template Set";
+    public static final String MW_DOC_TEMPLATE_TITLE = "Documents Template";
+    public static final SelenideElement MW_SET_NAME = $(byXpath("//div[@class='modal-body']//input[@name]"));
+    public static final SelenideElement MW_SET_MULTICHOICE_DEFINING = $(byXpath("//div[@class='modal-body']/div[3]//input"));
+    public static final SelenideElement MW_SET_MULTICHOICE_TYPE = $(byXpath("//div[@class='modal-body']/div[4]//input"));
+    public static final SelenideElement MW_SET_MULTICHOICE_EVENT = $(byXpath("//div[@class='modal-body']/div[5]//input"));
+    //MSG template
+    public static final SelenideElement MW_SET_TEXT_EDITOR = $(byXpath(mw+"//*[starts-with(@id, 'taTextElement')]"));
+
+
     //templates Task Template
     public static final String MW_TASK_TEMPLATE_TITLE = "Task Template";
     public static final SelenideElement MW_TaskTemplate_FieldTitle = $(byXpath("//div[@class='modal-body']//input[@name='title']"));
@@ -86,18 +94,16 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_TaskTemplate_Importance = $(byXpath("//div[@placeholder='Choose importance...']/span"));
     public static final SelenideElement MW_TaskTemplate_INPUT_Importance = $(byXpath("//div[@placeholder='Choose importance...']/span"));
     public static final SelenideElement MW_TaskTemplate_Status = $(byXpath("//div[@placeholder='Choose status...']/span"));
-    public static final SelenideElement MW_TaskTemplate_DateOffset = $(byXpath("//input[@name='date_offset']"));
-    public static final SelenideElement MW_TaskTemplate_DateOffsetUnit = $(byXpath(""));
-    public static final SelenideElement MW_INPUT_UI_SELECT = $(byXpath("//div[@class='modal-body']//input[@type=\"search\"]"));
-
-    public static final SelenideElement MW_EventTemplate_EventType = $(byXpath(mw+"//pkm-values-dropdown/div/div/span"));
-    public static final SelenideElement MW_EventTemplate_Input = $(byXpath(mw+"//div[@name='event_type']/input[1]"));
-    public static final SelenideElement MW_EventTemplate_AdditionalInfo = $(byXpath(mw+"//textarea"));
-
-    public static final SelenideElement MW_EVENT_SELECT_TYPE = MW_EventTemplate_EventType;
-    public static final SelenideElement MW_EVENT_INPUT_TYPE = MW_EventTemplate_Input;
-    public static final SelenideElement MW_EVENT_INPUT_INFO = MW_EventTemplate_AdditionalInfo;
+    public static final SelenideElement MW_TaskTemplate_DateOffset = $(byXpath(mw+"//input[@name='date_offset']"));
+    public static final SelenideElement MW_TaskTemplate_DateOffsetUnit = $(byXpath(mw+"//select[@name='date_unit']"));
+    //mw event template
+    public static final String MW_EVENT_TEMPLATE_TITLE = "Event Template";
+    public static final SelenideElement MW_EVENT_SELECT_TYPE = $(byXpath(mw+"//pkm-values-dropdown/div/div/span"));
+    public static final SelenideElement MW_EVENT_INPUT_TYPE =  $(byXpath(mw+"//div[@name='event_type']/input[1]"));
+    public static final SelenideElement MW_EVENT_INPUT_INFO = $(byXpath(mw+"//textarea"));
     public static final SelenideElement MW_EVENT_INPUT_DATE = MW_INPUT_DATE;
+    public static final SelenideElement MW_EVENT_Template_DateOffset = $(byXpath(mw+"//input[@name='date_offset']"));
+    public static final SelenideElement MW_EVENT_Template_DateOffsetUnit = $(byXpath(mw+"//select[@name='date_unit']"));
 
     public static final SelenideElement modalEmailparametersFieldEmailAddress = $(byXpath("//div/div[2]/div/div/input"));
     public static final SelenideElement modalEmailparametersSubjectLine = $(byName("template"));

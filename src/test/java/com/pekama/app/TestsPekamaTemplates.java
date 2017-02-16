@@ -3,27 +3,18 @@ import Page.PekamaTeamSettings;
 import Page.TestsCredentials;
 import Page.TestsCredentials.*;
 import Steps.*;
-import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.*;
 import org.junit.*;
 import org.junit.runners.MethodSorters;
-import sun.util.logging.resources.logging;
 
-import static Page.Emails.*;
 import static Page.ModalWindows.*;
-import static Page.PekamaReports.*;
 import static Page.PekamaTeamSettings.*;
-import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.TestsUrl.*;
-import static Steps.StepsExternal.*;
 import static Steps.StepsPekama.*;
 import static Steps.StepsHttpAuth.*;
 import static Utils.Utils.*;
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selectors.byLinkText;
-import static com.codeborne.selenide.Selectors.*;
-import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.*;
 import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -35,7 +26,7 @@ public class TestsPekamaTemplates {
 
     @Before
     public void login() {
-        holdBrowserAfterTest(true);
+        holdBrowserAfterTest();
         rootLogger.info("Open URL - " +URL_Dashboard);
         httpAuthUrl(URL_Dashboard);
         StepsPekama login = new StepsPekama();
@@ -43,8 +34,8 @@ public class TestsPekamaTemplates {
         rootLogger.info("Redirect after login to - "+URL_Dashboard);
         sleep(1000);
     }
-//    @After
-//    public void logout(){open(URL_Logout);}
+    @After
+    public void logout(){open(URL_Logout);}
 
     @Test
     public void templateCrudProject() {
@@ -123,7 +114,6 @@ public class TestsPekamaTemplates {
                 submitConfirmAction();
             }
         rootLogger.info("Test passed");
-
     }
     @Test
     public void templateCrudTask (){
@@ -137,7 +127,7 @@ public class TestsPekamaTemplates {
         submitEnabledButton(SETTINGS_VALUES_ADD);
         waitForModalWindow(MW_TASK_SET_TITLE);
         MW_BTN_OK.shouldBe(disabled);
-        fillField(MW_TASK_SET_NAME, setName);
+        fillField(MW_SET_NAME, setName);
         submitEnabledButton(MW_BTN_OK);
         MW.shouldNotBe(visible);
         checkText(setName);
@@ -147,14 +137,11 @@ public class TestsPekamaTemplates {
         BTN_TEMPLATE_ADD_IN_1st_ROW.shouldBe(visible).click();
         waitForModalWindow(MW_TASK_TEMPLATE_TITLE);
         fillField(MW_TaskTemplate_FieldTitle, templateName);
-        selectItemInDropdown(
-                MW_TaskTemplate_Importance,
-                MW_INPUT_UI_SELECT,
-                "Task");
-        selectItemInDropdown(
-                MW_TaskTemplate_Status,
-                MW_INPUT_UI_SELECT,
-                "New");
+        MW_TaskTemplate_Importance.click();
+        MW_TaskImportanceDeadline.click();
+        MW_TaskTemplate_Status.click();
+        MW_TaskStatusNew.click();
+
         fillField(MW_TaskTemplate_DateOffset, templateDueDate);
         MW_TaskTemplate_DateOffsetUnit.selectOptionByValue("Days");
         submitEnabledButton(MW_BTN_OK);
@@ -169,7 +156,76 @@ public class TestsPekamaTemplates {
             SETTINGS_DELETE_X.click();
             submitConfirmAction();
         }
-
         rootLogger.info("Test passed");
    }
+    @Test
+    public void templateCrudMessage () {
+        String templateName = "TEMPLATE_"+randomString(15);
+        String templateDueDate = "10";
+        rootLogger.info("Open URL - " +URL_TEMPLATES_MSG);
+        openPageWithSpinner(URL_TEMPLATES_MSG);
+
+        rootLogger.info("Create message template relevant to ALL");
+        submitEnabledButton(SETTINGS_VALUES_ADD);
+        waitForModalWindow(MW_MESSAGE_TEMPLATE_TITLE);
+        // MW_BTN_OK.shouldBe(disabled); todo BUG
+        fillField(MW_SET_NAME, templateName);
+        MW_SET_TEXT_EDITOR.setValue(LOREM_IPSUM_SHORT);
+        submitEnabledButton(MW_BTN_OK);
+        MW.shouldNotBe(visible);
+        checkText(templateName);
+
+        rootLogger.info("Delete template");
+        if (SETTINGS_DELETE_X.isDisplayed()==false){
+            Assert.fail("Project not created");
+        }
+        while (PekamaTeamSettings.SETTINGS_DELETE_X.isDisplayed()){
+            SETTINGS_DELETE_X.click();
+            submitConfirmAction();
+        }
+        rootLogger.info("Test passed");
+    }
+    @Test
+    public void templateCrudEvent (){
+        String setName = "SET_ALL_"+randomString(15);
+        String templateName = "TEMPLATE_"+randomString(15);
+        String templateDueDate = "10";
+        rootLogger.info("Open URL - " + URL_TEMPLATES_EVENT);
+        openPageWithSpinner(URL_TEMPLATES_EVENT);
+
+        rootLogger.info("Create set relevant to ALL");
+        submitEnabledButton(SETTINGS_VALUES_ADD);
+        waitForModalWindow(MW_EVENT_SET_TITLE);
+        MW_BTN_OK.shouldBe(disabled);
+        fillField(MW_SET_NAME, setName);
+        submitEnabledButton(MW_BTN_OK);
+        MW.shouldNotBe(visible);
+        checkText(setName);
+        templateRow.shouldHave(text(setName)).click();
+
+        rootLogger.info("Create template");
+        BTN_TEMPLATE_ADD_IN_1st_ROW.shouldBe(visible).click();
+        waitForModalWindow(MW_EVENT_TEMPLATE_TITLE);
+        selectItemInDropdown(
+                MW_EVENT_SELECT_TYPE,
+                MW_EVENT_INPUT_TYPE,
+                TrademarkEvents.APPLICATION_REGISTERED.getValue()
+        );
+        fillField(MW_EVENT_INPUT_INFO, LOREM_IPSUM_SHORT);
+        fillField(MW_EVENT_Template_DateOffset, templateDueDate);
+        MW_EVENT_Template_DateOffsetUnit.selectOptionByValue("Days");
+        submitEnabledButton(MW_BTN_OK);
+        MW.shouldNotBe(visible);
+        TEMPLATES_TEXT_FIELD.shouldHave(value(LOREM_IPSUM_SHORT));
+
+        rootLogger.info("Delete template");
+        if (SETTINGS_DELETE_X.isDisplayed()==false){
+            Assert.fail("Project not created");
+        }
+        while (PekamaTeamSettings.SETTINGS_DELETE_X.isDisplayed()){
+            SETTINGS_DELETE_X.click();
+            submitConfirmAction();
+        }
+        rootLogger.info("Test passed");
+    }
 }
