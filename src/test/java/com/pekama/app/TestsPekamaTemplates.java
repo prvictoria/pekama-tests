@@ -125,4 +125,51 @@ public class TestsPekamaTemplates {
         rootLogger.info("Test passed");
 
     }
+    @Test
+    public void templateCrudTask (){
+        String setName = "SET_ALL_"+randomString(15);
+        String templateName = "TEMPLATE_"+randomString(15);
+        String templateDueDate = "10";
+        rootLogger.info("Open URL - " +URL_TEMPLATES_TASKS);
+        openPageWithSpinner(URL_TEMPLATES_TASKS);
+
+        rootLogger.info("Create set relevant to ALL");
+        submitEnabledButton(SETTINGS_VALUES_ADD);
+        waitForModalWindow(MW_TASK_SET_TITLE);
+        MW_BTN_OK.shouldBe(disabled);
+        fillField(MW_TASK_SET_NAME, setName);
+        submitEnabledButton(MW_BTN_OK);
+        MW.shouldNotBe(visible);
+        checkText(setName);
+        templateRow.shouldHave(text(setName)).click();
+
+        rootLogger.info("Create template");
+        BTN_TEMPLATE_ADD_IN_1st_ROW.shouldBe(visible).click();
+        waitForModalWindow(MW_TASK_TEMPLATE_TITLE);
+        fillField(MW_TaskTemplate_FieldTitle, templateName);
+        selectItemInDropdown(
+                MW_TaskTemplate_Importance,
+                MW_INPUT_UI_SELECT,
+                "Task");
+        selectItemInDropdown(
+                MW_TaskTemplate_Status,
+                MW_INPUT_UI_SELECT,
+                "New");
+        fillField(MW_TaskTemplate_DateOffset, templateDueDate);
+        MW_TaskTemplate_DateOffsetUnit.selectOptionByValue("Days");
+        submitEnabledButton(MW_BTN_OK);
+        MW.shouldNotBe(visible);
+        checkText(templateName);
+
+        rootLogger.info("Delete template");
+        if (SETTINGS_DELETE_X.isDisplayed()==false){
+            Assert.fail("Project not created");
+        }
+        while (PekamaTeamSettings.SETTINGS_DELETE_X.isDisplayed()){
+            SETTINGS_DELETE_X.click();
+            submitConfirmAction();
+        }
+
+        rootLogger.info("Test passed");
+   }
 }

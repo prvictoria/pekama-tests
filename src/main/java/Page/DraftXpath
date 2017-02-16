@@ -45,3 +45,5 @@ Delete</button>
 //div[@project='project' and .//ancestor::h3[text()='%s']]/div
 //input[@placeholder='Select an event...']
 //div[@class='project-content-body ng-scope']//div[starts-with(@class, 'alert')]
+
+//*[@class='inner']//button[contains(.,'Add') and ./i]

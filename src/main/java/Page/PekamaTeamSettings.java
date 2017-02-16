@@ -79,9 +79,8 @@ public class PekamaTeamSettings extends Page {
 
 
     //Templates
-    public static final SelenideElement projectTemplatesRow01 = $(byXpath("//div[@class='cells-row'][1]"));
-    public static final SelenideElement templatesTable = $(byXpath("//ul[@class and 'like-table']/li"));
-    public static final SelenideElement templateRow = $(byXpath("//div[@ng-click]"));
+    public static final String projectTemplatesRow01 = "//ul/li[1]//div[@class='cells-row']";
+    public static final SelenideElement templateRow = $(byXpath(projectTemplatesRow01+"/div[1]"));
 
     public static final SelenideElement templatesIconCopy = $("css=i.memobox-icon-docs");
     public static final SelenideElement templatesIconEdit = $("css=i.pkm-icon-edit");
@@ -90,4 +89,5 @@ public class PekamaTeamSettings extends Page {
     public static final SelenideElement templatesRow002 = $(byXpath("//li[2]/div/div"));
     public static final SelenideElement templatesRow003 = $(byXpath("//li[3]/div/div"));
     public static final SelenideElement projectTypeRow001 = $(byXpath("//div[2]/div/div/div/span/span[2]/span"));
+    public static final SelenideElement BTN_TEMPLATE_ADD_IN_1st_ROW = $(byXpath("//*[@class='inner']//button[contains(.,'Add') and ./i]"));
 }

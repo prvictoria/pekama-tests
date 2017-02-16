@@ -72,19 +72,23 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_EnableVerificationConfirmCodeField = $(byName("two_factor_code"));
     public static final SelenideElement MW_EnableVerificationErrorArea = $(byXpath("//div[2]/form/div"));
 
-    //templates
-    public static final SelenideElement MW_TaskTemplateSet = $(byXpath(""));
-    public static final SelenideElement MW_TaskTemplateSet_FieldTitle = $(byXpath("//div[@class='modal-body']//input[@name]"));
-    public static final SelenideElement MW_TaskTemplateSet_FieldDefining = $(byXpath("//div[@class='modal-body']/div[3]//input"));
-    public static final SelenideElement MW_TaskTemplateSet_FieldType = $(byXpath("//div[@class='modal-body']/div[4]//input"));
-    public static final SelenideElement MW_TaskTemplateSet_FieldEvent = $(byXpath("//div[@class='modal-body']/div[5]//input"));
+    //templates Task Template Set
+    public static final String MW_TASK_SET_TITLE = "Task Template Set";
+    public static final SelenideElement MW_TASK_SET_NAME = $(byXpath("//div[@class='modal-body']//input[@name]"));
+    public static final SelenideElement MW_TASK_SET_DEFINING = $(byXpath("//div[@class='modal-body']/div[3]//input"));
+    public static final SelenideElement MW_TASK_SET_TYPE = $(byXpath("//div[@class='modal-body']/div[4]//input"));
+    public static final SelenideElement MW_TASK_SET_EVENT = $(byXpath("//div[@class='modal-body']/div[5]//input"));
+    //templates Task Template
+    public static final String MW_TASK_TEMPLATE_TITLE = "Task Template";
     public static final SelenideElement MW_TaskTemplate_FieldTitle = $(byXpath("//div[@class='modal-body']//input[@name='title']"));
     public static final SelenideElement MW_TaskTemplate_Assignor = $(byXpath("//div[@placeholder='Choose assignor...']/span"));
     public static final SelenideElement MW_TaskTemplate_Assignee = $(byXpath("//div[@placeholder='Choose assignee...']/span"));
     public static final SelenideElement MW_TaskTemplate_Importance = $(byXpath("//div[@placeholder='Choose importance...']/span"));
+    public static final SelenideElement MW_TaskTemplate_INPUT_Importance = $(byXpath("//div[@placeholder='Choose importance...']/span"));
     public static final SelenideElement MW_TaskTemplate_Status = $(byXpath("//div[@placeholder='Choose status...']/span"));
-    public static final SelenideElement MW_TaskTemplate_DateOffset = $(byXpath(""));
+    public static final SelenideElement MW_TaskTemplate_DateOffset = $(byXpath("//input[@name='date_offset']"));
     public static final SelenideElement MW_TaskTemplate_DateOffsetUnit = $(byXpath(""));
+    public static final SelenideElement MW_INPUT_UI_SELECT = $(byXpath("//div[@class='modal-body']//input[@type=\"search\"]"));
 
     public static final SelenideElement MW_EventTemplate_EventType = $(byXpath(mw+"//pkm-values-dropdown/div/div/span"));
     public static final SelenideElement MW_EventTemplate_Input = $(byXpath(mw+"//div[@name='event_type']/input[1]"));
@@ -180,20 +184,10 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_TaskAssineeSelect = $(byXpath("//div[2]/div/div/span/span[2]/span"));
     public static final SelenideElement MW_TaskImportanceField = $(byXpath(""));
     public static final SelenideElement MW_TaskImportanceSelect = $(byXpath("//pkm-values-dropdown/div/div/span/span[2]"));
-//    public static final SelenideElement MW_TaskImportanceReminder = $(byXpath(""));
-//    public static final SelenideElement MW_TaskImportanceDeadline = $(byXpath(""));
-//    public static final SelenideElement MW_TaskImportanceFinalDeadline = $(byXpath(""));
-//    public static final SelenideElement MW_TaskImportanceTask = $(byXpath(""));
-//    public static final SelenideElement MW_TaskImportanceFatal = $(byXpath(""));
-//    public static final SelenideElement MW_TaskStatusField = $(byXpath(""));
-//    public static final SelenideElement MW_TaskStatusSelect = $(byXpath(""));
-//    public static final SelenideElement MW_TaskStatusNew = $(byXpath(""));
-//    public static final SelenideElement MW_TaskStatusInProgress = $(byXpath(""));
-//    public static final SelenideElement MW_TaskStatusCompleted = $(byXpath(""));
-//    public static final SelenideElement MW_TaskStatusApproved = $(byXpath(""));
-//    public static final SelenideElement MW_TaskStatusRejected = $(byXpath(""));
-//    public static final SelenideElement MW_TaskStatusCanceled = $(byXpath(""));
-//    public static final SelenideElement MW_Task = $(byXpath(""));
+    public static final SelenideElement MW_TaskStatusField = $(byXpath(""));
+    public static final SelenideElement MW_TaskStatusSelect = $(byXpath(""));
+    public static final SelenideElement MW_TaskStatusCanceled = $(byXpath(""));
+    public static final SelenideElement MW_Task = $(byXpath(""));
     //MW CHARGES
     public static final SelenideElement MW_CHARGES_ = $(byXpath(mw+""));
     public static final SelenideElement MW_CHARGES_SELECT_FROM = $(byXpath(mw+"//label[contains(.,'From:')]/following-sibling::div//span[@class='ng-binding ng-scope']"));
