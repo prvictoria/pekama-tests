@@ -139,7 +139,6 @@ public class StepsPekama implements StepsFactory{
     }
     public static String mailingListSendReport(String thisMailingListName){
         String mailingListRowByName = "//li[//a[contains(.,'"+thisMailingListName+"')]]";
-//        String pathToReport = REPORTS_MAILING_LISTS+mailingListRowByName+REPORTS_MAILING_LISTS_BTN_CALL_ML;
         String pathToReport = "//*[@class='search-list']//button[@uib-dropdown-toggle]";
         String actualMailingListRow = REPORTS_MAILING_LISTS+ mailingListRowByName;
             if($(byXpath(pathToReport)).isDisplayed()==false){
@@ -155,9 +154,8 @@ public class StepsPekama implements StepsFactory{
             MW_MAILING_1USER_SELECT.waitUntil(visible, 2000).click();
 
         }
-        rootLogger.info("Set checkbox and Set interval - old ML");
         if ( MW_MAILING_1USER_INTERVAL.is(not(empty))) {
-            rootLogger.info("Send ProjectValues report - old report");
+            rootLogger.info("Set checkbox and Set interval - old ML detected");
             MW_MAILING_1USER_INTERVAL.clear();
             MW_MAILING_1USER_INTERVAL.sendKeys("999");
             MW_MAILING_LIST_BTN_SEND_NOW.waitUntil(visible, 10000).waitUntil(enabled, 10000).click();
@@ -165,12 +163,12 @@ public class StepsPekama implements StepsFactory{
         }
         else {
             MW_MAILING_1USER_INTERVAL.sendKeys("999");
-            rootLogger.info("Send ProjectValues report - new report");
+            rootLogger.info("Send new report");
             sleep(500);
             MW_MAILING_LIST_BTN_SAVE_AND_SEND_NOW.waitUntil(enabled, 20000).click();
-            MW_MAILING_LIST_BTN_SAVE_AND_SEND_NOW.waitUntil(hidden, 20000);
-            sleep(5000);
-            MW_MAILING_LIST_BTN_SEND_NOW.waitUntil(visible, 30000).waitUntil(enabled, 20000);
+            MW_MAILING_LIST_BTN_SAVE_AND_SEND_NOW.waitUntil(hidden, 40000);
+            sleep(2000);
+            MW_MAILING_LIST_BTN_SEND_NOW.waitUntil(visible, 30000).waitUntil(enabled, 30000);
             sleep(1000);
         }
         rootLogger.info("Report was sent");
@@ -462,8 +460,8 @@ public class StepsPekama implements StepsFactory{
         rootLogger.info(eventTypeName+" - Event created");
     }
     public static void createCharge(String chargeType, String currency, String price) {
-        projectTabFin.click();
-        TAB_CHARGES_ADD.click();
+        projectTabFin.shouldBe(visible).click();
+        TAB_CHARGES_ADD.shouldBe(visible).shouldBe(enabled).click();
         rootLogger.info("Create charge");
         waitForModalWindow(TITLE_MW_CHARGE);
         selectItemInDropdown(MW_CHARGES_SELECT_TYPE, MW_CHARGES_INPUT_TYPE, chargeType);

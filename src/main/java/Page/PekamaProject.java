@@ -242,8 +242,8 @@ public class PekamaProject extends Page {
     public static final SelenideElement TAB_CHARGES = $(byXpath(""));
     public static final SelenideElement TAB_CHARGES_CollapseForm = $(byXpath("//div/ng-include/div/a[@class='link-task']"));
     public static final SelenideElement TAB_CHARGES_BackToListLink = $(byLinkText("link=Back to all finances"));
-    public static final SelenideElement TAB_CHACRGES_BTN_DELETE = TAB_CONTROL_DELETE;
-    public static final SelenideElement TAB_CHARGES_ToXero = $(byXpath("//button[@ng-click='bulkToXero()']"));
+    public static final SelenideElement TAB_CHARGES_BTN_DELETE = TAB_CONTROL_DELETE;
+    public static final SelenideElement TAB_CHARGES_XERO = $(byXpath("//button[@ng-click='bulkToXero()']"));
 
     public static final SelenideElement TAB_CHARGES01From = $(byXpath("//div[@class='items-list with-caret ng-scope finances']/div[1]//span[@class='name ng-binding']"));
     public static final SelenideElement TAB_CHARGES01Type = $(byXpath("//div[@class='items-list with-caret ng-scope finances']/div[1]//span[@class='task-title ng-binding']"));

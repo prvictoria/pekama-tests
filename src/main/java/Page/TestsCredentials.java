@@ -55,6 +55,7 @@ public class TestsCredentials {
         PEKAMA_PASSWORD("asui67we34"),
         LINKEDIN_PASSWORD("123456789qasw"),
         BOX_PASSWORD("32qew8127a12a"),
+        XERO_PASSWORD("asui67we34"),
         NAME("Test003"),
         SURNAME("Quality03"),
         PHONE("205-780-5656"),

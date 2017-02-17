@@ -1,11 +1,11 @@
 package com.pekama.app;
 import Steps.*;
 import com.codeborne.selenide.*;
+import com.codeborne.selenide.ex.SoftAssertionError;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
 import org.junit.runners.MethodSorters;
-
 import java.awt.*;
 
 import static Page.Emails.*;
@@ -17,6 +17,7 @@ import static Page.TestsCredentials.*;
 import static Page.TestsCredentials.TrademarkEvents.*;
 import static Page.TestsStrings.*;
 import static Page.TestsUrl.*;
+import static Page.Xero.*;
 import static Steps.StepsExternal.*;
 import static Steps.StepsPekama.*;
 import static Utils.Utils.*;
@@ -24,7 +25,7 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.*;
-import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
+import static com.pekama.app.AllTestsRunner.*;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaProject {
@@ -33,16 +34,18 @@ public class TestsPekamaProject {
     private static String testContactName = "name"+ randomString(10);
     private static String testContactSurname = "surname"+ randomString(10);
     private static String defaultProjectURL;
-    private final static String testUserEmail = User2.GMAIL_EMAIL.getValue();
-    private final static String testUserPassword = User2.PEKAMA_PASSWORD.getValue();
+    private final static String TEST_USER_EMAIL = User3.GMAIL_EMAIL.getValue();
+    private final static String TEST_USER_PEKAMA_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
+    private final static String TEST_USER_XERO_PASSWORD = User3.XERO_PASSWORD.getValue();
+    private final String TEST_USER_FULL_TEAM_NAME = User2.FULL_TEAM_NAME.getValue();
     @Before
     public void before() {
         holdBrowserAfterTest();
         rootLogger.info("Open host");
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(
-                testUserEmail,
-                testUserPassword,
+                TEST_USER_EMAIL,
+                TEST_USER_PEKAMA_PASSWORD,
                 URL_LogIn);
         rootLogger.info("Create project");
         dashboardNewProject.waitUntil(visible, 15000).click();
@@ -103,6 +106,7 @@ public class TestsPekamaProject {
         sleep(1000);
         refresh();
         TAB_INFO_ProjectTitle.shouldHave(text(testProjectTitle));
+        //TODO check validation
     }
     @Test
     public void createProject_C_AddNumber() {
@@ -515,7 +519,7 @@ public class TestsPekamaProject {
 
     }
     @Test
-    public void createProject_L1_autodeployEvent() {
+    public void createProject_L1_autoDeployEvent() {
         scrollUp();
         rootLogger.info("Check timeline state");
         BTN_HIDE_TIMELINE.shouldBe(visible);
@@ -582,7 +586,6 @@ public class TestsPekamaProject {
         checkTextNotPresent(MARK_CREATED.getValue());
         rootLogger.info("Test passed");
     }
-
     @Test
     public void createProject_M_addChargePositive() {
         projectTabFin.click();
@@ -590,21 +593,21 @@ public class TestsPekamaProject {
         TAB_CHARGES_ADD.click();
         rootLogger.info("Create charge");
         waitForModalWindow(TITLE_MW_CHARGE);
-        MW_CHARGES_SELECT_FROM.shouldHave(text(User2.FULL_TEAM_NAME.getValue()));
+        MW_CHARGES_SELECT_FROM.shouldHave(text(TEST_USER_FULL_TEAM_NAME));
         selectItemInDropdown(MW_CHARGES_SELECT_TYPE, MW_CHARGES_INPUT_TYPE, CHARGES_TYPE_ASSOCIATE);
         selectItemInDropdown(MW_CHARGES_SELECT_CURRENCY, MW_CHARGES_INPUT_CURRENCY, GBP);
         fillField(MW_CHARGES_INPUT_PRICE, "1000");
         submitEnabledButton(MW_BTN_OK);
         MW.shouldNot(visible);
         checkTextNotPresent(placeholderEmptyList);
-        checkText(User2.FULL_TEAM_NAME.getValue()+" ->");
+        checkText(TEST_USER_FULL_TEAM_NAME+" ->");
         checkText(CHARGES_TYPE_ASSOCIATE);
         checkText(getCurrentDate());
         checkText("1,000.00 GBP");
 
         rootLogger.info("Delete charge");
         projectAllCheckbox.click();
-        TAB_CHACRGES_BTN_DELETE.click();
+        TAB_CHARGES_BTN_DELETE.click();
         submitConfirmAction();
         checkText(placeholderEmptyList);
         rootLogger.info("Test passed");
@@ -652,7 +655,6 @@ public class TestsPekamaProject {
        // checkText(result);
         rootLogger.info("Test passed");
     }
-
     @Test
     public void createProject_P_addTeamConversation() {
         rootLogger.info("Create thered in private zone");
@@ -692,14 +694,12 @@ public class TestsPekamaProject {
         $(byXpath("//*[@class='message-list']/li[1]//div[@class='message-holder']")).shouldNot(visible);
         rootLogger.info("Test passed");
     }
-
     @Test  //todo
     public void createProject_P_addExternalConversation() {
 
 
         rootLogger.info("Test passed");
     }
-
     @Test
     public void createProject_S_cloneProject() {
         String currentURL = url();
@@ -709,7 +709,6 @@ public class TestsPekamaProject {
         sleep(2000);
         String newURL = url();
         Assert.assertNotEquals(currentURL, newURL);
-
 
         projectTabFamily.click();
         String familyText = testProjectTitle.toUpperCase();
@@ -773,18 +772,104 @@ public class TestsPekamaProject {
 
         rootLogger.info("Test passed");
     }
-
-    @Ignore
     @Test  //todo
-    public void createProject_ChargesXero() {
+    public void createProject_ChargesXero()  throws SoftAssertionError {
+        String xeroLogin = TEST_USER_EMAIL;
+        String xeroPassword = TEST_USER_XERO_PASSWORD;
+        String price = "5000";
+        rootLogger.info("Create Charge");
+        String testSearchChargesType = CHARGES_TYPE_ASSOCIATE;
+        createCharge(testSearchChargesType, EUR, price);
+        rootLogger.info("Start Xero flow");
+        projectAllCheckbox.click();
+        TAB_CHARGES_XERO.click();
+        sleep(3000);
+        LOOP_A: {
 
+          if ($(byText("Invoice created")).isDisplayed() == false) {
+
+            try {
+                switchTo().window("Login | Xero Accounting Software");
+                String url = getActualUrl();
+                rootLogger.info(url);
+
+                fillField(extXeroEmail, xeroLogin);
+                fillField(extXeroPassword, xeroPassword);
+                submitEnabledButton(extXeroLogin);
+                rootLogger.info("Xero login window submitted");
+            } catch (SoftAssertionError e){
+                if ($(byTitle("Login | Xero Accounting Software")).exists()==false){
+                rootLogger.info("Xero window NOT found");}
+            }
+            try {
+                switchTo().window("Xero | Authorise Application");
+                String url = getActualUrl();
+                rootLogger.info(url);
+                submitEnabledButton(extXeroAccept);
+                rootLogger.info("No Xero window submitted");
+                extXeroAccept.shouldBe(visible).click();
+                extXeroAccept.shouldNotBe(visible);
+            } catch (SoftAssertionError e) {
+                if ($(byTitle("Xero | Authorise Application")).exists()==false){
+                rootLogger.info("Window Xero Authorise window not found");}
+            }
+            try {
+                switchTo().window("Pekama | Projects");
+                String url = getActualUrl();
+                rootLogger.info(url);
+                $(byTitle("Pekama | Projects ")).shouldBe(exist);
+                extXeroAccept.shouldNotBe(visible);
+            } catch (SoftAssertionError e) {
+                if ($(byTitle("Pekama | Projects")).exists()==false){
+                Assert.fail("Return to Pekama failed");}
+            }
+          }
+
+          if ($(byText("Invoice created")).isDisplayed() == true) {
+                waitForModalWindow("Invoice created");
+                submitEnabledButton(MW_BTN_YES);
+                MW.shouldNotBe(visible);
+            }
+            try {
+                switchTo().window("Login | Xero Accounting Software");
+                String url = getActualUrl();
+                rootLogger.info(url);
+
+                fillField(extXeroEmail, xeroLogin);
+                fillField(extXeroPassword, xeroPassword);
+                submitEnabledButton(extXeroLogin);
+                rootLogger.info("Xero login window submitted");
+            }
+            catch (SoftAssertionError e) {
+                if ($(byTitle("Login | Xero Accounting Software")).exists()==false){
+              rootLogger.info("Xero window NOT found");}
+            }
+            try {
+                switchTo().window("Xero | Edit Invoice | Demo Company (UK)");
+                String url = getActualUrl();
+                rootLogger.info(url);
+                $(byTitle("Xero | Edit Invoice | Demo Company (UK)")).shouldBe(exist);
+
+            }
+            catch (SoftAssertionError e) {
+              if ($(byTitle("Xero | Edit Invoice | Demo Company (UK)")).exists()==false){
+                rootLogger.info("Window Xero Authorise not found - goto label");
+                break LOOP_A;}
+          }
+        }
+        try {
+        sleep(3000);
+        checkText("5,000.00", 2);
+        close();}
+        finally {
+            Assert.fail("Value in Xero not matched ");
+        }
     }
     @Ignore
     @Test  //todo
     public void createProject_ChargesSorting() {
 
     }
-
     @Ignore
     @Test  //todo
     public void createProject_TasksEditStatus() {

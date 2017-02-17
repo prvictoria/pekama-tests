@@ -321,7 +321,7 @@ public class TestsPekamaReports {
         submitEnabledButton(MW_BTN_OK);
         MW.shouldNotBe(visible);
 
-        rootLogger.info("Cech merge result if 1-st contact present");
+        rootLogger.info("Check merge result if 1-st contact present");
         reportsCheckContactRow(
                 1,
                 nameContactName+"Z",
