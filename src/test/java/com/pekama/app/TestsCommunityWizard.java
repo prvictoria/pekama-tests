@@ -128,7 +128,14 @@ public class TestsCommunityWizard {
         String EMAIL_TEXT = "Hello world";
         String EMAIL_BTN = EMAIL_INVITE_IN_COMMUNITY_BTN;
         SelenideElement EMAIL_REDIRECT_LINK = EMAIL_INVITE_IN_COMMUNITY_BACKLINK;
-        checkInboxEmail(User5.GMAIL_EMAIL.getValue(), GMAIL_PASSWORD, EMAIL_SUBJECT, EMAIL_TITLE, EMAIL_TEXT, EMAIL_BTN, EMAIL_REDIRECT_LINK);
+        checkInboxEmail(
+                User5.GMAIL_EMAIL.getValue(),
+                GMAIL_PASSWORD,
+                EMAIL_SUBJECT,
+                EMAIL_TITLE,
+                EMAIL_TEXT,
+                EMAIL_BTN,
+                EMAIL_REDIRECT_LINK);
         rootLogger.info("Email redirect link is - "+REDIRECT_LINK);
         rootLogger.info("Test passed");
     }

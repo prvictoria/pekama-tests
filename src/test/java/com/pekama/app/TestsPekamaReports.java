@@ -1,6 +1,7 @@
 package com.pekama.app;
 import Page.TestsCredentials.*;
 import Steps.*;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.*;
 import org.junit.*;
@@ -63,7 +64,7 @@ public class TestsPekamaReports {
         mailingListDetectAndDelete(thisMailingListName);
 
         openPageWithSpinner(URL_ReportsContacts);
-        thisMailingListName = "Projects Test Mailing List";
+        thisMailingListName = "Contacts Test Mailing List";
         mailingListDetectAndDelete(thisMailingListName);
     }
 
@@ -202,7 +203,8 @@ public class TestsPekamaReports {
         open(GMAIL_URL_SIGN_OUT);
 
         open(link);
-        $$(byText("You will no longer receive this report.")).shouldHaveSize(1);
+        sleep(5000);
+        $$(byText("You will no longer receive this report.")).filterBy(visible).shouldHaveSize(1);
 
         rootLogger.info("Check checkbox value in mailing list");
         open(URL_ReportsProjects);
@@ -237,6 +239,7 @@ public class TestsPekamaReports {
         checkText("Projects", 2);
         waitForSpinnerNotPresent();
         REPORTS_LIST_PROJECT_TILE_ROW1.shouldNotHave(matchText(projectName));
+        rootLogger.info("Test passed");
     }
     @Test
     public void objectContactDelete(){

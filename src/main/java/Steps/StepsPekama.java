@@ -66,8 +66,10 @@ public class StepsPekama implements StepsFactory{
         submitCookie();
         hideZopim();
         loginField_Email.sendKeys(PEKAMA_USER_EMAIL);
+        sleep(500);
         rootLogger.info(PEKAMA_USER_EMAIL+ " - login selected");
         loginField_Password.sendKeys(GENERIC_PEKAMA_PASSWORD);
+        sleep(500);
         loginButton_Login.click();
         btnLogin.shouldBe(Condition.not(visible));
         sleep(1000);
@@ -168,7 +170,7 @@ public class StepsPekama implements StepsFactory{
             MW_MAILING_LIST_BTN_SAVE_AND_SEND_NOW.waitUntil(enabled, 20000).click();
             MW_MAILING_LIST_BTN_SAVE_AND_SEND_NOW.waitUntil(hidden, 20000);
             sleep(5000);
-            MW_MAILING_LIST_BTN_SEND_NOW.waitUntil(visible, 20000).waitUntil(enabled, 20000);
+            MW_MAILING_LIST_BTN_SEND_NOW.waitUntil(visible, 30000).waitUntil(enabled, 20000);
             sleep(1000);
         }
         rootLogger.info("Report was sent");

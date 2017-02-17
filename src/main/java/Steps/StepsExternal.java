@@ -159,14 +159,18 @@ public class StepsExternal implements StepsFactory{
                     }
             } while (count < 10);
         }
+        if (EMAIL_SUBJECT.exists() == false) {
+            Assert.fail("Email not found - " + EMAIL_SUBJECT);
+        }
+
     }
     public static void openEmail(SelenideElement EMAIL_SUBJECT){
-
-        if (EMAIL_SUBJECT == null) {
-            Assert.fail("Subject email is - " + EMAIL_SUBJECT);
+        sleep(4000);
+        if (EMAIL_SUBJECT.exists() == false) {
+            Assert.fail("Subject email not found - " + EMAIL_SUBJECT);
         }
         if (EMAIL_SUBJECT.exists() == true) {
-            EMAIL_SUBJECT.waitUntil(visible, 10000).click();
+            EMAIL_SUBJECT.waitUntil(visible, 15000).click();
             logging.info("Email by subject found");
             sleep(1500);
             INBOX_BTN_DELETE.waitUntil(visible, 10000);
@@ -281,7 +285,9 @@ public class StepsExternal implements StepsFactory{
 
     public static void authGmail(String GMAIL_LOGIN){
         sleep(5000);
+        //switchTo().window("Sign in - Google Accounts");
         switchTo().window("Sign in - Google Accounts");
+        sleep(5000);
         logging.info("Type email");
         GMAIL_LOGIN_FIELD.shouldBe(visible).sendKeys(GMAIL_LOGIN);
         logging.info("Submit email");
