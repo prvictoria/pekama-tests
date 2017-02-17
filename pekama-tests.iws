@@ -6,10 +6,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2fcdccdc-4d95-4ab7-8153-9ec9d616e50f" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/draft/PageGitHubLogin.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pekama-tests.iws" afterPath="$PROJECT_DIR$/pekama-tests.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/TestsStrings.java" afterPath="$PROJECT_DIR$/src/main/java/Page/TestsStrings.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Steps/StepsPekama.java" afterPath="$PROJECT_DIR$/src/main/java/Steps/StepsPekama.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -355,8 +352,8 @@
           <file leaf-file-name="TestsPekamaProject.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="165">
-                  <caret line="825" column="57" lean-forward="false" selection-start-line="825" selection-start-column="57" selection-end-line="825" selection-end-column="57" />
+                <state relative-caret-position="386">
+                  <caret line="841" column="58" lean-forward="false" selection-start-line="841" selection-start-column="58" selection-end-line="841" selection-end-column="58" />
                   <folding>
                     <element signature="method#createProject_A_CheckDefaultState#0;class#TestsPekamaProject#0" expanded="false" />
                     <element signature="method#createProject_B_editProjectName#0;class#TestsPekamaProject#0" expanded="false" />
@@ -385,11 +382,11 @@
                     <element signature="method#createProject_S_cloneProject#0;class#TestsPekamaProject#0" expanded="false" />
                     <element signature="e#32281#32288#0" expanded="false" />
                     <element signature="method#createProject_W_search#0;class#TestsPekamaProject#0" expanded="false" />
-                    <element signature="e#37829#37836#0" expanded="false" />
-                    <element signature="e#37915#37922#0" expanded="false" />
+                    <element signature="e#37821#37828#0" expanded="false" />
+                    <element signature="e#37907#37914#0" expanded="false" />
                     <element signature="method#createProject_TasksEditStatus#0;class#TestsPekamaProject#0" expanded="false" />
-                    <element signature="e#38002#38009#0" expanded="false" />
-                    <marker date="1487368847699" expanded="false" signature="38073:38081" ph="{...}" />
+                    <element signature="e#37994#38001#0" expanded="false" />
+                    <marker date="1487369312260" expanded="false" signature="38065:38073" ph="{...}" />
                   </folding>
                 </state>
               </provider>
@@ -1650,14 +1647,7 @@
       <workItem from="1487087544506" duration="15308000" />
       <workItem from="1487172331189" duration="13324000" />
       <workItem from="1487265299229" duration="5864000" />
-      <workItem from="1487274934840" duration="23571000" />
-    </task>
-    <task id="LOCAL-00138" summary="ProjectTests - Collaborator - CRUD">
-      <created>1485988369441</created>
-      <option name="number" value="00138" />
-      <option name="presentableId" value="LOCAL-00138" />
-      <option name="project" value="LOCAL" />
-      <updated>1485988369441</updated>
+      <workItem from="1487274934840" duration="24144000" />
     </task>
     <task id="LOCAL-00139" summary="ProjectTests - Check invite in project email test">
       <created>1486027118976</created>
@@ -1995,19 +1985,17 @@
       <option name="project" value="LOCAL" />
       <updated>1487364845404</updated>
     </task>
-    <option name="localTasksCounter" value="187" />
+    <task id="LOCAL-00187" summary="Xero test">
+      <created>1487369048631</created>
+      <option name="number" value="00187" />
+      <option name="presentableId" value="LOCAL-00187" />
+      <option name="project" value="LOCAL" />
+      <updated>1487369048632</updated>
+    </task>
+    <option name="localTasksCounter" value="188" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TestsPekamaProject_createProject_ChargesXero - 2017.02.17 at 23h 50m 12s.xml">
-      <configuration name="TestsPekamaProject.createProject_ChargesXero" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestsPekamaProject_createProject_ChargesXero - 2017.02.18 at 00h 01m 15s.xml">
-      <configuration name="TestsPekamaProject.createProject_ChargesXero" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestsPekamaProject_createProject_ChargesXero - 2017.02.18 at 00h 20m 13s.xml">
-      <configuration name="TestsPekamaProject.createProject_ChargesXero" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="TestsPekamaProject_createProject_ChargesXero - 2017.02.18 at 00h 22m 25s.xml">
       <configuration name="TestsPekamaProject.createProject_ChargesXero" configurationId="JUnit" />
     </history-entry>
@@ -2029,9 +2017,18 @@
     <history-entry file="TestsPekamaProject_createProject_ChargesXero - 2017.02.18 at 00h 59m 55s.xml">
       <configuration name="TestsPekamaProject.createProject_ChargesXero" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="TestsPekamaProject_createProject_ChargesXero - 2017.02.18 at 01h 07m 56s.xml">
+      <configuration name="TestsPekamaProject.createProject_ChargesXero" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestsPekamaProject_createProject_ChargesXero - 2017.02.18 at 01h 09m 42s.xml">
+      <configuration name="TestsPekamaProject.createProject_ChargesXero" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestsPekamaProject_createProject_ChargesXero - 2017.02.18 at 01h 13m 05s.xml">
+      <configuration name="TestsPekamaProject.createProject_ChargesXero" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="590945000" />
+    <option name="totallyTimeSpent" value="591518000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2044,7 +2041,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1868" height="1096" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3271028" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -2069,7 +2066,7 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28307176" sideWeight="0.51194185" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3281412" sideWeight="0.49225664" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3281412" sideWeight="0.49225664" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="CVS" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -3112,8 +3109,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="825" column="57" lean-forward="false" selection-start-line="825" selection-start-column="57" selection-end-line="825" selection-end-column="57" />
+        <state relative-caret-position="386">
+          <caret line="841" column="58" lean-forward="false" selection-start-line="841" selection-start-column="58" selection-end-line="841" selection-end-column="58" />
           <folding>
             <element signature="method#createProject_A_CheckDefaultState#0;class#TestsPekamaProject#0" expanded="false" />
             <element signature="method#createProject_B_editProjectName#0;class#TestsPekamaProject#0" expanded="false" />
@@ -3142,11 +3139,11 @@
             <element signature="method#createProject_S_cloneProject#0;class#TestsPekamaProject#0" expanded="false" />
             <element signature="e#32281#32288#0" expanded="false" />
             <element signature="method#createProject_W_search#0;class#TestsPekamaProject#0" expanded="false" />
-            <element signature="e#37829#37836#0" expanded="false" />
-            <element signature="e#37915#37922#0" expanded="false" />
+            <element signature="e#37821#37828#0" expanded="false" />
+            <element signature="e#37907#37914#0" expanded="false" />
             <element signature="method#createProject_TasksEditStatus#0;class#TestsPekamaProject#0" expanded="false" />
-            <element signature="e#38002#38009#0" expanded="false" />
-            <marker date="1487368847699" expanded="false" signature="38073:38081" ph="{...}" />
+            <element signature="e#37994#38001#0" expanded="false" />
+            <marker date="1487369312260" expanded="false" signature="38065:38073" ph="{...}" />
           </folding>
         </state>
       </provider>

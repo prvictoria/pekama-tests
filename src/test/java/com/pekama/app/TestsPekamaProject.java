@@ -823,7 +823,7 @@ public class TestsPekamaProject {
             }
           }
 
-          if ($(byText("Invoice created")).isDisplayed() == true) {
+          if ($(byText("Invoice created")).isDisplayed()) {
                 waitForModalWindow("Invoice created");
                 submitEnabledButton(MW_BTN_YES);
                 MW.shouldNotBe(visible);
