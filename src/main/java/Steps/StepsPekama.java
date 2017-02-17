@@ -2,6 +2,7 @@ package Steps;
 import Utils.*;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.ex.SoftAssertionError;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
@@ -20,7 +21,10 @@ import static Utils.Utils.randomString;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static com.codeborne.selenide.WebDriverRunner.url;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class StepsPekama implements StepsFactory{
     static final Logger rootLogger = LogManager.getRootLogger();
@@ -551,6 +555,15 @@ public class StepsPekama implements StepsFactory{
         rootLogger.info(btnDelete);
         btnDelete.click();
         submitConfirmAction();
+        return true;
+    }
+    public static boolean checkPageTitle(String expectedTitle) {
+       // boolean result =
+        if (expectedTitle.equals(getWebDriver().getTitle())==false){
+            rootLogger.debug("false");
+            return false;
+        }
+        rootLogger.debug("true");
         return true;
     }
 

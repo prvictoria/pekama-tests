@@ -144,4 +144,10 @@ public class TestsStrings {
     public static final String ILS = "ILS";
     public static final String USD = "USD";
 
+    public static final String PAGE_TITLE_PEKAMA = "Pekama | Projects";
+    public static final String PAGE_TITLE_COMMUNITY = "Pekama | Community";
+    public static final String PAGE_TITLE_XERO_LOGIN = "Login | Xero Accounting Software";
+    public static final String PAGE_TITLE_XERO_AUTH = "Xero | Authorise Application";
+    public static final String PAGE_TITLE_XERO_BILLING = "Xero | Edit Invoice | Demo Company (UK)";
+
 }

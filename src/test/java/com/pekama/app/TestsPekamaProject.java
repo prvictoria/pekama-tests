@@ -20,12 +20,14 @@ import static Page.TestsUrl.*;
 import static Page.Xero.*;
 import static Steps.StepsExternal.*;
 import static Steps.StepsPekama.*;
+import static Steps.StepsPekama.checkPageTitle;
 import static Utils.Utils.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.*;
 import static com.pekama.app.AllTestsRunner.*;
+import static org.junit.Assert.assertEquals;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaProject {
@@ -785,24 +787,21 @@ public class TestsPekamaProject {
         TAB_CHARGES_XERO.click();
         sleep(3000);
         LOOP_A: {
-
           if ($(byText("Invoice created")).isDisplayed() == false) {
-
             try {
-                switchTo().window("Login | Xero Accounting Software");
+                switchTo().window(PAGE_TITLE_XERO_LOGIN);
                 String url = getActualUrl();
                 rootLogger.info(url);
-
                 fillField(extXeroEmail, xeroLogin);
                 fillField(extXeroPassword, xeroPassword);
                 submitEnabledButton(extXeroLogin);
                 rootLogger.info("Xero login window submitted");
             } catch (SoftAssertionError e){
-                if ($(byTitle("Login | Xero Accounting Software")).exists()==false){
+                if (checkPageTitle(PAGE_TITLE_XERO_LOGIN)==false){
                 rootLogger.info("Xero window NOT found");}
             }
             try {
-                switchTo().window("Xero | Authorise Application");
+                switchTo().window(PAGE_TITLE_XERO_AUTH);
                 String url = getActualUrl();
                 rootLogger.info(url);
                 submitEnabledButton(extXeroAccept);
@@ -810,17 +809,16 @@ public class TestsPekamaProject {
                 extXeroAccept.shouldBe(visible).click();
                 extXeroAccept.shouldNotBe(visible);
             } catch (SoftAssertionError e) {
-                if ($(byTitle("Xero | Authorise Application")).exists()==false){
+                if (checkPageTitle(PAGE_TITLE_XERO_AUTH)==false){
                 rootLogger.info("Window Xero Authorise window not found");}
             }
             try {
-                switchTo().window("Pekama | Projects");
+                switchTo().window(PAGE_TITLE_PEKAMA);
                 String url = getActualUrl();
                 rootLogger.info(url);
-                $(byTitle("Pekama | Projects ")).shouldBe(exist);
-                extXeroAccept.shouldNotBe(visible);
+                sleep(2000);
             } catch (SoftAssertionError e) {
-                if ($(byTitle("Pekama | Projects")).exists()==false){
+                if (checkPageTitle(PAGE_TITLE_PEKAMA)==false){
                 Assert.fail("Return to Pekama failed");}
             }
           }
@@ -831,7 +829,7 @@ public class TestsPekamaProject {
                 MW.shouldNotBe(visible);
             }
             try {
-                switchTo().window("Login | Xero Accounting Software");
+                switchTo().window(PAGE_TITLE_XERO_LOGIN);
                 String url = getActualUrl();
                 rootLogger.info(url);
 
@@ -841,29 +839,25 @@ public class TestsPekamaProject {
                 rootLogger.info("Xero login window submitted");
             }
             catch (SoftAssertionError e) {
-                if ($(byTitle("Login | Xero Accounting Software")).exists()==false){
+                if (checkPageTitle(PAGE_TITLE_XERO_AUTH)==false){
               rootLogger.info("Xero window NOT found");}
             }
             try {
-                switchTo().window("Xero | Edit Invoice | Demo Company (UK)");
+                switchTo().window(PAGE_TITLE_XERO_BILLING);
                 String url = getActualUrl();
                 rootLogger.info(url);
-                $(byTitle("Xero | Edit Invoice | Demo Company (UK)")).shouldBe(exist);
-
+                sleep(3000);
             }
             catch (SoftAssertionError e) {
-              if ($(byTitle("Xero | Edit Invoice | Demo Company (UK)")).exists()==false){
+              if (checkPageTitle(PAGE_TITLE_XERO_BILLING)==false){
                 rootLogger.info("Window Xero Authorise not found - goto label");
                 break LOOP_A;}
-          }
+              }
         }
-        try {
+
         sleep(3000);
         checkText("5,000.00", 2);
-        close();}
-        finally {
-            Assert.fail("Value in Xero not matched ");
-        }
+        close();
     }
     @Ignore
     @Test  //todo
