@@ -21,6 +21,7 @@ import org.junit.runners.Suite;
         TestsPekamaSignUp.class,
         TestsPekamaSettingsPersonal.class,
         TestsPekamaProject.class,
+        TestsMessages.class,
         //TestsPekamaIntegrationBox.class,
         TestsPekamaSettingsTeam.class,
         TestsPekamaSettingValues.class,

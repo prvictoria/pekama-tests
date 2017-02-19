@@ -127,6 +127,7 @@ public class TestsStrings {
     public static final String ERROR_MSG_VALIDATION_LENGTH_100 = "Ensure this field has no more than 100 characters.";
     public static final String ERROR_MSG_VALIDATION_LENGTH_20 = "Ensure this field has no more than 20 characters.";
     public static final String ERROR_MSG_VALIDATION_LENGTH_255 = "Ensure this field has no more than 255 characters.";
+    public static final String ERROR_MSG_VALIDATION_LENGTH_512 = "Ensure this field has no more than 512 characters.";
     public static final String ERROR_MSG_VALIDATION_LENGTH_1024 = "Ensure this field has no more than 1024 characters.";
     public static final String ERROR_MSG_VALIDATION_LENGTH_128 = "Ensure this field has no more than 128 characters.";
     public static final String ERROR_MSG_VALIDATION_LENGTH_4 = "Ensure this field has no more than 4 characters.";

@@ -124,7 +124,7 @@ public class TestsPekamaDashboard {
     }
     @Ignore // TODO: 19-Feb-17
     @Test
-    public void testC_() {
+    public void testC_RedirectGlobalSearch() {
 
         rootLogger.info("");
         open("");
@@ -136,7 +136,7 @@ public class TestsPekamaDashboard {
 
     @Ignore // TODO: 19-Feb-17
     @Test
-    public void testD_() {
+    public void testD_OpenAllHeaderControls() {
 
         rootLogger.info("");
         open("");

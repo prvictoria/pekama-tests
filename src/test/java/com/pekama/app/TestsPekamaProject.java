@@ -689,51 +689,6 @@ public class TestsPekamaProject {
         rootLogger.info("Test passed");
     }
     @Test
-    public void createProject_P_addTeamConversation() {
-        rootLogger.info("Create thered in private zone");
-        CONVERSATION_BTN_Team.shouldBe(visible);
-        checkText(CONVERSATION_PLACEHOLDER_IN_TEAM_TAB);
-        CONVERSATION_BTN_Client.click();
-        checkText(CONVERSATION_PLACEHOLDER_IN_CLIENT_TAB);
-        CONVERSATION_BTN_Team.click();
-        CONVERSATION_BTN_New.click();
-        waitForModalWindow(TITLE_MW_CONVERSATION);
-        fillField(MW_CONVERSATION_INPUT_Subject, "TEAM_THREAD IN PRIVATE ZONE");
-        MW_BTN_CREATE.click();
-        MW.shouldNotBe(visible);
-        sleep(2000);
-        CONVERSATION_EDIT_TITLE.click();
-        CONVERSATION_FIELD_TITLE.shouldHave(value("TEAM_THREAD IN PRIVATE ZONE"));
-        CONVERSATION_FIELD_TITLE.pressEscape();
-        CONVERSATION_TITLE.shouldHave(text("TEAM_THREAD IN PRIVATE ZONE"));
-
-        CONVERSATION_LABEL_ACTIVE_TAB.shouldHave(text(CONVERSATION_TEAM_TAB_NAME));
-
-        CONVERSATION_INPUT_TEXT_COLLAPSED.click();
-        CONVERSATION_TEXT_EDITOR.sendKeys("new message 1-st row");
-        CONVERSATION_TEXT_EDITOR.shouldHave(text("new message 1-st row"));
-        CONVERSATION_TEXT_EDITOR.pressEnter();
-        CONVERSATION_TEXT_EDITOR.sendKeys("new message 2-nd row");
-        CONVERSATION_TEXT_EDITOR.pressEnter();
-        CONVERSATION_TEXT_EDITOR.sendKeys("new message 3-rd row");
-        submitEnabledButton(CONVERSATION_BTN_POST);
-//        $(byXpath("//*[@class='message-list']/li[1]//div[@class='message-holder']")).shouldHave(text("new message 1-st row"));
-//        checkText("new message 1-st row");
-        $(byXpath("//*[@class='message-list']/li[1]//div[@class='message-holder']")).isDisplayed();
-        rootLogger.info("Delete message");
-        CONVERSATION_MsgDelete.waitUntil(visible, 10000);
-        CONVERSATION_MsgDelete.click();
-        submitConfirmAction(TITLE_MW_DELETE_MESSAGE);
-        $(byXpath("//*[@class='message-list']/li[1]//div[@class='message-holder']")).shouldNot(visible);
-        rootLogger.info("Test passed");
-    }
-    @Test  //todo
-    public void createProject_P_addExternalConversation() {
-
-
-        rootLogger.info("Test passed");
-    }
-    @Test
     public void createProject_S_cloneProject() {
         String currentURL = url();
         scrollUp();
@@ -903,7 +858,6 @@ public class TestsPekamaProject {
         close();
         rootLogger.info("Test passed");
     }
-
     @Test
     public void createProject_ChargesXero_B_ValidationNotSameCurrency(){
 //        String xeroLogin = TEST_USER_EMAIL;
@@ -922,8 +876,6 @@ public class TestsPekamaProject {
         submitEnabledButton(MW_BTN_OK);
         MW.shouldNotBe(visible);
     }
-
-
     @Test
     public void createProject_ChargesXero_B_ValidationNotAllowedCurrency(){
 //        String xeroLogin = TEST_USER_EMAIL;
@@ -942,7 +894,6 @@ public class TestsPekamaProject {
         submitEnabledButton(MW_BTN_OK);
         MW.shouldNotBe(visible);
     }
-
     @Test//(timeout=240000)
     public void createProject_ChargesXero_C_MergeCharges(){
         String xeroLogin = TEST_USER_EMAIL;
@@ -994,13 +945,12 @@ public class TestsPekamaProject {
 
         checkText("7,777.00", 2);
         checkText("1,111.00", 2);
-        $(byId("invoiceTotal")).shouldHave(value("8,888.00"));
+        extXeroBillTotal.shouldHave(value("8,888.00"));
         checkValue("8,888.00", 2);
         close();
         rootLogger.info("Test passed");
 
     }
-
     @Test
     public void createProject_ChargesModalWindowValidation() {
         String bigDecimal = "12345678901234567890";

@@ -122,7 +122,9 @@ public class ModalWindows extends Page {
     //conversation
     public static final SelenideElement MW_CONVERSATION_INPUT_Subject = $(byXpath(mw+"//input[@name='subject']"));
     public static final SelenideElement MW_CONVERSATION_INPUT_Follower = $(byXpath(mw+"//pkm-followers-picker//input"));
-    public static final SelenideElement MW_CONVERSATION_INPUT_ZoneTeams = $(byXpath(mw+"//pkm-organizations-picker//li/input"));
+    public static final SelenideElement MW_CONVERSATION_INPUT_TEAMS = $(byXpath(mw+"//pkm-organizations-picker//li/input"));
+    public static final SelenideElement MW_CONVERSATION_BTN_INVITE = $(byXpath(mw+"//button[contains(., 'invite to Pekama')]"));
+    public static final SelenideElement MW_CONVERSATION_BTN_ADD_GUEST = $(byXpath(mw+"//button[contains(., 'add as guest')]"));
 
 
     public static final SelenideElement MW_CONVERSATION_FollowerField = $(byXpath(mw+"//li/input"));
