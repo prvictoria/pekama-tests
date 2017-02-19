@@ -57,7 +57,7 @@ public class TestsPekamaIntegrationBox {
 
 
         projectTabDocs.click();
-        $(byText(placeholderNoFiles)).shouldBe(Condition.visible);
+        $(byText(PLACEHOLDER_NoFiles)).shouldBe(Condition.visible);
 
         rootLogger.info("Add folder");
         //todo - random+name
@@ -240,7 +240,7 @@ public class TestsPekamaIntegrationBox {
         projectAllCheckbox.click();
         LINK_DELETE.click();
         StepsPekama.submitConfirmAction();
-        $(byText(placeholderNoFiles)).shouldBe(Condition.visible);
+        $(byText(PLACEHOLDER_NoFiles)).shouldBe(Condition.visible);
 
         if ($(byText(FileNameBeforeConnect)).exists() == true) {
             int count = 1;

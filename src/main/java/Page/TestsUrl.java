@@ -12,6 +12,7 @@ public class TestsUrl {
     public static final String URL_ResetPasswordComplete = SELECT_HOST+"/accounts/password/reset/complete/";
     public static final String URL_Landing = SELECT_HOST+"/";
     public static final String URL_Dashboard = SELECT_HOST+"/a/dashboard";
+    public static final String URL_NotFound = SELECT_HOST+"/a/projects/not_found";
 
     public static final String URL_ReportsProjects = PEKAMA+"/a/reports/projects";
     public static final String URL_ReportsTasks = PEKAMA+"/a/reports/tasks";

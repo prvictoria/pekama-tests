@@ -82,16 +82,16 @@ public class TestsStrings {
     public static final String TITLE_MW_CHANGE_COLLABORATOR = "Change Collaborator";
     public static final String TITLE_MW_CONTACT = "Contact";
 
-    public static final String placeholderNoFiles = "No files found.";
-    public static final String placeholderEmptyList = "Empty list.";
-    public static final String placeholderNoCases = "No community cases.";
+    public static final String PLACEHOLDER_NoFiles = "No files found.";
+    public static final String PLACEHOLDER_EmptyList = "Empty list.";
+    public static final String PLACEHOLDER_NO_CASES = "No community cases.";
 
     public static final String placeholderNoNumbers = "No numbers yet. Use the form below to create one.";
     public static final String placeholderNoProjects = "No projects yet. Create your first project";
     public static final String PLACEHOLDER_NO_DATA = "No data available.";
-    public static final String placeholderPicOne = "Pick one...";
-    public static final String placeholderTeamChat = "Team chat is great for conversations between groups of people, where all the group members should see the conversation all the time.";
-    public static final String placeholderExternalEmails = "Client emails are great to send completely standard-looking emails to clients/3rd party, but allow your team to see the conversation.";
+    public static final String PLACEHOLDER_PicOne = "Pick one...";
+    public static final String PLACEHOLDER_TeamChat = "Team chat is great for conversations between groups of people, where all the group members should see the conversation all the time.";
+    public static final String PLACEHOLDER_ExternalEmails = "Client emails are great to send completely standard-looking emails to clients/3rd party, but allow your team to see the conversation.";
     public static final String placeholderNoCommunityCases = "No community cases.";
     public static final String placeholder = "";
 

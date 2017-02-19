@@ -74,11 +74,11 @@ public class TestsPekamaProject {
     public void createProject_A_CheckDefaultStateAndDelete() {
         scrollUp();
         $$(byText(testProjectTitle)).filter(visible).shouldHaveSize(1);
-        $$(byText(placeholderNoCases)).filter(visible).shouldHaveSize(1);
+        $$(byText(PLACEHOLDER_NO_CASES)).filter(visible).shouldHaveSize(1);
         // $$(byText(placeholderNoNumbers)).filter(visible).shouldHaveSize(1);
         // todo BUG #140183099 - https://www.pivotaltracker.com/n/projects/1239770/stories/140183099
         $$(byText(PLACEHOLDER_NO_DATA)).filter(visible).shouldHaveSize(1);
-        $$(byText("Team chat is great for conversations between groups of people, where all the group members should see the conversation all the time.")).shouldHaveSize(1);
+        $$(byText(PLACEHOLDER_TeamChat)).shouldHaveSize(1);
 
         projectButtonPlus.click();
         projectPlusNewEvent.shouldBe(visible);
@@ -92,9 +92,20 @@ public class TestsPekamaProject {
         projectButtonPlus.pressEscape();
         PROJECT_BTN_DELETE.click();
         submitConfirmAction();
+        sleep(4000);
         String url = url();
         Assert.assertEquals(URL_Dashboard, url);
-        rootLogger.info("Project deleted by Owner - test passed");
+        rootLogger.info("Project deleted by Owner");
+
+        rootLogger.info("Check if user opens project link");
+        open(defaultProjectURL);
+        sleep(3000);
+        $(byXpath("//*[@class='alert alert-danger not-found-message']"))
+                .shouldHave(text("This project was deleted by its owner. "));
+
+        String notFoundUrl = url();
+        Assert.assertEquals(URL_NotFound, notFoundUrl);
+        rootLogger.info("Test passed");
     }
     @Test
     public void createProject_B_editProjectName() throws AWTException {
@@ -194,8 +205,8 @@ public class TestsPekamaProject {
         rootLogger.info("delete classification");
         TAB_INFO_ClassRow01delete.click();
         submitConfirmAction();
-        $$(byText(placeholderNoCases)).shouldHaveSize(1);
-        rootLogger.info("All calsses were deleted - "+placeholderNoCases);
+        $$(byText(PLACEHOLDER_NO_CASES)).shouldHaveSize(1);
+        rootLogger.info("All calsses were deleted - "+ PLACEHOLDER_NO_CASES);
     }
     @Test
     public void createProject_E_addCollaborator() {
@@ -394,10 +405,10 @@ public class TestsPekamaProject {
         LINK_DELETE.click();
         submitConfirmAction();
 
-        $(byText(placeholderNoFiles)).shouldBe(Condition.visible);
-        $$(byText(placeholderNoFiles)).filter(visible).shouldHaveSize(1);
+        $(byText(PLACEHOLDER_NoFiles)).shouldBe(Condition.visible);
+        $$(byText(PLACEHOLDER_NoFiles)).filter(visible).shouldHaveSize(1);
       //  $(byText("No files found.Upload your first file. ")).shouldBe(Condition.visible);
-        rootLogger.info(placeholderNoFiles);
+        rootLogger.info(PLACEHOLDER_NoFiles);
         rootLogger.info("Test passed");
     }
     @Test
@@ -418,9 +429,9 @@ public class TestsPekamaProject {
         fileMenuMakeAction(TAB_DOCS_FILES_MENU_DELETE, "renamed file");
         submitConfirmAction();
 
-        $(byText(placeholderNoFiles)).shouldBe(Condition.visible);
-        $$(byText(placeholderNoFiles)).filter(visible).shouldHaveSize(1);
-        rootLogger.info(placeholderNoFiles);
+        $(byText(PLACEHOLDER_NoFiles)).shouldBe(Condition.visible);
+        $$(byText(PLACEHOLDER_NoFiles)).filter(visible).shouldHaveSize(1);
+        rootLogger.info(PLACEHOLDER_NoFiles);
         rootLogger.info("Test passed");
     }
     @Test
@@ -442,7 +453,7 @@ public class TestsPekamaProject {
         projectAllCheckbox.click();
         $(byLinkText("Delete")).click();
         submitConfirmAction();
-        $$(byText(placeholderNoFiles)).shouldHaveSize(1);
+        $$(byText(PLACEHOLDER_NoFiles)).shouldHaveSize(1);
         rootLogger.info("Test passed");
     }
     @Test
@@ -523,7 +534,7 @@ public class TestsPekamaProject {
     public void createProject_I_addTask() {
         String taskName = "new task";
         projectTabTasks.click();
-        $$(byText(placeholderEmptyList)).shouldHaveSize(1);
+        $$(byText(PLACEHOLDER_EmptyList)).shouldHaveSize(1);
         TAB_TASKS_ADD.click();
         TAB_TASKS_NEW_TASK.shouldBe(visible).click();
 
@@ -611,7 +622,7 @@ public class TestsPekamaProject {
     @Test
     public void createProject_M_addChargePositive() {
         projectTabFin.click();
-        checkText(placeholderEmptyList);
+        checkText(PLACEHOLDER_EmptyList);
         TAB_CHARGES_ADD.click();
         rootLogger.info("Create charge");
         waitForModalWindow(TITLE_MW_CHARGE);
@@ -621,7 +632,7 @@ public class TestsPekamaProject {
         fillField(MW_CHARGES_INPUT_PRICE, "1000");
         submitEnabledButton(MW_BTN_OK);
         MW.shouldNot(visible);
-        checkTextNotPresent(placeholderEmptyList);
+        checkTextNotPresent(PLACEHOLDER_EmptyList);
         checkText(TEST_USER_FULL_TEAM_NAME+" ->");
         checkText(CHARGES_TYPE_ASSOCIATE);
         checkText(getCurrentDate());
@@ -631,7 +642,7 @@ public class TestsPekamaProject {
         projectAllCheckbox.click();
         TAB_CHARGES_BTN_DELETE.click();
         submitConfirmAction();
-        checkText(placeholderEmptyList);
+        checkText(PLACEHOLDER_EmptyList);
         rootLogger.info("Test passed");
     }
     @Test

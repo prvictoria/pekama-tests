@@ -30,7 +30,7 @@ import org.junit.runners.Suite;
 public class AllTestsRunner {
     public static void holdBrowserAfterTest() {
         Configuration test = new Configuration();
-        test.holdBrowserOpen = false;
+        test.holdBrowserOpen = true;
     }
     public static void holdBrowserAfterTest(boolean value) {
         Configuration test = new Configuration();
