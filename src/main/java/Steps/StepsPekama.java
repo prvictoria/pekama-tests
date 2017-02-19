@@ -2,7 +2,6 @@ package Steps;
 import Utils.*;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.ex.SoftAssertionError;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
@@ -401,15 +400,15 @@ public class StepsPekama implements StepsFactory{
         rootLogger.info("Created project: "+projectName);
         return projectName;
     }
-    //in root
+    //in root in Project
     public static void createFileInRoot(SelenideElement fileType, String fileName) {
-        projectTabDocs.click();
-        TAB_DOCS_BTN_ADD.click();
+        projectTabDocs.waitUntil(visible, 15000).click();
+        TAB_DOCS_BTN_ADD.waitUntil(enabled, 15000).click();
         TAB_DOC_NEW_DOCUMENT.shouldBe(Condition.visible).click();
-        deployFileTemplate(fileType, fileName);
+        modalWindowDeployFileTemplate(fileType, fileName);
 
     }
-    public static void deployFileTemplate(SelenideElement fileType, String fileName) {
+    public static void modalWindowDeployFileTemplate(SelenideElement fileType, String fileName) {
         waitForModalWindow(TITLE_MW_ADD_DOCUMENT);
         MW_DEPLOY_DOC_BTN_CREATE.shouldBe(disabled);
         fileType.shouldBe(Condition.visible).click();
@@ -419,7 +418,7 @@ public class StepsPekama implements StepsFactory{
         $(byText(fileName)).shouldBe(Condition.visible);
         rootLogger.info(fileName+" - file present");
     }
-    public static void createFolder(String folderName) {
+    public static void modalWindowCreateFolder(String folderName) {
         waitForModalWindow(TITLE_MW_NEW_FOLDER);
         MW_BTN_SAVE.shouldBe(disabled);
         fillField(MW_NEW_FOLDER_INPUT_NAME, folderName);
@@ -428,16 +427,51 @@ public class StepsPekama implements StepsFactory{
         $(byText(folderName)).shouldBe(Condition.visible);
         rootLogger.info(folderName+" - Folder present");
     }
-    public static void createFolderInRoot(String folderName) {
-        TAB_DOCS_BTN_ADD.click();
+    public static String createNumber() {
+        String codeType = "Equinox code";
+        String codeValue = "2000/17/55-asd";
+        rootLogger.info("Create "+codeType+"with value - "+codeValue);
+        projectTabInfo.waitUntil(visible, 15000).click();
+        scrollDown();
+        selectItemInDropdown(TAB_INFO_NumberNewSelect, TAB_INFO_NumberNewField, codeType);
+        fillField(TAB_INFO_NumberReferenceField, codeValue);
+        submitEnabledButton(TAB_INFO_NumberAdd);
+        TAB_INFO_NumberRow01Type.shouldHave(text(codeType));
+        rootLogger.info(codeType+" - Number was created");
+        return codeValue;
+    }
+    public static String createClassification() {
+        //default
+        String classNumber = "12";
+        String classDescripton = "Class description";
+        String classType = "Up-to-date";
+        projectTabInfo.waitUntil(visible, 15000).click();
+        scrollDown();
+        TAB_INFO_ClassesAdd.waitUntil(visible, 20000).click();
+        waitForModalWindow(mwClasses_Title);
+        MW_BTN_OK.shouldBe(disabled);
+        mwClasses_SelectClassType.shouldHave(text(classType));
+        fillField(mwClasses_FieldClass, classNumber);
+        fillField(mwClasses_FieldDescription, classDescripton);
+        submitEnabledButton(MW_BTN_OK);
+        MW.shouldNotBe(visible);
+        $$(byText(classType)).shouldHaveSize(1);
+        $$(byText(classDescripton)).shouldHaveSize(1);
+        rootLogger.info(classDescripton+" - Class was created");
+        return classType;
+    }
+    public static String createFolderInRoot(String folderName) {
+        projectTabDocs.waitUntil(visible, 15000).click();
+        TAB_DOCS_BTN_ADD.waitUntil(enabled, 15000).click();
         rootLogger.info("Add folder");
         TAB_DOC_ADD_FOLDER.shouldBe(Condition.visible).click();
-        createFolder(folderName);
+        modalWindowCreateFolder(folderName);
         rootLogger.info(folderName+" - Folder present");
+        return folderName;
     }
-    public static void createTask(String taskName) {
-        projectTabTasks.click();
-        TAB_TASKS_ADD.click();
+    public static String createTask(String taskName) {
+        projectTabTasks.waitUntil(visible, 15000).click();
+        TAB_TASKS_ADD.waitUntil(enabled, 15000).click();
         TAB_TASKS_NEW_TASK.shouldBe(visible).click();
         waitForModalWindow(TITLE_MW_NEW_TASK);
         MW_BTN_OK.shouldBe(disabled);
@@ -446,8 +480,9 @@ public class StepsPekama implements StepsFactory{
         MW.shouldNotBe(visible);
         $$(byText(taskName)).shouldHaveSize(1);
         rootLogger.info(taskName+" - Task created");
+        return taskName;
     }
-    public static void createEvent(String eventTypeName) {
+    public static String createEvent(String eventTypeName) {
         scrollUp();
         rootLogger.info("Deploy new event");
         projectButtonPlus.shouldBe(visible).click();
@@ -462,10 +497,11 @@ public class StepsPekama implements StepsFactory{
         MW.shouldNotBe(visible);
         $$(byText(eventTypeName)).filter(visible).shouldHaveSize(1);
         rootLogger.info(eventTypeName+" - Event created");
+        return eventTypeName;
     }
-    public static void createCharge(String chargeType, String currency, String price) {
-        projectTabFin.shouldBe(visible).click();
-        TAB_CHARGES_ADD.shouldBe(visible).shouldBe(enabled).click();
+    public static String createCharge(String chargeType, String currency, String price) {
+        projectTabFin.waitUntil(visible, 15000).click();
+        TAB_CHARGES_ADD.waitUntil(enabled, 15000).click();
         rootLogger.info("Create charge");
         waitForModalWindow(TITLE_MW_CHARGE);
         selectItemInDropdown(MW_CHARGES_SELECT_TYPE, MW_CHARGES_INPUT_TYPE, chargeType);
@@ -476,6 +512,7 @@ public class StepsPekama implements StepsFactory{
         checkTextNotPresent(placeholderEmptyList);
         checkText(CHARGES_TYPE_ASSOCIATE);
         checkText(getDate(0));
+        return  chargeType;
     }
 
     public static void selectOption(SelenideElement optionSelector,String optionName) {

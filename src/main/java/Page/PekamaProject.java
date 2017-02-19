@@ -52,7 +52,7 @@ public class PekamaProject extends Page {
 
     public static final SelenideElement TAB_CHARGES_ADD = TAB_CONTROL_ADD;
     public static final SelenideElement TAB_CHARGES_CHECKBOX_ALL = $(byXpath(CONTROLS_ROW+""));
-    public static final SelenideElement projectTabMore = $(byXpath("//i[@class='icon pkm-icon-info-square']"));
+    public static final SelenideElement projectTabInfo = $(byXpath("//i[@class='icon pkm-icon-info-square']"));
     public static final SelenideElement projectTabContacts = $(byXpath("//i[@class='icon pkm-icon-users-square']"));
     public static final SelenideElement projectTabDocs = $(byXpath("//i[@class='icon pkm-icon-documents-square']"));
     public static final SelenideElement projectTabTasks = $(byXpath("//i[@class='icon pkm-icon-tasks-square']"));
