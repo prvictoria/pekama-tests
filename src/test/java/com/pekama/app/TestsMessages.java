@@ -1,5 +1,7 @@
-package com.pekama.app;/**
- * Created by VatslauX on 19-Feb-17.
+package com.pekama.app;
+/**
+ * Created by Viachaslau Balashevich.
+ * https://www.linkedin.com/in/viachaslau
  */
 
 import Steps.*;

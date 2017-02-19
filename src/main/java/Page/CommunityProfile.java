@@ -1,5 +1,8 @@
 package Page;
-
+/**
+ * Created by Viachaslau Balashevich.
+ * https://www.linkedin.com/in/viachaslau
+ */
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.junit.Assert;

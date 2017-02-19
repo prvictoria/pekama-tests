@@ -24,7 +24,10 @@ import static com.codeborne.selenide.Selenide.*;
 import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
-
+/**
+ * Created by Viachaslau Balashevich.
+ * https://www.linkedin.com/in/viachaslau
+ */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsCommunityProfile {
     static final Logger log = LogManager.getLogger(TestsCommunityProfile.class);

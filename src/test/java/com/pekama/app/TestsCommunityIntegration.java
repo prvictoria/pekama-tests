@@ -1,7 +1,8 @@
-package com.pekama.app;/**
- * Created by VatslauX on 16-Feb-17.
+package com.pekama.app;
+/**
+ * Created by Viachaslau Balashevich.
+ * https://www.linkedin.com/in/viachaslau
  */
-
 import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

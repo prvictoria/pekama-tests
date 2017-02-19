@@ -1,7 +1,7 @@
 package Page;
-
 /**
- * Created by VatslauX on 29-Dec-16.
+ * Created by Viachaslau Balashevich.
+ * https://www.linkedin.com/in/viachaslau
  */
 public class TestsStrings {
     public static final String NAMES = "USER DATA";

@@ -1,12 +1,7 @@
 package Page;
-
-import com.codeborne.selenide.*;
-
-import static com.codeborne.selenide.Selectors.byXpath;
-import static com.codeborne.selenide.Selenide.$;
-
 /**
- * Created by Viachaslau_Balashevi on 12/29/2016.
+ * Created by Viachaslau Balashevich.
+ * https://www.linkedin.com/in/viachaslau
  */
 public class CommunityOutgoing extends Page {
     public static String caseRow;

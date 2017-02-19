@@ -16,9 +16,9 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.sleep;
 import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
-
 /**
- * Created by VatslauX on 27-Dec-16.
+ * Created by Viachaslau Balashevich.
+ * https://www.linkedin.com/in/viachaslau
  */
 public class TestsCommynityLanding {
     static final Logger rootLogger = LogManager.getRootLogger();

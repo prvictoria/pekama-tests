@@ -1,5 +1,6 @@
 /**
- * Created by VatslauX on 29-Dec-16.
+ * Created by Viachaslau Balashevich.
+ * https://www.linkedin.com/in/viachaslau
  */
 package com.pekama.app;
 import com.codeborne.selenide.Condition;

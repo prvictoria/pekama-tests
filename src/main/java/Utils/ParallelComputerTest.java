@@ -1,5 +1,4 @@
 package Utils;
-
 import Page.TestsCredentials;
 import Steps.StepsPekama;
 import org.apache.logging.log4j.LogManager;
@@ -10,7 +9,10 @@ import org.junit.runner.JUnitCore;
 
 import static Page.TestsUrl.URL_COMMUNITY_LOGIN;
 import static com.codeborne.selenide.Selenide.open;
-
+/**
+ * Created by Viachaslau Balashevich.
+ * https://www.linkedin.com/in/viachaslau
+ */
 public class ParallelComputerTest {
 
     @Test

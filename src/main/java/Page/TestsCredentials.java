@@ -2,8 +2,10 @@ package Page;
 import org.junit.Test;
 
 import static Page.TestsCredentials.User1.GMAIL_EMAIL;
-
-
+/**
+ * Created by Viachaslau Balashevich.
+ * https://www.linkedin.com/in/viachaslau
+ */
 public class TestsCredentials {
     //need valid accounts on server
     public enum User1 {

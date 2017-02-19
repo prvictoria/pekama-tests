@@ -32,7 +32,10 @@ import static com.codeborne.selenide.WebDriverRunner.url;
 import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
-
+/**
+ * Created by Viachaslau Balashevich.
+ * https://www.linkedin.com/in/viachaslau
+ */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaResetPassword {
     static final Logger rootLogger = LogManager.getLogger(LoginGmail.class);

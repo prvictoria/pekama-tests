@@ -1,5 +1,8 @@
 package Page;
-
+/**
+ * Created by Viachaslau Balashevich.
+ * https://www.linkedin.com/in/viachaslau
+ */
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
@@ -8,10 +11,6 @@ import java.lang.reflect.Array;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
-
-/**
- * Created by Viachaslau_Balashevi on 12/29/2016.
- */
 public class PekamaSignUp extends Page {
     public static final SelenideElement signup = $(byXpath("//form[@id='signup-form']"));
     public static final SelenideElement SIGN_UP_TITLE = $(byXpath("//*[@class='details-title']"));

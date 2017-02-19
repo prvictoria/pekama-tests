@@ -21,9 +21,9 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.url;
-
 /**
- * Created by VatslauX on 03-Jan-17.
+ * Created by Viachaslau Balashevich.
+ * https://www.linkedin.com/in/viachaslau
  */
 public class StepsCommunity implements StepsFactory{
     static final Logger rootLogger = LogManager.getLogger(StepsCommunity.class);

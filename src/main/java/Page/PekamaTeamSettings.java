@@ -5,9 +5,9 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
-
 /**
- * Created by VatslauX on 29-Dec-16.
+ * Created by Viachaslau Balashevich.
+ * https://www.linkedin.com/in/viachaslau
  */
 public class PekamaTeamSettings extends Page {
     public static final SelenideElement SETTINGS_TEAM_ProjectTemplatesTab = $(byXpath("/a/settings/team/templates/projects"));

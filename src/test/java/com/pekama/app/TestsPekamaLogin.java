@@ -23,6 +23,10 @@ import static com.codeborne.selenide.WebDriverRunner.url;
 import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+/**
+ * Created by Viachaslau Balashevich.
+ * https://www.linkedin.com/in/viachaslau
+ */
 public class TestsPekamaLogin {
     String testDashboardUrl = "";
     static final Logger rootLogger = LogManager.getRootLogger();

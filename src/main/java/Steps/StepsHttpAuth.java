@@ -5,9 +5,9 @@ import org.junit.Test;
 import static com.codeborne.selenide.Selenide.sleep;
 import static com.codeborne.selenide.WebDriverRunner.isFirefox;
 import static org.junit.Assume.assumeTrue;
-
 /**
- * Created by Viachaslau_Balashevic on 1/9/2017.
+ * Created by Viachaslau Balashevich.
+ * https://www.linkedin.com/in/viachaslau
  */
 public class StepsHttpAuth implements StepsFactory {
     public void httpAuthStagingPekama() {

@@ -1,7 +1,7 @@
 package Utils;
-
 /**
- * Created by VatslauX on 17-Feb-17.
+ * Created by Viachaslau Balashevich.
+ * https://www.linkedin.com/in/viachaslau
  */
 public class Exceptions extends Exception {
     public Exceptions() { super(); }

@@ -1,7 +1,8 @@
 package Page;
 import static Page.TestsUrlConfiguration.*;
 /**
- * Created by VatslauX on 29-Dec-16.
+ * Created by Viachaslau Balashevich.
+ * https://www.linkedin.com/in/viachaslau
  */
 public class TestsUrl {
     public static final String URL_SingUp = SELECT_HOST+"/signup/";

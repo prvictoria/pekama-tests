@@ -3,7 +3,10 @@ import Page.PekamaSignUp;
 import com.codeborne.selenide.Configuration;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
-
+/**
+ * Created by Viachaslau Balashevich.
+ * https://www.linkedin.com/in/viachaslau
+ */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         //TestsCommunityIntegration.class,

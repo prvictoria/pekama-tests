@@ -8,7 +8,10 @@ import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
-
+/**
+ * Created by Viachaslau Balashevich.
+ * https://www.linkedin.com/in/viachaslau
+ */
 public class Utils {
     private static final String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static Random rnd = new Random();

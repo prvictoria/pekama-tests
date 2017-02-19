@@ -12,7 +12,10 @@ import static Page.TestsCredentials.*;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
-
+/**
+ * Created by Viachaslau Balashevich.
+ * https://www.linkedin.com/in/viachaslau
+ */
 public class TestsPekamaLanding {
     @Before
     public void openUrlLogin() {

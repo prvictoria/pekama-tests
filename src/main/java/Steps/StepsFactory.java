@@ -1,7 +1,7 @@
 package Steps;
-
 /**
- * Created by Viachaslau_Balashevi on 1/23/2017.
+ * Created by Viachaslau Balashevich.
+ * https://www.linkedin.com/in/viachaslau
  */
 public interface StepsFactory {
 }

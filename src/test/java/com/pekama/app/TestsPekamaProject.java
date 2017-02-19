@@ -28,7 +28,10 @@ import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.*;
 import static com.pekama.app.AllTestsRunner.*;
 import static org.junit.Assert.assertEquals;
-
+/**
+ * Created by Viachaslau Balashevich.
+ * https://www.linkedin.com/in/viachaslau
+ */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaProject {
     static final Logger rootLogger = LogManager.getRootLogger();

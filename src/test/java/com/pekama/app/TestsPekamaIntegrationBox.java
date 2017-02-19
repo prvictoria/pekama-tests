@@ -1,7 +1,8 @@
-package com.pekama.app;/**
- * Created by VatslauX on 18-Jan-17.
+package com.pekama.app;
+/**
+ * Created by Viachaslau Balashevich.
+ * https://www.linkedin.com/in/viachaslau
  */
-
 import static Page.Box.*;
 import static Page.ModalWindows.*;
 import static Page.PekamaProject.*;
@@ -21,7 +22,6 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.url;
 import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
-
 //todo draft cases
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaIntegrationBox {

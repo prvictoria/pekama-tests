@@ -26,7 +26,10 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static com.codeborne.selenide.WebDriverRunner.url;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-
+/**
+ * Created by Viachaslau Balashevich.
+ * https://www.linkedin.com/in/viachaslau
+ */
 public class StepsPekama implements StepsFactory{
     static final Logger rootLogger = LogManager.getRootLogger();
     public void  loginIntoPekamaByUrl(String PEKAMA_USER_EMAIL, String urlLogIn){

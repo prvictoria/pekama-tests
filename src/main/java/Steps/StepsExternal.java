@@ -15,9 +15,10 @@ import static com.codeborne.selenide.Selenide.*;
 import static Page.Emails.*;
 import static org.junit.Assert.assertEquals;
 import static org.openqa.selenium.support.ui.ExpectedConditions.alertIsPresent;
-
-
-
+/**
+ * Created by Viachaslau Balashevich.
+ * https://www.linkedin.com/in/viachaslau
+ */
 public class StepsExternal implements StepsFactory{
     static final Logger logging = LogManager.getLogger(StepsExternal.class);
     public static String REDIRECT_LINK;

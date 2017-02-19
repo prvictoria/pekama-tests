@@ -1,7 +1,5 @@
-package com.pekama.app;/**
- * Created by VatslauX on 09-Feb-17.
- */
-
+package com.pekama.app;
+import org.junit.FixMethodOrder;
 import Page.TestsCredentials;
 import Steps.StepsPekama;
 import com.codeborne.selenide.Condition;
@@ -21,7 +19,10 @@ import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.*;
 import static com.pekama.app.AllTestsRunner.*;
-
+/**
+ * Created by Viachaslau Balashevich.
+ * https://www.linkedin.com/in/viachaslau
+ */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsCommunityIncoming {
     static final Logger rootLogger = LogManager.getRootLogger();

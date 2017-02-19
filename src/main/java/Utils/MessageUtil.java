@@ -1,8 +1,8 @@
 package Utils;
-/*
-* This class prints the given message on console.
-*/
-
+/**
+ * Created by Viachaslau Balashevich.
+ * https://www.linkedin.com/in/viachaslau
+ */
 public class MessageUtil {
 
     private String message;

@@ -1,8 +1,9 @@
 //package Utils;
 //
-///**
-// * Created by Viachaslau_Balashevi on 1/9/2017.
-// */
+/**
+ * Created by Viachaslau Balashevich.
+ * https://www.linkedin.com/in/viachaslau
+ */
 //import java.io.IOException;
 //
 //import java.util.concurrent.TimeUnit;

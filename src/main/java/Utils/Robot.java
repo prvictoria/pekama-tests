@@ -1,10 +1,9 @@
 package Utils;
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
-
 /**
- * Created by Viachaslau_Balashevi on 1/26/2017.
+ * Created by Viachaslau Balashevich.
+ * https://www.linkedin.com/in/viachaslau
  */
 public class Robot extends java.awt.Robot {
     public Robot() throws AWTException {

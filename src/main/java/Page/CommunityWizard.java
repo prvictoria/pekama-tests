@@ -1,13 +1,12 @@
 package Page;
-
+/**
+ * Created by Viachaslau Balashevich.
+ * https://www.linkedin.com/in/viachaslau
+ */
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
-
-/**
- * Created by Viachaslau_Balashevi on 12/29/2016.
- */
 public class CommunityWizard extends Page {
     public static final SelenideElement WIZARD_ = $(byXpath(""));
     public static final SelenideElement WIZARD_STEP1 = $(byXpath("//section/ui-view/div[1]"));

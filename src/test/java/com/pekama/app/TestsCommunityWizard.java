@@ -23,7 +23,10 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
-
+/**
+ * Created by Viachaslau Balashevich.
+ * https://www.linkedin.com/in/viachaslau
+ */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsCommunityWizard {
     static final Logger rootLogger = LogManager.getRootLogger();

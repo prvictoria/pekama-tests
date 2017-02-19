@@ -1,7 +1,7 @@
 package Page;
-
 /**
- * Created by Viachaslau_Balashevi on 12/29/2016.
+ * Created by Viachaslau Balashevich.
+ * https://www.linkedin.com/in/viachaslau
  */
 public class CommunityIncoming  extends Page {
 }
