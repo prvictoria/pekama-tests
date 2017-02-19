@@ -798,8 +798,8 @@ public class TestsPekamaProject {
 
         rootLogger.info("Test passed");
     }
-    @Test
-    public void createProject_ChargesXero()  throws SoftAssertionError {
+    @Test//(timeout=240000)
+    public void createProject_ChargesXero_A_SendBill()  throws SoftAssertionError {
         String xeroLogin = TEST_USER_EMAIL;
         String xeroPassword = TEST_USER_XERO_PASSWORD;
         String price = "5000";
@@ -807,84 +807,185 @@ public class TestsPekamaProject {
         String testSearchChargesType = CHARGES_TYPE_ASSOCIATE;
         createCharge(testSearchChargesType, EUR, price);
         rootLogger.info("Start Xero flow");
+
         projectAllCheckbox.click();
         TAB_CHARGES_XERO.click();
         sleep(3000);
-        LOOP_A: {
-          if ($(byText("Invoice created")).isDisplayed() == false) {
+
+        if ($(byText("Invoice created")).isDisplayed() == false) {
               rootLogger.info("Modal window not displayed");
             try {
                 switchTo().window(PAGE_TITLE_XERO_LOGIN);
                 String url = getActualUrl();
                 rootLogger.info(url);
+                if (checkPageTitle(PAGE_TITLE_XERO_LOGIN)==false){
+                    Assert.fail("Xero window NOT found");}
                 fillField(extXeroEmail, xeroLogin);
                 fillField(extXeroPassword, xeroPassword);
                 submitEnabledButton(extXeroLogin);
                 rootLogger.info("Xero login window submitted");
-            } catch (SoftAssertionError e){
-                if (checkPageTitle(PAGE_TITLE_XERO_LOGIN)==false){
-                rootLogger.info("Xero window NOT found");}
-            }
-            try {
+
                 switchTo().window(PAGE_TITLE_XERO_AUTH);
-                String url = getActualUrl();
+                url = getActualUrl();
                 rootLogger.info(url);
+                if (checkPageTitle(PAGE_TITLE_XERO_AUTH)==false){
+                    Assert.fail("Window Xero Authorise window not found");}
                 submitEnabledButton(extXeroAccept);
-                extXeroAccept.shouldNotBe(visible);
                 rootLogger.info("Xero auth window submitted");
                 sleep(5000);
-            } catch (SoftAssertionError e) {
-                if (checkPageTitle(PAGE_TITLE_XERO_AUTH)==false){
-                    rootLogger.info("Window Xero Authorise window not found");}
-            }
-            try {
-                switchTo().window(PAGE_TITLE_PEKAMA);
-                String url = getActualUrl();
-                rootLogger.info(url);
-                sleep(2000);
-            } catch (SoftAssertionError e) {
-                if (checkPageTitle(PAGE_TITLE_PEKAMA)==false){
-                    rootLogger.info("Return to Pekama failed");}
-            }
-          }
 
-          if ($(byText("Invoice created")).isDisplayed()) {
+                switchTo().window(PAGE_TITLE_PEKAMA);
+                url = getActualUrl();
+                rootLogger.info(url);
+                if (checkPageTitle(PAGE_TITLE_PEKAMA)==false){
+                    Assert.fail("Return to Pekama failed");}
+                sleep(2000);
+            }
+                catch (SoftAssertionError e) {
+                   rootLogger.info("Return to Pekama failed");
+            }
+        }
+
+        if ($(byText("Invoice created")).isDisplayed()) {
               rootLogger.info("Modal window displayed");
               waitForModalWindow("Invoice created");
               submitEnabledButton(MW_BTN_YES);
-              MW.shouldNotBe(visible);
+              MW.waitUntil(not(visible), 10000);
+              sleep(5000);
+            checkThatWindowsQtyIs(2);
+            for(String winHandle : getWebDriver().getWindowHandles()){
+                  rootLogger.info(winHandle);
+                  switchTo().window(winHandle);
+                  getActualUrl();
+              }
 
-              try {
-                  switchTo().window(PAGE_TITLE_XERO_LOGIN);
-                  String url = getActualUrl();
-                  rootLogger.info(url);
-
-                  fillField(extXeroEmail, xeroLogin);
-                  fillField(extXeroPassword, xeroPassword);
-                  submitEnabledButton(extXeroLogin);
-                  rootLogger.info("Xero login window submitted");
-              } catch (SoftAssertionError e) {
-                  if (checkPageTitle(PAGE_TITLE_XERO_AUTH) == false) {
-                      rootLogger.info("Xero window NOT found");
+              if (checkPageTitle(PAGE_TITLE_XERO_LOGIN)==true){
+                  try {
+                      getActualUrl();
+                      fillField(extXeroEmail, xeroLogin);
+                      fillField(extXeroPassword, xeroPassword);
+                      submitEnabledButton(extXeroLogin);
+                      sleep(5000);
+                      rootLogger.info("Xero login window submitted");
+                  } catch (SoftAssertionError e) {
+                      if (checkPageTitle(PAGE_TITLE_XERO_LOGIN) == false) {
+                          rootLogger.info("Xero window NOT found");
+                      }
                   }
               }
-              try {
-                  switchTo().window(PAGE_TITLE_XERO_BILLING);
-                  String url = getActualUrl();
-                  rootLogger.info(url);
-                  sleep(3000);
-              } catch (SoftAssertionError e) {
-                  if (checkPageTitle(PAGE_TITLE_XERO_BILLING) == false) {
-                      rootLogger.info("Window Xero Authorise not found - goto label");
-                      break LOOP_A;
+              if (checkPageTitle(PAGE_TITLE_XERO_BILLING) == true){
+                  try {
+                      getActualUrl();
+                      sleep(3000);
+                  } catch (SoftAssertionError e) {
+                      if (checkPageTitle(PAGE_TITLE_XERO_BILLING) == false) {
+                          rootLogger.info("Window Xero Authorise not found - goto label");
+                      }
                   }
               }
-          }
         }
+
         sleep(3000);
         checkText("5,000.00", 2);
         close();
         rootLogger.info("Test passed");
+    }
+
+    @Test
+    public void createProject_ChargesXero_B_ValidationNotSameCurrency(){
+//        String xeroLogin = TEST_USER_EMAIL;
+//        String xeroPassword = TEST_USER_XERO_PASSWORD;
+        String price = "5000";
+        rootLogger.info("Create Charge");
+        String testSearchChargesType = CHARGES_TYPE_ASSOCIATE;
+        createCharge(testSearchChargesType, EUR, price);
+        createCharge(testSearchChargesType, USD, price);
+        rootLogger.info("Start Xero flow");
+        projectAllCheckbox.click();
+        TAB_CHARGES_XERO.click();
+
+        waitForModalWindow("ERRORS");
+        checkText("Financials have different currency codes");
+        submitEnabledButton(MW_BTN_OK);
+        MW.shouldNotBe(visible);
+    }
+
+
+    @Test
+    public void createProject_ChargesXero_B_ValidationNotAllowedCurrency(){
+//        String xeroLogin = TEST_USER_EMAIL;
+//        String xeroPassword = TEST_USER_XERO_PASSWORD;
+        String price = "5000";
+        rootLogger.info("Create Charge");
+        String testSearchChargesType = CHARGES_TYPE_ASSOCIATE;
+        createCharge(testSearchChargesType, USD, price);
+        createCharge(testSearchChargesType, USD, price);
+        rootLogger.info("Start Xero flow");
+        projectAllCheckbox.click();
+        TAB_CHARGES_XERO.click();
+
+        waitForModalWindow("ERRORS");
+        checkText("Organisation is not subscribed to currency USD");
+        submitEnabledButton(MW_BTN_OK);
+        MW.shouldNotBe(visible);
+    }
+
+    @Test//(timeout=240000)
+    public void createProject_ChargesXero_C_MergeCharges(){
+        String xeroLogin = TEST_USER_EMAIL;
+        String xeroPassword = TEST_USER_XERO_PASSWORD;
+        String price1 = "7777";
+        String price2 = "1111";
+        String testSearchChargesType = CHARGES_TYPE_ASSOCIATE;
+
+        rootLogger.info("Create 2 Charges");
+        createCharge(testSearchChargesType, EUR, price1);
+        createCharge(testSearchChargesType, EUR, price2);
+
+        rootLogger.info("Start Xero flow");
+        projectAllCheckbox.click();
+        TAB_CHARGES_XERO.shouldBe(visible).click();
+        sleep(3000);
+        if ($(byText("Invoice created")).isDisplayed()) {
+            rootLogger.info("Modal window displayed");
+            waitForModalWindow("Invoice created");
+            submitEnabledButton(MW_BTN_YES);
+            MW.shouldNotBe(visible);}
+
+            try {
+                switchTo().window(PAGE_TITLE_XERO_LOGIN);
+                String url = getActualUrl();
+                rootLogger.info(url);
+
+                fillField(extXeroEmail, xeroLogin);
+                fillField(extXeroPassword, xeroPassword);
+                submitEnabledButton(extXeroLogin);
+                rootLogger.info("Xero login window submitted");}
+                catch (SoftAssertionError e) {
+                if (checkPageTitle(PAGE_TITLE_XERO_LOGIN) == false) {
+                    rootLogger.info("Xero window NOT found");
+                }
+            }
+            try {
+                switchTo().window(PAGE_TITLE_XERO_BILLING);
+                String url = getActualUrl();
+                rootLogger.info(url);
+                sleep(3000);}
+                catch (SoftAssertionError e) {
+                if (checkPageTitle(PAGE_TITLE_XERO_BILLING) == false) {
+                    rootLogger.info("Window Xero Authorise not found - goto label");
+                }
+
+        }
+        sleep(3000);
+
+        checkText("7,777.00", 2);
+        checkText("1,111.00", 2);
+        $(byId("invoiceTotal")).shouldHave(value("8,888.00"));
+        checkValue("8,888.00", 2);
+        close();
+        rootLogger.info("Test passed");
+
     }
 
     @Test

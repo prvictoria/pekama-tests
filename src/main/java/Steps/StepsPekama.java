@@ -7,6 +7,8 @@ import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Set;
+
 import static Page.ModalWindows.*;
 import static Page.PekamaLogin.*;
 import static Page.PekamaProject.*;
@@ -321,9 +323,19 @@ public class StepsPekama implements StepsFactory{
         $$(byText(textString)).filter(visible).shouldHaveSize(size);
         return true;
     }
+    public static boolean checkValue(String textString, int size) {
+        $(byValue(textString)).waitUntil(visible, 20000);
+        $$(byValue(textString)).filter(visible).shouldHaveSize(size);
+        return true;
+    }
     public static boolean checkText(String textString) {
         $(byText(textString)).waitUntil(visible, 20000);
         $$(byText(textString)).filter(visible).shouldHaveSize(1);
+        return true;
+    }
+    public static boolean checkValue(String textString) {
+        $(byValue(textString)).waitUntil(visible, 20000);
+        $$(byValue(textString)).filter(visible).shouldHaveSize(1);
         return true;
     }
 
@@ -509,9 +521,6 @@ public class StepsPekama implements StepsFactory{
         fillField(MW_CHARGES_INPUT_PRICE, price);
         submitEnabledButton(MW_BTN_OK);
         MW.shouldNot(visible);
-        checkTextNotPresent(placeholderEmptyList);
-        checkText(CHARGES_TYPE_ASSOCIATE);
-        checkText(getDate(0));
         return  chargeType;
     }
 
@@ -595,13 +604,56 @@ public class StepsPekama implements StepsFactory{
         return true;
     }
     public static boolean checkPageTitle(String expectedTitle) {
-       // boolean result =
+        int i=0;
+        while (i>20){
+            getWebDriver().getTitle();
+            sleep(1000);
+            i++;
+            if(getWebDriver().getTitle()!=null){break;}
+        }
         if (expectedTitle.equals(getWebDriver().getTitle())==false){
             rootLogger.debug("false");
             return false;
         }
         rootLogger.debug("true");
         return true;
+    }
+    public static void switchToChildWindow() {
+        for(String winHandle : getWebDriver().getWindowHandles()){
+            rootLogger.info(winHandle);
+            switchTo().window(winHandle);
+            getActualUrl();
+        }
+    }
+    public static boolean checkThatWindowsQtyIs(int windowsQty) {
+        Set<String> windows = getWebDriver().getWindowHandles();
+        rootLogger.info("Actual windows qty is: "+windows.size());
+        if (windows.size()!=windowsQty){
+            rootLogger.debug("false");
+            return false;
+        }
+        rootLogger.debug("true");
+        return true;
+    }
+    public static void handlingWindow(String expectedTitle) {
+        // Store the current window handle
+        String winHandleBefore = getWebDriver().getWindowHandle();
+
+        // Perform the click operation that opens new window
+
+        // Switch to new window opened
+        for(String winHandle : getWebDriver().getWindowHandles()){
+            getWebDriver().switchTo().window(winHandle);
+        }
+        // Perform the actions on new window
+
+        // Close the new window, if that window no more required
+        getWebDriver().close();
+
+        // Switch back to original browser (first window)
+        getWebDriver().switchTo().window(winHandleBefore);
+
+        // Continue with original browser (first window)
     }
 
 
