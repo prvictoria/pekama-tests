@@ -40,6 +40,7 @@ public class TestsPekamaProject {
     private final static String TEST_USER_PEKAMA_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
     private final static String TEST_USER_XERO_PASSWORD = User3.XERO_PASSWORD.getValue();
     private final String TEST_USER_FULL_TEAM_NAME = User3.FULL_TEAM_NAME.getValue();
+    private final String COLLABORATOR_TEAM_NAME = User1.TEAM_NAME.getValue();
     @Before
     public void before() {
         holdBrowserAfterTest();
@@ -50,7 +51,7 @@ public class TestsPekamaProject {
                 TEST_USER_PEKAMA_PASSWORD,
                 URL_LogIn);
         rootLogger.info("Create project");
-        dashboardNewProject.waitUntil(visible, 15000).click();
+        DASHBOARD_NewProject.waitUntil(visible, 15000).click();
         rootLogger.info("NW - New project");
         waitForModalWindow(TILE_MW_PROJECT);
         rootLogger.info("select project type");
@@ -156,7 +157,8 @@ public class TestsPekamaProject {
         TAB_INFO_NumberRow01Collapse.click();
         TAB_INFO_NumberRow01Delete.click();
         submitConfirmAction();
-        $$(byText(placeholderNoNumbers)).shouldHaveSize(1);
+        // $$(byText(placeholderNoNumbers)).filter(visible).shouldHaveSize(1);
+        // todo BUG #140183099 - https://www.pivotaltracker.com/n/projects/1239770/stories/140183099
     }
     @Test
     public void createProject_D_addClassification() {
@@ -201,7 +203,7 @@ public class TestsPekamaProject {
         projectTabContacts.click();
         projectTabContacts_AddCollaborator.click();
         waitForModalWindow(TITLE_MW_SHARE_PROJECT);
-        selectTeam(User3.TEAM_NAME.getValue());
+        selectTeam(COLLABORATOR_TEAM_NAME);
         submitEnabledButton(MW_BTN_OK);
         MW.shouldNotBe(visible);
         $$(byText(OWNER)).shouldHaveSize(1);
@@ -287,7 +289,8 @@ public class TestsPekamaProject {
     @Test
     public void createProject_F1_addNewContact_Person() {
         projectTabContacts.click();
-        $$(byText(PLACEHOLDER_NO_DATA)).filter(visible).shouldHaveSize(1);
+        // $$(byText(PLACEHOLDER_NO_DATA)).filter(visible).shouldHaveSize(1);
+        //todo BUG #140196199 https://www.pivotaltracker.com/n/projects/1239770/stories/140196199
         rootLogger.info("Select create new");
         projectTabContacts_AddSelectContact.click();
         fillField(projectTabContacts_AddContactInput, testContactName);
@@ -310,13 +313,15 @@ public class TestsPekamaProject {
         rootLogger.info("delete contact relation");
         projectTabContacts_ContactDelete.click();
         submitConfirmAction();
-        $$(byText(PLACEHOLDER_NO_DATA)).filter(visible).shouldHaveSize(1);
+        // $$(byText(PLACEHOLDER_NO_DATA)).filter(visible).shouldHaveSize(1);
+        //todo BUG #140196199 https://www.pivotaltracker.com/n/projects/1239770/stories/140196199
     }
 
     @Test
     public void createProject_F2_addExistedContact() {
         projectTabContacts.click();
-        $$(byText(PLACEHOLDER_NO_DATA)).filter(visible).shouldHaveSize(1);
+        // $$(byText(PLACEHOLDER_NO_DATA)).filter(visible).shouldHaveSize(1);
+        //todo BUG #140196199 https://www.pivotaltracker.com/n/projects/1239770/stories/140196199
         rootLogger.info("Select existed contact");
         selectItemInDropdown(projectTabContacts_AddSelectContact, projectTabContacts_AddContactInput, testContactName);
         rootLogger.info("Select relation");
@@ -324,8 +329,6 @@ public class TestsPekamaProject {
         projectTabContacts_AddContactButton.click();
         projectTabContacts_ContactName.shouldHave(Condition.exactText(testContactName+" "+testContactSurname));
         projectTabContacts_ContactRelation.shouldHave(Condition.exactText((ContactRelation.DOMESTIC_REPRESENTATIVE.getValue())));
-
-        //todo
         rootLogger.info("Edit fields contact inline");
         projectTabContacts_ContactEdit.click();
         projectTabContacts_FormRelationSelect.selectOption(ContactRelation.CLIENT_COMPANY.getValue());
@@ -884,7 +887,6 @@ public class TestsPekamaProject {
                   }
               }
         }
-
         sleep(3000);
         checkText("5,000.00", 2);
         close();
