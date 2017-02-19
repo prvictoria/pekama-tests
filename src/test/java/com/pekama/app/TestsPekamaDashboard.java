@@ -8,14 +8,13 @@ import Steps.StepsPekama;
 import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.FixMethodOrder;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runners.MethodSorters;
 import org.openqa.selenium.By;
 
+import static Page.ModalWindows.*;
 import static Page.PekamaDashboard.*;
+import static Page.TestsStrings.*;
 import static Page.TestsUrl.*;
 import static Steps.StepsPekama.*;
 import static Utils.Utils.*;
@@ -46,7 +45,6 @@ public class TestsPekamaDashboard {
                 TEST_USER_PEKAMA_PASSWORD,
                 URL_LogIn);
     }
-
 
     @Test
     public void testA_Gui() {
@@ -95,18 +93,36 @@ public class TestsPekamaDashboard {
 
         rootLogger.info("GUI Test passed");
     }
-
     @Test
-    public void testB_() {
+    public void testB_BuyProject() {
+        DASHBOARD_BuyProjects.waitUntil(visible, 30000).click();
+        rootLogger.info("Check MW Buy Projects");
+        waitForModalWindow(MW_BUY_PROJECTS_TITLE);
+        MW_BUY_PROJECTS_BTN.shouldBe(visible);
+        MW_BUY_PROJECTS_InputQTY.shouldHave(value("5"));
+        MW_BUY_PROJECTS_TotalPrice.shouldHave(text("$245"));
+        MW_BUY_PROJECTS_Discount.shouldHave(text("Your Discount 0%"));
 
-        rootLogger.info("");
-        open("");
-        $(By.xpath("")).sendKeys("");
-        $(By.xpath("")).shouldBe(visible);
-        $(By.xpath("")).click();
-        rootLogger.info("");
+        MW_BUY_PROJECTS_BTN.click();
+        MW_BUY_PROJECTS_BTN.shouldBe(disabled);
+        sleep(4000);
+        rootLogger.info("Qty selected passed");
+
+        switchTo().frame("stripe_checkout_app");
+        //switchTo().window("Stripe Checkout");
+        MW_CHECKOUT.shouldBe(visible);
+        MW_CHECKOUT_TITLE.shouldHave(text("5 MemoBoxes"));
+        MW_CHECKOUT_CardNumberField.sendKeys("4242424242424242");
+        MW_CHECKOUT_CardDate.sendKeys( "01 / 21");
+        MW_CHECKOUT_CardCVV.sendKeys( "123");
+        submitEnabledButton(MW_CHECKOUT_Submit);
+        MW_CHECKOUT.waitUntil(not(visible), 15000);
+        rootLogger.info("Checkout submitted");
+        switchTo().window(PAGE_TITLE_PEKAMA);
+        checkPageTitle(PAGE_TITLE_PEKAMA);
+        rootLogger.info("Test passed");
     }
-
+    @Ignore // TODO: 19-Feb-17
     @Test
     public void testC_() {
 
@@ -118,7 +134,7 @@ public class TestsPekamaDashboard {
         rootLogger.info("");
     }
 
-
+    @Ignore // TODO: 19-Feb-17
     @Test
     public void testD_() {
 
@@ -130,7 +146,7 @@ public class TestsPekamaDashboard {
         rootLogger.info("");
     }
 
-
+    @Ignore // TODO: 19-Feb-17
     @Test
     public void testE_() {
 

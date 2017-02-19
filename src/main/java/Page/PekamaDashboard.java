@@ -56,6 +56,7 @@ public class PekamaDashboard extends Page {
     public static final SelenideElement DASHBOARD_UpcomingAllDeadlines_RADIO = $(byXpath("//li[./button[contains(.,'All Deadlines')]]"));
     public static final SelenideElement DASHBOARD_UpcomingMyTasks_RADIO = $(byXpath("//li[./button[contains(.,'My Tasks')]]"));
     public static final SelenideElement DASHBOARD_UpcomingAllTasks_RADIO = $(byXpath("//li[./button[contains(.,'All Tasks')]]"));
+
     public static final SelenideElement DASHBOARD_Tasks = $(byXpath(""));
     public static final SelenideElement DASHBOARD_TasksToDo = $(byLinkText("To Do"));
     public static final SelenideElement DASHBOARD_TasksDoing = $(byLinkText("Doing"));

@@ -50,16 +50,19 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_GenericTitleSimple = $(byXpath("//h3[@class='modal-title']"));
 
 // buy projects
-    public static final SelenideElement MW_BuyProject = $(byXpath("sic!"));
-    public static final SelenideElement MW_BuyProjectInputQTY = $(byXpath("//input[@type='number']"));
-    public static final SelenideElement MW_BuyProjectTotalPrice = $(byXpath("//span[@class='your-price ng-binding']"));
-    public static final SelenideElement MW_BuyProjectDiscount = $(byXpath("//span[@class='your-discount ng-binding']"));
-    public static final SelenideElement MW_BuyProjectBuyProjects = $(byXpath("//div/button[contains(.,'Buy Projects')]"));
-    public static final SelenideElement MW_checkoutBuy = $(byXpath(""));
-    public static final SelenideElement MW_checkoutCardNumberField = $(byXpath(""));
-    public static final SelenideElement MW_checkoutCardDate = $(byXpath(""));
-    public static final SelenideElement MW_checkoutCardCVV = $(byXpath(""));
-    public static final SelenideElement MW_checkoutSubmit = $(byXpath(""));
+    public static final String MW_BUY_PROJECTS_TITLE = "Buy Projects";
+    public static final SelenideElement MW_BUY_PROJECTS_InputQTY = $(byXpath("//input[@type='number']"));
+    public static final SelenideElement MW_BUY_PROJECTS_TotalPrice = $(byXpath("//span[@class='your-price ng-binding']"));
+    public static final SelenideElement MW_BUY_PROJECTS_Discount = $(byXpath("//span[@class='your-discount ng-binding']"));
+    public static final SelenideElement MW_BUY_PROJECTS_BTN = $(byXpath("//div/button[contains(.,'Buy Projects')]"));
+    public static final String MW_CHECKOUT_MODAL = "//main[@class='Modal']";
+    public static final SelenideElement MW_CHECKOUT = $(byXpath("//*[@id='container']//main[@class='Modal']"));
+    public static final SelenideElement MW_CHECKOUT_TITLE = $(byXpath(MW_CHECKOUT_MODAL+"//h1"));
+    public static final SelenideElement MW_CHECKOUT_CardNumberField = $(byXpath(MW_CHECKOUT_MODAL+"//input[@placeholder='Card number']"));
+    public static final SelenideElement MW_CHECKOUT_CardDate = $(byXpath(MW_CHECKOUT_MODAL+"//input[@placeholder='MM / YY']"));
+    public static final SelenideElement MW_CHECKOUT_CardCVV = $(byXpath(MW_CHECKOUT_MODAL+"//input[@placeholder='CVC']"));
+    public static final SelenideElement MW_CHECKOUT_REMEMBER = $(byXpath(MW_CHECKOUT_MODAL+""));
+    public static final SelenideElement MW_CHECKOUT_Submit = $(byXpath(MW_CHECKOUT_MODAL+"//button[@type='submit']"));
     //MW Members
     public static final SelenideElement MW_MEMBERS_EMAIL = $(byXpath(mw+"//input[@name='email']"));
     // 2 step verifcation
