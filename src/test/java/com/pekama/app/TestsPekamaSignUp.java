@@ -197,7 +197,11 @@ public class TestsPekamaSignUp {
         $(byText("Confirm your Account")).shouldBe(visible);
         $(byText("You were sent an email message with the account activation link. Please check your inbox.")).shouldBe(visible);
         rootLogger.info(ERROR_MSG_EMAIL_IS_USED);
-        actualBackLink = checkInboxEmail(GMAIL_LOGIN, GMAIL_PASSWORD,EMAIL_SUBJECT, EMAIL_TITLE, EMAIL_TEXT, EMAIL_BTN, EMAIL_REDIRECT_LINK);
+        actualBackLink = checkInboxEmail(
+                GMAIL_LOGIN,
+                GMAIL_PASSWORD,
+                EMAIL_SUBJECT,
+                EMAIL_TITLE, EMAIL_TEXT, EMAIL_BTN, EMAIL_REDIRECT_LINK);
             if (actualBackLink == null) {
                 rootLogger.info("User followed reset link");
                 Assert.fail("Redirect Link not found");

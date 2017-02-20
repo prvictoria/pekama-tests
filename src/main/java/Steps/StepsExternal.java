@@ -7,13 +7,12 @@ import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static Page.CommunityWizard.expertRowLabel;
+import static Page.Emails.*;
 import static Page.TestsCredentials.GMAIL_PASSWORD;
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selectors.*;
+import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.*;
-import static Page.Emails.*;
-import static org.junit.Assert.assertEquals;
 import static org.openqa.selenium.support.ui.ExpectedConditions.alertIsPresent;
 /**
  * Created by Viachaslau Balashevich.
@@ -149,7 +148,7 @@ public class StepsExternal implements StepsFactory{
     }
     public static void detectEmail(SelenideElement EMAIL_SUBJECT){
         if (EMAIL_SUBJECT.exists() == false) {
-            int count = 1;
+            int count = 0;
             do {
                 sleep(20000);
                 refresh();
