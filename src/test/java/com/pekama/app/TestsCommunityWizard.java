@@ -4,6 +4,7 @@ import com.codeborne.selenide.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
+import org.junit.experimental.categories.Category;
 import org.junit.runners.MethodSorters;
 
 import static Page.CommunityDashboard.*;
@@ -293,7 +294,7 @@ public class TestsCommunityWizard {
     public void createCaseInstructSimpleWay(){
         rootLogger.info("Test passed");
     }
-    @Test
+    @Test @Category(AllEmailsTests.class)
     public void createCaseInstructWithDetails_A(){
         rootLogger.info("1st Search");
         String expertTeam = User1.TEAM_NAME.getValue();
@@ -326,7 +327,7 @@ public class TestsCommunityWizard {
         rootLogger.info("Test passed");
     }
 
-    @Test
+    @Test @Category(AllEmailsTests.class)
     public void createCaseInstructWithDetails_B_CheckEmail() {
        checkInboxEmail(
                testUserEmail,

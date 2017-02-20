@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import static Page.Emails.*;
 import static Page.TestsUrl.*;
@@ -181,7 +182,7 @@ public class TestsPekamaSignUp {
         $(signupAgree).setSelected(true).shouldBe(selected);
         }
     }
-    @Test
+    @Test @Category(AllEmailsTests.class)
     public void sendSignUpEmail() {
         String GMAIL_LOGIN = User5.GMAIL_EMAIL.getValue();
         String GMAIL_PASSWORD = User5.GMAIL_PASSWORD.getValue();

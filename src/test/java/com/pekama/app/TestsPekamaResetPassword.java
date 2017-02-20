@@ -9,6 +9,7 @@ import com.pekama.app.draft.LoginGmail;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
+import org.junit.experimental.categories.Category;
 import org.junit.runners.MethodSorters;
 
 
@@ -51,6 +52,7 @@ public class TestsPekamaResetPassword {
     private String PEKAMA_USER_EMAIL = User4.GMAIL_EMAIL.getValue();
     private static final String USERNAME = User4.NAME.getValue();
     private static final String USERSURNAME = User4.SURNAME.getValue();
+
     @Before
     public void before(){holdBrowserAfterTest();}
 
@@ -75,7 +77,7 @@ public class TestsPekamaResetPassword {
        RESET_PAGE_ERROR.shouldHaveSize(1);
        $(byText(ERROR_MSG_INVALID_EMAIL)).shouldBe(visible);
     }
-    @Test
+    @Test @Category(AllEmailsTests.class)
     public void resetPassword_A() {
         REDIRECT_LINK = null;
         rootLogger.info("Open URL - " + URL_ResetPassword);

@@ -5,6 +5,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.*;
 import org.junit.*;
+import org.junit.experimental.categories.Category;
 import org.junit.runners.MethodSorters;
 
 import static Page.Emails.*;
@@ -72,7 +73,7 @@ public class TestsPekamaReports {
         mailingListDetectAndDelete(thisMailingListName);
     }
 
-    @Test
+    @Test @Category(AllEmailsTests.class)
     public void sendProjectReport() {
         String thisMailingListName = "Projects Test Mailing List";
         rootLogger.info("Open ProjectValues reports, opened URL - "+URL_ReportsProjects);
@@ -94,7 +95,7 @@ public class TestsPekamaReports {
         rootLogger.info("Test passed");
     }
 
-    @Test
+    @Test @Category(AllEmailsTests.class)
     public void sendTasksReport() {
         String thisMailingListName = "Tasks Test Mailing List";
         rootLogger.info("Open Tasks reports, opened URL - "+URL_ReportsTasks);
@@ -116,7 +117,7 @@ public class TestsPekamaReports {
         rootLogger.info("Test passed");
     }
 
-    @Test
+    @Test @Category(AllEmailsTests.class)
     public void sendEventsReport() {
         String thisMailingListName = "Events Test Mailing List";
         rootLogger.info("Open Event reports, opened URL - "+URL_ReportsEvents);
@@ -137,7 +138,7 @@ public class TestsPekamaReports {
         rootLogger.info("Email - report present in inbox");
         rootLogger.info("Test passed");
     }
-    @Test
+    @Test @Category(AllEmailsTests.class)
     public void sendChargesReport() {
         String thisMailingListName = "Charges Test Mailing List";
         rootLogger.info("Open Charges reports, opened URL - "+URL_ReportsCharges);
@@ -158,7 +159,7 @@ public class TestsPekamaReports {
         rootLogger.info("Email - report present in inbox");
         rootLogger.info("Test passed");
     }
-    @Test
+    @Test @Category(AllEmailsTests.class)
     public void sendContactsReport() {
         String thisMailingListName = "Contacts Test Mailing List";
         rootLogger.info("Open Contacts reports, opened URL - "+URL_ReportsContacts);
@@ -179,7 +180,7 @@ public class TestsPekamaReports {
         rootLogger.info("Email - report present in inbox");
         rootLogger.info("Test passed");
     }
-    @Test
+    @Test @Category(AllEmailsTests.class)
     public void unsubscribeLink() {
         String thisMailingListName = "Projects Test unsubscribe link";
         rootLogger.info("Open ProjectValues reports, opened URL - "+URL_ReportsProjects);

@@ -1,5 +1,5 @@
 package Page;
-import static Page.TestsUrlConfiguration.*;
+import static Page.TestUrlConfig.*;
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau

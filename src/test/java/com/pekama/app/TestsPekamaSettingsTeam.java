@@ -5,6 +5,7 @@ import com.codeborne.selenide.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
+import org.junit.experimental.categories.Category;
 import org.junit.runners.MethodSorters;
 import org.openqa.selenium.By;
 
@@ -103,7 +104,7 @@ public class TestsPekamaSettingsTeam {
         deleteMember(testEmail);
         rootLogger.info("Test passed");
     }
-    @Test
+    @Test @Category(AllEmailsTests.class)
     public void testC_inviteNewMember() {
         String testEmail = TestsCredentials.User5.GMAIL_EMAIL.getValue();
         SelenideElement EMAIL_SUBJECT = EMAIL_INVITE_IN_TEAM_SUBJECT;

@@ -1,14 +1,17 @@
 package com.pekama.app;
-import com.codeborne.selenide.Configuration;
+import org.junit.FixMethodOrder;
+import org.junit.experimental.categories.Categories;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.junit.runners.Suite;
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
-@RunWith(Suite.class)
+@RunWith(Categories.class)
+@Categories.IncludeCategory(AllEmailsTests.class)
 @Suite.SuiteClasses({
-        //TestsCommunityIntegration.class,
+        TestsCommunityIntegration.class,
         TestsCommunityDashboard.class,
         TestsCommynityLanding.class,
         TestsCommunityWizard.class,
@@ -24,22 +27,14 @@ import org.junit.runners.Suite;
         TestsPekamaSettingsPersonal.class,
         TestsPekamaProject.class,
         TestsMessages.class,
-        //TestsPekamaIntegrationBox.class,
+        TestsPekamaIntegrationBox.class,
         TestsPekamaSettingsTeam.class,
         TestsPekamaSettingValues.class,
         TestsPekamaTemplates.class,
         TestsPekamaReports.class //last suite
 })
-public class AllTestsRunner {
-    public static void holdBrowserAfterTest() {
-        Configuration test = new Configuration();
-        test.holdBrowserOpen = false;
-    }
-    public static void holdBrowserAfterTest(boolean value) {
-        Configuration test = new Configuration();
-        test.holdBrowserOpen = value;
-    }
-
-
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+public class AllEmailsTests {
 
 }
+
