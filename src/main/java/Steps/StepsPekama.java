@@ -173,10 +173,10 @@ public class StepsPekama implements StepsFactory{
             MW_MAILING_1USER_INTERVAL.sendKeys("999");
             rootLogger.info("Send new report");
             sleep(500);
-            MW_MAILING_LIST_BTN_SAVE_AND_SEND_NOW.waitUntil(enabled, 20000).click();
-            MW_MAILING_LIST_BTN_SAVE_AND_SEND_NOW.waitUntil(hidden, 40000);
+            MW_MAILING_LIST_BTN_SAVE_AND_SEND_NOW.waitUntil(enabled, 60000).click();
+            MW_MAILING_LIST_BTN_SAVE_AND_SEND_NOW.waitUntil(hidden, 60000);
             sleep(2000);
-            MW_MAILING_LIST_BTN_SEND_NOW.waitUntil(visible, 30000).waitUntil(enabled, 30000);
+            MW_MAILING_LIST_BTN_SEND_NOW.waitUntil(visible, 60000).waitUntil(enabled, 30000);
             sleep(1000);
         }
         rootLogger.info("Report was sent");
