@@ -1,25 +1,24 @@
 package com.pekama.app;
-import Page.*;
 import Steps.StepsPekama;
-import com.codeborne.selenide.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.FixMethodOrder;
+import org.junit.Test;
 import org.junit.runners.MethodSorters;
-import org.openqa.selenium.By;
 
-import static Page.Emails.*;
 import static Page.ModalWindows.*;
 import static Page.PekamaTeamSettings.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.TestsUrl.*;
-import static Steps.StepsExternal.*;
 import static Steps.StepsPekama.*;
 import static Utils.Utils.randomString;
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selectors.*;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selectors.byLinkText;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
 /**
  * Created by Viachaslau Balashevich.
@@ -398,6 +397,95 @@ public class TestsPekamaSettingValues {
         MW.shouldNotBe(visible);
         valueCheckRowIsDisplayed(value, true);
         valueCheckStatusState(value, "zz");
+
+        valueDelete(value);
+        valueCheckRowIsDisplayed(value, false);
+    }
+    @Test
+    public void tasksCRUD() {
+        rootLogger.info("Open Task subtab");
+        SETTINGS_VALUES_TAB_TASKS.waitUntil(visible, 2000).click();
+        valueCheckRowIsDisplayed("Deadline", true);
+        valueCheckRowIsDisplayed("Fatal", true);
+        valueCheckRowIsDisplayed("Final Deadline", true);
+        valueCheckRowIsDisplayed("Reminder", true);
+        valueCheckRowIsDisplayed("Task", true);
+
+        submitEnabledButton(SETTINGS_VALUES_ADD);
+        String value = randomString(256);
+        rootLogger.info("Tasks max length validation");
+        waitForModalWindow("Task Importance");
+        // MW_BTN_OK.shouldBe(disabled); todo BUG
+        fillField(MW_STATUS_VALUE, value);
+        submitEnabledButton(MW_BTN_OK);
+        checkText(ERROR_MSG_VALIDATION_LENGTH_255);
+        MW_BTN_CANCEL.click();
+        MW.shouldNotBe(visible);
+
+        submitEnabledButton(SETTINGS_VALUES_ADD);
+        rootLogger.info("Task empty field validation");
+        waitForModalWindow("Task Importance");
+        // MW_BTN_OK.shouldBe(disabled); todo BUG
+        fillField(MW_STATUS_VALUE, "");
+        submitEnabledButton(MW_BTN_OK);
+        checkText(ERROR_MSG_REQUIRED_FIELD);
+        MW_BTN_CANCEL.click();
+        MW.shouldNotBe(visible);
+
+        submitEnabledButton(SETTINGS_VALUES_ADD);
+        value = "IMPORTANCE"+randomString(15);
+        rootLogger.info("Create task importance");
+        waitForModalWindow("Task Importance");
+        // MW_BTN_OK.shouldBe(disabled); todo BUG
+        fillField(MW_STATUS_VALUE, value);
+        submitEnabledButton(MW_BTN_OK);
+        MW.shouldNotBe(visible);
+        valueCheckRowIsDisplayed(value, true);
+
+        valueDelete(value);
+        valueCheckRowIsDisplayed(value, false);
+    }
+    @Test
+    public void chargesCRUD_Transaction() {
+        rootLogger.info("Open Charges subtab");
+        SETTINGS_VALUES_TAB_CHARGES.waitUntil(visible, 2000).click();
+        scrollUp();
+        SETTINGS_VALUES_DROPDOWN.waitUntil(visible, 20000).click();
+        $(byLinkText("Transaction Types")).shouldBe(visible);
+        $(byLinkText("Currencies")).shouldBe(visible);
+        $(byLinkText("Transaction Types")).shouldBe(visible).click();
+        SETTINGS_VALUES_DROPDOWN.waitUntil(visible, 20000).shouldHave(text("Transaction Types"));
+
+        submitEnabledButton(SETTINGS_VALUES_ADD);
+        String value = randomString(256);
+        rootLogger.info("Check MW Transaction Type validation");
+        waitForModalWindow("Transaction Type");
+        // MW_BTN_OK.shouldBe(disabled); todo BUG
+        fillField(MW_STATUS_VALUE, value);
+        submitEnabledButton(MW_BTN_OK);
+        checkText(ERROR_MSG_VALIDATION_LENGTH_255);
+        MW_BTN_CANCEL.click();
+        MW.shouldNotBe(visible);
+
+        submitEnabledButton(SETTINGS_VALUES_ADD);
+        rootLogger.info("Check MW Transaction Type validation");
+        waitForModalWindow("Transaction Type");
+        // MW_BTN_OK.shouldBe(disabled); todo BUG
+        fillField(MW_STATUS_VALUE, "");
+        submitEnabledButton(MW_BTN_OK);
+        checkText(ERROR_MSG_REQUIRED_FIELD);
+        MW_BTN_CANCEL.click();
+        MW.shouldNotBe(visible);
+
+        submitEnabledButton(SETTINGS_VALUES_ADD);
+        value = "IMPORTANCE"+randomString(15);
+        rootLogger.info("Check MW Transaction Type validation");
+        waitForModalWindow("Transaction Type");
+        // MW_BTN_OK.shouldBe(disabled); todo BUG
+        fillField(MW_STATUS_VALUE, value);
+        submitEnabledButton(MW_BTN_OK);
+        MW.shouldNotBe(visible);
+        valueCheckRowIsDisplayed(value, true);
 
         valueDelete(value);
         valueCheckRowIsDisplayed(value, false);

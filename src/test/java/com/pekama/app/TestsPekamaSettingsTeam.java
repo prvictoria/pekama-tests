@@ -20,10 +20,11 @@ import static Steps.StepsExternal.checkInboxEmail;
 import static Steps.StepsPekama.*;
 import static Utils.Utils.randomString;
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selectors.byLinkText;
 import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.sleep;
 import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
 /**
  * Created by Viachaslau Balashevich.
@@ -139,24 +140,25 @@ public class TestsPekamaSettingsTeam {
      @Test
     public void values_testA_GUI() {
         rootLogger.info("Start test GUI and links");
-
-        $(byText("Conference")).find(byLinkText("link=Conference")).shouldBe(visible);
-        $(byText("Client Relation (CRM)")).find(byLinkText("link=Client Relation (CRM)")).shouldBe(visible);
-        $(byText("Corporate")).find(byLinkText("link=Corporate")).shouldBe(visible);
-        $(byText("Design")).find(byLinkText("link=Design")).shouldBe(visible);
-        $(byText("Domain Name")).find(byLinkText("link=Domain Name")).shouldBe(visible);
-        $(byText("Immigration")).find(byLinkText("link=Immigration")).shouldBe(visible);
-        $(byText("Company")).find(byLinkText("link=Company")).shouldBe(visible);
-        $(byText("Copyright")).find(byLinkText("link=Copyright")).shouldBe(visible);
-        $(byText("Dispute")).find(byLinkText("link=Dispute")).shouldBe(visible);
-        $(byText("General")).find(byLinkText("link=General")).shouldBe(visible);
-        $(byText("Litigation")).find(byLinkText("link=Litigation")).shouldBe(visible);
-        $(byText("Opposition")).find(byLinkText("link=Opposition")).shouldBe(visible);
-        $(byText("Patent")).find(byLinkText("link=Patent")).shouldBe(visible);
-        $(byText("TeamWork Channel")).find(byLinkText("link=TeamWork Channel")).shouldBe(visible);
-        $(byText("Trademark")).find(byLinkText("link=Trademark")).shouldBe(visible);
-        $(byText("Tasks")).find(byLinkText("link=Tasks")).shouldBe(visible);
-        $(byText("Financials")).find(byLinkText("link=Financials")).shouldBe(visible);
+        SETTINGS_TEAM_TAB_VALUES.waitUntil(visible, 20000).click();
+         SETTINGS_VALUES_TAB_TRADEMARK.shouldHave(text("Trademark")).shouldBe(visible);
+         sleep(2000);
+         $(byXpath("//*[@href='/a/settings/team/values/patents']")).shouldHave(text("Patent")).shouldBe(visible);
+         $(byXpath("//*[@href='/a/settings/team/values/litigations']")).shouldHave(text("Litigation")).shouldBe(visible);
+         $(byXpath("//*[@href='/a/settings/team/values/oppositions']")).shouldHave(text("Opposition")).shouldBe(visible);
+         $(byXpath("//*[@href='/a/settings/team/values/copyrights']")).shouldHave(text("Copyright")).shouldBe(visible);
+         $(byXpath("//*[@href='/a/settings/team/values/teamwork']")).shouldHave(text("TeamWork Channel")).shouldBe(visible);
+         $(byXpath("//*[@href='/a/settings/team/values/Domains']")).shouldHave(text("Domain Name")).shouldBe(visible);
+         $(byXpath("//*[@href='/a/settings/team/values/Corporate']")).shouldHave(text("Corporate")).shouldBe(visible);
+         $(byXpath("//*[@href='/a/settings/team/values/CNF']")).shouldHave(text("Conference")).shouldBe(visible);
+         $(byXpath("//*[@href='/a/settings/team/values/Designs']")).shouldHave(text("Design")).shouldBe(visible);
+         $(byXpath("//*[@href='/a/settings/team/values/Immigration']")).shouldHave(text("Immigration")).shouldBe(visible);
+         $(byXpath("//*[@href='/a/settings/team/values/general']")).shouldHave(text("General")).shouldBe(visible);
+         $(byXpath("//*[@href='/a/settings/team/values/disputes']")).shouldHave(text("Dispute")).shouldBe(visible);
+         $(byXpath("//*[@href='/a/settings/team/values/companies']")).shouldHave(text("Company")).shouldBe(visible);
+         $(byXpath("//*[@href='/a/settings/team/values/CRM']")).shouldHave(text("Client Relation (CRM)")).shouldBe(visible);
+         SETTINGS_VALUES_TAB_TASKS.shouldHave(text("Tasks")).shouldBe(visible);
+         SETTINGS_VALUES_TAB_CHARGES.shouldHave(text("Charges")).shouldBe(visible);
 
         rootLogger.info("Defauls state passed");
     }

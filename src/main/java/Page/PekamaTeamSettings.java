@@ -2,7 +2,6 @@ package Page;
 
 import com.codeborne.selenide.SelenideElement;
 
-import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 /**
@@ -10,21 +9,6 @@ import static com.codeborne.selenide.Selenide.$;
  * https://www.linkedin.com/in/viachaslau
  */
 public class PekamaTeamSettings extends Page {
-    public static final SelenideElement SETTINGS_TEAM_ProjectTemplatesTab = $(byXpath("/a/settings/team/templates/projects"));
-    public static final SelenideElement SETTINGS_TEAM_TaskTemplatesTab = $(byXpath("/a/settings/team/templates/tasks"));
-    public static final SelenideElement SETTINGS_TEAM_TaskTemplatesTab_TM = $(byPartialLinkText("Trademark"));
-
-    public static final SelenideElement SETTINGS_TEAM_MessageTemplatesTab = $(byXpath("/a/settings/team/templates/messages"));
-    public static final SelenideElement SETTINGS_TEAM_EventTemplatesTab = $(byXpath("/a/settings/team/templates/events"));
-    public static final SelenideElement SETTINGS_TEAM_DocumentTemplatesTab = $(byXpath("/a/settings/team/templates/documents"));
-    public static final SelenideElement SETTINGS_TEAM_StorageTab = $(byXpath("/a/settings/team/storage"));
-    public static final SelenideElement SETTINGS_TEAM_StorageTabConnectBox = $(byXpath("//button[contains(.,'Connect Box')]"));
-    public static final SelenideElement SETTINGS_TEAM_StorageTabPekama = $(byXpath("//input[@name='16']"));
-    public static final SelenideElement SETTINGS_TEAM_StorageTabBOX = $(byXpath("//input[@name='17']"));
-    public static final SelenideElement SETTINGS_TEAM_TabTitle = $(byXpath("//fieldset//*"));
-    public static final SelenideElement SETTINGS_TEAM_StorageTabTitle = $(byXpath("//fieldset[contains(.,'Connect your Box.com account:')]"));
-    public static final SelenideElement SETTINGS_TEAM_SaveButton = $(byXpath("//button[@submit][contains(.,'Save')]"));
-
     public static final SelenideElement SETTINGS_TEAM_TAB_PROFILE = $(byLinkText("Profile"));
     public static final SelenideElement SETTINGS_TEAM_TAB_MEMBERS = $(byLinkText("Members"));
     public static final SelenideElement SETTINGS_TEAM_TAB_VALUES = $(byLinkText("Values"));
@@ -71,9 +55,10 @@ public class PekamaTeamSettings extends Page {
     public static final SelenideElement SETTINGS_VALUES_SORT_BY_ = $(byLinkText(""));
     public static final SelenideElement SETTINGS_VALUES_SORT_BY_VALUE = $(byLinkText("value"));
     public static final SelenideElement SETTINGS_VALUES_SORT_BY_STATE = $(byLinkText("state"));
-
     //public static SelenideElement SETTINGS_VALUES_ = $(byXpath(String.format(valueRow, "")));
-
+    public static final SelenideElement SETTINGS_VALUES_TAB_TRADEMARK =  $(byXpath("//*[@href='/a/settings/team/values/trademarks']"));
+    public static final SelenideElement SETTINGS_VALUES_TAB_TASKS =  $(byXpath("//*[@href='/a/settings/team/values/tasks']"));
+    public static final SelenideElement SETTINGS_VALUES_TAB_CHARGES =  $(byXpath("//*[@href='/a/settings/team/values/financials']"));
 
     public static final SelenideElement SETTINGS_DELETE_X = $(byXpath("//i[@class='pkm-icon-cancel']"));
 
