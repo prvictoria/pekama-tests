@@ -3,31 +3,33 @@ package com.pekama.app;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
-import static Page.Box.*;
-import static Page.ModalWindows.*;
-import static Page.PekamaProject.*;
-import static Page.TestsCredentials.*;
-import Utils.Utils;
 import Steps.StepsPekama;
+import Utils.Utils;
 import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
 import org.junit.runners.MethodSorters;
 
+import static Page.Box.*;
+import static Page.ModalWindows.*;
+import static Page.PekamaProject.*;
+import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
-import static Page.TestsUrl.URL_Dashboard;
-import static com.codeborne.selenide.Selectors.byName;
-import static com.codeborne.selenide.Selectors.byText;
+import static Page.TestsUrl.*;
+import static Steps.StepsPekama.createProject;
+import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.url;
-import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
+import static com.codeborne.selenide.WebDriverRunner.*;
+import static com.pekama.app.AllTestsRunner.*;
 //todo draft cases
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaIntegrationBox {
     static final Logger rootLogger = LogManager.getRootLogger();
-    private String PEKAMA_USER_EMAIL = User1.GMAIL_EMAIL.getValue();
-    private String PEKAMA_USER_PASSWORD = User1.PEKAMA_PASSWORD.getValue();
+    private String OWNER_EMAIL = User1.GMAIL_EMAIL.getValue();
+    private String OWNER_PASSWORD = User1.PEKAMA_PASSWORD.getValue();
+    private String OWNER_BOX_PASSWORD = User1.BOX_PASSWORD.getValue();
+
     private String AUTH_URL = URL_Dashboard;
     private String pekamaProjectUrl;
     static final String FolderNameBeforeConnect = "Folder created before connect";
@@ -37,21 +39,24 @@ public class TestsPekamaIntegrationBox {
     static final String boxProjectName = "";
     static final String boxProjectFolderUrl = "";
 
+    @BeforeClass
+    public void beforeClass(){
+        StepsPekama loginIntoPekama = new StepsPekama();
+        loginIntoPekama.loginByURL(
+                OWNER_EMAIL,
+                OWNER_PASSWORD,
+                AUTH_URL);
+    }
     @Before
     public void before() {
         holdBrowserAfterTest();
-        StepsPekama loginIntoPekama = new StepsPekama();
-        loginIntoPekama.loginByURL(PEKAMA_USER_EMAIL, PEKAMA_USER_PASSWORD, AUTH_URL);
-        rootLogger.info("");
     }
 
-    @After
-    public void after() {
-
-    }
     @Ignore // TODO: 08-Feb-17
     @Test
     public void testA_PrepareProject() {
+
+        createProject();
         String testProjectName = nameProjectBOX+Utils.randomString(5);
         rootLogger.info("Create project - full path via MW");
 
@@ -94,8 +99,8 @@ public class TestsPekamaIntegrationBox {
             sleep(3000);
         }
         if(boxWindowSubmit.isDisplayed()) {
-            boxWindowEmail.sendKeys(User1.GMAIL_EMAIL.getValue());
-            boxWindowPassword.sendKeys(User1.BOX_PASSWORD.getValue());
+            boxWindowEmail.sendKeys(OWNER_EMAIL);
+            boxWindowPassword.sendKeys(OWNER_BOX_PASSWORD);
             boxWindowSubmit.submit();
             rootLogger.info("Process connect to BOX");
         }
