@@ -2,7 +2,7 @@ package com.pekama.app;
 import Steps.StepsExternal;
 import Steps.StepsHttpAuth;
 import Steps.StepsPekama;
-import Utils.*;
+import Utils.Utils;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.pekama.app.draft.LoginGmail;
@@ -12,27 +12,23 @@ import org.junit.*;
 import org.junit.experimental.categories.Category;
 import org.junit.runners.MethodSorters;
 
-
-import static Page.PekamaSignUp.*;
-import static Page.TestsUrl.*;
 import static Page.Emails.*;
 import static Page.PekamaLogin.*;
 import static Page.PekamaResetPassword.*;
+import static Page.PekamaSignUp.*;
+import static Page.TestUrlConfig.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
-import static Page.TestsUrlConfiguration.*;
-import static Steps.StepsExternal.REDIRECT_LINK;
-import static Steps.StepsExternal.checkInboxEmail;
+import static Page.TestsUrl.*;
+import static Steps.StepsExternal.*;
 import static Steps.StepsHttpAuth.httpAuthUrl;
-import static com.codeborne.selenide.CollectionCondition.size;
-import static com.codeborne.selenide.Condition.value;
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.CollectionCondition.*;
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.url;
 import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau

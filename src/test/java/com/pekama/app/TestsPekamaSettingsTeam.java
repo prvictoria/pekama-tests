@@ -1,26 +1,29 @@
 package com.pekama.app;
-import Page.*;
+import Page.TestsCredentials;
 import Steps.StepsPekama;
-import com.codeborne.selenide.*;
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
 import org.junit.experimental.categories.Category;
 import org.junit.runners.MethodSorters;
-import org.openqa.selenium.By;
 
 import static Page.Emails.*;
 import static Page.ModalWindows.*;
 import static Page.PekamaTeamSettings.*;
-import static Page.TestsCredentials.*;
+import static Page.TestsCredentials.GMAIL_PASSWORD;
 import static Page.TestsStrings.*;
-import static Page.TestsUrl.*;
-import static Steps.StepsExternal.*;
+import static Page.TestsUrl.URL_Logout;
+import static Page.TestsUrl.URL_TeamSettings;
+import static Steps.StepsExternal.checkInboxEmail;
 import static Steps.StepsPekama.*;
 import static Utils.Utils.randomString;
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selectors.*;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selectors.byLinkText;
+import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
 /**
  * Created by Viachaslau Balashevich.
@@ -29,15 +32,16 @@ import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaSettingsTeam {
     static final Logger rootLogger = LogManager.getRootLogger();
-
+    private final String TEST_USER_LOGIN = TestsCredentials.User1.GMAIL_EMAIL.getValue();
+    private final String TEST_USER_PASSWORD = TestsCredentials.User1.PEKAMA_PASSWORD.getValue();
     @Before
     public void before() {
         holdBrowserAfterTest();
         rootLogger.info("Open host");
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(
-                TestsCredentials.User1.GMAIL_EMAIL.getValue(),
-                TestsCredentials.User1.PEKAMA_PASSWORD.getValue(),
+                TEST_USER_LOGIN,
+                TEST_USER_PASSWORD,
                 URL_TeamSettings);
     }
 
@@ -132,8 +136,7 @@ public class TestsPekamaSettingsTeam {
         rootLogger.info("Test passed");
     }
 
-    @Ignore //todo
-    @Test
+     @Test
     public void values_testA_GUI() {
         rootLogger.info("Start test GUI and links");
 

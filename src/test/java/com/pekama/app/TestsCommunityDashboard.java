@@ -10,15 +10,14 @@ import org.junit.*;
 
 import static Page.CommunityDashboard.*;
 import static Page.CommunityWizard.*;
-import static Page.ModalWindows.MW_BTN_NEXT;
+import static Page.ModalWindows.*;
+import static Page.TestUrlConfig.*;
 import static Page.TestsUrl.*;
 import static Page.PekamaLogin.*;
-import static Page.TestsUrlConfiguration.*;
 import static Page.TestsCredentials.*;
 import static Steps.StepsCommunity.*;
 import static Steps.StepsPekama.*;
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.url;
 import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
