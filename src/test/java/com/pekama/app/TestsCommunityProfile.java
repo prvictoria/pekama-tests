@@ -34,6 +34,8 @@ public class TestsCommunityProfile {
     String TEAM = TestsCredentials.User3.TEAM_NAME.getValue();
     String PEKAMA_USER_EMAIL = User3.GMAIL_EMAIL.getValue();
     String PEKAMA_USER_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
+    String TEST_USER_NAME = User3.NAME.getValue();
+    String TEST_USER_SURNAME = User3.SURNAME.getValue();
     String NEW_MEMBER = "qazwsx@qaz.com";
 
     @Before
@@ -199,19 +201,19 @@ public class TestsCommunityProfile {
         PROFILE_BTN_SAVE_NAME_AND_SURNAME.shouldBe(disabled);
 
         log.info("Check changes");
-        sleep(2000);
+        sleep(5000);
         refresh();
         PROFILE_FIELD_NAME.waitUntil(visible, 20000).shouldHave(value(newName));
         PROFILE_FIELD_SURNAME.waitUntil(visible, 20000).shouldHave(value(newSurname));
 
         log.info("Restore user name and surname");
-        fillField(PROFILE_FIELD_NAME, User3.NAME.getValue());
-        fillField(PROFILE_FIELD_SURNAME,User3.SURNAME.getValue());
+        fillField(PROFILE_FIELD_NAME, TEST_USER_NAME);
+        fillField(PROFILE_FIELD_SURNAME,TEST_USER_SURNAME);
         submitEnabledButton(PROFILE_BTN_SAVE_NAME_AND_SURNAME);
-        PROFILE_FIELD_NAME.shouldHave(value(User3.NAME.getValue()));
-        PROFILE_FIELD_SURNAME.shouldHave(value(User3.SURNAME.getValue()));
+        PROFILE_FIELD_NAME.shouldHave(value(TEST_USER_NAME));
+        PROFILE_FIELD_SURNAME.shouldHave(value(TEST_USER_SURNAME));
         PROFILE_BTN_SAVE_NAME_AND_SURNAME.shouldBe(disabled);
-        sleep(2000);
+        sleep(5000);
         log.info("Test passed");
 
     }
