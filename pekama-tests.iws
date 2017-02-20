@@ -7,6 +7,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2fcdccdc-4d95-4ab7-8153-9ec9d616e50f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pekama-tests.iws" afterPath="$PROJECT_DIR$/pekama-tests.iws" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/ModalWindows.java" afterPath="$PROJECT_DIR$/src/main/java/Page/ModalWindows.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaSettingValues.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaSettingValues.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -199,7 +200,7 @@
     </favorites_list>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.57245576">
+    <splitter split-orientation="horizontal" split-proportion="0.39933628">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
           <file leaf-file-name="AllTestsRunner.java" pinned="true" current-in-tab="false">
@@ -265,8 +266,8 @@
           <file leaf-file-name="TestsPekamaSettingValues.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaSettingValues.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="359">
-                  <caret line="487" column="47" lean-forward="true" selection-start-line="487" selection-start-column="47" selection-end-line="487" selection-end-column="47" />
+                <state relative-caret-position="350">
+                  <caret line="544" column="42" lean-forward="false" selection-start-line="544" selection-start-column="8" selection-end-line="544" selection-end-column="42" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="docComment;class#TestsPekamaSettingValues#0" expanded="false" />
@@ -455,21 +456,21 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="PekamaTeamSettings.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="PekamaTeamSettings.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/Page/PekamaTeamSettings.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="224">
-                  <caret line="45" column="110" lean-forward="false" selection-start-line="45" selection-start-column="78" selection-end-line="45" selection-end-column="110" />
+                <state relative-caret-position="241">
+                  <caret line="50" column="26" lean-forward="true" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="ModalWindows.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="ModalWindows.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/Page/ModalWindows.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="207">
-                  <caret line="151" column="31" lean-forward="false" selection-start-line="151" selection-start-column="31" selection-end-line="151" selection-end-column="31" />
+                <state relative-caret-position="445">
+                  <caret line="161" column="62" lean-forward="false" selection-start-line="161" selection-start-column="40" selection-end-line="161" selection-end-column="62" />
                   <folding />
                 </state>
               </provider>
@@ -512,7 +513,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>status</find>
       <find>MW_STATUS</find>
       <find>randomStatus</find>
       <find>Sub</find>
@@ -542,9 +542,9 @@
       <find>link=</find>
       <find>.find(byLinkText</find>
       <find>Event</find>
+      <find>Transaction Type</find>
     </findStrings>
     <replaceStrings>
-      <replace>testSearchChargesType</replace>
       <replace>$(byXpath( CONVERSATION_BLOCK+</replace>
       <replace>CONVERSATION_</replace>
       <replace>String</replace>
@@ -574,6 +574,7 @@
       <replace>DASHBOARD_</replace>
       <replace>.shouldHave(text</replace>
       <replace>Transaction Type</replace>
+      <replace>Currency</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -593,7 +594,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/Page/PekamaLogin.java" />
         <option value="$PROJECT_DIR$/src/main/java/Page/PekamaPersonalSettings.java" />
         <option value="$PROJECT_DIR$/src/main/java/Page/PekamaProject.java" />
         <option value="$PROJECT_DIR$/src/main/java/Page/PekamaReports.java" />
@@ -643,6 +643,7 @@
         <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/AllTestsRunner.java" />
         <option value="$PROJECT_DIR$/src/main/java/Page/PekamaTeamSettings.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaSettingsTeam.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Page/ModalWindows.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaSettingValues.java" />
       </list>
     </option>
@@ -1020,7 +1021,7 @@
       <recent name="com.pekama.app" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestsPekamaSettingValues.chargesCRUD_Transaction">
+  <component name="RunManager" selected="JUnit.TestsPekamaSettingValues.chargesCRUD_Currency">
     <configuration default="false" name="AllEmailsTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -1035,32 +1036,6 @@
       <option name="MAIN_CLASS_NAME" value="com.pekama.app.AllEmailsTests" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="wholeProject" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="AllEmailsTests.holdBrowserAfterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.pekama.app.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="pekama-tests" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.pekama.app" />
-      <option name="MAIN_CLASS_NAME" value="com.pekama.app.AllEmailsTests" />
-      <option name="METHOD_NAME" value="holdBrowserAfterTest" />
-      <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -1138,6 +1113,32 @@
       <option name="PACKAGE_NAME" value="com.pekama.app" />
       <option name="MAIN_CLASS_NAME" value="com.pekama.app.TestsPekamaSettingValues" />
       <option name="METHOD_NAME" value="chargesCRUD_Transaction" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="wholeProject" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="TestsPekamaSettingValues.chargesCRUD_Currency" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.pekama.app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="pekama-tests" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.pekama.app" />
+      <option name="MAIN_CLASS_NAME" value="com.pekama.app.TestsPekamaSettingValues" />
+      <option name="METHOD_NAME" value="chargesCRUD_Currency" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" />
       <option name="PARAMETERS" />
@@ -1519,18 +1520,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="JUnit.AllEmailsTests" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.AllEmailsTests.holdBrowserAfterTest" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.TestsPekamaSettingsTeam.values_testA_GUI" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.TestsPekamaSettingValues.tasksCRUD" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.TestsPekamaSettingValues.chargesCRUD_Transaction" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.TestsPekamaSettingsTeam.values_testA_GUI" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.TestsPekamaSettingValues.tasksCRUD" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.TestsPekamaSettingValues.chargesCRUD_Transaction" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.TestsPekamaSettingValues.chargesCRUD_Currency" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.TestsPekamaSettingValues.chargesCRUD_Transaction" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.TestsPekamaSettingValues.tasksCRUD" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.TestsPekamaSettingsTeam.values_testA_GUI" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.AllEmailsTests" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.AllEmailsTests.holdBrowserAfterTest" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.TestsPekamaSettingValues.chargesCRUD_Currency" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.TestsPekamaSettingValues.chargesCRUD_Transaction" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.TestsPekamaSettingValues.tasksCRUD" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.TestsPekamaSettingsTeam.values_testA_GUI" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.AllEmailsTests" />
       </list>
     </recent_temporary>
   </component>
@@ -1600,14 +1601,7 @@
       <workItem from="1487265299229" duration="5864000" />
       <workItem from="1487274934840" duration="24188000" />
       <workItem from="1487427737643" duration="33535000" />
-      <workItem from="1487608021234" duration="8357000" />
-    </task>
-    <task id="LOCAL-00151" summary="ProjectTests - Charges">
-      <created>1486322742304</created>
-      <option name="number" value="00151" />
-      <option name="presentableId" value="LOCAL-00151" />
-      <option name="project" value="LOCAL" />
-      <updated>1486322742304</updated>
+      <workItem from="1487608021234" duration="9292000" />
     </task>
     <task id="LOCAL-00152" summary="ProjectTests - Conversation and Family tests">
       <created>1486388320084</created>
@@ -1945,10 +1939,32 @@
       <option name="project" value="LOCAL" />
       <updated>1487616426391</updated>
     </task>
-    <option name="localTasksCounter" value="200" />
+    <task id="LOCAL-00200" summary="Values transaction CRUD tests">
+      <created>1487616647371</created>
+      <option name="number" value="00200" />
+      <option name="presentableId" value="LOCAL-00200" />
+      <option name="project" value="LOCAL" />
+      <updated>1487616647371</updated>
+    </task>
+    <option name="localTasksCounter" value="201" />
     <servers />
   </component>
   <component name="TestHistory">
+    <history-entry file="TestsPekamaSettingValues_chargesCRUD_Currency - 2017.02.20 at 22h 01m 09s.xml">
+      <configuration name="TestsPekamaSettingValues.chargesCRUD_Currency" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestsPekamaSettingValues_chargesCRUD_Currency - 2017.02.20 at 22h 02m 09s.xml">
+      <configuration name="TestsPekamaSettingValues.chargesCRUD_Currency" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestsPekamaSettingValues_chargesCRUD_Currency - 2017.02.20 at 22h 03m 26s.xml">
+      <configuration name="TestsPekamaSettingValues.chargesCRUD_Currency" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestsPekamaSettingValues_chargesCRUD_Currency - 2017.02.20 at 22h 03m 59s.xml">
+      <configuration name="TestsPekamaSettingValues.chargesCRUD_Currency" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestsPekamaSettingValues_chargesCRUD_Currency - 2017.02.20 at 22h 06m 11s.xml">
+      <configuration name="TestsPekamaSettingValues.chargesCRUD_Currency" configurationId="JUnit" />
+    </history-entry>
     <history-entry file="TestsPekamaSettingValues_chargesCRUD_Transaction - 2017.02.20 at 21h 43m 07s.xml">
       <configuration name="TestsPekamaSettingValues.chargesCRUD_Transaction" configurationId="JUnit" />
     </history-entry>
@@ -1964,24 +1980,9 @@
     <history-entry file="TestsPekamaSettingValues_tasksCRUD - 2017.02.20 at 21h 22m 19s.xml">
       <configuration name="TestsPekamaSettingValues.tasksCRUD" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestsPekamaSettingsTeam_values_testA_GUI - 2017.02.20 at 20h 35m 14s.xml">
-      <configuration name="TestsPekamaSettingsTeam.values_testA_GUI" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestsPekamaSettingsTeam_values_testA_GUI - 2017.02.20 at 20h 37m 29s.xml">
-      <configuration name="TestsPekamaSettingsTeam.values_testA_GUI" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestsPekamaSettingsTeam_values_testA_GUI - 2017.02.20 at 20h 42m 42s.xml">
-      <configuration name="TestsPekamaSettingsTeam.values_testA_GUI" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestsPekamaSettingsTeam_values_testA_GUI - 2017.02.20 at 20h 43m 43s.xml">
-      <configuration name="TestsPekamaSettingsTeam.values_testA_GUI" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestsPekamaSettingsTeam_values_testA_GUI - 2017.02.20 at 20h 58m 51s.xml">
-      <configuration name="TestsPekamaSettingsTeam.values_testA_GUI" configurationId="JUnit" />
-    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="633454000" />
+    <option name="totallyTimeSpent" value="634389000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2008,14 +2009,14 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21792035" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25337487" sideWeight="0.49225664" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25337487" sideWeight="0.49225664" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32606438" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37175494" sideWeight="0.5044843" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32606438" sideWeight="0.49778023" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2897196" sideWeight="0.5132743" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2897196" sideWeight="0.5132743" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32583067" sideWeight="0.4955157" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20353982" sideWeight="0.48805815" order="0" side_tool="false" content_ui="tabs" x="710" y="525" width="432" height="494" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25233644" sideWeight="0.49778762" order="1" side_tool="false" content_ui="tabs" />
@@ -2064,7 +2065,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Cancel case tests - Incoming logic" />
     <MESSAGE value="Parallel tests class" />
     <MESSAGE value="Debug fixes" />
     <MESSAGE value="SignUpRefactor" />
@@ -2089,7 +2089,8 @@
     <MESSAGE value="Test runner for emails" />
     <MESSAGE value="fix config" />
     <MESSAGE value="Values task importance CRUD tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Values task importance CRUD tests" />
+    <MESSAGE value="Values transaction CRUD tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Values transaction CRUD tests" />
   </component>
   <component name="VssConfiguration">
     <CheckoutOptions>
@@ -2554,11 +2555,17 @@
           <properties />
           <option name="timeStamp" value="712" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaSettingValues.java</url>
+          <line>546</line>
+          <properties />
+          <option name="timeStamp" value="717" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="717" />
+      <option name="time" value="718" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -3070,6 +3077,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Page/PekamaTeamSettings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="50" column="26" lean-forward="true" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Page/ModalWindows.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="445">
+          <caret line="161" column="62" lean-forward="false" selection-start-line="161" selection-start-column="40" selection-end-line="161" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Steps/StepsPekama.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="223">
@@ -3113,26 +3136,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Page/ModalWindows.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="151" column="31" lean-forward="false" selection-start-line="151" selection-start-column="31" selection-end-line="151" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Page/PekamaTeamSettings.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="45" column="110" lean-forward="false" selection-start-line="45" selection-start-column="78" selection-end-line="45" selection-end-column="110" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaSettingValues.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="487" column="47" lean-forward="true" selection-start-line="487" selection-start-column="47" selection-end-line="487" selection-end-column="47" />
+        <state relative-caret-position="350">
+          <caret line="544" column="42" lean-forward="false" selection-start-line="544" selection-start-column="8" selection-end-line="544" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;class#TestsPekamaSettingValues#0" expanded="false" />

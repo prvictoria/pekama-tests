@@ -450,16 +450,17 @@ public class TestsPekamaSettingValues {
         rootLogger.info("Open Charges subtab check default State");
         SETTINGS_VALUES_TAB_CHARGES.waitUntil(visible, 2000).click();
         scrollUp();
-        checkText("Direct expenses");
-        checkText("Foreign associate charges");
-        checkText("Government Fees");
-        checkText("Service Charges");
-        checkText("Time Recorded");
+
         SETTINGS_VALUES_DROPDOWN.waitUntil(visible, 20000).click();
         $(byLinkText("Transaction Types")).shouldBe(visible);
         $(byLinkText("Currencies")).shouldBe(visible);
         $(byLinkText("Transaction Types")).shouldBe(visible).click();
         SETTINGS_VALUES_DROPDOWN.waitUntil(visible, 20000).shouldHave(text("Transaction Types"));
+        checkText("Direct expenses");
+        checkText("Foreign associate charges");
+        checkText("Government Fees");
+        checkText("Service Charges");
+        checkText("Time Recorded");
 
         submitEnabledButton(SETTINGS_VALUES_ADD);
         String value = randomString(256);
@@ -488,6 +489,61 @@ public class TestsPekamaSettingValues {
         waitForModalWindow("Transaction Type");
         // MW_BTN_OK.shouldBe(disabled); todo BUG
         fillField(MW_STATUS_VALUE, value);
+        submitEnabledButton(MW_BTN_OK);
+        MW.shouldNotBe(visible);
+        valueCheckRowIsDisplayed(value, true);
+
+        valueDelete(value);
+        valueCheckRowIsDisplayed(value, false);
+    }
+    @Test
+    public void chargesCRUD_Currency() {
+        rootLogger.info("Open Charges subtab check default State");
+        SETTINGS_VALUES_TAB_CHARGES.waitUntil(visible, 2000).click();
+        scrollUp();
+
+        SETTINGS_VALUES_DROPDOWN.waitUntil(visible, 20000).click();
+        $(byLinkText("Transaction Types")).shouldBe(visible);
+        $(byLinkText("Currencies")).shouldBe(visible);
+        $(byLinkText("Currencies")).shouldBe(visible).click();
+        SETTINGS_VALUES_DROPDOWN.waitUntil(visible, 20000).shouldHave(text("Currencies"));
+        checkText("EUR");
+        checkText("GBP");
+        checkText("ILS");
+        checkText("USD");
+
+        submitEnabledButton(SETTINGS_VALUES_ADD);
+        String value = randomString(256);
+        String code = "11";
+        rootLogger.info("Check MW Currency validation");
+        waitForModalWindow("Currency");
+        // MW_BTN_OK.shouldBe(disabled); todo BUG
+        fillField(MW_STATUS_VALUE, value);
+        fillField(MW_CURRENCY_INPUT_CODE,code);
+        submitEnabledButton(MW_BTN_OK);
+        checkText(ERROR_MSG_VALIDATION_LENGTH_255);
+        checkText("\"11\" is not a valid choice.");
+        MW_BTN_CANCEL.click();
+        MW.shouldNotBe(visible);
+
+        submitEnabledButton(SETTINGS_VALUES_ADD);
+        rootLogger.info("Check MW Currency validation");
+        waitForModalWindow("Currency");
+        // MW_BTN_OK.shouldBe(disabled); todo BUG
+        fillField(MW_STATUS_VALUE, "");
+        submitEnabledButton(MW_BTN_OK);
+        checkText(ERROR_MSG_REQUIRED_FIELD, 2);
+        MW_BTN_CANCEL.click();
+        MW.shouldNotBe(visible);
+
+        submitEnabledButton(SETTINGS_VALUES_ADD);
+        value = "TRANSACTION"+randomString(15);
+        code = "PLN";
+        rootLogger.info("Check MW Currency validation");
+        waitForModalWindow("Currency");
+        // MW_BTN_OK.shouldBe(disabled); todo BUG
+        fillField(MW_STATUS_VALUE, value);
+        fillField(MW_CURRENCY_INPUT_CODE, code);
         submitEnabledButton(MW_BTN_OK);
         MW.shouldNotBe(visible);
         valueCheckRowIsDisplayed(value, true);

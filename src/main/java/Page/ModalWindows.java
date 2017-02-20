@@ -5,7 +5,6 @@ package Page;
  */
 import com.codeborne.selenide.SelenideElement;
 
-import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 public class ModalWindows extends Page {
@@ -159,7 +158,8 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_STATUS_INPUT_CODE = $(byXpath(mw+"//input[@name='code']"));
     public static final SelenideElement MW_STATUS_INPUT_NUMBER = $(byXpath(mw+"//input[@name='number']"));
     public static final SelenideElement MW_STATUS_IS_GROUP = $(byXpath(mw+"//input[@type='checkbox']"));
-
+    //Currency
+    public static final SelenideElement MW_CURRENCY_INPUT_CODE = $(byXpath(mw+"//input[@name='code']"));
     //NEW
     //New project
     public static final SelenideElement MW_ProjectFinishButton = $(byXpath(mw+"//button[@type='submit'][contains(.,'FINISH')]"));
