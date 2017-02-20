@@ -403,7 +403,7 @@ public class TestsPekamaSettingValues {
     }
     @Test
     public void tasksCRUD() {
-        rootLogger.info("Open Task subtab");
+        rootLogger.info("Open Task subtab and check default State");
         SETTINGS_VALUES_TAB_TASKS.waitUntil(visible, 2000).click();
         valueCheckRowIsDisplayed("Deadline", true);
         valueCheckRowIsDisplayed("Fatal", true);
@@ -447,9 +447,14 @@ public class TestsPekamaSettingValues {
     }
     @Test
     public void chargesCRUD_Transaction() {
-        rootLogger.info("Open Charges subtab");
+        rootLogger.info("Open Charges subtab check default State");
         SETTINGS_VALUES_TAB_CHARGES.waitUntil(visible, 2000).click();
         scrollUp();
+        checkText("Direct expenses");
+        checkText("Foreign associate charges");
+        checkText("Government Fees");
+        checkText("Service Charges");
+        checkText("Time Recorded");
         SETTINGS_VALUES_DROPDOWN.waitUntil(visible, 20000).click();
         $(byLinkText("Transaction Types")).shouldBe(visible);
         $(byLinkText("Currencies")).shouldBe(visible);
@@ -478,7 +483,7 @@ public class TestsPekamaSettingValues {
         MW.shouldNotBe(visible);
 
         submitEnabledButton(SETTINGS_VALUES_ADD);
-        value = "IMPORTANCE"+randomString(15);
+        value = "TRANSACTION"+randomString(15);
         rootLogger.info("Check MW Transaction Type validation");
         waitForModalWindow("Transaction Type");
         // MW_BTN_OK.shouldBe(disabled); todo BUG
