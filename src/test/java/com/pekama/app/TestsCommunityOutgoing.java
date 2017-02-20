@@ -115,7 +115,7 @@ public class TestsCommunityOutgoing {
         rootLogger.info("Cancel case");
         cancelCase(caseName, true);
         rootLogger.info("Test passed");
-        // TODO: 12-Feb-17 ad checks for Pekama and Wizard
+
     }
     @Test
     public void testF2_cancelCase() {
@@ -126,7 +126,7 @@ public class TestsCommunityOutgoing {
         rootLogger.info("Cancel case");
         cancelCase(caseName, false);
         rootLogger.info("Test passed");
-        // TODO: 12-Feb-17 ad checks for Pekama and Wizard
+
     }
 
 }

@@ -14,6 +14,8 @@ import static Page.CommunityOutgoing.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsUrl.*;
 import static Steps.StepsCommunity.*;
+import static Steps.StepsPekama.checkText;
+import static Steps.StepsPekama.checkTextNotPresent;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
@@ -27,6 +29,7 @@ import static com.pekama.app.AllTestsRunner.*;
 public class TestsCommunityIncoming {
     static final Logger rootLogger = LogManager.getRootLogger();
     private String expertTeam = TestsCredentials.User2.TEAM_NAME.getValue();
+    private String expertName = TestsCredentials.User2.NAME.getValue();
     private String expertEmail = User2.GMAIL_EMAIL.getValue();
     private String expertPassword = User2.PEKAMA_PASSWORD.getValue();
     private String supplierEmail = User1.GMAIL_EMAIL.getValue();
@@ -208,7 +211,7 @@ public class TestsCommunityIncoming {
 
         rootLogger.info("Test passed");
     }
-    @Ignore // TODO: 13-Feb-17 BUG
+
     @Test
     public void testF1_cancelCase() {
         rootLogger.info("Create draft case");
@@ -228,16 +231,15 @@ public class TestsCommunityIncoming {
         checkCaseNameFirstRow(caseName);
         checkCaseStatus(caseName, COMMUNITY_STATUS_CANCELLED);
 
-
         rootLogger.info("Open case row");
         String row = getFirstCaseRow(caseName);
         $(byXpath(row)).click();
-
-        rootLogger.info("Check default message present");
-        $(byText(MSG_DEFAULT_CANCEL)).shouldBe(visible);
+        String userName = expertName;
+        rootLogger.info("Check default message present: "+msgCaseCancelled(userName));
+        checkText(msgCaseCancelled(userName));
         rootLogger.info("Test passed");
     }
-    @Ignore // TODO: 13-Feb-17 BUG
+
     @Test
     public void testF2_cancelCase() {
         rootLogger.info("Create draft case");
@@ -258,13 +260,12 @@ public class TestsCommunityIncoming {
         checkCaseNameFirstRow(caseName);
         checkCaseStatus(caseName, COMMUNITY_STATUS_CANCELLED);
 
-
         rootLogger.info("Open case row");
         String row = getFirstCaseRow(caseName);
         $(byXpath(row)).click();
 
-        rootLogger.info("Check default message NOT present");
-        $(byText(MSG_DEFAULT_CANCEL)).shouldNotBe(visible);
-        rootLogger.info("Test passed");
+        String userName = expertName;
+        rootLogger.info("Check default message NOT present: "+msgCaseCancelled(userName));
+        checkTextNotPresent(msgCaseCancelled(userName));
     }
 }

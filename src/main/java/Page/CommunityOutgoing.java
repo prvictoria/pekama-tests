@@ -33,7 +33,11 @@ public class CommunityOutgoing extends Page {
     public static final String MSG_DEFAULT_CONFIRM_INSTRUCTIONS = "I'm pleased to confirm safe receipt of your instructions and will execute them on time. I will report immediately once the work is completed.";
     public static final String MSG_DEFAULT_CONFIRM_COMPLETION = "I'm pleased to confirm that your instructions were executed and the work was completed on time.";
     public static final String MSG_DEFAULT_WITHDRAW = "Please DO NOT proceed with this filing. Kindly confirm immediately.";
-    public static final String MSG_DEFAULT_CANCEL = "I'm afraid that we will not be proceeding with this case. Thank you for your information. Please c lose your file.";
+    public static String MSG_DEFAULT_CANCEL = "Dear %s. I'm afraid that we will not be proceeding with this case. Thank you for your information. Please close your file.";
+    public static String msgCaseCancelled(String userName) {
+        String msg = String.format(MSG_DEFAULT_CANCEL, userName);
+        return msg;
+    }
 
     //FILTERS
 
