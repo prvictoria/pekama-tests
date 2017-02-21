@@ -1,14 +1,17 @@
 package com.pekama.app;
+
 import com.codeborne.selenide.Configuration;
+import org.junit.experimental.categories.Categories;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
+@Categories.ExcludeCategory(AllEmailsTests.class) //Emails not stable
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        //TestsCommunityIntegration.class,
+        TestsCommunityIntegration.class,
         TestsCommunityDashboard.class,
         TestsCommynityLanding.class,
         TestsCommunityWizard.class,
@@ -19,12 +22,12 @@ import org.junit.runners.Suite;
         TestsPekamaDashboard.class,
         TestsPekamaLanding.class,
         TestsPekamaLogin.class,
-        TestsPekamaResetPassword.class,
+        //TestsPekamaResetPassword.class, //not important for now
         TestsPekamaSignUp.class,
         TestsPekamaSettingsPersonal.class,
         TestsPekamaProject.class,
         TestsMessages.class,
-        //TestsPekamaIntegrationBox.class,
+        //TestsPekamaIntegrationBox.class, //not ready
         TestsPekamaSettingsTeam.class,
         TestsPekamaSettingValues.class,
         TestsPekamaTemplates.class,
@@ -39,7 +42,4 @@ public class AllTestsRunner {
         Configuration test = new Configuration();
         test.holdBrowserOpen = value;
     }
-
-
-
 }

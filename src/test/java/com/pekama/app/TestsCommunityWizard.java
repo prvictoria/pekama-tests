@@ -14,7 +14,7 @@ import static Page.Emails.*;
 import static Page.ModalWindows.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
-import static Page.TestsUrl.*;
+import static Page.UrlStrings.*;
 import static Steps.StepsCommunity.*;
 import static Steps.StepsCommunity.checkCaseNameFirstRow;
 import static Steps.StepsExternal.*;

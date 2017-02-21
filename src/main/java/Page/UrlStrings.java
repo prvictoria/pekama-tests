@@ -1,10 +1,10 @@
 package Page;
-import static Page.TestUrlConfig.*;
+import static Page.UrlConfig.*;
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
-public class TestsUrl {
+public class UrlStrings {
     public static final String URL_SingUp = SELECT_HOST+"/signup/";
     public static final String URL_LogIn = SELECT_HOST+"/accounts/login/";
     public static final String URL_Logout = SELECT_HOST+"/accounts/logout";

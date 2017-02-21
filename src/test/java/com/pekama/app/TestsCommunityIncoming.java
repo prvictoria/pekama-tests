@@ -2,17 +2,15 @@ package com.pekama.app;
 import org.junit.FixMethodOrder;
 import Page.TestsCredentials;
 import Steps.StepsPekama;
-import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
 import org.junit.runners.MethodSorters;
-import org.openqa.selenium.By;
 
 import static Page.CommunityDashboard.*;
 import static Page.CommunityOutgoing.*;
 import static Page.TestsCredentials.*;
-import static Page.TestsUrl.*;
+import static Page.UrlStrings.*;
 import static Steps.StepsCommunity.*;
 import static Steps.StepsPekama.checkText;
 import static Steps.StepsPekama.checkTextNotPresent;

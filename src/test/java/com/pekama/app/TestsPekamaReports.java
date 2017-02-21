@@ -1,7 +1,6 @@
 package com.pekama.app;
 import Page.TestsCredentials.*;
 import Steps.*;
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.*;
 import org.junit.*;
@@ -13,7 +12,7 @@ import static Page.ModalWindows.*;
 import static Page.PekamaReports.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
-import static Page.TestsUrl.*;
+import static Page.UrlStrings.*;
 import static Steps.StepsExternal.*;
 import static Steps.StepsPekama.*;
 import static Steps.StepsHttpAuth.*;

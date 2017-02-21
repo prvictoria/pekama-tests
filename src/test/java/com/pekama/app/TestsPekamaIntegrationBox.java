@@ -14,7 +14,7 @@ import static Page.ModalWindows.*;
 import static Page.PekamaProject.*;
 import static Page.TestsCredentials.User1;
 import static Page.TestsStrings.*;
-import static Page.TestsUrl.*;
+import static Page.UrlStrings.*;
 import static Steps.StepsPekama.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
@@ -57,7 +57,7 @@ public class TestsPekamaIntegrationBox {
     public void testA_PrepareProject() {
         boxProjectName = createProject();
         pekamaProjectUrl = url();
-        projectTabDocs.click();
+        PROJECT_TAB_DOCS.click();
         createFolderInRoot(FolderNameBeforeConnect);
         createFileInRoot(MW_DeployDoc_02TemplateExcel, FileNameBeforeConnect);
 

@@ -21,7 +21,7 @@ import static Page.TestsCredentials.*;
 import static Page.TestsCredentials.TrademarkEvents.APPLICATION_REGISTERED;
 import static Page.TestsCredentials.TrademarkEvents.MARK_CREATED;
 import static Page.TestsStrings.*;
-import static Page.TestsUrl.*;
+import static Page.UrlStrings.*;
 import static Page.Xero.*;
 import static Steps.StepsExternal.*;
 import static Steps.StepsPekama.*;
@@ -219,7 +219,7 @@ public class TestsPekamaProject {
     @Test
     public void createProject_E_addCollaborator() {
         rootLogger.info("Add Pekama member - by default - as Collaborator");
-        projectTabContacts.click();
+        PROJECT_TAB_CONTACTS.click();
         projectTabContacts_AddCollaborator.click();
         waitForModalWindow(TITLE_MW_SHARE_PROJECT);
         selectTeam(COLLABORATOR_TEAM_NAME);
@@ -270,7 +270,7 @@ public class TestsPekamaProject {
     @Test @Category(AllEmailsTests.class)
     public void createProject_E_inviteCollaborator() {
         rootLogger.info("Invite new team to Pekama project");
-        projectTabContacts.click();
+        PROJECT_TAB_CONTACTS.click();
         projectTabContacts_AddCollaborator.click();
         waitForModalWindow(TITLE_MW_SHARE_PROJECT);
         MW_SHARE_PROJECT_BTN_FIND.shouldBe(disabled);
@@ -307,7 +307,7 @@ public class TestsPekamaProject {
     }
     @Test
     public void createProject_F1_addNewContact_Person() {
-        projectTabContacts.click();
+        PROJECT_TAB_CONTACTS.click();
         // $$(byText(PLACEHOLDER_NO_DATA)).filter(visible).shouldHaveSize(1);
         //todo BUG #140196199 https://www.pivotaltracker.com/n/projects/1239770/stories/140196199
         rootLogger.info("Select create new");
@@ -338,7 +338,7 @@ public class TestsPekamaProject {
 
     @Test
     public void createProject_F2_addExistedContact() {
-        projectTabContacts.click();
+        PROJECT_TAB_CONTACTS.click();
         // $$(byText(PLACEHOLDER_NO_DATA)).filter(visible).shouldHaveSize(1);
         //todo BUG #140196199 https://www.pivotaltracker.com/n/projects/1239770/stories/140196199
         rootLogger.info("Select existed contact");
@@ -391,7 +391,7 @@ public class TestsPekamaProject {
     @Test
     public void createProject_G1_addWordDocument() {
         String newDoc = "new word document";
-        projectTabDocs.click();
+        PROJECT_TAB_DOCS.click();
         TAB_DOCS_BTN_ADD.click();
         TAB_DOC_NEW_DOCUMENT.shouldBe(Condition.visible).click();
         waitForModalWindow(TITLE_MW_ADD_DOCUMENT);
@@ -422,7 +422,7 @@ public class TestsPekamaProject {
     @Test
     public void createProject_G2_addExcelDocument() {
         String newExcel = "new excel spreadsheet";
-        projectTabDocs.click();
+        PROJECT_TAB_DOCS.click();
         TAB_DOCS_BTN_ADD.click();
         TAB_DOC_NEW_DOCUMENT.shouldBe(Condition.visible).click();
         modalWindowDeployFileTemplate(MW_DeployDoc_02TemplateExcel, newExcel);
@@ -445,7 +445,7 @@ public class TestsPekamaProject {
     @Test
     public void createProject_H1_addFolder() {
         String newFolder = "new folder";
-        projectTabDocs.click();
+        PROJECT_TAB_DOCS.click();
         TAB_DOCS_BTN_ADD.click();
         rootLogger.info("Add folder");
         TAB_DOC_ADD_FOLDER.shouldBe(Condition.visible).click();
@@ -468,7 +468,7 @@ public class TestsPekamaProject {
     public void createProject_H2_validationDuplicateFolder() {
         String newFolder1 = "folder1";
         String newFolder2 = "folder2";
-        projectTabDocs.click();
+        PROJECT_TAB_DOCS.click();
         TAB_DOCS_BTN_ADD.click();
         TAB_DOC_ADD_FOLDER.shouldBe(Condition.visible).click();
         rootLogger.info("Add folder");
@@ -510,7 +510,7 @@ public class TestsPekamaProject {
         String newFolder2 = "folder2";
         String newFolder3 = "folder3";
         String newExcel = "excel";
-        projectTabDocs.click();
+        PROJECT_TAB_DOCS.click();
         sleep(1000);
         TAB_DOCS_BTN_ADD.click();
         TAB_DOC_ADD_FOLDER.shouldBe(Condition.visible).click();
@@ -541,7 +541,7 @@ public class TestsPekamaProject {
     @Test
     public void createProject_I_addTask() {
         String taskName = "new task";
-        projectTabTasks.click();
+        PROJECT_TAB_TASKS.click();
         $$(byText(PLACEHOLDER_EmptyList)).shouldHaveSize(1);
         TAB_TASKS_ADD.click();
         TAB_TASKS_NEW_TASK.shouldBe(visible).click();
@@ -629,7 +629,7 @@ public class TestsPekamaProject {
     }
     @Test
     public void createProject_M_addChargePositive() {
-        projectTabFin.click();
+        PROJECT_TAB_CHARGES.click();
         checkText(PLACEHOLDER_EmptyList);
         TAB_CHARGES_ADD.click();
         rootLogger.info("Create charge");
@@ -676,7 +676,7 @@ public class TestsPekamaProject {
     }
     @Test
     public void createProject_O_addFamilyProject() {
-        projectTabFamily.click();
+        PROJECT_TAB_FAMILY.click();
         TAB_FAMILY_NEW.click();
         waitForModalWindow(TILE_MW_PROJECT);
         rootLogger.info("select project type");
@@ -690,7 +690,7 @@ public class TestsPekamaProject {
         checkText(Countries.USA.getValue());
         checkText("FAMILY-"+testProjectTitle);
 
-        projectTabFamily.click();
+        PROJECT_TAB_FAMILY.click();
         String familyText = testProjectTitle.toUpperCase();
         TAB_FAMILY_1ST_ROW_TITLE.should(matchText(familyText));
        // checkText(result);
@@ -706,7 +706,7 @@ public class TestsPekamaProject {
         String newURL = url();
         Assert.assertNotEquals(currentURL, newURL);
 
-        projectTabFamily.click();
+        PROJECT_TAB_FAMILY.click();
         String familyText = testProjectTitle.toUpperCase();
         rootLogger.info(familyText);
         TAB_FAMILY_1ST_ROW_TITLE.should(matchText(familyText));
@@ -735,7 +735,7 @@ public class TestsPekamaProject {
         createCharge(testSearchChargesType, EUR, "5000");
 
         sleep(5000);
-        projectTabSearch.waitUntil(visible, 15000).click();
+        PROJECT_TAB_SEARCH.waitUntil(visible, 15000).click();
         checkText(PLACEHOLDER_NO_DATA);
         
         rootLogger.info("Search: "+testEventType);
@@ -964,7 +964,7 @@ public class TestsPekamaProject {
         String bigDecimal = "12345678901234567890";
         String floatString1 = "1.2345678901234567890";
         String floatString2 = "123456789012345678.90";
-        projectTabFin.waitUntil(visible, 15000).click();
+        PROJECT_TAB_CHARGES.waitUntil(visible, 15000).click();
 
         rootLogger.info("Validation empty field");
         TAB_CHARGES_ADD.waitUntil(enabled, 15000).click();

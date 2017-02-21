@@ -7,7 +7,7 @@ import org.junit.Test;
 import org.junit.experimental.ParallelComputer;
 import org.junit.runner.JUnitCore;
 
-import static Page.TestsUrl.URL_COMMUNITY_LOGIN;
+import static Page.UrlStrings.URL_COMMUNITY_LOGIN;
 import static com.codeborne.selenide.Selenide.open;
 /**
  * Created by Viachaslau Balashevich.

@@ -6,8 +6,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static Page.TestUrlConfig.*;
-import static Page.TestsUrl.*;
+import static Page.UrlConfig.*;
+import static Page.UrlStrings.*;
 import static Page.PekamaLogin.*;
 import static Page.TestsCredentials.*;
 import static Steps.StepsHttpAuth.httpAuthUrl;

@@ -3,7 +3,7 @@ package Page;
 /**
  * Created by VatslauX on 20-Feb-17.
  */
-public class TestUrlConfig {
+public class UrlConfig {
     public static final String DOMAIN = "pekama.com";
     public static final String STAGING_PEKAMA = "https://staging.pekama.com";
     public static final String STAGING_COMMUNITY = "https://communitystaging.pekama.com";

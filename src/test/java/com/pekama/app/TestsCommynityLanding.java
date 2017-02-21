@@ -9,7 +9,7 @@ import static Page.CommunityDashboard.*;
 import static Page.CommunityLanding.*;
 import static Page.PekamaLogin.*;
 import static Page.PekamaSignUp.*;
-import static Page.TestUrlConfig.*;
+import static Page.UrlConfig.*;
 import static com.codeborne.selenide.Condition.selected;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;

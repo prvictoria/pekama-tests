@@ -1,5 +1,5 @@
 package Steps;
-import Utils.*;
+import Utils.Utils;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
@@ -16,16 +16,13 @@ import static Page.PekamaReports.*;
 import static Page.PekamaTeamSettings.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
-import static Steps.StepsHttpAuth.*;
-import static Utils.Utils.getDate;
+import static Steps.StepsHttpAuth.httpAuthUrl;
 import static Utils.Utils.randomString;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static com.codeborne.selenide.WebDriverRunner.url;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
@@ -96,7 +93,7 @@ public class StepsPekama implements StepsFactory{
         rootLogger.info("Valid Credentials were submitted");
 
     }
-    public void  submitCookie(){
+    public static void  submitCookie(){
         rootLogger.info("Check if cookie present");
         sleep(500);
         if ($(byText("Got it!")).isDisplayed()){
@@ -417,7 +414,7 @@ public class StepsPekama implements StepsFactory{
     }
     //in root in Project
     public static void createFileInRoot(SelenideElement fileType, String fileName) {
-        projectTabDocs.waitUntil(visible, 15000).click();
+        PROJECT_TAB_DOCS.waitUntil(visible, 15000).click();
         TAB_DOCS_BTN_ADD.waitUntil(enabled, 15000).click();
         TAB_DOC_NEW_DOCUMENT.shouldBe(Condition.visible).click();
         modalWindowDeployFileTemplate(fileType, fileName);
@@ -446,7 +443,7 @@ public class StepsPekama implements StepsFactory{
         String codeType = "Equinox code";
         String codeValue = "2000/17/55-asd";
         rootLogger.info("Create "+codeType+"with value - "+codeValue);
-        projectTabInfo.waitUntil(visible, 15000).click();
+        PROJECT_TAB_INFO.waitUntil(visible, 15000).click();
         scrollDown();
         selectItemInDropdown(TAB_INFO_NumberNewSelect, TAB_INFO_NumberNewField, codeType);
         fillField(TAB_INFO_NumberReferenceField, codeValue);
@@ -460,7 +457,7 @@ public class StepsPekama implements StepsFactory{
         String classNumber = "12";
         String classDescripton = "Class description";
         String classType = "Up-to-date";
-        projectTabInfo.waitUntil(visible, 15000).click();
+        PROJECT_TAB_INFO.waitUntil(visible, 15000).click();
         scrollDown();
         TAB_INFO_ClassesAdd.waitUntil(visible, 20000).click();
         waitForModalWindow(mwClasses_Title);
@@ -476,7 +473,7 @@ public class StepsPekama implements StepsFactory{
         return classType;
     }
     public static String createFolderInRoot(String folderName) {
-        projectTabDocs.waitUntil(visible, 15000).click();
+        PROJECT_TAB_DOCS.waitUntil(visible, 15000).click();
         TAB_DOCS_BTN_ADD.waitUntil(enabled, 15000).click();
         rootLogger.info("Add folder");
         TAB_DOC_ADD_FOLDER.shouldBe(Condition.visible).click();
@@ -485,7 +482,7 @@ public class StepsPekama implements StepsFactory{
         return folderName;
     }
     public static String createTask(String taskName) {
-        projectTabTasks.waitUntil(visible, 15000).click();
+        PROJECT_TAB_TASKS.waitUntil(visible, 15000).click();
         TAB_TASKS_ADD.waitUntil(enabled, 15000).click();
         TAB_TASKS_NEW_TASK.shouldBe(visible).click();
         waitForModalWindow(TITLE_MW_NEW_TASK);
@@ -515,7 +512,7 @@ public class StepsPekama implements StepsFactory{
         return eventTypeName;
     }
     public static String createCharge(String chargeType, String currency, String price) {
-        projectTabFin.waitUntil(visible, 15000).click();
+        PROJECT_TAB_CHARGES.waitUntil(visible, 15000).click();
         TAB_CHARGES_ADD.waitUntil(enabled, 15000).click();
         rootLogger.info("Create charge");
         waitForModalWindow(TITLE_MW_CHARGE);

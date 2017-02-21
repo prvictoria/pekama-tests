@@ -13,7 +13,7 @@ import static Page.CommunityWizard.*;
 import static Page.ModalWindows.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
-import static Page.TestsUrl.*;
+import static Page.UrlStrings.*;
 import static Steps.StepsCommunity.*;
 import static Steps.StepsHttpAuth.httpAuthUrl;
 import static Steps.StepsPekama.*;

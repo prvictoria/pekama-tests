@@ -10,7 +10,7 @@ import org.junit.runners.MethodSorters;
 import static Page.ModalWindows.*;
 import static Page.PekamaTeamSettings.*;
 import static Page.TestsStrings.*;
-import static Page.TestsUrl.*;
+import static Page.UrlStrings.*;
 import static Steps.StepsPekama.*;
 import static Steps.StepsHttpAuth.*;
 import static Utils.Utils.*;

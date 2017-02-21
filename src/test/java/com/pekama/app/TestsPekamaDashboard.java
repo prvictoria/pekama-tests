@@ -18,7 +18,7 @@ import org.openqa.selenium.By;
 import static Page.ModalWindows.*;
 import static Page.PekamaDashboard.*;
 import static Page.TestsStrings.PAGE_TITLE_PEKAMA;
-import static Page.TestsUrl.URL_LogIn;
+import static Page.UrlStrings.URL_LogIn;
 import static Steps.StepsPekama.*;
 import static Utils.Utils.randomString;
 import static com.codeborne.selenide.Condition.*;

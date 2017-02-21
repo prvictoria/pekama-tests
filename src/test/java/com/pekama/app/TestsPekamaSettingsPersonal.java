@@ -10,7 +10,7 @@ import org.junit.runners.MethodSorters;
 import static Page.ModalWindows.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
-import static Page.TestsUrl.*;
+import static Page.UrlStrings.*;
 import static Steps.StepsExternal.authGmail;
 import static Steps.StepsPekama.fillField;
 import static Steps.StepsPekama.submitConfirmAction;

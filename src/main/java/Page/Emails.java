@@ -4,7 +4,7 @@ package Page;
  * https://www.linkedin.com/in/viachaslau
  */
 import com.codeborne.selenide.SelenideElement;
-import static Page.TestUrlConfig.*;
+import static Page.UrlConfig.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 public class Emails extends Page {

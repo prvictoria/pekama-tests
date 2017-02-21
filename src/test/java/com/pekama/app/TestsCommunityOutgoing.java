@@ -8,16 +8,16 @@ import org.junit.runners.MethodSorters;
 
 import static Page.CommunityDashboard.*;
 import static Page.CommunityOutgoing.*;
-import static Page.PekamaProject.TAB_INFO_COMMUNITY_CASE_NAME;
+import static Page.PekamaProject.*;
 import static Page.TestsCredentials.*;
-import static Page.TestsUrl.*;
+import static Page.UrlStrings.*;
 import static Steps.StepsCommunity.*;
 import static Steps.StepsHttpAuth.httpAuthUrl;
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.*;
-import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
+import static com.pekama.app.AllTestsRunner.*;
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
@@ -103,7 +103,7 @@ public class TestsCommunityOutgoing {
         String row = getFirstCaseRow(caseName);
         $(byXpath(row)).click();
         rootLogger.info("Check expanded row");
-        $(byText(MSG_DEFAULT_INSTRUCTION)).shouldBe(visible);
+        $(byText(MSG_DEFAULT_SENT_INSTRUCTION)).shouldBe(visible);
         rootLogger.info("Test passed");
     }
     @Test

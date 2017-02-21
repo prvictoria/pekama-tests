@@ -55,15 +55,13 @@ public class PekamaProject extends Page {
 
     public static final SelenideElement TAB_CHARGES_ADD = TAB_CONTROL_ADD;
     public static final SelenideElement TAB_CHARGES_CHECKBOX_ALL = $(byXpath(CONTROLS_ROW+""));
-    public static final SelenideElement projectTabInfo = $(byXpath("//i[@class='icon pkm-icon-info-square']"));
-    public static final SelenideElement projectTabContacts = $(byXpath("//i[@class='icon pkm-icon-users-square']"));
-    public static final SelenideElement projectTabDocs = $(byXpath("//i[@class='icon pkm-icon-documents-square']"));
-    public static final SelenideElement projectTabTasks = $(byXpath("//i[@class='icon pkm-icon-tasks-square']"));
-    public static final SelenideElement projectTabFin = $(byXpath("//i[@class='icon pkm-icon-finances-square']"));
-    public static final SelenideElement projectTabFamily = $(byXpath("//i[@class='icon pkm-icon-family-square']"));
-    public static final SelenideElement projectTabSearch = $(byXpath("//i[@class='icon pkm-icon-search-square']"));
-    public static final SelenideElement projectTabNoContentPlaceholder = $(byXpath("//div[@class='project-content-body ng-scope']//div[starts-with(@class, 'alert alert-empty')]"));
-
+    public static final SelenideElement PROJECT_TAB_INFO = $(byXpath("//i[@class='icon pkm-icon-info-square']"));
+    public static final SelenideElement PROJECT_TAB_CONTACTS = $(byXpath("//i[@class='icon pkm-icon-users-square']"));
+    public static final SelenideElement PROJECT_TAB_DOCS = $(byXpath("//i[@class='icon pkm-icon-documents-square']"));
+    public static final SelenideElement PROJECT_TAB_TASKS = $(byXpath("//i[@class='icon pkm-icon-tasks-square']"));
+    public static final SelenideElement PROJECT_TAB_CHARGES = $(byXpath("//i[@class='icon pkm-icon-finances-square']"));
+    public static final SelenideElement PROJECT_TAB_FAMILY = $(byXpath("//i[@class='icon pkm-icon-family-square']"));
+    public static final SelenideElement PROJECT_TAB_SEARCH = $(byXpath("//i[@class='icon pkm-icon-search-square']"));
 
     public static final SelenideElement TAB_INFO_ProjectTitle = $(byXpath("//pkm-editable-title//h4"));
     public static final SelenideElement TAB_INFO_TitleEditButton = $(byXpath("//*[@class='info-section project-details ng-scope']//button[contains(.,'Edit')]"));
@@ -71,7 +69,7 @@ public class PekamaProject extends Page {
     public static final SelenideElement TAB_INFO_TitleSave = $(byXpath("//button[contains(.,'Save')]"));
     public static final SelenideElement TAB_INFO_TitleCancel = $(byXpath("//button[contains(.,'Cancel')]"));
 
-    public static final String TAB_INFO_VALUES= "//*[@class='details-list clearfix']";
+    public static final String TAB_INFO_VALUES = "//*[@class='details-list clearfix']";
     public static final SelenideElement TAB_INFO_PROJECT_TYPE = $(byXpath(TAB_INFO_VALUES+"//strong[contains(.,'Project type')]/following-sibling::span"));
     public static final SelenideElement TAB_INFO_SELECT_Defining = $(byXpath(TAB_INFO_VALUES+"//strong[text()='Country']/following-sibling::pkm-values-dropdown"));
     public static final SelenideElement TAB_INFO_INPUT_Defining = $(byXpath(TAB_INFO_VALUES+"//strong[text()='Country']/following-sibling::pkm-values-dropdown//input[@type='search']"));
@@ -129,6 +127,7 @@ public class PekamaProject extends Page {
     public static final SelenideElement TAB_INFO_COMMUNITY_CASE_TYPE = $(byXpath("//div[@class='patent']/span"));
     public static final SelenideElement TAB_INFO_COMMUNITY_CASE_ACTION = $(byXpath("//div[@class='status']/button"));
     public static final SelenideElement TAB_INFO_COMMUNITY_CASE_STATUS = $(byXpath("//div[@class='status']//span"));
+    public static final SelenideElement TAB_INFO_COMMUNITY_CASE_ROW = $(byXpath("//pkm-community-projects//div[@class='request-quote-list ng-scope']"));
 
 
     //todo - TAB contacts

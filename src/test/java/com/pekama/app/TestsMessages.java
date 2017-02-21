@@ -15,7 +15,7 @@ import static Page.PekamaConversationProject.*;
 import static Page.PekamaDashboard.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
-import static Page.TestsUrl.*;
+import static Page.UrlStrings.*;
 import static Steps.StepsPekama.*;
 import static Utils.Utils.*;
 import static com.codeborne.selenide.Condition.*;
