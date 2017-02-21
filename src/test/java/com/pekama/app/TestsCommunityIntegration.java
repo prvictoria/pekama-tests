@@ -14,13 +14,14 @@ import org.junit.*;
 import org.junit.runners.MethodSorters;
 
 import static Page.CommunityDashboard.*;
-import static Page.CommunityOutgoing.*;
 import static Page.CommunityWizard.*;
 import static Page.ModalWindows.*;
 import static Page.PekamaDashboard.*;
 import static Page.PekamaProject.*;
 import static Page.TestsStrings.*;
 import static Page.UrlStrings.*;
+import static Steps.Messages.*;
+import static Steps.Messages.msgCaseCancelled;
 import static Steps.StepsCommunity.*;
 import static Steps.StepsPekama.*;
 import static Utils.Utils.randomString;
@@ -132,14 +133,12 @@ public class TestsCommunityIntegration {
         TAB_INFO_COMMUNITY_BTN_START_NEW.waitUntil(visible, 20000).shouldBe(visible);
         rootLogger.info("Check introduce message");
 
-        checkText("Dear "+REQUESTER_NAME+" "+REQUESTER_SURNAME+" and "+EXPERT_NAME+" "+EXPERT_SURNAME +",");
+        checkText(msgIntroduce(REQUESTER_NAME, REQUESTER_SURNAME, EXPERT_NAME, EXPERT_SURNAME));
         if (alreadyWorkedBefore.equals("start new conversation")) {
-
-            // TODO: 21-Feb-17 check messages logic for already working
-            checkText("I am very pleased to introduce you to each other. "+REQUESTER_NAME+" "+REQUESTER_SURNAME+" needs an IP service in "+TEST_CASE_COUNTRY+" and we believe that "+EXPERT_NAME+" "+EXPERT_SURNAME+" may be able to help with that. Please do follow up directly on this introduction.");
+            checkText(msgIntroduceNewCommunityCollaborators(REQUESTER_NAME, REQUESTER_SURNAME, TEST_CASE_COUNTRY, EXPERT_NAME, EXPERT_SURNAME));
         }
         else {
-            checkText("I believe that you already know each other or your firms are already working together. "+REQUESTER_NAME+" "+REQUESTER_SURNAME+" now needs an IP service in "+TEST_CASE_COUNTRY+" and we believe, as usual, that "+EXPERT_NAME+" "+EXPERT_SURNAME+" may be able to help with that. I trust that "+REQUESTER_NAME+" "+REQUESTER_SURNAME+" will follow up with details.");
+            checkText(msgIntroduceWorkedBeforeCommunityCollaborators(REQUESTER_NAME, REQUESTER_SURNAME, TEST_CASE_COUNTRY, EXPERT_NAME, EXPERT_SURNAME));
         }
 
         TAB_INFO_COMMUNITY_CASE_NAME.waitUntil(visible, 15000).shouldHave(text(TEST_CASE_NAME));
