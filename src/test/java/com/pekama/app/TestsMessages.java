@@ -5,34 +5,22 @@ package com.pekama.app;
  */
 
 import Steps.*;
-import com.codeborne.selenide.*;
-import com.codeborne.selenide.ex.SoftAssertionError;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
 import org.junit.runners.MethodSorters;
-import org.openqa.selenium.By;
 
-import java.awt.*;
-
-import static Page.Emails.*;
 import static Page.ModalWindows.*;
 import static Page.PekamaConversationProject.*;
 import static Page.PekamaDashboard.*;
-import static Page.PekamaProject.*;
 import static Page.TestsCredentials.*;
-import static Page.TestsCredentials.TrademarkEvents.*;
 import static Page.TestsStrings.*;
 import static Page.TestsUrl.*;
-import static Page.Xero.*;
-import static Steps.StepsExternal.*;
 import static Steps.StepsPekama.*;
-import static Steps.StepsPekama.checkPageTitle;
 import static Utils.Utils.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.*;
 import static com.pekama.app.AllTestsRunner.*;
 import static org.junit.Assert.assertEquals;
 import static com.codeborne.selenide.Selenide.$;
@@ -56,7 +44,7 @@ public class TestsMessages {
                     TEST_USER_PEKAMA_PASSWORD,
                     URL_LogIn);
             rootLogger.info("Create project");
-            DASHBOARD_NewProject.waitUntil(visible, 15000).click();
+            DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 15000).click();
             String testProjectName = createProject();
             String testProjectUrl = getActualUrl ();
     }

@@ -123,7 +123,7 @@ public class PekamaProject extends Page {
     //COMMUNITY
     public static final SelenideElement TAB_INFO_COMMUNITY = $(byXpath("//pkm-community-projects"));
     public static final SelenideElement TAB_INFO_COMMUNITY_TITLE = $(byXpath("//pkm-community-projects//h4"));
-    public static final SelenideElement TAB_INFO_COMMUNITY_BTN_START_NEW = $(byXpath("link=+ START NEW"));
+    public static final SelenideElement TAB_INFO_COMMUNITY_BTN_START_NEW = $(byXpath("//pkm-community-projects//button[contains(.,'+ START NEW')]"));
     public static final SelenideElement TAB_INFO_COMMUNITY_CASES_LIST = $(byXpath("//pkm-community-projects//div[@class='request-quote-list']/div"));
     public static final SelenideElement TAB_INFO_COMMUNITY_CASE_NAME = $(byXpath("//div[@class='name']"));
     public static final SelenideElement TAB_INFO_COMMUNITY_CASE_TYPE = $(byXpath("//div[@class='patent']/span"));

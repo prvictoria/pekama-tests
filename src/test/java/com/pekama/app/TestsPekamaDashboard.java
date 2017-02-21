@@ -51,7 +51,7 @@ public class TestsPekamaDashboard {
     @Test
     public void testA_Gui() {
         DASHBOARD_ProjectsTitle.waitUntil(visible, 20000).shouldBe(visible);
-        DASHBOARD_NewProject.shouldBe(visible);
+        DASHBOARD_BTN_NEW_PROJECT.shouldBe(visible);
         checkText("No projects yet. Create your first project");
 
         DASHBOARD_YourProfileTitle.shouldBe(visible);

@@ -15,7 +15,7 @@ import java.awt.*;
 import static Page.Emails.EMAIL_INVITE_IN_PROJECT_BACKLINK;
 import static Page.Emails.EMAIL_INVITE_IN_PROJECT_BTN;
 import static Page.ModalWindows.*;
-import static Page.PekamaDashboard.DASHBOARD_NewProject;
+import static Page.PekamaDashboard.DASHBOARD_BTN_NEW_PROJECT;
 import static Page.PekamaProject.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsCredentials.TrademarkEvents.APPLICATION_REGISTERED;
@@ -47,8 +47,8 @@ public class TestsPekamaProject {
     private final static String TEST_USER_EMAIL = User3.GMAIL_EMAIL.getValue();
     private final static String TEST_USER_PEKAMA_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
     private final static String TEST_USER_XERO_PASSWORD = User3.XERO_PASSWORD.getValue();
-    private final String TEST_USER_FULL_TEAM_NAME = User3.FULL_TEAM_NAME.getValue();
-    private final String COLLABORATOR_TEAM_NAME = User1.TEAM_NAME.getValue();
+    private final static String TEST_USER_FULL_TEAM_NAME = User3.FULL_TEAM_NAME.getValue();
+    private final static String COLLABORATOR_TEAM_NAME = User1.TEAM_NAME.getValue();
     @Before
     public void before() {
         holdBrowserAfterTest();
@@ -59,7 +59,7 @@ public class TestsPekamaProject {
                 TEST_USER_PEKAMA_PASSWORD,
                 URL_LogIn);
         rootLogger.info("Create project");
-        DASHBOARD_NewProject.waitUntil(visible, 15000).click();
+        DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 15000).click();
         rootLogger.info("NW - New project");
         waitForModalWindow(TILE_MW_PROJECT);
         rootLogger.info("select project type");

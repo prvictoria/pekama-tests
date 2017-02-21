@@ -18,9 +18,9 @@ public class PekamaDashboard extends Page {
     public static final SelenideElement DASHBOARD_UpcomingTitle = $(byXpath("//h4[contains(.,'UPCOMING')]"));
     public static final SelenideElement DASHBOARD_TasksTitle = $(byXpath("//h4[contains(.,'Tasks')]"));
 
-    public static final SelenideElement DASHBOARD_SelectProjectTemplatesButton = $(byXpath("xpath=//button[@type='button'][2]"));
+    public static final SelenideElement DASHBOARD_BTN_PROJECT_TEMPLATES = $(byXpath("//button[@type='button'][2]"));
     public static final SelenideElement DASHBOARD_SelectProjectTemplatesTemplate01 = $(byXpath("//a[@ng-click='applyTemplate(template)'][1]"));
-    public static final SelenideElement DASHBOARD_NewProject = $(byXpath("//button[@type='button'][contains(.,'+ NEW')]"));
+    public static final SelenideElement DASHBOARD_BTN_NEW_PROJECT = $(byXpath("//button[@type='button'][contains(.,'+ NEW')]"));
     public static final SelenideElement DASHBOARD_ProjectList01 = $(byXpath("//li[@class='item matter ng-scope']/a"));
     public static final SelenideElement DASHBOARD_ProjectList02 = $(byXpath("//li[2][@class='item matter ng-scope']/a"));
     public static final SelenideElement DASHBOARD_ProjectList03 = $(byXpath("//li[3][@class='item matter ng-scope']/a"));
