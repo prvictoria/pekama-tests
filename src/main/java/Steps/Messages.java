@@ -3,7 +3,7 @@ package Steps;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
-public class Messages {
+public class Messages implements StepsFactory{
     //Common messages
 
 
