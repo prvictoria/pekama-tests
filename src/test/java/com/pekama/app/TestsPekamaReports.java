@@ -41,9 +41,6 @@ public class TestsPekamaReports {
         rootLogger.info("Redirect after login to - "+URL_Dashboard);
         sleep(1000);
     }
-    @After
-    public void logout(){open(URL_Logout);}
-
     @Test //1-st test in stack
     public void deleteAllMailingLists(){
         String thisMailingListName;

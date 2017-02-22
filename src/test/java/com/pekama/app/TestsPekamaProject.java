@@ -49,8 +49,9 @@ public class TestsPekamaProject {
     private final static String TEST_USER_XERO_PASSWORD = User3.XERO_PASSWORD.getValue();
     private final static String TEST_USER_FULL_TEAM_NAME = User3.FULL_TEAM_NAME.getValue();
     private final static String COLLABORATOR_TEAM_NAME = User1.TEAM_NAME.getValue();
-    @Before
-    public void before() {
+
+    @BeforeClass
+    public static void beforeClass() {
         holdBrowserAfterTest();
         rootLogger.info("Open host");
         StepsPekama loginIntoPekama = new StepsPekama();
@@ -58,6 +59,10 @@ public class TestsPekamaProject {
                 TEST_USER_EMAIL,
                 TEST_USER_PEKAMA_PASSWORD,
                 URL_LogIn);
+    }
+    @Before
+    public void before() {
+        open(URL_Dashboard);
         rootLogger.info("Create project");
         DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 15000).click();
         rootLogger.info("NW - New project");

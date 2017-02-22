@@ -12,9 +12,8 @@ import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.UrlStrings.*;
 import static Steps.StepsExternal.authGmail;
-import static Steps.StepsPekama.fillField;
-import static Steps.StepsPekama.submitConfirmAction;
-import static Steps.StepsPekama.submitEnabledButton;
+import static Steps.StepsPekama.*;
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
@@ -27,21 +26,25 @@ import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaSettingsPersonal {
     static final Logger rootLogger = LogManager.getRootLogger();
-    private String testUserEmail = User3.GMAIL_EMAIL.getValue();
-    private String testUserPekamaPassword = User3.PEKAMA_PASSWORD.getValue();
-    private String testUserGmailPassword = User3.GMAIL_PASSWORD.getValue();
-    private String AUTH_URL = URL_PersonalSettings;
+    private static final String testUserEmail = User3.GMAIL_EMAIL.getValue();
+    private static final String testUserPekamaPassword = User3.PEKAMA_PASSWORD.getValue();
+    private static final String testUserGmailPassword = User3.GMAIL_PASSWORD.getValue();
+    private static final String AUTH_URL = URL_PersonalSettings;
 
     @BeforeClass
-    public static void beforeClass() { }
-    @Before
-    public void before() {
+    public static void beforeClass() {
         holdBrowserAfterTest();
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(testUserEmail, testUserPekamaPassword, AUTH_URL);
     }
-    @After
-    public void after() {
+    @Before
+    public void before() {
+        sleep(500);
+        refresh();
+        sleep(2000);
+    }
+    @AfterClass
+    public static void after() {
         open(URL_Logout);
     }
 
@@ -50,12 +53,12 @@ public class TestsPekamaSettingsPersonal {
         rootLogger.info("Start test GUI and links");
         PERSONAL_SETTINGS_BTN.waitUntil(visible, 20000).shouldBe(Condition.visible);
         TEAM_SETTINGS_BTN.waitUntil(visible, 20000).shouldBe(Condition.visible);
-        PERSONAL_DETAILS_TAB_TITLE.shouldHave(Condition.text("Personal details"));
-        SECURITY_TAB_TITLE.shouldHave(Condition.text("Login & Security"));
-        EMAILS_TAB_TITLE.shouldHave(Condition.text("Emails"));
-        SIGNATURE_TAB_TITLE.shouldHave(Condition.text("E-mail signature"));
-        IMAP_TAB_TITLE.shouldHave(Condition.text("IMAP"));
-        TIME_TRACKER_TAB_TITLE.shouldHave(Condition.text("Time Tracker"));
+        PERSONAL_DETAILS_TAB_TITLE.shouldHave(text("Personal details"));
+        SECURITY_TAB_TITLE.shouldHave(text("Login & Security"));
+        EMAILS_TAB_TITLE.shouldHave(text("Emails"));
+        SIGNATURE_TAB_TITLE.shouldHave(text("E-mail signature"));
+        IMAP_TAB_TITLE.shouldHave(text("IMAP"));
+        TIME_TRACKER_TAB_TITLE.shouldHave(text("Time Tracker"));
         rootLogger.info("Perosnal settings GUI is consistent");
     }
     @Test
@@ -279,13 +282,13 @@ public class TestsPekamaSettingsPersonal {
     @Test
     public void personalDetails_SelectCountry_A() {
         rootLogger.info("Select new counrty");
-       PERSONAL_DETAILS_COUNTRY_SELECT.click();
+       PERSONAL_DETAILS_COUNTRY_SELECT.shouldBe(visible).click();
        PERSONAL_DETAILS_COUNTRY_INPUT.sendKeys("United Kingdom");
         $(CSS_SelectHighlighted).click();
         //$(byText("United Kingdom")).shouldBe(Condition.exactText("United Kingdom")).click();
         submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
         refresh(); sleep(2000);
-       PERSONAL_DETAILS_COUNTRY_SELECT.shouldHave(Condition.text("United Kingdom"));
+       PERSONAL_DETAILS_COUNTRY_SELECT.shouldHave(text("United Kingdom"));
 
         rootLogger.info("Select user counrty");
        PERSONAL_DETAILS_COUNTRY_SELECT.click();
@@ -294,14 +297,14 @@ public class TestsPekamaSettingsPersonal {
         //$(byText("United States")).shouldBe(Condition.exactText("United States")).click();
         submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
         refresh(); sleep(2000);
-       PERSONAL_DETAILS_COUNTRY_SELECT.shouldHave(Condition.text("United States"));
+       PERSONAL_DETAILS_COUNTRY_SELECT.shouldHave(text("United States"));
         rootLogger.info("User country - "+User3.COUNTRY.getValue()+" - was selected");
     }
 
     @Test
     public void tabSecurity_PasswordValidations_A() {
         rootLogger.info("Check state by default");
-        SECURITY_TAB_TITLE.click();
+        SECURITY_TAB_TITLE.shouldBe(visible).click();
         SECURITY_TAB_CURRENT_PASSWORD.waitUntil(Condition.visible, 10000).shouldHave(Condition.value(""));
         SECURITY_TAB_NEW_PASSWORD.shouldHave(Condition.value(""));
         SECURITY_TAB_CONFIRM_PASSWORD.shouldHave(Condition.value(""));
@@ -324,7 +327,7 @@ public class TestsPekamaSettingsPersonal {
     public void tabSecurity_PasswordValidations_B() {
         String validPassword = Utils.randomString(8)+VALID_PASSWORD;
         rootLogger.info("Validation empty fields Current password & Confirm Password");
-        SECURITY_TAB_TITLE.click();
+        SECURITY_TAB_TITLE.shouldBe(visible).click();
         SECURITY_TAB_NEW_PASSWORD.waitUntil(Condition.visible, 10000).sendKeys(validPassword);
         submitEnabledButton(SECURITY_SAVE_BTN);
         $$(byText(ERROR_MSG_REQUIRED_FIELD)).shouldHaveSize(2);
@@ -334,7 +337,7 @@ public class TestsPekamaSettingsPersonal {
     public void tabSecurity_PasswordValidations_C() {
         String validPassword = Utils.randomString(8)+VALID_PASSWORD;
         rootLogger.info("Validation empty fields Current password & New Password");
-        SECURITY_TAB_TITLE.click();
+        SECURITY_TAB_TITLE.shouldBe(visible).click();
         SECURITY_TAB_CONFIRM_PASSWORD.waitUntil(Condition.visible, 10000).sendKeys(validPassword);
         submitEnabledButton(SECURITY_SAVE_BTN);
         $$(byText(ERROR_MSG_REQUIRED_FIELD)).shouldHaveSize(2);
@@ -344,7 +347,7 @@ public class TestsPekamaSettingsPersonal {
     public void tabSecurity_PasswordValidations_D() {
         String validPassword = Utils.randomString(8)+VALID_PASSWORD;
         rootLogger.info("Change Password - BUG noValidation - No Current password checks MAJOR(Not reproduced)");
-        SECURITY_TAB_TITLE.click();
+        SECURITY_TAB_TITLE.shouldBe(visible).click();
         SECURITY_TAB_NEW_PASSWORD.waitUntil(Condition.visible, 10000).sendKeys(validPassword);
         SECURITY_TAB_CONFIRM_PASSWORD.sendKeys(validPassword);
         submitEnabledButton(SECURITY_SAVE_BTN);
@@ -355,7 +358,7 @@ public class TestsPekamaSettingsPersonal {
     public void tabSecurity_PasswordValidations_E() {
         String validPassword = Utils.randomString(8)+VALID_PASSWORD;
         rootLogger.info("Change Password - no New password");
-        SECURITY_TAB_TITLE.click();
+        SECURITY_TAB_TITLE.shouldBe(visible).click();
         SECURITY_TAB_CURRENT_PASSWORD.waitUntil(Condition.visible, 10000).sendKeys(User3.PEKAMA_PASSWORD.getValue());
         SECURITY_TAB_CONFIRM_PASSWORD.sendKeys(validPassword);
         submitEnabledButton(SECURITY_SAVE_BTN);
@@ -366,7 +369,7 @@ public class TestsPekamaSettingsPersonal {
     public void tabSecurity_PasswordValidations_F() {
         String validPassword = Utils.randomString(8)+VALID_PASSWORD;
         rootLogger.info("Change Password - no Confirm password");
-        SECURITY_TAB_TITLE.click();
+        SECURITY_TAB_TITLE.shouldBe(visible).click();
         SECURITY_TAB_CURRENT_PASSWORD.waitUntil(Condition.visible, 10000).sendKeys(User3.PEKAMA_PASSWORD.getValue());
         SECURITY_TAB_NEW_PASSWORD.sendKeys(validPassword);
         submitEnabledButton(SECURITY_SAVE_BTN);
@@ -376,7 +379,7 @@ public class TestsPekamaSettingsPersonal {
     @Test
     public void tabSecurity_PasswordValidations_G() {
         rootLogger.info("Change Password - not Old can be new password");
-        SECURITY_TAB_TITLE.click();
+        SECURITY_TAB_TITLE.shouldBe(visible).click();
         SECURITY_TAB_CURRENT_PASSWORD.waitUntil(Condition.visible, 10000).sendKeys(User3.PEKAMA_PASSWORD.getValue());
         SECURITY_TAB_NEW_PASSWORD.sendKeys(User3.PEKAMA_PASSWORD.getValue());
         SECURITY_TAB_CONFIRM_PASSWORD.sendKeys(User3.PEKAMA_PASSWORD.getValue());
@@ -387,7 +390,7 @@ public class TestsPekamaSettingsPersonal {
     @Test
     public void tabSecurity_PasswordValidations_I() {
         rootLogger.info("All fields - empty string submitted");
-        SECURITY_TAB_TITLE.click();
+        SECURITY_TAB_TITLE.shouldBe(visible).click();
         SECURITY_TAB_CURRENT_PASSWORD.sendKeys("1");
         SECURITY_TAB_CURRENT_PASSWORD.clear();
         SECURITY_TAB_NEW_PASSWORD.sendKeys("1");
@@ -402,7 +405,7 @@ public class TestsPekamaSettingsPersonal {
     public void tabSecurity_PasswordValidations_K() {
         rootLogger.info("Max length validation");
         String RANDOM_129_LETTER = Utils.randomString(129);
-        SECURITY_TAB_TITLE.click();
+        SECURITY_TAB_TITLE.shouldBe(visible).click();
         SECURITY_TAB_CURRENT_PASSWORD.sendKeys(User3.PEKAMA_PASSWORD.getValue());
         SECURITY_TAB_NEW_PASSWORD.sendKeys(RANDOM_129_LETTER);
         SECURITY_TAB_CONFIRM_PASSWORD.sendKeys(RANDOM_129_LETTER);
@@ -413,7 +416,7 @@ public class TestsPekamaSettingsPersonal {
 
     @Test
     public void tabSecurity_TwoStepVerification_A() {
-        SECURITY_TAB_TITLE.click();
+        SECURITY_TAB_TITLE.shouldBe(visible).click();
         rootLogger.info("Open MW Enable 2-step verification");
         SECURITY_ENABLE_BTN.shouldBe(Condition.visible).click();
         rootLogger.info("Check MW buttons");
@@ -469,7 +472,7 @@ public class TestsPekamaSettingsPersonal {
     }
     @Test
     public void tabEmails_A() {
-        EMAILS_TAB_TITLE.click();
+        EMAILS_TAB_TITLE.shouldBe(visible).click();
         rootLogger.info("Check Defaults");
         EMAILS_TAB_RADIO_ALWAYS.shouldBe(Condition.visible).shouldBe(Condition.selected);
         EMAILS_TAB_RADIO_OFFLINE.shouldBe(Condition.visible).shouldNotBe(Condition.selected);
@@ -484,23 +487,28 @@ public class TestsPekamaSettingsPersonal {
 
     }
     @Test
-    public void tabSignature_A() {
-        SIGNATURE_TAB_TITLE.click();
-        rootLogger.info("Enter new text");
-        SIGNATURE_TAB_TEXT_EDITOR.click();
-        SIGNATURE_TAB_TEXT_EDITOR.clear();
-        SIGNATURE_TAB_TEXT_EDITOR.sendKeys(LOREM_IPSUM_LONG);
-        SIGNATURE_TAB_TEXT_EDITOR.shouldHave(Condition.text(LOREM_IPSUM_LONG));
+    public void tabSignature_A_Create() {
+        SIGNATURE_TAB_TITLE.shouldBe(visible).click();
+        fillTextEditor(LOREM_IPSUM_LONG);
         submitEnabledButton(SIGNATURE_SAVE_BTN);
         rootLogger.info("Check entered text");
         refresh();
         SIGNATURE_TAB_TITLE.click();
-        SIGNATURE_TAB_TEXT_EDITOR.shouldHave(Condition.text(LOREM_IPSUM_LONG));
+        SIGNATURE_TAB_TEXT_EDITOR.shouldHave(text(LOREM_IPSUM_LONG));
+
+    }
+    @Test
+    public void tabSignature_B_Delete() {
+        SIGNATURE_TAB_TITLE.shouldBe(visible).click();
+        submitEnabledButton(SIGNATURE_DELETE_BTN);
+        SIGNATURE_TAB_TITLE.click();
+        SIGNATURE_TAB_TEXT_EDITOR.shouldHave(text(""));
+
     }
 
     @Test
     public void tabIMAP_A_ManualConnect() {
-        IMAP_TAB_TITLE.click();
+        IMAP_TAB_TITLE.shouldBe(visible).click();
         sleep(2000);
         if (IMAP_TAB_BTN_DELETE.isDisplayed())
         {
@@ -538,7 +546,8 @@ public class TestsPekamaSettingsPersonal {
 
     @Test
     public void tabIMAP_B_GoggleAuthConnect() {
-        IMAP_TAB_TITLE.click();
+        IMAP_TAB_TITLE.shouldBe(visible).click();
+        sleep(2000);
         rootLogger.info("Check Defaults");
             if (IMAP_TAB_BTN_DELETE.isDisplayed())
             {
@@ -560,7 +569,8 @@ public class TestsPekamaSettingsPersonal {
 
             rootLogger.info("Connect Gmail via Auth2");
             IMAP_TAB_BTN_CONNECT_GMAIL.click();
-            authGmail(User3.GMAIL_EMAIL.getValue());
+            sleep(2000);
+            authGmail(testUserEmail);
             sleep(1000);
             switchTo().window("Pekama | Projects");
 
@@ -569,13 +579,13 @@ public class TestsPekamaSettingsPersonal {
             submitConfirmAction();
             sleep(500);
             IMAP_TAB_BTN_DELETE.shouldNotBe(visible);
-
         }
 
     }
+    @Ignore // TODO: 22-Feb-17
     @Test
     public void tabTimeTracker_A() {
-        TIME_TRACKER_TAB_TITLE.click();
+        TIME_TRACKER_TAB_TITLE.shouldBe(visible).click();
         rootLogger.info("Check Defaults");
 
 

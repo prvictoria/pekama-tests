@@ -64,17 +64,20 @@ public class PekamaConversationProject extends Page {
     public static final SelenideElement CONVERSATION_MsgCC = $(byXpath( CONVERSATION_BLOCK+"//div[@class='media-body width-float']//dd[2]/span"));
 
     public static final SelenideElement CONVERSATION_MsgBCC = $(byXpath( CONVERSATION_BLOCK+"//div[@class='media-body width-float']//dd[3]/span"));
+    public static final SelenideElement CONVERSATION_Msg_SUBJECT = $(byXpath( CONVERSATION_BLOCK+"//div[@class='media-body width-float']//dd[4]/span"));
 
     //MSG area TAB-TEAM
 
     //MSG area TAB-CLIENT TO fileds
-    public static final SelenideElement CONVERSATION_Validation = $(byXpath( CONVERSATION_BLOCK+"//div[@ng-if='validationMessage']"));
-    public static final SelenideElement CONVERSATION_InputTo = $(byXpath( CONVERSATION_BLOCK+"//div[@class='external-recipients form-bordered ng-scope']/div[1]//input"));
-    public static final SelenideElement CONVERSATION_InputCC = $(byXpath( CONVERSATION_BLOCK+"//div[@class='external-recipients form-bordered ng-scope']/div[2]//input"));
-    public static final SelenideElement CONVERSATION_InputBCC = $(byXpath( CONVERSATION_BLOCK+"//div[@class='external-recipients form-bordered ng-scope']/div[3]//input"));
-    public static final SelenideElement CONVERSATION_InputSubject = $(byXpath( CONVERSATION_BLOCK+"//div[@class='external-recipients form-bordered ng-scope']/div[4]//input"));
+    public static final SelenideElement CONVERSATION_EXTERNAL_INPUT_TO = $(byXpath( CONVERSATION_BLOCK+"//div[@class='external-recipients form-bordered ng-scope']/div[1]//input"));
+    public static final SelenideElement CONVERSATION_EXTERNAL_INPUT_CC = $(byXpath( CONVERSATION_BLOCK+"//div[@class='external-recipients form-bordered ng-scope']/div[2]//input"));
+    public static final SelenideElement CONVERSATION_EXTERNAL_INPUT_BCC = $(byXpath( CONVERSATION_BLOCK+"//div[@class='external-recipients form-bordered ng-scope']/div[3]//input"));
+    public static final SelenideElement CONVERSATION_EXTERNAL_INPUT_SUBJECT = $(byXpath( CONVERSATION_BLOCK+"//div[@class='external-recipients form-bordered ng-scope']/div[4]//input"));
 
-    public static final SelenideElement CONVERSATION_InputText = $(byXpath( CONVERSATION_BLOCK+"//input[@placeholder='Write Something']"));
+
+    //threads list
+    public static final String CONVERSATION_THREADS_LIST = CONVERSATION_BLOCK+"";
+
     public static final SelenideElement CONVERSATION_THREAD_Name = $(byXpath( CONVERSATION_BLOCK+"//pkm-conversation-subject//h3"));
 
     public static final SelenideElement CONVERSATION_EmptyRow = $(byXpath( CONVERSATION_BLOCK+"//pkm-conversations/div/div[2]/div[2]/div[2]"));

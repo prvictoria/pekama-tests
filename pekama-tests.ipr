@@ -43,11 +43,6 @@
   <component name="JUnitProjectSettings">
     <option name="TEST_RUNNER" value="UI" />
   </component>
-  <component name="JavaProjectCodeInsightSettings">
-    <excluded-names>
-      <name>Page</name>
-    </excluded-names>
-  </component>
   <component name="JavadocGenerationManager">
     <option name="OUTPUT_DIRECTORY" />
     <option name="OPTION_SCOPE" value="protected" />

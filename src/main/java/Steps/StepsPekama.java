@@ -5,12 +5,12 @@ import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
-import org.junit.Test;
 
 import java.util.Set;
 
 import static Page.ModalWindows.*;
 import static Page.PekamaLogin.*;
+import static Page.PekamaPersonalSettings.SIGNATURE_TAB_TEXT_EDITOR;
 import static Page.PekamaProject.*;
 import static Page.PekamaReports.*;
 import static Page.PekamaTeamSettings.*;
@@ -261,8 +261,8 @@ public class StepsPekama implements StepsFactory{
         rootLogger.info("This text present in element: "+enteredValue);
     }
     public static void submitEnabledButton(SelenideElement buttonName) {
-        buttonName.waitUntil(visible, 10000);
-        buttonName.waitUntil(enabled, 10000);
+        buttonName.waitUntil(visible, 15000);
+        buttonName.waitUntil(enabled, 15000);
         buttonName.click();
         sleep(500);
         rootLogger.info("Button was clicked");
@@ -277,9 +277,9 @@ public class StepsPekama implements StepsFactory{
     }
     public static void selectItemInDropdown(SelenideElement uiSelectName, SelenideElement uiSelectInput, String inputValue) {
         rootLogger.info("select - "+inputValue);
-        uiSelectName.click();
+        uiSelectName.shouldBe(visible).click();
         fillField(uiSelectInput, inputValue);
-        CSS_SelectHighlighted.click();
+        CSS_SelectHighlighted.waitUntil(visible, 15000).click();
         rootLogger.info("selected - "+inputValue);
     }
     public static String getActualUrl () {
@@ -319,22 +319,22 @@ public class StepsPekama implements StepsFactory{
         executeJavaScript("scrollTo(0, "+value+")");
     }
     public static boolean checkText(String textString, int size) {
-        $(byText(textString)).waitUntil(visible, 20000);
+        $(byText(textString)).waitUntil(exist, 20000);
         $$(byText(textString)).filter(visible).shouldHaveSize(size);
         return true;
     }
     public static boolean checkValue(String textString, int size) {
-        $(byValue(textString)).waitUntil(visible, 20000);
+        $(byValue(textString)).waitUntil(exist, 20000);
         $$(byValue(textString)).filter(visible).shouldHaveSize(size);
         return true;
     }
     public static boolean checkText(String textString) {
-        $(byText(textString)).waitUntil(visible, 20000);
+        $(byText(textString)).waitUntil(exist, 20000);
         $$(byText(textString)).filter(visible).shouldHaveSize(1);
         return true;
     }
     public static boolean checkValue(String textString) {
-        $(byValue(textString)).waitUntil(visible, 20000);
+        $(byValue(textString)).waitUntil(exist, 20000);
         $$(byValue(textString)).filter(visible).shouldHaveSize(1);
         return true;
     }
@@ -656,9 +656,13 @@ public class StepsPekama implements StepsFactory{
         // Continue with original browser (first window)
     }
 
-
-    @Test
-    public void fileMenuMakeAction (){
-        fileMenuMakeAction (TAB_DOCS_FILES_MENU_RENAME, "new name");
+    public static String fillTextEditor(String message){
+        SIGNATURE_TAB_TEXT_EDITOR.click();
+        SIGNATURE_TAB_TEXT_EDITOR.clear();
+        SIGNATURE_TAB_TEXT_EDITOR.sendKeys(message);
+        SIGNATURE_TAB_TEXT_EDITOR.shouldHave(text(message));
+        rootLogger.info("Next text was entered: "+message);
+        sleep(500);
+        return message;
     }
 }

@@ -62,6 +62,7 @@ public class PekamaPersonalSettings extends Page {
     public static final SelenideElement SIGNATURE_TAB_TITLE = $(byXpath("//*[@data-target='#signature']"));
     public static final SelenideElement SIGNATURE_TAB_TEXT_EDITOR = $(byXpath("//*[starts-with(@id, 'taTextElement')]"));
     public static final SelenideElement SIGNATURE_SAVE_BTN = $(byXpath(personalSettingsTabSignature+"//button[contains(.,'Save')]"));
+ public static final SelenideElement SIGNATURE_DELETE_BTN = $(byXpath(personalSettingsTabSignature+"//button[contains(.,'Delete')]"));
 
     //tab fields find by NAME
     public static final SelenideElement IMAP_TAB_TITLE = $(byXpath("//*[@data-target='#imap']"));

@@ -3,28 +3,29 @@ package com.pekama.app;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
-import Steps.*;
+import Steps.StepsPekama;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.*;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
+import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import static Page.ModalWindows.*;
 import static Page.PekamaConversationProject.*;
 import static Page.PekamaDashboard.*;
-import static Page.TestsCredentials.*;
+import static Page.TestsCredentials.User1;
+import static Page.TestsCredentials.User3;
 import static Page.TestsStrings.*;
 import static Page.UrlStrings.*;
 import static Steps.StepsPekama.*;
-import static Utils.Utils.*;
+import static Utils.Utils.randomString;
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.pekama.app.AllTestsRunner.*;
-import static org.junit.Assert.assertEquals;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
-
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsMessages {
     static final Logger rootLogger = LogManager.getRootLogger();
@@ -35,15 +36,20 @@ public class TestsMessages {
     private final String COLLABORATOR_TEAM_NAME = User1.TEAM_NAME.getValue();
     private final String USER_NAME_SURNAME = User3.NAME_SURNAME.getValue();
 
+    @BeforeClass
+    public static void beforeClass() {
+        holdBrowserAfterTest();
+        rootLogger.info("Open host");
+        StepsPekama loginIntoPekama = new StepsPekama();
+        loginIntoPekama.loginByURL(
+                TEST_USER_EMAIL,
+                TEST_USER_PEKAMA_PASSWORD,
+                URL_LogIn);
+    }
     @Before
     public void before() {
             holdBrowserAfterTest();
-            rootLogger.info("Open host");
-            StepsPekama loginIntoPekama = new StepsPekama();
-            loginIntoPekama.loginByURL(
-                    TEST_USER_EMAIL,
-                    TEST_USER_PEKAMA_PASSWORD,
-                    URL_LogIn);
+            open(URL_Dashboard);
             rootLogger.info("Create project");
             DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 15000).click();
             String testProjectName = createProject();
@@ -178,11 +184,7 @@ public class TestsMessages {
         CONVERSATION_FOLLOWERS_INPUT.shouldHave(value(""));
 
         rootLogger.info("Check no recipient validation");
-        CONVERSATION_TEXT_EDITOR.shouldHave(value(""));
-        CONVERSATION_TEXT_EDITOR.val(LOREM_IPSUM_SHORT);
-        CONVERSATION_TEXT_EDITOR.val(LOREM_IPSUM_SHORT);
-        sleep(2000);
-        CONVERSATION_TEXT_EDITOR.shouldHave(text(LOREM_IPSUM_SHORT));
+        fillTextEditor(LOREM_IPSUM_SHORT);
         submitEnabledButton(CONVERSATION_BTN_POST);
         $$(byText("External conversation message should have recipients")).filter(visible).shouldHaveSize(1);
         checkText("External conversation message should have recipients");
@@ -198,6 +200,35 @@ public class TestsMessages {
         sleep(2000);
         CONVERSATION_LABEL_ACTIVE_TAB.shouldHave(text(CONVERSATION_CLIENT_TAB_NAME));
 
+        String emailFollowerTo = randomString(15)+"@mail.com";
+        fillField(CONVERSATION_EXTERNAL_INPUT_TO, emailFollowerTo);
+        sleep(1000);
+        String emailFollowerCc = randomString(15)+"@post.de";
+        fillField(CONVERSATION_EXTERNAL_INPUT_CC, emailFollowerCc);
+        sleep(1000);
+        String emailFollowerBcc = randomString(15)+"@liamg.usa";
+        fillField(CONVERSATION_EXTERNAL_INPUT_BCC, emailFollowerBcc);
+        sleep(1000);
+        String emailSubject = "externalEmail"+randomString(20);
+        fillField(CONVERSATION_EXTERNAL_INPUT_SUBJECT, emailSubject);
+        sleep(1000);
+
+        fillTextEditor(LOREM_IPSUM_SHORT);
+        sleep(1000);
+        submitEnabledButton(CONVERSATION_BTN_POST);
+
+        CONVERSATION_MsgBody.waitUntil(visible, 20000).shouldBe(visible);
+        $$(byText(LOREM_IPSUM_SHORT)).filter(visible).shouldHaveSize(1);
+        checkText(LOREM_IPSUM_SHORT);
+        CONVERSATION_MsgTaskIcon.shouldBe(visible);
+        CONVERSATION_MsgTo.shouldHave(text(emailFollowerTo));
+        CONVERSATION_MsgCC.shouldHave(text(emailFollowerCc));
+        CONVERSATION_MsgBCC.shouldHave(text(emailFollowerBcc));
+
+        rootLogger.info("Delete message");
+        CONVERSATION_MsgDelete.shouldBe(visible).click();
+        submitConfirmAction("Delete message?");
+        CONVERSATION_MsgBody.shouldNotBe(visible);
         rootLogger.info("Test passed");
     }
 
