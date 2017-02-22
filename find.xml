@@ -3,9 +3,11 @@
     <option name="caseSensitive" value="true" />
     <option name="customScope" value="Directory '[pekama-tests] - ...\src\main\java\Page'" />
     <option name="defaultScopeName" value="Directory '[pekama-tests] - ...\src\main\java\Page'" />
+    <option name="localWholeWordsOnly" value="true" />
     <option name="wholeWordsOnly" value="true" />
     <option name="CASE_SENSITIVE_SEARCH" value="true" />
     <option name="WHOLE_WORDS_ONLY" value="true" />
+    <option name="LOCAL_WHOLE_WORDS_ONLY" value="true" />
     <option name="SEARCH_SCOPE" value="Directory '[pekama-tests] - ...\src\main\java\Page'" />
   </component>
 </application>
