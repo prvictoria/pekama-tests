@@ -37,7 +37,13 @@ public class PekamaConversationProject extends Page {
     public static final SelenideElement CONVERSATION_EDIT_TITLE = $(byXpath( CONVERSATION_BLOCK+"//*[@class='pkm-icon-edit']"));
     public static final SelenideElement CONVERSATION_TITLE = $( "h3.ng-binding");
     public static final SelenideElement CONVERSATION_FIELD_TITLE = $(byXpath( CONVERSATION_BLOCK+"//input[@name='subject']"));
+    public static final SelenideElement CONVERSATION_SAVE_TITLE = $(byXpath( CONVERSATION_BLOCK+"//a[@ng-click='saveEditedTitle()']"));
+
     //FOLLOWERS
+    public static final SelenideElement CONVERSATION_FOLLOWERS_UI = $(byXpath( CONVERSATION_BLOCK+"//ng-switch/span"));
+    public static final SelenideElement CONVERSATION_FOLLOWERS_INPUT = $(byXpath( CONVERSATION_BLOCK+"//pkm-followers-picker//ul[@class='search-choices']/li[1]//input"));
+    public static final SelenideElement CONVERSATION_FOLLOWERS_ONE_NAME = $(byXpath( CONVERSATION_BLOCK+"//pkm-followers-picker//ul[@class='search-choices']/li[1]/span"));
+    public static final SelenideElement CONVERSATION_FOLLOWERS_ONE_DELETE = $(byXpath( CONVERSATION_BLOCK+"//pkm-followers-picker//ul[@class='search-choices']/li[1]//a"));
 
     //TEXT EDITOR AREA
     public static final SelenideElement CONVERSATION_INPUT_TEXT_COLLAPSED = $(byXpath( CONVERSATION_BLOCK+"//input[@placeholder='Write Something']"));
@@ -52,6 +58,7 @@ public class PekamaConversationProject extends Page {
     //MSG Controls
     public static final SelenideElement CONVERSATION_MsgTask = $(byXpath( CONVERSATION_BLOCK+"//div[@class='media-body width-float']//span[@class='bubble ng-scope']/i"));
     public static final SelenideElement CONVERSATION_MsgDelete = $(byXpath( CONVERSATION_BLOCK+"//div[@class='media-body width-float']//i[@class='pkm-icon-cancel']"));
+    public static final SelenideElement CONVERSATION_MsgTaskIcon = $(byXpath( CONVERSATION_BLOCK+""));
     public static final SelenideElement CONVERSATION_MsgBody = $(byXpath( CONVERSATION_BLOCK+"//div[@class='media-body width-float']"));
     public static final SelenideElement CONVERSATION_MsgTo = $(byXpath( CONVERSATION_BLOCK+"//div[@class='media-body width-float']//dd[1]/span"));
     public static final SelenideElement CONVERSATION_MsgCC = $(byXpath( CONVERSATION_BLOCK+"//div[@class='media-body width-float']//dd[2]/span"));
@@ -60,14 +67,13 @@ public class PekamaConversationProject extends Page {
 
     //MSG area TAB-TEAM
 
-    //MSG area TAB-CLIENT
+    //MSG area TAB-CLIENT TO fileds
     public static final SelenideElement CONVERSATION_Validation = $(byXpath( CONVERSATION_BLOCK+"//div[@ng-if='validationMessage']"));
     public static final SelenideElement CONVERSATION_InputTo = $(byXpath( CONVERSATION_BLOCK+"//div[@class='external-recipients form-bordered ng-scope']/div[1]//input"));
     public static final SelenideElement CONVERSATION_InputCC = $(byXpath( CONVERSATION_BLOCK+"//div[@class='external-recipients form-bordered ng-scope']/div[2]//input"));
     public static final SelenideElement CONVERSATION_InputBCC = $(byXpath( CONVERSATION_BLOCK+"//div[@class='external-recipients form-bordered ng-scope']/div[3]//input"));
     public static final SelenideElement CONVERSATION_InputSubject = $(byXpath( CONVERSATION_BLOCK+"//div[@class='external-recipients form-bordered ng-scope']/div[4]//input"));
 
-    public static final SelenideElement CONVERSATION_ErrorNoRecipients = $(byXpath( CONVERSATION_BLOCK+"External conversation message should have recipients"));
     public static final SelenideElement CONVERSATION_InputText = $(byXpath( CONVERSATION_BLOCK+"//input[@placeholder='Write Something']"));
     public static final SelenideElement CONVERSATION_THREAD_Name = $(byXpath( CONVERSATION_BLOCK+"//pkm-conversation-subject//h3"));
 
@@ -79,11 +85,6 @@ public class PekamaConversationProject extends Page {
     public static final SelenideElement CONVERSATION_05THREAD_Row = $(byXpath( CONVERSATION_BLOCK+"//li[5]/span"));
 
 
-    public static final SelenideElement CONVERSATION_01Follower = $(byXpath( CONVERSATION_BLOCK+"//div/div/ul/li/span/span[2]"));
-    public static final SelenideElement CONVERSATION_02Follower = $(byXpath( CONVERSATION_BLOCK+"//li[2]/span/span"));
-    public static final SelenideElement CONVERSATION_03Follower = $(byXpath( CONVERSATION_BLOCK+"//li[3]/span/span"));
-    public static final SelenideElement CONVERSATION_04Follower = $(byXpath( CONVERSATION_BLOCK+"//li[4]/span/span"));
-    public static final SelenideElement CONVERSATION_05Follower = $(byXpath( CONVERSATION_BLOCK+"//li[5]/span/span"));
     public static final SelenideElement CONVERSATION_NoMessagesAlert = $(byXpath( CONVERSATION_BLOCK+"//*[@class='alert alert-epmty text-center ng-scope']"));
     public static final SelenideElement CONVERSATION_AddFollowerField = $(byXpath( CONVERSATION_BLOCK+"//*[@class='search-field']//*[@type=\"text\"]"));
     public static final SelenideElement CONVERSATION_AddFollowerSearchResult = $(byXpath( CONVERSATION_BLOCK+"//*[@class=\"result-name ng-binding\"]"));
@@ -91,7 +92,7 @@ public class PekamaConversationProject extends Page {
     public static final SelenideElement CONVERSATION_AddAsGuest = $(byXpath( CONVERSATION_BLOCK+"//*[@class='btn btn-primary btn-small'][contains .,'add as guest' ]"));
 
 
-    public static final SelenideElement CONVERSATION_MsgTaskIcon = $(byXpath( CONVERSATION_BLOCK+""));
+
 
 
 

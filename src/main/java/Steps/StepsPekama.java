@@ -406,7 +406,7 @@ public class StepsPekama implements StepsFactory{
         rootLogger.info("Fill title");
         fillField(MW_Project_Title, projectName);
         submitEnabledButton(MW_ProjectFinishButton);
-        MW.shouldNot(exist);
+        MW.waitUntil(not(visible), 20000);
         sleep(1000);
         checkText(projectName);
         rootLogger.info("Created project: "+projectName);

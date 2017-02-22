@@ -11,6 +11,7 @@ import static Page.CommunityOutgoing.*;
 import static Page.PekamaProject.*;
 import static Page.TestsCredentials.*;
 import static Page.UrlStrings.*;
+import static Steps.Messages.*;
 import static Steps.StepsCommunity.*;
 import static Steps.StepsHttpAuth.httpAuthUrl;
 import static com.codeborne.selenide.Condition.*;

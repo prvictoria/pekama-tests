@@ -3,7 +3,6 @@ package com.pekama.app;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
-
 import Steps.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -34,6 +33,8 @@ public class TestsMessages {
     private final String TEST_USER_FULL_TEAM_NAME = User3.FULL_TEAM_NAME.getValue();
     private final String TEST_USER_TEAM_NAME = User3.TEAM_NAME.getValue();
     private final String COLLABORATOR_TEAM_NAME = User1.TEAM_NAME.getValue();
+    private final String USER_NAME_SURNAME = User3.NAME_SURNAME.getValue();
+
     @Before
     public void before() {
             holdBrowserAfterTest();
@@ -48,17 +49,13 @@ public class TestsMessages {
             String testProjectName = createProject();
             String testProjectUrl = getActualUrl ();
     }
-    @After
-    public void after() {
-
-    }
-
     @Test
     public void testA_DefaultState() {
         String subject = randomString(513);
         String randomFollower = randomString(25)+"@email.random";
         String randomGuest = randomString(25)+"@email.guest";
 
+        scrollUp();
         CONVERSATION_BTN_New.waitUntil(visible, 20000);
         checkText("Conversations");
         rootLogger.info("Check Team chat");
@@ -117,6 +114,7 @@ public class TestsMessages {
     @Test
     public void createProject_B_addTeamConversation() {
         rootLogger.info("Create thread in private zone");
+        scrollUp();
         CONVERSATION_BTN_Team.shouldBe(visible);
 
         CONVERSATION_BTN_New.click();
@@ -125,6 +123,9 @@ public class TestsMessages {
         MW_BTN_CREATE.click();
         MW.shouldNotBe(visible);
         sleep(2000);
+
+        rootLogger.info("Edit thread title");
+        String treadName = "TEAM"+randomString(15);
         CONVERSATION_EDIT_TITLE.click();
         CONVERSATION_FIELD_TITLE.shouldHave(value("TEAM_THREAD IN PRIVATE ZONE"));
         CONVERSATION_FIELD_TITLE.pressEscape();
@@ -133,16 +134,17 @@ public class TestsMessages {
         CONVERSATION_LABEL_ACTIVE_TAB.shouldHave(text(CONVERSATION_TEAM_TAB_NAME));
 
         CONVERSATION_INPUT_TEXT_COLLAPSED.click();
-        CONVERSATION_TEXT_EDITOR.sendKeys("new message 1-st row");
-        CONVERSATION_TEXT_EDITOR.shouldHave(text("new message 1-st row"));
-        CONVERSATION_TEXT_EDITOR.pressEnter();
-        CONVERSATION_TEXT_EDITOR.sendKeys("new message 2-nd row");
-        CONVERSATION_TEXT_EDITOR.pressEnter();
-        CONVERSATION_TEXT_EDITOR.sendKeys("new message 3-rd row");
+        sleep(4000);
+        CONVERSATION_TEXT_EDITOR.shouldHave(value(""));
+        CONVERSATION_TEXT_EDITOR.val(LOREM_IPSUM_SHORT);
+        CONVERSATION_TEXT_EDITOR.val(LOREM_IPSUM_SHORT);
+        sleep(2000);
+        CONVERSATION_TEXT_EDITOR.shouldHave(text(LOREM_IPSUM_SHORT));
         submitEnabledButton(CONVERSATION_BTN_POST);
-//        $(byXpath("//*[@class='message-list']/li[1]//div[@class='message-holder']")).shouldHave(text("new message 1-st row"));
-//        checkText("new message 1-st row");
-        $(byXpath("//*[@class='message-list']/li[1]//div[@class='message-holder']")).isDisplayed();
+        $$(byXpath("//*[@class='message-list']/li[1]//div[@class='message-holder']")).filter(visible).shouldHaveSize(1);
+        $(byXpath("//*[@class='message-list']/li[1]//div[@class='message-holder']//*[@class='message-body ng-binding ng-scope']/p")).shouldHave(text(LOREM_IPSUM_SHORT));
+        //$(byText(LOREM_IPSUM_SHORT)).shouldBe(visible);
+
         rootLogger.info("Delete message");
         CONVERSATION_MsgDelete.waitUntil(visible, 10000);
         CONVERSATION_MsgDelete.click();
@@ -150,11 +152,52 @@ public class TestsMessages {
         $(byXpath("//*[@class='message-list']/li[1]//div[@class='message-holder']")).shouldNot(visible);
         rootLogger.info("Test passed");
     }
-    @Test  //todo
-    public void createProject_C_addExternalConversation() {
+    @Test
+    public void createProject_C1_ExternalConversationDefaults() {
+        rootLogger.info("Create thread in i external");
+        scrollUp();
+        CONVERSATION_BTN_Client.shouldBe(visible).click();
 
+        CONVERSATION_BTN_New.click();
+        sleep(2000);
+        CONVERSATION_LABEL_ACTIVE_TAB.shouldHave(text(CONVERSATION_CLIENT_TAB_NAME));
+
+        rootLogger.info("Edit thread title");
+        CONVERSATION_EDIT_TITLE.click();
+        CONVERSATION_FIELD_TITLE.shouldHave(value(""));
+        String treadName = "EXTERNAL"+randomString(15);
+        fillField(CONVERSATION_FIELD_TITLE, treadName);
+        CONVERSATION_SAVE_TITLE.click();
+        CONVERSATION_TITLE.shouldHave(text(treadName));
+
+        rootLogger.info("Check default follower");
+        CONVERSATION_FOLLOWERS_UI.shouldHave(text("Show")).click();
+        CONVERSATION_FOLLOWERS_UI.shouldHave(text("Hide"));
+        CONVERSATION_FOLLOWERS_ONE_NAME.shouldHave(text(USER_NAME_SURNAME));
+        CONVERSATION_FOLLOWERS_ONE_DELETE.shouldBe(visible).click();
+        CONVERSATION_FOLLOWERS_INPUT.shouldHave(value(""));
+
+        rootLogger.info("Check no recipient validation");
+        CONVERSATION_TEXT_EDITOR.shouldHave(value(""));
+        CONVERSATION_TEXT_EDITOR.val(LOREM_IPSUM_SHORT);
+        CONVERSATION_TEXT_EDITOR.val(LOREM_IPSUM_SHORT);
+        sleep(2000);
+        CONVERSATION_TEXT_EDITOR.shouldHave(text(LOREM_IPSUM_SHORT));
+        submitEnabledButton(CONVERSATION_BTN_POST);
+        $$(byText("External conversation message should have recipients")).filter(visible).shouldHaveSize(1);
+        checkText("External conversation message should have recipients");
+        rootLogger.info("Test passed");
+    }
+    @Test
+    public void createProject_C1_ExternalConversationCreate() {
+        rootLogger.info("Create thread in i external");
+        scrollUp();
+        CONVERSATION_BTN_Client.shouldBe(visible).click();
+
+        CONVERSATION_BTN_New.click();
+        sleep(2000);
+        CONVERSATION_LABEL_ACTIVE_TAB.shouldHave(text(CONVERSATION_CLIENT_TAB_NAME));
 
         rootLogger.info("Test passed");
     }
-
-}
+    }
