@@ -200,4 +200,5 @@ public class TestsMessages {
 
         rootLogger.info("Test passed");
     }
-    }
+
+}
