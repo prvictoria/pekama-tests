@@ -26,12 +26,15 @@ import static Steps.StepsCommunity.*;
 import static Steps.StepsPekama.*;
 import static Utils.Utils.randomString;
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static com.pekama.app.AllTestsRunner.*;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsCommunityIntegration {
     static final Logger rootLogger = LogManager.getRootLogger();
+
     private static String testProjectName;
     private static String testProjectURL;
     private final static String TEST_CASE_TYPE = CaseType.TRADEMARK.getValue();
@@ -43,6 +46,7 @@ public class TestsCommunityIntegration {
     private final static String REQUESTER_NAME = TestsCredentials.User3.NAME.getValue();
     private final static String REQUESTER_SURNAME = TestsCredentials.User3.SURNAME.getValue();
     private final static String REQUESTER_FULL_TEAM_NAME = TestsCredentials.User3.FULL_TEAM_NAME.getValue();
+    private final static String REQUESTER_NAME_SURNAME = TestsCredentials.User3.NAME_SURNAME.getValue();
 
     private final static String EXPERT_EMAIL = TestsCredentials.User2.GMAIL_EMAIL.getValue();
     private final static String EXPERT_PEKAMA_PASSWORD = TestsCredentials.User2.PEKAMA_PASSWORD.getValue();
@@ -50,10 +54,13 @@ public class TestsCommunityIntegration {
     private final static String EXPERT_SURNAME = TestsCredentials.User2.SURNAME.getValue();
     private final static String EXPERT_TEAM_NAME = TestsCredentials.User2.TEAM_NAME.getValue();
     private final static String EXPERT_FULL_TEAM_NAME = TestsCredentials.User2.FULL_TEAM_NAME.getValue();
+    private static final String EXPERT_NAME_SURNAME = TestsCredentials.User2.NAME_SURNAME.getValue();
     private final static String INTRODUCER_NAME = "Rand, Kaldor & Zane LLP (RKNZ)";
 
-    @Before
-    public void before() {
+
+    @BeforeClass
+    public static void beforeClass() {
+        assertionMode();
         holdBrowserAfterTest();
         rootLogger.info("Open host");
         StepsPekama loginIntoPekama = new StepsPekama();
@@ -61,13 +68,19 @@ public class TestsCommunityIntegration {
                 REQUESTER_EMAIL,
                 REQUESTER_PEKAMA_PASSWORD,
                 URL_LogIn);
+    }
+    @Before
+    public void before() {
+        open(URL_Dashboard);
         rootLogger.info("Create project");
         DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 20000).click();
         testProjectName = createProject();
         testProjectURL = getActualUrl();
     }
-//    @After
-//    public void after() { }
+    @AfterClass
+    public static void after() {
+        open(URL_Logout);
+    }
 
     @Test
     public void checkRedirectToCommunityWizard() {
@@ -111,7 +124,7 @@ public class TestsCommunityIntegration {
         rootLogger.info("Create draft case");
         WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.shouldBe(disabled);
         selectExpert(EXPERT_TEAM_NAME);
-        String alreadyWorkedBefore = WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.getText();
+
         submitEnabledButton(WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS);
         fillField(WIZARD_FIELD_CASE_NAME, TEST_CASE_NAME);
         WIZARD_BTN_NEXT.click();
@@ -119,27 +132,19 @@ public class TestsCommunityIntegration {
         BTN_SEND_INSTRUCTION.shouldBe(visible);
         rootLogger.info("Case was created");
 
+
+
+
         rootLogger.info("Open Pekama");
-        close();
         switchTo().window(PAGE_TITLE_PEKAMA);
         if (checkPageTitle(PAGE_TITLE_PEKAMA)==false){
             Assert.fail("No redirect to Community");
         }
-        refresh();
         String actualUrl = getActualUrl();
         Assert.assertEquals
                 ("Opened url not same to the project url", testProjectURL, actualUrl);
-        //httpAuthUrl(testProjectURL);
-        TAB_INFO_COMMUNITY_BTN_START_NEW.waitUntil(visible, 20000).shouldBe(visible);
-        rootLogger.info("Check introduce message");
 
-        checkText(msgIntroduce(REQUESTER_NAME, REQUESTER_SURNAME, EXPERT_NAME, EXPERT_SURNAME));
-        if (alreadyWorkedBefore.equals("start new conversation")) {
-            checkText(msgIntroduceNewCommunityCollaborators(REQUESTER_NAME, REQUESTER_SURNAME, TEST_CASE_COUNTRY, EXPERT_NAME, EXPERT_SURNAME));
-        }
-        else {
-            checkText(msgIntroduceWorkedBeforeCommunityCollaborators(REQUESTER_NAME, REQUESTER_SURNAME, TEST_CASE_COUNTRY, EXPERT_NAME, EXPERT_SURNAME));
-        }
+        TAB_INFO_COMMUNITY_BTN_START_NEW.waitUntil(visible, 20000).shouldBe(visible);
 
         TAB_INFO_COMMUNITY_CASE_NAME.waitUntil(visible, 15000).shouldHave(text(TEST_CASE_NAME));
         TAB_INFO_COMMUNITY_CASE_TYPE.shouldHave(text(TEST_CASE_TYPE));
@@ -174,7 +179,8 @@ public class TestsCommunityIntegration {
             Assert.fail("Project not created for precondition");
         }
         checkText("No community cases.");
-        TAB_INFO_COMMUNITY_TITLE.waitUntil(visible, 20000).shouldHave(text("Services from the Pekama IP Community"));
+        TAB_INFO_COMMUNITY_TITLE.waitUntil(visible, 20000)
+                .shouldHave(text("Services from the Pekama IP Community"));
         rootLogger.info("Check redirect to Community Wizard");
         TAB_INFO_COMMUNITY_BTN_START_NEW.waitUntil(visible, 20000).click();
         checkThatWindowsQtyIs(2);

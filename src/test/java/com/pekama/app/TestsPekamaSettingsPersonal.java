@@ -39,9 +39,7 @@ public class TestsPekamaSettingsPersonal {
     }
     @Before
     public void before() {
-        sleep(500);
-        refresh();
-        sleep(2000);
+        open(AUTH_URL);
     }
     @AfterClass
     public static void after() {
@@ -497,6 +495,7 @@ public class TestsPekamaSettingsPersonal {
         SIGNATURE_TAB_TEXT_EDITOR.shouldHave(text(LOREM_IPSUM_LONG));
 
     }
+
     @Test
     public void tabSignature_B_Delete() {
         SIGNATURE_TAB_TITLE.shouldBe(visible).click();

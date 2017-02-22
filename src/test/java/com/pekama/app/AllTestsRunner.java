@@ -4,6 +4,9 @@ import com.codeborne.selenide.Configuration;
 import org.junit.experimental.categories.Categories;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
+
+import static com.codeborne.selenide.Configuration.*;
+
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
@@ -34,9 +37,13 @@ import org.junit.runners.Suite;
         TestsPekamaReports.class //last suite
 })
 public class AllTestsRunner {
+    public static void assertionMode() {
+        final AssertionMode soft = AssertionMode.SOFT;
+    }
     public static void holdBrowserAfterTest() {
         Configuration test = new Configuration();
-        test.holdBrowserOpen = false;
+        test.holdBrowserOpen = true;
+
     }
     public static void holdBrowserAfterTest(boolean value) {
         Configuration test = new Configuration();

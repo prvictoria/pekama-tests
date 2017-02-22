@@ -16,14 +16,16 @@ public class Messages implements StepsFactory{
         String msg = String.format(introduce, REQUESTER_NAME, REQUESTER_SURNAME, EXPERT_NAME, EXPERT_SURNAME);
         return msg;
     }
-    public final static String msgIntroduceNewCommunityCollaborators(String REQUESTER_NAME, String REQUESTER_SURNAME, String TEST_CASE_COUNTRY, String EXPERT_NAME, String EXPERT_SURNAME) {
-        String neverWorkedTogether = "I am very pleased to introduce you to each other. %s %s needs an IP service in %s and we believe that %s %s may be able to help with that. Please do follow up directly on this introduction.";
-        String msg = String.format(neverWorkedTogether, REQUESTER_NAME, REQUESTER_SURNAME, TEST_CASE_COUNTRY, EXPERT_NAME, EXPERT_SURNAME);
+    public final static String msgIntroduceNewCommunityCollaborators(String REQUESTER_NAME_SURNAME, String EXPERT_NAME_SURNAME, String TEST_CASE_COUNTRY) {
+        String msg = "Dear "+REQUESTER_NAME_SURNAME+" and "+EXPERT_NAME_SURNAME+",\n\nI am very pleased to introduce you to each other. "+REQUESTER_NAME_SURNAME+" needs an IP service in "+TEST_CASE_COUNTRY+" and we believe that "+EXPERT_NAME_SURNAME+" may be able to help with that. Please do follow up directly on this introduction.";
+//        String neverWorkedTogether = "I am very pleased to introduce you to each other. %s %s needs an IP service in %s and we believe that %s %s may be able to help with that. Please do follow up directly on this introduction.";
+//        String msg = String.format(neverWorkedTogether, REQUESTER_NAME, REQUESTER_SURNAME, TEST_CASE_COUNTRY, EXPERT_NAME, EXPERT_SURNAME);
         return msg;
     }
-    public final static String msgIntroduceWorkedBeforeCommunityCollaborators(String REQUESTER_NAME, String REQUESTER_SURNAME, String TEST_CASE_COUNTRY, String EXPERT_NAME, String EXPERT_SURNAME) {
-        String neverWorkedTogether = "I believe that you already know each other or your firms are already working together. %s %s now needs an IP service in %s and we believe, as usual, that %s %s may be able to help with that. I trust that %s %s will follow up with details.";
-        String msg = String.format(neverWorkedTogether, REQUESTER_NAME, REQUESTER_SURNAME, TEST_CASE_COUNTRY, EXPERT_NAME, EXPERT_SURNAME);
+    public final static String msgIntroduceWorkedBeforeCommunityCollaborators(String REQUESTER_NAME_SURNAME, String EXPERT_NAME_SURNAME, String TEST_CASE_COUNTRY) {
+        String msg = "Dear "+REQUESTER_NAME_SURNAME+" and "+EXPERT_NAME_SURNAME+",\n\nI believe that you already know each other or your firms are already working together. "+REQUESTER_NAME_SURNAME+" now needs an IP service in "+TEST_CASE_COUNTRY+" and we believe, as usual, that "+EXPERT_NAME_SURNAME+" may be able to help with that. I trust that "+REQUESTER_NAME_SURNAME+" will follow up with details.";
+//        String neverWorkedTogether = "I believe that you already know each other or your firms are already working together. %s %s now needs an IP service in %s and we believe, as usual, that %s %s may be able to help with that. I trust that %s %s will follow up with details.";
+//        String msg = String.format(neverWorkedTogether, REQUESTER_NAME, REQUESTER_SURNAME, TEST_CASE_COUNTRY, EXPERT_NAME, EXPERT_SURNAME);
         return msg;
     }
     public static final String MSG_DEFAULT_SENT_INSTRUCTION = "Thank you for all the information. Please consider this as instructions to proceed with this case as discussed.";

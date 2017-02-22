@@ -82,7 +82,10 @@ public class TestsPekamaProject {
         rootLogger.info("ProjectValues '"+testProjectTitle+"' created");
         waitForTextPresent(testProjectTitle);
     }
-
+    @AfterClass
+    public static void after() {
+        open(URL_Logout);
+    }
     @Test
     public void createProject_A_CheckDefaultStateAndDelete() {
         scrollUp();
