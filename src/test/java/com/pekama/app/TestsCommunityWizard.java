@@ -16,17 +16,16 @@ import static Page.ModalWindows.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.UrlStrings.*;
-import static Steps.Messages.msgIntroduceNewCommunityCollaborators;
-import static Steps.Messages.msgIntroduceWorkedBeforeCommunityCollaborators;
+import static Steps.Messages.*;
 import static Steps.StepsCommunity.*;
-import static Steps.StepsCommunity.checkCaseNameFirstRow;
 import static Steps.StepsExternal.*;
+import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static Utils.Utils.randomString;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
-import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
+import static com.pekama.app.AllTestsRunner.*;
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
@@ -63,12 +62,10 @@ public class TestsCommunityWizard {
                 REQUESTER_PEKAMA_PASSWORD, URL_COMMUNITY_LOGIN);
         rootLogger.info("Redirect back after login");
     }
-
     @Before
     public void before() {
     open(URL_COMMUNITY_WIZARD);
     }
-
     @AfterClass
     public static void after() {
         open(URL_COMMUNITY_LOGOUT);

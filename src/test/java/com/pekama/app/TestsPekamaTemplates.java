@@ -11,6 +11,7 @@ import static Page.ModalWindows.*;
 import static Page.PekamaTeamSettings.*;
 import static Page.TestsStrings.*;
 import static Page.UrlStrings.*;
+import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static Steps.StepsHttpAuth.*;
 import static Utils.Utils.*;

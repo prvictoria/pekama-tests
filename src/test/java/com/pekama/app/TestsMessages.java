@@ -19,6 +19,7 @@ import static Page.TestsCredentials.User1;
 import static Page.TestsCredentials.User3;
 import static Page.TestsStrings.*;
 import static Page.UrlStrings.*;
+import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static Utils.Utils.randomString;
 import static com.codeborne.selenide.Condition.*;

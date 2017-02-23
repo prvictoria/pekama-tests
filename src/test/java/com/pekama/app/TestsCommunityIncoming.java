@@ -66,6 +66,27 @@ public class TestsCommunityIncoming {
         rootLogger.info("Test passed");
     }
     @Test
+    public void testA2_CheckDraftCase() {
+        rootLogger.info("Supplier Create case");
+        caseName = createDraftCase(expertTeam);
+
+        rootLogger.info("Expert login");
+        StepsPekama loginIntoPekama = new StepsPekama();
+        loginIntoPekama.loginByURL(
+                expertEmail,
+                expertPassword,
+                URL_COMMUNITY_LOGIN);
+        COMMUNITY_TAB_Incoming.waitUntil(visible, 15000).click();
+        sleep(2000);
+        checkCaseNameFirstRow(caseName);
+        checkCaseStatus(caseName, COMMUNITY_STATUS_INQUIRY);
+        rootLogger.info("Open case row");
+        String row = getFirstCaseRow(caseName);
+        $(byXpath(row)).click();
+
+        rootLogger.info("Test passed");
+    }
+    @Test
     public void testB1_ConfirmInstruction() {
         rootLogger.info("Supplier Create case");
         caseName = createCase(expertTeam);
@@ -77,7 +98,7 @@ public class TestsCommunityIncoming {
                 URL_COMMUNITY_LOGIN);
         COMMUNITY_TAB_Incoming.waitUntil(visible, 15000).click();
         checkCaseNameFirstRow(caseName);
-
+        checkCaseStatus(caseName, COMMUNITY_STATUS_RECEIVED);
         rootLogger.info("Confirm instructions with message");
         confirmInstruction(caseName, true);
 
@@ -212,7 +233,7 @@ public class TestsCommunityIncoming {
     }
 
     @Test
-    public void testF1_cancelCase() {
+    public void testF1_cancelledCaseState() {
         rootLogger.info("Create draft case");
         String caseName = createDraftCase(expertTeam);
         COMMUNITY_TAB_Outgoing.click();
@@ -240,7 +261,7 @@ public class TestsCommunityIncoming {
     }
 
     @Test
-    public void testF2_cancelCase() {
+    public void testF2_cancelledCaseState() {
         rootLogger.info("Create draft case");
         String caseName = createDraftCase(expertTeam);
         COMMUNITY_TAB_Outgoing.click();

@@ -14,6 +14,7 @@ import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.UrlStrings.*;
 import static Steps.StepsExternal.*;
+import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static Steps.StepsHttpAuth.*;
 import static com.codeborne.selenide.Condition.*;

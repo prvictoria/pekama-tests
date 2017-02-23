@@ -16,6 +16,7 @@ import static Page.UrlStrings.*;
 import static Page.PekamaLogin.*;
 import static Page.TestsCredentials.*;
 import static Steps.StepsCommunity.*;
+import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;

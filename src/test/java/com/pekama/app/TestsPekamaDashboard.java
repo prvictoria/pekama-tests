@@ -17,13 +17,14 @@ import org.openqa.selenium.By;
 
 import static Page.ModalWindows.*;
 import static Page.PekamaDashboard.*;
-import static Page.TestsStrings.PAGE_TITLE_PEKAMA;
-import static Page.UrlStrings.URL_LogIn;
+import static Page.TestsStrings.*;
+import static Page.UrlStrings.*;
+import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
-import static Utils.Utils.randomString;
+import static Utils.Utils.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
-import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
+import static com.pekama.app.AllTestsRunner.*;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaDashboard {

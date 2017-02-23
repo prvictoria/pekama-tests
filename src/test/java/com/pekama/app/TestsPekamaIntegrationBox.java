@@ -15,6 +15,7 @@ import static Page.PekamaProject.*;
 import static Page.TestsCredentials.User1;
 import static Page.TestsStrings.*;
 import static Page.UrlStrings.*;
+import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
@@ -234,7 +235,7 @@ public class TestsPekamaIntegrationBox {
         open(boxProjectFolderUrl);
         projectAllCheckbox.click();
         LINK_DELETE.click();
-        StepsPekama.submitConfirmAction();
+        submitConfirmAction();
         $(byText(PLACEHOLDER_NoFiles)).shouldBe(visible);
 
         if ($(byText(FileNameBeforeConnect)).exists() == true) {

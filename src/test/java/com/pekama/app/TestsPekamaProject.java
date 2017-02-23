@@ -1,5 +1,5 @@
 package com.pekama.app;
-
+import Page.TestsCredentials;
 import Steps.StepsPekama;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
@@ -12,27 +12,29 @@ import org.junit.runners.MethodSorters;
 
 import java.awt.*;
 
-import static Page.Emails.EMAIL_INVITE_IN_PROJECT_BACKLINK;
-import static Page.Emails.EMAIL_INVITE_IN_PROJECT_BTN;
+import static Page.CommunityDashboard.*;
+import static Page.CommunityWizard.*;
+import static Page.Emails.*;
 import static Page.ModalWindows.*;
-import static Page.PekamaDashboard.DASHBOARD_BTN_NEW_PROJECT;
+import static Page.PekamaDashboard.*;
 import static Page.PekamaProject.*;
 import static Page.TestsCredentials.*;
-import static Page.TestsCredentials.TrademarkEvents.APPLICATION_REGISTERED;
-import static Page.TestsCredentials.TrademarkEvents.MARK_CREATED;
+import static Page.TestsCredentials.TrademarkEvents.*;
 import static Page.TestsStrings.*;
 import static Page.UrlStrings.*;
 import static Page.Xero.*;
+import static Steps.Messages.*;
+import static Steps.StepsCommunity.checkCaseNameFirstRow;
+import static Steps.StepsCommunity.selectExpert;
 import static Steps.StepsExternal.*;
+import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
-import static Utils.Utils.getCurrentDate;
-import static Utils.Utils.randomString;
+import static Utils.Utils.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static com.codeborne.selenide.WebDriverRunner.url;
-import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
+import static com.codeborne.selenide.WebDriverRunner.*;
+import static com.pekama.app.AllTestsRunner.*;
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
@@ -43,12 +45,31 @@ public class TestsPekamaProject {
     private static String testProjectTitle = "new test project - "+ randomString(6);
     private static String testContactName = "name"+ randomString(10);
     private static String testContactSurname = "surname"+ randomString(10);
-    private static String defaultProjectURL;
+    private static String testProjectURL;
     private final static String TEST_USER_EMAIL = User3.GMAIL_EMAIL.getValue();
     private final static String TEST_USER_PEKAMA_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
     private final static String TEST_USER_XERO_PASSWORD = User3.XERO_PASSWORD.getValue();
     private final static String TEST_USER_FULL_TEAM_NAME = User3.FULL_TEAM_NAME.getValue();
     private final static String COLLABORATOR_TEAM_NAME = User1.TEAM_NAME.getValue();
+    private final static String TEST_CASE_TYPE = CaseType.TRADEMARK.getValue();
+    private final static String TEST_CASE_COUNTRY = Countries.PITCAIRN_ISLANDS.getValue();
+    private final static String TEST_CASE_NAME = "CUSTOM_NAME"+randomString(10);
+
+    private final static String REQUESTER_EMAIL = TestsCredentials.User3.GMAIL_EMAIL.getValue();
+    private final static String REQUESTER_PEKAMA_PASSWORD = TestsCredentials.User3.PEKAMA_PASSWORD.getValue();
+    private final static String REQUESTER_NAME = TestsCredentials.User3.NAME.getValue();
+    private final static String REQUESTER_SURNAME = TestsCredentials.User3.SURNAME.getValue();
+    private final static String REQUESTER_FULL_TEAM_NAME = TestsCredentials.User3.FULL_TEAM_NAME.getValue();
+    private final static String REQUESTER_NAME_SURNAME = TestsCredentials.User3.NAME_SURNAME.getValue();
+
+    private final static String EXPERT_EMAIL = TestsCredentials.User2.GMAIL_EMAIL.getValue();
+    private final static String EXPERT_PEKAMA_PASSWORD = TestsCredentials.User2.PEKAMA_PASSWORD.getValue();
+    private final static String EXPERT_NAME = TestsCredentials.User2.NAME.getValue();
+    private final static String EXPERT_SURNAME = TestsCredentials.User2.SURNAME.getValue();
+    private final static String EXPERT_TEAM_NAME = TestsCredentials.User2.TEAM_NAME.getValue();
+    private final static String EXPERT_FULL_TEAM_NAME = TestsCredentials.User2.FULL_TEAM_NAME.getValue();
+    private static final String EXPERT_NAME_SURNAME = TestsCredentials.User2.NAME_SURNAME.getValue();
+    private final static String INTRODUCER_NAME = "Rand, Kaldor & Zane LLP (RKNZ)";
 
     @BeforeClass
     public static void beforeClass() {
@@ -68,7 +89,10 @@ public class TestsPekamaProject {
         rootLogger.info("NW - New project");
         waitForModalWindow(TILE_MW_PROJECT);
         rootLogger.info("select project type");
-        selectItemInDropdown(MW_Project_SelectType, MW_Project_InputType, CaseType.TRADEMARK.getValue());
+        selectItemInDropdown(
+                MW_Project_SelectType,
+                MW_Project_InputType,
+                CaseType.TRADEMARK.getValue());
         rootLogger.info("select defining");
         selectItemInDropdown(MW_Project_SelectDefining, MW_Project_InputDefining, Countries.PITCAIRN_ISLANDS.getValue());
         rootLogger.info("fill title");
@@ -77,8 +101,8 @@ public class TestsPekamaProject {
         submitEnabledButton(MW_ProjectFinishButton);
         MW.shouldNot(exist);
         sleep(1000);
-        defaultProjectURL = getActualUrl ();
-        rootLogger.info("Project url: "+defaultProjectURL);
+        testProjectURL = getActualUrl ();
+        rootLogger.info("Project url: "+ testProjectURL);
         rootLogger.info("ProjectValues '"+testProjectTitle+"' created");
         waitForTextPresent(testProjectTitle);
     }
@@ -114,7 +138,7 @@ public class TestsPekamaProject {
         rootLogger.info("Project deleted by Owner");
 
         rootLogger.info("Check if user opens project link");
-        open(defaultProjectURL);
+        open(testProjectURL);
         sleep(3000);
         $(byXpath("//*[@class='alert alert-danger not-found-message']"))
                 .shouldHave(text("This project was deleted by its owner. "));
@@ -1038,6 +1062,159 @@ public class TestsPekamaProject {
     @Test  //todo
     public void createProject_TasksSorting() {
 
+    }
+
+    @Test
+    public void checkRedirectToCommunityWizard() {
+        if (testProjectTitle ==null || testProjectURL==null){
+            Assert.fail("Project not created for precondition");
+        }
+        checkText("No community cases.");
+        TAB_INFO_COMMUNITY_TITLE.waitUntil(visible, 20000).shouldHave(text("Services from the Pekama IP Community"));
+        rootLogger.info("Check redirect to Community Wizard");
+        TAB_INFO_COMMUNITY_BTN_START_NEW.waitUntil(visible, 20000).click();
+        checkThatWindowsQtyIs(2);
+        switchTo().window(PAGE_TITLE_COMMUNITY);
+        if (checkPageTitle(PAGE_TITLE_COMMUNITY)==false){
+            Assert.fail("No redirect to Community");
+        }
+        WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.waitUntil(visible, 20000)
+                .shouldBe(disabled);
+        rootLogger.info("Test passed");
+    }
+
+    @Test
+    public void createDraftCommunityCaseFormPekama() {
+        if (testProjectTitle ==null || testProjectURL==null){
+            Assert.fail("Project not created for precondition");
+        }
+        checkText("No community cases.");
+        TAB_INFO_COMMUNITY_TITLE.waitUntil(visible, 20000).shouldHave(text("Services from the Pekama IP Community"));
+
+        rootLogger.info("Check redirect to Community Wizard");
+        TAB_INFO_COMMUNITY_BTN_START_NEW.waitUntil(visible, 20000).click();
+        checkThatWindowsQtyIs(2);
+        switchTo().window(PAGE_TITLE_COMMUNITY);
+        if (checkPageTitle(PAGE_TITLE_COMMUNITY)==false){
+            Assert.fail("No redirect to Community");
+        }
+        submitCookie();
+        WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.waitUntil(visible, 20000)
+                .shouldBe(disabled);
+
+        rootLogger.info("Create draft case");
+        WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.shouldBe(disabled);
+        selectExpert(EXPERT_TEAM_NAME);
+
+        submitEnabledButton(WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS);
+        fillField(WIZARD_FIELD_CASE_NAME, TEST_CASE_NAME);
+        WIZARD_BTN_NEXT.click();
+        sleep(3000);
+        BTN_SEND_INSTRUCTION.shouldBe(visible);
+        rootLogger.info("Case was created");
+
+        rootLogger.info("Open Pekama");
+        switchTo().window(PAGE_TITLE_PEKAMA);
+        if (checkPageTitle(PAGE_TITLE_PEKAMA)==false){
+            Assert.fail("No redirect to Community");
+        }
+        String actualUrl = getActualUrl();
+        Assert.assertEquals
+                ("Opened url not same to the project url", testProjectURL, actualUrl);
+        refresh();
+        TAB_INFO_COMMUNITY_BTN_START_NEW.waitUntil(visible, 20000).shouldBe(visible);
+
+        TAB_INFO_COMMUNITY_CASE_NAME.waitUntil(visible, 15000).shouldHave(text(TEST_CASE_NAME));
+        TAB_INFO_COMMUNITY_CASE_TYPE.shouldHave(text(TEST_CASE_TYPE));
+        TAB_INFO_COMMUNITY_CASE_ACTION.shouldNot(exist);
+        TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_DRAFT));
+
+        rootLogger.info("Check project members");
+        PROJECT_TAB_CONTACTS.shouldBe(visible).click();
+        checkText(OWNER);
+        checkText(REQUESTER_FULL_TEAM_NAME);
+        checkText(ADMIN);
+        checkText(INTRODUCER_NAME);
+        checkText(VIEWER);
+        checkText(EXPERT_FULL_TEAM_NAME);
+
+        rootLogger.info("Check redirect to Community after click case row");
+        PROJECT_TAB_INFO.shouldBe(visible).click();
+        TAB_INFO_COMMUNITY_CASE_ROW.click();
+        sleep(2000);
+        checkThatWindowsQtyIs(3);
+        switchTo().window(PAGE_TITLE_COMMUNITY);
+        if (checkPageTitle(PAGE_TITLE_COMMUNITY)==false){
+            Assert.fail("No redirect to Community");
+        }
+        BTN_SEND_INSTRUCTION.waitUntil(visible, 20000);
+        sleep(1000);
+        rootLogger.info("Test passed");
+    }
+
+    @Test
+    public void createCaseAndCheckPekamaState() {
+        if (testProjectTitle ==null || testProjectURL==null){
+            Assert.fail("Project not created for precondition");
+        }
+        checkText("No community cases.");
+        TAB_INFO_COMMUNITY_TITLE.waitUntil(visible, 20000)
+                .shouldHave(text("Services from the Pekama IP Community"));
+        rootLogger.info("Check redirect to Community Wizard");
+        TAB_INFO_COMMUNITY_BTN_START_NEW.waitUntil(visible, 20000).click();
+        checkThatWindowsQtyIs(2);
+        switchTo().window(PAGE_TITLE_COMMUNITY);
+        if (checkPageTitle(PAGE_TITLE_COMMUNITY)==false){
+            Assert.fail("No redirect to Community");
+        }
+        submitCookie();
+        hideZopim();
+        WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.waitUntil(visible, 20000)
+                .shouldBe(disabled);
+
+        rootLogger.info("Create case");
+        WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.shouldBe(disabled);
+        selectExpert(EXPERT_TEAM_NAME);
+        submitEnabledButton(WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS);
+        fillField(WIZARD_FIELD_CASE_NAME, TEST_CASE_NAME);
+        WIZARD_BTN_NEXT.click();
+        sleep(3000);
+        BTN_SEND_INSTRUCTION.shouldBe(visible).click();
+        WIZARD_BTN_INSTRUCT_NOW.shouldBe(visible).click();
+        waitForModalWindow("Congratulations!");
+        MW_CONGRATULATION_OK.click();
+        MW.shouldNotBe(visible);
+        sleep(2000);
+        checkCaseNameFirstRow(TEST_CASE_NAME);
+        rootLogger.info("Case was created");
+
+        rootLogger.info("Open Pekama");
+        sleep(2000);
+        switchTo().window(PAGE_TITLE_PEKAMA);
+        if (checkPageTitle(PAGE_TITLE_PEKAMA)==false){
+            Assert.fail("No redirect to Pekama");
+        }
+
+        TAB_INFO_COMMUNITY_BTN_START_NEW.waitUntil(visible, 20000).shouldBe(visible);
+        rootLogger.info("Check sent message");
+        checkText(MSG_DEFAULT_SENT_INSTRUCTION);
+
+        refresh();
+        TAB_INFO_COMMUNITY_CASE_NAME.waitUntil(visible, 15000).shouldHave(text(TEST_CASE_NAME));
+        TAB_INFO_COMMUNITY_CASE_TYPE.shouldHave(text(TEST_CASE_TYPE));
+        TAB_INFO_COMMUNITY_CASE_ACTION.shouldHave(text("withdraw instructions"));
+        TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_SENT));
+
+        rootLogger.info("Check project members");
+        PROJECT_TAB_CONTACTS.shouldBe(visible).click();
+        checkText(OWNER);
+        checkText(REQUESTER_FULL_TEAM_NAME);
+        checkText(ADMIN);
+        checkText(INTRODUCER_NAME);
+        checkText(COLLABORATOR);
+        checkText(EXPERT_FULL_TEAM_NAME);
+
+        rootLogger.info("Test passed");
     }
 
 }

@@ -14,7 +14,8 @@ import static Page.CommunityProfile.*;
 import static Page.CommunityWizard.*;
 
 import static Page.ModalWindows.*;
-import static Page.TestsStrings.ERROR_MSG_VALIDATION_LENGTH_1024;
+import static Page.TestsStrings.*;
+import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static Utils.Utils.randomString;
 import static com.codeborne.selenide.Condition.*;
@@ -275,7 +276,7 @@ public class StepsCommunity implements StepsFactory{
         rootLogger.info(caseName);
         String row = String.format(caseRowByCount, count, caseName);
         rootLogger.info(row);
-        $(byXpath(row)).shouldBe(visible);
+        $(byXpath(row)).waitUntil(visible, 20000);
         rootLogger.debug(ROW_CONTROL_LABEL_STATUS);
         SelenideElement statusLabel = $(byXpath(row+ROW_CONTROL_LABEL_STATUS));
         rootLogger.debug(statusLabel);

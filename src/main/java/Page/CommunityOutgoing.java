@@ -12,6 +12,7 @@ public class CommunityOutgoing extends Page {
 
     //    public static String caseRowByName = "//div[starts-with(@class, 'case-item') and .//ancestor::h3[text()='Patent in Åland Islands']]";
     public static String caseRowByName = "//div[@project='project' and .//ancestor::h3[text()='%s']]/div";
+    //next contrlos created by: ROW_CONTROL_CASE_ROW_FIRST+CONTROL_PATH
     public static final String ROW_CONTROL_CASE_ROW_FIRST = "//div[@project='project'][position()=1]";
     public static final String ROW_CONTROL_CASE_NAME = "//*[@class='name']//h3";
     public static final String ROW_CONTROL_FIELD_CASE_NAME = "//input[@name='title']";
