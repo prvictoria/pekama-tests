@@ -6,27 +6,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2fcdccdc-4d95-4ab7-8153-9ec9d616e50f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/Steps/StepsModalWindows.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pekama-tests.iws" afterPath="$PROJECT_DIR$/pekama-tests.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/CommunityOutgoing.java" afterPath="$PROJECT_DIR$/src/main/java/Page/CommunityOutgoing.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Steps/StepsCommunity.java" afterPath="$PROJECT_DIR$/src/main/java/Steps/StepsCommunity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Steps/StepsPekama.java" afterPath="$PROJECT_DIR$/src/main/java/Steps/StepsPekama.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/AllTestsRunner.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/AllTestsRunner.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityDashboard.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityDashboard.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityIncoming.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityIncoming.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityIntegration.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityIntegration.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityOutgoing.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityOutgoing.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityProfile.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityProfile.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityWizard.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityWizard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsMessages.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsMessages.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaDashboard.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaDashboard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaIntegrationBox.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaIntegrationBox.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaReports.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaReports.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaSettingValues.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaSettingValues.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaSettingsPersonal.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaSettingsPersonal.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaSettingsTeam.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaSettingsTeam.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaTemplates.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaTemplates.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="build/reports/" />
@@ -206,46 +187,6 @@
       <option name="ENABLED" value="true" />
     </filter>
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="TestsCommunityOutgoing.java" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityOutgoing.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="793">
-                    <caret line="326" column="0" lean-forward="false" selection-start-line="326" selection-start-column="0" selection-end-line="326" selection-end-column="0" />
-                    <folding>
-                      <element signature="docComment;class#TestsCommunityOutgoing#0" expanded="false" />
-                      <element signature="method#beforeClass#0;class#TestsCommunityOutgoing#0" expanded="false" />
-                      <element signature="method#before#0;class#TestsCommunityOutgoing#0" expanded="false" />
-                      <element signature="method#afterClass#0;class#TestsCommunityOutgoing#0" expanded="false" />
-                      <element signature="method#testA_EditCaseName#0;class#TestsCommunityOutgoing#0" expanded="false" />
-                      <element signature="method#testB_RedirectToPekamaProject#0;class#TestsCommunityOutgoing#0" expanded="false" />
-                      <element signature="e#4671#4707#0" expanded="false" />
-                      <element signature="method#testC_ArchiveCase#0;class#TestsCommunityOutgoing#0" expanded="false" />
-                      <element signature="method#testD1_WithdrawCase#0;class#TestsCommunityOutgoing#0" expanded="false" />
-                      <element signature="method#testD2_WithdrawCase#0;class#TestsCommunityOutgoing#0" expanded="false" />
-                      <element signature="method#testE_SentCaseCheckMessage#0;class#TestsCommunityOutgoing#0" expanded="false" />
-                      <element signature="method#testF1_cancelCase#0;class#TestsCommunityOutgoing#0" expanded="false" />
-                      <element signature="method#testF2_cancelCase#0;class#TestsCommunityOutgoing#0" expanded="false" />
-                      <element signature="method#testF3_cancelCaseCheckPekama#0;class#TestsCommunityOutgoing#0" expanded="false" />
-                      <element signature="method#testG1_deleteDraftCase#0;class#TestsCommunityOutgoing#0" expanded="false" />
-                      <element signature="method#testG2_deleteCancelledCase#0;class#TestsCommunityOutgoing#0" expanded="false" />
-                      <element signature="method#testG3_deleteWithdrawnCase#0;class#TestsCommunityOutgoing#0" expanded="false" />
-                      <marker date="1487875868924" expanded="false" signature="0:1007" ph="..." />
-                      <marker date="1487875868924" expanded="false" signature="1092:2867" ph="..." />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="EjbViewSettings">
     <EjbView showMembers="false" autoscrollToSource="false" />
   </component>
@@ -369,19 +310,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestsCommunityIncoming.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TestsCommunityIncoming.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityIncoming.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="458">
-              <caret line="163" column="21" lean-forward="true" selection-start-line="163" selection-start-column="21" selection-end-line="163" selection-end-column="21" />
+            <state relative-caret-position="578">
+              <caret line="258" column="5" lean-forward="true" selection-start-line="258" selection-start-column="5" selection-end-line="258" selection-end-column="5" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="method#testA_ArchiveCase#0;class#TestsCommunityIncoming#0" expanded="false" />
+                <element signature="method#testA2_CheckDraftCase#0;class#TestsCommunityIncoming#0" expanded="false" />
+                <element signature="method#testB1_ConfirmInstruction#0;class#TestsCommunityIncoming#0" expanded="false" />
+                <marker date="1487877911585" expanded="true" signature="1225:2893" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StepsModalWindows.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="StepsModalWindows.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Steps/StepsModalWindows.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="330">
@@ -460,7 +404,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ImportanceDeadline</find>
       <find>text</find>
       <find>mess</find>
       <find>message</find>
@@ -490,9 +433,9 @@
       <find>submitt</find>
       <find>submitCon</find>
       <find>INQUIRY</find>
+      <find>testProjectLink</find>
     </findStrings>
     <replaceStrings>
-      <replace>String</replace>
       <replace>INPUT_</replace>
       <replace>INVITE_IN_TEAM</replace>
       <replace>rootLogger</replace>
@@ -522,6 +465,7 @@
       <replace>Currency</replace>
       <replace>EXPERT_</replace>
       <replace>TEST_CASE_COUNTRY</replace>
+      <replace>testProjectURL</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -575,7 +519,6 @@
         <option value="$PROJECT_DIR$/src/main/java/Steps/Messages.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/AllTestsRunner.java" />
         <option value="$PROJECT_DIR$/src/main/java/Page/CommunityOutgoing.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityIncoming.java" />
         <option value="$PROJECT_DIR$/src/main/java/Steps/StepsPekama.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityWizard.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaDashboard.java" />
@@ -593,6 +536,7 @@
         <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityOutgoing.java" />
         <option value="$PROJECT_DIR$/src/main/java/Steps/StepsModalWindows.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityIncoming.java" />
       </list>
     </option>
   </component>
@@ -987,59 +931,7 @@
       <recent name="D:\PRJ\pekama-tests\src\main" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestsCommunityOutgoing.testG4_deleteSentCaseError">
-    <configuration default="false" name="TestsCommunityIncoming.testA2_CheckDraftCase" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.pekama.app.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="pekama-tests" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.pekama.app" />
-      <option name="MAIN_CLASS_NAME" value="com.pekama.app.TestsCommunityIncoming" />
-      <option name="METHOD_NAME" value="testA2_CheckDraftCase" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="wholeProject" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="TestsCommunityOutgoing.testG1_deleteDraftCase" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.pekama.app.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="pekama-tests" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.pekama.app" />
-      <option name="MAIN_CLASS_NAME" value="com.pekama.app.TestsCommunityOutgoing" />
-      <option name="METHOD_NAME" value="testG1_deleteDraftCase" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="wholeProject" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="JUnit.TestsCommunityIncoming and 1 more">
     <configuration default="false" name="TestsCommunityOutgoing.testG1_deleteCancelledCase" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -1116,6 +1008,61 @@
       </option>
       <envs />
       <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="TestsCommunityIncoming" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.pekama.app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="pekama-tests" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.pekama.app" />
+      <option name="MAIN_CLASS_NAME" value="com.pekama.app.TestsCommunityIncoming" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="wholeProject" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="TestsCommunityIncoming and 1 more" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.pekama.app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="pekama-tests" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.pekama.app" />
+      <option name="MAIN_CLASS_NAME" value="com.pekama.app.TestsCommunityIncoming" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="pattern" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="wholeProject" />
+      </option>
+      <envs />
+      <patterns>
+        <pattern testClass="com.pekama.app.TestsCommunityIncoming,testB2_ConfirmInstruction" />
+        <pattern testClass="com.pekama.app.TestsCommunityIncoming,testB3_tryToDeleteProjectByOwner" />
+      </patterns>
       <method />
     </configuration>
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android App">
@@ -1367,19 +1314,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.TestsCommunityIncoming.testA2_CheckDraftCase" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.TestsCommunityOutgoing.testG1_deleteDraftCase" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.TestsCommunityOutgoing.testG1_deleteCancelledCase" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.TestsCommunityOutgoing.testG1_deleteWithdrawnCase" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.TestsCommunityOutgoing.testG4_deleteSentCaseError" />
+      <item index="0" class="java.lang.String" itemvalue="JUnit.TestsCommunityOutgoing.testG1_deleteCancelledCase" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.TestsCommunityOutgoing.testG1_deleteWithdrawnCase" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.TestsCommunityOutgoing.testG4_deleteSentCaseError" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.TestsCommunityIncoming" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.TestsCommunityIncoming and 1 more" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.TestsCommunityOutgoing.testG4_deleteSentCaseError" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.TestsCommunityOutgoing.testG1_deleteWithdrawnCase" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.TestsCommunityOutgoing.testG1_deleteCancelledCase" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.TestsCommunityOutgoing.testG1_deleteDraftCase" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.TestsCommunityIncoming.testA2_CheckDraftCase" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.TestsCommunityIncoming and 1 more" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.TestsCommunityIncoming" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.TestsCommunityOutgoing.testG4_deleteSentCaseError" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.TestsCommunityOutgoing.testG1_deleteWithdrawnCase" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.TestsCommunityOutgoing.testG1_deleteCancelledCase" />
       </list>
     </recent_temporary>
   </component>
@@ -1453,13 +1400,6 @@
       <workItem from="1487626178611" duration="275000" />
       <workItem from="1487693343062" duration="11772000" />
       <workItem from="1487781248625" duration="17600000" />
-    </task>
-    <task id="LOCAL-00161" summary="ProjectTests - Community Wizard Step 4">
-      <created>1486560335790</created>
-      <option name="number" value="00161" />
-      <option name="presentableId" value="LOCAL-00161" />
-      <option name="project" value="LOCAL" />
-      <updated>1486560335790</updated>
     </task>
     <task id="LOCAL-00162" summary="ProjectTests - Community Wizard Step 4 Email check">
       <created>1486573347738</created>
@@ -1797,24 +1737,31 @@
       <option name="project" value="LOCAL" />
       <updated>1487788659660</updated>
     </task>
-    <option name="localTasksCounter" value="210" />
+    <task id="LOCAL-00210" summary="Outgoing Cases - deletion project tests in different satuses&#10;">
+      <created>1487876231836</created>
+      <option name="number" value="00210" />
+      <option name="presentableId" value="LOCAL-00210" />
+      <option name="project" value="LOCAL" />
+      <updated>1487876231837</updated>
+    </task>
+    <option name="localTasksCounter" value="211" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TestsCommunityIncoming_testA2_CheckDraftCase - 2017.02.23 at 18h 32m 27s.xml">
-      <configuration name="TestsCommunityIncoming.testA2_CheckDraftCase" configurationId="JUnit" />
+    <history-entry file="TestsCommunityIncoming - 2017.02.23 at 22h 12m 16s.xml">
+      <configuration name="TestsCommunityIncoming" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestsCommunityOutgoing_testG1_deleteCancelledCase - 2017.02.23 at 21h 27m 25s.xml">
-      <configuration name="TestsCommunityOutgoing.testG1_deleteCancelledCase" configurationId="JUnit" />
+    <history-entry file="TestsCommunityIncoming_and_1_more - 2017.02.23 at 22h 15m 07s.xml">
+      <configuration name="TestsCommunityIncoming and 1 more" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestsCommunityIncoming_and_1_more - 2017.02.23 at 22h 19m 58s.xml">
+      <configuration name="TestsCommunityIncoming and 1 more" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestsCommunityIncoming_and_1_more - 2017.02.23 at 22h 23m 03s.xml">
+      <configuration name="TestsCommunityIncoming and 1 more" configurationId="JUnit" />
     </history-entry>
     <history-entry file="TestsCommunityOutgoing_testG1_deleteCancelledCase - 2017.02.23 at 21h 31m 09s.xml">
       <configuration name="TestsCommunityOutgoing.testG1_deleteCancelledCase" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestsCommunityOutgoing_testG1_deleteDraftCase - 2017.02.23 at 21h 15m 36s.xml">
-      <configuration name="TestsCommunityOutgoing.testG1_deleteDraftCase" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestsCommunityOutgoing_testG1_deleteDraftCase - 2017.02.23 at 21h 20m 26s.xml">
-      <configuration name="TestsCommunityOutgoing.testG1_deleteDraftCase" configurationId="JUnit" />
     </history-entry>
     <history-entry file="TestsCommunityOutgoing_testG1_deleteWithdrawnCase - 2017.02.23 at 21h 33m 46s.xml">
       <configuration name="TestsCommunityOutgoing.testG1_deleteWithdrawnCase" configurationId="JUnit" />
@@ -1846,7 +1793,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1989" y="-9" width="1860" height="1098" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32606438" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -1858,7 +1805,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48909658" sideWeight="0.50774336" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32606438" sideWeight="0.49778023" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35089687" sideWeight="0.63854164" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35089687" sideWeight="0.6333333" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32522124" sideWeight="0.4915925" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1870,7 +1817,7 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28307176" sideWeight="0.51194185" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36939463" sideWeight="0.5125" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35089687" sideWeight="0.36666667" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="CVS" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1916,7 +1863,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="All values test suite" />
     <MESSAGE value="Project template" />
     <MESSAGE value="Task template" />
     <MESSAGE value="New test scope Community Integration&#10;Community dashboard test update" />
@@ -1941,7 +1887,8 @@
     <MESSAGE value="String and Integration Community logic" />
     <MESSAGE value="External thread test" />
     <MESSAGE value="External thread test - done&#10;Delete signature - done&#10;Add @BeforeClass config&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="External thread test - done&#10;Delete signature - done&#10;Add @BeforeClass config&#10;" />
+    <MESSAGE value="Outgoing Cases - deletion project tests in different satuses&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Outgoing Cases - deletion project tests in different satuses&#10;" />
   </component>
   <component name="VssConfiguration">
     <CheckoutOptions>
@@ -2366,13 +2313,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityIncoming.java</url>
-          <line>256</line>
+          <line>333</line>
           <properties />
           <option name="timeStamp" value="706" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityIncoming.java</url>
-          <line>258</line>
+          <line>335</line>
           <properties />
           <option name="timeStamp" value="707" />
         </line-breakpoint>
@@ -2522,7 +2469,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityIncoming.java</url>
-          <line>64</line>
+          <line>84</line>
           <properties />
           <option name="timeStamp" value="808" />
         </line-breakpoint>
@@ -2574,11 +2521,23 @@
           <properties />
           <option name="timeStamp" value="822" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityIncoming.java</url>
+          <line>173</line>
+          <properties />
+          <option name="timeStamp" value="824" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityIncoming.java</url>
+          <line>174</line>
+          <properties />
+          <option name="timeStamp" value="825" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="823" />
+      <option name="time" value="826" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -2854,16 +2813,6 @@
         <state relative-caret-position="395">
           <caret line="18" column="98" lean-forward="false" selection-start-line="18" selection-start-column="98" selection-end-line="18" selection-end-column="98" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityIncoming.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="163" column="21" lean-forward="true" selection-start-line="163" selection-start-column="21" selection-end-line="163" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3202,8 +3151,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityOutgoing.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="793">
-          <caret line="326" column="0" lean-forward="false" selection-start-line="326" selection-start-column="0" selection-end-line="326" selection-end-column="0" />
+        <state relative-caret-position="599">
+          <caret line="325" column="30" lean-forward="true" selection-start-line="325" selection-start-column="30" selection-end-line="325" selection-end-column="30" />
           <folding>
             <element signature="docComment;class#TestsCommunityOutgoing#0" expanded="false" />
             <element signature="method#beforeClass#0;class#TestsCommunityOutgoing#0" expanded="false" />
@@ -3223,7 +3172,20 @@
             <element signature="method#testG2_deleteCancelledCase#0;class#TestsCommunityOutgoing#0" expanded="false" />
             <element signature="method#testG3_deleteWithdrawnCase#0;class#TestsCommunityOutgoing#0" expanded="false" />
             <marker date="1487875868924" expanded="false" signature="0:1007" ph="..." />
-            <marker date="1487875868924" expanded="false" signature="1092:2867" ph="..." />
+            <marker date="1487875868924" expanded="true" signature="1092:2867" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityIncoming.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="258" column="5" lean-forward="true" selection-start-line="258" selection-start-column="5" selection-end-line="258" selection-end-column="5" />
+          <folding>
+            <element signature="method#testA_ArchiveCase#0;class#TestsCommunityIncoming#0" expanded="false" />
+            <element signature="method#testA2_CheckDraftCase#0;class#TestsCommunityIncoming#0" expanded="false" />
+            <element signature="method#testB1_ConfirmInstruction#0;class#TestsCommunityIncoming#0" expanded="false" />
+            <marker date="1487877911585" expanded="true" signature="1225:2893" ph="..." />
           </folding>
         </state>
       </provider>
