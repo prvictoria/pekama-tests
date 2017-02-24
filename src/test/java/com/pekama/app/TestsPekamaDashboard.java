@@ -8,21 +8,26 @@ import Page.TestsCredentials.User3;
 import Steps.StepsPekama;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.Before;
-import org.junit.FixMethodOrder;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runners.MethodSorters;
 import org.openqa.selenium.By;
 
+import static Page.CommunityLanding.*;
 import static Page.ModalWindows.*;
 import static Page.PekamaDashboard.*;
+import static Page.PekamaHeader.*;
+import static Page.PekamaLanding.*;
+import static Page.PekamaPersonalSettings.*;
+import static Page.PekamaReports.*;
+import static Page.PekamaTeamSettings.*;
 import static Page.TestsStrings.*;
 import static Page.UrlStrings.*;
+import static Steps.StepsHttpAuth.httpAuthUrl;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static Utils.Utils.*;
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.pekama.app.AllTestsRunner.*;
 
@@ -33,20 +38,30 @@ public class TestsPekamaDashboard {
     private static String testContactName = "name"+ randomString(10);
     private static String testContactSurname = "surname"+ randomString(10);
     private static String defaultProjectURL;
-    private final static String TEST_USER_EMAIL = User1.GMAIL_EMAIL.getValue();
-    private final static String TEST_USER_PEKAMA_PASSWORD = User1.PEKAMA_PASSWORD.getValue();
-    private final static String TEST_USER_XERO_PASSWORD = User3.XERO_PASSWORD.getValue();
+    private final static String USER_EMAIL = User1.GMAIL_EMAIL.getValue();
+    private final static String USER_PEKAMA_PASSWORD = User1.PEKAMA_PASSWORD.getValue();
+    private final static String USER_XERO_PASSWORD = User3.XERO_PASSWORD.getValue();
     private final String TEST_USER_FULL_TEAM_NAME = User3.FULL_TEAM_NAME.getValue();
     private final String TEST_USER_TEAM_NAME = User1.TEAM_NAME.getValue();
-    @Before
-    public void before() {
+    @BeforeClass
+    public static void beforeClass() {
+        assertionMode();
         holdBrowserAfterTest();
         rootLogger.info("Open host");
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(
-                TEST_USER_EMAIL,
-                TEST_USER_PEKAMA_PASSWORD,
+                USER_EMAIL,
+                USER_PEKAMA_PASSWORD,
                 URL_LogIn);
+    }
+    @Before
+    public void before() {
+        httpAuthUrl(URL_Dashboard);
+        sleep(2000);
+    }
+    @AfterClass
+    public static void afterClass() {
+        open(URL_Logout);
     }
 
     @Test
@@ -128,36 +143,85 @@ public class TestsPekamaDashboard {
     @Ignore // TODO: 19-Feb-17
     @Test
     public void testC_RedirectGlobalSearch() {
+        rootLogger.info("Check that submit search leads redirect to Project reports page");
 
-        rootLogger.info("");
-        open("");
-        $(By.xpath("")).sendKeys("");
-        $(By.xpath("")).shouldBe(visible);
-        $(By.xpath("")).click();
         rootLogger.info("");
     }
 
-    @Ignore // TODO: 19-Feb-17
     @Test
     public void testD_OpenAllHeaderControls() {
+        HEADER.waitUntil(visible, 20000);
+        HEADER_DASHBOARD.waitUntil(visible, 20000).shouldBe(visible);
+        HEADER_PROJECTS.shouldBe(visible);
+        HEADER_TASKS.shouldBe(visible);
+        HEADER_EVENTS.shouldBe(visible);
+        HEADER_CHARGES.shouldBe(visible);
+        HEADER_CONTACTS.shouldBe(visible);
+        HEADER_TUTORIAL_BTN.shouldBe(visible);
+        HEADER_SEARCH_FIELD.shouldBe(visible);
+        HEADER_SEARCH_ICON.shouldBe(visible);
 
-        rootLogger.info("");
-        open("");
-        $(By.xpath("")).sendKeys("");
-        $(By.xpath("")).shouldBe(visible);
-        $(By.xpath("")).click();
-        rootLogger.info("");
+        HEADER_PROJECTS.click();
+        REPORTS_PAGE_TITLE_PANEL
+                .waitUntil(visible, 15000)
+                .shouldHave(text("Projects"));
+        HEADER_TASKS.click();
+        REPORTS_PAGE_TITLE_PANEL
+                .waitUntil(visible, 15000)
+                .shouldHave(text("Tasks"));
+        HEADER_PROJECTS.click();
+        HEADER_EVENTS
+                .waitUntil(visible, 15000)
+                .shouldHave(text("Events"));
+        HEADER_CHARGES.click();
+        REPORTS_PAGE_TITLE_PANEL
+                .waitUntil(visible, 15000)
+                .shouldHave(text("Charges"));
+        HEADER_CONTACTS.click();
+        REPORTS_PAGE_TITLE_PANEL
+                .waitUntil(visible, 15000)
+                .shouldHave(text("Contacts"));
+        HEADER_DASHBOARD.click();
+        $(byXpath("//div[@class='panel-heading']//h4"))
+                .waitUntil(visible, 15000);
+        $$(byXpath("//div[@class='panel-heading']//h4"))
+                .filter(visible)
+                .shouldHaveSize(4);
+        //HEADER_TUTORIAL_BTN.shouldBe(visible).click();
+        rootLogger.info("Test passed");
     }
 
+    @Test
+    public void testE1_HeaderDropdownLogout() {
+        HEADER.waitUntil(visible, 20000);
+        HEADER_UserDropdown.shouldBe(visible).click();
+        HEADER_LogOut.shouldBe(visible).click();
+        submitConfirmAction();
+        BTN_LOGIN.waitUntil(visible, 20000);
+        BTN_SIGN_UP.shouldBe(visible);
+        rootLogger.info("Test passed");
+    }
+    @Test
+    public void testE2_HeaderDropdownOpenSettings() {
+        rootLogger.info("Open personal settings");
+        HEADER.waitUntil(visible, 20000);
+        HEADER_UserDropdown.shouldBe(visible).click();
+        HEADER_PersonalSettings.shouldBe(visible).click();
+        PERSONAL_DETAILS_TAB_TITLE.waitUntil(visible, 20000);
+
+        rootLogger.info("Open team settings");
+        HEADER_UserDropdown.shouldBe(visible).click();
+        HEADER_TeamSettings.shouldBe(visible).click();
+        SETTINGS_TEAM_TAB_PROFILE.waitUntil(visible, 20000);
+        rootLogger.info("Test passed");
+    }
     @Ignore // TODO: 19-Feb-17
     @Test
-    public void testE_LogoutViaDropdown() {
-
+    public void testF1_ModalNewProjectValidation() {
+        DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 20000).click();
         rootLogger.info("");
-        open("");
-        $(By.xpath("")).sendKeys("");
-        $(By.xpath("")).shouldBe(visible);
-        $(By.xpath("")).click();
+
+
         rootLogger.info("");
     }
 

@@ -7,14 +7,19 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
+        TestsPekamaDashboard.class,
         TestsPekamaLanding.class,
         TestsPekamaLogin.class,
         TestsPekamaResetPassword.class,
-        Page.PekamaSignUp.class,
+        TestsPekamaSignUp.class,
         TestsPekamaSettingsPersonal.class,
         TestsPekamaProject.class,
+        TestsMessages.class,
         TestsPekamaIntegrationBox.class,
-        TestsPekamaSettingsTeam.class
+        TestsPekamaSettingsTeam.class,
+        TestsPekamaSettingValues.class,
+        TestsPekamaTemplates.class,
+        TestsPekamaReports.class
 })
 public class AllPekamaTestsRunner extends AllTestsRunner{
 }
