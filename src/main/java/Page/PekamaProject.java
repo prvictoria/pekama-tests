@@ -97,7 +97,6 @@ public class PekamaProject extends Page {
     public static final SelenideElement TAB_INFO_NumberRow02Edit = $(byXpath(""));
     public static final SelenideElement TAB_INFO_NumberRow02Type = $(byXpath(""));
 
-//todo param string and method
     public static final SelenideElement TAB_INFO_NumberEdit = $(byXpath("//*[@class='more-item numbers ng-scope']//ul/li[contains(.,'122')]//a[@class='edit ng-scope']"));
     public static final SelenideElement TAB_INFO_NumberDelete = $(byXpath("//*[@class='more-item numbers ng-scope']//ul/li[contains(.,'122')]//i[@class='pkm-icon-cancel icon']"));
 
@@ -123,14 +122,12 @@ public class PekamaProject extends Page {
     public static final SelenideElement TAB_INFO_COMMUNITY_TITLE = $(byXpath("//pkm-community-projects//h4"));
     public static final SelenideElement TAB_INFO_COMMUNITY_BTN_START_NEW = $(byXpath("//pkm-community-projects//button[contains(.,'+ START NEW')]"));
     public static final SelenideElement TAB_INFO_COMMUNITY_CASES_LIST = $(byXpath("//pkm-community-projects//div[@class='request-quote-list']/div"));
-    public static final SelenideElement TAB_INFO_COMMUNITY_CASE_NAME = $(byXpath("//div[@class='name']"));
-    public static final SelenideElement TAB_INFO_COMMUNITY_CASE_TYPE = $(byXpath("//div[@class='patent']/span"));
-    public static final SelenideElement TAB_INFO_COMMUNITY_CASE_ACTION = $(byXpath("//div[@class='status']/button"));
-    public static final SelenideElement TAB_INFO_COMMUNITY_CASE_STATUS = $(byXpath("//div[@class='status']//span"));
+    public static final SelenideElement TAB_INFO_COMMUNITY_CASE_NAME = $(byXpath("//div[@class='name']/*"));
+    public static final SelenideElement TAB_INFO_COMMUNITY_CASE_TYPE = $(byXpath("//div[@class='patent']/*"));
+    public static final SelenideElement TAB_INFO_COMMUNITY_CASE_ACTION = $(byXpath("//pkm-community-projects//*[starts-with(@class, 'status')]/button"));
+    public static final SelenideElement TAB_INFO_COMMUNITY_CASE_STATUS = $(byXpath("//pkm-community-projects//*[starts-with(@class, 'status')]//span"));
     public static final SelenideElement TAB_INFO_COMMUNITY_CASE_ROW = $(byXpath("//pkm-community-projects//div[@class='request-quote-list ng-scope']"));
 
-
-    //todo - TAB contacts
     public static final SelenideElement projectTabContacts_Teams = $(byXpath("//pkm-collaborators"));
     public static final SelenideElement projectTabContacts_AddCollaborator = $(byXpath("//pkm-collaborators//button[contains(.,'Add')]"));
     public static final SelenideElement projectTabContacts_TeamsTitle = $(byXpath("//section[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div[2]/div/div/pkm-collaborators/h4"));

@@ -60,6 +60,7 @@ public class PekamaConversationProject extends Page {
     public static final SelenideElement CONVERSATION_MsgDelete = $(byXpath( CONVERSATION_BLOCK+"//div[@class='media-body width-float']//i[@class='pkm-icon-cancel']"));
     public static final SelenideElement CONVERSATION_MsgTaskIcon = $(byXpath( CONVERSATION_BLOCK+""));
     public static final SelenideElement CONVERSATION_MsgBody = $(byXpath( CONVERSATION_BLOCK+"//div[@class='media-body width-float']"));
+    public static final SelenideElement CONVERSATION_MsgText = $(byXpath( CONVERSATION_BLOCK+"//div[@class='media-body width-float']//p"));
     public static final SelenideElement CONVERSATION_MsgTo = $(byXpath( CONVERSATION_BLOCK+"//div[@class='media-body width-float']//dd[1]/span"));
     public static final SelenideElement CONVERSATION_MsgCC = $(byXpath( CONVERSATION_BLOCK+"//div[@class='media-body width-float']//dd[2]/span"));
 

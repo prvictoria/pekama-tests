@@ -9,6 +9,7 @@ import org.junit.runners.MethodSorters;
 
 import static Page.CommunityDashboard.*;
 import static Page.CommunityOutgoing.*;
+import static Page.PekamaConversationProject.CONVERSATION_MsgText;
 import static Page.PekamaProject.*;
 import static Page.PekamaProject.PROJECT_BTN_DELETE;
 import static Page.TestsCredentials.*;
@@ -53,7 +54,6 @@ public class TestsCommunityIncoming {
     private final static String EXPERT_FULL_TEAM_NAME = TestsCredentials.User2.FULL_TEAM_NAME.getValue();
     private static final String EXPERT_NAME_SURNAME = TestsCredentials.User2.NAME_SURNAME.getValue();
     private final static String INTRODUCER_NAME = "Rand, Kaldor & Zane LLP (RKNZ)";
-
     @Before
     public void before() {
         holdBrowserAfterTest();
@@ -161,17 +161,11 @@ public class TestsCommunityIncoming {
     @Test
     public void testB3_tryToDeleteProjectByOwner() {
         rootLogger.info("Open project by Owner and try to delete");
-//        StepsPekama loginIntoPekama = new StepsPekama();
-//        loginIntoPekama.loginByURL(
-//                REQUESTER_EMAIL,
-//                REQUESTER_PEKAMA_PASSWORD,
-//                URL_LogIn);
-//        rootLogger.info("Check Pekama project State");
         httpAuthUrl(testProjectURL);
         sleep(4000);
         TAB_INFO_COMMUNITY_CASE_NAME.waitUntil(visible, 15000).shouldHave(text(caseName));
         TAB_INFO_COMMUNITY_CASE_TYPE.shouldHave(text(TEST_CASE_TYPE));
-        //TAB_INFO_COMMUNITY_CASE_ACTION.shouldHave(text(BTN_CONFIRM_COMPLETION_NAME));
+        TAB_INFO_COMMUNITY_CASE_ACTION.shouldNot(exist);
         TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_CONFIRMED));
 
         rootLogger.info("Try Delete project");
@@ -183,7 +177,6 @@ public class TestsCommunityIncoming {
                 "You can't archive a project that has active community projects associated with it");
         rootLogger.info("Test passed");
     }
-    
     @Test
     public void testC1_ConfirmCompletion() {
         rootLogger.info("Supplier Create case");
@@ -235,12 +228,6 @@ public class TestsCommunityIncoming {
     @Test
     public void testC3_tryToDeleteProjectByOwner() {
         rootLogger.info("Open project by Owner and try to delete");
-//        StepsPekama loginIntoPekama = new StepsPekama();
-//        loginIntoPekama.loginByURL(
-//                REQUESTER_EMAIL,
-//                REQUESTER_PEKAMA_PASSWORD,
-//                URL_LogIn);
-//        rootLogger.info("Check Pekama project State");
         httpAuthUrl(testProjectURL);
         sleep(4000);
         TAB_INFO_COMMUNITY_CASE_NAME.waitUntil(visible, 15000).shouldHave(text(caseName));
@@ -308,7 +295,6 @@ public class TestsCommunityIncoming {
 
         rootLogger.info("Test passed");
     }
-
     @Test
     public void testF1_cancelledCaseState() {
         rootLogger.info("Create draft case");
@@ -336,7 +322,6 @@ public class TestsCommunityIncoming {
         checkText(msgCaseCancelled(userName));
         rootLogger.info("Test passed");
     }
-
     @Test
     public void testF2_cancelledCaseState() {
         rootLogger.info("Create draft case");
@@ -364,5 +349,86 @@ public class TestsCommunityIncoming {
         String userName = EXPERT_NAME;
         rootLogger.info("Check default message NOT present: "+msgCaseCancelled(userName));
         checkTextNotPresent(msgCaseCancelled(userName));
+    }
+    @Test
+    public void testG1_ChangeStatusesInPekamaForExpert() {
+        rootLogger.info("Create case");
+        caseName = createCase(EXPERT_TEAM_NAME);
+        //COMMUNITY_TAB_Incoming.waitUntil(visible, 15000).click();
+        checkCaseNameFirstRow(caseName);
+        rootLogger.info("Get project url");
+        testProjectURL = $(byXpath(ROW_CONTROL_CASE_ROW_FIRST + ROW_CONTROL_LINK_PROJECT))
+                .getAttribute("href");
+        rootLogger.info("project link is: " + testProjectURL);
+
+        rootLogger.info("Expert login");
+        StepsPekama loginIntoPekama = new StepsPekama();
+        loginIntoPekama.loginByURL(
+                EXPERT_EMAIL,
+                EXPERT_PEKAMA_PASSWORD,
+                URL_COMMUNITY_LOGIN);
+
+        rootLogger.info("Open project by Expert and confirm instruction and complete case");
+        httpAuthUrl(testProjectURL);
+        sleep(4000);
+        TAB_INFO_COMMUNITY_CASE_NAME.waitUntil(visible, 15000).shouldHave(text(caseName));
+
+        TAB_INFO_COMMUNITY_CASE_TYPE.shouldHave(text(TEST_CASE_TYPE));
+        TAB_INFO_COMMUNITY_CASE_ACTION.shouldHave(text(BTN_CONFIRM_INSTRUCTION_NAME));
+        TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_RECEIVED));
+        TAB_INFO_COMMUNITY_CASE_ACTION.click();
+        acceptConfirmInstruction(false);
+
+        TAB_INFO_COMMUNITY_CASE_ACTION.shouldHave(text(BTN_CONFIRM_COMPLETION_NAME));
+        TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_CONFIRMED));
+
+        TAB_INFO_COMMUNITY_CASE_ACTION.click();
+        acceptCompetion(false);
+        TAB_INFO_COMMUNITY_CASE_ACTION.shouldNot(exist);
+        TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_COMPLETED));
+        rootLogger.info("Test passed");
+    }
+    @Test
+    public void testG2_ChangeStatusesInPekamaForExpert() {
+        rootLogger.info("Create case");
+        caseName = createCase(EXPERT_TEAM_NAME);
+        //COMMUNITY_TAB_Incoming.waitUntil(visible, 15000).click();
+        checkCaseNameFirstRow(caseName);
+        rootLogger.info("Get project url");
+        testProjectURL = $(byXpath(ROW_CONTROL_CASE_ROW_FIRST + ROW_CONTROL_LINK_PROJECT))
+                .getAttribute("href");
+        rootLogger.info("project link is: " + testProjectURL);
+
+        rootLogger.info("Expert login");
+        StepsPekama loginIntoPekama = new StepsPekama();
+        loginIntoPekama.loginByURL(
+                EXPERT_EMAIL,
+                EXPERT_PEKAMA_PASSWORD,
+                URL_COMMUNITY_LOGIN);
+
+        rootLogger.info("Open project by Expert and confirm instruction and complete case");
+        httpAuthUrl(testProjectURL);
+        sleep(4000);
+        TAB_INFO_COMMUNITY_CASE_NAME.waitUntil(visible, 15000).shouldHave(text(caseName));
+
+        TAB_INFO_COMMUNITY_CASE_TYPE.shouldHave(text(TEST_CASE_TYPE));
+        TAB_INFO_COMMUNITY_CASE_ACTION.shouldHave(text(BTN_CONFIRM_INSTRUCTION_NAME));
+        TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_RECEIVED));
+        CONVERSATION_MsgText.shouldHave(text(MSG_DEFAULT_SENT_INSTRUCTION));
+
+        TAB_INFO_COMMUNITY_CASE_ACTION.click();
+        acceptConfirmInstruction(true);
+
+        TAB_INFO_COMMUNITY_CASE_ACTION.shouldHave(text(BTN_CONFIRM_COMPLETION_NAME));
+        TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_CONFIRMED));
+        CONVERSATION_MsgText.shouldHave(text(MSG_DEFAULT_CONFIRM_INSTRUCTIONS));
+
+        TAB_INFO_COMMUNITY_CASE_ACTION.click();
+        acceptCompetion(true);
+        TAB_INFO_COMMUNITY_CASE_ACTION.shouldNot(exist);
+        TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_COMPLETED));
+        CONVERSATION_MsgText.shouldHave(text(MSG_DEFAULT_CONFIRM_COMPLETION));
+
+        rootLogger.info("Test passed");
     }
 }
