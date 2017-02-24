@@ -223,6 +223,12 @@ public class TestsCommunityIncoming {
         $(byXpath(row)).click();
         rootLogger.info("Check message");
         $(byText(MSG_DEFAULT_CONFIRM_COMPLETION)).shouldNotBe(visible);
+
+        rootLogger.info("Get project url");
+        testProjectURL = $(byXpath(ROW_CONTROL_CASE_ROW_FIRST + ROW_CONTROL_LINK_PROJECT))
+                .getAttribute("href");
+        rootLogger.info("project link is: " + testProjectURL);
+        rootLogger.info("Test passed");
         rootLogger.info("Test passed");
     }
     @Test
