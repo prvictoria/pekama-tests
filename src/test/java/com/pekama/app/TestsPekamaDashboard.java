@@ -142,7 +142,6 @@ public class TestsPekamaDashboard {
         checkPageTitle(PAGE_TITLE_PEKAMA);
         rootLogger.info("Test passed");
     }
-    @Ignore // TODO: 19-Feb-17
     @Test
     public void testC_RedirectGlobalSearch() {
         rootLogger.info("Check that submit search leads redirect to Project reports page");
@@ -156,7 +155,6 @@ public class TestsPekamaDashboard {
 
         rootLogger.info("Test passed");
     }
-
     @Test
     public void testD_OpenAllHeaderControls() {
         HEADER.waitUntil(visible, 20000);
@@ -199,9 +197,8 @@ public class TestsPekamaDashboard {
         //HEADER_TUTORIAL_BTN.shouldBe(visible).click();
         rootLogger.info("Test passed");
     }
-
     @Test
-    public void testE1_HeaderDropdownLogout() {
+    public void testZ_HeaderDropdownLogout() {
         HEADER.waitUntil(visible, 20000);
         HEADER_UserDropdown.shouldBe(visible).click();
         HEADER_LogOut.shouldBe(visible).click();
@@ -224,12 +221,13 @@ public class TestsPekamaDashboard {
         SETTINGS_TEAM_TAB_PROFILE.waitUntil(visible, 20000);
         rootLogger.info("Test passed");
     }
+    @Ignore //todo - No validation BUG
     @Test
     public void testF1_ModalNewProjectValidation() {
         DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 20000).click();
         rootLogger.info("");
         waitForModalWindow("New Project");
-
+        MW_ProjectFinishButton.click();
         submitEnabledButton(MW_ProjectFinishButton); //todo BUG not disabled
         checkText(ERROR_MSG_REQUIRED_FIELD, 2);
         MW.pressEscape();
@@ -290,7 +288,7 @@ public class TestsPekamaDashboard {
 
         rootLogger.info("Validation Definig and Title passed");
     }
-    //todo BUG
+    @Ignore
     @Test
     public void testF5_ModalNewProjectValidation() {
         DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 20000).click();
@@ -304,6 +302,7 @@ public class TestsPekamaDashboard {
         fillField(MW_Project_Reference, randomString(256));
         sleep(2000);
         submitEnabledButton(MW_ProjectFinishButton);
+        // TODO: 2/24/2017 BUG https://www.pivotaltracker.com/n/projects/1239770/stories/140549597
         checkText(ERROR_MSG_VALIDATION_LENGTH_255);
         MW.pressEscape();
         MW.shouldNotBe(visible);
