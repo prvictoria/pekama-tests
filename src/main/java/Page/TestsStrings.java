@@ -110,7 +110,7 @@ public class TestsStrings {
     public static final String ERROR_MSG_BLANK_FIELD = "This field may not be blank.";
     public static final String ERROR_MSG_BLANK_NAME = "First name can not be blank";
     public static final String ERROR_MSG_BLANK_SURNAME = "Last name can not be blank";
-
+    public static final String ERROR_MSG_NULL_NOT_VALID = "This field may not be null.";
     public static final String ERROR_MSG_REQUIRED_FIELD = "This field is required.";
     public static final String ERROR_MSG_INVALID_EMAIL = "Enter a valid email address.";
     public static final String ERROR_MSG_EMAIL_IS_USED = "This email address is already taken";

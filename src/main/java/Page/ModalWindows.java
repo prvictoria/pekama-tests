@@ -170,6 +170,7 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_Project_TMNumber = $(byXpath(mw+"//input[@name='official_lookup']"));
     public static final SelenideElement MW_Project_Title = $(byXpath(mw+"//input[@name='title']"));
     public static final SelenideElement MW_Project_Reference = $(byXpath(mw+"//input[@name='number']"));
+
     //MW new folder
     public static final SelenideElement MW_NEW_FOLDER_INPUT_NAME = $(byXpath(mw+"//input[@name='name']"));
     public static final SelenideElement modalMembersOkButton = $(byXpath("//div[2]/button"));

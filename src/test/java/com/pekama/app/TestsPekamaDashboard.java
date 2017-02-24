@@ -3,6 +3,7 @@ package com.pekama.app;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
+import Page.TestsCredentials;
 import Page.TestsCredentials.User1;
 import Page.TestsCredentials.User3;
 import Steps.StepsPekama;
@@ -38,6 +39,7 @@ public class TestsPekamaDashboard {
     private static String testContactName = "name"+ randomString(10);
     private static String testContactSurname = "surname"+ randomString(10);
     private static String defaultProjectURL;
+    private final static String TEST_PROJECT_TYPE = TestsCredentials.CaseType.TRADEMARK.getValue();
     private final static String USER_EMAIL = User1.GMAIL_EMAIL.getValue();
     private final static String USER_PEKAMA_PASSWORD = User1.PEKAMA_PASSWORD.getValue();
     private final static String USER_XERO_PASSWORD = User3.XERO_PASSWORD.getValue();
@@ -144,8 +146,15 @@ public class TestsPekamaDashboard {
     @Test
     public void testC_RedirectGlobalSearch() {
         rootLogger.info("Check that submit search leads redirect to Project reports page");
+        HEADER.waitUntil(visible, 20000);
+        HEADER_SEARCH_FIELD.shouldBe(visible).shouldHave(value(""));
+        fillField(HEADER_SEARCH_FIELD, "1234567890");
+        HEADER_SEARCH_ICON.shouldBe(visible).click();
+        REPORTS_PAGE_TITLE_PANEL
+                .waitUntil(visible, 15000)
+                .shouldHave(text("Projects"));
 
-        rootLogger.info("");
+        rootLogger.info("Test passed");
     }
 
     @Test
@@ -215,14 +224,91 @@ public class TestsPekamaDashboard {
         SETTINGS_TEAM_TAB_PROFILE.waitUntil(visible, 20000);
         rootLogger.info("Test passed");
     }
-    @Ignore // TODO: 19-Feb-17
     @Test
     public void testF1_ModalNewProjectValidation() {
         DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 20000).click();
         rootLogger.info("");
+        waitForModalWindow("New Project");
 
+        submitEnabledButton(MW_ProjectFinishButton); //todo BUG not disabled
+        checkText(ERROR_MSG_REQUIRED_FIELD, 2);
+        MW.pressEscape();
+        MW.shouldNotBe(visible);
 
+        rootLogger.info("Validation Type and Title passed");
+    }
+    @Test
+    public void testF2_ModalNewProjectValidation() {
+        DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 20000).click();
         rootLogger.info("");
+        waitForModalWindow("New Project");
+        selectItemInDropdown(
+                MW_Project_SelectType,
+                MW_Project_InputType,
+                TEST_PROJECT_TYPE);
+        sleep(2000);
+        submitEnabledButton(MW_ProjectFinishButton);
+        checkText(ERROR_MSG_REQUIRED_FIELD);
+        MW.pressEscape();
+        MW.shouldNotBe(visible);
+
+        rootLogger.info("Validation Title passed");
+    }
+    @Test
+    public void testF3_ModalNewProjectValidation() {
+        DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 20000).click();
+        rootLogger.info("");
+        waitForModalWindow("New Project");
+        selectItemInDropdown(
+                MW_Project_SelectType,
+                MW_Project_InputType,
+                TestsCredentials.CaseType.CRM.getValue());
+        sleep(2000);
+        submitEnabledButton(MW_ProjectFinishButton);
+        checkText(ERROR_MSG_NULL_NOT_VALID);
+        checkText(ERROR_MSG_REQUIRED_FIELD);
+        MW.pressEscape();
+        MW.shouldNotBe(visible);
+
+        rootLogger.info("Validation Definig and Title passed");
+    }
+    @Test
+    public void testF4_ModalNewProjectValidation() {
+        DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 20000).click();
+        rootLogger.info("");
+        waitForModalWindow("New Project");
+        selectItemInDropdown(
+                MW_Project_SelectType,
+                MW_Project_InputType,
+                TEST_PROJECT_TYPE);
+        fillField(MW_Project_Title, randomString(1025));
+        sleep(2000);
+        submitEnabledButton(MW_ProjectFinishButton);
+        checkText(ERROR_MSG_VALIDATION_LENGTH_1024);
+        MW.pressEscape();
+        MW.shouldNotBe(visible);
+
+        rootLogger.info("Validation Definig and Title passed");
+    }
+    //todo BUG
+    @Test
+    public void testF5_ModalNewProjectValidation() {
+        DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 20000).click();
+        rootLogger.info("");
+        waitForModalWindow("New Project");
+        selectItemInDropdown(
+                MW_Project_SelectType,
+                MW_Project_InputType,
+                TEST_PROJECT_TYPE);
+        fillField(MW_Project_Title, randomString(30));
+        fillField(MW_Project_Reference, randomString(256));
+        sleep(2000);
+        submitEnabledButton(MW_ProjectFinishButton);
+        checkText(ERROR_MSG_VALIDATION_LENGTH_255);
+        MW.pressEscape();
+        MW.shouldNotBe(visible);
+
+        rootLogger.info("Validation Definig and Title passed");
     }
 
 }

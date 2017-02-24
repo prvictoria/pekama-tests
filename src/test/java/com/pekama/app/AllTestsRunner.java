@@ -1,7 +1,9 @@
 package com.pekama.app;
 
 import com.codeborne.selenide.Configuration;
+import org.junit.Rule;
 import org.junit.experimental.categories.Categories;
+import org.junit.rules.Timeout;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -37,6 +39,9 @@ import static com.codeborne.selenide.Configuration.*;
         TestsPekamaReports.class //last suite
 })
 public class AllTestsRunner {
+    @Rule
+    public Timeout globalTimeout = Timeout.seconds(600); // 10 seconds max per method tested
+
     public static void assertionMode() {
         final AssertionMode soft = AssertionMode.SOFT;
     }
