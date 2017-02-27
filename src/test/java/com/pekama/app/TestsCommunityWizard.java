@@ -55,6 +55,7 @@ public class TestsCommunityWizard {
 
     @BeforeClass
     public static void beforeClass() {
+        setBrowser();
         holdBrowserAfterTest();
         rootLogger.info("Open host");
         StepsPekama loginIntoPekama = new StepsPekama();
@@ -65,8 +66,8 @@ public class TestsCommunityWizard {
     }
     @Before
     public void before() {
-        setBrowser();
-    open(URL_COMMUNITY_WIZARD);
+
+        open(URL_COMMUNITY_WIZARD);
     }
     @AfterClass
     public static void after() {
@@ -260,8 +261,8 @@ public class TestsCommunityWizard {
         rootLogger.info("Check introduce message");
         String msg = $("div.message-body.ng-binding > p").getText();
         rootLogger.info(msg);
-        if (alreadyWorkedBefore.equals("start new conversation")) {
-            Assert.assertEquals(msgIntroduceWorkedBeforeCommunityCollaborators(
+        if (alreadyWorkedBefore.equals("START NEW CONVERSATION")) {
+            Assert.assertEquals     (msgIntroduceWorkedBeforeCommunityCollaborators(
                     REQUESTER_NAME_SURNAME,
                     EXPERT_NAME_SURNAME,
                     TEST_CASE_COUNTRY), msg);
