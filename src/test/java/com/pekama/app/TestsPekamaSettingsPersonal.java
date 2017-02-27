@@ -63,11 +63,11 @@ public class TestsPekamaSettingsPersonal {
         SIGNATURE_TAB_TITLE.shouldHave(text("E-mail signature"));
         IMAP_TAB_TITLE.shouldHave(text("IMAP"));
         TIME_TRACKER_TAB_TITLE.shouldHave(text("Time Tracker"));
-        rootLogger.info("Perosnal settings GUI is consistent");
+        rootLogger.info("Personal settings GUI is consistent");
     }
     @Test
     public void personalDetails_Y_SaveUserData() {
-        rootLogger.info("Enater and Save User Data");
+        rootLogger.info("Enter and Save User Data");
         $(byText("First name:")).waitUntil(Condition.visible, 10000);
         PERSONAL_DETAILS_INPUT_NAME.clear();
         PERSONAL_DETAILS_INPUT_NAME.sendKeys(User3.NAME.getValue());
@@ -148,7 +148,7 @@ public class TestsPekamaSettingsPersonal {
     }
     @Test
     public void personalDetails_Name_B() {
-        rootLogger.info("Validation maxlength Name field");
+        rootLogger.info("Validation max length Name field");
         $(byText("First name:")).shouldBe(Condition.visible);
         String RANDOM_101_LETTER = Utils.randomString(101);
         PERSONAL_DETAILS_INPUT_NAME.clear();
@@ -186,7 +186,7 @@ public class TestsPekamaSettingsPersonal {
     }
     @Test
     public void personalDetails_Surname_B() {
-        rootLogger.info("Validation maxlength Surname field");
+        rootLogger.info("Validation max length Surname field");
         $(byText("Last name:")).shouldBe(Condition.visible);
         String RANDOM_101_LETTER = Utils.randomString(101);
         PERSONAL_DETAILS_INPUT_SURNAME.clear();
@@ -197,7 +197,7 @@ public class TestsPekamaSettingsPersonal {
     }
     @Test
     public void personalDetails_Phone_A() {
-        rootLogger.info("Validation maxlength Phone field");
+        rootLogger.info("Validation max length Phone field");
         $(byText("Phone #")).shouldBe(Condition.visible);
         String RANDOM_101_LETTER = Utils.randomString(21);
         PERSONAL_DETAILS_INPUT_PHONE.clear();
@@ -208,7 +208,7 @@ public class TestsPekamaSettingsPersonal {
     }
     @Test
     public void personalDetails_Fax_A() {
-        rootLogger.info("Validation maxlength Fax field");
+        rootLogger.info("Validation max length Fax field");
         $(byText("Fax #")).shouldBe(Condition.visible);
         String RANDOM_21_LETTER = Utils.randomString(21);
         PERSONAL_DETAILS_INPUT_FAX.clear();
@@ -219,7 +219,7 @@ public class TestsPekamaSettingsPersonal {
     }
     @Test
     public void personalDetails_Mobile_A() {
-        rootLogger.info("Validation maxlength Mobile field");
+        rootLogger.info("Validation max length Mobile field");
         $(byText("Mobile #")).shouldBe(Condition.visible);
         String RANDOM_21_LETTER = Utils.randomString(21);
         PERSONAL_DETAILS_INPUT_MOBILE.clear();
@@ -230,7 +230,7 @@ public class TestsPekamaSettingsPersonal {
     }
     @Test
     public void personalDetails_LegalEntity_A() {
-        rootLogger.info("Validation maxlength Legal entity field");
+        rootLogger.info("Validation max length Legal entity field");
         $(byText("Legal entity:")).shouldBe(Condition.visible);
         String RANDOM_256_LETTER = Utils.randomString(256);
         PERSONAL_DETAILS_INPUT_LEGAL_ENTITY.clear();
@@ -241,7 +241,7 @@ public class TestsPekamaSettingsPersonal {
     }
     @Test
     public void personalDetails_StreetAddress_A() {
-        rootLogger.info("Validation maxlength Legal entity field");
+        rootLogger.info("Validation max length Legal entity field");
         $(byText("Street address:")).shouldBe(Condition.visible);
         String RANDOM_256_LETTER = Utils.randomString(256);
         PERSONAL_DETAILS_INPUT_STREET.clear();
@@ -252,7 +252,7 @@ public class TestsPekamaSettingsPersonal {
     }
     @Test
     public void personalDetails_PostalCode_A() {
-        rootLogger.info("Validation maxlength Post code field");
+        rootLogger.info("Validation max length Post code field");
         $(byText("Post code:")).shouldBe(Condition.visible);
         String RANDOM_21_LETTER = Utils.randomString(21);
         PERSONAL_DETAILS_INPUT_ZIP.clear();
@@ -263,7 +263,7 @@ public class TestsPekamaSettingsPersonal {
     }
     @Test
     public void personalDetails_City_A() {
-        rootLogger.info("Validation maxlength City field");
+        rootLogger.info("Validation max length City field");
         $(byText("City:")).shouldBe(Condition.visible);
         String RANDOM_256_LETTER = Utils.randomString(256);
         PERSONAL_DETAILS_INPUT_CITY.clear();
@@ -274,7 +274,7 @@ public class TestsPekamaSettingsPersonal {
     }
     @Test
     public void personalDetails_Region_A() {
-        rootLogger.info("Validation maxlength Region entity field");
+        rootLogger.info("Validation max length Region entity field");
         $(byText("State/Region")).shouldBe(Condition.visible);
         String RANDOM_256_LETTER = Utils.randomString(256);
         PERSONAL_DETAILS_INPUT_REGION.clear();
@@ -285,7 +285,7 @@ public class TestsPekamaSettingsPersonal {
     }
     @Test
     public void personalDetails_SelectCountry_A() {
-        rootLogger.info("Select new counrty");
+        rootLogger.info("Select new country");
        PERSONAL_DETAILS_COUNTRY_SELECT.shouldBe(visible).click();
        PERSONAL_DETAILS_COUNTRY_INPUT.sendKeys("United Kingdom");
         $(CSS_SelectHighlighted).click();
@@ -294,7 +294,7 @@ public class TestsPekamaSettingsPersonal {
         refresh(); sleep(2000);
        PERSONAL_DETAILS_COUNTRY_SELECT.shouldHave(text("United Kingdom"));
 
-        rootLogger.info("Select user counrty");
+        rootLogger.info("Select user country");
        PERSONAL_DETAILS_COUNTRY_SELECT.click();
        PERSONAL_DETAILS_COUNTRY_INPUT.sendKeys(User3.COUNTRY.getValue());
         $(CSS_SelectHighlighted).click();
