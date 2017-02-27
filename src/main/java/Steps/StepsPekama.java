@@ -294,6 +294,10 @@ public class StepsPekama implements StepsFactory{
     public static void scrollCustom(int value) {
         executeJavaScript("scrollTo(0, "+value+")");
     }
+    public static void scrollToElement(SelenideElement element) {
+        executeJavaScript("arguments[0].scrollIntoView(true)", element);
+        sleep(250);
+    } //need to check if works
     public static boolean checkText(String textString, int size) {
         $(byText(textString)).waitUntil(exist, 20000);
         $$(byText(textString)).filter(visible).shouldHaveSize(size);

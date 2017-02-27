@@ -29,19 +29,24 @@ import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaReports {
     static final Logger rootLogger = LogManager.getRootLogger();
-    private String TEST_USER_LOGIN = User3.GMAIL_EMAIL.getValue();
-    private String GMAIL_LOGIN = TEST_USER_LOGIN;
+    private static final String TEST_USER_LOGIN = User3.GMAIL_EMAIL.getValue();
+    private static final String GMAIL_LOGIN = TEST_USER_LOGIN;
 
     @Before
     public void login() {
         holdBrowserAfterTest();
         rootLogger.info("Open URL - " +URL_Dashboard);
-        httpAuthUrl(URL_Dashboard);
+        httpAuthUrl(URL_LogIn);
         StepsPekama login = new StepsPekama();
         login.submitLoginCredentials(TEST_USER_LOGIN);
         rootLogger.info("Redirect after login to - "+URL_Dashboard);
         sleep(1000);
     }
+    @AfterClass
+    public static void afterClass() {
+        open(URL_Logout);
+    }
+
     @Test //1-st test in stack
     public void deleteAllMailingLists(){
         String thisMailingListName;
@@ -80,8 +85,8 @@ public class TestsPekamaReports {
         mailingListCreateNew(thisMailingListName);
         rootLogger.info("Send report");
         mailingListSendReport(thisMailingListName);
-        rootLogger.info("Delete mailing list");
-        mailingListDeleteReport(thisMailingListName);
+//        rootLogger.info("Delete mailing list");
+//        mailingListDeleteReport(thisMailingListName);
 
         rootLogger.info("Check email - report");
         checkEmailReport(
@@ -102,8 +107,8 @@ public class TestsPekamaReports {
         mailingListCreateNew(thisMailingListName);
         rootLogger.info("Send report");
         mailingListSendReport(thisMailingListName);
-        rootLogger.info("Delete mailing list");
-        mailingListDeleteReport(thisMailingListName);
+//        rootLogger.info("Delete mailing list");
+//        mailingListDeleteReport(thisMailingListName);
 
         rootLogger.info("Check email - report");
         checkEmailReport(
@@ -124,8 +129,8 @@ public class TestsPekamaReports {
         mailingListCreateNew(thisMailingListName);
         rootLogger.info("Send report");
         mailingListSendReport(thisMailingListName);
-        rootLogger.info("Delete mailing list");
-        mailingListDeleteReport(thisMailingListName);
+//        rootLogger.info("Delete mailing list");
+//        mailingListDeleteReport(thisMailingListName);
 
         rootLogger.info("Check email - report");
         checkEmailReport(
@@ -145,8 +150,8 @@ public class TestsPekamaReports {
         mailingListCreateNew(thisMailingListName);
         rootLogger.info("Send report");
         mailingListSendReport(thisMailingListName);
-        rootLogger.info("Delete mailing list");
-        mailingListDeleteReport(thisMailingListName);
+//        rootLogger.info("Delete mailing list");
+//        mailingListDeleteReport(thisMailingListName);
 
         rootLogger.info("Check email - report");
         checkEmailReport(
@@ -166,8 +171,8 @@ public class TestsPekamaReports {
         mailingListCreateNew(thisMailingListName);
         rootLogger.info("Send report");
         mailingListSendReport(thisMailingListName);
-        rootLogger.info("Delete mailing list");
-        mailingListDeleteReport(thisMailingListName);
+//        rootLogger.info("Delete mailing list");
+//        mailingListDeleteReport(thisMailingListName);
 
         rootLogger.info("Check email - report");
         checkEmailReport(
@@ -235,6 +240,7 @@ public class TestsPekamaReports {
 
         rootLogger.info("Delete all projects");
         REPORTS_AllCheckbox.setSelected(true);
+        sleep(1000);
         REPORTS_DELETE.click();
         submitConfirmAction();
         sleep(4000);

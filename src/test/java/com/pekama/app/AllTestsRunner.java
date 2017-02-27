@@ -27,7 +27,7 @@ import static com.codeborne.selenide.Configuration.*;
         TestsPekamaDashboard.class,
         TestsPekamaLanding.class,
         TestsPekamaLogin.class,
-        //TestsPekamaResetPassword.class, //not important for now
+        TestsPekamaResetPassword.class, //not important for now
         TestsPekamaSignUp.class,
         TestsPekamaSettingsPersonal.class,
         TestsPekamaProject.class,
