@@ -17,7 +17,10 @@ import static Steps.StepsHttpAuth.*;
 import static Utils.Utils.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
+import static com.pekama.app.AllTestsRunner.setBrowser;
+
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
@@ -31,6 +34,7 @@ public class TestsPekamaTemplates {
 
     @Before
     public void login() {
+        setBrowser();
         holdBrowserAfterTest();
         rootLogger.info("Open URL - " +URL_Dashboard);
         httpAuthUrl(URL_Dashboard);
@@ -41,7 +45,10 @@ public class TestsPekamaTemplates {
     }
     @After
     public void logout(){open(URL_Logout);}
-
+    @AfterClass
+    public static void afterClass() {
+        clearBrowserCache();
+    }
     @Test
     public void templateCrudProject() {
         String projectName;

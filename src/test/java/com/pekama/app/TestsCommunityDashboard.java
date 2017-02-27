@@ -4,6 +4,10 @@
  */
 package com.pekama.app;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Configuration;
+import io.github.bonigarcia.wdm.ChromeDriverManager;
+import io.github.bonigarcia.wdm.EdgeDriverManager;
+import io.github.bonigarcia.wdm.InternetExplorerDriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
@@ -19,21 +23,27 @@ import static Steps.StepsCommunity.*;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Configuration.*;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 import static com.codeborne.selenide.WebDriverRunner.url;
 import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
+import static com.pekama.app.AllTestsRunner.setBrowser;
 import static org.junit.Assert.assertEquals;
 public class TestsCommunityDashboard {
     static final Logger rootLogger = LogManager.getRootLogger();
     String userEmail = User2.GMAIL_EMAIL.getValue();
+
     @Before
     public void before() {
+        setBrowser();
         holdBrowserAfterTest();
         open(URL_COMMUNITY_DASHBOARD);
     }
     @After
     public void after() {
         open(URL_COMMUNITY_LOGOUT);
+        clearBrowserCache();
     }
 
     @Test

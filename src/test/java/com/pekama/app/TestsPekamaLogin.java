@@ -18,8 +18,10 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.sleep;
+import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 import static com.codeborne.selenide.WebDriverRunner.url;
 import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
+import static com.pekama.app.AllTestsRunner.setBrowser;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 /**
@@ -31,12 +33,14 @@ public class TestsPekamaLogin {
     static final Logger rootLogger = LogManager.getRootLogger();
     @Before
     public void openUrlLogin() {
+        setBrowser();
         holdBrowserAfterTest();
         httpAuthUrl(URL_LogIn);
     }
     @After
     public void openUrlLogout() {
         open(URL_Logout);
+        clearBrowserCache();
     }
 
     @Test

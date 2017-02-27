@@ -20,6 +20,7 @@ import static Steps.StepsPekama.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 import static com.codeborne.selenide.WebDriverRunner.url;
 import static com.pekama.app.AllTestsRunner.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -50,7 +51,13 @@ public class TestsPekamaIntegrationBox {
     }
     @Before
     public void before() {
+        setBrowser();
         holdBrowserAfterTest();
+    }
+    @AfterClass
+    public static void afterClass() {
+        open(URL_Logout);
+        clearBrowserCache();
     }
 
     @Ignore
@@ -66,7 +73,7 @@ public class TestsPekamaIntegrationBox {
     @Ignore
     @Test
     public void testB_ConnectToBOX() {
-        if (pekamaProjectUrl ==null){
+        if (pekamaProjectUrl == null){
             Assert.fail("Project url not found");
         }
         if(boxConnectProjectButton.isDisplayed()) {
@@ -77,7 +84,7 @@ public class TestsPekamaIntegrationBox {
         if (checkThatWindowsQtyIs(2)==true){
             rootLogger.info("If BOX auth window present - switch to it");
             switchToChildWindow();
-            sleep(3000);
+            sleep(6000);
             if(boxWindowSubmit.isDisplayed()) {
                 boxWindowEmail.sendKeys(OWNER_EMAIL);
                 boxWindowPassword.sendKeys(OWNER_BOX_PASSWORD);
@@ -85,7 +92,7 @@ public class TestsPekamaIntegrationBox {
                 sleep(2000);
                 boxWindowSubmit.shouldNotBe(visible);
                 rootLogger.info("Login BOX submitted");
-                sleep(3000);
+                sleep(4000);
             }
             if(boxWindowAccept.isDisplayed()) {
                 boxWindowAccept.click();
@@ -95,6 +102,7 @@ public class TestsPekamaIntegrationBox {
                 sleep(4000);
             }
             switchTo().window(PAGE_TITLE_PEKAMA);
+            sleep(2000);
             rootLogger.info(checkPageTitle(PAGE_TITLE_PEKAMA));
 
         }

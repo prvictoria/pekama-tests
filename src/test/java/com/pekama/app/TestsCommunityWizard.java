@@ -25,6 +25,7 @@ import static Utils.Utils.randomString;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 import static com.pekama.app.AllTestsRunner.*;
 /**
  * Created by Viachaslau Balashevich.
@@ -64,12 +65,14 @@ public class TestsCommunityWizard {
     }
     @Before
     public void before() {
+        setBrowser();
     open(URL_COMMUNITY_WIZARD);
     }
     @AfterClass
     public static void after() {
         open(URL_COMMUNITY_LOGOUT);
         rootLogger.info("Open URL - "+URL_COMMUNITY_LOGOUT);
+        clearBrowserCache();
     }
 
     @Test

@@ -6,10 +6,7 @@ package com.pekama.app;
 import Steps.StepsPekama;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.FixMethodOrder;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runners.MethodSorters;
 
 import static Page.ModalWindows.*;
@@ -26,6 +23,7 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 import static com.pekama.app.AllTestsRunner.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsMessages {
@@ -49,12 +47,19 @@ public class TestsMessages {
     }
     @Before
     public void before() {
+        setBrowser();
             holdBrowserAfterTest();
             open(URL_Dashboard);
             rootLogger.info("Create project");
             DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 15000).click();
             String testProjectName = createProject();
             String testProjectUrl = getActualUrl ();
+    }
+    @AfterClass
+    public static void after() {
+        open(URL_Logout);
+        rootLogger.info("Open URL - "+URL_Logout);
+        clearBrowserCache();
     }
     @Test
     public void testA_DefaultState() {

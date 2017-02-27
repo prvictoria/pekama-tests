@@ -21,7 +21,10 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byLinkText;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
+import static com.pekama.app.AllTestsRunner.setBrowser;
+
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
@@ -34,6 +37,7 @@ public class TestsPekamaReports {
 
     @Before
     public void login() {
+        setBrowser();
         holdBrowserAfterTest();
         rootLogger.info("Open URL - " +URL_Dashboard);
         httpAuthUrl(URL_LogIn);
@@ -45,6 +49,7 @@ public class TestsPekamaReports {
     @AfterClass
     public static void afterClass() {
         open(URL_Logout);
+        clearBrowserCache();
     }
 
     @Test //1-st test in stack

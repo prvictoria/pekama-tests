@@ -493,4 +493,10 @@ public class StepsPekama implements StepsFactory{
         sleep(500);
         return message;
     }
+    public static void deleteCookies(){
+       getWebDriver().manage().deleteAllCookies();
+    }
+    public static void deleteCookiesGmail(String cookieName){
+        getWebDriver().manage().deleteCookieNamed(cookieName);
+    }
 }

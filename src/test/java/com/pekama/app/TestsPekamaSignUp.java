@@ -3,10 +3,7 @@ import Steps.StepsHttpAuth;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.experimental.categories.Category;
 
 import static Page.Emails.*;
@@ -19,7 +16,10 @@ import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
+import static com.pekama.app.AllTestsRunner.setBrowser;
+
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
@@ -38,6 +38,7 @@ public class TestsPekamaSignUp {
 
     @Before
     public void selectAgreeCheckbox() {
+        setBrowser();
         holdBrowserAfterTest();
         rootLogger.info("Open URL - "+URL_SingUp);
         StepsHttpAuth openHost = new StepsHttpAuth();
@@ -47,7 +48,10 @@ public class TestsPekamaSignUp {
         $(signupAgree).shouldBe(selected);
         rootLogger.info("Opened - " +URL_SingUp);
     }
-
+    @AfterClass
+    public static void afterClass() {
+        clearBrowserCache();
+    }
     @Test
     public void allFieldsEmpty() {
     //check default form state

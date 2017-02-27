@@ -1,6 +1,8 @@
 package com.pekama.app;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.junit.SoftAsserts;
+import io.github.bonigarcia.wdm.*;
 import org.junit.Rule;
 import org.junit.experimental.categories.Categories;
 import org.junit.rules.Timeout;
@@ -8,6 +10,9 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 import static com.codeborne.selenide.Configuration.*;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static com.codeborne.selenide.WebDriverRunner.isIE;
+import static org.junit.Assume.assumeTrue;
 
 /**
  * Created by Viachaslau Balashevich.
@@ -41,14 +46,27 @@ import static com.codeborne.selenide.Configuration.*;
 public class AllTestsRunner {
     @Rule
     public Timeout globalTimeout = Timeout.seconds(600); // 10 seconds max per method tested
+    @Rule public SoftAsserts softAsserts = new SoftAsserts();
 
-    public static void assertionMode() {
-        final AssertionMode soft = AssertionMode.SOFT;
+    public static void setBrowser() {
+        browser = "chrome";
+
+        if(browser.equals("chrome"));
+             {ChromeDriverManager.getInstance().setup();
+             //startMaximized = true;
+             browserSize = "1800x1050";
+             }
+        if (browser.equals("marionette")) ;
+            {FirefoxDriverManager.getInstance().setup();}
+        if (browser.equals("ie")) ;
+            {InternetExplorerDriverManager.getInstance().setup();}
+        if (browser.equals("edge")) ;
+            {EdgeDriverManager.getInstance().setup();}
+
     }
     public static void holdBrowserAfterTest() {
         Configuration test = new Configuration();
         test.holdBrowserOpen = false;
-
     }
     public static void holdBrowserAfterTest(boolean value) {
         Configuration test = new Configuration();

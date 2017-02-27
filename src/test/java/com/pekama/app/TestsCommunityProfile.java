@@ -22,7 +22,9 @@ import static Utils.Utils.randomString;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
+import static com.pekama.app.AllTestsRunner.setBrowser;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 /**
@@ -41,6 +43,7 @@ public class TestsCommunityProfile {
 
     @Before
     public void openUrlLogin() {
+        setBrowser();
         holdBrowserAfterTest();
         log.info("Open host");
         StepsPekama loginIntoPekama = new StepsPekama();
@@ -51,6 +54,7 @@ public class TestsCommunityProfile {
     @After
     public void openUrlLogout() {
         open(URL_COMMUNITY_LOGOUT);
+        clearBrowserCache();
     }
 
     @Test

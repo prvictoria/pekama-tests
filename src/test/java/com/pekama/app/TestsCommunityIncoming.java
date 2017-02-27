@@ -25,6 +25,7 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 import static com.pekama.app.AllTestsRunner.*;
 /**
  * Created by Viachaslau Balashevich.
@@ -56,6 +57,7 @@ public class TestsCommunityIncoming {
     private final static String INTRODUCER_NAME = "Rand, Kaldor & Zane LLP (RKNZ)";
     @Before
     public void before() {
+        setBrowser();
         holdBrowserAfterTest();
         rootLogger.info("Open host");
         StepsPekama loginIntoPekama = new StepsPekama();
@@ -66,7 +68,7 @@ public class TestsCommunityIncoming {
         rootLogger.info("Redirect back after login");
     }
     @After
-    public void after() {open(URL_COMMUNITY_LOGOUT);}
+    public void after() {open(URL_COMMUNITY_LOGOUT); clearBrowserCache();}
 
     @Test
     public void testA_ArchiveCase() {

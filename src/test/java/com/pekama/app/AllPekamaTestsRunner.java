@@ -22,4 +22,5 @@ import org.junit.runners.Suite;
         TestsPekamaReports.class
 })
 public class AllPekamaTestsRunner extends AllTestsRunner{
+
 }

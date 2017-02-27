@@ -19,7 +19,10 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static Page.PekamaPersonalSettings.*;
+import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
+import static com.pekama.app.AllTestsRunner.setBrowser;
+
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
@@ -34,6 +37,7 @@ public class TestsPekamaSettingsPersonal {
 
     @BeforeClass
     public static void beforeClass() {
+        setBrowser();
         holdBrowserAfterTest();
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(testUserEmail, testUserPekamaPassword, AUTH_URL);
@@ -45,6 +49,7 @@ public class TestsPekamaSettingsPersonal {
     @AfterClass
     public static void after() {
         open(URL_Logout);
+        clearBrowserCache();
     }
 
     @Test

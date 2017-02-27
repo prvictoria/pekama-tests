@@ -26,8 +26,10 @@ import static com.codeborne.selenide.CollectionCondition.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 import static com.codeborne.selenide.WebDriverRunner.url;
 import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
+import static com.pekama.app.AllTestsRunner.setBrowser;
 import static org.junit.Assert.assertEquals;
 /**
  * Created by Viachaslau Balashevich.
@@ -50,8 +52,14 @@ public class TestsPekamaResetPassword {
     private static final String USERSURNAME = User4.SURNAME.getValue();
 
     @Before
-    public void before(){holdBrowserAfterTest();}
-
+    public void before(){
+        setBrowser();
+        holdBrowserAfterTest();
+    }
+    @AfterClass
+    public static void afterClass() {
+        clearBrowserCache();
+    }
     @Test
     public void openResetPassword() {
         rootLogger.info("Open URL - " +URL_LogIn);

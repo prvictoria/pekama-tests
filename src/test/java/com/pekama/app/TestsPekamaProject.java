@@ -83,6 +83,7 @@ public class TestsPekamaProject {
     }
     @Before
     public void before() {
+        setBrowser();
         open(URL_Dashboard);
         rootLogger.info("Create project");
         DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 15000).click();
@@ -109,6 +110,7 @@ public class TestsPekamaProject {
     @AfterClass
     public static void after() {
         open(URL_Logout);
+        clearBrowserCache();
     }
     @Test
     public void createProject_A_CheckDefaultStateAndDelete() {

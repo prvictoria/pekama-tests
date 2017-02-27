@@ -1,6 +1,7 @@
 package com.pekama.app;
 import Steps.StepsHttpAuth;
 import com.codeborne.selenide.Condition;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,9 +10,13 @@ import static Page.PekamaLogin.*;
 import static Page.PekamaSignUp.*;
 import static Page.UrlConfig.*;
 import static Page.TestsCredentials.*;
+import static Page.UrlStrings.URL_Logout;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
+import static com.pekama.app.AllTestsRunner.setBrowser;
+
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
@@ -19,10 +24,15 @@ import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
 public class TestsPekamaLanding {
     @Before
     public void openUrlLogin() {
+        setBrowser();
         holdBrowserAfterTest();
         StepsHttpAuth openHost = new StepsHttpAuth();
         String AUTH_URL = PEKAMA;
         openHost.httpAuthUrl(AUTH_URL);
+    }
+    @AfterClass
+    public static void afterClass() {
+        clearBrowserCache();
     }
     @Test //GUI
     public void openLandingGui() {

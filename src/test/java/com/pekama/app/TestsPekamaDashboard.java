@@ -30,6 +30,7 @@ import static Utils.Utils.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 import static com.pekama.app.AllTestsRunner.*;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -47,7 +48,6 @@ public class TestsPekamaDashboard {
     private final String TEST_USER_TEAM_NAME = User1.TEAM_NAME.getValue();
     @BeforeClass
     public static void beforeClass() {
-        assertionMode();
         holdBrowserAfterTest();
         rootLogger.info("Open host");
         StepsPekama loginIntoPekama = new StepsPekama();
@@ -58,12 +58,14 @@ public class TestsPekamaDashboard {
     }
     @Before
     public void before() {
+        setBrowser();
         httpAuthUrl(URL_Dashboard);
         sleep(2000);
     }
     @AfterClass
     public static void afterClass() {
         open(URL_Logout);
+        clearBrowserCache();
     }
 
     @Test

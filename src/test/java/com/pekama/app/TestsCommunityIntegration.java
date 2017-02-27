@@ -28,6 +28,7 @@ import static Steps.StepsPekama.*;
 import static Utils.Utils.randomString;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 import static com.pekama.app.AllTestsRunner.*;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -58,7 +59,6 @@ public class TestsCommunityIntegration {
 
     @BeforeClass
     public static void beforeClass() {
-        assertionMode();
         holdBrowserAfterTest();
         rootLogger.info("Open host");
         StepsPekama loginIntoPekama = new StepsPekama();
@@ -78,6 +78,7 @@ public class TestsCommunityIntegration {
     @AfterClass
     public static void afterClass() {
         open(URL_Logout);
+        clearBrowserCache();
     }
 
 

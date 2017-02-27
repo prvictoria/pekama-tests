@@ -2,6 +2,7 @@ package com.pekama.app;
 import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,10 +11,14 @@ import static Page.CommunityLanding.*;
 import static Page.PekamaLogin.*;
 import static Page.PekamaSignUp.*;
 import static Page.UrlConfig.*;
+import static Page.UrlStrings.URL_COMMUNITY_LOGOUT;
 import static com.codeborne.selenide.Condition.selected;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
+import static com.pekama.app.AllTestsRunner.setBrowser;
+
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
@@ -22,10 +27,16 @@ public class TestsCommynityLanding {
     static final Logger rootLogger = LogManager.getRootLogger();
     @Before
     public void before() {
+        setBrowser();
         holdBrowserAfterTest();
         open(COMMUNITY);
     }
-
+    @AfterClass
+    public static void after() {
+        open(URL_COMMUNITY_LOGOUT);
+        rootLogger.info("Open URL - "+URL_COMMUNITY_LOGOUT);
+        clearBrowserCache();
+    }
 
     @Test
     public void checkGui() {

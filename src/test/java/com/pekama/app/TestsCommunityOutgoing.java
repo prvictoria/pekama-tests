@@ -22,6 +22,7 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 import static com.pekama.app.AllTestsRunner.*;
 /**
  * Created by Viachaslau Balashevich.
@@ -54,7 +55,7 @@ public class TestsCommunityOutgoing {
 
     @BeforeClass
     public static void beforeClass() {
-        assertionMode();
+        setBrowser();
         holdBrowserAfterTest();
     }
     @Before
@@ -71,6 +72,7 @@ public class TestsCommunityOutgoing {
     public static void afterClass() {
         open(URL_COMMUNITY_LOGOUT);
         rootLogger.info("Open URL - "+URL_COMMUNITY_LOGOUT);
+        clearBrowserCache();
     }
 
     @Test
