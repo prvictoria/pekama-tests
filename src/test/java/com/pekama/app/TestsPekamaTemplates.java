@@ -31,11 +31,13 @@ public class TestsPekamaTemplates {
     String TEAM = TestsCredentials.User3.TEAM_NAME.getValue();
     String TEST_USER_LOGIN = User3.GMAIL_EMAIL.getValue();
     String TEST_USER_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
-
-    @Before
-    public void login() {
+    @BeforeClass
+    public static void beforeClass() {
         setBrowser();
         holdBrowserAfterTest();
+    }
+    @Before
+    public void login() {
         rootLogger.info("Open URL - " +URL_Dashboard);
         httpAuthUrl(URL_Dashboard);
         StepsPekama login = new StepsPekama();

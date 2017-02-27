@@ -3,6 +3,7 @@
  * https://www.linkedin.com/in/viachaslau
  */
 package com.pekama.app;
+import Steps.StepsPekama;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
@@ -34,10 +35,13 @@ public class TestsCommunityDashboard {
     static final Logger rootLogger = LogManager.getRootLogger();
     String userEmail = User2.GMAIL_EMAIL.getValue();
 
-    @Before
-    public void before() {
+    @BeforeClass
+    public static void beforeClass() {
         setBrowser();
         holdBrowserAfterTest();
+    }
+    @Before
+    public void before() {
         open(URL_COMMUNITY_DASHBOARD);
     }
     @After

@@ -38,10 +38,14 @@ public class TestsPekamaSettingsTeam {
     static final Logger rootLogger = LogManager.getRootLogger();
     private final String TEST_USER_LOGIN = TestsCredentials.User1.GMAIL_EMAIL.getValue();
     private final String TEST_USER_PASSWORD = TestsCredentials.User1.PEKAMA_PASSWORD.getValue();
-    @Before
-    public void before() {
+
+    @BeforeClass
+    public static void beforeClass() {
         setBrowser();
         holdBrowserAfterTest();
+    }
+    @Before
+    public void before() {
         rootLogger.info("Open host");
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(
@@ -49,7 +53,6 @@ public class TestsPekamaSettingsTeam {
                 TEST_USER_PASSWORD,
                 URL_TeamSettings);
     }
-
     @After
     public void after() {
         open(URL_Logout);

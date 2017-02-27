@@ -34,11 +34,13 @@ public class TestsPekamaReports {
     static final Logger rootLogger = LogManager.getRootLogger();
     private static final String TEST_USER_LOGIN = User3.GMAIL_EMAIL.getValue();
     private static final String GMAIL_LOGIN = TEST_USER_LOGIN;
-
-    @Before
-    public void login() {
+    @BeforeClass
+    public static void beforeClass() {
         setBrowser();
         holdBrowserAfterTest();
+    }
+    @Before
+    public void login() {
         rootLogger.info("Open URL - " +URL_Dashboard);
         httpAuthUrl(URL_LogIn);
         StepsPekama login = new StepsPekama();

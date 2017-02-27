@@ -40,11 +40,13 @@ public class TestsCommunityProfile {
     String TEST_USER_NAME = User3.NAME.getValue();
     String TEST_USER_SURNAME = User3.SURNAME.getValue();
     String NEW_MEMBER = "qazwsx@qaz.com";
-
-    @Before
-    public void openUrlLogin() {
+    @BeforeClass
+    public static void beforeClass() {
         setBrowser();
         holdBrowserAfterTest();
+    }
+    @Before
+    public void openUrlLogin() {
         log.info("Open host");
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(PEKAMA_USER_EMAIL, PEKAMA_USER_PASSWORD, URL_COMMUNITY_LOGIN);

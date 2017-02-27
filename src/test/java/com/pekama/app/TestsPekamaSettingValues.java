@@ -2,10 +2,7 @@ package com.pekama.app;
 import Steps.StepsPekama;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.FixMethodOrder;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runners.MethodSorters;
 
 import static Page.ModalWindows.*;
@@ -32,11 +29,13 @@ public class TestsPekamaSettingValues {
     private final String TEST_USER_LOGIN = User1.GMAIL_EMAIL.getValue();
     private final String TEST_USER_PASSWORD = User1.PEKAMA_PASSWORD.getValue();
     private final String TEST_MATTER_TYPE = CaseType.TRADEMARK.getValue();
-
-    @Before
-    public void before() {
+    @BeforeClass
+    public static void beforeClass() {
         setBrowser();
         holdBrowserAfterTest();
+    }
+    @Before
+    public void before() {
         rootLogger.info("Open host");
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(

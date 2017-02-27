@@ -3,6 +3,7 @@ import Steps.StepsHttpAuth;
 import com.codeborne.selenide.Condition;
 import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static Page.PekamaLanding.*;
@@ -22,10 +23,13 @@ import static com.pekama.app.AllTestsRunner.setBrowser;
  * https://www.linkedin.com/in/viachaslau
  */
 public class TestsPekamaLanding {
-    @Before
-    public void openUrlLogin() {
+    @BeforeClass
+    public static void beforeClass() {
         setBrowser();
         holdBrowserAfterTest();
+    }
+    @Before
+    public void openUrlLogin() {
         StepsHttpAuth openHost = new StepsHttpAuth();
         String AUTH_URL = PEKAMA;
         openHost.httpAuthUrl(AUTH_URL);

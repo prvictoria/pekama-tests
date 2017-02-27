@@ -66,7 +66,6 @@ public class TestsCommunityWizard {
     }
     @Before
     public void before() {
-
         open(URL_COMMUNITY_WIZARD);
     }
     @AfterClass

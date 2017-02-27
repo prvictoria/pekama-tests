@@ -35,11 +35,13 @@ public class TestsPekamaSignUp {
     String EMAIL_TEXT = EMAIL_CONFIRM_REGISTRATION_TEXT;
     String EMAIL_BTN = EMAIL_CONFIRM_REGISTRATION_BTN;
     SelenideElement EMAIL_REDIRECT_LINK = EMAIL_CONFIRM_REGISTRATION_BACKLINK;
-
-    @Before
-    public void selectAgreeCheckbox() {
+    @BeforeClass
+    public static void beforeClass() {
         setBrowser();
         holdBrowserAfterTest();
+    }
+    @Before
+    public void selectAgreeCheckbox() {
         rootLogger.info("Open URL - "+URL_SingUp);
         StepsHttpAuth openHost = new StepsHttpAuth();
         String AUTH_URL = URL_SingUp;

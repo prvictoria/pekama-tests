@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static Page.UrlConfig.*;
@@ -31,10 +32,13 @@ import static org.junit.Assert.assertTrue;
 public class TestsPekamaLogin {
     String testDashboardUrl = "";
     static final Logger rootLogger = LogManager.getRootLogger();
-    @Before
-    public void openUrlLogin() {
+    @BeforeClass
+    public static void beforeClass() {
         setBrowser();
         holdBrowserAfterTest();
+    }
+    @Before
+    public void openUrlLogin() {
         httpAuthUrl(URL_LogIn);
     }
     @After

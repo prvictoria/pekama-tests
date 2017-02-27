@@ -48,6 +48,7 @@ public class TestsPekamaDashboard {
     private final String TEST_USER_TEAM_NAME = User1.TEAM_NAME.getValue();
     @BeforeClass
     public static void beforeClass() {
+        setBrowser();
         holdBrowserAfterTest();
         rootLogger.info("Open host");
         StepsPekama loginIntoPekama = new StepsPekama();
@@ -58,7 +59,6 @@ public class TestsPekamaDashboard {
     }
     @Before
     public void before() {
-        setBrowser();
         httpAuthUrl(URL_Dashboard);
         sleep(2000);
     }

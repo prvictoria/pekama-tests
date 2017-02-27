@@ -41,18 +41,19 @@ public class TestsPekamaIntegrationBox {
     private final String FileNameAfterConnect = "File created after connect";
 
 
-    @BeforeClass // TODO: 20-Feb-17 need update browser config
+    @BeforeClass // TODO: 20-Feb-17 need implement tests
     public void beforeClass(){
+        setBrowser();
+        holdBrowserAfterTest();
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(
                 OWNER_EMAIL,
                 OWNER_PASSWORD,
                 AUTH_URL);
     }
+    @Ignore
     @Before
     public void before() {
-        setBrowser();
-        holdBrowserAfterTest();
     }
     @AfterClass
     public static void afterClass() {

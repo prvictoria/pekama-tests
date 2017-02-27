@@ -50,11 +50,14 @@ public class TestsPekamaResetPassword {
     private String PEKAMA_USER_EMAIL = User4.GMAIL_EMAIL.getValue();
     private static final String USERNAME = User4.NAME.getValue();
     private static final String USERSURNAME = User4.SURNAME.getValue();
-
-    @Before
-    public void before(){
+    @BeforeClass
+    public static void beforeClass() {
         setBrowser();
         holdBrowserAfterTest();
+    }
+    @Ignore
+    @Before
+    public void before(){
     }
     @AfterClass
     public static void afterClass() {

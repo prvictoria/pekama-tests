@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static Page.CommunityDashboard.*;
@@ -25,10 +26,13 @@ import static com.pekama.app.AllTestsRunner.setBrowser;
  */
 public class TestsCommynityLanding {
     static final Logger rootLogger = LogManager.getRootLogger();
-    @Before
-    public void before() {
+    @BeforeClass
+    public static void beforeClass() {
         setBrowser();
         holdBrowserAfterTest();
+    }
+    @Before
+    public void before() {
         open(COMMUNITY);
     }
     @AfterClass

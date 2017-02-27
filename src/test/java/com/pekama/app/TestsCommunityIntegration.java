@@ -59,6 +59,7 @@ public class TestsCommunityIntegration {
 
     @BeforeClass
     public static void beforeClass() {
+            setBrowser();
         holdBrowserAfterTest();
         rootLogger.info("Open host");
         StepsPekama loginIntoPekama = new StepsPekama();

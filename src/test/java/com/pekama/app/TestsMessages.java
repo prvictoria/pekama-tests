@@ -37,6 +37,7 @@ public class TestsMessages {
 
     @BeforeClass
     public static void beforeClass() {
+        setBrowser();
         holdBrowserAfterTest();
         rootLogger.info("Open host");
         StepsPekama loginIntoPekama = new StepsPekama();
@@ -47,8 +48,6 @@ public class TestsMessages {
     }
     @Before
     public void before() {
-        setBrowser();
-            holdBrowserAfterTest();
             open(URL_Dashboard);
             rootLogger.info("Create project");
             DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 15000).click();
