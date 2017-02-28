@@ -11,6 +11,7 @@ import org.junit.runners.MethodSorters;
 
 import static Page.Box.*;
 import static Page.ModalWindows.*;
+import static Page.PekamaDashboard.*;
 import static Page.PekamaProject.*;
 import static Page.TestsCredentials.User1;
 import static Page.TestsStrings.*;
@@ -26,23 +27,23 @@ import static com.pekama.app.AllTestsRunner.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaIntegrationBox {
     static final Logger rootLogger = LogManager.getRootLogger();
-    private final String OWNER_EMAIL = User1.GMAIL_EMAIL.getValue();
-    private final String OWNER_PASSWORD = User1.PEKAMA_PASSWORD.getValue();
-    private final String OWNER_BOX_PASSWORD = User1.BOX_PASSWORD.getValue();
+    private static final String OWNER_EMAIL = User1.GMAIL_EMAIL.getValue();
+    private static final String OWNER_PASSWORD = User1.PEKAMA_PASSWORD.getValue();
+    private static final String OWNER_BOX_PASSWORD = User1.BOX_PASSWORD.getValue();
 
-    private final String AUTH_URL = URL_Dashboard;
-    private String pekamaProjectUrl;
-    private String boxProjectName;
-    private String boxProjectFolderUrl;
+    private static final String AUTH_URL = URL_Dashboard;
+    private static String pekamaProjectUrl;
+    private static String boxProjectName;
+    private static String boxProjectFolderUrl;
 
-    private final String FolderNameBeforeConnect = "Folder created before connect";
-    private final String FolderNameAfterConnect = "Folder created after connect";
-    private final String FileNameBeforeConnect = "File created before connect";
-    private final String FileNameAfterConnect = "File created after connect";
+    private static final String FolderNameBeforeConnect = "Folder created before connect";
+    private static final String FolderNameAfterConnect = "Folder created after connect";
+    private static final String FileNameBeforeConnect = "File created before connect";
+    private static final String FileNameAfterConnect = "File created after connect";
 
 
     @BeforeClass // TODO: 20-Feb-17 need implement tests
-    public void beforeClass(){
+    public static void beforeClass(){
         setBrowser();
         holdBrowserAfterTest();
         StepsPekama loginIntoPekama = new StepsPekama();
@@ -61,17 +62,18 @@ public class TestsPekamaIntegrationBox {
         clearBrowserCache();
     }
 
-    @Ignore
+
     @Test
     public void testA_PrepareProject() {
-        boxProjectName = createProject();
+        submitEnabledButton(DASHBOARD_BTN_NEW_PROJECT);
+        boxProjectName = createProject("BOX_TEST_PRJ");
         pekamaProjectUrl = url();
         PROJECT_TAB_DOCS.click();
         createFolderInRoot(FolderNameBeforeConnect);
         createFileInRoot(MW_DeployDoc_02TemplateExcel, FileNameBeforeConnect);
 
     }
-    @Ignore
+
     @Test
     public void testB_ConnectToBOX() {
         if (pekamaProjectUrl == null){
@@ -126,7 +128,7 @@ public class TestsPekamaIntegrationBox {
         }
 
     }
-    @Ignore
+
     @Test
     public void testC_AddFilesInProject() {
         rootLogger.info("Add files after connect");
@@ -139,11 +141,19 @@ public class TestsPekamaIntegrationBox {
         createFileInRoot(MW_DeployDoc_02TemplateExcel, FileNameBeforeConnect);
         rootLogger.info("Files after connect created");
     }
-    @Ignore // TODO: 08-Feb-17
     @Test
     public void testD_checkSyncFromPekama() {
         rootLogger.info("Check created files and folders in BOX");
         open(boxLoginURL);
+        sleep(6000);
+        if(BOX_BTN_SIGN_IN.isDisplayed()) {
+            boxWindowEmail.sendKeys(OWNER_EMAIL);
+            boxWindowPassword.sendKeys(OWNER_BOX_PASSWORD);
+            BOX_BTN_SIGN_IN.click();
+            BOX_BTN_SIGN_IN.waitUntil(not(visible), 20000);
+            rootLogger.info("Login BOX submitted");
+            sleep(4000);
+        }
 
         if (boxNameFolderTeam1.exists() == false) {
             int count = 1;
@@ -151,7 +161,7 @@ public class TestsPekamaIntegrationBox {
                 sleep(12000);
                 refresh();
                 count++;
-                rootLogger.info("Try to connect box again" + count);
+                rootLogger.info("Try to find folder in BOX again" + count);
                 if (boxNameFolderTeam1.exists() == true) {
                     break;
                 }
@@ -166,7 +176,7 @@ public class TestsPekamaIntegrationBox {
                 sleep(12000);
                 refresh();
                 count++;
-                rootLogger.info("Try to connect box again" + count);
+                rootLogger.info("Try to find folder in BOX again" + count);
                 if ($(byText(boxProjectName)).exists() == true) {
                     break;
                 }
@@ -230,7 +240,7 @@ public class TestsPekamaIntegrationBox {
         String boxProjectFolderUrl = url();
 
     }
-    @Ignore // TODO: 08-Feb-17
+
     @Test
     public void testE_DeleteFilesAndCheckBOX() {
         rootLogger.info("Delete files and folders");
@@ -262,7 +272,7 @@ public class TestsPekamaIntegrationBox {
         boxNoFilesPlaceholder.shouldBe(visible);
         rootLogger.info("Files were deleted from BOX");
      }
-    @Ignore // TODO: 08-Feb-17
+
     @Test
     public void testF_DeleteProjectAndCheckBOX() {
         rootLogger.info("Delete files and folders");

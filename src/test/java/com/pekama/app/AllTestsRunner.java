@@ -8,8 +8,11 @@ import org.junit.experimental.categories.Categories;
 import org.junit.rules.Timeout;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
 
 import static com.codeborne.selenide.Configuration.*;
+import static com.codeborne.selenide.WebDriverRunner.FIREFOX;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static com.codeborne.selenide.WebDriverRunner.isIE;
 import static org.junit.Assume.assumeTrue;
@@ -50,18 +53,26 @@ public class AllTestsRunner {
 
     public static void setBrowser() {
         browser = "chrome";
+//        startMaximized = false;
 
         if(browser.equals("chrome"));
-             {ChromeDriverManager.getInstance().setup();
-             //startMaximized = true;
-             browserSize = "1800x1050";
+             {//browserSize = "1700x1000";
+                 ChromeDriverManager.getInstance().setup();
+                 getWebDriver().manage().window().maximize();
+//                 getWebDriver().manage().window().setPosition(new Point(0,0));
+//                 getWebDriver().manage().window().setSize(new Dimension(1800,1000));
+////
+//startMaximized = true;
+//                System.out.print("position "+getWebDriver().manage().window().getPosition());
+//                System.out.print("size "+getWebDriver().manage().window().getSize());
              }
-        if (browser.equals("marionette")) ;
-            {FirefoxDriverManager.getInstance().setup();}
-        if (browser.equals("ie")) ;
-            {InternetExplorerDriverManager.getInstance().setup();}
-        if (browser.equals("edge")) ;
-            {EdgeDriverManager.getInstance().setup();}
+//        if (browser.equals("marionette")) ;
+//            {FirefoxDriverManager.getInstance().setup();}
+//        if (browser.equals("ie")) ;
+//            {InternetExplorerDriverManager.getInstance().setup();}
+//        if (browser.equals("edge")) ;
+//            {EdgeDriverManager.getInstance().setup();}
+
 
     }
     public static void holdBrowserAfterTest() {

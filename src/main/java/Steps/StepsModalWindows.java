@@ -76,6 +76,24 @@ public class StepsModalWindows implements StepsFactory {
         checkText(projectName);
         rootLogger.info("Created project: "+projectName);
     }
+    public static String createProject(String projectCustomName) {
+        String projectType = TestsCredentials.CaseType.TRADEMARK.getValue();
+        String projectDefining = TestsCredentials.Countries.PITCAIRN_ISLANDS.getValue();
+        String projectName = projectCustomName+"_"+randomString(10);
+        waitForModalWindow(TILE_MW_PROJECT);
+        rootLogger.info("Select project type, actual: "+projectType);
+        selectItemInDropdown(MW_Project_SelectType, MW_Project_InputType, projectType);
+        rootLogger.info("Select defining, actual: "+projectDefining);
+        selectItemInDropdown(MW_Project_SelectDefining, MW_Project_InputDefining, projectDefining);
+        rootLogger.info("Fill title");
+        fillField(MW_Project_Title, projectName);
+        submitEnabledButton(MW_ProjectFinishButton);
+        MW.waitUntil(not(visible), 20000);
+        sleep(1000);
+        checkText(projectName);
+        rootLogger.info("Created project: "+projectName);
+        return projectName;
+    }
     public static String createProject() {
         String projectType = TestsCredentials.CaseType.TRADEMARK.getValue();
         String projectDefining = TestsCredentials.Countries.PITCAIRN_ISLANDS.getValue();

@@ -13,22 +13,21 @@ public class Box extends Page {
     public static final String boxLoginURL = "https://account.box.com/login";
     public static final String boxFilesURL = "https://app.box.com/files";
     public static final String boxLogoutURL = "https://app.box.com/logout";
-    public static final String boxPasswUser = "32qew8127a12a";
-    public static final String boxPasswUser01 = "";
-    public static final String boxPasswUser02 = "";
-    public static final String boxPasswUser03 = "";
+
 
     public static final SelenideElement boxConnectDashboardButton = $(byXpath("link=boost my document management"));
     public static final SelenideElement boxConnectStorageButton = $(byXpath("//button[text()='Connect Box']"));
-    public static final SelenideElement boxConnectProjectButton = $(byLinkText("Connect Box"));
+    public static final SelenideElement boxConnectProjectButton = $(byXpath("//button[text()='Connect Box']"));
 
-    public static final SelenideElement boxWindow = $(byXpath(""));
+    public static final SelenideElement boxWindow_TITLE = $(byXpath("Box | Simple Online Collaboration"));
     public static final SelenideElement boxWindowEmail = $(byName("login"));
     public static final SelenideElement boxWindowPassword = $(byName("password"));
     public static final SelenideElement boxWindowSubmit = $(byName("login_submit"));
     public static final SelenideElement boxWindowAccept = $(byXpath("//button[@id='consent_accept_button']"));
     public static final SelenideElement boxWindowReject = $(byXpath("//input[@id='consent_reject_button']"));
     public static final SelenideElement boxSubmit = $(byXpath("//button[@type='submit']"));
+
+    public static final SelenideElement BOX_BTN_SIGN_IN = $(byXpath("//button[@type='submit']"));
 
     public static final SelenideElement boxList = $(byXpath("//ul[@id='item-list']/li"));
     public static final SelenideElement boxItemName = $(byXpath("//div[@class='item-name-container']"));
