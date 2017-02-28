@@ -16,7 +16,7 @@ import static Page.TestsCredentials.*;
 import static Page.UrlStrings.*;
 import static Steps.Messages.*;
 import static Steps.StepsCommunity.*;
-import static Steps.StepsHttpAuth.httpAuthUrl;
+import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static Steps.StepsModalWindows.submitConfirmAction;
 import static Steps.StepsModalWindows.submitErrorWindow;
 import static Steps.StepsPekama.*;
@@ -166,7 +166,7 @@ public class TestsCommunityIncoming {
     @Test
     public void testB3_tryToDeleteProjectByOwner() {
         rootLogger.info("Open project by Owner and try to delete");
-        httpAuthUrl(testProjectURL);
+        openUrlWithBaseAuth(testProjectURL);
         sleep(4000);
         TAB_INFO_COMMUNITY_CASE_NAME.waitUntil(visible, 15000).shouldHave(text(caseName));
         TAB_INFO_COMMUNITY_CASE_TYPE.shouldHave(text(TEST_CASE_TYPE));
@@ -239,7 +239,7 @@ public class TestsCommunityIncoming {
     @Test
     public void testC3_tryToDeleteProjectByOwner() {
         rootLogger.info("Open project by Owner and try to delete");
-        httpAuthUrl(testProjectURL);
+        openUrlWithBaseAuth(testProjectURL);
         sleep(4000);
         TAB_INFO_COMMUNITY_CASE_NAME.waitUntil(visible, 15000).shouldHave(text(caseName));
         TAB_INFO_COMMUNITY_CASE_TYPE.shouldHave(text(TEST_CASE_TYPE));
@@ -380,7 +380,7 @@ public class TestsCommunityIncoming {
                 URL_COMMUNITY_LOGIN);
 
         rootLogger.info("Open project by Expert and confirm instruction and complete case");
-        httpAuthUrl(testProjectURL);
+        openUrlWithBaseAuth(testProjectURL);
         sleep(4000);
         TAB_INFO_COMMUNITY_CASE_NAME.waitUntil(visible, 15000).shouldHave(text(caseName));
 
@@ -418,7 +418,7 @@ public class TestsCommunityIncoming {
                 URL_COMMUNITY_LOGIN);
 
         rootLogger.info("Open project by Expert and confirm instruction and complete case");
-        httpAuthUrl(testProjectURL);
+        openUrlWithBaseAuth(testProjectURL);
         sleep(4000);
         TAB_INFO_COMMUNITY_CASE_NAME.waitUntil(visible, 15000).shouldHave(text(caseName));
 

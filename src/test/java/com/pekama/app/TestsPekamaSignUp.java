@@ -45,7 +45,7 @@ public class TestsPekamaSignUp {
         rootLogger.info("Open URL - "+URL_SingUp);
         StepsHttpAuth openHost = new StepsHttpAuth();
         String AUTH_URL = URL_SingUp;
-        openHost.httpAuthUrl(AUTH_URL);
+        openHost.openUrlWithBaseAuth(AUTH_URL);
         $(signupNext).shouldBe(visible).shouldNotBe(disabled);
         $(signupAgree).shouldBe(selected);
         rootLogger.info("Opened - " +URL_SingUp);

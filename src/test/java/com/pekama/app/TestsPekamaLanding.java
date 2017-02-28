@@ -11,7 +11,6 @@ import static Page.PekamaLogin.*;
 import static Page.PekamaSignUp.*;
 import static Page.UrlConfig.*;
 import static Page.TestsCredentials.*;
-import static Page.UrlStrings.URL_Logout;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
@@ -32,7 +31,7 @@ public class TestsPekamaLanding {
     public void openUrlLogin() {
         StepsHttpAuth openHost = new StepsHttpAuth();
         String AUTH_URL = PEKAMA;
-        openHost.httpAuthUrl(AUTH_URL);
+        openHost.openUrlWithBaseAuth(AUTH_URL);
     }
     @AfterClass
     public static void afterClass() {

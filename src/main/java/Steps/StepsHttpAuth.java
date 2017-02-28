@@ -11,7 +11,7 @@ import static org.junit.Assume.assumeTrue;
  */
 public class StepsHttpAuth implements StepsFactory {
     public void httpAuthStagingPekama() {
-        assumeTrue(isFirefox());
+        //assumeTrue(isFirefox());
         Selenide.open("https://staging.pekama.com/",
                 "",
                 "qweeco",
@@ -20,7 +20,7 @@ public class StepsHttpAuth implements StepsFactory {
 
    }
    public static void httpAuthStagingCommunity() {
-        assumeTrue(isFirefox());
+        //assumeTrue(isFirefox());
         Selenide.open("https://communitystaging.pekama.com/",
                 "",
                 "qweeco",
@@ -28,7 +28,7 @@ public class StepsHttpAuth implements StepsFactory {
         sleep(250);
 
     }
-    public static void httpAuthUrl(String AUTH_URL) {
+    public static void openUrlWithBaseAuth(String AUTH_URL) {
 //        assumeTrue(isFirefox());
         Selenide.open(AUTH_URL,
                 "",

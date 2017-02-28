@@ -9,8 +9,8 @@ import org.testng.annotations.Test;
 
 public class EmailInboxNonUITest {
 
-	private static final String USERNAME = TestsCredentials.User1.GMAIL_EMAIL.getValue();
-	private static final String PASSWORD = TestsCredentials.User1.GMAIL_PASSWORD.getValue();
+	private static final String USERNAME = "hist45@tut.by";
+	private static final String PASSWORD = "2271941";
 	private Logger log = Logger.getLogger(EmailInboxNonUITest.class);
 
 	@Test

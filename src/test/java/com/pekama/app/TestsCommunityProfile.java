@@ -15,7 +15,7 @@ import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.UrlStrings.*;
 import static Steps.StepsCommunity.*;
-import static Steps.StepsHttpAuth.httpAuthUrl;
+import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static Utils.Utils.randomString;
@@ -138,7 +138,7 @@ public class TestsCommunityProfile {
         log.info("New Memeber is displayed");
 
         log.info("Delete member");
-        httpAuthUrl(URL_Members);
+        openUrlWithBaseAuth(URL_Members);
         deleteMember(NEW_MEMBER);
 
     }

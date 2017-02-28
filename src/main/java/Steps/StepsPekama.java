@@ -5,7 +5,6 @@ import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
-
 import java.util.Set;
 
 import static Page.ModalWindows.*;
@@ -15,15 +14,13 @@ import static Page.PekamaProject.*;
 import static Page.PekamaReports.*;
 import static Page.PekamaTeamSettings.*;
 import static Page.TestsCredentials.*;
-import static Page.TestsStrings.*;
-import static Steps.StepsHttpAuth.httpAuthUrl;
+import static Page.UrlStrings.*;
+import static Steps.StepsHttpAuth.*;
 import static Steps.StepsModalWindows.*;
-import static Utils.Utils.randomString;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static com.codeborne.selenide.WebDriverRunner.url;
+import static com.codeborne.selenide.WebDriverRunner.*;
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
@@ -31,7 +28,7 @@ import static com.codeborne.selenide.WebDriverRunner.url;
 public class StepsPekama implements StepsFactory{
     static final Logger rootLogger = LogManager.getRootLogger();
     public void  loginIntoPekamaByUrl(String PEKAMA_USER_EMAIL, String urlLogIn){
-        httpAuthUrl(urlLogIn);
+        openUrlWithBaseAuth(urlLogIn);
         hideZopim();
         rootLogger.info(urlLogIn+ "opened");
         $(loginField_Email).sendKeys(PEKAMA_USER_EMAIL);
@@ -43,7 +40,7 @@ public class StepsPekama implements StepsFactory{
         rootLogger.info("Valid Credentials were submitted");
     }
     public void  loginIntoPekamaByUrl(String PEKAMA_USER_EMAIL, String USER_PEKAMA_PASSWORD, String urlLogIn){
-        httpAuthUrl(urlLogIn);
+        openUrlWithBaseAuth(urlLogIn);
         hideZopim();
         rootLogger.info(urlLogIn+ "opened");
         $(loginField_Email).sendKeys(PEKAMA_USER_EMAIL);
@@ -55,7 +52,7 @@ public class StepsPekama implements StepsFactory{
         rootLogger.info("Valid Credentials were submitted");
     }
     public void  loginByURL(String PEKAMA_USER_EMAIL, String PEKAMA_USER_PASSWORD, String AUTH_URL){
-        httpAuthUrl(AUTH_URL);
+        openUrlWithBaseAuth(AUTH_URL);
         rootLogger.info(AUTH_URL+"URL opened");
         submitCookie();
         hideZopim();
@@ -498,5 +495,75 @@ public class StepsPekama implements StepsFactory{
     }
     public static void deleteCookiesGmail(String cookieName){
         getWebDriver().manage().deleteCookieNamed(cookieName);
+    }
+    public static boolean deleteProject(){
+        scrollUp();
+        PROJECT_BTN_DELETE.shouldBe(visible).click();
+        submitConfirmAction();
+        String url = URL_Dashboard;
+        if (url.equals(getActualUrl())){
+            return true;
+        }
+        else return false;
+    }
+    public static boolean checkTextLoop(String displayedText){
+        if ($(byText(displayedText)).exists() == false) {
+            int count = 0;
+            do {
+                sleep(12000);
+                refresh();
+                count++;
+                rootLogger.info(displayedText+"not detected, loop#: "+count);
+                if ($(byText(displayedText)).exists() == true) {
+                    return true;
+                }
+            } while (count < 5);
+        }
+        return false;
+    }
+    public static boolean checkTextLoop(String displayedText, int loopLength){
+        if ($(byText(displayedText)).exists() == false) {
+            int count = 0;
+            do {
+                sleep(loopLength);
+                refresh();
+                count++;
+                rootLogger.info(displayedText+"not detected, loop#: "+count);
+                if ($(byText(displayedText)).exists() == true) {
+                    return true;
+                }
+            } while (count < 5);
+        }
+        return false;
+    }
+    public static boolean checkTextNotPresentLoop(String displayedText){
+        if ($(byText(displayedText)).exists() == true) {
+            int count = 0;
+            do {
+                sleep(12000);
+                refresh();
+                count++;
+                rootLogger.info(displayedText+"still displayed, loop#: "+count);
+                if ($(byText(displayedText)).exists() == false) {
+                    return true;
+                }
+            } while (count < 5);
+        }
+        return false;
+    }
+    public static boolean checkTextNotPresentLoop(String displayedText, int loopLength){
+        if ($(byText(displayedText)).exists() == true) {
+            int count = 0;
+            do {
+                sleep(loopLength);
+                refresh();
+                count++;
+                rootLogger.info(displayedText+"still displayed, loop#: "+count);
+                if ($(byText(displayedText)).exists() == false) {
+                    return true;
+                }
+            } while (count < 5);
+        }
+        return false;
     }
 }

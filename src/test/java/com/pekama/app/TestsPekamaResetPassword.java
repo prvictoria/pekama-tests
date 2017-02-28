@@ -21,7 +21,7 @@ import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.UrlStrings.*;
 import static Steps.StepsExternal.*;
-import static Steps.StepsHttpAuth.httpAuthUrl;
+import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static com.codeborne.selenide.CollectionCondition.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
@@ -66,7 +66,7 @@ public class TestsPekamaResetPassword {
     @Test
     public void openResetPassword() {
         rootLogger.info("Open URL - " +URL_LogIn);
-        httpAuthUrl(URL_LogIn);
+        openUrlWithBaseAuth(URL_LogIn);
         sleep(1000);
         lOGIN_TITLE.shouldBe(Condition.visible).shouldHave(Condition.text(lOGIN_TITLE_TEXT));
         LINK_FORGOT_PASSWORD.click();
@@ -75,7 +75,7 @@ public class TestsPekamaResetPassword {
     @Test
     public void invalidEmailResetPassword() {
         rootLogger.info("Open URL - " +URL_ResetPassword);
-        httpAuthUrl(URL_ResetPassword);
+        openUrlWithBaseAuth(URL_ResetPassword);
         sleep(1000);
        RESET_PAGE_TITLE.shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_TITLE_TEXT));
        RESET_PAGE_EMAIL.sendKeys("123@123");
@@ -88,7 +88,7 @@ public class TestsPekamaResetPassword {
     public void resetPassword_A() {
         REDIRECT_LINK = null;
         rootLogger.info("Open URL - " + URL_ResetPassword);
-        httpAuthUrl(URL_ResetPassword);
+        openUrlWithBaseAuth(URL_ResetPassword);
         sleep(1000);
        RESET_PAGE_TITLE.shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_TITLE_TEXT));
        RESET_PAGE_EMAIL.sendKeys(User4.GMAIL_EMAIL.getValue());
@@ -113,7 +113,7 @@ public class TestsPekamaResetPassword {
     public void resetPassword_B() {
         if (REDIRECT_LINK != null) {
             rootLogger.info("Open URL - " +REDIRECT_LINK);
-            httpAuthUrl(REDIRECT_LINK);
+            openUrlWithBaseAuth(REDIRECT_LINK);
             sleep(1000);
             rootLogger.info("Set up new password page opened");
            NEWPASSWORD_TITLE.shouldBe(Condition.visible).shouldHave(Condition.text(NEWPASSWORD_TITLE_TEXT));
@@ -129,7 +129,7 @@ public class TestsPekamaResetPassword {
     public void resetPassword_C() {
         if (REDIRECT_LINK != null) {
             rootLogger.info("Open URL - " +REDIRECT_LINK);
-            httpAuthUrl(REDIRECT_LINK);
+            openUrlWithBaseAuth(REDIRECT_LINK);
             sleep(1000);
             rootLogger.info("Validation test");
            NEWPASSWORD_PAGE_RESTORE_BTN.waitUntil(visible, 10000).click();
@@ -143,7 +143,7 @@ public class TestsPekamaResetPassword {
     public void resetPassword_D() {
         if (REDIRECT_LINK != null) {
             rootLogger.info("Open URL - " +REDIRECT_LINK);
-            httpAuthUrl(REDIRECT_LINK);
+            openUrlWithBaseAuth(REDIRECT_LINK);
             sleep(1000);
             rootLogger.info("Validation test");
            NEWPASSWORD_PAGE_NEW_PASSWORD.waitUntil(visible, 10000).sendKeys("12345");
@@ -159,7 +159,7 @@ public class TestsPekamaResetPassword {
     public void resetPassword_E() {
         if (REDIRECT_LINK != null) {
             rootLogger.info("Open URL - " +REDIRECT_LINK);
-            httpAuthUrl(REDIRECT_LINK);
+            openUrlWithBaseAuth(REDIRECT_LINK);
             sleep(1000);
             rootLogger.info("Validation test");
            NEWPASSWORD_PAGE_NEW_PASSWORD.waitUntil(visible, 10000).sendKeys(User1.GMAIL_EMAIL.getValue());
@@ -178,7 +178,7 @@ public class TestsPekamaResetPassword {
         if (REDIRECT_LINK != null) {
             rootLogger.info("Start test - "+"User submitted invalid password");
             rootLogger.info("Open URL - " +REDIRECT_LINK);
-            httpAuthUrl(REDIRECT_LINK);
+            openUrlWithBaseAuth(REDIRECT_LINK);
             sleep(1000);
 
             rootLogger.info("Validation Loop");
@@ -198,7 +198,7 @@ public class TestsPekamaResetPassword {
     public void resetPassword_G() {
         if (REDIRECT_LINK != null) {
             rootLogger.info("Open URL - " +REDIRECT_LINK);
-            httpAuthUrl(REDIRECT_LINK);
+            openUrlWithBaseAuth(REDIRECT_LINK);
             sleep(1000);
             rootLogger.info("Validation test - name");
            NEWPASSWORD_PAGE_NEW_PASSWORD.waitUntil(visible, 10000).sendKeys(USERNAME);
@@ -214,7 +214,7 @@ public class TestsPekamaResetPassword {
     public void resetPassword_H() {
         if (REDIRECT_LINK != null) {
             rootLogger.info("Open URL - " +REDIRECT_LINK);
-            httpAuthUrl(REDIRECT_LINK);
+            openUrlWithBaseAuth(REDIRECT_LINK);
             sleep(1000);
             rootLogger.info("Validation test");
            NEWPASSWORD_PAGE_NEW_PASSWORD.waitUntil(visible, 10000).sendKeys(USERSURNAME);
@@ -230,7 +230,7 @@ public class TestsPekamaResetPassword {
     public void resetPassword_I() {
         if (REDIRECT_LINK != null) {
             rootLogger.info("Open URL - " +REDIRECT_LINK);
-            httpAuthUrl(REDIRECT_LINK);
+            openUrlWithBaseAuth(REDIRECT_LINK);
             sleep(1000);
             rootLogger.info("Validation test");
             String RANDOM_129_LETTER = Utils.randomString(129);
@@ -247,7 +247,7 @@ public class TestsPekamaResetPassword {
     public void resetPassword_P() {
         if (REDIRECT_LINK != null) {
             rootLogger.info("Open URL - " +REDIRECT_LINK);
-            httpAuthUrl(REDIRECT_LINK);
+            openUrlWithBaseAuth(REDIRECT_LINK);
             sleep(1000);
             rootLogger.info("Positive test");
             String RANDOM_8_LETTER = Utils.randomString(8);
@@ -271,7 +271,7 @@ public class TestsPekamaResetPassword {
             rootLogger.info("Open URL - " +URL_Dashboard);
             StepsHttpAuth openHost = new StepsHttpAuth();
             String AUTH_URL = URL_Dashboard;
-            httpAuthUrl(AUTH_URL);
+            openUrlWithBaseAuth(AUTH_URL);
             sleep(1000);
 
             StepsPekama loginWithNewPassword = new StepsPekama();
@@ -291,7 +291,7 @@ public class TestsPekamaResetPassword {
         if (NEW_PASSWORD != null) {
             REDIRECT_LINK = null;
             rootLogger.info("User password - " +NEW_PASSWORD);
-            httpAuthUrl(URL_ResetPassword);
+            openUrlWithBaseAuth(URL_ResetPassword);
             sleep(1000);
            RESET_PAGE_TITLE.shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_TITLE_TEXT));
            RESET_PAGE_EMAIL.sendKeys(User4.GMAIL_EMAIL.getValue());
@@ -317,7 +317,7 @@ public class TestsPekamaResetPassword {
     public void resetPassword_Z() {
         if (REDIRECT_LINK != null) {
             rootLogger.info("Open URL - " +REDIRECT_LINK);
-            httpAuthUrl(REDIRECT_LINK);
+            openUrlWithBaseAuth(REDIRECT_LINK);
             sleep(1000);
 
             rootLogger.info("Validation test - link was used");

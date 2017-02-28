@@ -11,9 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
 import org.junit.runners.MethodSorters;
-import org.openqa.selenium.By;
 
-import static Page.CommunityLanding.*;
 import static Page.ModalWindows.*;
 import static Page.PekamaDashboard.*;
 import static Page.PekamaHeader.*;
@@ -23,7 +21,7 @@ import static Page.PekamaReports.*;
 import static Page.PekamaTeamSettings.*;
 import static Page.TestsStrings.*;
 import static Page.UrlStrings.*;
-import static Steps.StepsHttpAuth.httpAuthUrl;
+import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static Utils.Utils.*;
@@ -59,7 +57,7 @@ public class TestsPekamaDashboard {
     }
     @Before
     public void before() {
-        httpAuthUrl(URL_Dashboard);
+        openUrlWithBaseAuth(URL_Dashboard);
         sleep(2000);
     }
     @AfterClass

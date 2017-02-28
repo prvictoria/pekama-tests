@@ -11,7 +11,7 @@ import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
 import static Page.PekamaLogin.*;
 import static Page.TestsCredentials.*;
-import static Steps.StepsHttpAuth.httpAuthUrl;
+import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static Steps.StepsPekama.fillField;
 import static Steps.StepsPekama.submitEnabledButton;
 import static com.codeborne.selenide.Condition.empty;
@@ -39,7 +39,7 @@ public class TestsPekamaLogin {
     }
     @Before
     public void openUrlLogin() {
-        httpAuthUrl(URL_LogIn);
+        openUrlWithBaseAuth(URL_LogIn);
     }
     @After
     public void openUrlLogout() {

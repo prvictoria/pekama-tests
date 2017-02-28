@@ -42,7 +42,7 @@ public class TestsPekamaReports {
     @Before
     public void login() {
         rootLogger.info("Open URL - " +URL_Dashboard);
-        httpAuthUrl(URL_LogIn);
+        openUrlWithBaseAuth(URL_LogIn);
         StepsPekama login = new StepsPekama();
         login.submitLoginCredentials(TEST_USER_LOGIN);
         rootLogger.info("Redirect after login to - "+URL_Dashboard);

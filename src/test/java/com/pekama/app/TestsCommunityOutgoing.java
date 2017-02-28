@@ -94,7 +94,7 @@ public class TestsCommunityOutgoing {
         rootLogger.info("project link is: "+testProjectLink);
         String target = $(byXpath(ROW_CONTROL_CASE_ROW_FIRST+ROW_CONTROL_LINK_PROJECT)).getAttribute("target");
         rootLogger.info("open in new window target present: "+target);
-        httpAuthUrl(testProjectLink);
+        openUrlWithBaseAuth(testProjectLink);
         sleep(4000);
         TAB_INFO_COMMUNITY_CASE_NAME.waitUntil(visible, 15000).shouldHave(text(caseName));
         rootLogger.info("Community case"+caseName+"present in Project");
@@ -174,7 +174,7 @@ public class TestsCommunityOutgoing {
         rootLogger.info("project link is: "+testProjectLink);
 
         rootLogger.info("Check Pekama project State");
-        httpAuthUrl(testProjectLink);
+        openUrlWithBaseAuth(testProjectLink);
         sleep(4000);
         TAB_INFO_COMMUNITY_CASE_NAME.waitUntil(visible, 15000).shouldHave(text(caseName));
         TAB_INFO_COMMUNITY_CASE_TYPE.shouldHave(text(TEST_CASE_TYPE));
@@ -205,7 +205,7 @@ public class TestsCommunityOutgoing {
         rootLogger.info("project link is: "+testProjectLink);
 
         rootLogger.info("Delete Pekama project");
-        httpAuthUrl(testProjectLink);
+        openUrlWithBaseAuth(testProjectLink);
         sleep(4000);
         TAB_INFO_COMMUNITY_CASE_NAME.waitUntil(visible, 15000).shouldHave(text(caseName));
 
@@ -214,7 +214,7 @@ public class TestsCommunityOutgoing {
         submitConfirmAction();
 
         rootLogger.info("Check Outgoing cases");
-        httpAuthUrl(URL_COMMUNITY_TO_OUTGOING);
+        openUrlWithBaseAuth(URL_COMMUNITY_TO_OUTGOING);
         sleep(4000);
         checkCaseStatus(caseName, COMMUNITY_STATUS_CANCELLED);
         $(byXpath(getFirstCaseRow(caseName))).click();
@@ -240,7 +240,7 @@ public class TestsCommunityOutgoing {
         rootLogger.info("project link is: "+testProjectLink);
 
         rootLogger.info("Check Pekama project State");
-        httpAuthUrl(testProjectLink);
+        openUrlWithBaseAuth(testProjectLink);
         sleep(4000);
         TAB_INFO_COMMUNITY_CASE_NAME.waitUntil(visible, 15000).shouldHave(text(caseName));
         TAB_INFO_COMMUNITY_CASE_TYPE.shouldHave(text(TEST_CASE_TYPE));
@@ -253,7 +253,7 @@ public class TestsCommunityOutgoing {
         submitConfirmAction();
 
         rootLogger.info("Check Outgoing cases");
-        httpAuthUrl(URL_COMMUNITY_OUTGOING);
+        openUrlWithBaseAuth(URL_COMMUNITY_OUTGOING);
         sleep(4000);
         checkCaseStatus(caseName, COMMUNITY_STATUS_CANCELLED);
         $(byXpath(getFirstCaseRow(caseName))).click();
@@ -280,7 +280,7 @@ public class TestsCommunityOutgoing {
         rootLogger.info("project link is: "+testProjectLink);
 
         rootLogger.info("Check Pekama project State");
-        httpAuthUrl(testProjectLink);
+        openUrlWithBaseAuth(testProjectLink);
         sleep(4000);
         TAB_INFO_COMMUNITY_CASE_NAME.waitUntil(visible, 15000).shouldHave(text(caseName));
         TAB_INFO_COMMUNITY_CASE_TYPE.shouldHave(text(TEST_CASE_TYPE));
@@ -293,7 +293,7 @@ public class TestsCommunityOutgoing {
         submitConfirmAction();
 
         rootLogger.info("Check Outgoing cases");
-        httpAuthUrl(URL_COMMUNITY_OUTGOING);
+        openUrlWithBaseAuth(URL_COMMUNITY_OUTGOING);
         sleep(4000);
         checkCaseStatus(caseName, COMMUNITY_STATUS_WITHDRAWN);
         $(byXpath(getFirstCaseRow(caseName))).click();
@@ -315,7 +315,7 @@ public class TestsCommunityOutgoing {
         rootLogger.info("project link is: " + testProjectLink);
 
         rootLogger.info("Check Pekama project State");
-        httpAuthUrl(testProjectLink);
+        openUrlWithBaseAuth(testProjectLink);
         sleep(4000);
         TAB_INFO_COMMUNITY_CASE_NAME.waitUntil(visible, 15000).shouldHave(text(caseName));
         TAB_INFO_COMMUNITY_CASE_TYPE.shouldHave(text(TEST_CASE_TYPE));
