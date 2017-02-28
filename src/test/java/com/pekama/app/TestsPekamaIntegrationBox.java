@@ -23,7 +23,6 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.*;
-import static com.codeborne.selenide.WebDriverRunner.url;
 import static com.pekama.app.AllTestsRunner.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaIntegrationBox {
@@ -43,7 +42,10 @@ public class TestsPekamaIntegrationBox {
     private static final String FolderNameAfterConnect = "Folder created after connect";
     private static final String FileNameBeforeConnect = "File created before connect";
     private static final String FileNameAfterConnect = "File created after connect";
-
+    private static boolean teamFolderIsPresent;
+    private static boolean projectFolderIsPresent;
+    private static boolean beforeConnectFilesPresent;
+    private static boolean afterConnectFilesPresent;
 
     @BeforeClass // TODO: 20-Feb-17 need implement tests
     public static void beforeClass(){
@@ -165,98 +167,35 @@ public class TestsPekamaIntegrationBox {
             sleep(4000);
         }
         rootLogger.info("Check Team folder");
-        if (boxNameFolderTeam1.exists() == false) {
-            int count = 1;
-            do {
-                sleep(12000);
-                refresh();
-                count++;
-                rootLogger.info("Try to find folder in BOX again" + count);
-                if (boxNameFolderTeam1.exists() == true) {
-                    break;
-                }
-            } while (count < 5);
-        }
-        boxNameFolderTeam1.shouldBe(visible).click();
+        teamFolderIsPresent = checkTextLoop(boxNameFolderTeam1, 15000);
+        $(byText(boxNameFolderTeam1)).click();
         sleep(2000);
         boxTeamFolderUrl = getActualUrl();
 
         rootLogger.info("Check Project folder");
-        if ($(byText(boxProjectName)).exists() == false) {
-            int count = 1;
-            do {
-                sleep(12000);
-                refresh();
-                count++;
-                rootLogger.info("Try to find folder in BOX again" + count);
-                if ($(byText(boxProjectName)).exists() == true) {
-                    break;
-                }
-            } while (count < 5);
-        }
-        $(byText(boxProjectName)).shouldBe(visible).click();
+        projectFolderIsPresent = checkTextLoop(boxProjectName, 15000);
+        $(byText(boxProjectName)).click();
 
         rootLogger.info("Check folders inside project");
-        if ($(byText(FolderNameAfterConnect)).exists() == false) {
-            int count = 1;
-            do {
-                sleep(12000);
-                refresh();
-                count++;
-                rootLogger.info("Try to connect box again" + count);
-                if ($(byText(FolderNameAfterConnect)).exists() == true) {
-                    break;
-                }
-            } while (count < 5);
-        }
-        if ($(byText(FolderNameBeforeConnect)).exists() == false) {
-            int count = 1;
-            do {
-                sleep(12000);
-                refresh();
-                count++;
-                rootLogger.info("Try to connect box again" + count);
-                if ($(byText(FolderNameBeforeConnect)).exists() == true) {
-                    break;
-                }
-            } while (count < 5);
-        }
-        if ($(byText(FileNameAfterConnect)).exists() == false) {
-            int count = 1;
-            do {
-                sleep(12000);
-                refresh();
-                count++;
-                rootLogger.info("Try to connect box again" + count);
-                if ($(byText(FileNameAfterConnect)).exists() == true) {
-                    break;
-                }
-            } while (count < 5);
-        }
-        if ($(byText(FileNameBeforeConnect)).exists() == false) {
-            int count = 1;
-            do {
-                sleep(12000);
-                refresh();
-                count++;
-                rootLogger.info("Try to connect box again" + count);
-                if ($(byText(FileNameBeforeConnect)).exists() == true) {
-                    break;
-                }
-            } while (count < 5);
-        }
+        checkTextLoop(FolderNameBeforeConnect, 15000);
+        checkTextLoop(FileNameBeforeConnect, 5000);
+        checkTextLoop(FolderNameAfterConnect, 15000);
+        checkTextLoop(FileNameAfterConnect, 5000);
+
         rootLogger.info("Check in BOX results");
         $(byText(FolderNameAfterConnect)).shouldBe(visible);
         $(byText(FolderNameBeforeConnect)).shouldBe(visible);
         $(byText(FileNameAfterConnect)).shouldBe(visible);
         $(byText(FileNameBeforeConnect)).shouldBe(visible);
         boxProjectFolderUrl = getActualUrl();
-
     }
 
     @Test
     public void testE_DeleteFilesAndCheckBOX() {
         rootLogger.info("Delete files and folders");
+        if ((teamFolderIsPresent == false) || (projectFolderIsPresent =false)){
+            Assert.fail("Team or Project folder not found");
+        }
         if (pekamaProjectUrl ==null){
             Assert.fail("ProjectValues url not found");
         }
@@ -273,25 +212,19 @@ public class TestsPekamaIntegrationBox {
 
         rootLogger.info("Check BOX sync");
         open(boxProjectFolderUrl);
-        if ($(byText(FileNameBeforeConnect)).exists() == true) {
-            int count = 1;
-            do {
-                sleep(20000);
-                refresh();
-                count++;
-                rootLogger.info("Try to connect box again" + count);
-                if ($(byText(FileNameBeforeConnect)).exists() == false) {
-                    break;
-                }
-            } while (count < 5);
-        }
+        checkTextNotPresentLoop(FolderNameBeforeConnect, 5000);
+        checkTextNotPresentLoop(FileNameBeforeConnect, 5000);
+        checkTextNotPresentLoop(FolderNameAfterConnect, 5000);
+        checkTextNotPresentLoop(FileNameAfterConnect, 5000);
         boxNoFilesPlaceholder.shouldBe(visible);
         rootLogger.info("Files were deleted from BOX");
     }
 
     @Test
     public void testF_DeleteProjectAndCheckBOX() {
-        rootLogger.info("Delete files and folders");
+        if ((teamFolderIsPresent == false) || (projectFolderIsPresent =false)){
+            Assert.fail("Team or Project folder not found");
+        }
         if (pekamaProjectUrl ==null){
             Assert.fail("ProjectValues url not found");
         }
@@ -299,26 +232,15 @@ public class TestsPekamaIntegrationBox {
         if (boxConnectProjectButton!=null){
             Assert.fail("ProjectValues not connected to BOX");
         }
+        rootLogger.info("Delete files and folders");
         openUrlWithBaseAuth(pekamaProjectUrl);
         deleteProject();
 
         rootLogger.info("check in box results");
         open(boxTeamFolderUrl);
-        if ($(byText(boxProjectName)).exists() == true) {
-            int count = 1;
-            do {
-                sleep(12000);
-                refresh();
-                count++;
-                rootLogger.info("Try to find folder in BOX again" + count);
-                if ($(byText(boxProjectName)).exists() == false) {
-                    break;
-                }
-            } while (count < 5);
-        }
+        checkTextNotPresentLoop(boxProjectName);
         boxNoFilesPlaceholder.shouldBe(visible);
         rootLogger.info("Project folder removed");
-
     }
 
 }

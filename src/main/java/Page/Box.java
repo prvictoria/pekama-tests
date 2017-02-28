@@ -32,9 +32,9 @@ public class Box extends Page {
     public static final SelenideElement boxList = $(byXpath("//ul[@id='item-list']/li"));
     public static final SelenideElement boxItemName = $(byXpath("//div[@class='item-name-container']"));
 
-    public static final SelenideElement boxNameFolderTeam1 = $(byText("Pekama - QweecoTeam01 (QT01)"));
-    public static final SelenideElement boxNameFolderTeam2 = $(byText("Pekama - QweecoTeam02 (QT02)"));
-    public static final SelenideElement boxNameFolderTeam3 = $(byText("Pekama - QweecoTeam03 (QT03)"));
+    public static final String boxNameFolderTeam1 ="Pekama - QweecoTeam01 (QT01)";
+    public static final String boxNameFolderTeam2 = "Pekama - QweecoTeam02 (QT02)";
+    public static final String boxNameFolderTeam3 = "Pekama - QweecoTeam03 (QT03)";
     public static final SelenideElement boxNameFolderProject = $(byXpath(""));
     public static final SelenideElement boxNameFolderInner = $(byXpath(""));
     public static final SelenideElement boxNameFileInner = $(byXpath(""));
