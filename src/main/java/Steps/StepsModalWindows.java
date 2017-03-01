@@ -33,7 +33,7 @@ public class StepsModalWindows implements StepsFactory {
     }
     public static void submitConfirmAction(){
         sleep(1000);
-        MW.shouldBe(visible);
+        MW.waitUntil(visible, 15000);
         $(byText("Are you sure?")).shouldBe(Condition.visible);
         rootLogger.info("Confirm action modal window opened");
         MW_BTN_YES.shouldBe(visible).click();
