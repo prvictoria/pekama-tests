@@ -56,6 +56,9 @@ public class Utils {
         String datetime = dateFormat.format(date);
         return datetime;
     }
+//    public static void enumSelection (enum a){
+//        a.getValue;
+//    }
     @Test
     public void test() throws ParseException {
         System.out.println(randomString(10));

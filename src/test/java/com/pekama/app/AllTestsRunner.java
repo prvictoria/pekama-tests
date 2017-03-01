@@ -52,7 +52,7 @@ public class AllTestsRunner {
     @Rule public SoftAsserts softAsserts = new SoftAsserts();
 
     public static void setBrowser() {
-        browser = "chrome";
+        browser = FIREFOX;
 //        startMaximized = false;
 
         if(browser.equals("chrome"));
