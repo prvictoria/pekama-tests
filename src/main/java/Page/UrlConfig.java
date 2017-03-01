@@ -2,6 +2,7 @@ package Page;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import Page.TestsCredentials.*;
 
 /**
  * Created by VatslauX on 20-Feb-17.
@@ -18,6 +19,8 @@ public class UrlConfig {
     public static String ENVIRONMENT_PEKAMA;
     public static String ENVIRONMENT_COMMUNITY;
     public static String SELECT_HOST;
+    public static String MATTER_TYPE_TRADEMARK;
+    public static String MATTER_TYPE_PATENT;
 
     public static final int environment = 1;
     public static void setEnvironment() {
@@ -27,18 +30,24 @@ public class UrlConfig {
                 ENVIRONMENT_PEKAMA = STAGING_PEKAMA;
                 ENVIRONMENT_COMMUNITY = STAGING_COMMUNITY;
                 SELECT_HOST = ENVIRONMENT_PEKAMA;
+                MATTER_TYPE_TRADEMARK = CaseType.TRADEMARK.getValue();
+                MATTER_TYPE_PATENT = CaseType.PATENT.getValue();
                 break;
             case 2:
                 rootLogger.info("Tests will executed on Test server");
                 ENVIRONMENT_PEKAMA = TEST_PEKAMA;
                 ENVIRONMENT_COMMUNITY = TEST_COMMUNITY;
                 SELECT_HOST = ENVIRONMENT_PEKAMA;
+                MATTER_TYPE_TRADEMARK = CaseType.TRADEMARK.getValue();
+                MATTER_TYPE_PATENT = CaseType.PATENT.getValue();
                 break;
             case 3:
                 rootLogger.info("Tests will executed on Production server");
                 ENVIRONMENT_PEKAMA = PROD_PEKAMA;
                 ENVIRONMENT_COMMUNITY = PROD_COMMUNITY;
                 SELECT_HOST = ENVIRONMENT_PEKAMA;
+                MATTER_TYPE_TRADEMARK = ProductionCaseType.TRADEMARK.getValue();
+                MATTER_TYPE_PATENT = CaseType.PATENT.getValue();
                 break;
         }
     }

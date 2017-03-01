@@ -14,6 +14,7 @@ import static Page.PekamaProject.*;
 import static Page.PekamaReports.*;
 import static Page.PekamaTeamSettings.*;
 import static Page.TestsCredentials.*;
+import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
 import static Steps.StepsHttpAuth.*;
 import static Steps.StepsModalWindows.*;
@@ -513,7 +514,7 @@ public class StepsPekama implements StepsFactory{
                 sleep(12000);
                 refresh();
                 count++;
-                rootLogger.info(displayedText+"not detected, loop#: "+count);
+                rootLogger.info(displayedText+" not detected, loop#: "+count);
                 if ($(byText(displayedText)).exists() == true) {
                     return true;
                 }
@@ -528,8 +529,25 @@ public class StepsPekama implements StepsFactory{
                 sleep(loopLength);
                 refresh();
                 count++;
-                rootLogger.info(displayedText+"not detected, loop#: "+count);
+                rootLogger.info(displayedText+" not detected, loop#: "+count);
                 if ($(byText(displayedText)).exists() == true) {
+                    return true;
+                }
+            } while (count < 5);
+
+        }
+        return false;
+
+    }
+    public static boolean checkMatchedTextLoop(String displayedText, int loopLength){
+        if ($(withText(displayedText)).exists() == false) {
+            int count = 0;
+            do {
+                sleep(loopLength);
+                refresh();
+                count++;
+                rootLogger.info(displayedText+" not detected, loop#: "+count);
+                if ($(withText(displayedText)).exists() == true) {
                     return true;
                 }
             } while (count < 5);
@@ -543,7 +561,7 @@ public class StepsPekama implements StepsFactory{
                 sleep(12000);
                 refresh();
                 count++;
-                rootLogger.info(displayedText+"still displayed, loop#: "+count);
+                rootLogger.info(displayedText+" still displayed, loop#: "+count);
                 if ($(byText(displayedText)).exists() == false) {
                     return true;
                 }
@@ -558,7 +576,7 @@ public class StepsPekama implements StepsFactory{
                 sleep(loopLength);
                 refresh();
                 count++;
-                rootLogger.info(displayedText+"still displayed, loop#: "+count);
+                rootLogger.info(displayedText+" still displayed, loop#: "+count);
                 if ($(byText(displayedText)).exists() == false) {
                     return true;
                 }

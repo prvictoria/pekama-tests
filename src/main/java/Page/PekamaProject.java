@@ -15,6 +15,7 @@ import static com.codeborne.selenide.Selenide.$;
  */
 public class PekamaProject extends Page {
 
+    public static final SelenideElement PROJECT_FULL_NAME = $(byXpath("//*[@class='project-heading']//h2"));
     public static final SelenideElement PROJECT_BTN_CLONE = $(byXpath("//button[@pkm-confirm-click='copy()']"));
     public static final SelenideElement PROJECT_BTN_DELETE = $(byXpath("//*[@class='project-heading']//button[contains(.,'Delete')]"));
 

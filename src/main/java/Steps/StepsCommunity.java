@@ -15,6 +15,7 @@ import static Page.CommunityWizard.*;
 
 import static Page.ModalWindows.*;
 import static Page.TestsStrings.*;
+import static Page.UrlConfig.MATTER_TYPE_PATENT;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static Utils.Utils.randomString;
@@ -406,7 +407,7 @@ public class StepsCommunity implements StepsFactory{
     public static String createCase() {
         rootLogger.info("1st Step - Search");
         String expertTeam = TestsCredentials.User1.TEAM_NAME.getValue();
-        String caseType = TestsCredentials.CaseType.PATENT.getValue();
+        String caseType = MATTER_TYPE_PATENT;
         String caseCountry = TestsCredentials.Countries.PITCAIRN_ISLANDS.getValue();
         String status = COMMUNITY_STATUS_SENT;
         String caseName = "DEFAULT_CASE"+randomString(10);
@@ -442,7 +443,7 @@ public class StepsCommunity implements StepsFactory{
     }
     public static String createCase(String expertTeam) {
         rootLogger.info("1st Step - Search");
-        String caseType = TestsCredentials.CaseType.PATENT.getValue();
+        String caseType = MATTER_TYPE_PATENT;
         String caseCountry = TestsCredentials.Countries.PITCAIRN_ISLANDS.getValue();
         String status = COMMUNITY_STATUS_SENT;
         String caseName = "DEFAULT_CASE"+randomString(10);
@@ -478,7 +479,7 @@ public class StepsCommunity implements StepsFactory{
     }
     public static String createDraftCase(String expertTeam) {
         rootLogger.info("1st Step - Search");
-        String caseType = TestsCredentials.CaseType.PATENT.getValue();
+        String caseType = MATTER_TYPE_PATENT;
         String caseCountry = TestsCredentials.Countries.PITCAIRN_ISLANDS.getValue();
         String caseName = "DEFAULT_DRAFT_CASE" + randomString(10);
 

@@ -11,6 +11,7 @@ import static Page.PekamaProject.*;
 import static Page.PekamaProject.PROJECT_TAB_CHARGES;
 import static Page.PekamaProject.TAB_CHARGES_ADD;
 import static Page.TestsStrings.*;
+import static Page.UrlConfig.MATTER_TYPE_TRADEMARK;
 import static Steps.StepsPekama.*;
 import static Utils.Utils.*;
 import static com.codeborne.selenide.Condition.*;
@@ -77,7 +78,7 @@ public class StepsModalWindows implements StepsFactory {
         rootLogger.info("Created project: "+projectName);
     }
     public static String createProject(String projectCustomName) {
-        String projectType = TestsCredentials.CaseType.TRADEMARK.getValue();
+        String projectType = MATTER_TYPE_TRADEMARK;
         String projectDefining = TestsCredentials.Countries.PITCAIRN_ISLANDS.getValue();
         String projectName = projectCustomName+"_"+randomString(10);
         waitForModalWindow(TILE_MW_PROJECT);
@@ -95,7 +96,7 @@ public class StepsModalWindows implements StepsFactory {
         return projectName;
     }
     public static String createProject() {
-        String projectType = TestsCredentials.CaseType.TRADEMARK.getValue();
+        String projectType = MATTER_TYPE_TRADEMARK;
         String projectDefining = TestsCredentials.Countries.PITCAIRN_ISLANDS.getValue();
         String projectName = "DEFAULT_PROJECT_"+randomString(10);
         waitForModalWindow(TILE_MW_PROJECT);

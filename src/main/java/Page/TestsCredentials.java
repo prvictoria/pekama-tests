@@ -254,6 +254,18 @@ public class TestsCredentials {
             return value;
         }
     }
+    public enum ProductionCaseType {
+        PATENT("IP: Patent"),
+        CRM("IP: Design"),
+        TRADEMARK("IP: Trademark");
+        private String value;
+        ProductionCaseType(String value) {
+            this.value = value;
+        }
+        public String getValue() {
+            return value;
+        }
+    }
     public enum ProjectType {
         PATENT_COOPERATION_TREATY("Patent Cooperation Treaty"),
         CRM_CONFERENCE("Conference Lead"),

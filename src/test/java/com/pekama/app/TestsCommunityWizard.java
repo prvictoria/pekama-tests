@@ -15,6 +15,7 @@ import static Page.Emails.*;
 import static Page.ModalWindows.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
+import static Page.UrlConfig.MATTER_TYPE_TRADEMARK;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
 import static Steps.Messages.*;
@@ -35,7 +36,7 @@ import static com.pekama.app.AllTestsRunner.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsCommunityWizard {
     static final Logger rootLogger = LogManager.getRootLogger();
-    private final static String TEST_CASE_TYPE = CaseType.TRADEMARK.getValue();
+    private static String TEST_CASE_TYPE;
     private final static String TEST_CASE_COUNTRY = Countries.PITCAIRN_ISLANDS.getValue();
 
     private final static String REQUESTER_EMAIL = User3.GMAIL_EMAIL.getValue();
@@ -56,7 +57,8 @@ public class TestsCommunityWizard {
 
     @BeforeClass
     public static void beforeClass() {
-        setEnvironment ();
+        setEnvironment();
+        TEST_CASE_TYPE = MATTER_TYPE_TRADEMARK;
         setBrowser();
         holdBrowserAfterTest();
         rootLogger.info("Open host");
