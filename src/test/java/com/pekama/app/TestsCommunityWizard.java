@@ -15,6 +15,7 @@ import static Page.Emails.*;
 import static Page.ModalWindows.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
+import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
 import static Steps.Messages.*;
 import static Steps.StepsCommunity.*;
@@ -55,6 +56,7 @@ public class TestsCommunityWizard {
 
     @BeforeClass
     public static void beforeClass() {
+        setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
         rootLogger.info("Open host");

@@ -7,6 +7,7 @@ import com.codeborne.selenide.SelenideElement;
 import static Page.UrlConfig.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
+
 public class Emails extends Page {
     //reset password
     public static final SelenideElement EMAIL_RESET_PASSWORD = $(byXpath(""));
@@ -40,7 +41,7 @@ public class Emails extends Page {
     public static final String EMAIL_INVITE_IN_COMMUNITY_TITLE = "You're invited to Pekama Community";
     public static final String EMAIL_INVITE_IN_COMMUNITY_TEXT = "Entered by user text";
     public static final String EMAIL_INVITE_IN_COMMUNITY_BTN = "Join Pekama Community";
-    public static final SelenideElement EMAIL_INVITE_IN_COMMUNITY_BACKLINK = $(byXpath("//td/a[contains(@href, '"+COMMUNITY+"/community/activate/')]"));
+    public static final SelenideElement EMAIL_INVITE_IN_COMMUNITY_BACKLINK = $(byXpath("//td/a[contains(@href, '"+ ENVIRONMENT_COMMUNITY +"/community/activate/')]"));
     //Emails congratulation - supplier was instructed
     public static final SelenideElement EMAIL_CONGRATULATION_SUBJECT = $(byXpath("//span[contains(.,'Case successfully instructed via Pekama!')]"));
     public static final String EMAIL_CONGRATULATION_TITLE = "Congratulations, you instructed";

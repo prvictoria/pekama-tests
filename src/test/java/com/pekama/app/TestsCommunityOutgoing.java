@@ -10,6 +10,7 @@ import static Page.CommunityDashboard.*;
 import static Page.CommunityOutgoing.*;
 import static Page.PekamaProject.*;
 import static Page.TestsCredentials.*;
+import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
 import static Steps.Messages.*;
 import static Steps.StepsCommunity.*;
@@ -55,6 +56,7 @@ public class TestsCommunityOutgoing {
 
     @BeforeClass
     public static void beforeClass() {
+        setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
     }

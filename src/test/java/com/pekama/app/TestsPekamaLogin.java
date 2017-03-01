@@ -21,8 +21,7 @@ import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.sleep;
 import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 import static com.codeborne.selenide.WebDriverRunner.url;
-import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
-import static com.pekama.app.AllTestsRunner.setBrowser;
+import static com.pekama.app.AllTestsRunner.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 /**
@@ -34,6 +33,7 @@ public class TestsPekamaLogin {
     static final Logger rootLogger = LogManager.getRootLogger();
     @BeforeClass
     public static void beforeClass() {
+        setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
     }
@@ -48,11 +48,11 @@ public class TestsPekamaLogin {
     }
 
     @Test
-    public void testEnviroment() {
-        open(TEST_ENVIROMENT_PEKAMA);
-        rootLogger.info(TEST_ENVIROMENT_PEKAMA+" - opened");
-        open(TEST_ENVIROMENT_COMMUNITY);
-        rootLogger.info(TEST_ENVIROMENT_COMMUNITY+" - opened");
+    public void testEnvironment() {
+        open(ENVIRONMENT_PEKAMA);
+        rootLogger.info(ENVIRONMENT_PEKAMA +" - opened");
+        open(ENVIRONMENT_COMMUNITY);
+        rootLogger.info(ENVIRONMENT_COMMUNITY +" - opened");
     }
     @Test
     public void invalidPassword() {

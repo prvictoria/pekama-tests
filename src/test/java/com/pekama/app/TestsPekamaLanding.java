@@ -24,13 +24,14 @@ import static com.pekama.app.AllTestsRunner.setBrowser;
 public class TestsPekamaLanding {
     @BeforeClass
     public static void beforeClass() {
+        setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
     }
     @Before
     public void openUrlLogin() {
         StepsHttpAuth openHost = new StepsHttpAuth();
-        String AUTH_URL = PEKAMA;
+        String AUTH_URL = ENVIRONMENT_PEKAMA;
         openHost.openUrlWithBaseAuth(AUTH_URL);
     }
     @AfterClass
@@ -78,7 +79,7 @@ public class TestsPekamaLanding {
         loginButton_Login.click();
         btnLogin.shouldBe(Condition.not(visible));
         btnSignup.shouldBe(Condition.not(visible));
-        open(PEKAMA);
+        open(ENVIRONMENT_PEKAMA);
         BTN_DASHBOARD.shouldBe(Condition.visible);
         BTN_LOG_OUT.shouldBe(Condition.visible).click();
         sleep(1000);

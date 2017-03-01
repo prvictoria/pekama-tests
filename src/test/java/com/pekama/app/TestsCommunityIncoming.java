@@ -13,6 +13,7 @@ import static Page.PekamaConversationProject.CONVERSATION_MsgText;
 import static Page.PekamaProject.*;
 import static Page.PekamaProject.PROJECT_BTN_DELETE;
 import static Page.TestsCredentials.*;
+import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
 import static Steps.Messages.*;
 import static Steps.StepsCommunity.*;
@@ -57,6 +58,7 @@ public class TestsCommunityIncoming {
     private final static String INTRODUCER_NAME = "Rand, Kaldor & Zane LLP (RKNZ)";
     @BeforeClass
     public static void beforeClass() {
+        setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
     }

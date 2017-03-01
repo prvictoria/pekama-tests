@@ -20,6 +20,7 @@ import static Page.PekamaPersonalSettings.*;
 import static Page.PekamaReports.*;
 import static Page.PekamaTeamSettings.*;
 import static Page.TestsStrings.*;
+import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
 import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static Steps.StepsModalWindows.*;
@@ -46,6 +47,7 @@ public class TestsPekamaDashboard {
     private final String TEST_USER_TEAM_NAME = User1.TEAM_NAME.getValue();
     @BeforeClass
     public static void beforeClass() {
+        setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
         rootLogger.info("Open host");

@@ -15,6 +15,7 @@ import static Page.PekamaDashboard.*;
 import static Page.TestsCredentials.User1;
 import static Page.TestsCredentials.User3;
 import static Page.TestsStrings.*;
+import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
@@ -37,6 +38,7 @@ public class TestsMessages {
 
     @BeforeClass
     public static void beforeClass() {
+        setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
         rootLogger.info("Open host");

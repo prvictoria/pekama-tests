@@ -12,6 +12,7 @@ import static Page.ModalWindows.*;
 import static Page.PekamaReports.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
+import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
 import static Steps.StepsExternal.*;
 import static Steps.StepsModalWindows.*;
@@ -36,6 +37,7 @@ public class TestsPekamaReports {
     private static final String GMAIL_LOGIN = TEST_USER_LOGIN;
     @BeforeClass
     public static void beforeClass() {
+        setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
     }

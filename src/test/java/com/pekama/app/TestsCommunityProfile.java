@@ -13,6 +13,7 @@ import static Page.CommunityWizard.*;
 import static Page.ModalWindows.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
+import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
 import static Steps.StepsCommunity.*;
 import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
@@ -42,6 +43,7 @@ public class TestsCommunityProfile {
     String NEW_MEMBER = "qazwsx@qaz.com";
     @BeforeClass
     public static void beforeClass() {
+        setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
     }

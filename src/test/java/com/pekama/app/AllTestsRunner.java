@@ -3,7 +3,10 @@ package com.pekama.app;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.junit.SoftAsserts;
 import io.github.bonigarcia.wdm.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Rule;
+import org.junit.Test;
 import org.junit.experimental.categories.Categories;
 import org.junit.rules.Timeout;
 import org.junit.runner.RunWith;
@@ -11,6 +14,7 @@ import org.junit.runners.Suite;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 
+import static Page.UrlConfig.*;
 import static com.codeborne.selenide.Configuration.*;
 import static com.codeborne.selenide.WebDriverRunner.FIREFOX;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
@@ -47,6 +51,7 @@ import static org.junit.Assume.assumeTrue;
         TestsPekamaReports.class //last suite
 })
 public class AllTestsRunner {
+    static final Logger rootLogger = LogManager.getRootLogger();
     @Rule
     public Timeout globalTimeout = Timeout.seconds(600); // 10 seconds max per method tested
     @Rule public SoftAsserts softAsserts = new SoftAsserts();
@@ -83,4 +88,7 @@ public class AllTestsRunner {
         Configuration test = new Configuration();
         test.holdBrowserOpen = value;
     }
+
+
+
 }

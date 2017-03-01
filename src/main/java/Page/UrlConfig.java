@@ -1,21 +1,48 @@
 package Page;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * Created by VatslauX on 20-Feb-17.
  */
 public class UrlConfig {
-    public static final String DOMAIN = "pekama.com";
+    static final Logger rootLogger = LogManager.getRootLogger();
     public static final String STAGING_PEKAMA = "https://staging.pekama.com";
     public static final String STAGING_COMMUNITY = "https://communitystaging.pekama.com";
+    public static final String TEST_PEKAMA = "";
+    public static final String TEST_COMMUNITY = "";
     public static final String PROD_PEKAMA = "https://docketing.pekama.com";
     public static final String PROD_COMMUNITY = "https://community.pekama.com";
 
-    public static final String PEKAMA = PROD_PEKAMA;
-    public static final String COMMUNITY = PROD_COMMUNITY;
-    public static final String SELECT_HOST = PEKAMA;
+    public static String ENVIRONMENT_PEKAMA;
+    public static String ENVIRONMENT_COMMUNITY;
+    public static String SELECT_HOST;
 
-    public static final String TEST_ENVIROMENT_PEKAMA = PROD_PEKAMA;
-    public static final String TEST_ENVIROMENT_COMMUNITY = PROD_COMMUNITY;
+    public static final int environment = 1;
+    public static void setEnvironment() {
+        switch (environment) {
+            case 1:
+                rootLogger.info("Tests will executed on Staging server");
+                ENVIRONMENT_PEKAMA = STAGING_PEKAMA;
+                ENVIRONMENT_COMMUNITY = STAGING_COMMUNITY;
+                SELECT_HOST = ENVIRONMENT_PEKAMA;
+                break;
+            case 2:
+                rootLogger.info("Tests will executed on Test server");
+                ENVIRONMENT_PEKAMA = TEST_PEKAMA;
+                ENVIRONMENT_COMMUNITY = TEST_COMMUNITY;
+                SELECT_HOST = ENVIRONMENT_PEKAMA;
+                break;
+            case 3:
+                rootLogger.info("Tests will executed on Production server");
+                ENVIRONMENT_PEKAMA = PROD_PEKAMA;
+                ENVIRONMENT_COMMUNITY = PROD_COMMUNITY;
+                SELECT_HOST = ENVIRONMENT_PEKAMA;
+                break;
+        }
+    }
+
 
     //users and passwords
 }

@@ -19,6 +19,7 @@ import static Page.ModalWindows.*;
 import static Page.PekamaDashboard.*;
 import static Page.PekamaProject.*;
 import static Page.TestsStrings.*;
+import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
 import static Steps.Messages.*;
 import static Steps.Messages.*;
@@ -59,7 +60,8 @@ public class TestsCommunityIntegration {
 
     @BeforeClass
     public static void beforeClass() {
-            setBrowser();
+        setEnvironment ();
+        setBrowser();
         holdBrowserAfterTest();
         rootLogger.info("Open host");
         StepsPekama loginIntoPekama = new StepsPekama();

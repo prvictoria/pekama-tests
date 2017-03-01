@@ -15,6 +15,7 @@ import static Page.PekamaDashboard.*;
 import static Page.PekamaProject.*;
 import static Page.TestsCredentials.User1;
 import static Page.TestsStrings.*;
+import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
 import static Steps.StepsHttpAuth.*;
 import static Steps.StepsModalWindows.*;
@@ -49,6 +50,7 @@ public class TestsPekamaIntegrationBox {
 
     @BeforeClass // TODO: 20-Feb-17 need implement tests
     public static void beforeClass(){
+        setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
         StepsPekama loginIntoPekama = new StepsPekama();

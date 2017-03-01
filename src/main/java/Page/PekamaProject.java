@@ -117,7 +117,7 @@ public class PekamaProject extends Page {
     public static final SelenideElement TAB_INFO_ClassRow01Edit = $(byXpath("//tbody/tr/td[4]/a[@class='edit ng-scope']"));
     public static final SelenideElement TAB_INFO_ClassRow01delete = $(byXpath(TAB_INFO_Classes +"//table//tr[1]//*[@class='pkm-icon-cancel icon']"));
 
-    //COMMUNITY
+    //ENVIRONMENT_COMMUNITY
     public static final SelenideElement TAB_INFO_COMMUNITY = $(byXpath("//pkm-community-projects"));
     public static final SelenideElement TAB_INFO_COMMUNITY_TITLE = $(byXpath("//pkm-community-projects//h4"));
     public static final SelenideElement TAB_INFO_COMMUNITY_BTN_START_NEW = $(byXpath("//pkm-community-projects//button[contains(.,'+ START NEW')]"));

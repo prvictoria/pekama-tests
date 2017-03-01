@@ -28,12 +28,13 @@ public class TestsCommynityLanding {
     static final Logger rootLogger = LogManager.getRootLogger();
     @BeforeClass
     public static void beforeClass() {
+        setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
     }
     @Before
     public void before() {
-        open(COMMUNITY);
+        open(ENVIRONMENT_COMMUNITY);
     }
     @AfterClass
     public static void after() {

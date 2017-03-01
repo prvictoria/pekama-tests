@@ -10,6 +10,7 @@ import org.junit.runners.MethodSorters;
 import static Page.ModalWindows.*;
 import static Page.PekamaTeamSettings.*;
 import static Page.TestsStrings.*;
+import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
@@ -33,6 +34,7 @@ public class TestsPekamaTemplates {
     String TEST_USER_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
     @BeforeClass
     public static void beforeClass() {
+        setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
     }

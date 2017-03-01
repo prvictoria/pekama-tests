@@ -21,6 +21,7 @@ import static Page.PekamaProject.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsCredentials.TrademarkEvents.*;
 import static Page.TestsStrings.*;
+import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
 import static Page.Xero.*;
 import static Steps.Messages.*;
@@ -73,6 +74,7 @@ public class TestsPekamaProject {
 
     @BeforeClass
     public static void beforeClass() {
+        setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
         rootLogger.info("Open host");

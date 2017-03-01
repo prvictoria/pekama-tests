@@ -7,6 +7,7 @@ import org.junit.*;
 import org.junit.experimental.categories.Category;
 
 import static Page.Emails.*;
+import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
 import static Page.PekamaSignUp.*;
 import static Page.TestsCredentials.*;
@@ -37,6 +38,7 @@ public class TestsPekamaSignUp {
     SelenideElement EMAIL_REDIRECT_LINK = EMAIL_CONFIRM_REGISTRATION_BACKLINK;
     @BeforeClass
     public static void beforeClass() {
+        setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
     }

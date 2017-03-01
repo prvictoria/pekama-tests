@@ -38,7 +38,7 @@ import static org.junit.Assert.assertEquals;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaResetPassword {
     static final Logger rootLogger = LogManager.getLogger(LoginGmail.class);
-    public static String SELECT_HOST = PEKAMA;
+    public static String SELECT_HOST = ENVIRONMENT_PEKAMA;
     private static String NEW_PASSWORD = null;
     private String GMAIL_LOGIN = User4.GMAIL_EMAIL.getValue();
     private String GMAIL_PASSWORD = User4.GMAIL_PASSWORD.getValue();
@@ -52,6 +52,7 @@ public class TestsPekamaResetPassword {
     private static final String USERSURNAME = User4.SURNAME.getValue();
     @BeforeClass
     public static void beforeClass() {
+        setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
     }

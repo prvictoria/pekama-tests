@@ -3,12 +3,7 @@
  * https://www.linkedin.com/in/viachaslau
  */
 package com.pekama.app;
-import Steps.StepsPekama;
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
-import io.github.bonigarcia.wdm.ChromeDriverManager;
-import io.github.bonigarcia.wdm.EdgeDriverManager;
-import io.github.bonigarcia.wdm.InternetExplorerDriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
@@ -24,7 +19,6 @@ import static Steps.StepsCommunity.*;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Configuration.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 import static com.codeborne.selenide.WebDriverRunner.url;
@@ -37,6 +31,7 @@ public class TestsCommunityDashboard {
 
     @BeforeClass
     public static void beforeClass() {
+        setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
     }
@@ -90,7 +85,7 @@ public class TestsCommunityDashboard {
         sleep(1500);
         String urlAfterLogout = url();
         rootLogger.info(urlAfterLogout);
-        assertEquals(COMMUNITY+"/", urlAfterLogout);
+        assertEquals(ENVIRONMENT_COMMUNITY +"/", urlAfterLogout);
         rootLogger.info("User logged out");
         rootLogger.info("Test Passed");
     }
@@ -128,7 +123,7 @@ public class TestsCommunityDashboard {
 
         String urlAfterLogout = url();
         rootLogger.info(urlAfterLogout);
-        assertEquals(COMMUNITY+"/", urlAfterLogout);
+        assertEquals(ENVIRONMENT_COMMUNITY +"/", urlAfterLogout);
         rootLogger.info("User logged out");
         rootLogger.info("Test Passed");
     }
@@ -157,7 +152,7 @@ public class TestsCommunityDashboard {
         sleep(1500);
         String urlAfterLogout = url();
         rootLogger.info(urlAfterLogout);
-        assertEquals(COMMUNITY+"/", urlAfterLogout);
+        assertEquals(ENVIRONMENT_COMMUNITY +"/", urlAfterLogout);
         rootLogger.info("User logged out");
         rootLogger.info("Test Passed");
 
@@ -186,7 +181,7 @@ public class TestsCommunityDashboard {
         sleep(1500);
         String urlAfterLogout = url();
         rootLogger.info(urlAfterLogout);
-        assertEquals(COMMUNITY+"/", urlAfterLogout);
+        assertEquals(ENVIRONMENT_COMMUNITY +"/", urlAfterLogout);
         rootLogger.info("User logged out");
         rootLogger.info("Test Passed");
 
@@ -217,7 +212,7 @@ public class TestsCommunityDashboard {
         sleep(1500);
         String urlAfterLogout = url();
         rootLogger.info(urlAfterLogout);
-        assertEquals(COMMUNITY+"/", urlAfterLogout);
+        assertEquals(ENVIRONMENT_COMMUNITY +"/", urlAfterLogout);
         rootLogger.info("User logged out");
         rootLogger.info("Test Passed");
     }

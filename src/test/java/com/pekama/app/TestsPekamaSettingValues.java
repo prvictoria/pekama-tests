@@ -9,6 +9,7 @@ import static Page.ModalWindows.*;
 import static Page.PekamaTeamSettings.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
+import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
@@ -31,6 +32,7 @@ public class TestsPekamaSettingValues {
     private final String TEST_MATTER_TYPE = CaseType.TRADEMARK.getValue();
     @BeforeClass
     public static void beforeClass() {
+        setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
     }

@@ -14,6 +14,7 @@ import static Page.ModalWindows.*;
 import static Page.PekamaTeamSettings.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
+import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
 import static Steps.StepsExternal.checkInboxEmail;
 import static Steps.StepsModalWindows.*;
@@ -41,6 +42,7 @@ public class TestsPekamaSettingsTeam {
 
     @BeforeClass
     public static void beforeClass() {
+        setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
     }
