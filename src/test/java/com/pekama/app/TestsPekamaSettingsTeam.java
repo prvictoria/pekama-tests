@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
 import org.junit.experimental.categories.Category;
+import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
 
 import static Page.Emails.*;
@@ -39,7 +40,8 @@ public class TestsPekamaSettingsTeam {
     static final Logger rootLogger = LogManager.getRootLogger();
     private final String TEST_USER_LOGIN = TestsCredentials.User1.GMAIL_EMAIL.getValue();
     private final String TEST_USER_PASSWORD = TestsCredentials.User1.PEKAMA_PASSWORD.getValue();
-
+    @Rule
+    public Timeout tests = Timeout.seconds(600);
     @BeforeClass
     public static void beforeClass() {
         setEnvironment ();

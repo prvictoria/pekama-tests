@@ -7,6 +7,7 @@ import Steps.StepsPekama;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
+import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
 
 import static Page.ModalWindows.*;
@@ -35,7 +36,8 @@ public class TestsMessages {
     private final String TEST_USER_TEAM_NAME = User3.TEAM_NAME.getValue();
     private final String COLLABORATOR_TEAM_NAME = User1.TEAM_NAME.getValue();
     private final String USER_NAME_SURNAME = User3.NAME_SURNAME.getValue();
-
+    @Rule
+    public Timeout tests = Timeout.seconds(600);
     @BeforeClass
     public static void beforeClass() {
         setEnvironment ();

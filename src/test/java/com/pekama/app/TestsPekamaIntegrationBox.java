@@ -7,6 +7,7 @@ import Steps.StepsPekama;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
+import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
 
 import static Page.Box.*;
@@ -46,9 +47,12 @@ public class TestsPekamaIntegrationBox {
     private static boolean projectFolderIsPresent;
     private static boolean beforeConnectFilesPresent;
     private static boolean afterConnectFilesPresent;
+    @Rule
+    public Timeout tests = Timeout.seconds(600);
 
     @BeforeClass // TODO: 20-Feb-17 need implement tests
     public static void beforeClass(){
+
         setEnvironment();
         setBrowser();
         holdBrowserAfterTest();
@@ -69,7 +73,7 @@ public class TestsPekamaIntegrationBox {
         clearBrowserCache();
     }
 
-    @Test
+    @Test()
     public void testA_PrepareProject() {
         submitEnabledButton(DASHBOARD_BTN_NEW_PROJECT);
         String projectName = createProject("BOX_TEST_PRJ");

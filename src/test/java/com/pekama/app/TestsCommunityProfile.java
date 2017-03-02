@@ -5,6 +5,7 @@ import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
+import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
 
 import static Page.CommunityDashboard.*;
@@ -34,6 +35,8 @@ import static org.junit.Assert.assertNotEquals;
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsCommunityProfile {
+    @Rule
+    public Timeout tests = Timeout.seconds(600);
     static final Logger log = LogManager.getLogger(TestsCommunityProfile.class);
     String TEAM = TestsCredentials.User3.TEAM_NAME.getValue();
     String PEKAMA_USER_EMAIL = User3.GMAIL_EMAIL.getValue();

@@ -3,6 +3,7 @@ import Steps.StepsPekama;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
+import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
 
 import static Page.ModalWindows.*;
@@ -30,6 +31,8 @@ public class TestsPekamaSettingValues {
     private final String TEST_USER_LOGIN = User1.GMAIL_EMAIL.getValue();
     private final String TEST_USER_PASSWORD = User1.PEKAMA_PASSWORD.getValue();
     private final String TEST_MATTER_TYPE = CaseType.TRADEMARK.getValue();
+    @Rule
+    public Timeout tests = Timeout.seconds(600);
     @BeforeClass
     public static void beforeClass() {
         setEnvironment ();

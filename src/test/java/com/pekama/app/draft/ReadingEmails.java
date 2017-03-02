@@ -74,7 +74,7 @@ public class ReadingEmails {
 			inbox.open(Folder.READ_WRITE);
 			int messagesAmount = inbox.getNewMessageCount();
 			System.out.println("Messages: " + messagesAmount + "\n" + "--------------------------------");
-			Message[] message = inbox.search(new FlagTerm(new Flags(Flags.Flag.SEEN), false));
+				Message[] message = inbox.search(new FlagTerm(new Flags(Flags.Flag.SEEN), false));
 			for (int i = message.length - 1; i < message.length; i++) {
 				Message msg = message[i];
 				String date = msg.getReceivedDate().toString();

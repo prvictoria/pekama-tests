@@ -53,8 +53,9 @@ import static org.junit.Assume.assumeTrue;
 public class AllTestsRunner {
     static final Logger rootLogger = LogManager.getRootLogger();
     @Rule
-    public Timeout globalTimeout = Timeout.seconds(600); // 10 seconds max per method tested
-    @Rule public SoftAsserts softAsserts = new SoftAsserts();
+    public Timeout tests = Timeout.seconds(600); // 10 seconds max per method tested
+//    @Rule
+//    public SoftAsserts softAsserts = new SoftAsserts();
 
     public static void setBrowser() {
         browser = FIREFOX;
@@ -88,7 +89,4 @@ public class AllTestsRunner {
         Configuration test = new Configuration();
         test.holdBrowserOpen = value;
     }
-
-
-
 }

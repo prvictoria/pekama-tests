@@ -47,7 +47,7 @@ public class UrlConfig {
                 ENVIRONMENT_COMMUNITY = PROD_COMMUNITY;
                 SELECT_HOST = ENVIRONMENT_PEKAMA;
                 MATTER_TYPE_TRADEMARK = ProductionCaseType.TRADEMARK.getValue();
-                MATTER_TYPE_PATENT = CaseType.PATENT.getValue();
+                MATTER_TYPE_PATENT = ProductionCaseType.PATENT.getValue();
                 break;
         }
     }

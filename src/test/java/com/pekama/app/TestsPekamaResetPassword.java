@@ -10,6 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
 import org.junit.experimental.categories.Category;
+import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
 
 import static Page.Emails.*;
@@ -50,6 +51,8 @@ public class TestsPekamaResetPassword {
     private String PEKAMA_USER_EMAIL = User4.GMAIL_EMAIL.getValue();
     private static final String USERNAME = User4.NAME.getValue();
     private static final String USERSURNAME = User4.SURNAME.getValue();
+    @Rule
+    public Timeout tests = Timeout.seconds(600);
     @BeforeClass
     public static void beforeClass() {
         setEnvironment ();

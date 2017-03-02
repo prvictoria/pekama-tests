@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
 import org.junit.experimental.categories.Category;
+import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
 
 import static Page.CommunityDashboard.*;
@@ -35,6 +36,8 @@ import static com.pekama.app.AllTestsRunner.*;
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsCommunityWizard {
+    @Rule
+    public Timeout tests = Timeout.seconds(600);
     static final Logger rootLogger = LogManager.getRootLogger();
     private static String TEST_CASE_TYPE;
     private final static String TEST_CASE_COUNTRY = Countries.PITCAIRN_ISLANDS.getValue();

@@ -2,10 +2,8 @@ package com.pekama.app;
 import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
+import org.junit.rules.Timeout;
 
 import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
@@ -31,6 +29,8 @@ import static org.junit.Assert.assertTrue;
 public class TestsPekamaLogin {
     String testDashboardUrl = "";
     static final Logger rootLogger = LogManager.getRootLogger();
+    @Rule
+    public Timeout tests = Timeout.seconds(600);
     @BeforeClass
     public static void beforeClass() {
         setEnvironment ();

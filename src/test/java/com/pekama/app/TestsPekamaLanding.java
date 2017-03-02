@@ -1,10 +1,8 @@
 package com.pekama.app;
 import Steps.StepsHttpAuth;
 import com.codeborne.selenide.Condition;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
+import org.junit.rules.Timeout;
 
 import static Page.PekamaLanding.*;
 import static Page.PekamaLogin.*;
@@ -22,6 +20,8 @@ import static com.pekama.app.AllTestsRunner.setBrowser;
  * https://www.linkedin.com/in/viachaslau
  */
 public class TestsPekamaLanding {
+    @Rule
+    public Timeout tests = Timeout.seconds(400);
     @BeforeClass
     public static void beforeClass() {
         setEnvironment ();

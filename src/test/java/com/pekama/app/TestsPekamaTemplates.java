@@ -5,6 +5,7 @@ import Page.TestsCredentials.*;
 import Steps.*;
 import org.apache.logging.log4j.*;
 import org.junit.*;
+import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
 
 import static Page.ModalWindows.*;
@@ -32,6 +33,8 @@ public class TestsPekamaTemplates {
     String TEAM = TestsCredentials.User3.TEAM_NAME.getValue();
     String TEST_USER_LOGIN = User3.GMAIL_EMAIL.getValue();
     String TEST_USER_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
+    @Rule
+    public Timeout tests = Timeout.seconds(600);
     @BeforeClass
     public static void beforeClass() {
         setEnvironment ();

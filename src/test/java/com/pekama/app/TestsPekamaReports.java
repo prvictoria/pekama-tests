@@ -5,6 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.*;
 import org.junit.*;
 import org.junit.experimental.categories.Category;
+import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
 
 import static Page.Emails.*;
@@ -35,6 +36,8 @@ public class TestsPekamaReports {
     static final Logger rootLogger = LogManager.getRootLogger();
     private static final String TEST_USER_LOGIN = User3.GMAIL_EMAIL.getValue();
     private static final String GMAIL_LOGIN = TEST_USER_LOGIN;
+    @Rule
+    public Timeout tests = Timeout.seconds(600);
     @BeforeClass
     public static void beforeClass() {
         setEnvironment ();

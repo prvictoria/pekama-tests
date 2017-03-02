@@ -2,10 +2,8 @@ package com.pekama.app;
 import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
+import org.junit.rules.Timeout;
 
 import static Page.CommunityDashboard.*;
 import static Page.CommunityLanding.*;
@@ -26,6 +24,8 @@ import static com.pekama.app.AllTestsRunner.setBrowser;
  */
 public class TestsCommynityLanding {
     static final Logger rootLogger = LogManager.getRootLogger();
+    @Rule
+    public Timeout tests = Timeout.seconds(600);
     @BeforeClass
     public static void beforeClass() {
         setEnvironment ();

@@ -5,6 +5,7 @@ import com.codeborne.selenide.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
+import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
 
 import static Page.ModalWindows.*;
@@ -35,7 +36,8 @@ public class TestsPekamaSettingsPersonal {
     private static final String testUserPekamaPassword = User3.PEKAMA_PASSWORD.getValue();
     private static final String testUserGmailPassword = User3.GMAIL_PASSWORD.getValue();
     private static final String AUTH_URL = URL_PersonalSettings;
-
+    @Rule
+    public Timeout tests = Timeout.seconds(600);
     @BeforeClass
     public static void beforeClass() {
         setEnvironment ();

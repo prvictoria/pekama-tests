@@ -7,6 +7,7 @@ import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
+import org.junit.rules.Timeout;
 
 import static Page.CommunityDashboard.*;
 import static Page.CommunityWizard.*;
@@ -28,7 +29,8 @@ import static org.junit.Assert.assertEquals;
 public class TestsCommunityDashboard {
     static final Logger rootLogger = LogManager.getRootLogger();
     String userEmail = User2.GMAIL_EMAIL.getValue();
-
+    @Rule
+    public Timeout tests = Timeout.seconds(600);
     @BeforeClass
     public static void beforeClass() {
         setEnvironment ();

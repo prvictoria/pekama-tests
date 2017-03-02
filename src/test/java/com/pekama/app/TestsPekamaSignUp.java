@@ -5,6 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
 import org.junit.experimental.categories.Category;
+import org.junit.rules.Timeout;
 
 import static Page.Emails.*;
 import static Page.UrlConfig.setEnvironment;
@@ -36,6 +37,8 @@ public class TestsPekamaSignUp {
     String EMAIL_TEXT = EMAIL_CONFIRM_REGISTRATION_TEXT;
     String EMAIL_BTN = EMAIL_CONFIRM_REGISTRATION_BTN;
     SelenideElement EMAIL_REDIRECT_LINK = EMAIL_CONFIRM_REGISTRATION_BACKLINK;
+    @Rule
+    public Timeout tests = Timeout.seconds(600);
     @BeforeClass
     public static void beforeClass() {
         setEnvironment ();
