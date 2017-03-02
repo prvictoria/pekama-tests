@@ -133,7 +133,7 @@ public class TestsPekamaIntegrationBox {
                     refresh();
                     sleep(2000);
                     count++;
-                    rootLogger.info("Try to connect box again" + count);
+                    rootLogger.info("Try to connect box again, loop# " + count);
                     if (boxConnectProjectButton.exists() == false) {
                         rootLogger.info("Box is connected");
                         break;

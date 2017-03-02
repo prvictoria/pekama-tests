@@ -322,11 +322,11 @@
           <file leaf-file-name="TestsPekamaIntegrationBox.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaIntegrationBox.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="302">
-                  <caret line="213" column="36" lean-forward="false" selection-start-line="213" selection-start-column="36" selection-end-line="213" selection-end-column="36" />
+                <state relative-caret-position="829">
+                  <caret line="139" column="21" lean-forward="true" selection-start-line="139" selection-start-column="21" selection-end-line="139" selection-end-column="21" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <marker date="1488486569072" expanded="true" signature="6490:6625" ph="..." />
+                    <marker date="1488486679228" expanded="true" signature="6498:6633" ph="..." />
                   </folding>
                 </state>
               </provider>
@@ -1652,14 +1652,7 @@
       <workItem from="1488211432755" duration="11918000" />
       <workItem from="1488298311133" duration="12663000" />
       <workItem from="1488385604773" duration="14240000" />
-      <workItem from="1488475424909" duration="10396000" />
-    </task>
-    <task id="LOCAL-00178" summary="reports contacts CRUD">
-      <created>1487144720711</created>
-      <option name="number" value="00178" />
-      <option name="presentableId" value="LOCAL-00178" />
-      <option name="project" value="LOCAL" />
-      <updated>1487144720711</updated>
+      <workItem from="1488475424909" duration="10502000" />
     </task>
     <task id="LOCAL-00179" summary="Values CRUD logic">
       <created>1487160146071</created>
@@ -1997,7 +1990,14 @@
       <option name="project" value="LOCAL" />
       <updated>1488486170286</updated>
     </task>
-    <option name="localTasksCounter" value="227" />
+    <task id="LOCAL-00227" summary="Box test fix">
+      <created>1488486580464</created>
+      <option name="number" value="00227" />
+      <option name="presentableId" value="LOCAL-00227" />
+      <option name="project" value="LOCAL" />
+      <updated>1488486580464</updated>
+    </task>
+    <option name="localTasksCounter" value="228" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -2033,7 +2033,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="727764000" />
+    <option name="totallyTimeSpent" value="727870000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2154,7 +2154,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Values transaction CRUD tests" />
     <MESSAGE value="Values currency CRUD tests" />
     <MESSAGE value="BOX logic - precondition" />
     <MESSAGE value="BOX logic - precondition finished" />
@@ -2179,7 +2178,8 @@
     <MESSAGE value="Statuses fix" />
     <MESSAGE value="Loops check folder fix" />
     <MESSAGE value="Login box steps" />
-    <option name="LAST_COMMIT_MESSAGE" value="Login box steps" />
+    <MESSAGE value="Box test fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Box test fix" />
   </component>
   <component name="VssConfiguration">
     <CheckoutOptions>
@@ -3672,11 +3672,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaIntegrationBox.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="213" column="36" lean-forward="false" selection-start-line="213" selection-start-column="36" selection-end-line="213" selection-end-column="36" />
+        <state relative-caret-position="829">
+          <caret line="139" column="21" lean-forward="true" selection-start-line="139" selection-start-column="21" selection-end-line="139" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1488486569072" expanded="true" signature="6490:6625" ph="..." />
+            <marker date="1488486679228" expanded="true" signature="6498:6633" ph="..." />
           </folding>
         </state>
       </provider>
