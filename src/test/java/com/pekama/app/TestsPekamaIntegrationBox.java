@@ -18,6 +18,7 @@ import static Page.TestsCredentials.User1;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
+import static Steps.StepsExternal.loginBox;
 import static Steps.StepsHttpAuth.*;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
@@ -162,22 +163,14 @@ public class TestsPekamaIntegrationBox {
     }
     @Test
     public void testD_checkSyncToBOX() {
-        boxProjectName = "BOX_TEST_PRJ_0F9TQOOGXM";
-        pekamaProjectUrl = "https://staging.pekama.com/a/projects/29350/files";
+        //boxProjectName = "BOX_TEST_PRJ_0F9TQOOGXM";
+        //pekamaProjectUrl = "https://staging.pekama.com/a/projects/29350/files";
         if (pekamaProjectUrl ==null){
             Assert.fail("ProjectValues url not found");
         }
 
         rootLogger.info("Check created files and folders in BOX");
-        open(boxLoginURL);
-        sleep(6000);
-        if(BOX_BTN_SIGN_IN.isDisplayed()) {
-            boxWindowEmail.sendKeys(OWNER_EMAIL);
-            boxWindowPassword.sendKeys(OWNER_BOX_PASSWORD);
-            BOX_BTN_SIGN_IN.click();
-            rootLogger.info("Login BOX submitted");
-            sleep(4000);
-        }
+        loginBox(OWNER_EMAIL, OWNER_BOX_PASSWORD);
         rootLogger.info("Check Team folder");
         teamFolderIsPresent = checkTextLoop(boxNameFolderTeam1, 15000);
         $(byText(boxNameFolderTeam1)).click();
@@ -226,7 +219,7 @@ public class TestsPekamaIntegrationBox {
         $(byText(PLACEHOLDER_NoFiles)).shouldBe(visible);
 
         rootLogger.info("Check BOX sync");
-        open(boxProjectFolderUrl);
+        loginBox(boxProjectFolderUrl, OWNER_EMAIL, OWNER_BOX_PASSWORD);
         checkTextNotPresentLoop(FolderNameBeforeConnect, 15000);
         checkTextNotPresentLoop(FileNameBeforeConnect, 15000);
         checkTextNotPresentLoop(FolderNameAfterConnect, 15000);
@@ -258,9 +251,8 @@ public class TestsPekamaIntegrationBox {
         deleteProject();
 
         rootLogger.info("check in box results");
-        open(boxTeamFolderUrl);
+        loginBox(boxTeamFolderUrl, OWNER_EMAIL, OWNER_BOX_PASSWORD);
         checkTextNotPresentLoop(boxProjectName);
-        boxNoFilesPlaceholder.shouldBe(visible);
         rootLogger.info("Project folder removed");
         rootLogger.info("Test passed");
     }

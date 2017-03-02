@@ -39,6 +39,6 @@ public class Box extends Page {
     public static final SelenideElement boxNameFolderInner = $(byXpath(""));
     public static final SelenideElement boxNameFileInner = $(byXpath(""));
     public static final SelenideElement boxPlaceholderPath = $(byXpath("//div[@id='empty-folder-content']/span[2]"));
-    public static final SelenideElement boxNoFilesPlaceholder = $(byText("Drag and drop files from your desktop or use the file browser."));
+    public static final SelenideElement boxNoFilesPlaceholder = $(withText("Drag and drop folders and files from your desktop or use the"));
 
 }
