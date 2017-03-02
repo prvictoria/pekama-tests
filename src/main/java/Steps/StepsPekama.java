@@ -516,11 +516,15 @@ public class StepsPekama implements StepsFactory{
                 count++;
                 rootLogger.info(displayedText+" not detected, loop#: "+count);
                 if ($(byText(displayedText)).exists() == true) {
+                    rootLogger.info(displayedText+" is displayed");
                     return true;
                 }
             } while (count < 5);
+            rootLogger.info(displayedText+" NOT displayed");
+            return false;
         }
-        return false;
+        rootLogger.info(displayedText+" is displayed");
+        return true;
     }
     public static boolean checkTextLoop(String displayedText, int loopLength){
         if ($(byText(displayedText)).exists() == false) {
@@ -531,13 +535,15 @@ public class StepsPekama implements StepsFactory{
                 count++;
                 rootLogger.info(displayedText+" not detected, loop#: "+count);
                 if ($(byText(displayedText)).exists() == true) {
+                    rootLogger.info(displayedText+" is displayed");
                     return true;
                 }
             } while (count < 5);
-
-        }
+        rootLogger.info(displayedText+" NOT displayed");
         return false;
-
+        }
+        rootLogger.info(displayedText+" is displayed");
+        return true;
     }
     public static boolean checkMatchedTextLoop(String displayedText, int loopLength){
         if ($(withText(displayedText)).exists() == false) {
@@ -548,11 +554,15 @@ public class StepsPekama implements StepsFactory{
                 count++;
                 rootLogger.info(displayedText+" not detected, loop#: "+count);
                 if ($(withText(displayedText)).exists() == true) {
+                    rootLogger.info(displayedText+" is displayed");
                     return true;
                 }
             } while (count < 5);
+            rootLogger.info(displayedText+" NOT displayed");
+            return false;
         }
-        return false;
+        rootLogger.info(displayedText+" is displayed");
+        return true;
     }
     public static boolean checkTextNotPresentLoop(String displayedText){
         if ($(byText(displayedText)).exists() == true) {
@@ -563,11 +573,15 @@ public class StepsPekama implements StepsFactory{
                 count++;
                 rootLogger.info(displayedText+" still displayed, loop#: "+count);
                 if ($(byText(displayedText)).exists() == false) {
+                    rootLogger.info(displayedText+" NOT displayed");
                     return true;
                 }
             } while (count < 5);
+            rootLogger.info(displayedText+" is displayed");
+            return false;
         }
-        return false;
+        rootLogger.info(displayedText+" NOT displayed");
+        return true;
     }
     public static boolean checkTextNotPresentLoop(String displayedText, int loopLength){
         if ($(byText(displayedText)).exists() == true) {
@@ -578,10 +592,14 @@ public class StepsPekama implements StepsFactory{
                 count++;
                 rootLogger.info(displayedText+" still displayed, loop#: "+count);
                 if ($(byText(displayedText)).exists() == false) {
+                    rootLogger.info(displayedText+" NOT displayed");
                     return true;
                 }
             } while (count < 5);
+            rootLogger.info(displayedText+" is displayed");
+            return false;
         }
-        return false;
+        rootLogger.info(displayedText+" NOT displayed");
+        return true;
     }
 }

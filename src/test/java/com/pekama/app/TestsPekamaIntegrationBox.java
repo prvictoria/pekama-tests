@@ -54,25 +54,25 @@ public class TestsPekamaIntegrationBox {
         setEnvironment();
         setBrowser();
         holdBrowserAfterTest();
+    }
+    @Before
+    public void before() {
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(
                 OWNER_EMAIL,
                 OWNER_PASSWORD,
                 URL_Dashboard);
     }
-    @Ignore
-    @Before
-    public void before() {
-    }
     @AfterClass
     public static void afterClass() {
-        open(URL_Logout);
-        open(boxLogoutURL);
-        clearBrowserCache();
+       openUrlWithBaseAuth(URL_Logout);
+       open(boxLogoutURL);
+       clearBrowserCache();
     }
 
     @Test
     public void testA_PrepareProject() {
+
         submitEnabledButton(DASHBOARD_BTN_NEW_PROJECT);
         String projectName = createProject("BOX_TEST_PRJ");
         String projectFullName = PROJECT_FULL_NAME.getText();
@@ -162,8 +162,8 @@ public class TestsPekamaIntegrationBox {
     }
     @Test
     public void testD_checkSyncToBOX() {
-//        boxProjectName = "BOX_TEST_PRJ_0F9TQOOGXM";
-//        pekamaProjectUrl = "https://staging.pekama.com/a/projects/29350/files";
+        boxProjectName = "BOX_TEST_PRJ_0F9TQOOGXM";
+        pekamaProjectUrl = "https://staging.pekama.com/a/projects/29350/files";
         if (pekamaProjectUrl ==null){
             Assert.fail("ProjectValues url not found");
         }
@@ -212,14 +212,12 @@ public class TestsPekamaIntegrationBox {
     @Test
     public void testE_DeleteFilesAndCheckSyncToBOX() {
         rootLogger.info("Delete files and folders");
-        if ((teamFolderIsPresent == false) || (projectFolderIsPresent =false)){
-            Assert.fail("Team or Project folder not found");
-        }
-        if (pekamaProjectUrl ==null){
-            Assert.fail("ProjectValues url not found");
-        }
-        sleep(4000);
-
+       if (boxTeamFolderUrl == null){
+        Assert.fail("Team or Project folder not found");
+    }
+        if (pekamaProjectUrl == null){
+        Assert.fail("Project url not found");
+    }
         openUrlWithBaseAuth(pekamaProjectUrl);
         PROJECT_TAB_DOCS.waitUntil(visible, 20000).click();
         projectAllCheckbox.click();
@@ -229,10 +227,18 @@ public class TestsPekamaIntegrationBox {
 
         rootLogger.info("Check BOX sync");
         open(boxProjectFolderUrl);
-        checkTextNotPresentLoop(FolderNameBeforeConnect, 5000);
-        checkTextNotPresentLoop(FileNameBeforeConnect, 5000);
-        checkTextNotPresentLoop(FolderNameAfterConnect, 5000);
-        checkTextNotPresentLoop(FileNameAfterConnect, 5000);
+        checkTextNotPresentLoop(FolderNameBeforeConnect, 15000);
+        checkTextNotPresentLoop(FileNameBeforeConnect, 15000);
+        checkTextNotPresentLoop(FolderNameAfterConnect, 15000);
+        checkTextNotPresentLoop(FileNameAfterConnect, 15000);
+        rootLogger.info("Check in BOX results");
+        $(byText(FolderNameBeforeConnect)).shouldNotBe(visible);
+        $(byText(FileNameBeforeConnect)).shouldNotBe(visible);
+        rootLogger.info("Sync files before connect passed");
+
+        $(byText(FolderNameAfterConnect)).shouldNotBe(visible);
+        $(byText(FileNameAfterConnect)).shouldNotBe(visible);
+        rootLogger.info("Sync files after connect passed");
         boxNoFilesPlaceholder.shouldBe(visible);
         rootLogger.info("Files were deleted from BOX");
         rootLogger.info("Test passed");
@@ -240,14 +246,12 @@ public class TestsPekamaIntegrationBox {
 
     @Test
     public void testF_DeleteProjectAndCheckSyncToBOX() {
-        if ((teamFolderIsPresent == false) || (projectFolderIsPresent =false)){
+        if (boxTeamFolderUrl == null){
             Assert.fail("Team or Project folder not found");
         }
-        if (pekamaProjectUrl ==null){
-            Assert.fail("ProjectValues url not found");
+        if (pekamaProjectUrl == null){
+            Assert.fail("Project url not found");
         }
-        sleep(4000);
-
         rootLogger.info("Delete files and folders");
         openUrlWithBaseAuth(pekamaProjectUrl);
         scrollUp();

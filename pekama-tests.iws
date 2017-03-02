@@ -7,9 +7,8 @@
   <component name="ChangeListManager">
     <list default="true" id="2fcdccdc-4d95-4ab7-8153-9ec9d616e50f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pekama-tests.iws" afterPath="$PROJECT_DIR$/pekama-tests.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/AllTestsRunner.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/AllTestsRunner.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Steps/StepsPekama.java" afterPath="$PROJECT_DIR$/src/main/java/Steps/StepsPekama.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaIntegrationBox.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaIntegrationBox.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaSettingValues.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaSettingValues.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="build/reports/" />
@@ -221,8 +220,8 @@
           <file leaf-file-name="StepsPekama.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/Steps/StepsPekama.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="319">
-                  <caret line="309" column="0" lean-forward="false" selection-start-line="309" selection-start-column="0" selection-end-line="309" selection-end-column="0" />
+                <state relative-caret-position="856">
+                  <caret line="605" column="0" lean-forward="true" selection-start-line="605" selection-start-column="0" selection-end-line="605" selection-end-column="0" />
                   <folding>
                     <element signature="docComment;class#StepsPekama#0" expanded="false" />
                     <element signature="method#loginIntoPekamaByUrl#0;class#StepsPekama#0" expanded="false" />
@@ -274,9 +273,45 @@
                     <element signature="method#fillTextEditor#0;class#StepsPekama#0" expanded="false" />
                     <element signature="method#deleteProject#0;class#StepsPekama#0" expanded="false" />
                     <element signature="method#checkTextLoop#0;class#StepsPekama#0" expanded="false" />
+                    <element signature="method#checkTextLoop#1;class#StepsPekama#0" expanded="false" />
+                    <element signature="method#checkMatchedTextLoop#0;class#StepsPekama#0" expanded="false" />
                     <element signature="method#checkTextNotPresentLoop#0;class#StepsPekama#0" expanded="false" />
                     <element signature="method#checkTextNotPresentLoop#1;class#StepsPekama#0" expanded="false" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Selectors.java" pinned="false" current-in-tab="false">
+            <entry file="jar://$MAVEN_REPOSITORY$/com/codeborne/selenide/4.2.1/selenide-4.2.1-sources.jar!/com/codeborne/selenide/Selectors.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="319">
+                  <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#839#840#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="By.java" pinned="false" current-in-tab="false">
+            <entry file="jar://$MAVEN_REPOSITORY$/org/seleniumhq/selenium/selenium-api/2.53.1/selenium-api-2.53.1-sources.jar!/org/openqa/selenium/By.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="319">
+                  <caret line="350" column="0" lean-forward="false" selection-start-line="350" selection-start-column="0" selection-end-line="350" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#10716#10717#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Quotes.java" pinned="false" current-in-tab="false">
+            <entry file="jar://$MAVEN_REPOSITORY$/org/seleniumhq/selenium/selenium-support/3.0.1/selenium-support-3.0.1-sources.jar!/org/openqa/selenium/support/ui/Quotes.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="918">
+                  <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -285,23 +320,33 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="TestsPekamaIntegrationBox.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="TestsPekamaIntegrationBox.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaIntegrationBox.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-38">
-                  <caret line="57" column="34" lean-forward="false" selection-start-line="57" selection-start-column="34" selection-end-line="57" selection-end-column="34" />
+                <state relative-caret-position="404">
+                  <caret line="196" column="48" lean-forward="false" selection-start-line="196" selection-start-column="8" selection-end-line="196" selection-end-column="48" />
                   <folding>
-                    <marker date="1488480060313" expanded="true" signature="6454:6580" ph="..." />
+                    <marker date="1488483413242" expanded="true" signature="6446:6577" ph="..." />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="TestsPekamaSettingValues.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="TestsPekamaSettingValues.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaSettingValues.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="897">
-                  <caret line="143" column="104" lean-forward="false" selection-start-line="143" selection-start-column="104" selection-end-line="143" selection-end-column="104" />
+                  <caret line="143" column="0" lean-forward="false" selection-start-line="143" selection-start-column="0" selection-end-line="143" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="StepsExternal.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/Steps/StepsExternal.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="489">
+                  <caret line="157" column="29" lean-forward="false" selection-start-line="157" selection-start-column="24" selection-end-line="157" selection-end-column="29" />
                   <folding />
                 </state>
               </provider>
@@ -476,10 +521,10 @@
         <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityWizard.java" />
         <option value="$PROJECT_DIR$/src/main/java/Page/TestsCredentials.java" />
         <option value="$PROJECT_DIR$/src/main/java/Page/PekamaProject.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Steps/StepsPekama.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/AllTestsRunner.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaIntegrationBox.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaSettingValues.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaIntegrationBox.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Steps/StepsPekama.java" />
       </list>
     </option>
   </component>
@@ -993,7 +1038,7 @@
       </FILE-GROUP>
     </UpdatedFiles>
   </component>
-  <component name="RunManager" selected="JUnit.TestsPekamaSettingValues.typeCRUD">
+  <component name="RunManager" selected="JUnit.TestsPekamaIntegrationBox.testD_checkSyncToBOX">
     <configuration default="false" name="TestsPekamaIntegrationBox.testA_PrepareProject" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -1020,7 +1065,7 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="TestsPekamaSettingValues" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="TestsPekamaSettingValues.typeCRUD" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="com.pekama.app.*" />
@@ -1032,6 +1077,32 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.pekama.app" />
       <option name="MAIN_CLASS_NAME" value="com.pekama.app.TestsPekamaSettingValues" />
+      <option name="METHOD_NAME" value="typeCRUD" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="wholeProject" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="TestsPekamaIntegrationBox" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.pekama.app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="pekama-tests" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.pekama.app" />
+      <option name="MAIN_CLASS_NAME" value="com.pekama.app.TestsPekamaIntegrationBox" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" />
@@ -1046,7 +1117,7 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="TestsPekamaSettingValues.eventTypeCRUD" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="TestsPekamaIntegrationBox and 1 more" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="com.pekama.app.*" />
@@ -1057,9 +1128,9 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.pekama.app" />
-      <option name="MAIN_CLASS_NAME" value="com.pekama.app.TestsPekamaSettingValues" />
-      <option name="METHOD_NAME" value="eventTypeCRUD" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="com.pekama.app.TestsPekamaIntegrationBox" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="pattern" />
       <option name="VM_PARAMETERS" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -1069,10 +1140,13 @@
         <value defaultName="wholeProject" />
       </option>
       <envs />
-      <patterns />
+      <patterns>
+        <pattern testClass="com.pekama.app.TestsPekamaIntegrationBox,testE_DeleteFilesAndCheckSyncToBOX" />
+        <pattern testClass="com.pekama.app.TestsPekamaIntegrationBox,testF_DeleteProjectAndCheckSyncToBOX" />
+      </patterns>
       <method />
     </configuration>
-    <configuration default="false" name="TestsPekamaSettingValues.subtypeCRUD" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="TestsPekamaIntegrationBox.testD_checkSyncToBOX" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="com.pekama.app.*" />
@@ -1083,34 +1157,8 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.pekama.app" />
-      <option name="MAIN_CLASS_NAME" value="com.pekama.app.TestsPekamaSettingValues" />
-      <option name="METHOD_NAME" value="subtypeCRUD" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="wholeProject" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="TestsPekamaSettingValues.typeCRUD" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.pekama.app.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="pekama-tests" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.pekama.app" />
-      <option name="MAIN_CLASS_NAME" value="com.pekama.app.TestsPekamaSettingValues" />
-      <option name="METHOD_NAME" value="typeCRUD" />
+      <option name="MAIN_CLASS_NAME" value="com.pekama.app.TestsPekamaIntegrationBox" />
+      <option name="METHOD_NAME" value="testD_checkSyncToBOX" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" />
       <option name="PARAMETERS" />
@@ -1499,18 +1547,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="JUnit.TestsPekamaIntegrationBox.testA_PrepareProject" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.TestsPekamaSettingValues" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.TestsPekamaSettingValues.eventTypeCRUD" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.TestsPekamaSettingValues.subtypeCRUD" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.TestsPekamaSettingValues.typeCRUD" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.TestsPekamaSettingValues.typeCRUD" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.TestsPekamaIntegrationBox" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.TestsPekamaIntegrationBox and 1 more" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.TestsPekamaIntegrationBox.testD_checkSyncToBOX" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.TestsPekamaSettingValues.typeCRUD" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.TestsPekamaSettingValues.subtypeCRUD" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.TestsPekamaSettingValues.eventTypeCRUD" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.TestsPekamaSettingValues" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.TestsPekamaIntegrationBox.testA_PrepareProject" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.TestsPekamaIntegrationBox.testD_checkSyncToBOX" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.TestsPekamaIntegrationBox and 1 more" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.TestsPekamaIntegrationBox" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.TestsPekamaIntegrationBox.testA_PrepareProject" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.TestsPekamaSettingValues.typeCRUD" />
       </list>
     </recent_temporary>
   </component>
@@ -1590,14 +1638,7 @@
       <workItem from="1488211432755" duration="11918000" />
       <workItem from="1488298311133" duration="12663000" />
       <workItem from="1488385604773" duration="14240000" />
-      <workItem from="1488475424909" duration="4753000" />
-    </task>
-    <task id="LOCAL-00175" summary="SignUpRefactor">
-      <created>1487101706934</created>
-      <option name="number" value="00175" />
-      <option name="presentableId" value="LOCAL-00175" />
-      <option name="project" value="LOCAL" />
-      <updated>1487101706934</updated>
+      <workItem from="1488475424909" duration="8400000" />
     </task>
     <task id="LOCAL-00176" summary="Delete project from reports">
       <created>1487106597714</created>
@@ -1935,43 +1976,50 @@
       <option name="project" value="LOCAL" />
       <updated>1488401452757</updated>
     </task>
-    <option name="localTasksCounter" value="224" />
+    <task id="LOCAL-00224" summary="Statuses fix">
+      <created>1488480934900</created>
+      <option name="number" value="00224" />
+      <option name="presentableId" value="LOCAL-00224" />
+      <option name="project" value="LOCAL" />
+      <updated>1488480934900</updated>
+    </task>
+    <option name="localTasksCounter" value="225" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TestsPekamaIntegrationBox_testA_PrepareProject - 2017.03.02 at 21h 24m 27s.xml">
-      <configuration name="TestsPekamaIntegrationBox.testA_PrepareProject" configurationId="JUnit" />
+    <history-entry file="TestsPekamaIntegrationBox - 2017.03.02 at 22h 08m 29s.xml">
+      <configuration name="TestsPekamaIntegrationBox" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestsPekamaIntegrationBox_testA_PrepareProject - 2017.03.02 at 21h 30m 14s.xml">
-      <configuration name="TestsPekamaIntegrationBox.testA_PrepareProject" configurationId="JUnit" />
+    <history-entry file="TestsPekamaIntegrationBox - 2017.03.02 at 22h 12m 59s.xml">
+      <configuration name="TestsPekamaIntegrationBox" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestsPekamaIntegrationBox_testA_PrepareProject - 2017.03.02 at 21h 31m 07s.xml">
-      <configuration name="TestsPekamaIntegrationBox.testA_PrepareProject" configurationId="JUnit" />
+    <history-entry file="TestsPekamaIntegrationBox_and_1_more - 2017.03.02 at 22h 16m 50s.xml">
+      <configuration name="TestsPekamaIntegrationBox and 1 more" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestsPekamaIntegrationBox_testA_PrepareProject - 2017.03.02 at 21h 31m 56s.xml">
-      <configuration name="TestsPekamaIntegrationBox.testA_PrepareProject" configurationId="JUnit" />
+    <history-entry file="TestsPekamaIntegrationBox_testD_checkSyncToBOX - 2017.03.02 at 22h 26m 35s.xml">
+      <configuration name="TestsPekamaIntegrationBox.testD_checkSyncToBOX" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestsPekamaIntegrationBox_testA_PrepareProject - 2017.03.02 at 21h 32m 39s.xml">
-      <configuration name="TestsPekamaIntegrationBox.testA_PrepareProject" configurationId="JUnit" />
+    <history-entry file="TestsPekamaIntegrationBox_testD_checkSyncToBOX - 2017.03.02 at 22h 28m 29s.xml">
+      <configuration name="TestsPekamaIntegrationBox.testD_checkSyncToBOX" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestsPekamaIntegrationBox_testA_PrepareProject - 2017.03.02 at 21h 33m 32s.xml">
-      <configuration name="TestsPekamaIntegrationBox.testA_PrepareProject" configurationId="JUnit" />
+    <history-entry file="TestsPekamaIntegrationBox_testD_checkSyncToBOX - 2017.03.02 at 22h 36m 22s.xml">
+      <configuration name="TestsPekamaIntegrationBox.testD_checkSyncToBOX" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestsPekamaSettingValues - 2017.03.02 at 21h 46m 05s.xml">
-      <configuration name="TestsPekamaSettingValues" configurationId="JUnit" />
+    <history-entry file="TestsPekamaIntegrationBox_testD_checkSyncToBOX - 2017.03.02 at 22h 40m 29s.xml">
+      <configuration name="TestsPekamaIntegrationBox.testD_checkSyncToBOX" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestsPekamaSettingValues_eventTypeCRUD - 2017.03.02 at 21h 48m 17s.xml">
-      <configuration name="TestsPekamaSettingValues.eventTypeCRUD" configurationId="JUnit" />
+    <history-entry file="TestsPekamaIntegrationBox_testD_checkSyncToBOX - 2017.03.02 at 22h 42m 43s.xml">
+      <configuration name="TestsPekamaIntegrationBox.testD_checkSyncToBOX" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestsPekamaSettingValues_eventTypeCRUD - 2017.03.02 at 21h 52m 17s.xml">
-      <configuration name="TestsPekamaSettingValues.eventTypeCRUD" configurationId="JUnit" />
+    <history-entry file="TestsPekamaIntegrationBox_testD_checkSyncToBOX - 2017.03.02 at 22h 47m 16s.xml">
+      <configuration name="TestsPekamaIntegrationBox.testD_checkSyncToBOX" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestsPekamaSettingValues_subtypeCRUD - 2017.03.02 at 21h 53m 24s.xml">
-      <configuration name="TestsPekamaSettingValues.subtypeCRUD" configurationId="JUnit" />
+    <history-entry file="TestsPekamaIntegrationBox_testD_checkSyncToBOX - 2017.03.02 at 22h 52m 06s.xml">
+      <configuration name="TestsPekamaIntegrationBox.testD_checkSyncToBOX" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="722121000" />
+    <option name="totallyTimeSpent" value="725768000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1989,26 +2037,26 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32577434" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="left" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36780974" sideWeight="0.42532146" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="left" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36780974" sideWeight="0.4164194" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48909658" sideWeight="0.50774336" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32522124" sideWeight="0.49375" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30530974" sideWeight="0.66567755" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30530974" sideWeight="0.5054402" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32522124" sideWeight="0.4915925" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21515487" sideWeight="0.3363007" order="0" side_tool="false" content_ui="tabs" x="710" y="525" width="432" height="494" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21515487" sideWeight="0.330366" order="0" side_tool="false" content_ui="tabs" x="710" y="525" width="432" height="494" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964602" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21736726" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28307176" sideWeight="0.51194185" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30530974" sideWeight="0.33432245" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36780974" sideWeight="0.5835806" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="CVS" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -2023,6 +2071,44 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24925816" sideWeight="0.49778762" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="EJB" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="CVS" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48909658" sideWeight="0.50774336" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32838774" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964602" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21736726" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30530974" sideWeight="0.33432245" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32577434" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="left" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36780974" sideWeight="0.42532146" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32522124" sideWeight="0.49375" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30530974" sideWeight="0.66567755" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32577434" sideWeight="0.45794392" order="12" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32522124" sideWeight="0.4915925" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21515487" sideWeight="0.3363007" order="0" side_tool="false" content_ui="tabs" x="710" y="525" width="432" height="494" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Aspects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24925816" sideWeight="0.49778762" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="EJB" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28307176" sideWeight="0.51194185" order="7" side_tool="true" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="processedProjectFiles" value="true" />
@@ -2054,7 +2140,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Ping util" />
     <MESSAGE value="Test runner for emails" />
     <MESSAGE value="Values task importance CRUD tests" />
     <MESSAGE value="Values transaction CRUD tests" />
@@ -2079,7 +2164,8 @@
     <MESSAGE value="URL config in BeforeClass" />
     <MESSAGE value="Waiting modal window timeout fix" />
     <MESSAGE value="BOX search folder by pattern" />
-    <option name="LAST_COMMIT_MESSAGE" value="BOX search folder by pattern" />
+    <MESSAGE value="Statuses fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Statuses fix" />
   </component>
   <component name="VssConfiguration">
     <CheckoutOptions>
@@ -2922,11 +3008,83 @@
           <properties />
           <option name="timeStamp" value="917" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Steps/StepsPekama.java</url>
+          <line>529</line>
+          <properties />
+          <option name="timeStamp" value="918" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Steps/StepsPekama.java</url>
+          <line>536</line>
+          <properties />
+          <option name="timeStamp" value="919" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Steps/StepsPekama.java</url>
+          <line>542</line>
+          <properties />
+          <option name="timeStamp" value="920" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Steps/StepsPekama.java</url>
+          <line>545</line>
+          <properties />
+          <option name="timeStamp" value="921" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaIntegrationBox.java</url>
+          <line>188</line>
+          <properties />
+          <option name="timeStamp" value="923" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaIntegrationBox.java</url>
+          <line>190</line>
+          <properties />
+          <option name="timeStamp" value="924" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Steps/StepsPekama.java</url>
+          <line>538</line>
+          <properties />
+          <option name="timeStamp" value="926" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Steps/StepsPekama.java</url>
+          <line>548</line>
+          <properties />
+          <option name="timeStamp" value="927" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Steps/StepsPekama.java</url>
+          <line>555</line>
+          <properties />
+          <option name="timeStamp" value="928" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Steps/StepsPekama.java</url>
+          <line>559</line>
+          <properties />
+          <option name="timeStamp" value="930" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Steps/StepsPekama.java</url>
+          <line>561</line>
+          <properties />
+          <option name="timeStamp" value="931" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Steps/StepsPekama.java</url>
+          <line>564</line>
+          <properties />
+          <option name="timeStamp" value="932" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="918" />
+      <option name="time" value="933" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -2935,14 +3093,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_91/jre/lib/rt.jar!/java/lang/String.class" />
-    <entry file="jar://$MAVEN_REPOSITORY$/com/codeborne/selenide/4.2.1/selenide-4.2.1-sources.jar!/com/codeborne/selenide/impl/Navigator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="651">
-          <caret line="123" column="0" lean-forward="false" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/com/codeborne/selenide/4.2.1/selenide-4.2.1-sources.jar!/com/codeborne/selenide/Selenide.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="327">
@@ -2955,14 +3105,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="327">
           <caret line="308" column="18" lean-forward="false" selection-start-line="308" selection-start-column="18" selection-end-line="308" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Steps/StepsExternal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -3305,13 +3447,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/codeborne/selenide/4.2.1/selenide-4.2.1-sources.jar!/com/codeborne/selenide/Selectors.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="583">
-          <caret line="107" column="38" lean-forward="false" selection-start-line="107" selection-start-column="27" selection-end-line="107" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Page/PekamaDashboard.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -3404,20 +3539,64 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Steps/StepsExternal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="489">
+          <caret line="157" column="29" lean-forward="false" selection-start-line="157" selection-start-column="24" selection-end-line="157" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaSettingValues.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="897">
+          <caret line="143" column="0" lean-forward="false" selection-start-line="143" selection-start-column="0" selection-end-line="143" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/seleniumhq/selenium/selenium-support/3.0.1/selenium-support-3.0.1-sources.jar!/org/openqa/selenium/support/ui/Quotes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="918">
+          <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/seleniumhq/selenium/selenium-api/2.53.1/selenium-api-2.53.1-sources.jar!/org/openqa/selenium/By.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="350" column="0" lean-forward="false" selection-start-line="350" selection-start-column="0" selection-end-line="350" selection-end-column="0" />
+          <folding>
+            <element signature="e#10716#10717#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/codeborne/selenide/4.2.1/selenide-4.2.1-sources.jar!/com/codeborne/selenide/Selectors.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding>
+            <element signature="e#839#840#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaIntegrationBox.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-38">
-          <caret line="57" column="34" lean-forward="false" selection-start-line="57" selection-start-column="34" selection-end-line="57" selection-end-column="34" />
+        <state relative-caret-position="404">
+          <caret line="196" column="48" lean-forward="false" selection-start-line="196" selection-start-column="8" selection-end-line="196" selection-end-column="48" />
           <folding>
-            <marker date="1488480060313" expanded="true" signature="6454:6580" ph="..." />
+            <marker date="1488483413242" expanded="true" signature="6446:6577" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Steps/StepsPekama.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="309" column="0" lean-forward="false" selection-start-line="309" selection-start-column="0" selection-end-line="309" selection-end-column="0" />
+        <state relative-caret-position="856">
+          <caret line="605" column="0" lean-forward="true" selection-start-line="605" selection-start-column="0" selection-end-line="605" selection-end-column="0" />
           <folding>
             <element signature="docComment;class#StepsPekama#0" expanded="false" />
             <element signature="method#loginIntoPekamaByUrl#0;class#StepsPekama#0" expanded="false" />
@@ -3469,17 +3648,11 @@
             <element signature="method#fillTextEditor#0;class#StepsPekama#0" expanded="false" />
             <element signature="method#deleteProject#0;class#StepsPekama#0" expanded="false" />
             <element signature="method#checkTextLoop#0;class#StepsPekama#0" expanded="false" />
+            <element signature="method#checkTextLoop#1;class#StepsPekama#0" expanded="false" />
+            <element signature="method#checkMatchedTextLoop#0;class#StepsPekama#0" expanded="false" />
             <element signature="method#checkTextNotPresentLoop#0;class#StepsPekama#0" expanded="false" />
             <element signature="method#checkTextNotPresentLoop#1;class#StepsPekama#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaSettingValues.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="897">
-          <caret line="143" column="104" lean-forward="false" selection-start-line="143" selection-start-column="104" selection-end-line="143" selection-end-column="104" />
-          <folding />
         </state>
       </provider>
     </entry>
