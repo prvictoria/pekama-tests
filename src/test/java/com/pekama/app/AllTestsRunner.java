@@ -52,26 +52,26 @@ import static org.junit.Assume.assumeTrue;
 })
 public class AllTestsRunner {
     static final Logger rootLogger = LogManager.getRootLogger();
-    @Rule
-    public Timeout tests = Timeout.seconds(600); // 10 seconds max per method tested
+//    @Rule
+//    public Timeout tests = Timeout.seconds(600);
 //    @Rule
 //    public SoftAsserts softAsserts = new SoftAsserts();
 
     public static void setBrowser() {
-        browser = FIREFOX;
+//        browser = FIREFOX;
 //        startMaximized = false;
 
-        if(browser.equals("chrome"));
-             {//browserSize = "1700x1000";
-                 ChromeDriverManager.getInstance().setup();
-                 getWebDriver().manage().window().maximize();
+//        if(browser.equals("chrome"));
+//             {//browserSize = "1700x1000";
+//                 ChromeDriverManager.getInstance().setup();
+//                 getWebDriver().manage().window().maximize();
 //                 getWebDriver().manage().window().setPosition(new Point(0,0));
 //                 getWebDriver().manage().window().setSize(new Dimension(1800,1000));
 ////
 //startMaximized = true;
 //                System.out.print("position "+getWebDriver().manage().window().getPosition());
 //                System.out.print("size "+getWebDriver().manage().window().getSize());
-             }
+ //            }
 //        if (browser.equals("marionette")) ;
 //            {FirefoxDriverManager.getInstance().setup();}
 //        if (browser.equals("ie")) ;

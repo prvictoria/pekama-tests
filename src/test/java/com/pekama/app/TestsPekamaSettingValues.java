@@ -141,7 +141,7 @@ public class TestsPekamaSettingValues {
         MW_BTN_OK.shouldBe(disabled);
         fillField(MW_STATUS_VALUE, value);
         submitEnabledButton(MW_BTN_OK);
-        checkText("Please, choose either at least one relevant submatter type or the \"relevant to all\" option");
+        checkText("Please, choose either at least one relevant Country or the \"relevant to all\" option");
 
         rootLogger.info("Create Type - relevant to ALL");
         value = randomString(20);
@@ -205,7 +205,7 @@ public class TestsPekamaSettingValues {
         MW_BTN_OK.shouldBe(disabled);
         fillField(MW_STATUS_VALUE, value);
         submitEnabledButton(MW_BTN_OK);
-        checkText("Please, choose either at least one relevant submatter type or the \"relevant to all\" option");
+        checkText("Please, choose either at least one relevant Country or the \"relevant to all\" option");
 
         rootLogger.info("Create Sub Type - relevant to ALL");
         value = randomString(20);
@@ -269,7 +269,7 @@ public class TestsPekamaSettingValues {
         MW_BTN_OK.shouldBe(disabled);
         fillField(MW_STATUS_VALUE, value);
         submitEnabledButton(MW_BTN_OK);
-        checkText("Please, choose either at least one relevant submatter type or the \"relevant to all\" option");
+        checkText("Please, choose either at least one relevant Mark Type or the \"relevant to all\" option");
 
         rootLogger.info("Create Event Type - relevant to ALL");
         value = randomString(20);

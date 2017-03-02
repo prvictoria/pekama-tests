@@ -49,10 +49,8 @@ public class TestsPekamaIntegrationBox {
     private static boolean afterConnectFilesPresent;
     @Rule
     public Timeout tests = Timeout.seconds(600);
-
     @BeforeClass // TODO: 20-Feb-17 need implement tests
     public static void beforeClass(){
-
         setEnvironment();
         setBrowser();
         holdBrowserAfterTest();
@@ -73,7 +71,7 @@ public class TestsPekamaIntegrationBox {
         clearBrowserCache();
     }
 
-    @Test()
+    @Test
     public void testA_PrepareProject() {
         submitEnabledButton(DASHBOARD_BTN_NEW_PROJECT);
         String projectName = createProject("BOX_TEST_PRJ");
@@ -91,7 +89,7 @@ public class TestsPekamaIntegrationBox {
 
     @Test
     public void testB_ConnectToBOX() {
-        pekamaProjectUrl = "https://staging.pekama.com/a/projects/29350/files";
+       // pekamaProjectUrl = "https://staging.pekama.com/a/projects/29350/files";
         if (pekamaProjectUrl == null){
             Assert.fail("Project url not found");
         }
@@ -148,7 +146,7 @@ public class TestsPekamaIntegrationBox {
 
     @Test
     public void testC_AddFilesInProject() {
-        pekamaProjectUrl = "https://staging.pekama.com/a/projects/29350/files";
+        //pekamaProjectUrl = "https://staging.pekama.com/a/projects/29350/files";
         rootLogger.info("Add files after connect");
         if (pekamaProjectUrl ==null){
             Assert.fail("ProjectValues url not found");
@@ -164,8 +162,8 @@ public class TestsPekamaIntegrationBox {
     }
     @Test
     public void testD_checkSyncToBOX() {
-        boxProjectName = "BOX_TEST_PRJ_0F9TQOOGXM";
-        pekamaProjectUrl = "https://staging.pekama.com/a/projects/29350/files";
+//        boxProjectName = "BOX_TEST_PRJ_0F9TQOOGXM";
+//        pekamaProjectUrl = "https://staging.pekama.com/a/projects/29350/files";
         if (pekamaProjectUrl ==null){
             Assert.fail("ProjectValues url not found");
         }
@@ -252,6 +250,7 @@ public class TestsPekamaIntegrationBox {
 
         rootLogger.info("Delete files and folders");
         openUrlWithBaseAuth(pekamaProjectUrl);
+        scrollUp();
         deleteProject();
 
         rootLogger.info("check in box results");
