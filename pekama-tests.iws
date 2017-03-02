@@ -7,8 +7,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2fcdccdc-4d95-4ab7-8153-9ec9d616e50f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pekama-tests.iws" afterPath="$PROJECT_DIR$/pekama-tests.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Page/Box.java" afterPath="$PROJECT_DIR$/src/main/java/Page/Box.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Steps/StepsExternal.java" afterPath="$PROJECT_DIR$/src/main/java/Steps/StepsExternal.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaIntegrationBox.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaIntegrationBox.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -221,7 +219,7 @@
           <file leaf-file-name="StepsPekama.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/Steps/StepsPekama.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="872">
+                <state relative-caret-position="1059">
                   <caret line="605" column="0" lean-forward="true" selection-start-line="605" selection-start-column="0" selection-end-line="605" selection-end-column="0" />
                   <folding>
                     <element signature="docComment;class#StepsPekama#0" expanded="false" />
@@ -324,11 +322,11 @@
           <file leaf-file-name="TestsPekamaIntegrationBox.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaIntegrationBox.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2623">
-                  <caret line="172" column="17" lean-forward="false" selection-start-line="172" selection-start-column="17" selection-end-line="172" selection-end-column="17" />
+                <state relative-caret-position="302">
+                  <caret line="213" column="36" lean-forward="false" selection-start-line="213" selection-start-column="36" selection-end-line="213" selection-end-column="36" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <marker date="1488486154560" expanded="true" signature="6490:6625" ph="..." />
+                    <marker date="1488486569072" expanded="true" signature="6490:6625" ph="..." />
                   </folding>
                 </state>
               </provider>
@@ -1654,14 +1652,7 @@
       <workItem from="1488211432755" duration="11918000" />
       <workItem from="1488298311133" duration="12663000" />
       <workItem from="1488385604773" duration="14240000" />
-      <workItem from="1488475424909" duration="9979000" />
-    </task>
-    <task id="LOCAL-00177" summary="Delete project from reports">
-      <created>1487106631796</created>
-      <option name="number" value="00177" />
-      <option name="presentableId" value="LOCAL-00177" />
-      <option name="project" value="LOCAL" />
-      <updated>1487106631796</updated>
+      <workItem from="1488475424909" duration="10396000" />
     </task>
     <task id="LOCAL-00178" summary="reports contacts CRUD">
       <created>1487144720711</created>
@@ -1999,7 +1990,14 @@
       <option name="project" value="LOCAL" />
       <updated>1488484586177</updated>
     </task>
-    <option name="localTasksCounter" value="226" />
+    <task id="LOCAL-00226" summary="Login box steps">
+      <created>1488486170286</created>
+      <option name="number" value="00226" />
+      <option name="presentableId" value="LOCAL-00226" />
+      <option name="project" value="LOCAL" />
+      <updated>1488486170286</updated>
+    </task>
+    <option name="localTasksCounter" value="227" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -2012,8 +2010,8 @@
     <history-entry file="TestsPekamaIntegrationBox - 2017.03.02 at 23h 13m 31s.xml">
       <configuration name="TestsPekamaIntegrationBox" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestsPekamaIntegrationBox_testD_checkSyncToBOX - 2017.03.02 at 22h 26m 35s.xml">
-      <configuration name="TestsPekamaIntegrationBox.testD_checkSyncToBOX" configurationId="JUnit" />
+    <history-entry file="TestsPekamaIntegrationBox - 2017.03.02 at 23h 28m 49s.xml">
+      <configuration name="TestsPekamaIntegrationBox" configurationId="JUnit" />
     </history-entry>
     <history-entry file="TestsPekamaIntegrationBox_testD_checkSyncToBOX - 2017.03.02 at 22h 28m 29s.xml">
       <configuration name="TestsPekamaIntegrationBox.testD_checkSyncToBOX" configurationId="JUnit" />
@@ -2035,7 +2033,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="727347000" />
+    <option name="totallyTimeSpent" value="727764000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2060,12 +2058,12 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48909658" sideWeight="0.50774336" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32522124" sideWeight="0.49375" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30530974" sideWeight="0.5014837" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30530974" sideWeight="0.5014837" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32522124" sideWeight="0.4915925" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21515487" sideWeight="0.330366" order="0" side_tool="false" content_ui="tabs" x="710" y="525" width="432" height="494" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21515487" sideWeight="0.330366" order="0" side_tool="false" content_ui="tabs" x="710" y="525" width="432" height="494" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964602" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24925816" sideWeight="0.49778762" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21736726" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -2156,7 +2154,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Values task importance CRUD tests" />
     <MESSAGE value="Values transaction CRUD tests" />
     <MESSAGE value="Values currency CRUD tests" />
     <MESSAGE value="BOX logic - precondition" />
@@ -2181,7 +2178,8 @@
     <MESSAGE value="BOX search folder by pattern" />
     <MESSAGE value="Statuses fix" />
     <MESSAGE value="Loops check folder fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="Loops check folder fix" />
+    <MESSAGE value="Login box steps" />
+    <option name="LAST_COMMIT_MESSAGE" value="Login box steps" />
   </component>
   <component name="VssConfiguration">
     <CheckoutOptions>
@@ -3096,11 +3094,17 @@
           <properties />
           <option name="timeStamp" value="932" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaIntegrationBox.java</url>
+          <line>234</line>
+          <properties />
+          <option name="timeStamp" value="933" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="933" />
+      <option name="time" value="934" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -3577,7 +3581,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Steps/StepsPekama.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="872">
+        <state relative-caret-position="1059">
           <caret line="605" column="0" lean-forward="true" selection-start-line="605" selection-start-column="0" selection-end-line="605" selection-end-column="0" />
           <folding>
             <element signature="docComment;class#StepsPekama#0" expanded="false" />
@@ -3668,11 +3672,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaIntegrationBox.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2623">
-          <caret line="172" column="17" lean-forward="false" selection-start-line="172" selection-start-column="17" selection-end-line="172" selection-end-column="17" />
+        <state relative-caret-position="302">
+          <caret line="213" column="36" lean-forward="false" selection-start-line="213" selection-start-column="36" selection-end-line="213" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1488486154560" expanded="true" signature="6490:6625" ph="..." />
+            <marker date="1488486569072" expanded="true" signature="6490:6625" ph="..." />
           </folding>
         </state>
       </provider>
