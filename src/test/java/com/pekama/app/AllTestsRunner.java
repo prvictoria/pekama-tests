@@ -1,5 +1,4 @@
 package com.pekama.app;
-
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.junit.SoftAsserts;
 import io.github.bonigarcia.wdm.*;
@@ -20,12 +19,11 @@ import static com.codeborne.selenide.WebDriverRunner.FIREFOX;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static com.codeborne.selenide.WebDriverRunner.isIE;
 import static org.junit.Assume.assumeTrue;
-
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
-@Categories.ExcludeCategory(AllEmailsTests.class) //Emails not stable
+//@Categories.ExcludeCategory(AllEmailsTests.class) //Emails not stable
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         TestsCommunityIntegration.class,
@@ -44,7 +42,7 @@ import static org.junit.Assume.assumeTrue;
         TestsPekamaSettingsPersonal.class,
         TestsPekamaProject.class,
         TestsMessages.class,
-        //TestsPekamaIntegrationBox.class, //not ready
+        TestsPekamaIntegrationBox.class, //not ready
         TestsPekamaSettingsTeam.class,
         TestsPekamaSettingValues.class,
         TestsPekamaTemplates.class,
