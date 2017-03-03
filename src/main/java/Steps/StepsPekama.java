@@ -5,6 +5,9 @@ import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
+import org.junit.Test;
+import org.openqa.selenium.WebDriverException;
+
 import java.util.Set;
 
 import static Page.ModalWindows.*;
@@ -14,6 +17,7 @@ import static Page.PekamaProject.*;
 import static Page.PekamaReports.*;
 import static Page.PekamaTeamSettings.*;
 import static Page.TestsCredentials.*;
+import static Page.UrlConfig.MATTER_TYPE_TRADEMARK;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
 import static Steps.StepsHttpAuth.*;
@@ -285,9 +289,15 @@ public class StepsPekama implements StepsFactory{
             rootLogger.info("Zopim displayed");}
         //JQuery=kill document.querySelectorAll('.zopim').forEach(function(elm){elm.parentNode.removeChild(elm)})
     }
-    public static void hideZopim(){
-        executeJavaScript("$zopim.livechat.hideAll()");
+    public static boolean hideZopim(){
+        try{executeJavaScript("$zopim.livechat.hideAll()");
         rootLogger.info("Zopim collapsed");
+        return true;
+        }
+        catch (WebDriverException e) {
+            rootLogger.info("Zopim not found error");
+            return false;
+       }
     }
     public static void scrollCustom(int value) {
         executeJavaScript("scrollTo(0, "+value+")");
@@ -601,5 +611,18 @@ public class StepsPekama implements StepsFactory{
         }
         rootLogger.info(displayedText+" NOT displayed");
         return true;
+    }
+    @Test
+    public void testDebug(){
+        setEnvironment();
+        StepsPekama loginIntoPekama = new StepsPekama();
+        loginIntoPekama.loginByURL(
+                User1.GMAIL_EMAIL.getValue(),
+                User1.PEKAMA_PASSWORD.getValue(),
+                URL_COMMUNITY_LOGIN);
+        refresh();
+        hideZopim();
+
+
     }
 }

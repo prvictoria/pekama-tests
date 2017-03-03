@@ -50,24 +50,21 @@ public class TestsPekamaDashboard {
     public Timeout tests = Timeout.seconds(500);
     @BeforeClass
     public static void beforeClass() {
-        setEnvironment ();
+        setEnvironment();
         setBrowser();
         holdBrowserAfterTest();
-        rootLogger.info("Open host");
+    }
+    @Before
+    public void before() {
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(
                 USER_EMAIL,
                 USER_PEKAMA_PASSWORD,
                 URL_LogIn);
     }
-    @Before
-    public void before() {
-        openUrlWithBaseAuth(URL_Dashboard);
-        sleep(2000);
-    }
     @AfterClass
     public static void afterClass() {
-        open(URL_Logout);
+        //open(URL_Logout);
         clearBrowserCache();
     }
 
@@ -157,7 +154,6 @@ public class TestsPekamaDashboard {
         REPORTS_PAGE_TITLE_PANEL
                 .waitUntil(visible, 15000)
                 .shouldHave(text("Projects"));
-
         rootLogger.info("Test passed");
     }
     @Test
@@ -238,7 +234,7 @@ public class TestsPekamaDashboard {
         MW.pressEscape();
         MW.shouldNotBe(visible);
 
-        rootLogger.info("Validation Type and Title passed");
+        rootLogger.info("Validation mandatory Type and Title passed");
     }
     @Test
     public void testF2_ModalNewProjectValidation() {
@@ -255,7 +251,7 @@ public class TestsPekamaDashboard {
         MW.pressEscape();
         MW.shouldNotBe(visible);
 
-        rootLogger.info("Validation Title passed");
+        rootLogger.info("Validation mandatory Title passed");
     }
     @Test
     public void testF3_ModalNewProjectValidation() {
@@ -273,7 +269,7 @@ public class TestsPekamaDashboard {
         MW.pressEscape();
         MW.shouldNotBe(visible);
 
-        rootLogger.info("Validation Definig and Title passed");
+        rootLogger.info("Validation mandatory Definig and Title passed");
     }
     @Test
     public void testF4_ModalNewProjectValidation() {
@@ -293,7 +289,7 @@ public class TestsPekamaDashboard {
 
         rootLogger.info("Validation Definig and Title passed");
     }
-    @Ignore
+
     @Test
     public void testF5_ModalNewProjectValidation() {
         DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 20000).click();
@@ -311,8 +307,7 @@ public class TestsPekamaDashboard {
         checkText(ERROR_MSG_VALIDATION_LENGTH_255);
         MW.pressEscape();
         MW.shouldNotBe(visible);
-
-        rootLogger.info("Validation Definig and Title passed");
+        rootLogger.info("Validation max length reference number - passed");
     }
 
 }
