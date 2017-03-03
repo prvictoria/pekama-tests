@@ -232,7 +232,9 @@ public class TestsPekamaIntegrationBox {
         $(byText(FolderNameAfterConnect)).shouldNotBe(visible);
         $(byText(FileNameAfterConnect)).shouldNotBe(visible);
         rootLogger.info("Sync files after connect passed");
+        boxNoFiles.shouldBe(visible);
         boxNoFilesPlaceholder.shouldBe(exist);
+
         rootLogger.info("Files were deleted from BOX");
         rootLogger.info("Test passed");
     }
@@ -245,6 +247,7 @@ public class TestsPekamaIntegrationBox {
         if (pekamaProjectUrl == null){
             Assert.fail("Project url not found");
         }
+        
         rootLogger.info("Delete files and folders");
         openUrlWithBaseAuth(pekamaProjectUrl);
         scrollUp();

@@ -10,10 +10,11 @@ import org.junit.runners.MethodSorters;
 
 import static Page.CommunityDashboard.*;
 import static Page.CommunityOutgoing.*;
-import static Page.PekamaConversationProject.CONVERSATION_MsgText;
+import static Page.PekamaConversationProject.*;
 import static Page.PekamaProject.*;
-import static Page.PekamaProject.PROJECT_BTN_DELETE;
+import static Page.PekamaProject.*;
 import static Page.TestsCredentials.*;
+import static Page.UrlConfig.*;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
 import static Steps.Messages.*;
@@ -39,7 +40,7 @@ public class TestsCommunityIncoming {
     private static String caseName;
     private static String testProjectTitle;
     private static String testProjectURL;
-    private final static String TEST_CASE_TYPE = CaseType.PATENT.getValue();
+    private static String TEST_CASE_TYPE;
     private final static String TEST_CASE_COUNTRY = Countries.PITCAIRN_ISLANDS.getValue();
     private final static String TEST_CASE_NAME = "CUSTOM_NAME"+randomString(10);
     
@@ -64,6 +65,7 @@ public class TestsCommunityIncoming {
         setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
+        TEST_CASE_TYPE = MATTER_TYPE_PATENT;
     }
     @Before
     public void before() {
