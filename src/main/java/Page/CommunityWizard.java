@@ -44,4 +44,5 @@ public class CommunityWizard extends Page {
     public static final SelenideElement BTN_SEND_INSTRUCTION = $(byXpath("//button[contains(text(),'Send Instructions')]"));
     //5 step
     public static final SelenideElement WIZARD_BTN_INSTRUCT_NOW = $(byXpath("//button[contains(text(),'Instruct Now!')]"));
+    public static final SelenideElement WIZARD_BTN_CANCEL = $(byXpath("//button[contains(text(),'Cancel')]"));
 }

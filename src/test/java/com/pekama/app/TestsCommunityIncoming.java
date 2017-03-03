@@ -335,9 +335,8 @@ public class TestsCommunityIncoming {
         rootLogger.info("Open case row");
         String row = getFirstCaseRow(caseName);
         $(byXpath(row)).click();
-        String userName = EXPERT_NAME;
-        rootLogger.info("Check default message present: "+msgCaseCancelled(userName));
-        checkText(msgCaseCancelled(userName));
+        rootLogger.info("Check default message present: "+msgCaseCancelled(EXPERT_NAME));
+        checkText(msgCaseCancelled(EXPERT_NAME));
         rootLogger.info("Test passed");
     }
     @Test

@@ -84,6 +84,7 @@ public class Emails extends Page {
     public static final String GMAIL_URL_LOG_OUT = "https://www.google.com/accounts/Logout"; //username  remains
     public static final String GMAIL_URL_SIGN_OUT = "https://accounts.google.com/Logout?continue=https%3A%2F%2Faccounts.google.com%2FServiceLogin%3Fsacu%3D1&il=true&zx=icxpgruz0yao";
 
+    public static final SelenideElement GMAIL_LOGIN_COOKIE = $(byName("PersistentCookie"));
     public static final SelenideElement GMAIL_LOGIN_FIELD = $(byName("Email"));
     public static final SelenideElement GMAIL_PASSWORD_FIELD = $(byId("Passwd"));
     public static final SelenideElement GMAIL_SIGNIN_BTN = $(byId("signIn"));

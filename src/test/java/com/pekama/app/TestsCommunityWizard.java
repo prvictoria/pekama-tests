@@ -16,8 +16,7 @@ import static Page.Emails.*;
 import static Page.ModalWindows.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
-import static Page.UrlConfig.MATTER_TYPE_TRADEMARK;
-import static Page.UrlConfig.setEnvironment;
+import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
 import static Steps.Messages.*;
 import static Steps.StepsCommunity.*;
@@ -28,7 +27,7 @@ import static Utils.Utils.randomString;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
+import static com.codeborne.selenide.WebDriverRunner.*;
 import static com.pekama.app.AllTestsRunner.*;
 /**
  * Created by Viachaslau Balashevich.
@@ -36,8 +35,6 @@ import static com.pekama.app.AllTestsRunner.*;
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsCommunityWizard {
-    @Rule
-    public Timeout tests = Timeout.seconds(600);
     static final Logger rootLogger = LogManager.getRootLogger();
     private static String TEST_CASE_TYPE;
     private final static String TEST_CASE_COUNTRY = Countries.PITCAIRN_ISLANDS.getValue();
@@ -49,12 +46,12 @@ public class TestsCommunityWizard {
     private final static String REQUESTER_FULL_TEAM_NAME = TestsCredentials.User3.FULL_TEAM_NAME.getValue();
     private final static String REQUESTER_NAME_SURNAME = TestsCredentials.User3.NAME_SURNAME.getValue();
 
-    private final static String EXPERT_EMAIL = TestsCredentials.User2.GMAIL_EMAIL.getValue();
-    private final static String EXPERT_PEKAMA_PASSWORD = TestsCredentials.User2.PEKAMA_PASSWORD.getValue();
-    private final static String EXPERT_NAME = TestsCredentials.User2.NAME.getValue();
-    private final static String EXPERT_SURNAME = TestsCredentials.User2.SURNAME.getValue();
+    private final static String EXPERT_EMAIL = TestsCredentials.User1.GMAIL_EMAIL.getValue();
+    private final static String EXPERT_PEKAMA_PASSWORD = TestsCredentials.User1.PEKAMA_PASSWORD.getValue();
+    private final static String EXPERT_NAME = TestsCredentials.User1.NAME.getValue();
+    private final static String EXPERT_SURNAME = TestsCredentials.User1.SURNAME.getValue();
     private final static String EXPERT_TEAM_NAME = TestsCredentials.User1.TEAM_NAME.getValue();
-    private final static String EXPERT_FULL_TEAM_NAME = TestsCredentials.User2.FULL_TEAM_NAME.getValue();
+    private final static String EXPERT_FULL_TEAM_NAME = TestsCredentials.User1.FULL_TEAM_NAME.getValue();
     private final static String EXPERT_NAME_SURNAME = TestsCredentials.User1.NAME_SURNAME.getValue();
     private final static String INTRODUCER_NAME = "Rand, Kaldor & Zane LLP (RKNZ)";
 
@@ -64,23 +61,25 @@ public class TestsCommunityWizard {
         TEST_CASE_TYPE = MATTER_TYPE_TRADEMARK;
         setBrowser();
         holdBrowserAfterTest();
-        rootLogger.info("Open host");
-        StepsPekama loginIntoPekama = new StepsPekama();
-        loginIntoPekama.loginByURL(
-                REQUESTER_EMAIL,
-                REQUESTER_PEKAMA_PASSWORD, URL_COMMUNITY_LOGIN);
-        rootLogger.info("Redirect back after login");
     }
     @Before
     public void before() {
-        open(URL_COMMUNITY_WIZARD);
+        StepsPekama loginIntoPekama = new StepsPekama();
+        loginIntoPekama.loginByURL(
+                REQUESTER_EMAIL,
+                REQUESTER_PEKAMA_PASSWORD,
+                URL_COMMUNITY_LOGIN);
+        //rootLogger.info("Redirect back after login");
+        //open(URL_COMMUNITY_WIZARD);
     }
     @AfterClass
     public static void after() {
-        open(URL_COMMUNITY_LOGOUT);
-        rootLogger.info("Open URL - "+URL_COMMUNITY_LOGOUT);
+        //open(URL_COMMUNITY_LOGOUT);
+        //rootLogger.info("Open URL - "+URL_COMMUNITY_LOGOUT);
         clearBrowserCache();
     }
+    @Rule
+    public Timeout tests = Timeout.seconds(600);
 
     @Test
     public void boostYourProfileToWizardRedirect() {
@@ -321,8 +320,7 @@ public class TestsCommunityWizard {
         WIZARD_BTN_GetStarted.shouldBe(visible).shouldBe(disabled);
         rootLogger.info("Test passed");
     }
-    @Ignore //todo
-    @Test @Category(AllEmailsTests.class)
+    @Test
     public void cancelCaseOn5thStep_A(){
         rootLogger.info("1st Search");
         String status = COMMUNITY_STATUS_SENT;
@@ -338,26 +336,47 @@ public class TestsCommunityWizard {
         rootLogger.info("3rd select NEXT");
         WIZARD_FIELD_CASE_NAME.shouldHave(value(TEST_CASE_TYPE+" in "+TEST_CASE_COUNTRY));
         fillField(WIZARD_FIELD_CASE_NAME, caseName);
-
         WIZARD_BTN_NEXT.click();
+
+        rootLogger.info("4th select NEXT");
         sleep(3000);
         BTN_SEND_INSTRUCTION.shouldBe(visible).click();
-        // TODO: 23-Feb-17 flow
-        WIZARD_BTN_INSTRUCT_NOW.shouldBe(visible).click();
+
+        rootLogger.info("5th step - cancel case");
+        WIZARD_BTN_CANCEL.shouldBe(visible).click();
+        acceptCancelCase(true);
+        checkText(msgCaseCancelled(EXPERT_NAME), 2);
         rootLogger.info("Test passed");
     }
-    @Ignore //todo param email
-    @Test @Category(AllEmailsTests.class)
-    public void cancelCaseOn5thStep_B_CheckEmail(){
+    @Test
+    public void cancelCaseOn5thStep_B(){
+        rootLogger.info("1st Search");
+        String status = COMMUNITY_STATUS_SENT;
+        String caseName = "SENT_CASE_"+randomString(10);
+        searchExpertsQuery(TEST_CASE_TYPE, TEST_CASE_COUNTRY);
+        searchExpertsSubmit();
 
-            checkInboxEmail(
-                    REQUESTER_EMAIL,
-                    GMAIL_PASSWORD,
-                    EMAIL_CONGRATULATION_SUBJECT,
-                    EMAIL_CONGRATULATION_TITLE,
-                    EMAIL_CONGRATULATION_TEXT);
-            rootLogger.info("Test passed");
+        rootLogger.info("2nd select expert");
+        WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.shouldBe(disabled);
+        selectExpert(EXPERT_TEAM_NAME);
+        submitEnabledButton(WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS);
+
+        rootLogger.info("3rd select NEXT");
+        WIZARD_FIELD_CASE_NAME.shouldHave(value(TEST_CASE_TYPE+" in "+TEST_CASE_COUNTRY));
+        fillField(WIZARD_FIELD_CASE_NAME, caseName);
+        WIZARD_BTN_NEXT.click();
+
+        rootLogger.info("4th select NEXT");
+        sleep(3000);
+        BTN_SEND_INSTRUCTION.shouldBe(visible).click();
+
+        rootLogger.info("5th step - cancel case");
+        WIZARD_BTN_CANCEL.shouldBe(visible).click();
+        acceptCancelCase(false);
+        checkTextNotPresent(msgCaseCancelled(EXPERT_NAME), 2);
+        rootLogger.info("Test passed");
     }
+
     @Test @Category(AllEmailsTests.class)
     public void createCaseInstructWithDetails_A(){
         rootLogger.info("1st Search");

@@ -1,9 +1,14 @@
 package Steps;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
 public class Messages implements StepsFactory{
+    static final Logger rootLogger = LogManager.getRootLogger();
     //Common messages
 
 
@@ -36,6 +41,7 @@ public class Messages implements StepsFactory{
     public final static String msgCaseCancelled(String userName) {
         String MSG_DEFAULT_CANCEL = "Dear %s. I'm afraid that we will not be proceeding with this case. Thank you for your information. Please close your file.";
         String msg = String.format(MSG_DEFAULT_CANCEL, userName);
+        rootLogger.info(msg);
         return msg;
     }
 

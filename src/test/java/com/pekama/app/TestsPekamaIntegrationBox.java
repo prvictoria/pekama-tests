@@ -50,7 +50,7 @@ public class TestsPekamaIntegrationBox {
     private static boolean afterConnectFilesPresent;
     @Rule
     public Timeout tests = Timeout.seconds(600);
-    @BeforeClass // TODO: 20-Feb-17 need implement tests
+    @BeforeClass
     public static void beforeClass(){
         setEnvironment();
         setBrowser();

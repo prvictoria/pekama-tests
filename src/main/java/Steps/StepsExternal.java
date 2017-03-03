@@ -11,7 +11,9 @@ import org.junit.runners.MethodSorters;
 import static Page.Box.*;
 import static Page.Emails.*;
 import static Page.TestsCredentials.GMAIL_PASSWORD;
+import static Steps.StepsPekama.checkText;
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.*;
@@ -29,117 +31,99 @@ public class StepsExternal implements StepsFactory{
     private static String[] args;
 
     public static void checkEmailGeneric(String GMAIL_LOGIN, String GMAIL_PASSWORD, SelenideElement EMAIL_SUBJECT, String EMAIL_TITLE, String EMAIL_TEXT, String EMAIL_BTN, SelenideElement EMAIL_REDIRECT_LINK, String thisMailingListName){
-        rootLogger.info("Login");
-        signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
-        rootLogger.info("Detect email");
-        detectEmail(EMAIL_SUBJECT);
-        rootLogger.info("Open email");
-        openEmail(EMAIL_SUBJECT);
-        rootLogger.info("Check title");
-        checkEmailTitle(EMAIL_TITLE);
-        rootLogger.info("Check Text");
-        checkEmailText(EMAIL_TEXT);
-        rootLogger.info("Check Button");
-        checkEmailButton(EMAIL_BTN);
-        rootLogger.info("Check redirect Link");
-        checkRedirectLink(EMAIL_REDIRECT_LINK);
-        rootLogger.info("Check report back Link");
-        checkReportTitleAndBackLink(EMAIL_TEXT, thisMailingListName);
-        rootLogger.info("Check attachment");
-        checkEmailReportAttachment();
-        rootLogger.info("Delete email");
-        deleteEmail();
-        rootLogger.info("Empty trash");
-        inboxEmptyTrash();
-        rootLogger.info("Email deleted");
-    };
+       try {
+           signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
+           detectEmail(EMAIL_SUBJECT);
+           openEmail(EMAIL_SUBJECT);
+           checkEmailTitle(EMAIL_TITLE);
+           checkEmailText(EMAIL_TEXT);
+           checkEmailButton(EMAIL_BTN);
+           checkRedirectLink(EMAIL_REDIRECT_LINK);
+           checkReportTitleAndBackLink(EMAIL_TEXT, thisMailingListName);
+           checkEmailReportAttachment();
+           deleteEmail();
+           inboxEmptyTrash();
+       }
+       finally {
+           logoutGoogleInbox();
+       }
+    }
     public static String checkInboxEmail(String GMAIL_LOGIN, String GMAIL_PASSWORD, SelenideElement EMAIL_SUBJECT, String EMAIL_TITLE, String EMAIL_TEXT, String EMAIL_BTN, SelenideElement EMAIL_REDIRECT_LINK) {
-        rootLogger.info("Login");
-        signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
-        detectEmail(EMAIL_SUBJECT);
-        rootLogger.info("Open email");
-        openEmail(EMAIL_SUBJECT);
-        rootLogger.info("Check title");
-        checkEmailTitle(EMAIL_TITLE);
-        rootLogger.info("Check Text");
-        checkEmailText(EMAIL_TEXT);
-        rootLogger.info("Check Button");
-        checkEmailButton(EMAIL_BTN);
-        rootLogger.info("Check redirect Link");
-        checkRedirectLink(EMAIL_REDIRECT_LINK);
-        rootLogger.info("Delete email");
-        deleteEmail();
-        rootLogger.info("Empty trash");
-        inboxEmptyTrash();
-        rootLogger.info("Email deleted");
+        try {
+            signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
+            detectEmail(EMAIL_SUBJECT);
+            openEmail(EMAIL_SUBJECT);
+            checkEmailTitle(EMAIL_TITLE);
+            checkEmailText(EMAIL_TEXT);
+            checkEmailButton(EMAIL_BTN);
+            checkRedirectLink(EMAIL_REDIRECT_LINK);
+            deleteEmail();
+            inboxEmptyTrash();
+        }
+        finally {
+            logoutGoogleInbox();
+        }
         return REDIRECT_LINK;
     }
     public static String checkInboxEmail(String GMAIL_LOGIN, String GMAIL_PASSWORD, SelenideElement EMAIL_SUBJECT, String EMAIL_TITLE, String EMAIL_TEXT) {
-        rootLogger.info("Login");
-        signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
-        detectEmail(EMAIL_SUBJECT);
-        rootLogger.info("Open email");
-        openEmail(EMAIL_SUBJECT);
-        rootLogger.info("Check title");
-        checkEmailTitle(EMAIL_TITLE);
-        rootLogger.info("Check Text");
-        checkEmailText(EMAIL_TEXT);
-        rootLogger.info("Delete email");
-        deleteEmail();
-        rootLogger.info("Empty trash");
-        inboxEmptyTrash();
-        rootLogger.info("Email deleted");
+        try {
+            signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
+            detectEmail(EMAIL_SUBJECT);
+            openEmail(EMAIL_SUBJECT);
+            checkEmailTitle(EMAIL_TITLE);
+            checkEmailText(EMAIL_TEXT);
+            deleteEmail();
+            inboxEmptyTrash();
+        }
+        finally {
+            logoutGoogleInbox();
+        }
         return REDIRECT_LINK;
     }
     public static String checkEmailReport(String GMAIL_LOGIN, String GMAIL_PASSWORD, String thisMailingListName){
-        SelenideElement EMAIL_SUBJECT = EMAIL_REPORT_SUBJECT;
-        String EMAIL_TEXT = EMAIL_REPORT_TEXT;
-        String EMAIL_TITLE = "Pekama Report \""+thisMailingListName+"\"";
-        rootLogger.info("Login");
-        signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
-        rootLogger.info("Detect email");
-        detectEmail(EMAIL_SUBJECT);
-        rootLogger.info("Open email");
-        openEmail(EMAIL_SUBJECT);
-        rootLogger.info("Check title");
-        checkEmailTitle(EMAIL_TITLE);
-        rootLogger.info("Check Text");
-        checkEmailText(EMAIL_TEXT);
-        rootLogger.info("Check report back Link");
-        checkReportTitleAndBackLink(EMAIL_TEXT, thisMailingListName);
-        rootLogger.info("Check attachment");
-        checkEmailReportAttachment();
-        rootLogger.info("Delete email");
-        deleteEmail();
-        rootLogger.info("Empty trash");
-        inboxEmptyTrash();
-        rootLogger.info("Email deleted");
-        open(GMAIL_URL_SIGN_OUT);
+        try {
+            SelenideElement EMAIL_SUBJECT = EMAIL_REPORT_SUBJECT;
+            String EMAIL_TEXT = EMAIL_REPORT_TEXT;
+            String EMAIL_TITLE = "Pekama Report \"" + thisMailingListName + "\"";
+            signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
+            detectEmail(EMAIL_SUBJECT);
+            openEmail(EMAIL_SUBJECT);
+            checkEmailTitle(EMAIL_TITLE);
+            checkEmailText(EMAIL_TEXT);
+            checkReportTitleAndBackLink(EMAIL_TEXT, thisMailingListName);
+            checkEmailReportAttachment();
+            deleteEmail();
+            inboxEmptyTrash();
+        }
+        finally {
+            logoutGoogleInbox();
+        }
         return checkReportBackLink;
     }
 
-    //Inbox Steps
+    //Inbox Steps Google
     public static void signInGmailInbox(String GMAIL_LOGIN, String GMAIL_PASSWORD) { //Logic for open INBOX twice or more times in one session without logout
-        rootLogger.info("Start browser");
+        rootLogger.info("Login GoogleInbox");
         open(INBOX_URL);
         sleep(2000);
         INBOX_SIGNIN.waitUntil(visible, 15000).click();
         sleep(3000);
-        if (INBOX_BTN_TRASH.is(visible) == true){
-            rootLogger.info("User is logged in and inbox is opened");
-        }
-        if (GMAIL_PASSWORD_FIELD.is(visible) == true){
-            rootLogger.info("Type password");
-            GMAIL_PASSWORD_FIELD.shouldBe(visible).sendKeys(GMAIL_PASSWORD);
-            rootLogger.info("Submit password");
-            GMAIL_SIGNIN_BTN.shouldBe(visible).click();
-            rootLogger.info("Inbox opened");
-        }
         if(GMAIL_LOGIN_FIELD.is(visible) == true) {
             rootLogger.info("Type email");
             GMAIL_LOGIN_FIELD.sendKeys(GMAIL_LOGIN);
             rootLogger.info("Submit email");
             GMAIL_NEXT_BTN.click();
+            rootLogger.info("Type password");
+            GMAIL_PASSWORD_FIELD.shouldBe(visible).sendKeys(GMAIL_PASSWORD);
+            if(GMAIL_LOGIN_COOKIE.isSelected()){
+                GMAIL_LOGIN_COOKIE.setSelected(false);
+                GMAIL_LOGIN_COOKIE.shouldNotBe(selected);
+            }
+            rootLogger.info("Submit password");
+            GMAIL_SIGNIN_BTN.shouldBe(visible).click();
+            rootLogger.info("Inbox opened");
+        }
+        if (GMAIL_PASSWORD_FIELD.is(visible) == true){
             rootLogger.info("Type password");
             GMAIL_PASSWORD_FIELD.shouldBe(visible).sendKeys(GMAIL_PASSWORD);
             rootLogger.info("Submit password");
@@ -149,8 +133,12 @@ public class StepsExternal implements StepsFactory{
         else {
             rootLogger.info("Inbox opened");
         }
+        if (INBOX_BTN_TRASH.is(visible) == true){
+            rootLogger.info("User is logged in and inbox is opened");
+        }
     }
     public static void detectEmail(SelenideElement EMAIL_SUBJECT){
+        rootLogger.info("Detect email");
         if (EMAIL_SUBJECT.exists() == false) {
             int count = 0;
             do {
@@ -169,6 +157,7 @@ public class StepsExternal implements StepsFactory{
 
     }
     public static void openEmail(SelenideElement EMAIL_SUBJECT){
+        rootLogger.info("Open email");
         sleep(4000);
         if (EMAIL_SUBJECT.exists() == false) {
             Assert.fail("Subject email not found - " + EMAIL_SUBJECT);
@@ -183,6 +172,7 @@ public class StepsExternal implements StepsFactory{
     }
 
     public static void checkEmailTitle(String EMAIL_TITLE){
+        rootLogger.info("Check title");
         if (EMAIL_TITLE == null) {
             Assert.fail("Title email is - " + EMAIL_TITLE);
         }
@@ -190,6 +180,7 @@ public class StepsExternal implements StepsFactory{
         rootLogger.info(EMAIL_TITLE + "- email present");
     }
     public static void checkEmailText(String EMAIL_TEXT){
+        rootLogger.info("Check email Text");
         if (EMAIL_TEXT == null) {
             Assert.fail("Title email is - " + EMAIL_TEXT);
         }
@@ -197,6 +188,7 @@ public class StepsExternal implements StepsFactory{
         rootLogger.info(EMAIL_TEXT + " - email present");
     }
     public static void checkEmailButton(String EMAIL_BTN){
+        rootLogger.info("Check email Button");
         if (EMAIL_BTN == null) {
             Assert.fail("Title email is - " + EMAIL_BTN);
         }
@@ -204,6 +196,7 @@ public class StepsExternal implements StepsFactory{
         rootLogger.info(EMAIL_BTN + "- email present");
     }
     public static String checkRedirectLink(SelenideElement EMAIL_REDIRECT_LINK){
+        rootLogger.info("Check redirect Link");
         EMAIL_REDIRECT_LINK.waitUntil(visible, 20000);
         REDIRECT_LINK = null;
         REDIRECT_LINK = EMAIL_REDIRECT_LINK.getAttribute("href");
@@ -215,6 +208,7 @@ public class StepsExternal implements StepsFactory{
 
     }
     public static String checkReportTitleAndBackLink(String EMAIL_TEXT, String thisMailingListName) {
+        rootLogger.info("Check report back Link");
         checkReportBackLink = null;
         String EMAIL_TITLE = EMAIL_REPORT+" "+"\""+thisMailingListName+"\"";
         $$(byText(EMAIL_TITLE)).filter(visible).getTexts(); //get whole test
@@ -228,6 +222,7 @@ public class StepsExternal implements StepsFactory{
         return checkReportBackLink;
     }
     public static String checkEmailReportAttachment(){
+        rootLogger.info("Check attachment");
         String attachmentFullTitle = EMAIL_REPORT_ATTACHMENT.getAttribute("title");
         rootLogger.info("This attachment present in mail - " +attachmentFullTitle);
         if (attachmentFullTitle == null) {
@@ -242,11 +237,13 @@ public class StepsExternal implements StepsFactory{
         return link;
     }
     public static void deleteEmail() {
+        rootLogger.info("Delete email");
         sleep(1000);
         INBOX_BTN_DELETE.waitUntil(visible, 20000).click();
         INBOX_BTN_DELETE.waitUntil(not(visible), 10000);
     }
     public static void inboxEmptyTrash(){
+        rootLogger.info("Empty trash");
         sleep(1000);
         INBOX_BTN_TRASH.waitUntil(visible, 10000).click();
         sleep(1000);
@@ -264,8 +261,16 @@ public class StepsExternal implements StepsFactory{
                     if ((alertIsPresent() != null)) {
             confirm();
             }
-    } //not ready
-
+    } //not need for now
+    public static void logoutGoogleInbox(){
+        rootLogger.info("Logout Google");
+        open("https://accounts.google.com/SignOutOptions?hl=en&continue=https://inbox.google.com/%3Fcid%3Dimp");
+        if ($(byId("signout")).isDisplayed()) {
+            $(byId("signout")).click();
+            sleep(3000);
+            checkText("Sign in with your Google Account");
+        }
+    }
     public static void loginBoxFirstTime(){
         if (true)
         {
@@ -333,7 +338,7 @@ public class StepsExternal implements StepsFactory{
             sleep(4000);
         }
     }
-    
+
     public static void authLinkedin(){
     }
 
@@ -342,38 +347,36 @@ public class StepsExternal implements StepsFactory{
         SelenideElement actualSubject = $(byXpath(buildSubject));
         return actualSubject;
     }
-    @Test
-    public void emailSubject (){
-        SelenideElement a = emailSubject("new test project - ORL9GP");
-        System.out.println(a);
-    }
     public static String emailInviteInProjectTitle(String... args){
         String emailTitle = String.format(EMAIL_INVITE_IN_PROJECT_TITLE, args);
         return emailTitle;
-    }
-    @Test
-    public void emailInviteInProjectTitle (){
-        String a = emailInviteInProjectTitle("1", "2");
-        System.out.println(a);
     }
     public static String emailInviteInProjectText(String... args){
         String emailText = String.format(EMAIL_INVITE_IN_PROJECT_TEXT, args);
         return emailText;
     }
     @Test
-    public void emailInviteInProjectText (){
-        String a = emailInviteInProjectText("name", "surname", "project title");
-        System.out.println(a);
+    public void externalTestDebug1() {
+        checkEmailGeneric(
+                TestsCredentials.User2.GMAIL_EMAIL.getValue(),
+                GMAIL_PASSWORD,
+                $(byText("EMAIL_SUBJECT")),
+                "EMAIL_TITLE",
+                "EMAIL_TEXT",
+                "EMAIL_BTN",
+                $(byText("EMAIL_REDIRECT_LINK")),
+                "thisMailingListName");
+//        signInGmailInbox(
+//                TestsCredentials.User1.GMAIL_EMAIL.getValue(),
+//                GMAIL_PASSWORD);
+//        logoutGoogleInbox();
     }
     @Test
-    public void externalTestDebug() {
-            StepsExternal loginGmailInboxApp = new StepsExternal();
-            String GMAIL_LOGIN = TestsCredentials.User4.GMAIL_EMAIL.getValue();
-            loginGmailInboxApp.signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
-            loginGmailInboxApp.signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
-            //loginGmailInboxApp.inboxEmptyTrash();
-
-
+    public void externalTestDebug2() {
+        signInGmailInbox(
+                TestsCredentials.User2.GMAIL_EMAIL.getValue(),
+                GMAIL_PASSWORD);
+        logoutGoogleInbox();
     }
 
 
