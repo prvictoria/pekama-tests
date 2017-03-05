@@ -10,7 +10,7 @@ import org.junit.runners.Suite;
         TestsPekamaDashboard.class,
         TestsPekamaLanding.class,
         TestsPekamaLogin.class,
-        TestsPekamaResetPassword.class,
+        TestsPekamaResetPassword.class, //not important for now
         TestsPekamaSignUp.class,
         TestsPekamaSettingsPersonal.class,
         TestsPekamaProject.class,
@@ -19,7 +19,7 @@ import org.junit.runners.Suite;
         TestsPekamaSettingsTeam.class,
         TestsPekamaSettingValues.class,
         TestsPekamaTemplates.class,
-        TestsPekamaReports.class
+        TestsPekamaReports.class //last suite
 })
 public class AllPekamaTestsRunner extends AllTestsRunner{
 

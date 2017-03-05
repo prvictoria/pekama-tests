@@ -42,7 +42,7 @@ import static org.junit.Assume.assumeTrue;
         TestsPekamaSettingsPersonal.class,
         TestsPekamaProject.class,
         TestsMessages.class,
-        TestsPekamaIntegrationBox.class, //not ready
+        TestsPekamaIntegrationBox.class,
         TestsPekamaSettingsTeam.class,
         TestsPekamaSettingValues.class,
         TestsPekamaTemplates.class,
