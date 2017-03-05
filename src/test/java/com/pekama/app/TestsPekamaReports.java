@@ -46,16 +46,14 @@ public class TestsPekamaReports {
     }
     @Before
     public void login() {
-        rootLogger.info("Open URL - " +URL_Dashboard);
         openUrlWithBaseAuth(URL_LogIn);
         StepsPekama login = new StepsPekama();
         login.submitLoginCredentials(TEST_USER_LOGIN);
-        rootLogger.info("Redirect after login to - "+URL_Dashboard);
-        sleep(1000);
+        sleep(3000);
     }
     @AfterClass
     public static void afterClass() {
-        open(URL_Logout);
+        //open(URL_Logout);
         clearBrowserCache();
     }
 
@@ -275,7 +273,7 @@ public class TestsPekamaReports {
             submitConfirmAction();
             checkText(PLACEHOLDER_NO_DATA);
         }
-        checkText(PLACEHOLDER_NO_DATA);
+        checkText(PLACEHOLDER_NO_DATA, 2);
         rootLogger.info("All contacts were deleted");
     }
 

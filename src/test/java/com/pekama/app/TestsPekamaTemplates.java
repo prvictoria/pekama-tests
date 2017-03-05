@@ -51,7 +51,7 @@ public class TestsPekamaTemplates {
         sleep(1000);
     }
     @After
-    public void logout(){open(URL_Logout);}
+    public void logout(){openUrlWithBaseAuth(URL_Logout);}
     @AfterClass
     public static void afterClass() {
         clearBrowserCache();
@@ -128,10 +128,14 @@ public class TestsPekamaTemplates {
         if (SETTINGS_DELETE_X.isDisplayed()==false){
                 Assert.fail("Project not created");
             }
-            while (PekamaTeamSettings.SETTINGS_DELETE_X.isDisplayed()){
-                SETTINGS_DELETE_X.click();
-                submitConfirmAction();
+        while (PekamaTeamSettings.SETTINGS_DELETE_X.isDisplayed()){
+            SETTINGS_DELETE_X.click();
+            submitConfirmAction();
+            sleep(3000);
+            if(SETTINGS_DELETE_X.isDisplayed()==false){
+                break;
             }
+        }
         rootLogger.info("Test passed");
     }
     @Test
@@ -174,6 +178,10 @@ public class TestsPekamaTemplates {
         while (PekamaTeamSettings.SETTINGS_DELETE_X.isDisplayed()){
             SETTINGS_DELETE_X.click();
             submitConfirmAction();
+            sleep(3000);
+            if(SETTINGS_DELETE_X.isDisplayed()==false){
+                break;
+            }
         }
         rootLogger.info("Test passed");
    }
@@ -201,6 +209,10 @@ public class TestsPekamaTemplates {
         while (PekamaTeamSettings.SETTINGS_DELETE_X.isDisplayed()){
             SETTINGS_DELETE_X.click();
             submitConfirmAction();
+            sleep(3000);
+            if(SETTINGS_DELETE_X.isDisplayed()==false){
+                break;
+            }
         }
         rootLogger.info("Test passed");
     }
@@ -244,6 +256,10 @@ public class TestsPekamaTemplates {
         while (PekamaTeamSettings.SETTINGS_DELETE_X.isDisplayed()){
             SETTINGS_DELETE_X.click();
             submitConfirmAction();
+            sleep(3000);
+            if(SETTINGS_DELETE_X.isDisplayed()==false){
+                break;
+            }
         }
         rootLogger.info("Test passed");
     }

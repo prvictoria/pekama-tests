@@ -29,6 +29,7 @@ import static Steps.Messages.*;
 import static Steps.StepsCommunity.checkCaseNameFirstRow;
 import static Steps.StepsCommunity.selectExpert;
 import static Steps.StepsExternal.*;
+import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static Utils.Utils.*;
@@ -79,16 +80,14 @@ public class TestsPekamaProject {
         setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
-        rootLogger.info("Open host");
+    }
+    @Before
+    public void before() {
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(
                 TEST_USER_EMAIL,
                 TEST_USER_PEKAMA_PASSWORD,
                 URL_LogIn);
-    }
-    @Before
-    public void before() {
-        open(URL_Dashboard);
         rootLogger.info("Create project");
         DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 15000).click();
         rootLogger.info("NW - New project");
@@ -113,7 +112,7 @@ public class TestsPekamaProject {
     }
     @AfterClass
     public static void after() {
-        open(URL_Logout);
+        openUrlWithBaseAuth(URL_Logout);
         clearBrowserCache();
     }
     @Test
@@ -635,7 +634,8 @@ public class TestsPekamaProject {
         waitForModalWindow(TITLE_MW_EVENT);
         MW_BTN_SAVE.shouldBe(disabled);
         MW_INPUT_DATE.click();
-        MW_INPUT_DATE.pressEscape();
+        sleep(500);
+        MW.click();
         fillField(MW_EVENT_INPUT_INFO, LOREM_IPSUM_SHORT);
         selectItemInDropdown(MW_EVENT_SELECT_TYPE, MW_EVENT_INPUT_TYPE, APPLICATION_REGISTERED.getValue());
         submitEnabledButton(MW_BTN_SAVE);

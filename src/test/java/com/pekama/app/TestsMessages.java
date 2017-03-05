@@ -43,16 +43,14 @@ public class TestsMessages {
         setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
-        rootLogger.info("Open host");
+    }
+    @Before
+    public void before() {
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(
                 TEST_USER_EMAIL,
                 TEST_USER_PEKAMA_PASSWORD,
                 URL_LogIn);
-    }
-    @Before
-    public void before() {
-            open(URL_Dashboard);
             rootLogger.info("Create project");
             DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 15000).click();
             String testProjectName = createProject();
@@ -60,8 +58,8 @@ public class TestsMessages {
     }
     @AfterClass
     public static void after() {
-        open(URL_Logout);
-        rootLogger.info("Open URL - "+URL_Logout);
+        //open(URL_Logout);
+        //rootLogger.info("Open URL - "+URL_Logout);
         clearBrowserCache();
     }
     @Test

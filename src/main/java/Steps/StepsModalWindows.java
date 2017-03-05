@@ -203,7 +203,8 @@ public class StepsModalWindows implements StepsFactory {
         waitForModalWindow(TITLE_MW_EVENT);
         MW_BTN_SAVE.shouldBe(disabled);
         MW_INPUT_DATE.click();
-        MW_INPUT_DATE.pressEscape();
+        sleep(500);
+        MW.click();
         fillField(MW_EVENT_INPUT_INFO, LOREM_IPSUM_SHORT);
         selectItemInDropdown(MW_EVENT_SELECT_TYPE, MW_EVENT_INPUT_TYPE, eventTypeName);
         submitEnabledButton(MW_BTN_SAVE);

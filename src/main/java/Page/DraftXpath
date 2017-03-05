@@ -14,10 +14,7 @@ xpath=//*[text()="right"]
 xpath=.//div/button[2]
 xpath=//button[text()='Create']
 xpath=//input[@type='checkbox' and @ng-change='selectionService.toggleAll(selectionService.all)']
-//i[@class='btn btn-small start']/span[contains(.,'All')]
-//input[@type="checkbox"] - все инпуты чекбоксы
-button class="btn-link" pkm-confirm-click="bulkDelete()"
-Delete</button>
+
 //button[@pkm-confirm-click="bulkDelete()"]
 //input[@type="text"]/pkm-financial-fields
 .//*[@class='list-doc-icon']/div/ul/li/span[text()='All']

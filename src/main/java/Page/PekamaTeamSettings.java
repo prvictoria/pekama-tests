@@ -37,6 +37,7 @@ public class PekamaTeamSettings extends Page {
 
     public static final SelenideElement TAB_MEMBERS_BTN_ADD = $(byXpath("//button[text()='Add']"));
     public static String BTN_DELETE_MEMBER = "//div[@class='cells-row']//div[contains(.,'%s')]/following-sibling::div//i";
+    public static String ICON_DELETE_MEMBER = "//a[.//i[@class='pkm-icon-cancel']]";
 
 
     public static final SelenideElement TAB_MEMEBERS_ROW = $(byXpath(""));

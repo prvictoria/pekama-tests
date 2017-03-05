@@ -34,7 +34,7 @@ import org.junit.runners.Suite;
         TestsPekamaReports.class //last suite
 })
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class AllEmailsTests {
+public class AllEmailsTests extends AllTestsRunner {
 
 }
 

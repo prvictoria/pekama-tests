@@ -218,15 +218,13 @@ public class TestsCommunityOutgoing {
         submitConfirmAction();
 
         rootLogger.info("Check Outgoing cases");
-        openUrlWithBaseAuth(URL_COMMUNITY_TO_OUTGOING);
+        openUrlWithBaseAuth(URL_COMMUNITY_OUTGOING);
         sleep(4000);
         checkCaseStatus(caseName, COMMUNITY_STATUS_CANCELLED);
         $(byXpath(getFirstCaseRow(caseName))).click();
         sleep(4000);
         checkText(COMMUNITY_STATUS_CANCELLED);
         checkText("This project was deleted by its owner.");
-        // TODO: 2/23/2017  rootLogger.info("Check Outgoing cases");
-
         rootLogger.info("Test passed");
     }
     @Test

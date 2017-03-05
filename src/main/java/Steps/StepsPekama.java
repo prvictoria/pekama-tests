@@ -18,7 +18,7 @@ import static Page.PekamaReports.*;
 import static Page.PekamaTeamSettings.*;
 import static Page.TestsCredentials.*;
 import static Page.UrlConfig.MATTER_TYPE_TRADEMARK;
-import static Page.UrlConfig.setEnvironment;
+import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
 import static Steps.StepsHttpAuth.*;
 import static Steps.StepsModalWindows.*;
@@ -380,6 +380,21 @@ public class StepsPekama implements StepsFactory{
         $(byXpath(row)).shouldNotBe(visible);
         rootLogger.info(email+" - member was deleted");
     }
+    public static void deleteAllMembers(String testTeamNameSurname) {
+        openUrlWithBaseAuth(URL_Members);
+        checkText(testTeamNameSurname);
+        if ($$(byXpath(ICON_DELETE_MEMBER)).size()!=0){
+            do {
+                $(byXpath(ICON_DELETE_MEMBER)).shouldBe(visible);
+                $(byXpath(ICON_DELETE_MEMBER)).click();
+                submitConfirmAction();
+                sleep(2000);
+            }
+            while ($$(byXpath(ICON_DELETE_MEMBER)).size()!=0);
+            rootLogger.info("All - members were deleted");
+        }
+    }
+
     public static void openPageWithSpinner(String reportPage){
         open(reportPage);
         sleep(3000);

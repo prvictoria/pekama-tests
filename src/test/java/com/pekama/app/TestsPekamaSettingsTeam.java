@@ -59,7 +59,7 @@ public class TestsPekamaSettingsTeam {
     }
     @After
     public void after() {
-        open(URL_Logout);
+        //open(URL_Logout);
         clearBrowserCache();
     }
 

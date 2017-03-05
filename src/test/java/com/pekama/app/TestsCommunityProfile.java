@@ -2,11 +2,16 @@ package com.pekama.app;
 import Page.TestsCredentials;
 import Steps.StepsPekama;
 import com.codeborne.selenide.Condition;
+import junit.framework.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
+import org.junit.Assert;
+import org.junit.Test;
 import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
+
+import java.security.SecureRandom;
 
 import static Page.CommunityDashboard.*;
 import static Page.CommunityProfile.*;
@@ -43,7 +48,8 @@ public class TestsCommunityProfile {
     String PEKAMA_USER_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
     String TEST_USER_NAME = User3.NAME.getValue();
     String TEST_USER_SURNAME = User3.SURNAME.getValue();
-    String NEW_MEMBER = "qazwsx@qaz.com";
+    String TEST_USER_NAME_SURNAME = User3.NAME_SURNAME.getValue();
+    String NEW_MEMBER = "newmember@qaz.com";
     @BeforeClass
     public static void beforeClass() {
         setEnvironment ();
@@ -52,7 +58,6 @@ public class TestsCommunityProfile {
     }
     @Before
     public void openUrlLogin() {
-        log.info("Open host");
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(PEKAMA_USER_EMAIL, PEKAMA_USER_PASSWORD, URL_COMMUNITY_LOGIN);
         log.info("Redirect back after login");
@@ -123,9 +128,16 @@ public class TestsCommunityProfile {
     @Test
     public void testA_addMember() {
         log.info("Check members QTY");
-        String qty = "1";
-        String actualMemberQty = qty+" Members";
-        PROFILE_MEMBERS_COUNT.shouldHave(text(actualMemberQty));
+        PROFILE_MEMBERS_COUNT.shouldBe(visible);
+        sleep(3000);
+        String actualMemberQty = PROFILE_MEMBERS_COUNT.getText();
+        String defaultMemberQty = "1 Members";
+        if (defaultMemberQty.equals(actualMemberQty)==false){
+            deleteAllMembers(TEST_USER_NAME_SURNAME);
+            openUrlWithBaseAuth(URL_COMMUNITY_PROFILE_TEAM);
+            PROFILE_MEMBERS_COUNT.waitUntil(visible, 20000);
+        }
+        PROFILE_MEMBERS_COUNT.shouldHave(text(defaultMemberQty));
         PROFILE_BTN_INVITE.shouldBe(visible).click();
         waitForModalWindow("Members");
         MW_BTN_SUBMIT.click();
@@ -134,18 +146,25 @@ public class TestsCommunityProfile {
         MW_INPUT_NEW_MEMBER_EMAIL.sendKeys(NEW_MEMBER);
         log.info("Add memeber");
         MW_BTN_SUBMIT.click();
-        MW.waitUntil(not(visible), 15000);
+        MW_BTN_SUBMIT.waitUntil(not(visible), 40000);
 
-        qty = "2";
-        actualMemberQty = qty+" Members";
-        PROFILE_MEMBERS_COUNT.shouldHave(text(actualMemberQty));
-        $(byText(NEW_MEMBER+" (inactive)")).shouldBe(Condition.visible);
+        log.info("Ceck and submit score prompt");
+        checkText("The community score will be raised by 5 once he joins your team.");
+        submitEnabledButton(MW_BTN_OK);
+        MW_BTN_OK.shouldNot(visible);
+
+        String twoMemberQty = "2 Members";
+        actualMemberQty = PROFILE_MEMBERS_COUNT.getText();
+        if (twoMemberQty.equals(actualMemberQty)==false){
+            Assert.fail("Member not added");
+        }
+        sleep(2000);
+        $(byText(NEW_MEMBER+" (inactive)")).waitUntil(visible, 10000);
         log.info("New Memeber is displayed");
 
         log.info("Delete member");
         openUrlWithBaseAuth(URL_Members);
         deleteMember(NEW_MEMBER);
-
     }
 
     @Test

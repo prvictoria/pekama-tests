@@ -14,6 +14,7 @@ import static Page.TestsStrings.*;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
 import static Steps.StepsExternal.authGmail;
+import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static com.codeborne.selenide.Condition.text;
@@ -32,27 +33,29 @@ import static com.pekama.app.AllTestsRunner.setBrowser;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaSettingsPersonal {
     static final Logger rootLogger = LogManager.getRootLogger();
-    private static final String testUserEmail = User3.GMAIL_EMAIL.getValue();
-    private static final String testUserPekamaPassword = User3.PEKAMA_PASSWORD.getValue();
+    private static final String TEST_USER_LOGIN = User3.GMAIL_EMAIL.getValue();
+    private static final String TEST_USER_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
     private static final String testUserGmailPassword = User3.GMAIL_PASSWORD.getValue();
-    private static final String AUTH_URL = URL_PersonalSettings;
     @Rule
-    public Timeout tests = Timeout.seconds(600);
+    public Timeout tests = Timeout.seconds(400);
     @BeforeClass
     public static void beforeClass() {
         setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
-        StepsPekama loginIntoPekama = new StepsPekama();
-        loginIntoPekama.loginByURL(testUserEmail, testUserPekamaPassword, AUTH_URL);
     }
     @Before
     public void before() {
-        open(AUTH_URL);
+        StepsPekama loginIntoPekama = new StepsPekama();
+        loginIntoPekama.loginByURL(
+                TEST_USER_LOGIN,
+                TEST_USER_PASSWORD,
+                URL_LogIn);
+        openUrlWithBaseAuth(URL_PersonalSettings);
     }
     @AfterClass
     public static void after() {
-        open(URL_Logout);
+        //open(URL_Logout);
         clearBrowserCache();
     }
 
@@ -538,7 +541,7 @@ public class TestsPekamaSettingsPersonal {
         IMAP_TAB_SSL.shouldBe(Condition.visible);
 
         rootLogger.info("Connect email manual");
-        fillField(IMAP_TAB_FIELD_USENAME, testUserEmail);
+        fillField(IMAP_TAB_FIELD_USENAME, TEST_USER_LOGIN);
         fillField(IMAP_TAB_FIELD_PASSWORD, testUserGmailPassword);
         fillField(IMAP_TAB_FIELD_SERVER_NAME, "imap.gmail.com");
         fillField(IMAP_TAB_FIELD_PORT, "993");
@@ -579,7 +582,7 @@ public class TestsPekamaSettingsPersonal {
             rootLogger.info("Connect Gmail via Auth2");
             IMAP_TAB_BTN_CONNECT_GMAIL.click();
             sleep(2000);
-            authGmail(testUserEmail);
+            authGmail(TEST_USER_LOGIN);
             sleep(1000);
             switchTo().window("Pekama | Projects");
 
