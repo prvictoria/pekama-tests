@@ -80,7 +80,6 @@ public class TestsCommunityProfile {
         PROFILE_BTN_INVITE.shouldBe(visible).shouldBe(enabled);
         log.info("Gui elements present");
     }
-
     @Test
     public void boostScrores() {
         log.info("Check redirect to wizard");
@@ -124,7 +123,6 @@ public class TestsCommunityProfile {
         PROFILE_INPUT_DESCRIPTION.shouldHave(Condition.value(LOREM_IPSUM_SHORT));
         log.info("Saved firm's expertise with dummy text");
     }
-
     @Test
     public void testA_addMember() {
         log.info("Check members QTY");
@@ -166,7 +164,6 @@ public class TestsCommunityProfile {
         openUrlWithBaseAuth(URL_Members);
         deleteMember(NEW_MEMBER);
     }
-
     @Test
     public void service_testA_addService() {
         log.info("Add new service");
@@ -205,7 +202,6 @@ public class TestsCommunityProfile {
         changeServiceRate(profileServiceCaseType, profileServiceCountry, newPrice);
         submitEnabledButton(PROFILE_SERVICE_SAVE);
     }
-
     @Test
     public void service_testD_deleteService() {
         log.info("Delete service");
@@ -218,7 +214,6 @@ public class TestsCommunityProfile {
         log.info("Service was deleted");
         PROFILE_BTN_ADD.shouldBe(disabled);
     }
-
     @Test
     public void yourProfileSaveNewName_A_SetNewName() {
         log.info("open Your profile tab");

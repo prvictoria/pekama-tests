@@ -11,6 +11,7 @@ import org.junit.runners.MethodSorters;
 import static Page.ModalWindows.*;
 import static Page.PekamaTeamSettings.*;
 import static Page.TestsStrings.*;
+import static Page.UrlConfig.*;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
 import static Steps.StepsModalWindows.*;
@@ -81,7 +82,7 @@ public class TestsPekamaTemplates {
         selectItemInDropdown(
                 MW_Project_SelectType,
                 MW_Project_InputType,
-                CaseType.PATENT.getValue());
+                MATTER_TYPE_PATENT);
         submitEnabledButton(MW_BTN_OK);
         checkText(ERROR_MSG_REQUIRED_FIELD);
         checkText("This field may not be null.");
@@ -97,7 +98,7 @@ public class TestsPekamaTemplates {
         selectItemInDropdown(
                 MW_Project_SelectType,
                 MW_Project_InputType,
-                CaseType.PATENT.getValue());
+                MATTER_TYPE_PATENT);
         selectItemInDropdown(
                 MW_Project_SelectDefining,
                 MW_Project_InputDefining,
@@ -116,7 +117,7 @@ public class TestsPekamaTemplates {
         selectItemInDropdown(
                 MW_Project_SelectType,
                 MW_Project_InputType,
-                CaseType.PATENT.getValue());
+                MATTER_TYPE_PATENT);
         selectItemInDropdown(
                 MW_Project_SelectDefining,
                 MW_Project_InputDefining,

@@ -10,6 +10,7 @@ import static Page.ModalWindows.*;
 import static Page.PekamaTeamSettings.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
+import static Page.UrlConfig.*;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
 import static Steps.StepsModalWindows.*;
@@ -28,16 +29,17 @@ import static com.pekama.app.AllTestsRunner.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaSettingValues {
     static final Logger rootLogger = LogManager.getRootLogger();
-    private final String TEST_USER_LOGIN = User1.GMAIL_EMAIL.getValue();
-    private final String TEST_USER_PASSWORD = User1.PEKAMA_PASSWORD.getValue();
-    private final String TEST_MATTER_TYPE = CaseType.TRADEMARK.getValue();
+    private final static String TEST_USER_LOGIN = User1.GMAIL_EMAIL.getValue();
+    private final static String TEST_USER_PASSWORD = User1.PEKAMA_PASSWORD.getValue();
+    private static String TEST_MATTER_TYPE = MATTER_TYPE_TRADEMARK;
     @Rule
-    public Timeout tests = Timeout.seconds(600);
+    public Timeout tests = Timeout.seconds(300);
     @BeforeClass
     public static void beforeClass() {
         setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
+        TEST_MATTER_TYPE = MATTER_TYPE_TRADEMARK;
     }
     @Before
     public void before() {

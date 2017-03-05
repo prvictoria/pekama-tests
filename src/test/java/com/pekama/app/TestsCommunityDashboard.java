@@ -97,7 +97,7 @@ public class TestsCommunityDashboard {
         COMMUNITY_HEADER_LOGIN.shouldBe(Condition.visible);
         COMMUNITY_TAB_Supplier.shouldBe(Condition.visible).shouldHave(Condition.text("find a supplier")).click();
         WIZARD_BTN_GetStarted.shouldBe(visible).shouldBe(disabled);
-        String caseType = CaseType.PATENT.getValue();
+        String caseType = MATTER_TYPE_PATENT;
         String country = Countries.PITCAIRN_ISLANDS.getValue();
         searchExpertsQuery(caseType, country);
         searchExpertsSubmit();

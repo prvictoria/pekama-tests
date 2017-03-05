@@ -21,6 +21,7 @@ import static Page.PekamaPersonalSettings.*;
 import static Page.PekamaReports.*;
 import static Page.PekamaTeamSettings.*;
 import static Page.TestsStrings.*;
+import static Page.UrlConfig.*;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
 import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
@@ -32,7 +33,6 @@ import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 import static com.pekama.app.AllTestsRunner.*;
-
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaDashboard {
     static final Logger rootLogger = LogManager.getRootLogger();
@@ -40,7 +40,7 @@ public class TestsPekamaDashboard {
     private static String testContactName = "name"+ randomString(10);
     private static String testContactSurname = "surname"+ randomString(10);
     private static String defaultProjectURL;
-    private final static String TEST_PROJECT_TYPE = TestsCredentials.CaseType.TRADEMARK.getValue();
+    private static String TEST_PROJECT_TYPE = MATTER_TYPE_TRADEMARK;
     private final static String USER_EMAIL = User1.GMAIL_EMAIL.getValue();
     private final static String USER_PEKAMA_PASSWORD = User1.PEKAMA_PASSWORD.getValue();
     private final static String USER_XERO_PASSWORD = User3.XERO_PASSWORD.getValue();
@@ -53,6 +53,7 @@ public class TestsPekamaDashboard {
         setEnvironment();
         setBrowser();
         holdBrowserAfterTest();
+        TEST_PROJECT_TYPE = MATTER_TYPE_TRADEMARK;
     }
     @Before
     public void before() {
