@@ -52,7 +52,7 @@ public class AllTestsRunner {
                 browser = CHROME;
                 startMaximized = false;
 //                browserSize = "1700x1000";
-//                ChromeDriverManager.getInstance().setup();
+                ChromeDriverManager.getInstance().setup();
 //                getWebDriver().manage().window().maximize();
 //                getWebDriver().manage().window().setPosition(new Point(0, 0));
 //                getWebDriver().manage().window().setSize(new Dimension(1800, 1000));
@@ -62,16 +62,19 @@ public class AllTestsRunner {
                 break;
             case 2:
                 browser = MARIONETTE;
+                startMaximized = false;
                 FirefoxDriverManager.getInstance().setup();
                 rootLogger.info("Tests will performed in Firefox");
                 break;
             case 3:
                 browser = INTERNET_EXPLORER;
+                startMaximized = false;
                 InternetExplorerDriverManager.getInstance().setup();
                 rootLogger.info("Tests will performed in IE");
                 break;
             case 4:
                 browser = EDGE;
+                startMaximized = false;
                 EdgeDriverManager.getInstance().setup();
                 rootLogger.info("Tests will performed in EDGE");
                 break;
