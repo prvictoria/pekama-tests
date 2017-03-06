@@ -1,24 +1,14 @@
 package com.pekama.app;
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.junit.SoftAsserts;
 import io.github.bonigarcia.wdm.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.experimental.categories.Categories;
-import org.junit.rules.Timeout;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
-
-import static Page.UrlConfig.*;
 import static com.codeborne.selenide.Configuration.*;
-import static com.codeborne.selenide.WebDriverRunner.FIREFOX;
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static com.codeborne.selenide.WebDriverRunner.isIE;
-import static org.junit.Assume.assumeTrue;
+import static com.codeborne.selenide.WebDriverRunner.*;
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
@@ -55,29 +45,37 @@ public class AllTestsRunner {
 //    @Rule
 //    public SoftAsserts softAsserts = new SoftAsserts();
 
+    public static int testBrowser = 1;
     public static void setBrowser() {
-//        browser = FIREFOX;
-//        startMaximized = false;
-
-//        if(browser.equals("chrome"));
-//             {//browserSize = "1700x1000";
-//                 ChromeDriverManager.getInstance().setup();
-//                 getWebDriver().manage().window().maximize();
-//                 getWebDriver().manage().window().setPosition(new Point(0,0));
-//                 getWebDriver().manage().window().setSize(new Dimension(1800,1000));
-////
-//startMaximized = true;
-//                System.out.print("position "+getWebDriver().manage().window().getPosition());
-//                System.out.print("size "+getWebDriver().manage().window().getSize());
- //            }
-//        if (browser.equals("marionette")) ;
-//            {FirefoxDriverManager.getInstance().setup();}
-//        if (browser.equals("ie")) ;
-//            {InternetExplorerDriverManager.getInstance().setup();}
-//        if (browser.equals("edge")) ;
-//            {EdgeDriverManager.getInstance().setup();}
-
-
+        switch (testBrowser) {
+            case 1:
+                browser = CHROME;
+                startMaximized = false;
+//                browserSize = "1700x1000";
+//                ChromeDriverManager.getInstance().setup();
+//                getWebDriver().manage().window().maximize();
+//                getWebDriver().manage().window().setPosition(new Point(0, 0));
+//                getWebDriver().manage().window().setSize(new Dimension(1800, 1000));
+//                System.out.print("position " + getWebDriver().manage().window().getPosition());
+//                System.out.print("size " + getWebDriver().manage().window().getSize());
+                rootLogger.info("Tests will performed in Chrome");
+                break;
+            case 2:
+                browser = MARIONETTE;
+                FirefoxDriverManager.getInstance().setup();
+                rootLogger.info("Tests will performed in Firefox");
+                break;
+            case 3:
+                browser = INTERNET_EXPLORER;
+                InternetExplorerDriverManager.getInstance().setup();
+                rootLogger.info("Tests will performed in IE");
+                break;
+            case 4:
+                browser = EDGE;
+                EdgeDriverManager.getInstance().setup();
+                rootLogger.info("Tests will performed in EDGE");
+                break;
+        }
     }
     public static void holdBrowserAfterTest() {
         Configuration test = new Configuration();

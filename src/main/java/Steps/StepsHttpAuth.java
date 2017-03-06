@@ -1,8 +1,10 @@
 package Steps;
 import Steps.StepsFactory;
 import com.codeborne.selenide.Selenide;
+import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.junit.Test;
 import static com.codeborne.selenide.Selenide.sleep;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static com.codeborne.selenide.WebDriverRunner.isFirefox;
 import static org.junit.Assume.assumeTrue;
 /**
@@ -30,11 +32,13 @@ public class StepsHttpAuth implements StepsFactory {
     }
     public static void openUrlWithBaseAuth(String AUTH_URL) {
 //        assumeTrue(isFirefox());
+        ChromeDriverManager.getInstance().setup();
         Selenide.open(AUTH_URL,
                 "",
                 "qweeco",
                 "qw33coStudi0");
         sleep(250);
+        getWebDriver().manage().window().maximize();
 
 
     }

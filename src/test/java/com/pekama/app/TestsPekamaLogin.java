@@ -49,9 +49,9 @@ public class TestsPekamaLogin {
 
     @Test
     public void testEnvironment() {
-        open(ENVIRONMENT_PEKAMA);
+        openUrlWithBaseAuth(ENVIRONMENT_PEKAMA);
         rootLogger.info(ENVIRONMENT_PEKAMA +" - opened");
-        open(ENVIRONMENT_COMMUNITY);
+        openUrlWithBaseAuth(ENVIRONMENT_COMMUNITY);
         rootLogger.info(ENVIRONMENT_COMMUNITY +" - opened");
     }
     @Test
