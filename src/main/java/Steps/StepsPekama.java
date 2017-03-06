@@ -408,7 +408,7 @@ public class StepsPekama implements StepsFactory{
         }
     }
     public static void openPageWithSpinner(String reportPage){
-        open(reportPage);
+        openUrlWithBaseAuth(reportPage);
         sleep(3000);
         waitForSpinnerNotPresent();
         rootLogger.info(reportPage+" - is opened");
