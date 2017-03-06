@@ -43,7 +43,7 @@ public class TestsPekamaLogin {
     }
     @After
     public void openUrlLogout() {
-        open(URL_Logout);
+        openUrlWithBaseAuth(URL_Logout);
         clearBrowserCache();
     }
 
@@ -126,6 +126,6 @@ public class TestsPekamaLogin {
         String testDashboardUrl = url();
         assertEquals(URL_Dashboard, testDashboardUrl);
         rootLogger.info(url()+"Dashboard is opened");
-        open(URL_Logout);
+        openUrlWithBaseAuth(URL_Logout);
     }
 }

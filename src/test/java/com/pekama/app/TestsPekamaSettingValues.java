@@ -13,6 +13,7 @@ import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
+import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static Utils.Utils.randomString;
@@ -52,7 +53,7 @@ public class TestsPekamaSettingValues {
     }
     @After
     public void after() {
-        open(URL_Logout);
+        openUrlWithBaseAuth(URL_Logout);
         clearBrowserCache();
     }
 

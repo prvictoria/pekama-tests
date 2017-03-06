@@ -25,6 +25,7 @@ import static Page.UrlStrings.*;
 import static Steps.Messages.*;
 import static Steps.Messages.*;
 import static Steps.StepsCommunity.*;
+import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static Utils.Utils.randomString;
@@ -74,7 +75,7 @@ public class TestsCommunityIntegration {
     }
     @Before
     public void before() {
-        open(URL_Dashboard);
+        openUrlWithBaseAuth(URL_Dashboard);
         rootLogger.info("Create project");
         DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 20000).click();
         testProjectTitle = createProject();
@@ -82,7 +83,7 @@ public class TestsCommunityIntegration {
     }
     @AfterClass
     public static void afterClass() {
-        open(URL_Logout);
+        openUrlWithBaseAuth(URL_Logout);
         clearBrowserCache();
     }
 

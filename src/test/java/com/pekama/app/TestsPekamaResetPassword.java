@@ -285,7 +285,7 @@ public class TestsPekamaResetPassword {
                 String thisUrl = url();
                 assertEquals(thisUrl, URL_Dashboard);
         rootLogger.info("Login into Pekama with NEW valid credentials");
-        open(URL_Logout);
+            openUrlWithBaseAuth(URL_Logout);
         }
         else Assert.fail("password - "+NEW_PASSWORD);
     }
@@ -307,7 +307,7 @@ public class TestsPekamaResetPassword {
             checkInboxEmail(GMAIL_LOGIN, GMAIL_PASSWORD,EMAIL_SUBJECT, EMAIL_TITLE, EMAIL_TEXT, EMAIL_BTN, EMAIL_REDIRECT_LINK);
             rootLogger.info("Email and links correspond requirements");
 
-            open(REDIRECT_LINK);
+            openUrlWithBaseAuth(REDIRECT_LINK);
             NEWPASSWORD_PAGE_NEW_PASSWORD.waitUntil(visible, 10000).sendKeys(NEW_PASSWORD);
             NEWPASSWORD_PAGE_CONFIRM_PASSWORD.shouldBe(Condition.visible).sendKeys(NEW_PASSWORD);
             NEWPASSWORD_PAGE_RESTORE_BTN.click();

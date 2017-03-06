@@ -219,12 +219,12 @@ public class TestsPekamaReports {
         rootLogger.info("Email deleted");
         open(GMAIL_URL_SIGN_OUT);
 
-        open(link);
+        openUrlWithBaseAuth(link);
         sleep(5000);
         $$(byText("You will no longer receive this report.")).filterBy(visible).shouldHaveSize(1);
 
         rootLogger.info("Check checkbox value in mailing list");
-        open(URL_ReportsProjects);
+        openUrlWithBaseAuth(URL_ReportsProjects);
         sleep(3000);
         waitForSpinnerNotPresent();
         boolean checkboxValue = mailingListCheckboxValue(thisMailingListName);

@@ -17,6 +17,7 @@ import static Page.UrlStrings.*;
 import static Page.PekamaLogin.*;
 import static Page.TestsCredentials.*;
 import static Steps.StepsCommunity.*;
+import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static com.codeborne.selenide.Condition.*;
@@ -39,11 +40,11 @@ public class TestsCommunityDashboard {
     }
     @Before
     public void before() {
-        open(URL_COMMUNITY_DASHBOARD);
+        openUrlWithBaseAuth(URL_COMMUNITY_DASHBOARD);
     }
     @After
     public void after() {
-        open(URL_COMMUNITY_LOGOUT);
+        openUrlWithBaseAuth(URL_COMMUNITY_LOGOUT);
         clearBrowserCache();
     }
 

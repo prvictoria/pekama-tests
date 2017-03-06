@@ -143,7 +143,7 @@ public class TestsPekamaProject {
         rootLogger.info("Project deleted by Owner");
 
         rootLogger.info("Check if user opens project link");
-        open(testProjectURL);
+        openUrlWithBaseAuth(testProjectURL);
         sleep(3000);
         $(byXpath("//*[@class='alert alert-danger not-found-message']"))
                 .shouldHave(text("This project was deleted by its owner. "));

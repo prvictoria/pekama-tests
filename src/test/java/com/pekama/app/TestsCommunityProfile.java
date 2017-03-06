@@ -65,7 +65,7 @@ public class TestsCommunityProfile {
     }
     @After
     public void openUrlLogout() {
-        open(URL_COMMUNITY_LOGOUT);
+        openUrlWithBaseAuth(URL_COMMUNITY_LOGOUT);
         clearBrowserCache();
     }
 

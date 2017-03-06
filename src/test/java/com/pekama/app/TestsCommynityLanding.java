@@ -11,6 +11,7 @@ import static Page.PekamaLogin.*;
 import static Page.PekamaSignUp.*;
 import static Page.UrlConfig.*;
 import static Page.UrlStrings.URL_COMMUNITY_LOGOUT;
+import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static com.codeborne.selenide.Condition.selected;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
@@ -34,11 +35,11 @@ public class TestsCommynityLanding {
     }
     @Before
     public void before() {
-        open(ENVIRONMENT_COMMUNITY);
+        openUrlWithBaseAuth(ENVIRONMENT_COMMUNITY);
     }
     @AfterClass
     public static void after() {
-        open(URL_COMMUNITY_LOGOUT);
+        openUrlWithBaseAuth(URL_COMMUNITY_LOGOUT);
         rootLogger.info("Open URL - "+URL_COMMUNITY_LOGOUT);
         clearBrowserCache();
     }

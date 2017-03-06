@@ -9,6 +9,7 @@ import static Page.PekamaLogin.*;
 import static Page.PekamaSignUp.*;
 import static Page.UrlConfig.*;
 import static Page.TestsCredentials.*;
+import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
@@ -79,7 +80,7 @@ public class TestsPekamaLanding {
         loginButton_Login.click();
         btnLogin.shouldBe(Condition.not(visible));
         btnSignup.shouldBe(Condition.not(visible));
-        open(ENVIRONMENT_PEKAMA);
+        openUrlWithBaseAuth(ENVIRONMENT_PEKAMA);
         BTN_DASHBOARD.shouldBe(Condition.visible);
         BTN_LOG_OUT.shouldBe(Condition.visible).click();
         sleep(1000);

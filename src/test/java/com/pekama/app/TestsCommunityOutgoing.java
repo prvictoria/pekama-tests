@@ -74,7 +74,7 @@ public class TestsCommunityOutgoing {
     }
     @AfterClass
     public static void afterClass() {
-        open(URL_COMMUNITY_LOGOUT);
+        openUrlWithBaseAuth(URL_COMMUNITY_LOGOUT);
         rootLogger.info("Open URL - "+URL_COMMUNITY_LOGOUT);
         clearBrowserCache();
     }

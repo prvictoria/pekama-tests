@@ -78,7 +78,7 @@ public class TestsCommunityIncoming {
         rootLogger.info("Redirect back after login");
     }
     @After
-    public void after() {open(URL_COMMUNITY_LOGOUT); clearBrowserCache();}
+    public void after() {openUrlWithBaseAuth(URL_COMMUNITY_LOGOUT); clearBrowserCache();}
 
     @Test
     public void testA_ArchiveCase() {
