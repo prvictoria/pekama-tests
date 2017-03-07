@@ -402,4 +402,9 @@ public class ModalWindows extends Page {
     //MW Congratulations!
     public static final SelenideElement MW_CONGRATULATION_OK = $(byXpath(mw+"//button"));
     public static final SelenideElement MW_BTN_NEXT = $(byXpath(mw+"//*[@href and contains(text(),'next')]"));
+    // community tour
+    public static final SelenideElement MW_TOUR_BTN_NEXT = $(byId("nextButton"));
+    public static final SelenideElement MW_TOUR_BTN_BACK = $(byId("prevButton"));
+    public static final SelenideElement MW_TOUR_BTN_FINISH = $(byId("finishButton"));
+
 }

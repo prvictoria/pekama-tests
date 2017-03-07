@@ -77,6 +77,15 @@ public class StepsHttpAuth implements StepsFactory {
             sleep(250);
             getWebDriver().manage().window().maximize();
         }
+        if(isFirefox());
+        {
+            //EdgeDriverManager.getInstance().setup();
+            Selenide.open(AUTH_URL,
+                    "",
+                    "qweeco",
+                    "qw33coStudi0");
+            sleep(250);
+        }
 
     }
 }

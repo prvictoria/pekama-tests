@@ -49,8 +49,8 @@ public class AllTestsRunner {
     @Rule
     public Timeout tests = Timeout.seconds(600);
 
-    public static boolean localDriverPath = true;
-    public static int testBrowser = 2;
+    public static boolean localDriverPath = false;
+    public static int testBrowser = 1;
     public static void setBrowser() {
         switch (testBrowser) {
             case 1:
@@ -96,6 +96,19 @@ public class AllTestsRunner {
                 startMaximized = false;
                 EdgeDriverManager.getInstance().setup();
                 rootLogger.info("Tests will performed in EDGE");
+                break;
+
+            case 5:
+                browser = FIREFOX;
+                startMaximized = true;
+                if (localDriverPath == true){
+                    setFirefoxDriverPath();
+                    rootLogger.info("Local driver path is selected");}
+                if (localDriverPath == false){
+                    startMaximized = false;
+                    FirefoxDriverManager.getInstance().setup();
+                }
+                rootLogger.info("Tests will performed in FF46");
                 break;
         }
     }
