@@ -1,5 +1,6 @@
 package Steps;
 import Steps.StepsFactory;
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.EdgeDriverManager;
@@ -38,7 +39,7 @@ public class StepsHttpAuth implements StepsFactory {
     public static void openUrlWithBaseAuth(String AUTH_URL) {
         if(isChrome());
         {
-            //ChromeDriverManager.getInstance().setup();
+        //    ChromeDriverManager.getInstance().setup();
             Selenide.open(AUTH_URL,
                     "",
                     "qweeco",

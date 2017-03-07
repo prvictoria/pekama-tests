@@ -5,7 +5,6 @@ import Steps.StepsPekama;
 import Utils.Utils;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.pekama.app.draft.LoginGmail;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
@@ -38,7 +37,7 @@ import static org.junit.Assert.assertEquals;
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaResetPassword {
-    static final Logger rootLogger = LogManager.getLogger(LoginGmail.class);
+    static final Logger rootLogger = LogManager.getLogger(TestsPekamaResetPassword.class);
     public static String SELECT_HOST = ENVIRONMENT_PEKAMA;
     private static String NEW_PASSWORD = null;
     private String GMAIL_LOGIN = User4.GMAIL_EMAIL.getValue();

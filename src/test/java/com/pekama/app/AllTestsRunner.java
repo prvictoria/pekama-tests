@@ -3,10 +3,16 @@ import com.codeborne.selenide.Configuration;
 import io.github.bonigarcia.wdm.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.Timeout;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
 import static com.codeborne.selenide.Configuration.*;
 import static com.codeborne.selenide.WebDriverRunner.*;
 /**
@@ -40,38 +46,51 @@ import static com.codeborne.selenide.WebDriverRunner.*;
 })
 public class AllTestsRunner {
     static final Logger rootLogger = LogManager.getRootLogger();
-//    @Rule
-//    public Timeout tests = Timeout.seconds(600);
-//    @Rule
-//    public SoftAsserts softAsserts = new SoftAsserts();
+    @Rule
+    public Timeout tests = Timeout.seconds(600);
 
-    public static int testBrowser = 1;
+    public static boolean localDriverPath = true;
+    public static int testBrowser = 2;
     public static void setBrowser() {
         switch (testBrowser) {
             case 1:
                 browser = CHROME;
-                startMaximized = false;
+                if (localDriverPath == true){
+                    setChromeDriverPath();
+                    rootLogger.info("Local driver path is selected");}
+                if (localDriverPath == false){
+                    startMaximized = false;
+                    ChromeDriverManager.getInstance().setup();
+                }
 //                browserSize = "1700x1000";
-                ChromeDriverManager.getInstance().setup();
-//                getWebDriver().manage().window().maximize();
 //                getWebDriver().manage().window().setPosition(new Point(0, 0));
 //                getWebDriver().manage().window().setSize(new Dimension(1800, 1000));
 //                System.out.print("position " + getWebDriver().manage().window().getPosition());
 //                System.out.print("size " + getWebDriver().manage().window().getSize());
                 rootLogger.info("Tests will performed in Chrome");
                 break;
+
             case 2:
+                //setFirefoxDriverPath();
                 browser = MARIONETTE;
-                startMaximized = false;
-                FirefoxDriverManager.getInstance().setup();
+                startMaximized = true;
+                if (localDriverPath == true){
+                    setFirefoxDriverPath();
+                    rootLogger.info("Local driver path is selected");}
+                if (localDriverPath == false){
+                    startMaximized = false;
+                    FirefoxDriverManager.getInstance().setup();
+                }
                 rootLogger.info("Tests will performed in Firefox");
                 break;
+
             case 3:
                 browser = INTERNET_EXPLORER;
                 startMaximized = false;
                 InternetExplorerDriverManager.getInstance().setup();
                 rootLogger.info("Tests will performed in IE");
                 break;
+
             case 4:
                 browser = EDGE;
                 startMaximized = false;
@@ -79,6 +98,14 @@ public class AllTestsRunner {
                 rootLogger.info("Tests will performed in EDGE");
                 break;
         }
+    }
+    public static void setChromeDriverPath() {
+        String chromeDriverPath = "C:\\Users\\Viachaslau_Balashevi\\IdeaProjects\\pekama-tests\\src\\lib\\chromedriver.exe";
+        System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+    }
+    public static void setFirefoxDriverPath() {
+        String ffDriverPath = "C:\\Users\\Viachaslau_Balashevi\\IdeaProjects\\pekama-tests\\src\\lib\\geckodriver.exe";
+        System.setProperty("webdriver.gecko.driver", ffDriverPath);
     }
     public static void holdBrowserAfterTest() {
         Configuration test = new Configuration();
@@ -88,4 +115,5 @@ public class AllTestsRunner {
         Configuration test = new Configuration();
         test.holdBrowserOpen = value;
     }
+
 }

@@ -72,10 +72,14 @@ public class TestsCommunityOutgoing {
                 URL_COMMUNITY_LOGIN);
         rootLogger.info("Redirect back after login");
     }
-    @AfterClass
-    public static void afterClass() {
+    @After
+    public void after() {
         openUrlWithBaseAuth(URL_COMMUNITY_LOGOUT);
         rootLogger.info("Open URL - "+URL_COMMUNITY_LOGOUT);
+    }
+
+    @AfterClass
+    public static void afterClass() {
         clearBrowserCache();
     }
 
@@ -221,6 +225,8 @@ public class TestsCommunityOutgoing {
         openUrlWithBaseAuth(URL_COMMUNITY_OUTGOING);
         sleep(4000);
         checkCaseStatus(caseName, COMMUNITY_STATUS_CANCELLED);
+
+        rootLogger.info("Check Wizard");
         $(byXpath(getFirstCaseRow(caseName))).click();
         sleep(4000);
         checkText(COMMUNITY_STATUS_CANCELLED);
@@ -258,6 +264,8 @@ public class TestsCommunityOutgoing {
         openUrlWithBaseAuth(URL_COMMUNITY_OUTGOING);
         sleep(4000);
         checkCaseStatus(caseName, COMMUNITY_STATUS_CANCELLED);
+
+        rootLogger.info("Check Wizard");
         $(byXpath(getFirstCaseRow(caseName))).click();
         sleep(4000);
         checkText(COMMUNITY_STATUS_CANCELLED);
