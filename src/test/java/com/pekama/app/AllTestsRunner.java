@@ -100,8 +100,8 @@ public class AllTestsRunner {
 
             case 5:
                 browser = FIREFOX;
-                startMaximized = true;
                 if (localDriverPath == true){
+                    startMaximized = true;
                     setFirefoxDriverPath();
                     rootLogger.info("Local driver path is selected");}
                 if (localDriverPath == false){
