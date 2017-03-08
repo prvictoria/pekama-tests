@@ -119,7 +119,7 @@ public class TestsCredentials {
     } //Expert
     public enum User5 {
         GMAIL_EMAIL("testqweeco005@gmail.com"),
-        GMAIL_PASSWORD("123456789qasw1"),
+        GMAIL_PASSWORD("123456789qasw11"),
         PEKAMA_PASSWORD("asui67we34"),
         LINKEDIN_PASSWORD("123456789qasw"),
         BOX_PASSWORD("32qew8127a12a"),

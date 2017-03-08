@@ -19,6 +19,7 @@ import static Page.CommunityWizard.*;
 import static Page.ModalWindows.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
+import static Page.UrlConfig.MATTER_TYPE_TRADEMARK;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
 import static Steps.StepsCommunity.*;
@@ -165,7 +166,7 @@ public class TestsCommunityProfile {
     @Test
     public void service_testA_addService() {
         log.info("Add new service");
-        String profileServiceCaseType = CaseType.TRADEMARK.getValue();
+        String profileServiceCaseType = MATTER_TYPE_TRADEMARK;
         String profileServiceCountry = Countries.ALL.getValue();
         String price = "100000";
         boolean rowPresentOnPage = true;
@@ -182,8 +183,8 @@ public class TestsCommunityProfile {
         log.info("Check validation by adding the same service");
         String price = "100000";
         PROFILE_BTN_ADD.shouldBe(disabled);
-        log.info("Select new service - "+CaseType.TRADEMARK.getValue());
-        searchServicesQuery(CaseType.TRADEMARK.getValue(),  Countries.AFGHANISTAN.getValue(),  price);
+        log.info("Select new service - "+MATTER_TYPE_TRADEMARK);
+        searchServicesQuery(MATTER_TYPE_TRADEMARK,  Countries.AFGHANISTAN.getValue(),  price);
         log.info("Service added");
         PROFILE_BTN_ADD.shouldBe(disabled);
     }
@@ -203,11 +204,12 @@ public class TestsCommunityProfile {
     @Test
     public void service_testD_deleteService() {
         log.info("Delete service");
-        String profileServiceCaseType = CaseType.TRADEMARK.getValue();
+        String profileServiceCaseType = MATTER_TYPE_TRADEMARK;
         String profileServiceCountry = Countries.ALL.getValue();
         boolean rowPresentOnPage = false;
         clickServiceRowDelete(profileServiceCaseType, profileServiceCountry);
         submitConfirmAction();
+        sleep(2000);
         findServiceRow(rowPresentOnPage, profileServiceCaseType, profileServiceCountry);
         log.info("Service was deleted");
         PROFILE_BTN_ADD.shouldBe(disabled);

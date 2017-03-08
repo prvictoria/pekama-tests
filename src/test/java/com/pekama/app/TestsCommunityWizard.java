@@ -55,6 +55,8 @@ public class TestsCommunityWizard {
     private final static String EXPERT_FULL_TEAM_NAME = TestsCredentials.User1.FULL_TEAM_NAME.getValue();
     private final static String EXPERT_NAME_SURNAME = TestsCredentials.User1.NAME_SURNAME.getValue();
     private final static String INTRODUCER_NAME = "Rand, Kaldor & Zane LLP (RKNZ)";
+    private final static String INVITED_EMAIL = User5.GMAIL_EMAIL.getValue();
+    private final static String INVITED_PASSWORD = User5.GMAIL_PASSWORD.getValue();
 
     @BeforeClass
     public static void beforeClass() {
@@ -104,7 +106,7 @@ public class TestsCommunityWizard {
         sleep(500);
         waitForModalWindow(TITLE_MW_INVITE_AN_ATTORNEY);
         MW_COMMUNITY_INVITE_ATTORNEY_BTN_INVITE.click();
-        fillField(MW_COMMUNITY_INVITE_FIELD_EMAIL, User5.GMAIL_EMAIL.getValue());
+        fillField(MW_COMMUNITY_INVITE_FIELD_EMAIL, INVITED_EMAIL);
         submitEnabledButton(MW_COMMUNITY_INVITE_ATTORNEY_BTN_INVITE);
 
         sleep(500);
@@ -117,7 +119,7 @@ public class TestsCommunityWizard {
 
         sleep(500);
         waitForModalWindow(TITLE_MW_INVITE_AN_ATTORNEY);
-        MW_COMMUNITY_INVITE_FIELD_EMAIL.shouldHave(Condition.value(User5.GMAIL_EMAIL.getValue()));
+        MW_COMMUNITY_INVITE_FIELD_EMAIL.shouldHave(Condition.value(INVITED_EMAIL));
         fillField(MW_COMMUNITY_INVITE_FIELD_MESSAGE, "Hello world");
         submitEnabledButton(MW_COMMUNITY_INVITE_ATTORNEY_BTN_INVITE);
         MW_COMMUNITY_INVITE_ATTORNEY_BTN_INVITE.shouldNotBe(visible);
@@ -128,7 +130,10 @@ public class TestsCommunityWizard {
         String EMAIL_TEXT = "Hello world";
         String EMAIL_BTN = EMAIL_INVITE_IN_COMMUNITY_BTN;
         SelenideElement EMAIL_REDIRECT_LINK = EMAIL_INVITE_IN_COMMUNITY_BACKLINK;
-        checkInboxEmail(User5.GMAIL_EMAIL.getValue(), GMAIL_PASSWORD, EMAIL_SUBJECT, EMAIL_TITLE, EMAIL_TEXT, EMAIL_BTN, EMAIL_REDIRECT_LINK);
+        checkInboxEmail(
+                INVITED_EMAIL, INVITED_PASSWORD,
+                EMAIL_SUBJECT, EMAIL_TITLE, EMAIL_TEXT,
+                EMAIL_BTN, EMAIL_REDIRECT_LINK);
         rootLogger.info("Email redirect link is - "+REDIRECT_LINK);
     }
     @Test
@@ -143,7 +148,7 @@ public class TestsCommunityWizard {
         sleep(500);
         waitForModalWindow(TITLE_MW_INVITE_AN_ATTORNEY);
         MW_COMMUNITY_INVITE_ATTORNEY_BTN_INVITE.click();
-        fillField(MW_COMMUNITY_INVITE_FIELD_EMAIL, User5.GMAIL_EMAIL.getValue());
+        fillField(MW_COMMUNITY_INVITE_FIELD_EMAIL, INVITED_EMAIL);
         submitEnabledButton(MW_COMMUNITY_INVITE_ATTORNEY_BTN_INVITE);
 
         sleep(500);
@@ -161,8 +166,7 @@ public class TestsCommunityWizard {
         String EMAIL_BTN = EMAIL_INVITE_IN_COMMUNITY_BTN;
         SelenideElement EMAIL_REDIRECT_LINK = EMAIL_INVITE_IN_COMMUNITY_BACKLINK;
         checkInboxEmail(
-                User5.GMAIL_EMAIL.getValue(),
-                GMAIL_PASSWORD,
+                INVITED_EMAIL, INVITED_PASSWORD,
                 EMAIL_SUBJECT,
                 EMAIL_TITLE,
                 EMAIL_TEXT,
