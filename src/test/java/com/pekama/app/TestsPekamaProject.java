@@ -38,6 +38,8 @@ import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.*;
 import static com.pekama.app.AllTestsRunner.*;
+import static com.pekama.app.BeforeTestsSetUp.*;
+
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau

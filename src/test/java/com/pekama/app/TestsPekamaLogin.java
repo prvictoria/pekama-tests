@@ -20,6 +20,7 @@ import static com.codeborne.selenide.Selenide.sleep;
 import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 import static com.codeborne.selenide.WebDriverRunner.url;
 import static com.pekama.app.AllTestsRunner.*;
+import static com.pekama.app.BeforeTestsSetUp.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 /**

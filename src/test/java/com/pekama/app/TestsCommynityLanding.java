@@ -11,17 +11,12 @@ import static Page.ModalWindows.*;
 import static Page.PekamaLogin.*;
 import static Page.PekamaSignUp.*;
 import static Page.UrlConfig.*;
-import static Page.UrlStrings.URL_COMMUNITY_LOGOUT;
-import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
-import static Steps.StepsPekama.checkText;
-import static Steps.StepsPekama.hideZopim;
-import static Steps.StepsPekama.submitCookie;
-import static com.codeborne.selenide.Condition.selected;
-import static com.codeborne.selenide.Condition.visible;
+import static Page.UrlStrings.*;
+import static Steps.StepsHttpAuth.*;
+import static Steps.StepsPekama.*;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
-import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
-import static com.pekama.app.AllTestsRunner.setBrowser;
+import static com.pekama.app.BeforeTestsSetUp.*;
 
 /**
  * Created by Viachaslau Balashevich.
@@ -32,7 +27,7 @@ public class TestsCommynityLanding {
 
     @BeforeClass
     public static void beforeClass() {
-        setEnvironment ();
+        setEnvironment();
         setBrowser();
         holdBrowserAfterTest();
     }

@@ -14,7 +14,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 import static com.codeborne.selenide.Selenide.open;
-import static com.pekama.app.AllTestsRunner.setBrowser;
+import static com.pekama.app.BeforeTestsSetUp.setBrowser;
 
 /**
  * Created by VatslauX on 26-Dec-16.

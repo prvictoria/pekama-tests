@@ -8,8 +8,8 @@ import org.apache.logging.log4j.Logger;
 import org.junit.*;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.rules.Timeout;
-import org.junit.runners.MethodSorters;
+import org.junit.rules.*;
+import org.junit.runners.*;
 
 import java.security.SecureRandom;
 
@@ -30,10 +30,8 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
-import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
-import static com.pekama.app.AllTestsRunner.setBrowser;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static com.pekama.app.BeforeTestsSetUp.*;
+
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau

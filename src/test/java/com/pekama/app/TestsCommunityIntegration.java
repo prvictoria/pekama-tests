@@ -5,8 +5,7 @@ package com.pekama.app;
  */
 
 import Page.TestsCredentials;
-import Page.TestsCredentials.CaseType;
-import Page.TestsCredentials.Countries;
+import Page.TestsCredentials.*;
 import Steps.StepsPekama;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,19 +19,19 @@ import static Page.ModalWindows.*;
 import static Page.PekamaDashboard.*;
 import static Page.PekamaProject.*;
 import static Page.TestsStrings.*;
-import static Page.UrlConfig.setEnvironment;
+import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
 import static Steps.Messages.*;
-import static Steps.Messages.*;
 import static Steps.StepsCommunity.*;
-import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
+import static Steps.StepsHttpAuth.*;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static Utils.Utils.randomString;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
-import static com.pekama.app.AllTestsRunner.*;
+import static com.codeborne.selenide.WebDriverRunner.*;
+import static com.pekama.app.BeforeTestsSetUp.*;
+
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsCommunityIntegration {

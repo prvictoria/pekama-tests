@@ -11,11 +11,10 @@ import static Page.CommunityDashboard.*;
 import static Page.CommunityOutgoing.*;
 import static Page.PekamaProject.*;
 import static Page.TestsCredentials.*;
-import static Page.UrlConfig.setEnvironment;
+import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
 import static Steps.Messages.*;
 import static Steps.StepsCommunity.*;
-import static Steps.StepsCommunity.getFirstCaseRow;
 import static Steps.StepsHttpAuth.*;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
@@ -24,8 +23,9 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
-import static com.pekama.app.AllTestsRunner.*;
+import static com.codeborne.selenide.WebDriverRunner.*;
+import static com.pekama.app.BeforeTestsSetUp.*;
+
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau

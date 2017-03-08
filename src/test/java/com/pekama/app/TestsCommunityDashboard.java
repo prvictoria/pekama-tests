@@ -24,8 +24,8 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 import static com.codeborne.selenide.WebDriverRunner.url;
-import static com.pekama.app.AllTestsRunner.holdBrowserAfterTest;
-import static com.pekama.app.AllTestsRunner.setBrowser;
+import static com.pekama.app.BeforeTestsSetUp.holdBrowserAfterTest;
+import static com.pekama.app.BeforeTestsSetUp.setBrowser;
 import static org.junit.Assert.assertEquals;
 public class TestsCommunityDashboard {
     static final Logger rootLogger = LogManager.getRootLogger();
