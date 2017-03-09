@@ -34,8 +34,9 @@ public class TestsCommynityLanding {
     @Before
     public void before() {
         openUrlWithBaseAuth(ENVIRONMENT_COMMUNITY);
-        submitCookie();
         hideZopim();
+        submitCookie();
+
     }
 //    @AfterClass
 //    public static void after() {

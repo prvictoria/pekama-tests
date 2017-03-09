@@ -71,8 +71,8 @@ public class StepsPekama implements StepsFactory{
         sleep(2000);
     }
     public void  submitLoginCredentials(String PEKAMA_USER_EMAIL){
-        submitCookie();
         hideZopim();
+        submitCookie();
         loginField_Email.sendKeys(PEKAMA_USER_EMAIL);
         sleep(500);
         rootLogger.info(PEKAMA_USER_EMAIL+ " - login selected");
