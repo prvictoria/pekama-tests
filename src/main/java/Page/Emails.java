@@ -46,7 +46,10 @@ public class Emails extends Page {
     public static final SelenideElement EMAIL_CONGRATULATION_SUBJECT = $(byXpath("//span[contains(.,'Case successfully instructed via Pekama!')]"));
     public static final String EMAIL_CONGRATULATION_TITLE = "Congratulations, you instructed";
     public static final String EMAIL_CONGRATULATION_TEXT = "Your community score will be raised once the work is marked as completed";
-
+    //Emails Thank you for inviting
+    public static final SelenideElement EMAIL_THANKS_FOR_INVITING_SUBJECT = $(byXpath("//span[contains(.,'Thank you for inviting')]"));
+    public static final String EMAIL_CONGRATULATION_FOR_INVITING_TITLE = "Congratulations";
+    public static final String EMAIL_CONGRATULATION_FOR_INVITING_TEXT = "your community score will be increased and this will lead to improved placement in your jurisdiction.";
     //Email  Invite in ProjectValues
     public static final SelenideElement EMAIL_INVITE_IN_PROJECT = $(byXpath(""));
     public static final  SelenideElement EMAIL_INVITE_IN_PROJECT_SUBJECT = $(byXpath("//span[contains(.,'invited you')]")); //Test002 Quality02 invited you to TM.PN.028318 new test project - TPTTUX ProjectValues

@@ -115,7 +115,7 @@ public class TestsCommunityProfile {
     public void saveFirmExpertise() {
         PROFILE_BTN_SAVE_DESCRIPTION.shouldBe(disabled);
         PROFILE_INPUT_DESCRIPTION.clear();
-        PROFILE_BTN_SAVE_DESCRIPTION.shouldHave(value(""));
+        PROFILE_INPUT_DESCRIPTION.shouldHave(value(""));
         log.info("firm's expertise text cleared");
         PROFILE_INPUT_DESCRIPTION.sendKeys(LOREM_IPSUM_SHORT);
         PROFILE_BTN_SAVE_DESCRIPTION.shouldNot(disabled).click();
@@ -162,12 +162,13 @@ public class TestsCommunityProfile {
         log.info("Delete member");
         openUrlWithBaseAuth(URL_Members);
         deleteMember(NEW_MEMBER);
+        log.info("Test passed");
     }
     @Test
     public void service_testA_addService() {
         log.info("Add new service");
         String profileServiceCaseType = MATTER_TYPE_TRADEMARK;
-        String profileServiceCountry = Countries.ALL.getValue();
+        String profileServiceCountry = Countries.AMERICAN_SAMOA.getValue();
         String price = "100000";
         boolean rowPresentOnPage = true;
         PROFILE_BTN_ADD.shouldBe(disabled);
@@ -177,6 +178,7 @@ public class TestsCommunityProfile {
         findServiceRow(rowPresentOnPage, profileServiceCaseType, profileServiceCountry);
         log.info("Service was created");
         PROFILE_BTN_ADD.shouldBe(disabled);
+        log.info("Test passed");
     }
     @Test
     public void service_testB_addSameService() {
@@ -184,28 +186,30 @@ public class TestsCommunityProfile {
         String price = "100000";
         PROFILE_BTN_ADD.shouldBe(disabled);
         log.info("Select new service - "+MATTER_TYPE_TRADEMARK);
-        searchServicesQuery(MATTER_TYPE_TRADEMARK,  Countries.AFGHANISTAN.getValue(),  price);
-        log.info("Service added");
+        searchServicesQuery(MATTER_TYPE_TRADEMARK,  Countries.AMERICAN_SAMOA.getValue(),  price);
+        log.info("Service NOT added");
         PROFILE_BTN_ADD.shouldBe(disabled);
+        log.info("Test passed");
     }
     @Test
     public void service_testC_editServicePrice() {
         log.info("Edit service");
         sleep(2000);
-        String profileServiceCaseType = CaseType.TRADEMARK.getValue();
-        String profileServiceCountry = Countries.ALL.getValue();
+        String profileServiceCaseType = MATTER_TYPE_TRADEMARK;
+        String profileServiceCountry = Countries.AMERICAN_SAMOA.getValue();
         String price = "100000";
         String newPrice = "99999";
         clickServiceRowEdit(profileServiceCaseType, profileServiceCountry);
         PROFILE_BTN_ADD.shouldBe(disabled);
         changeServiceRate(profileServiceCaseType, profileServiceCountry, newPrice);
         submitEnabledButton(PROFILE_SERVICE_SAVE);
+        log.info("Test passed");
     }
     @Test
     public void service_testD_deleteService() {
         log.info("Delete service");
         String profileServiceCaseType = MATTER_TYPE_TRADEMARK;
-        String profileServiceCountry = Countries.ALL.getValue();
+        String profileServiceCountry = Countries.AMERICAN_SAMOA.getValue();
         boolean rowPresentOnPage = false;
         clickServiceRowDelete(profileServiceCaseType, profileServiceCountry);
         submitConfirmAction();
@@ -213,6 +217,7 @@ public class TestsCommunityProfile {
         findServiceRow(rowPresentOnPage, profileServiceCaseType, profileServiceCountry);
         log.info("Service was deleted");
         PROFILE_BTN_ADD.shouldBe(disabled);
+        log.info("Test passed");
     }
     @Test
     public void yourProfileSaveNewName_A_SetNewName() {
@@ -241,7 +246,6 @@ public class TestsCommunityProfile {
         PROFILE_BTN_SAVE_NAME_AND_SURNAME.shouldBe(disabled);
         sleep(5000);
         log.info("Test passed");
-
     }
     @Test
     public void yourProfileSaveNewName_B_checkValidationMaxLength() {
@@ -258,7 +262,6 @@ public class TestsCommunityProfile {
         sleep(3000);
         $$(byText(ERROR_MSG_VALIDATION_LENGTH_100)).shouldHaveSize(2);
         log.info("Test passed");
-
     }
     @Test
     public void yourProfileSaveNewName_B_checkValidationEmptyFields() {
@@ -276,6 +279,5 @@ public class TestsCommunityProfile {
         $$(byText("First name can not be blank")).shouldHaveSize(1);
         $$(byText("Last name can not be blank")).shouldHaveSize(1);
         log.info("Test passed");
-
     }
 }

@@ -23,8 +23,8 @@ import static com.codeborne.selenide.WebDriverRunner.*;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         TestsCommunityIntegration.class,
-        TestsCommunityDashboard.class,
         TestsCommynityLanding.class,
+        TestsCommunityDashboard.class,
         TestsCommunityWizard.class,
         TestsCommunityProfile.class,
         TestsCommunityOutgoing.class,

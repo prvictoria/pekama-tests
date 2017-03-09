@@ -58,9 +58,17 @@ public class StepsCommunity implements StepsFactory{
         fillField(PROFILE_INPUT_CaseType, PROFILE_SERVICE_CASE_TYPE);
         CSS_SelectHighlighted.click();
         rootLogger.info("Selected case type - "+PROFILE_SERVICE_CASE_TYPE);
-//        PROFILE_SELECT_Defining.click();
-//        fillField(PROFILE_INPUT_Defining, PROFILE_SERVICE_COUNTRY);
-//        CSS_SelectHighlighted.click();
+
+        PROFILE_SELECT_Defining.click();
+        fillField(PROFILE_INPUT_Defining, PROFILE_SERVICE_COUNTRY);
+        CSS_SelectHighlighted.click();
+        rootLogger.info("Selected defining is - "+PROFILE_SERVICE_COUNTRY);
+
+        PROFILE_SELECT_ExpertType.click();
+        fillField(PROFILE_INPUT_ExpertType, COMMUNIY_SERVICE);
+        CSS_SelectHighlighted.click();
+        rootLogger.info("Selected service is - "+COMMUNIY_SERVICE);
+
         PROFILE_INPUT_PRICE.clear();
         PROFILE_INPUT_PRICE.sendKeys(price);
         rootLogger.info("Selected case type - "+PROFILE_SERVICE_COUNTRY);

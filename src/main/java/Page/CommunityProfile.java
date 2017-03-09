@@ -34,7 +34,7 @@ public class CommunityProfile extends Page {
 
     public static final SelenideElement PROFILE_SELECT_CaseType = $(byXpath("//span[text()='Practice Area']"));
     public static final SelenideElement PROFILE_INPUT_CaseType = $(byXpath("//input[@placeholder='Practice Area']"));
-    public static final SelenideElement PROFILE_SELECT_Defining = $(byXpath("//span[text()='Jurisdiction']"));
+    public static final SelenideElement PROFILE_SELECT_Defining = $(byXpath("//div[@placeholder='Jurisdiction']//span"));
     public static final SelenideElement PROFILE_INPUT_Defining = $(byXpath("//input[@placeholder='Jurisdiction']"));
     public static final SelenideElement PROFILE_SELECT_ExpertType = $(byXpath("//span[text()='Service Type']"));
     public static final SelenideElement PROFILE_INPUT_ExpertType = $(byXpath("//input[@placeholder='Service Type']"));
