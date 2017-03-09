@@ -9,12 +9,16 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.pekama.app.BeforeTestsSetUp.setBrowser;
+import static com.pekama.app.draft.MailingClass.password;
+import static com.pekama.app.draft.MailingClass.user;
 
 /**
  * Created by VatslauX on 26-Dec-16.
@@ -99,4 +103,9 @@ public class TestGoogle {
     {   setBrowser();
         open("http://google.com");
     }
+//    @Test
+//    public void test() throws MessagingException {
+//        MailingClass TestMessage = new Message[]
+//        TestMessage.receiveMail(user, password);
+//    }
 }

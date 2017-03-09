@@ -1,5 +1,4 @@
 package Steps;
-
 import Page.TestsCredentials;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
@@ -15,7 +14,7 @@ import static Page.CommunityWizard.*;
 
 import static Page.ModalWindows.*;
 import static Page.TestsStrings.*;
-import static Page.UrlConfig.MATTER_TYPE_PATENT;
+import static Page.UrlConfig.*;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static Utils.Utils.randomString;
@@ -31,16 +30,22 @@ public class StepsCommunity implements StepsFactory{
     static final Logger rootLogger = LogManager.getLogger(StepsCommunity.class);
     public static String searchQueryUrl;
 
-    public static void searchExpertsQuery(String caseType, String country) {
+    public static void searchExpertsQuery(String caseType, String country, String service) {
         WIZARD_BTN_GetStarted.shouldBe(visible).shouldBe(disabled);
         WIZARD_SELECT_CaseType.click();
         WIZARD_INPUT_CaseType.sendKeys(caseType);
         CSS_SelectHighlighted.click();
         rootLogger.info("Selected case type - "+caseType);
+
         WIZARD_SELECT_Defining.click();
         WIZARD_INPUT_Defining.sendKeys(country);
         CSS_SelectHighlighted.click();
-         rootLogger.info("Selected case type - "+country);
+        rootLogger.info("Selected defining - "+country);
+
+        WIZARD_SELECT_ExpertType.click();
+        WIZARD_INPUT_ExpertType.sendKeys(service);
+        CSS_SelectHighlighted.click();
+        rootLogger.info("Selected service - "+service);
    }
     public static String searchExpertsSubmit() {
         WIZARD_BTN_GetStarted.shouldBe(enabled).click();
@@ -412,7 +417,7 @@ public class StepsCommunity implements StepsFactory{
         String status = COMMUNITY_STATUS_SENT;
         String caseName = "DEFAULT_CASE"+randomString(10);
 
-        searchExpertsQuery(caseType, caseCountry);
+        searchExpertsQuery(caseType, caseCountry, COMMUNIY_SERVICE);
         searchExpertsSubmit();
 
         rootLogger.info("2nd Step - select expert");
@@ -448,7 +453,7 @@ public class StepsCommunity implements StepsFactory{
         String status = COMMUNITY_STATUS_SENT;
         String caseName = "DEFAULT_CASE"+randomString(10);
 
-        searchExpertsQuery(caseType, caseCountry);
+        searchExpertsQuery(caseType, caseCountry, COMMUNIY_SERVICE);
         searchExpertsSubmit();
 
         rootLogger.info("2nd Step - select expert");
@@ -483,7 +488,7 @@ public class StepsCommunity implements StepsFactory{
         String caseCountry = TestsCredentials.Countries.PITCAIRN_ISLANDS.getValue();
         String caseName = "DEFAULT_DRAFT_CASE" + randomString(10);
 
-        searchExpertsQuery(caseType, caseCountry);
+        searchExpertsQuery(caseType, caseCountry, COMMUNIY_SERVICE);
         searchExpertsSubmit();
 
         rootLogger.info("2nd Step - select expert");

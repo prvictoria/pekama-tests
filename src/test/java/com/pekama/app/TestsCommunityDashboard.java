@@ -100,7 +100,7 @@ public class TestsCommunityDashboard {
         WIZARD_BTN_GetStarted.shouldBe(visible).shouldBe(disabled);
         String caseType = MATTER_TYPE_PATENT;
         String country = Countries.PITCAIRN_ISLANDS.getValue();
-        searchExpertsQuery(caseType, country);
+        searchExpertsQuery(caseType, country, COMMUNIY_SERVICE);
         searchExpertsSubmit();
         COMMUNITY_INNRER_BTN_SIGNUP.shouldBe(Condition.visible);
         COMMUNITY_INNRER_BTN_LOGIN.shouldBe(Condition.visible).click();

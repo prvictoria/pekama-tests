@@ -21,8 +21,9 @@ public class UrlConfig {
     public static String SELECT_HOST;
     public static String MATTER_TYPE_TRADEMARK;
     public static String MATTER_TYPE_PATENT;
+    public static String COMMUNIY_SERVICE;
 
-    public static int environment = 1;
+    public static int environment = 3;
     public static void setEnvironment() {
         switch (environment) {
             case 1:
@@ -32,6 +33,7 @@ public class UrlConfig {
                 SELECT_HOST = ENVIRONMENT_PEKAMA;
                 MATTER_TYPE_TRADEMARK = CaseType.TRADEMARK.getValue();
                 MATTER_TYPE_PATENT = CaseType.PATENT.getValue();
+                COMMUNIY_SERVICE = "Filing an Application";
                 break;
             case 2:
                 rootLogger.info("Tests will executed on Test server");
@@ -40,6 +42,7 @@ public class UrlConfig {
                 SELECT_HOST = ENVIRONMENT_PEKAMA;
                 MATTER_TYPE_TRADEMARK = CaseType.TRADEMARK.getValue();
                 MATTER_TYPE_PATENT = CaseType.PATENT.getValue();
+                COMMUNIY_SERVICE = "Filing an Application";
                 break;
             case 3:
                 rootLogger.info("Tests will executed on Production server");
@@ -48,6 +51,7 @@ public class UrlConfig {
                 SELECT_HOST = ENVIRONMENT_PEKAMA;
                 MATTER_TYPE_TRADEMARK = ProductionCaseType.TRADEMARK.getValue();
                 MATTER_TYPE_PATENT = ProductionCaseType.PATENT.getValue();
+                COMMUNIY_SERVICE = "Filing an Application";
                 break;
         }
     }

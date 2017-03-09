@@ -1,12 +1,8 @@
 package com.pekama.app.draft;
 
-import Page.TestsCredentials;
-import org.apache.log4j.Logger;
-import org.junit.Assert;
-import org.junit.Test;
-
-import javax.mail.MessagingException;
-import javax.mail.NoSuchProviderException;
+/**
+ * Created by Viachaslau_Balashevi on 3/8/2017.
+ */
 import java.util.Properties;
 
 import javax.mail.Folder;
@@ -16,22 +12,7 @@ import javax.mail.NoSuchProviderException;
 import javax.mail.Session;
 import javax.mail.Store;
 
-//import utils.EmailInboxChecker;
-
-public class EmailInboxNonUITest {
-
-	private static final String USERNAME = "hist45@tut.by";
-	private static final String PASSWORD = "2271941";
-	private Logger log = Logger.getLogger(EmailInboxNonUITest.class);
-
-	@Test
-	public void checkIncomingMessages() {
-		log.info("Test " + EmailInboxNonUITest.class + " started");
-		int incomingEmailsAmount = EmailInboxChecker.checkEmailsAmount(USERNAME, PASSWORD);
-		Assert.assertNotNull(incomingEmailsAmount);
-		log.info("Test " + EmailInboxNonUITest.class + " ended \n" + "------------------------------------");
-
-	}
+public class CheckingMails {
 
     public static void check(String host, String storeType, String user,
                              String password)
@@ -40,9 +21,15 @@ public class EmailInboxNonUITest {
 
             //create properties field
             Properties properties = new Properties();
+
             properties.put("mail.pop3.host", host);
             properties.put("mail.pop3.port", "995");
             properties.put("mail.pop3.starttls.enable", "true");
+            properties.put("username", user);
+            properties.put("password", password);
+            properties.put("host", host);
+            properties.put("storeType", storeType);
+
             Session emailSession = Session.getDefaultInstance(properties);
 
             //create the POP3 store object and connect with the pop server
@@ -85,20 +72,11 @@ public class EmailInboxNonUITest {
 
         String host = "pop.gmail.com";// change accordingly
         String mailStoreType = "pop3";
-        String username = TestsCredentials.User5.GMAIL_EMAIL.getValue();// change accordingly
-        String password = TestsCredentials.User5.GMAIL_PASSWORD.getValue();// change accordingly
+        String username = "testqweeco005@gmail.com";// change accordingly
+        String password = "123456789qasw11";// change accordingly
 
         check(host, mailStoreType, username, password);
 
     }
-    @Test
-    public void test1() {
-        String host = "pop.gmail.com";// change accordingly
-        String mailStoreType = "pop3";
-        String username = TestsCredentials.User5.GMAIL_EMAIL.getValue();// change accordingly
-        String password = TestsCredentials.User5.GMAIL_PASSWORD.getValue();// change accordingly
-
-        check(host, mailStoreType, username, password);
-}
 
 }

@@ -86,7 +86,7 @@ public class TestsCommunityWizard {
 
     @Test
     public void boostYourProfileToWizardRedirect() {
-        searchExpertsQuery(TEST_CASE_TYPE, TEST_CASE_COUNTRY);
+        searchExpertsQuery(TEST_CASE_TYPE, TEST_CASE_COUNTRY, COMMUNIY_SERVICE);
         searchExpertsSubmit();
         submitEnabledButton(PROFILE_BTN_BOOST_YOUR_PROFILE);
         rootLogger.info("Boost Your profile - send new case");
@@ -96,7 +96,7 @@ public class TestsCommunityWizard {
     }
     @Test
     public void boostYourProfileInviteTeam_withCustomText() {
-        searchExpertsQuery(TEST_CASE_TYPE, TEST_CASE_COUNTRY);
+        searchExpertsQuery(TEST_CASE_TYPE, TEST_CASE_COUNTRY, COMMUNIY_SERVICE);
         searchExpertsSubmit();
         submitEnabledButton(PROFILE_BTN_BOOST_YOUR_PROFILE);
         rootLogger.info("Boost Your profile - send new case");
@@ -138,7 +138,7 @@ public class TestsCommunityWizard {
     }
     @Test
     public void boostYourProfileInviteTeam_withDefaultText() {
-        searchExpertsQuery(TEST_CASE_TYPE, TEST_CASE_COUNTRY);
+        searchExpertsQuery(TEST_CASE_TYPE, TEST_CASE_COUNTRY, COMMUNIY_SERVICE);
         searchExpertsSubmit();
         submitEnabledButton(PROFILE_BTN_BOOST_YOUR_PROFILE);
         rootLogger.info("Boost Your profile - send new case");
@@ -179,7 +179,7 @@ public class TestsCommunityWizard {
     public void returnBackFrom3rdStep(){
         rootLogger.info("1st Search");
         
-        searchExpertsQuery(TEST_CASE_TYPE, TEST_CASE_COUNTRY);
+        searchExpertsQuery(TEST_CASE_TYPE, TEST_CASE_COUNTRY, COMMUNIY_SERVICE);
         searchExpertsSubmit();
 
         rootLogger.info("2nd select expert");
@@ -198,7 +198,7 @@ public class TestsCommunityWizard {
     @Test
     public void returnBackFrom4thStep(){
         rootLogger.info("1st Search");
-        searchExpertsQuery(TEST_CASE_TYPE, TEST_CASE_COUNTRY);
+        searchExpertsQuery(TEST_CASE_TYPE, TEST_CASE_COUNTRY, COMMUNIY_SERVICE);
         searchExpertsSubmit();
 
         rootLogger.info("2nd select expert");
@@ -220,7 +220,7 @@ public class TestsCommunityWizard {
     public void createDraftCaseSimpleWay(){
         rootLogger.info("1st Search");
         String status = COMMUNITY_STATUS_DRAFT;
-        searchExpertsQuery(TEST_CASE_TYPE, TEST_CASE_COUNTRY);
+        searchExpertsQuery(TEST_CASE_TYPE, TEST_CASE_COUNTRY, COMMUNIY_SERVICE);
         searchExpertsSubmit();
 
         rootLogger.info("2nd select expert");
@@ -250,7 +250,7 @@ public class TestsCommunityWizard {
         rootLogger.info("1st Search");
         String status = COMMUNITY_STATUS_DRAFT;
         String caseName = "DRAFT_CASE_"+randomString(10);
-        searchExpertsQuery(TEST_CASE_TYPE, TEST_CASE_COUNTRY);
+        searchExpertsQuery(TEST_CASE_TYPE, TEST_CASE_COUNTRY, COMMUNIY_SERVICE);
         searchExpertsSubmit();
 
         rootLogger.info("2nd select expert");
@@ -301,7 +301,7 @@ public class TestsCommunityWizard {
         rootLogger.info("1st Search");
         String status = COMMUNITY_STATUS_DRAFT;
         String caseName = "CUSTOM_NAME"+randomString(10);
-        searchExpertsQuery(TEST_CASE_TYPE, TEST_CASE_COUNTRY);
+        searchExpertsQuery(TEST_CASE_TYPE, TEST_CASE_COUNTRY, COMMUNIY_SERVICE);
         searchExpertsSubmit();
 
         rootLogger.info("2nd select expert");
@@ -330,7 +330,7 @@ public class TestsCommunityWizard {
         rootLogger.info("1st Search");
         String status = COMMUNITY_STATUS_SENT;
         String caseName = "SENT_CASE_"+randomString(10);
-        searchExpertsQuery(TEST_CASE_TYPE, TEST_CASE_COUNTRY);
+        searchExpertsQuery(TEST_CASE_TYPE, TEST_CASE_COUNTRY, COMMUNIY_SERVICE);
         searchExpertsSubmit();
 
         rootLogger.info("2nd select expert");
@@ -358,7 +358,7 @@ public class TestsCommunityWizard {
         rootLogger.info("1st Search");
         String status = COMMUNITY_STATUS_SENT;
         String caseName = "SENT_CASE_"+randomString(10);
-        searchExpertsQuery(TEST_CASE_TYPE, TEST_CASE_COUNTRY);
+        searchExpertsQuery(TEST_CASE_TYPE, TEST_CASE_COUNTRY, COMMUNIY_SERVICE);
         searchExpertsSubmit();
 
         rootLogger.info("2nd select expert");
@@ -387,7 +387,7 @@ public class TestsCommunityWizard {
         rootLogger.info("1st Search");
         String status = COMMUNITY_STATUS_SENT;
         String caseName = "SENT_CASE_"+randomString(10);
-        searchExpertsQuery(TEST_CASE_TYPE, TEST_CASE_COUNTRY);
+        searchExpertsQuery(TEST_CASE_TYPE, TEST_CASE_COUNTRY, COMMUNIY_SERVICE);
         searchExpertsSubmit();
 
         rootLogger.info("2nd select expert");
