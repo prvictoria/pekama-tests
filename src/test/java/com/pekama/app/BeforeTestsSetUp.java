@@ -7,6 +7,9 @@ import io.github.bonigarcia.wdm.FirefoxDriverManager;
 import io.github.bonigarcia.wdm.InternetExplorerDriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+import java.io.File;
 
 import static com.codeborne.selenide.Configuration.browser;
 import static com.codeborne.selenide.Configuration.startMaximized;
@@ -20,7 +23,7 @@ public class BeforeTestsSetUp {
     static final Logger rootLogger = LogManager.getRootLogger();
 
     public static boolean localDriverPath = false;
-    public static int testBrowser = 1;
+    public static int testBrowser = 5;
     public static void setBrowser() {
         switch (testBrowser) {
             case 1:
@@ -70,14 +73,19 @@ public class BeforeTestsSetUp {
 
             case 5:
                 browser = FIREFOX;
-                if (localDriverPath == true){
-                    startMaximized = true;
-                    setFirefoxDriverPath();
-                    rootLogger.info("Local driver path is selected");}
-                if (localDriverPath == false){
-                    startMaximized = false;
-                    FirefoxDriverManager.getInstance().setup();
-                }
+//                String firefox_binary_path = "C:\\FirefoxPortable\\FirefoxPortable.exe";
+//                DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+//                capabilities.setCapability("firefox_binary", firefox_binary_path);
+//                capabilities.setCapability("version", "46.0.1");
+
+//                if (localDriverPath == true){
+//                    startMaximized = true;
+//                    setFirefoxDriverPath();
+//                    rootLogger.info("Local driver path is selected");}
+//                if (localDriverPath == false){
+//                    startMaximized = false;
+//                    FirefoxDriverManager.getInstance().setup();
+//                }
                 rootLogger.info("Tests will performed in FF46");
                 break;
         }

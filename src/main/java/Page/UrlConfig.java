@@ -23,7 +23,7 @@ public class UrlConfig {
     public static String MATTER_TYPE_PATENT;
     public static String COMMUNIY_SERVICE;
 
-    public static int environment = 1;
+    public static int environment = 3;
     public static void setEnvironment() {
         switch (environment) {
             case 1:
