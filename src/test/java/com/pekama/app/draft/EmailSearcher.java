@@ -5,6 +5,9 @@ import javax.mail.search.SearchTerm;
 import java.util.Date;
 import java.util.Properties;
 
+import static Utils.Utils.formatDateToString;
+import static Utils.Utils.getCurrentDate;
+
 
 public class EmailSearcher {
     static String login = "testqweeco005@gmail.com";
@@ -69,6 +72,12 @@ public class EmailSearcher {
                 Message message = foundMessages[i];
                 String subject = message.getSubject();
                 System.out.println("Found message #" + i + ": " + subject);
+
+                Date date = message.getSentDate();
+                formatDateToString(date);
+                System.out.println("Found message #" + i + ": " + date);
+                String today = getCurrentDate();
+
             }
 
             // disconnect
@@ -93,26 +102,9 @@ public class EmailSearcher {
         String keyword = subject;
         searcher.searchEmail(host, port, login, password, keyword);
     }
-    public class SentDateSearchTerm extends SearchTerm {
-        private Date afterDate;
-
-        public SentDateSearchTerm(Date afterDate) {
-            this.afterDate = afterDate;
-        }
-
-        @Override
-        public boolean match(Message message) {
-            try {
-                if (message.getSentDate().after(afterDate)) {
-                    return true;
-                }
-            } catch (MessagingException ex) {
-                ex.printStackTrace();
-            }
-            return false;
-        }
 
     }
     //todo Admin test
+    // todo Tests for viever
     //todo email test
-}
+

@@ -23,10 +23,16 @@ public class Utils {
                return sb.toString();
     }
 
-    public static String getCurrentDate (){
+    public static String getCurrentDate(){
         DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
         java.util.Date date = new java.util.Date();
         String datetime = dateFormat.format(date);
+        System.out.println("Current Date Time : " + datetime);
+        return datetime;
+    }
+    public static String formatDateToString(Date currentDate){
+        DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+        String datetime = dateFormat.format(currentDate);
         System.out.println("Current Date Time : " + datetime);
         return datetime;
     }

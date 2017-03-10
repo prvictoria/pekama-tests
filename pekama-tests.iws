@@ -5,12 +5,10 @@
     <bookmark url="file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java" line="468" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2fcdccdc-4d95-4ab7-8153-9ec9d616e50f" name="Default" comment="FF46 default config">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/lib/smtpGmail.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/draft/EmailSearcher.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/draft/GmailInbox.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/draft/CheckingMails.java" afterPath="" />
+    <list default="true" id="2fcdccdc-4d95-4ab7-8153-9ec9d616e50f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pekama-tests.iws" afterPath="$PROJECT_DIR$/pekama-tests.iws" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Utils/Utils.java" afterPath="$PROJECT_DIR$/src/main/java/Utils/Utils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/draft/EmailSearcher.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/draft/EmailSearcher.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="build/reports/" />
@@ -234,8 +232,8 @@
       <file leaf-file-name="GmailInbox.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/draft/GmailInbox.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="14" selection-end-column="60" />
+            <state relative-caret-position="187">
+              <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1666#2157#0" expanded="true" />
@@ -258,15 +256,23 @@
       <file leaf-file-name="EmailSearcher.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/draft/EmailSearcher.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="821">
-              <caret line="115" column="4" lean-forward="false" selection-start-line="115" selection-start-column="4" selection-end-line="115" selection-end-column="4" />
+            <state relative-caret-position="532">
+              <caret line="80" column="13" lean-forward="true" selection-start-line="80" selection-start-column="13" selection-end-line="80" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1645#2096#0" expanded="true" />
-                <element signature="e#2095#2096#0" expanded="true" />
-                <element signature="e#3352#3353#0" expanded="true" />
-                <element signature="e#3402#3403#0" expanded="true" />
+                <element signature="e#1734#2185#0" expanded="true" />
+                <element signature="e#2184#2185#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Utils.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Utils/Utils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="32" column="61" lean-forward="false" selection-start-line="32" selection-start-column="25" selection-end-line="32" selection-end-column="61" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -276,16 +282,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="561">
               <caret line="60" column="22" lean-forward="false" selection-start-line="60" selection-start-column="22" selection-end-line="60" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BasicAuth.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/draft/BasicAuth.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-641">
-              <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -413,7 +409,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/Page/Box.java" />
         <option value="$PROJECT_DIR$/src/main/java/Page/CommunityWizard.java" />
         <option value="$PROJECT_DIR$/src/main/java/Steps/Messages.java" />
         <option value="$PROJECT_DIR$/src/main/java/Steps/StepsExternal.java" />
@@ -463,6 +458,7 @@
         <option value="$PROJECT_DIR$/src/lib/smtpGmail.properties" />
         <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/draft/GmailInbox.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/draft/CheckingMails.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Utils/Utils.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/draft/EmailSearcher.java" />
       </list>
     </option>
@@ -647,6 +643,24 @@
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
             <PATH_ELEMENT USER_OBJECT="src/test/java">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="pekama-tests">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="src/main/java">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="Utils">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
@@ -1437,14 +1451,7 @@
       <workItem from="1488993263191" duration="5982000" />
       <workItem from="1489043742296" duration="9226000" />
       <workItem from="1489085178787" duration="7785000" />
-      <workItem from="1489172388303" duration="5636000" />
-    </task>
-    <task id="LOCAL-00200" summary="Values transaction CRUD tests">
-      <created>1487616647371</created>
-      <option name="number" value="00200" />
-      <option name="presentableId" value="LOCAL-00200" />
-      <option name="project" value="LOCAL" />
-      <updated>1487616647371</updated>
+      <workItem from="1489172388303" duration="8449000" />
     </task>
     <task id="LOCAL-00201" summary="Values currency CRUD tests">
       <created>1487617581018</created>
@@ -1782,7 +1789,14 @@
       <option name="project" value="LOCAL" />
       <updated>1489174251083</updated>
     </task>
-    <option name="localTasksCounter" value="249" />
+    <task id="LOCAL-00249" summary="Email IMAP get messages">
+      <created>1489178446265</created>
+      <option name="number" value="00249" />
+      <option name="presentableId" value="LOCAL-00249" />
+      <option name="project" value="LOCAL" />
+      <updated>1489178446265</updated>
+    </task>
+    <option name="localTasksCounter" value="250" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1818,7 +1832,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="838458000" />
+    <option name="totallyTimeSpent" value="841271000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1843,7 +1857,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.487636" sideWeight="0.50774336" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297546" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5779867" sideWeight="0.49375" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.49280974" sideWeight="0.6697389" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.49280974" sideWeight="0.6697389" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5757743" sideWeight="0.48540705" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1951,7 +1965,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Tests fixes&#10;" />
     <MESSAGE value="Before Class config implementation" />
     <MESSAGE value="Config Chrome fix." />
     <MESSAGE value="detect text on page loops methods" />
@@ -1976,7 +1989,8 @@
     <MESSAGE value="Fix landing suite" />
     <MESSAGE value="Local path to FF46" />
     <MESSAGE value="FF46 default config" />
-    <option name="LAST_COMMIT_MESSAGE" value="FF46 default config" />
+    <MESSAGE value="Email IMAP get messages" />
+    <option name="LAST_COMMIT_MESSAGE" value="Email IMAP get messages" />
   </component>
   <component name="VssConfiguration">
     <CheckoutOptions>
@@ -3309,7 +3323,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/java/lang/reflect/Method.java" />
     <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/draft/ReadingEmails.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-738">
@@ -3800,18 +3813,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/draft/GmailInbox.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="14" selection-end-column="60" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1666#2157#0" expanded="true" />
-            <element signature="e#2156#2157#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/javax/mail/mail/1.4/mail-1.4-sources.jar!/javax/mail/search/SearchTerm.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
@@ -3820,16 +3821,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/draft/EmailSearcher.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/draft/GmailInbox.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="821">
-          <caret line="115" column="4" lean-forward="false" selection-start-line="115" selection-start-column="4" selection-end-line="115" selection-end-column="4" />
+        <state relative-caret-position="187">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1645#2096#0" expanded="true" />
-            <element signature="e#2095#2096#0" expanded="true" />
-            <element signature="e#3352#3353#0" expanded="true" />
-            <element signature="e#3402#3403#0" expanded="true" />
+            <element signature="e#1666#2157#0" expanded="true" />
+            <element signature="e#2156#2157#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Utils/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="32" column="61" lean-forward="false" selection-start-line="32" selection-start-column="25" selection-end-line="32" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/draft/EmailSearcher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="80" column="13" lean-forward="true" selection-start-line="80" selection-start-column="13" selection-end-line="80" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1734#2185#0" expanded="true" />
+            <element signature="e#2184#2185#0" expanded="true" />
           </folding>
         </state>
       </provider>
