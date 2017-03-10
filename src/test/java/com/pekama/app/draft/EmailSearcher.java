@@ -2,6 +2,7 @@ package com.pekama.app.draft;
 
 import javax.mail.*;
 import javax.mail.search.SearchTerm;
+import java.io.IOException;
 import java.util.Date;
 import java.util.Properties;
 
@@ -78,6 +79,11 @@ public class EmailSearcher {
                 System.out.println("Found message #" + i + ": " + date);
                 String today = getCurrentDate();
 
+                System.out.println("Email Number " + (i + 1));
+                System.out.println("Subject: " + message.getSubject());
+                System.out.println("From: " + message.getFrom()[0]);
+                System.out.println("Text: " + message.getContent().toString());
+
             }
 
             // disconnect
@@ -89,6 +95,8 @@ public class EmailSearcher {
         } catch (MessagingException ex) {
             System.out.println("Could not connect to the message store.");
             ex.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
