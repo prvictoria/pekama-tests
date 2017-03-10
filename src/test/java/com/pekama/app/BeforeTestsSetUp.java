@@ -23,7 +23,7 @@ public class BeforeTestsSetUp {
     static final Logger rootLogger = LogManager.getRootLogger();
 
     public static boolean localDriverPath = false;
-    public static int testBrowser = 1;
+    public static int testBrowser = 5;
     public static void setBrowser() {
         switch (testBrowser) {
             case 1:
