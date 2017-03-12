@@ -302,7 +302,7 @@ public class StepsPekama implements StepsFactory{
     public static void scrollCustom(int value) {
         executeJavaScript("scrollTo(0, "+value+")");
     }
-    public static void scrollToElement(SelenideElement element) {
+    public static void scrollToElement(SelenideElement element) throws Exception {
         executeJavaScript("arguments[0].scrollIntoView(true)", element);
         sleep(250);
     } //need to check if works

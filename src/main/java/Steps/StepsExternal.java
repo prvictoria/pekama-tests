@@ -277,20 +277,13 @@ public class StepsExternal implements StepsFactory{
 
         }
     }
-    public static void renevAcessToBox(){
-    }
-    public static void loginBox(){
-    }
-    public static void checkRootFolder(){
-    }
-    public static void checkProjectFolder(){
-    }
-    public static void checkFolder(){
-    }
-    public static void checkFile(){
-    }
-    public static void checkFilesRemoved(){
-    }
+    public static void renevAcessToBox(){    }
+    public static void loginBox(){    }
+    public static void checkRootFolder(){    }
+    public static void checkProjectFolder(){    }
+    public static void checkFolder(){    }
+    public static void checkFile(){    }
+    public static void checkFilesRemoved(){    }
 
     public static void authGmail(String GMAIL_LOGIN) {
         sleep(5000);
