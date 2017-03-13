@@ -5,7 +5,6 @@ import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
-import org.junit.Test;
 
 import static Page.CommunityDashboard.*;
 import static Page.CommunityOutgoing.*;
@@ -65,9 +64,9 @@ public class StepsCommunity implements StepsFactory{
         rootLogger.info("Selected defining is - "+PROFILE_SERVICE_COUNTRY);
 
         PROFILE_SELECT_ExpertType.click();
-        fillField(PROFILE_INPUT_ExpertType, COMMUNIY_SERVICE);
+        fillField(PROFILE_INPUT_ExpertType, COMMUNITY_SERVICE);
         CSS_SelectHighlighted.click();
-        rootLogger.info("Selected service is - "+COMMUNIY_SERVICE);
+        rootLogger.info("Selected service is - "+ COMMUNITY_SERVICE);
 
         PROFILE_INPUT_PRICE.clear();
         PROFILE_INPUT_PRICE.sendKeys(price);
@@ -77,7 +76,6 @@ public class StepsCommunity implements StepsFactory{
         String profileServiceRow = "//div[contains(.,'"+PROFILE_SERVICE_CASE_TYPE+"')]/following-sibling::div[contains(.,'"+PROFILE_SERVICE_COUNTRY+"')]/following-sibling::div//button[1]";
         return profileServiceRow;
     }
-
     public static String SERVICE_ROW = "//div[@class='row' and contains(.,'%s') and contains(.,'%s')]";
     public static void findServiceRow(boolean rowPresentOnPage, String... args) {
         String profileServiceRow = String.format(SERVICE_ROW, args);
@@ -187,7 +185,7 @@ public class StepsCommunity implements StepsFactory{
         sleep(1000);
         return true;
     }
-    public static boolean acceptCompetion(boolean sendMsgToCollaborator) {
+    public static boolean acceptCompletion(boolean sendMsgToCollaborator) {
         rootLogger.info("Check that MW '"+MW_CONFIRM_COMPLETION_TITLE+"' is present");
         MW_CONFIRM_COMPLETION_TITLE.shouldBe(visible);
         //MW_CONFIRM_COMPLETION_TEXT.shouldBe(visible);
@@ -215,6 +213,43 @@ public class StepsCommunity implements StepsFactory{
         $(byXpath(row)).waitUntil(visible, 20000).click();
         rootLogger.info(teamName+" - expert selected");
         return true;
+    }
+    //Wizard steps
+    public static String submitWizard1Step(String caseType, String country, String service){
+        rootLogger.info("1st Step - Search");
+        searchExpertsQuery(caseType, country, service);
+        String searchQueryUrl = searchExpertsSubmit();
+        return searchQueryUrl;
+    }
+    public static String submitWizard2Step(String expertTeamName){
+        rootLogger.info("2nd Step - select expert");
+        WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.waitUntil(visible, 20000)
+                .shouldBe(disabled);
+        WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.shouldBe(disabled);
+        selectExpert(expertTeamName);
+        submitEnabledButton(WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS);
+        return expertTeamName;
+    }
+    public static String submitWizard3Step(String caseName){
+        rootLogger.info("3rd Step - select NEXT");
+        fillField(WIZARD_FIELD_CASE_NAME, caseName);
+        WIZARD_BTN_NEXT.click();
+        return caseName;
+    }
+    public static String submitWizard4Step(){
+        rootLogger.info("4th Step - select Send Instruction");
+        BTN_SEND_INSTRUCTION.waitUntil(visible, 20000).click();
+        String a = "";
+        return a;
+    }
+    public static String submitWizard5Step(){
+        rootLogger.info("5th Step - select Instruct Now");
+        WIZARD_BTN_INSTRUCT_NOW.waitUntil(visible, 20000).click();
+        waitForModalWindow("Congratulations!");
+        MW_CONGRATULATION_OK.click();
+        MW.shouldNotBe(visible);
+        String a = "";
+        return a;
     }
     //draft rows
     public static boolean checkCaseNameFirstRow(String caseType, String caseCountry) {
@@ -370,6 +405,7 @@ public class StepsCommunity implements StepsFactory{
         return true;
     }
     public static boolean withdrawCase(String caseName, boolean sendMsgToCollaborator) {
+        rootLogger.info("withdraw case");
         String status = COMMUNITY_STATUS_WITHDRAWN;
         rootLogger.info(caseName);
         String row = String.format(caseRowByName, caseName);
@@ -411,7 +447,7 @@ public class StepsCommunity implements StepsFactory{
         SelenideElement btn = $(byXpath(row+ROW_CONTROL_BTN_ACTION));
         rootLogger.debug(btn);
         btn.click();
-        acceptCompetion(sendMsgToCollaborator);
+        acceptCompletion(sendMsgToCollaborator);
         sleep(1000);
         checkCaseStatus(caseName, status);
         rootLogger.info(caseName+" - instruction were confirmed");
@@ -425,7 +461,7 @@ public class StepsCommunity implements StepsFactory{
         String status = COMMUNITY_STATUS_SENT;
         String caseName = "DEFAULT_CASE"+randomString(10);
 
-        searchExpertsQuery(caseType, caseCountry, COMMUNIY_SERVICE);
+        searchExpertsQuery(caseType, caseCountry, COMMUNITY_SERVICE);
         searchExpertsSubmit();
 
         rootLogger.info("2nd Step - select expert");
@@ -439,10 +475,10 @@ public class StepsCommunity implements StepsFactory{
         WIZARD_BTN_NEXT.click();
         sleep(3000);
 
-        rootLogger.info("4th Step - select NEXT");
+        rootLogger.info("4th Step - Send Instruction");
         BTN_SEND_INSTRUCTION.shouldBe(visible).click();
 
-        rootLogger.info("5th Step - select NEXT");
+        rootLogger.info("5th Step - select Instruct Now");
         WIZARD_BTN_INSTRUCT_NOW.shouldBe(visible).click();
 
         waitForModalWindow("Congratulations!");
@@ -461,7 +497,7 @@ public class StepsCommunity implements StepsFactory{
         String status = COMMUNITY_STATUS_SENT;
         String caseName = "DEFAULT_CASE"+randomString(10);
 
-        searchExpertsQuery(caseType, caseCountry, COMMUNIY_SERVICE);
+        searchExpertsQuery(caseType, caseCountry, COMMUNITY_SERVICE);
         searchExpertsSubmit();
 
         rootLogger.info("2nd Step - select expert");
@@ -496,7 +532,7 @@ public class StepsCommunity implements StepsFactory{
         String caseCountry = TestsCredentials.Countries.PITCAIRN_ISLANDS.getValue();
         String caseName = "DEFAULT_DRAFT_CASE" + randomString(10);
 
-        searchExpertsQuery(caseType, caseCountry, COMMUNIY_SERVICE);
+        searchExpertsQuery(caseType, caseCountry, COMMUNITY_SERVICE);
         searchExpertsSubmit();
 
         rootLogger.info("2nd Step - select expert");

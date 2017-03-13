@@ -11,8 +11,8 @@ public class UrlConfig {
     static final Logger rootLogger = LogManager.getRootLogger();
     public static final String STAGING_PEKAMA = "https://staging.pekama.com";
     public static final String STAGING_COMMUNITY = "https://communitystaging.pekama.com";
-    public static final String TEST_PEKAMA = "";
-    public static final String TEST_COMMUNITY = "";
+    public static final String TEST_PEKAMA = "https://";
+    public static final String TEST_COMMUNITY = "https://";
     public static final String PROD_PEKAMA = "https://docketing.pekama.com";
     public static final String PROD_COMMUNITY = "https://community.pekama.com";
 
@@ -21,7 +21,8 @@ public class UrlConfig {
     public static String SELECT_HOST;
     public static String MATTER_TYPE_TRADEMARK;
     public static String MATTER_TYPE_PATENT;
-    public static String COMMUNIY_SERVICE;
+    public static String COMMUNITY_SERVICE;
+    public static String INTRODUCER_NAME;
 
     public static int environment = 1;
     public static void setEnvironment() {
@@ -33,7 +34,8 @@ public class UrlConfig {
                 SELECT_HOST = ENVIRONMENT_PEKAMA;
                 MATTER_TYPE_TRADEMARK = CaseType.TRADEMARK.getValue();
                 MATTER_TYPE_PATENT = CaseType.PATENT.getValue();
-                COMMUNIY_SERVICE = "Filing an Application";
+                COMMUNITY_SERVICE = "Filing an Application";
+                INTRODUCER_NAME = "Rand, Kaldor & Zane LLP (RKNZ)";
                 break;
             case 2:
                 rootLogger.info("Tests will executed on Test server");
@@ -42,7 +44,8 @@ public class UrlConfig {
                 SELECT_HOST = ENVIRONMENT_PEKAMA;
                 MATTER_TYPE_TRADEMARK = CaseType.TRADEMARK.getValue();
                 MATTER_TYPE_PATENT = CaseType.PATENT.getValue();
-                COMMUNIY_SERVICE = "Filing an Application";
+                COMMUNITY_SERVICE = "Filing an Application";
+                INTRODUCER_NAME = "Rand, Kaldor & Zane LLP (RKNZ)";
                 break;
             case 3:
                 rootLogger.info("Tests will executed on Production server");
@@ -51,7 +54,8 @@ public class UrlConfig {
                 SELECT_HOST = ENVIRONMENT_PEKAMA;
                 MATTER_TYPE_TRADEMARK = ProductionCaseType.TRADEMARK.getValue();
                 MATTER_TYPE_PATENT = ProductionCaseType.PATENT.getValue();
-                COMMUNIY_SERVICE = "Filing an Application";
+                COMMUNITY_SERVICE = "Filing an Application";
+                INTRODUCER_NAME = "Rand, Kaldor & Zane LLP (RKNZ)";
                 break;
         }
     }

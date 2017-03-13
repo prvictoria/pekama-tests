@@ -17,6 +17,8 @@ import static Page.PekamaProject.*;
 import static Page.PekamaReports.*;
 import static Page.PekamaTeamSettings.*;
 import static Page.TestsCredentials.*;
+import static Page.TestsStrings.PAGE_TITLE_COMMUNITY;
+import static Page.TestsStrings.PAGE_TITLE_PEKAMA;
 import static Page.UrlConfig.MATTER_TYPE_TRADEMARK;
 import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
@@ -535,6 +537,7 @@ public class StepsPekama implements StepsFactory{
         getWebDriver().manage().deleteCookieNamed(cookieName);
     }
     public static boolean deleteProject(){
+        rootLogger.info("Delete Pekama project");
         scrollUp();
         PROJECT_BTN_DELETE.shouldBe(visible).click();
         submitConfirmAction();
@@ -639,6 +642,21 @@ public class StepsPekama implements StepsFactory{
         rootLogger.info(displayedText+" NOT displayed");
         return true;
     }
+    public static void switchToCommunityWindow(){
+        rootLogger.info("Switch to Community window");
+        switchTo().window(PAGE_TITLE_COMMUNITY);
+        if (checkPageTitle(PAGE_TITLE_COMMUNITY)==false){
+            Assert.fail("Page is no Community");
+        }
+    }
+    public static void switchToPekamaWindow(){
+        rootLogger.info("Switch to Pekama window");
+        switchTo().window(PAGE_TITLE_PEKAMA);
+        if (checkPageTitle(PAGE_TITLE_PEKAMA)==false){
+            Assert.fail("No redirect to Community");
+        }
+    }
+
     @Test
     public void testDebug(){
         setEnvironment();

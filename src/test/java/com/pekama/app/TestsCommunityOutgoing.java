@@ -93,6 +93,7 @@ public class TestsCommunityOutgoing {
         editCaseName(newName, 1025);
         rootLogger.info("Test passed");
     }
+    @Ignore //TODO obsolete
     @Test
     public void testB_RedirectToPekamaProject() {
         rootLogger.info("Create case");
@@ -167,6 +168,7 @@ public class TestsCommunityOutgoing {
         cancelCase(caseName, false);
         rootLogger.info("Test passed");
     }
+    @Ignore //TODO obsolete flow - no link
     @Test
     public void testF3_cancelCaseCheckPekama() {
         rootLogger.info("Create draft case");
@@ -200,6 +202,7 @@ public class TestsCommunityOutgoing {
 
         rootLogger.info("Test passed");
     }
+    @Ignore //TODO obsolete flow - no link
     @Test
     public void testG1_deleteDraftCase() {
         rootLogger.info("Create draft case");
@@ -233,7 +236,7 @@ public class TestsCommunityOutgoing {
         checkText("This project was deleted by its owner.");
         rootLogger.info("Test passed");
     }
-    @Test
+    @Ignore //TODO obsolete flow - no link
     public void testG2_deleteCancelledCase() {
         rootLogger.info("Create draft case");
         String caseName = createDraftCase(EXPERT_TEAM_NAME);
@@ -275,7 +278,7 @@ public class TestsCommunityOutgoing {
 
         rootLogger.info("Test passed");
     }
-    @Test
+    @Ignore //TODO obsolete flow - no link
     public void testG3_deleteWithdrawnCase() {
         rootLogger.info("Create case");
         String caseName = createCase(EXPERT_TEAM_NAME);
@@ -313,7 +316,7 @@ public class TestsCommunityOutgoing {
 
         rootLogger.info("Test passed");
     }
-    @Test
+    @Ignore //TODO obsolete flow - no link
     public void testG4_deleteSentCaseError() {
         rootLogger.info("Create case");
         String caseName = createCase(EXPERT_TEAM_NAME);

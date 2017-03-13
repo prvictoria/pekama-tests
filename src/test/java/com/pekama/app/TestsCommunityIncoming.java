@@ -12,7 +12,6 @@ import static Page.CommunityDashboard.*;
 import static Page.CommunityOutgoing.*;
 import static Page.PekamaConversationProject.*;
 import static Page.PekamaProject.*;
-import static Page.PekamaProject.*;
 import static Page.TestsCredentials.*;
 import static Page.UrlConfig.*;
 import static Page.UrlConfig.setEnvironment;
@@ -29,7 +28,6 @@ import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
-import static com.pekama.app.AllTestsRunner.*;
 import static com.pekama.app.BeforeTestsSetUp.holdBrowserAfterTest;
 import static com.pekama.app.BeforeTestsSetUp.setBrowser;
 
@@ -173,6 +171,7 @@ public class TestsCommunityIncoming {
         rootLogger.info("Test passed");
         
     }
+    @Ignore //Todo obsolete flow - no project link
     @Test
     public void testB3_tryToDeleteProjectByOwner() {
         rootLogger.info("Open project by Owner and try to delete");
@@ -246,6 +245,7 @@ public class TestsCommunityIncoming {
         rootLogger.info("Test passed");
         rootLogger.info("Test passed");
     }
+    @Ignore //Todo obsolete flow - no project link
     @Test
     public void testC3_tryToDeleteProjectByOwner() {
         rootLogger.info("Open project by Owner and try to delete");
@@ -370,6 +370,7 @@ public class TestsCommunityIncoming {
         rootLogger.info("Check default message NOT present: "+msgCaseCancelled(userName));
         checkTextNotPresent(msgCaseCancelled(userName));
     }
+    @Ignore //Todo obsolete flow - no project link
     @Test
     public void testG1_ChangeStatusesInPekamaForExpert() {
         rootLogger.info("Create case");
@@ -403,11 +404,12 @@ public class TestsCommunityIncoming {
         TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_CONFIRMED));
 
         TAB_INFO_COMMUNITY_CASE_ACTION.click();
-        acceptCompetion(false);
+        acceptCompletion(false);
         TAB_INFO_COMMUNITY_CASE_ACTION.shouldNot(exist);
         TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_COMPLETED));
         rootLogger.info("Test passed");
     }
+    @Ignore //Todo obsolete flow - no project link
     @Test
     public void testG2_ChangeStatusesInPekamaForExpert() {
         rootLogger.info("Create case");
@@ -444,7 +446,7 @@ public class TestsCommunityIncoming {
         CONVERSATION_MsgText.shouldHave(text(MSG_DEFAULT_CONFIRM_INSTRUCTIONS));
 
         TAB_INFO_COMMUNITY_CASE_ACTION.click();
-        acceptCompetion(true);
+        acceptCompletion(true);
         TAB_INFO_COMMUNITY_CASE_ACTION.shouldNot(exist);
         TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_COMPLETED));
         CONVERSATION_MsgText.shouldHave(text(MSG_DEFAULT_CONFIRM_COMPLETION));
