@@ -5,133 +5,9 @@
     <bookmark url="file://$PROJECT_DIR$/src/test/java/com/pekama/app/TestsPekamaProject.java" line="468" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2fcdccdc-4d95-4ab7-8153-9ec9d616e50f" name="Default" comment="Fix boost profiles">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/00_BeforeTests.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/00_Production_tests" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/00_VAR.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/01_TestSuite_PublicPages" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/02_TestSuite_Regression" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/03_TestSuite_TechnicalTest" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/ConversationDeleteMessage.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/ConversationEmailParameters.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/ConversationTaskFromMessage.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/CreateDeleteProject.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/CreateProject.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/Dashboard.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/DashboardCheckout.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/DashboardLogout.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/DeploymentTests/01_Create_project_trademark.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/DeploymentTests/02_Create_templates_and_deploy.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/DeploymentTests/03_Deploy_precreated_templates_and_messages.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/DeploymentTests/04_Deploy_templates_conversation.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/DeploymentTests/05_Edit_objects_project.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/DeploymentTests/06_BOXtests_Pekama_to_BOX_sync.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/DeploymentTests/07_Community_Requester.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/DeploymentTests/08_Community_Expert.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/DeploymentTests/09_Community_CreateCaseFromPekama.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/EventsBasicFilters.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/ExtBOXconnect.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/ExtBoxSyncFormBOX.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/ExtBoxSyncToBOX.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/ExtXeroConnectAndVerifyBill.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/MwNewContact.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/MwNewProject.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/MwTimeTracker.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/PersonalSettings.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/PersonalSettings_LoginSecurity.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/PersonalSettings_Notifications.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/PersonalSettings_Personaldetails.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/PersonalSettings_SecurityTab.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/PersonalSettings_Signature.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/ProjectAddContacts.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/ProjectAddNumber.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/ProjectBulkDeleteFiles.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/ProjectCheckFileRename.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/ProjectCheckRename.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/ProjectContactTab.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/ProjectCreateFolder.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/ProjectDeleteFileMenu.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/ProjectFamily.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/ProjectFinancials.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/ProjectNewConversation.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/ProjectPlusButton.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/ProjectPlusButtonContact.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/ProjectPlusButtonEvent.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/ProjectPlusButtonNumber.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/ProjectPlusEvent.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/ProjectTasksTemplate.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/ProjectUploadFile.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/ProjectsConversationPinUnpin.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/PublicPages/GmailCheckEmail.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/PublicPages/GmailLogout.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/PublicPages/LandingPage.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/PublicPages/LinkedinLogout.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/PublicPages/LoginAllChecks.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/PublicPages/LoginBadLogin.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/PublicPages/LoginBadPassword.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/PublicPages/LoginForgotPassword.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/PublicPages/LoginGmail.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/PublicPages/LoginLinkedin.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/PublicPages/LoginMailRu.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/PublicPages/LoginOnly.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/PublicPages/SignUpPage.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/PublicPages/SignUpPageEmailValidation.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/PublicPages/SignUpPageFindTeam.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/PublicPages/SignUpPageFollowInviteLink.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/PublicPages/SignUpPageInviteMembers.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/PublicPages/SignUpPageJoinToCompany.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/PublicPages/SignUpPageJoinToTeam.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/PublicPages/SignUpPageNewUser.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/PublicPages/SignUpValidCreateTeam.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/PublicPages/StagingLogin.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/ReportsContacts.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/ReportsFinBasicFilters.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/ReportsProjectBasicFilters.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/ReportsProjectDeleteAllCreatedToday.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/ReportsTasksBasicFilters.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/Selenium-IDE.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/TeamSettings.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/TeamSettingsDefaultStorage.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/TeamSettingsDocumentTemplate.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/TeamSettingsEventTemplate.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/TeamSettingsMessageTemplate.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/TeamSettingsNewMember.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/TeamSettingsPlaceholders.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/TeamSettingsProjectTemplates.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/TeamSettingsSelectTeam.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/TeamSettingsTaskTemplate.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/TeamSettingsValues.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/TeamSettingsValuesTaskStatus.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/AddContactLoop1000.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/AddContactLoop1000Person.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/CPP_deleteEventTimeline_loop.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/CompanyList.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/ConatcNameSurnameEmail.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/CreateManyProjects.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/DashboardDeployTemplateLoop.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/DatapickerSetDateLogic.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/DeleteUserFromAdminPanel.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/MsgLoadTest.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/MyLinkedin.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/PlusEventLoopDays.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/ProjectTaskLoop2.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/ProjectTasksLoop.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/RollupTest.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/TestRunner.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/modalBuyProjectValidationLoop.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/TechnicalTests/modalDraftLoop.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/data.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/datadriven.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/gui_map.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/package.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/randomgenerator.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/rollup-rules.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/HTML-tests/testDate.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/lib/OLD_log4j.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/pekama/app/AppTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/pekama/app/ConditionalIgnore.java" afterPath="" />
+    <list default="true" id="2fcdccdc-4d95-4ab7-8153-9ec9d616e50f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pekama-tests.iws" afterPath="$PROJECT_DIR$/pekama-tests.iws" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/pekama/app/draft/EmailSearcher.java" afterPath="$PROJECT_DIR$/src/test/java/com/pekama/app/draft/EmailSearcher.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="build/reports/" />
@@ -361,11 +237,31 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="StepsHttpAuth.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="StepsHttpAuth.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/Steps/StepsHttpAuth.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="102">
                   <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="MailingClass.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/draft/MailingClass.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="119">
+                  <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="EmailSearcher.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/draft/EmailSearcher.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="804">
+                  <caret line="114" column="0" lean-forward="true" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -594,7 +490,6 @@
         <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/draft/GmailInbox.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/draft/CheckingMails.java" />
         <option value="$PROJECT_DIR$/src/main/java/Utils/Utils.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/draft/EmailSearcher.java" />
         <option value="$PROJECT_DIR$/src/main/java/Steps/StepsExternal.java" />
         <option value="$PROJECT_DIR$/src/main/java/Steps/StepsPekama.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityOutgoing.java" />
@@ -605,6 +500,7 @@
         <option value="$PROJECT_DIR$/src/main/java/Page/ModalWindows.java" />
         <option value="$PROJECT_DIR$/src/main/java/Steps/StepsCommunity.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/TestsCommunityWizard.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/pekama/app/draft/EmailSearcher.java" />
       </list>
     </option>
   </component>
@@ -1634,14 +1530,7 @@
       <workItem from="1489311822593" duration="2898000" />
       <workItem from="1489420131655" duration="11628000" />
       <workItem from="1489509261206" duration="4306000" />
-      <workItem from="1489524051481" duration="100000" />
-    </task>
-    <task id="LOCAL-00205" summary="fix config">
-      <created>1487626443482</created>
-      <option name="number" value="00205" />
-      <option name="presentableId" value="LOCAL-00205" />
-      <option name="project" value="LOCAL" />
-      <updated>1487626443482</updated>
+      <workItem from="1489524051481" duration="183000" />
     </task>
     <task id="LOCAL-00206" summary="fix config">
       <created>1487704295688</created>
@@ -1979,7 +1868,14 @@
       <option name="project" value="LOCAL" />
       <updated>1489434145127</updated>
     </task>
-    <option name="localTasksCounter" value="254" />
+    <task id="LOCAL-00254" summary="Remove not actual data">
+      <created>1489524189959</created>
+      <option name="number" value="00254" />
+      <option name="presentableId" value="LOCAL-00254" />
+      <option name="project" value="LOCAL" />
+      <updated>1489524189960</updated>
+    </task>
+    <option name="localTasksCounter" value="255" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -2015,7 +1911,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="866404000" />
+    <option name="totallyTimeSpent" value="866487000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2028,7 +1924,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1868" height="1096" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32522124" sideWeight="0.48466864" order="10" side_tool="false" content_ui="tabs" />
@@ -2045,7 +1941,7 @@
       <window_info id="Terminal" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5757743" sideWeight="0.48540705" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34236726" sideWeight="0.4322453" order="0" side_tool="false" content_ui="tabs" x="710" y="525" width="432" height="494" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34236726" sideWeight="0.4322453" order="0" side_tool="false" content_ui="tabs" x="710" y="525" width="432" height="494" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964602" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21661721" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -2148,7 +2044,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Config Chrome fix." />
     <MESSAGE value="detect text on page loops methods" />
     <MESSAGE value="URL config in BeforeClass" />
     <MESSAGE value="Waiting modal window timeout fix" />
@@ -2173,7 +2068,8 @@
     <MESSAGE value="FF46 default config" />
     <MESSAGE value="Email IMAP get messages" />
     <MESSAGE value="Deleted project link fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="Deleted project link fix" />
+    <MESSAGE value="Remove not actual data" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove not actual data" />
   </component>
   <component name="VssConfiguration">
     <CheckoutOptions>
@@ -3626,13 +3522,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/javax/mail/mail/1.4/mail-1.4-sources.jar!/javax/mail/Authenticator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="62" column="22" lean-forward="false" selection-start-line="62" selection-start-column="22" selection-end-line="62" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/javax/mail/mail/1.4/mail-1.4-sources.jar!/javax/mail/Session.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3077">
@@ -3799,13 +3688,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/draft/EmailSearcher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-816">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -4145,6 +4027,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/draft/MailingClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/pekama/app/draft/EmailSearcher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="804">
+          <caret line="114" column="0" lean-forward="true" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
           <folding />
         </state>
       </provider>
