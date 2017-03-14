@@ -221,11 +221,16 @@ public class StepsCommunity implements StepsFactory{
         String searchQueryUrl = searchExpertsSubmit();
         return searchQueryUrl;
     }
+    public static String submitWizard1Step(String caseType){
+        rootLogger.info("1st Step - Search");
+        searchExpertsQuery(caseType, TestsCredentials.Countries.PITCAIRN_ISLANDS.getValue(), COMMUNITY_SERVICE);
+        String searchQueryUrl = searchExpertsSubmit();
+        return searchQueryUrl;
+    }
     public static String submitWizard2Step(String expertTeamName){
         rootLogger.info("2nd Step - select expert");
         WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.waitUntil(visible, 20000)
                 .shouldBe(disabled);
-        WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.shouldBe(disabled);
         selectExpert(expertTeamName);
         submitEnabledButton(WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS);
         return expertTeamName;

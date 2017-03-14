@@ -352,10 +352,11 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_COMMUNITY_Text3 = $(byText("Thank you for all the information. Please consider this as instructions to proceed with this case as discussed."));
     public static final SelenideElement MW_COMMUNITY_Text4 = $(byText("Thank you for all the information. Please consider this as instructions to proceed with this case as discussed."));
     public static final SelenideElement MW_COMMUNITY_Text5 = $(byText("Thank you for all the information. Please consider this as instructions to proceed with this case as discussed."));
-
+    //Boost profile
     public static final SelenideElement MW_BOOST_YOUR_PROFILE = $(byXpath(mw+""));
     public static final SelenideElement MW_BOOST_YOUR_PROFILE_BTN_START_NEW_CASE = $(byXpath(mw+"//button[contains(text(),'Start a new case')]"));
     public static final SelenideElement MW_BOOST_YOUR_PROFILE_BTN_REFER_ATTORNEY = $(byXpath(mw+"//button[contains(text(),'Refer an attorney now')]"));
+    public static final SelenideElement MW_BOOST_YOUR_PROFILE_BTN_INVITE_MEMBER = $(byXpath(mw+"//button[contains(text(),'Invite a team member now')]"));
     public static final SelenideElement MW_COMMUNITY_INVITE_ATTORNEY_BTN_INVITE = $(byXpath(mw+"//button[text()='invite']"));
     public static final SelenideElement MW_COMMUNITY_INVITE_ATTORNEY_BTN_CANCEL = $(byXpath(mw+"//button[text()='cancel']"));
     public static final SelenideElement MW_COMMUNITY_INVITE_FIELD_EMAIL = $(byXpath(mw+"//*[@id='attorneyEmail']"));
