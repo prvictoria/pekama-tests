@@ -112,7 +112,6 @@ public class EmailSearcher {
     }
 
     }
-    //todo Admin test
-    // todo Tests for viever
+
     //todo email test
 
