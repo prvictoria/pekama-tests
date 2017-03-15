@@ -10,6 +10,10 @@
           <option name="url" value="https://github.com/VatslauX/pekama-tests.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://github.com/d10xa/gradle-allure-plugin-examples.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
     <option name="cloneParentDir" value="D:\PRJ" />
