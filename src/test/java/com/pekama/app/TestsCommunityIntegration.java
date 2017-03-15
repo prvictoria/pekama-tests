@@ -229,7 +229,7 @@ public class TestsCommunityIntegration {
         rootLogger.info("Test passed");
     }
     @Test
-    public void confirmInstructionInPekamaAsExpert_A_withMsg() {
+    public void confirmInstructionInPekamaAsExpert_MsgTrue() {
         submitWizard4Step();
         submitWizard5Step();
         switchToPekamaWindow();
@@ -262,7 +262,7 @@ public class TestsCommunityIntegration {
         rootLogger.info("Test passed");
     }
     @Test
-    public void confirmInstructionInPekamaAsExpert_A_noMsg() {
+    public void confirmInstructionInPekamaAsExpert_MsgFalse() {
         submitWizard4Step();
         submitWizard5Step();
         switchToPekamaWindow();
@@ -294,6 +294,45 @@ public class TestsCommunityIntegration {
         TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_COMPLETED));
         rootLogger.info("Test passed");
     }
+    @Test //TODO BUG https://www.pivotaltracker.com/story/show/141800023
+    public void cancelCaseInPekama_MsgFalse() {
+        submitWizard4Step();
+        submitWizard5Step();
+        switchToPekamaWindow();
+        String actualUrl = getActualUrl();
+        Assert.assertEquals
+                ("Opened url not same to the project url", testProjectURL, actualUrl);
+        refresh();
 
+        rootLogger.info("Withdraw case");
+        sleep(4000);
+        TAB_INFO_COMMUNITY_CASE_NAME.waitUntil(visible, 15000).shouldHave(text(CASE_NAME));
+        TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_SENT));
+        TAB_INFO_COMMUNITY_CASE_ACTION.shouldBe(visible).click();
+        acceptWithdrawCase(false);
+
+        TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_WITHDRAWN));
+        rootLogger.info("Test passed");
+    }
+    @Test //TODO BUG https://www.pivotaltracker.com/story/show/141800023
+    public void cancelCaseInPekama_MsgTrue() {
+        submitWizard4Step();
+        submitWizard5Step();
+        switchToPekamaWindow();
+        String actualUrl = getActualUrl();
+        Assert.assertEquals
+                ("Opened url not same to the project url", testProjectURL, actualUrl);
+        refresh();
+
+        rootLogger.info("Withdraw case");
+        sleep(4000);
+        TAB_INFO_COMMUNITY_CASE_NAME.waitUntil(visible, 15000).shouldHave(text(CASE_NAME));
+        TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_SENT));
+        TAB_INFO_COMMUNITY_CASE_ACTION.shouldBe(visible).click();
+        acceptWithdrawCase(true);
+
+        TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_WITHDRAWN));
+        rootLogger.info("Test passed");
+    }
 
 }
