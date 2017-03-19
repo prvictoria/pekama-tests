@@ -156,8 +156,6 @@ public class TestsPekamaResetPassword {
            NEWPASSWORD_PAGE_CONFIRM_PASSWORD.shouldBe(Condition.visible).sendKeys("67890");
            NEWPASSWORD_PAGE_RESTORE_BTN.click();
            checkText(ERROR_MSG_NOT_MATCHED_PASSWORD);
-//            $$(RESET_PAGE_ERROR).filter(visible).shouldHave(size(1));
-//            $(byText(ERROR_MSG_NOT_MATCHED_PASSWORD)).shouldBe(visible);
             rootLogger.info("User submitted different passwords - "+ERROR_MSG_NOT_MATCHED_PASSWORD);
         }
         else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
