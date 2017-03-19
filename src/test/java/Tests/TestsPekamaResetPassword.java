@@ -137,10 +137,8 @@ public class TestsPekamaResetPassword {
             openUrlWithBaseAuth(REDIRECT_LINK);
             sleep(1000);
             rootLogger.info("Validation test");
-           NEWPASSWORD_PAGE_RESTORE_BTN.waitUntil(visible, 10000).click();
-           checkText(ERROR_MSG_REQUIRED_FIELD, 2);
-//           $$(RESET_PAGE_ERROR).filter(visible).shouldHave(size(2));
-//            $(byText(ERROR_MSG_REQUIRED_FIELD)).shouldBe(visible);
+            NEWPASSWORD_PAGE_RESTORE_BTN.waitUntil(visible, 10000).click();
+            checkText(ERROR_MSG_REQUIRED_FIELD, 2);
             rootLogger.info("User submitted blank form - "+ERROR_MSG_REQUIRED_FIELD);
         }
         else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
