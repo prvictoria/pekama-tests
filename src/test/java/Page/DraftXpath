@@ -1,0 +1,46 @@
+//bookshelf[cathegory/@name][.//translator/text()]
+It selects a bookshelf for which there is a cathegory child with a
+name attribute, and which hash a non-empty translator descendant.
+//*[@class='search-field']//*[@type="text"]
+//div/ng-include/div/a[@class="link-task"]
+
+xpath=//img[@alt='The image alt text']
+xpath=//table[@id='table1']//tr[4]/td[2]
+xpath=//a[contains(@href,'#id1')]
+xpath=//a[contains(@href,'#id1')]/@class
+xpath=(//table[@class='stylee'])//th[text()='theHeaderText']/../td
+xpath=//input[@name='name2' and @value='yes']
+xpath=//*[text()="right"]
+xpath=.//div/button[2]
+xpath=//button[text()='Create']
+xpath=//input[@type='checkbox' and @ng-change='selectionService.toggleAll(selectionService.all)']
+
+//button[@pkm-confirm-click="bulkDelete()"]
+//input[@type="text"]/pkm-financial-fields
+.//*[@class='list-doc-icon']/div/ul/li/span[text()='All']
+.//button[@class='btn btn-small start'][contains(.,"Create")]
+//button[@class='btn btn-small start'and position()=2] [contains(.,"No data available.") ]
+.//*[@class='ui-select-choices-row-inner']/span[text()='New']
+//*[@class='services-table']//div[@class='row']/[./div[contains(.,'Trademark')]]//button[1]
+[text()='No data available.']
+//div[@class='row']//div[contains(.,'Trademark')]/following-sibling::div[contains(.,'Angola')]/following-sibling::div//button[1]
+//div[@class='row' and contains(.,'Trademark') and contains(.,'Aruba')]//button[1]
+//div[@class='row ng-scope' and contains(.,'Trademark') and contains(.,'Austria')]//input[@name='rate']
+//ul[@class='doc-list-table' and contains(.,'New Excel sheet')]//li[1]
+
+//div[[@class='modal-body'] and span[@class='btn btn-default form-control ui-select-toggle']
+//div[@name='relation']/span[@class = 'btn btn-default form-control ui-select-toggle']
+/span[@class = 'ui-select-placeholder text-muted ng-binding']
+
+//div[@class='cells-row' and contains(.,'A-status')]/div[2]
+
+//i[@class='pkm-icon-spinner icon-spin']
+//button[@class="btn-link"][contains(.,'Update Status')]
+<button class="btn-link" ng-click="bulkUpdate('status')">Update Status
+//span[text()=='Deadline']
+[@class="like-td media-body" and contains(.,'123')]
+//div[@project='project' and .//ancestor::h3[text()='%s']]/div
+//input[@placeholder='Select an event...']
+//div[@class='project-content-body ng-scope']//div[starts-with(@class, 'alert')]
+
+//*[@class='inner']//button[contains(.,'Add') and ./i]

@@ -1,0 +1,32 @@
+2017-03-19 22:32:12.647 [main] INFO   - Tests will executed on Staging server
+2017-03-19 22:32:12.651 [main] INFO   - Local driver path is selected
+2017-03-19 22:32:12.651 [main] INFO   - Tests will performed in Firefox
+2017-03-19 22:32:12.693 [Time-limited test] INFO  Tests.TestsPekamaResetPassword - Open URL - https://staging.pekama.com/accounts/password/reset/
+2017-03-19 22:32:23.487 [Time-limited test] INFO  Tests.TestsPekamaResetPassword - You've been sent an email with password restoration instructions. displayed, valid email submitted
+2017-03-19 22:32:32.540 [Time-limited test] INFO   - Login GoogleInbox
+2017-03-19 22:32:49.620 [Time-limited test] INFO   - Type email
+2017-03-19 22:32:49.705 [Time-limited test] INFO   - Submit email
+2017-03-19 22:32:49.760 [Time-limited test] INFO   - Type password
+2017-03-19 22:32:54.162 [Time-limited test] INFO   - Submit password
+2017-03-19 22:32:55.903 [Time-limited test] INFO   - Inbox opened
+2017-03-19 22:33:01.764 [Time-limited test] INFO   - User is logged in and inbox is opened
+2017-03-19 22:33:01.764 [Time-limited test] INFO   - Detect email
+2017-03-19 22:33:01.791 [Time-limited test] INFO   - Open email
+2017-03-19 22:33:05.951 [Time-limited test] INFO   - Email by subject found
+2017-03-19 22:33:07.515 [Time-limited test] INFO   - Email opened
+2017-03-19 22:33:07.515 [Time-limited test] INFO   - Check title
+2017-03-19 22:33:07.516 [Time-limited test] INFO   - Password Restoration- email present
+2017-03-19 22:33:07.516 [Time-limited test] INFO   - Check email Text
+2017-03-19 22:33:07.517 [Time-limited test] INFO   - You've received this e-mail because you requested to reset the password for your user account. Press the button bellow to complete restoration. - email present
+2017-03-19 22:33:07.517 [Time-limited test] INFO   - Check email Button
+2017-03-19 22:33:07.517 [Time-limited test] INFO   - Reset Password- email present
+2017-03-19 22:33:07.517 [Time-limited test] INFO   - Check redirect Link
+2017-03-19 22:33:07.589 [Time-limited test] INFO   - This link present in mail - https://staging.pekama.com/accounts/password/reset/NzUxNQ/4kh-dd2a5ed9551e6d39e6b7/
+2017-03-19 22:33:07.589 [Time-limited test] INFO   - Delete email
+2017-03-19 22:33:18.364 [Time-limited test] INFO   - Empty trash
+2017-03-19 22:33:22.803 [Time-limited test] INFO   - Trash cleared
+2017-03-19 22:33:27.444 [Time-limited test] INFO   - Logout Google
+2017-03-19 22:33:31.374 [Time-limited test] INFO  Tests.TestsPekamaResetPassword - Email and links correspond requirements
+2017-03-19 22:33:31.376 [Time-limited test] INFO  Tests.TestsPekamaResetPassword - Open URL - https://staging.pekama.com/accounts/password/reset/NzUxNQ/4kh-dd2a5ed9551e6d39e6b7/
+2017-03-19 22:33:37.245 [Time-limited test] INFO  Tests.TestsPekamaResetPassword - Validation test
+2017-03-19 22:34:01.322 [Time-limited test] INFO  Tests.TestsPekamaResetPassword - User submitted familiar to email passwords - The password is too similar to the email address.

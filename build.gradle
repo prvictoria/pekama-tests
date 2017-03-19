@@ -1,0 +1,36 @@
+group 'com.pekama-tests.app'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+sourceCompatibility = JavaVersion.VERSION_1_7
+targetCompatibility = JavaVersion.VERSION_1_7
+defaultTasks 'clean', 'test'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile group: 'com.codeborne', name: 'selenide', version: '4.3'
+    // https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager
+    testCompile group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '1.6.1'
+    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-firefox-driver
+    // testCompile group: 'org.seleniumhq.selenium', name: 'selenium-firefox-driver', version: '2.53.1'
+    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
+    testCompile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.0.1'
+    // https://mvnrepository.com/artifact/javax.mail/mail
+    testCompile group: 'javax.mail', name: 'mail', version: '1.4.7'
+    // https://mvnrepository.com/artifact/log4j/log4j
+    // testCompile group: 'log4j', name: 'log4j', version: '1.2.17'
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+    // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core
+    testCompile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.7'
+    // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api
+    testCompile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.7'
+
+    // testCompile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.9'
+    // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl
+    testCompile group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.1'
+
+}
