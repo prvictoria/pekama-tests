@@ -173,10 +173,7 @@ public class TestsPekamaResetPassword {
            NEWPASSWORD_PAGE_CONFIRM_PASSWORD.shouldBe(Condition.visible).sendKeys(User1.GMAIL_EMAIL.getValue());
            NEWPASSWORD_PAGE_RESTORE_BTN.click();
            checkText(ERROR_MSG_FAMILIAR_TO_EMAIL_PASSWORD);
-//            $$(RESET_PAGE_ERROR).filter(visible).shouldHave(size(2));
-//            $(byText(ERROR_MSG_FAMILIAR_TO_EMAIL_PASSWORD)).shouldBe(visible);
             checkText(ERROR_MSG_WEAK_PASSWORD);
-            //$(byText(ERROR_MSG_WEAK_PASSWORD)).shouldBe(visible);
             rootLogger.info("User submitted familiar to email passwords - "+ERROR_MSG_FAMILIAR_TO_EMAIL_PASSWORD);
         }
         else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
