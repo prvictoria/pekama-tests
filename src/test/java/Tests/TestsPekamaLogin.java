@@ -125,7 +125,7 @@ public class TestsPekamaLogin {
         btnLogin.shouldBe(Condition.not(visible));
         btnSignup.shouldBe(Condition.not(visible));
         rootLogger.info("Valid Credentials were submitted");
-        sleep(1000);
+        sleep(5000);
         String testDashboardUrl = url();
         assertEquals(URL_Dashboard, testDashboardUrl);
         rootLogger.info(url()+"Dashboard is opened");

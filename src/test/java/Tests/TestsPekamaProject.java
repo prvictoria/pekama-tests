@@ -113,11 +113,6 @@ public class TestsPekamaProject {
         rootLogger.info("ProjectValues '"+testProjectTitle+"' created");
         waitForTextPresent(testProjectTitle);
     }
-//    @AfterClass
-//    public static void after() {
-//        openUrlWithBaseAuth(URL_Logout);
-//        clearBrowserCache();
-//    }
     @Test
     public void createProject_A_CheckDefaultStateAndDelete() {
         scrollUp();
@@ -816,7 +811,7 @@ public class TestsPekamaProject {
 
         rootLogger.info("Test passed");
     }
-    @Test//(timeout=240000)
+    @Test
     public void createProject_ChargesXero_A_SendBill()  throws SoftAssertionError {
         String xeroLogin = TEST_USER_EMAIL;
         String xeroPassword = TEST_USER_XERO_PASSWORD;

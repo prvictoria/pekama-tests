@@ -16,6 +16,7 @@ import static Page.PekamaSignUp.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Steps.StepsExternal.checkInboxEmail;
+import static Steps.StepsPekama.checkText;
 import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
 import static Tests.BeforeTestsSetUp.setBrowser;
 import static com.codeborne.selenide.CollectionCondition.size;
@@ -70,55 +71,45 @@ public class TestsPekamaSignUp {
         $(signupPassword).shouldBe(visible).shouldBe(empty);
         $(signupUpload).shouldBe(visible).shouldBe();
         $(signupSubscribeNews).shouldBe(visible).shouldBe(selected);
-    //        $(signupAgree).shouldBe(visible).shouldNot(selected);
+        $(signupAgree).shouldBe(selected);
         signupTerms.shouldBe(visible);
-    //  $(signupNext).shouldBe(visible).shouldBe(disabled);
-  //        $(signupAgree).setSelected(true).shouldBe(selected);
-        $(signupNext).shouldBe(visible).shouldNot(disabled).click();
-        $$(signupError).shouldHave(size(5));
-        $(byText(ERROR_MSG_REQUIRED_FIELD)).shouldBe(visible);
-//        $(signupAgree).shouldBe(visible).shouldNot(selected);
+        $(signupNext).shouldBe(visible).shouldBe(enabled).click();
+        checkText(ERROR_MSG_REQUIRED_FIELD, 5);
         rootLogger.info("Test if all fields are blank - passed");
     }
     @Test
     public void onlyEmailSubmitted() {
         $(signupEmail).sendKeys(VALID_EMAIL);
         $(signupNext).shouldBe(visible).shouldNot(disabled).click();
-        $$(signupError).shouldHave(size(4));
-        $(byText(ERROR_MSG_REQUIRED_FIELD)).shouldBe(visible);
-
+        checkText(ERROR_MSG_REQUIRED_FIELD, 4);
         rootLogger.info("Tests if 1 fields is blank - passed");
     }
     @Test
     public void onlyNameSubmitted() {
         $(signupName).sendKeys(VALID_NAME);
         $(signupNext).shouldBe(visible).shouldNot(disabled).click();
-        $$(signupError).shouldHave(size(4));
-        $(byText(ERROR_MSG_REQUIRED_FIELD)).shouldBe(visible);
+        checkText(ERROR_MSG_REQUIRED_FIELD, 4);
         rootLogger.info("Test submit only"+signupName+"- Passed");
     }
     @Test
     public void onlySurnameSubmitted() {
         $(signupSurname).sendKeys(VALID_SURNAME);
         $(signupNext).shouldBe(visible).shouldNot(disabled).click();
-        $$(signupError).shouldHave(size(4));
-        $(byText(ERROR_MSG_REQUIRED_FIELD)).shouldBe(visible);
+        checkText(ERROR_MSG_REQUIRED_FIELD, 4);
         rootLogger.info("Test submit only"+signupSurname+"- Passed");
     }
     @Test
     public void onlyCompanySubmitted() {
         $(signupCompany).sendKeys(VALID_COMPANY);
         $(signupNext).shouldBe(visible).shouldNot(disabled).click();
-        $$(signupError).shouldHave(size(4));
-        $(byText(ERROR_MSG_REQUIRED_FIELD)).shouldBe(visible);
+        checkText(ERROR_MSG_REQUIRED_FIELD, 4);
         rootLogger.info("Test submit "+signupName+"- Passed");
     }
     @Test
     public void onlyPasswordSubmitted() {
         $(signupPassword).sendKeys(VALID_PASSWORD);
         $(signupNext).shouldBe(visible).shouldNot(disabled).click();
-        $$(signupError).shouldHave(size(4));
-        $(byText(ERROR_MSG_REQUIRED_FIELD)).shouldBe(visible);
+        checkText(ERROR_MSG_REQUIRED_FIELD, 4);
         rootLogger.info("Test submit only"+signupPassword+"- Passed");
     }
     @Test
@@ -127,12 +118,10 @@ public class TestsPekamaSignUp {
         for (int arrayLength = 0; arrayLength < arrayInvalidEmails.length; arrayLength++) {
                 $(signupEmail).sendKeys(arrayInvalidEmails[arrayLength]);
                 $(signupNext).shouldBe(visible).shouldNot(disabled).click();
-                $$(signupErrorEmail).shouldHave(size(1));
+                checkText(ERROR_MSG_INVALID_EMAIL, 1);
+                checkText(ERROR_MSG_REQUIRED_FIELD, 4);
                 $(byText(ERROR_MSG_INVALID_EMAIL)).shouldBe(visible);
                 refresh();
-//                $(signupAgree).shouldBe(visible).shouldNot(selected);
-//                $(signupNext).shouldBe(visible).shouldBe(disabled);
-                $(signupAgree).setSelected(true).shouldBe(selected);
             }
         rootLogger.info("Email validation LOOP - Passed");
     }
