@@ -214,7 +214,7 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_CHARGES_INPUT_BY = $(byXpath(mw+""));
     public static final SelenideElement MW_CHARGES_SELECT_STATUS = $(byXpath(mw+"//div[2]/div/div/div/span/span[2]/span"));
     public static final SelenideElement MW_CHARGES_INPUT_STATUS = $(byXpath(mw+""));
-    public static final SelenideElement MW_CHARGES_SELECT_TYPE = $(byXpath(mw+"//label[contains(.,'Type:')]/following-sibling::pkm-values-dropdown"));
+    public static final SelenideElement MW_CHARGES_SELECT_TYPE = $(byXpath(mw+"//label[contains(.,'Type:')]/following-sibling::pkm-values-dropdown//span"));
     public static final SelenideElement MW_CHARGES_INPUT_TYPE = $(byXpath(mw+"//label[contains(.,'Type:')]/following-sibling::pkm-values-dropdown//input[@type='search']"));
     public static final String CHARGES_TYPE_EXPENSES = "Direct expenses";
     public static final String CHARGES_TYPE_ASSOCIATE = "Foreign associate charges";
@@ -225,7 +225,7 @@ public class ModalWindows extends Page {
 
     public static final SelenideElement MW_CHARGES_INPUT_DATE = MW_INPUT_DATE;
     public static final SelenideElement MW_CHARGES_INPUT_ITEM = $(byXpath(mw+"//textarea"));
-    public static final SelenideElement MW_CHARGES_SELECT_CURRENCY = $(byXpath(mw+"//label[contains(.,'Currency:')]/following-sibling::pkm-values-dropdown"));
+    public static final SelenideElement MW_CHARGES_SELECT_CURRENCY = $(byXpath(mw+"//label[contains(.,'Currency:')]/following-sibling::pkm-values-dropdown//span"));
     public static final SelenideElement MW_CHARGES_INPUT_CURRENCY = $(byXpath(mw+"//label[contains(.,'Currency:')]/following-sibling::pkm-values-dropdown//input[@type='search']"));
     public static final SelenideElement MW_CHARGES_INPUT_QTY = $(byXpath(mw+"//input[@name='quantity']"));
     public static final SelenideElement MW_CHARGES_INPUT_HOUR = $(byXpath(mw+"//input[@name='hours']"));
@@ -235,7 +235,7 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_CHARGES_INPUT_VAT = $(byXpath(mw+"//input[@name='vat']"));
     public static final SelenideElement MW_CHARGES_INPUT_DISCOUNT = $(byXpath(mw+"//input[@name='discount']"));
     public static final SelenideElement MW_CHARGES_TOTAL = $(byXpath(mw+"//label[contains(.,'Total:')]/following-sibling::input"));
-    //MW TIEM TRACKER
+    //MW TIME TRACKER
     public static final SelenideElement MW_TimeTrackerSave = $(byXpath(mw+""));
     public static final SelenideElement MW_TimeTrackerPause = $(byXpath(mw+""));
     public static final SelenideElement MW_TimeTrackerDiscard = $(byXpath(mw+"//label[@class='danger']/input"));

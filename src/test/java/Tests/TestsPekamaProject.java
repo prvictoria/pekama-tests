@@ -1014,10 +1014,12 @@ public class TestsPekamaProject {
         fillField(MW_CHARGES_INPUT_ITEM, LOREM_IPSUM_SHORT);
         submitEnabledButton(MW_BTN_OK);
         checkText(ERROR_MSG_REQUIRED_FIELD, 2);
-        MW.pressEscape();
+        MW_BTN_CANCEL.click();
+        MW.waitUntil(not(visible),20000);
 
         rootLogger.info("Validation max value HOUR, MIN, RATE");
-        TAB_CHARGES_ADD.waitUntil(enabled, 15000).click();
+        sleep(2000);
+        submitEnabledButton(TAB_CHARGES_ADD);
         waitForModalWindow(TITLE_MW_CHARGE);
         selectItemInDropdown(MW_CHARGES_SELECT_TYPE, MW_CHARGES_INPUT_TYPE, CHARGES_TYPE_ASSOCIATE);
         selectItemInDropdown(MW_CHARGES_SELECT_CURRENCY, MW_CHARGES_INPUT_CURRENCY, GBP);
@@ -1027,7 +1029,8 @@ public class TestsPekamaProject {
         submitEnabledButton(MW_BTN_OK);
         checkText("Ensure that there are no more than 18 digits in total.", 2);
         checkText("Ensure this value is less than or equal to 2147483647.", 2);
-        MW.pressEscape();
+        MW_BTN_CANCEL.click();
+        MW.waitUntil(not(visible),20000);
 
         rootLogger.info("Validation max value - QTY, PRICE, VAT, DISCOUNT");
         TAB_CHARGES_ADD.waitUntil(enabled, 15000).click();
@@ -1042,7 +1045,8 @@ public class TestsPekamaProject {
         checkText("Ensure this value is less than or equal to 2147483647." );
         checkText("Ensure that there are no more than 18 digits in total.", 2 );
         checkText("Ensure that there are no more than 7 digits in total.");
-        MW.pressEscape();
+        MW_BTN_CANCEL.click();
+        MW.waitUntil(not(visible),20000);
 
         rootLogger.info("Validation float - PRICE should be decimal");
         TAB_CHARGES_ADD.waitUntil(enabled, 15000).click();
@@ -1058,7 +1062,8 @@ public class TestsPekamaProject {
         MW_CHARGES_INPUT_PRICE.setValue(floatString2);
         submitEnabledButton(MW_BTN_OK);
         checkText("Ensure that there are no more than 14 digits before the decimal point." );
-        MW.pressEscape();
+        MW_BTN_CANCEL.click();
+        MW.waitUntil(not(visible),20000);
         rootLogger.info("Test passed");
 
     }
