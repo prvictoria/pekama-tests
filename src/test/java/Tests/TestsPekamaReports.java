@@ -8,6 +8,7 @@ import org.junit.*;
 import org.junit.experimental.categories.Category;
 import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
+import org.openqa.selenium.NoSuchElementException;
 
 import java.io.IOException;
 
@@ -47,15 +48,11 @@ public class TestsPekamaReports {
     }
     @Before
     public void login() {
+        clearBrowserCache();
         openUrlWithBaseAuth(URL_LogIn);
         StepsPekama login = new StepsPekama();
         login.submitLoginCredentials(TEST_USER_LOGIN);
         sleep(3000);
-    }
-    @AfterClass
-    public static void afterClass() {
-        //open(URL_Logout);
-        clearBrowserCache();
     }
 
     @Test //1-st test in stack
@@ -63,10 +60,10 @@ public class TestsPekamaReports {
         String thisMailingListName;
 
         openPageWithSpinner(URL_ReportsProjects);
-        thisMailingListName = "Projects Test unsubscribe link";
+        thisMailingListName = "Contacts Test unsubscribe link";
         mailingListDetectAndDelete(thisMailingListName);
 
-        thisMailingListName = "ProjectsTest Mailing List";
+        thisMailingListName = "Projects Test Mailing List";
         mailingListDetectAndDelete(thisMailingListName);
 
         openPageWithSpinner(URL_ReportsTasks);
@@ -87,19 +84,19 @@ public class TestsPekamaReports {
     }
 
     @Test @Category(AllEmailsTests.class)
-    public void sendProjectReport() {
+    public void sendProjectReport_A_SendReport() {
         String thisMailingListName = "Projects Test Mailing List";
-        rootLogger.info("Open ProjectValues reports, opened URL - "+URL_ReportsProjects);
+        rootLogger.info("Open ProjectValues reports, opened URL - " + URL_ReportsProjects);
         openPageWithSpinner(URL_ReportsProjects);
 
         rootLogger.info("Open Dropdown and create new mailing list");
         mailingListCreateNew(thisMailingListName);
         rootLogger.info("Send report");
         mailingListSendReport(thisMailingListName);
-//        rootLogger.info("Delete mailing list");
-//        mailingListDeleteReport(thisMailingListName);
-
-        rootLogger.info("Check email - report");
+    }
+    @Test @Category({AllEmailsTests.class, AllImapTests.class})
+    public void sendProjectReport_B_CheckEmail() {
+        String thisMailingListName = "Projects Test Mailing List";
         checkEmailReport(
                 GMAIL_LOGIN,
                 GMAIL_PASSWORD,
@@ -109,19 +106,17 @@ public class TestsPekamaReports {
     }
 
     @Test @Category(AllEmailsTests.class)
-    public void sendTasksReport() {
+    public void sendTasksReport_A_Send() {
         String thisMailingListName = "Tasks Test Mailing List";
-        rootLogger.info("Open Tasks reports, opened URL - "+URL_ReportsTasks);
+        rootLogger.info("Open Tasks reports, opened URL - " + URL_ReportsTasks);
         openPageWithSpinner(URL_ReportsTasks);
-
         rootLogger.info("Open Dropdown and create new mailing list");
         mailingListCreateNew(thisMailingListName);
-        rootLogger.info("Send report");
         mailingListSendReport(thisMailingListName);
-//        rootLogger.info("Delete mailing list");
-//        mailingListDeleteReport(thisMailingListName);
-
-        rootLogger.info("Check email - report");
+    }
+    @Test @Category({AllEmailsTests.class, AllImapTests.class})
+    public void sendTasksReport_B_CheckEmail() {
+        String thisMailingListName = "Tasks Test Mailing List";
         checkEmailReport(
                 GMAIL_LOGIN,
                 GMAIL_PASSWORD,
@@ -131,19 +126,19 @@ public class TestsPekamaReports {
     }
 
     @Test @Category(AllEmailsTests.class)
-    public void sendEventsReport() {
+    public void sendEventsReport_A_SendReport() {
         String thisMailingListName = "Events Test Mailing List";
-        rootLogger.info("Open Event reports, opened URL - "+URL_ReportsEvents);
+        rootLogger.info("Open Event reports, opened URL - " + URL_ReportsEvents);
         openPageWithSpinner(URL_ReportsEvents);
 
         rootLogger.info("Open Dropdown and create new mailing list");
         mailingListCreateNew(thisMailingListName);
         rootLogger.info("Send report");
         mailingListSendReport(thisMailingListName);
-//        rootLogger.info("Delete mailing list");
-//        mailingListDeleteReport(thisMailingListName);
-
-        rootLogger.info("Check email - report");
+    }
+    @Test @Category({AllEmailsTests.class, AllImapTests.class})
+    public void sendEventsReport_B_CheckEmail() {
+        String thisMailingListName = "Events Test Mailing List";
         checkEmailReport(
                 GMAIL_LOGIN,
                 GMAIL_PASSWORD,
@@ -151,19 +146,21 @@ public class TestsPekamaReports {
         rootLogger.info("Email - report present in inbox");
         rootLogger.info("Test passed");
     }
+
     @Test @Category(AllEmailsTests.class)
-    public void sendChargesReport() {
+    public void sendChargesReport_A_SendReport() {
         String thisMailingListName = "Charges Test Mailing List";
-        rootLogger.info("Open Charges reports, opened URL - "+URL_ReportsCharges);
+        rootLogger.info("Open Charges reports, opened URL - " + URL_ReportsCharges);
         openPageWithSpinner(URL_ReportsCharges);
 
         rootLogger.info("Open Dropdown and create new mailing list");
         mailingListCreateNew(thisMailingListName);
         rootLogger.info("Send report");
         mailingListSendReport(thisMailingListName);
-//        rootLogger.info("Delete mailing list");
-//        mailingListDeleteReport(thisMailingListName);
-
+    }
+    @Test @Category({AllEmailsTests.class, AllImapTests.class})
+    public void sendChargesReport_B_CheckEmail() {
+        String thisMailingListName = "Charges Test Mailing List";
         rootLogger.info("Check email - report");
         checkEmailReport(
                 GMAIL_LOGIN,
@@ -172,8 +169,9 @@ public class TestsPekamaReports {
         rootLogger.info("Email - report present in inbox");
         rootLogger.info("Test passed");
     }
+
     @Test @Category(AllEmailsTests.class)
-    public void sendContactsReport() {
+    public void sendContactsReport_A_SendReport() {
         String thisMailingListName = "Contacts Test Mailing List";
         rootLogger.info("Open Contacts reports, opened URL - "+URL_ReportsContacts);
         openPageWithSpinner(URL_ReportsContacts);
@@ -182,22 +180,23 @@ public class TestsPekamaReports {
         mailingListCreateNew(thisMailingListName);
         rootLogger.info("Send report");
         mailingListSendReport(thisMailingListName);
-//        rootLogger.info("Delete mailing list");
-//        mailingListDeleteReport(thisMailingListName);
-
-        rootLogger.info("Check email - report");
-        checkEmailReport(
+    }
+    @Test @Category({AllEmailsTests.class, AllImapTests.class})
+    public void sendContactsReport_B_CheckEmail() {
+        String thisMailingListName = "Contacts Test Mailing List";
+         checkEmailReport(
                 GMAIL_LOGIN,
                 GMAIL_PASSWORD,
                 thisMailingListName);
         rootLogger.info("Email - report present in inbox");
         rootLogger.info("Test passed");
     }
-    @Test @Category(AllEmailsTests.class)
+
+    @Test @Category({AllEmailsTests.class, AllImapTests.class})
     public void unsubscribeLink() {
-        String thisMailingListName = "Projects Test unsubscribe link";
+        String thisMailingListName = "Contacts Test unsubscribe link";
         rootLogger.info("Open ProjectValues reports, opened URL - "+URL_ReportsProjects);
-        openPageWithSpinner(URL_ReportsProjects);
+        openPageWithSpinner(URL_ReportsContacts);
 
         rootLogger.info("Open Dropdown and create new mailing list");
         mailingListCreateNew(thisMailingListName);
@@ -206,26 +205,25 @@ public class TestsPekamaReports {
 
         rootLogger.info("Check email - report usubscribe link");
         SelenideElement EMAIL_SUBJECT = EMAIL_REPORT_SUBJECT;
+        String link = null;
         signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
-        rootLogger.info("Detect email");
         detectEmail(EMAIL_SUBJECT);
-        rootLogger.info("Open email");
         openEmail(EMAIL_SUBJECT);
-        rootLogger.info("Check Unsubscribe Link");
-        String link = checkUnsubscribeLink();
-        rootLogger.info("Delete email");
-        deleteEmail();
-        rootLogger.info("Empty trash");
-        inboxEmptyTrash();
-        rootLogger.info("Email deleted");
-        open(GMAIL_URL_SIGN_OUT);
+        try {
+            link = checkUnsubscribeLink();
+        }
+        finally {
+            deleteEmail();
+            inboxEmptyTrash();
+            logoutGoogleInbox();
+        }
 
         openUrlWithBaseAuth(link);
         sleep(5000);
         $$(byText("You will no longer receive this report.")).filterBy(visible).shouldHaveSize(1);
 
         rootLogger.info("Check checkbox value in mailing list");
-        openUrlWithBaseAuth(URL_ReportsProjects);
+        openUrlWithBaseAuth(URL_ReportsContacts);
         sleep(3000);
         waitForSpinnerNotPresent();
         boolean checkboxValue = mailingListCheckboxValue(thisMailingListName);
@@ -253,6 +251,7 @@ public class TestsPekamaReports {
         REPORTS_AllCheckbox.setSelected(true);
         sleep(1000);
         REPORTS_DELETE.click();
+        sleep(2000);
         submitConfirmAction();
         sleep(4000);
         checkText("Projects", 2);
@@ -261,25 +260,25 @@ public class TestsPekamaReports {
         rootLogger.info("Test passed");
     }
     @Test
-    public void objectContactDelete(){
+    public void objectContact_B_Delete(){
         openPageWithSpinner(URL_ReportsContacts);
         rootLogger.info("Check default sort by name");
         REPORTS_SORT_BY_NAME.waitUntil(visible, 30000);
 
-        if ($(byLinkText(PLACEHOLDER_NO_DATA)).isDisplayed()==false){
+        if (REPORTS_BTN_ContactNewProject.isDisplayed()==false){
             sleep(5000);}
-        while ($(byText(PLACEHOLDER_NO_DATA)).isDisplayed()==false) {
+        while (REPORTS_BTN_ContactNewProject.isDisplayed()==true) {
             REPORTS_AllCheckbox.waitUntil(visible, 20000).click();
-            REPORTS_DELETE.shouldBe(visible).click();
+            REPORTS_DELETE.waitUntil(visible, 20000).click();
             submitConfirmAction();
-            checkText(PLACEHOLDER_NO_DATA);
+            sleep(4000);
         }
-        checkText(PLACEHOLDER_NO_DATA, 2);
+        REPORTS_BTN_ContactNewProject.shouldNotBe(visible);
         rootLogger.info("All contacts were deleted");
     }
 
     @Test
-    public void objectContactMerge(){
+    public void objectContact_A_Merge(){
         String ContactEmail1 = "email01@new.test";
         String ContactEmail2 = "email02@new.test";
         String Contact1NameSurname = nameContactName+"Z"+" "+nameContactSurname+"Z";

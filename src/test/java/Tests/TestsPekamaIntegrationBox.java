@@ -236,7 +236,7 @@ public class TestsPekamaIntegrationBox {
         $(byText(FolderNameAfterConnect)).shouldNotBe(visible);
         $(byText(FileNameAfterConnect)).shouldNotBe(visible);
         rootLogger.info("Sync files after connect passed");
-        boxNoFiles.shouldBe(visible);
+        boxNoFiles.waitUntil(visible, 20000);
         boxNoFilesPlaceholder.shouldBe(exist);
 
         rootLogger.info("Files were deleted from BOX");

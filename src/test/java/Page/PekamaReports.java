@@ -56,7 +56,7 @@ public class PekamaReports extends Page {
     public static SelenideElement REPORTS_MAILING_LISTS_BTN_UPDATE = $(byXpath("//button[contains(.,'Update')]"));
     public static String REPORTS_MAILING_LISTS_BTN_CALL_ML = "//button[@uib-dropdown-toggle]";
     public static SelenideElement REPORTS_MAILING_LISTS_CALL_MW = $(byLinkText("Mailing List"));
-    public static SelenideElement REPORTS_MAILING_LISTS_DELETE_MW = $(byLinkText("Delete"));
+    public static SelenideElement REPORTS_MAILING_LISTS_DELETE_MW = $(byXpath("//li[./a[text()='Mailing List']]//following-sibling::li/a[text()='Delete']"));
 
     public static final String REPORTS_MAILING_SAVE_SEARCH_DROPDOWN = "//*[@class='save-search-dropdown']";
     public static final SelenideElement REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_INPUT = $(byXpath(REPORTS_MAILING_SAVE_SEARCH_DROPDOWN+"//input"));
@@ -89,7 +89,9 @@ public class PekamaReports extends Page {
     public static final String REPORTS_ContactProjects = "//span[@ng-switch='contact.number_of_projects']";
     public static final String REPORTS_ContactCharges = "//span[@ng-switch='!contact.total_charges']";
     public static final String REPORTS_ContactCheckbox = "//input[@type='checkbox']";
-    public static final String REPORTS_ContactNewProject = "//button[contains(.,'+ New ProjectValues')]";
+    public static final String REPORTS_ContactNewProject = "//button[contains(.,'+ New Project')]";
+    public static final SelenideElement REPORTS_BTN_ContactNewProject = $(byXpath(REPORTS_ContactNewProject));
+
     public static final String REPORTS_ContactEdit = "//div[@class='contact-page-invite-edit']/i[1]";
     public static final String REPORTS_ContactDelete = "//div[@class='contact-page-invite-edit']/i[2]";
 }

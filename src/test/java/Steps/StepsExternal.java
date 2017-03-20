@@ -4,6 +4,8 @@ import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
+import org.openqa.selenium.NoSuchElementException;
+
 import static Page.Box.*;
 import static Page.Emails.*;
 import static Page.TestsCredentials.GMAIL_PASSWORD;
@@ -76,6 +78,7 @@ public class StepsExternal implements StepsFactory{
         return REDIRECT_LINK;
     }
     public static String checkEmailReport(String GMAIL_LOGIN, String GMAIL_PASSWORD, String thisMailingListName){
+        rootLogger.info("Check email - report");
         try {
             SelenideElement EMAIL_SUBJECT = EMAIL_REPORT_SUBJECT;
             String EMAIL_TEXT = EMAIL_REPORT_TEXT;
@@ -132,6 +135,7 @@ public class StepsExternal implements StepsFactory{
             rootLogger.info("Inbox opened");
             return;
         }
+        sleep(3000);
         if (INBOX_BTN_TRASH.is(visible) == true){
             rootLogger.info("User is logged in and inbox is opened");
             return;
@@ -233,10 +237,18 @@ public class StepsExternal implements StepsFactory{
         }
         return attachmentFullTitle;
     }
-    public static String checkUnsubscribeLink(){
-        EMAIL_UNSUBSCRIBE_LINK.shouldBe(visible);
-        String link = EMAIL_UNSUBSCRIBE_LINK.getAttribute("href");
-        rootLogger.info("Unsubscribe link is - " +link);
+    public static String checkUnsubscribeLink() {
+        String link = null;
+        try {
+            rootLogger.info("Check Unsubscribe Link");
+            EMAIL_UNSUBSCRIBE_LINK.shouldBe(visible);
+            link = EMAIL_UNSUBSCRIBE_LINK.getAttribute("href");
+            rootLogger.info("Unsubscribe link is - " + link);
+            return link;
+        }
+        catch (NoSuchElementException e) {
+            rootLogger.info("Unsubscribe link not found - " + link);
+        }
         return link;
     }
     public static void deleteEmail() {

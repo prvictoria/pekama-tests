@@ -85,6 +85,7 @@ public class TestsPekamaProject {
     }
     @Before
     public void before() {
+        clearBrowserCache();
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(
                 TEST_USER_EMAIL,
@@ -112,11 +113,11 @@ public class TestsPekamaProject {
         rootLogger.info("ProjectValues '"+testProjectTitle+"' created");
         waitForTextPresent(testProjectTitle);
     }
-    @AfterClass
-    public static void after() {
-        openUrlWithBaseAuth(URL_Logout);
-        clearBrowserCache();
-    }
+//    @AfterClass
+//    public static void after() {
+//        openUrlWithBaseAuth(URL_Logout);
+//        clearBrowserCache();
+//    }
     @Test
     public void createProject_A_CheckDefaultStateAndDelete() {
         scrollUp();
@@ -1109,16 +1110,16 @@ public class TestsPekamaProject {
         submitCookie();
         WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.waitUntil(visible, 20000)
                 .shouldBe(disabled);
-
+        submitCookie();
+        hideZopim();
         rootLogger.info("Create draft case");
         WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.shouldBe(disabled);
         selectExpert(EXPERT_TEAM_NAME);
 
         submitEnabledButton(WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS);
         fillField(WIZARD_FIELD_CASE_NAME, TEST_CASE_NAME);
-        WIZARD_BTN_NEXT.click();
-        sleep(3000);
-        BTN_SEND_INSTRUCTION.shouldBe(visible);
+        submitEnabledButton(WIZARD_BTN_NEXT);
+        BTN_SEND_INSTRUCTION.waitUntil(visible, 15000);
         rootLogger.info("Case was created");
 
         rootLogger.info("Open Pekama");
@@ -1134,7 +1135,7 @@ public class TestsPekamaProject {
 
         TAB_INFO_COMMUNITY_CASE_NAME.waitUntil(visible, 15000).shouldHave(text(TEST_CASE_NAME));
         TAB_INFO_COMMUNITY_CASE_TYPE.shouldHave(text(TEST_CASE_TYPE));
-        TAB_INFO_COMMUNITY_CASE_ACTION.shouldNot(exist);
+        TAB_INFO_COMMUNITY_CASE_ACTION.shouldHave(text("cancel case"));
         TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_DRAFT));
 
         rootLogger.info("Check project members");
@@ -1182,12 +1183,14 @@ public class TestsPekamaProject {
 
         rootLogger.info("Create case");
         WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.shouldBe(disabled);
+        sleep(3000);
+        submitCookie();
+        hideZopim();
         selectExpert(EXPERT_TEAM_NAME);
         submitEnabledButton(WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS);
         fillField(WIZARD_FIELD_CASE_NAME, TEST_CASE_NAME);
         WIZARD_BTN_NEXT.click();
-        sleep(3000);
-        BTN_SEND_INSTRUCTION.shouldBe(visible).click();
+        BTN_SEND_INSTRUCTION.waitUntil(visible, 20000).click();
         WIZARD_BTN_INSTRUCT_NOW.shouldBe(visible).click();
         waitForModalWindow("Congratulations!");
         MW_CONGRATULATION_OK.click();
@@ -1217,11 +1220,9 @@ public class TestsPekamaProject {
         PROJECT_TAB_CONTACTS.shouldBe(visible).click();
         checkText(OWNER);
         checkText(REQUESTER_FULL_TEAM_NAME);
-        checkText(ADMIN);
+        checkText(ADMIN, 2);
         checkText(INTRODUCER_NAME);
-        checkText(COLLABORATOR);
         checkText(EXPERT_FULL_TEAM_NAME);
-
         rootLogger.info("Test passed");
     }
 

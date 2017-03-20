@@ -124,29 +124,34 @@ public class TestsPekamaSettingsTeam {
         rootLogger.info("Test passed");
     }
     @Test @Category(AllEmailsTests.class)
-    public void testC_inviteNewMember() {
-        String testEmail = TestsCredentials.User5.GMAIL_EMAIL.getValue();
-        SelenideElement EMAIL_SUBJECT = EMAIL_INVITE_IN_TEAM_SUBJECT;
-        String EMAIL_TITLE = EMAIL_INVITE_IN_TEAM_TITLE;
-        String EMAIL_TEXT = EMAIL_INVITE_IN_TEAM_TEXT;
-        String EMAIL_BTN = EMAIL_INVITE_IN_TEAM_BTN;
-        SelenideElement EMAIL_REDIRECT_LINK = EMAIL_INVITE_IN_TEAM_BACKLINK;
+    public void testC_inviteNewMember_A_Invite() {
+        String newMemberEmail = User5.GMAIL_EMAIL.getValue();
+        String newMemberPassword = User5.GMAIL_PASSWORD.getValue();
         rootLogger.info("Add member");
         SETTINGS_TEAM_TAB_MEMBERS.waitUntil(visible, 20000).click();
         TAB_MEMBERS_BTN_ADD.shouldBe(visible).click();
         waitForModalWindow("Members");
-        fillField(MW_MEMBERS_EMAIL, testEmail);
+        fillField(MW_MEMBERS_EMAIL, newMemberEmail);
         submitEnabledButton(MW_BTN_OK);
         MW.shouldNot(visible);
-        checkMember(testEmail);
+        checkMember(newMemberEmail);
 
+        sleep(300);
         rootLogger.info("Delete member");
-        deleteMember(testEmail);
-
+        deleteMember(newMemberEmail);
+    }
+    @Test @Category({AllEmailsTests.class, AllImapTests.class})
+    public void testC_inviteNewMember_B_CheckEmail() {
         rootLogger.info("Check email inbox");
+        String newMemberEmail = User5.GMAIL_EMAIL.getValue();
+        String newMemberPassword = User5.GMAIL_PASSWORD.getValue();
         String actualBackLink = checkInboxEmail(
-                testEmail, GMAIL_PASSWORD, EMAIL_SUBJECT,
-                EMAIL_TITLE, EMAIL_TEXT, EMAIL_BTN, EMAIL_REDIRECT_LINK);
+                newMemberEmail, newMemberPassword,
+                EMAIL_INVITE_IN_TEAM_SUBJECT,
+                EMAIL_INVITE_IN_TEAM_TITLE,
+                EMAIL_INVITE_IN_TEAM_TEXT,
+                EMAIL_INVITE_IN_TEAM_BTN,
+                EMAIL_INVITE_IN_TEAM_BACKLINK);
         if (actualBackLink == null) {Assert.fail("Redirect Link not found");}
         rootLogger.info("Test passed");
     }

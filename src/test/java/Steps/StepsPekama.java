@@ -107,6 +107,7 @@ public class StepsPekama implements StepsFactory{
     }
 
     public static String mailingListCreateNew(String thisMailingListName){
+        rootLogger.info("Create new mailing list");
         rootLogger.info("click"+REPORTS_MAILING_SAVE_SEARCH);
         REPORTS_MAILING_SAVE_SEARCH.waitUntil(visible, 15000).click();
         sleep(3000);
@@ -125,6 +126,7 @@ public class StepsPekama implements StepsFactory{
         return thisMailingListName;
     }
     public static String mailingListSendReport(String thisMailingListName){
+        rootLogger.info("Send report");
         String mailingListRowByName = "//li[//a[contains(.,'"+thisMailingListName+"')]]";
         String pathToReport = "//*[@class='search-list']//button[@uib-dropdown-toggle]";
         String actualMailingListRow = REPORTS_MAILING_LISTS+ mailingListRowByName;
@@ -168,7 +170,7 @@ public class StepsPekama implements StepsFactory{
     public static boolean mailingListCheckboxValue(String thisMailingListName){
         String mailingListRowByName = "//li[//a[contains(.,'"+thisMailingListName+"')]]";
         String pathToReport = "//*[@class='search-list']//button[@uib-dropdown-toggle]";
-        String actualMailingListRow = REPORTS_MAILING_LISTS+ mailingListRowByName;
+        String actualMailingListRow = REPORTS_MAILING_LISTS+mailingListRowByName;
         if($(byXpath(pathToReport)).isDisplayed()==false){
             $(byLinkText(thisMailingListName)).click();
             sleep(3000);}
@@ -178,6 +180,7 @@ public class StepsPekama implements StepsFactory{
         MW.shouldBe(visible);
         $(byText("Mailing List")).shouldBe(Condition.visible);
         rootLogger.info("Verify checkbox value");
+        sleep(3000);
             if ( MW_MAILING_1USER_SELECT.is(not(checked))) {
                 MW.pressEscape();
                 $(byText("Mailing List")).shouldNotBe(Condition.visible);
@@ -187,6 +190,7 @@ public class StepsPekama implements StepsFactory{
             else{return false;}
     }
     public static void mailingListDeleteReport(String thisMailingListName){
+        rootLogger.info("Delete mailing list");
         String REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME = "//li[//a[contains(.,'"+ thisMailingListName +"')]]";
         String pathToReportRowMenu = REPORTS_MAILING_LISTS+REPORTS_MAILING_LISTS_ROW_WITH_ML_NAME+REPORTS_MAILING_LISTS_BTN_CALL_ML;
         if ($(byXpath(pathToReportRowMenu)).is(not(visible))) {
@@ -207,14 +211,14 @@ public class StepsPekama implements StepsFactory{
             sleep(5000);}
         while ($(byLinkText(thisMailingListName)).is(visible)) {
             rootLogger.info("Mailing list detected: "+thisMailingListName);
-            $(byLinkText(thisMailingListName)).click();
+            $(byLinkText(thisMailingListName)).waitUntil(visible, 10000).click();
             sleep(1000);
 
-            $(byXpath(pathToReportRowMenu)).click();
+            $(byXpath(pathToReportRowMenu)).waitUntil(visible, 10000).click();
             rootLogger.info("Delete list");
-            REPORTS_MAILING_LISTS_DELETE_MW.click();
-            sleep(500);
+            REPORTS_MAILING_LISTS_DELETE_MW.waitUntil(visible, 10000).click();
             submitConfirmAction();
+            sleep(2000);
         }
         rootLogger.info("Reports not present");
     }
