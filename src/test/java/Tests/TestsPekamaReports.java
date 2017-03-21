@@ -256,6 +256,7 @@ public class TestsPekamaReports {
         sleep(4000);
         checkText("Projects", 2);
         waitForSpinnerNotPresent();
+        refresh();
         REPORTS_LIST_PROJECT_TILE_ROW1.shouldNotHave(matchText(projectName));
         rootLogger.info("Test passed");
     }

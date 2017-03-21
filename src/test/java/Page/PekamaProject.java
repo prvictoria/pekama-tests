@@ -3,12 +3,14 @@ package Page;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selectors.byLinkText;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 /**
  * Created by Viachaslau_Balashevi on 12/29/2016.
@@ -215,8 +217,8 @@ public class PekamaProject extends Page {
     public static final SelenideElement TAB_DOCS_FILE_INPUT_NAME = $(byXpath("//pkm-files-editable-title//input[@name='name']"));
     public static final SelenideElement TAB_DOCS_FILE_SAVE = $(byXpath("//pkm-files-editable-title//a[contains(.,'Save')]"));
     public static final SelenideElement TAB_DOCS_FILE_DELETE = $(byXpath("//pkm-files-editable-title//a[contains(.,'Delete')]"));
-    //TAB TASKS
 
+    //TAB TASKS
     public static final String TASKS_ORDER = "";
     public static final String TASKS_ORDER_DUE_DATE = "Due date";
     public static final String TASKS_ORDER_LAST_CREATED = "Last created";
@@ -234,7 +236,25 @@ public class PekamaProject extends Page {
     public static final SelenideElement TAB_TASKS_BTN_UPDATE_IMPORTANCE = $(byXpath("//button[@class='btn-link' and contains(.,'Update Importance')]"));
     public static final SelenideElement TAB_TASKS_BTN_UPDATE_ASSIGNOR = $(byXpath("//button[@class='btn-link' and contains(.,'Update Assignor')]"));
     public static final SelenideElement TAB_TASKS_BTN_UPDATE_ASSIGNEE = $(byXpath("//button[@class='btn-link' and contains(.,'Update Assignee')]"));
+    //task row
+    public static final String TASKS_LIST = "//*[@class='items-list with-caret ng-scope tasks']";
+    public static final String TASKS_ROW = "/div";
+    public static final ElementsCollection TASKS_ROWS = $$(byXpath(TASKS_LIST+TASKS_ROW));
+    public static final SelenideElement TASKS_NAME_IN_FIRST_ROW = $(byXpath(TASKS_LIST+TASKS_ROW+"[1]"+"//*[@class='text']//a[@href]"));
+    public static final SelenideElement TASKS_PRIORITY_IN_FIRST_ROW = $(byXpath(TASKS_LIST+TASKS_ROW+"[1]"+"//*[@class='text']//span"));
 
+
+    public static final String TASKS_BTN_STATUS_ACTION = "//pkm-task-change-status//button";
+    public static final String TASKS_BTN_STATUS_ACTION_ACCEPT = "//pkm-task-change-status//button[1]";
+    public static final String TASKS_BTN_STATUS_ACTION_REJECT = "//pkm-task-change-status//button[2]";
+
+    public static final String TASKS_FIRST_ROW = TASKS_LIST+TASKS_ROW+"[1]";
+    public static final SelenideElement TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW = $(byXpath(TASKS_FIRST_ROW+TASKS_BTN_STATUS_ACTION));
+    public static final SelenideElement TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW_ACCEPT = $(byXpath(TASKS_FIRST_ROW+TASKS_BTN_STATUS_ACTION_ACCEPT));
+    public static final SelenideElement TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW_REJECT = $(byXpath(TASKS_FIRST_ROW+TASKS_BTN_STATUS_ACTION_REJECT));
+
+    public static final String TASKS_BTN_STATUS_ACTUAL = "//pkm-task-change-status//div[./i]";
+    public static final SelenideElement TASKS_BTN_STATUS_IN_FIRST_ROW = $(byXpath(TASKS_FIRST_ROW+TASKS_BTN_STATUS_ACTUAL));
 
     //TAB CHARGES
     public static SelenideElement TAB_CHARGES_ACTUAL_ORDER = $(byXpath(CONTROLS_ROW+"//a[contains(.,'"+TASKS_ORDER+"')]"));        //order value

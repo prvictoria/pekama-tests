@@ -318,6 +318,7 @@ public class TestsPekamaProject {
 
         rootLogger.info("Check email - set vars");
         String USER_EMAIL = User5.GMAIL_EMAIL.getValue();
+        String GMAIL_PASSWORD = User5.GMAIL_PASSWORD.getValue();
         SelenideElement EMAIL_SUBJECT = emailSubject(testProjectTitle);
         String EMAIL_TITLE = emailInviteInProjectTitle(
                 User2.NAME.getValue(),
@@ -574,7 +575,7 @@ public class TestsPekamaProject {
 
     }
     @Test
-    public void createProject_I_addTask() {
+    public void createProject_Task_CRUD() {
         String taskName = "new task";
         PROJECT_TAB_TASKS.click();
         $$(byText(PLACEHOLDER_EmptyList)).shouldHaveSize(1);
@@ -592,7 +593,6 @@ public class TestsPekamaProject {
         projectAllCheckbox.click();
         TAB_TASKS_BTN_DELETE.click();
         submitConfirmAction();
-
     }
     @Test
     public void createProject_L1_autoDeployEvent() {
@@ -952,48 +952,50 @@ public class TestsPekamaProject {
 
         rootLogger.info("Start Xero flow");
         projectAllCheckbox.click();
-        TAB_CHARGES_XERO.shouldBe(visible).click();
+        TAB_CHARGES_XERO.waitUntil(visible, 20000).click();
         sleep(3000);
         if ($(byText("Invoice created")).isDisplayed()) {
             rootLogger.info("Modal window displayed");
             waitForModalWindow("Invoice created");
             submitEnabledButton(MW_BTN_YES);
             MW.shouldNotBe(visible);}
+            sleep(2000);
+        try {
+            switchTo().window(PAGE_TITLE_XERO_LOGIN);
+            String url = getActualUrl();
+            rootLogger.info(url);
 
-            try {
-                switchTo().window(PAGE_TITLE_XERO_LOGIN);
-                String url = getActualUrl();
-                rootLogger.info(url);
-
-                fillField(extXeroEmail, xeroLogin);
-                fillField(extXeroPassword, xeroPassword);
-                submitEnabledButton(extXeroLogin);
-                rootLogger.info("Xero login window submitted");}
-                catch (SoftAssertionError e) {
-                if (checkPageTitle(PAGE_TITLE_XERO_LOGIN) == false) {
-                    rootLogger.info("Xero window NOT found");
-                }
+            fillField(extXeroEmail, xeroLogin);
+            fillField(extXeroPassword, xeroPassword);
+            submitEnabledButton(extXeroLogin);
+            rootLogger.info("Xero login window submitted");}
+        catch (SoftAssertionError e) {
+            if (checkPageTitle(PAGE_TITLE_XERO_LOGIN) == false) {
+                rootLogger.info("Xero window NOT found");
             }
-            try {
-                switchTo().window(PAGE_TITLE_XERO_BILLING);
-                String url = getActualUrl();
-                rootLogger.info(url);
-                sleep(3000);}
-                catch (SoftAssertionError e) {
-                if (checkPageTitle(PAGE_TITLE_XERO_BILLING) == false) {
-                    rootLogger.info("Window Xero Authorise not found - goto label");
-                }
+        }
+        sleep(6000);
+        try {
+            switchTo().window(PAGE_TITLE_XERO_BILLING);
+            sleep(6000);
+            String url = getActualUrl();
+            rootLogger.info(url);
+            }
+        catch (SoftAssertionError e) {
+            if (checkPageTitle(PAGE_TITLE_XERO_BILLING) == false) {
+                rootLogger.info("Window Xero Authorise not found");
+            }
 
         }
-        sleep(3000);
-
-        checkText("7,777.00", 2);
-        checkText("1,111.00", 2);
-        extXeroBillTotal.shouldHave(value("8,888.00"));
-        checkValue("8,888.00", 2);
-        close();
-        rootLogger.info("Test passed");
-
+        finally {
+            sleep(3000);
+            checkText("7,777.00", 2);
+            checkText("1,111.00", 2);
+            extXeroBillTotal.shouldHave(value("8,888.00"));
+            checkValue("8,888.00", 2);
+            close();
+            rootLogger.info("Test passed");
+       }
     }
     @Test
     public void createProject_ChargesModalWindowValidation() {
@@ -1062,10 +1064,85 @@ public class TestsPekamaProject {
         rootLogger.info("Test passed");
 
     }
-    @Ignore
-    @Test  //todo
-    public void createProject_TasksEditStatus() {
 
+    @Test
+    public void createProject_TasksAccept() {
+        String taskAction = null;
+        String taskStatus = null;
+        String taskName = taskCreate();
+        rootLogger.info(taskName);
+        TASKS_ROWS.shouldHaveSize(1);
+        rootLogger.info("New task - start");
+        taskStatus = TASKS_BTN_STATUS_IN_FIRST_ROW.shouldHave(text("Not Started")).getText();
+        taskAction = TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.shouldHave(text("Start")).getText();
+        TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.shouldHave(text("Start")).click();
+
+        rootLogger.info("Finish task status");
+        taskStatus = TASKS_BTN_STATUS_IN_FIRST_ROW.shouldHave(text("In progress")).getText();
+        taskAction = TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.shouldHave(text("finish")).getText();
+        TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.shouldHave(text("finish")).click();
+
+        rootLogger.info("Select Accepts task");
+        taskStatus = TASKS_BTN_STATUS_IN_FIRST_ROW.shouldHave(text("Completed")).getText();
+        TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW_ACCEPT.shouldHave(text("accept"));
+        TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW_REJECT.shouldHave(text("reject"));
+        TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW_ACCEPT.click();
+
+        rootLogger.info("Task was accepted");
+        taskStatus = TASKS_BTN_STATUS_IN_FIRST_ROW.shouldHave(text("Accepted")).getText();
+        TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.shouldNot(exist);
+        TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW_REJECT.shouldNot(exist);
+        TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW_ACCEPT.shouldNot(exist);
+        rootLogger.info("Test passed");
+    }
+    @Test
+    public void createProject_TasksReject() {
+        String taskAction;
+        String taskStatus;
+        String taskName = taskCreate();
+        rootLogger.info(taskName);
+        TASKS_ROWS.shouldHaveSize(1);
+        TASKS_NAME_IN_FIRST_ROW.shouldHave(text(taskName));
+        TASKS_PRIORITY_IN_FIRST_ROW.shouldHave(text("Task"));
+        rootLogger.info("New task");
+        taskStatus = TASKS_BTN_STATUS_IN_FIRST_ROW.shouldHave(text("Not Started")).getText();
+        rootLogger.info("Task status is - "+taskStatus);
+        taskAction = TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.shouldHave(text("Start")).getText();
+        rootLogger.info("User able to - "+taskAction+" task");
+        rootLogger.info("Click "+taskAction+" task");
+        TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.shouldHave(text("Start")).click();
+
+        rootLogger.info("Finish task status");
+        taskStatus = TASKS_BTN_STATUS_IN_FIRST_ROW.shouldHave(text("In progress")).getText();
+        rootLogger.info("Task status is - "+taskStatus);
+        taskAction = TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.shouldHave(text("finish")).getText();
+        rootLogger.info("User able to - "+taskAction+" task");
+        rootLogger.info("Click "+taskAction+" task");
+        TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.shouldHave(text("finish")).click();
+
+        taskStatus = TASKS_BTN_STATUS_IN_FIRST_ROW.shouldHave(text("Completed")).getText();
+        rootLogger.info("Task status is - "+taskStatus);
+        taskAction =  TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW_ACCEPT.shouldHave(text("accept")).getText();
+        rootLogger.info("User able to - "+taskAction+" task");
+        taskAction =  TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW_REJECT.shouldHave(text("reject")).getText();
+        rootLogger.info("User able to - "+taskAction+" task");
+        rootLogger.info("Click "+taskAction+" task");
+        TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW_REJECT.click();
+
+
+        taskStatus = TASKS_BTN_STATUS_IN_FIRST_ROW.shouldHave(text("Rejected")).getText();
+        rootLogger.info("Task status is - "+taskStatus);
+        taskAction =  TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.getText();
+        rootLogger.info("User able to - "+taskAction+" task");
+        rootLogger.info("Click "+taskAction+" task");
+        TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.shouldHave(text("Restart")).click();
+
+
+        taskStatus = TASKS_BTN_STATUS_IN_FIRST_ROW.shouldHave(text("In progress")).getText();
+        rootLogger.info("Task status is - "+taskStatus);
+        taskAction = TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.shouldHave(text("finish")).getText();
+        rootLogger.info("User able to - "+taskAction+" task");
+        rootLogger.info("Test passed");
     }
     @Ignore
     @Test  //todo

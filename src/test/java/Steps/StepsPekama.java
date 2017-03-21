@@ -20,6 +20,7 @@ import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
 import static Steps.StepsHttpAuth.*;
 import static Steps.StepsModalWindows.*;
+import static Utils.Utils.randomString;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
@@ -226,7 +227,7 @@ public class StepsPekama implements StepsFactory{
     public static void validationFieldByXpath(int randomLength, String fieldName, String submitButton, String errorMsg) {
         rootLogger.info("Validation field test for - "+fieldName);
         $(byXpath(fieldName)).clear();
-        $(byXpath(fieldName)).sendKeys(Utils.randomString(randomLength));
+        $(byXpath(fieldName)).sendKeys(randomString(randomLength));
         rootLogger.info("Entered random string - "+randomLength+"letter length" );
         $(byXpath(submitButton)).shouldBe(Condition.enabled).click();
         sleep(500);
@@ -653,6 +654,39 @@ public class StepsPekama implements StepsFactory{
         switchTo().window(PAGE_TITLE_PEKAMA);
         if (checkPageTitle(PAGE_TITLE_PEKAMA)==false){
             Assert.fail("No redirect to Community");
+        }
+    }
+    public static String taskCreate(){
+        taskAdd();
+        String taskName = taskNewModal();
+        return taskName;
+    }
+    public static boolean taskAdd(){
+        try {
+            rootLogger.info("Call new task MW in Project");
+            PROJECT_TAB_TASKS.click();
+            TAB_TASKS_ADD.waitUntil(visible, 20000).click();
+            TAB_TASKS_NEW_TASK.waitUntil(visible, 20000).click();
+            return true;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+    }
+    public static String taskNewModal(){
+        try {
+            String taskName = "TASK_" + randomString(10);
+            rootLogger.info("Create task with name: " + taskName);
+            waitForModalWindow(TITLE_MW_NEW_TASK);
+            MW_BTN_OK.shouldBe(disabled);
+            fillField(MW_DeployTask_Title, taskName);
+            submitEnabledButton(MW_BTN_OK);
+            MW.shouldNotBe(visible);
+            return taskName;
+        }
+        catch (Exception e){
+            return null;
         }
     }
 
