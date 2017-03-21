@@ -661,6 +661,18 @@ public class StepsPekama implements StepsFactory{
         String taskName = taskNewModal();
         return taskName;
     }
+    //TODO
+    public static String taskCreate(String taskPriority){
+        taskAdd();
+        String taskName = taskNewModal();
+        return taskName;
+    }
+    //TODO
+    public static String taskCreate(int taskDueDateFromToday){
+        taskAdd();
+        String taskName = taskNewModal();
+        return taskName;
+    }
     public static boolean taskAdd(){
         try {
             rootLogger.info("Call new task MW in Project");
@@ -674,6 +686,7 @@ public class StepsPekama implements StepsFactory{
             return false;
         }
     }
+
     public static String taskNewModal(){
         try {
             String taskName = "TASK_" + randomString(10);
