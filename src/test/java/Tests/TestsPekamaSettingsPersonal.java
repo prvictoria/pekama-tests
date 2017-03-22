@@ -20,8 +20,7 @@ import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static Tests.BeforeTestsSetUp.*;
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static Page.PekamaPersonalSettings.*;
@@ -46,17 +45,13 @@ public class TestsPekamaSettingsPersonal {
     }
     @Before
     public void before() {
+        clearBrowserCache();
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(
                 TEST_USER_LOGIN,
                 TEST_USER_PASSWORD,
                 URL_LogIn);
         openUrlWithBaseAuth(URL_PersonalSettings);
-    }
-    @AfterClass
-    public static void after() {
-        //open(URL_Logout);
-        clearBrowserCache();
     }
 
     @Test
@@ -107,7 +102,7 @@ public class TestsPekamaSettingsPersonal {
         PERSONAL_DETAILS_INPUT_REGION.sendKeys(User3.REGION.getValue());
         $(byText("Country:")).shouldBe(Condition.visible);
         submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
-        sleep(2000);
+        sleep(4000);
         PERSONAL_DETAILS_SAVE_BTN.waitUntil(Condition.disabled, 10000);
         rootLogger.info("New data saved in all fields");
     }
@@ -555,7 +550,7 @@ public class TestsPekamaSettingsPersonal {
         sleep(500);
         IMAP_TAB_BTN_DELETE.shouldNotBe(visible);
     }
-
+    @Ignore // TODO bug
     @Test
     public void tabIMAP_B_GoggleAuthConnect() {
         IMAP_TAB_TITLE.shouldBe(visible).click();
@@ -594,15 +589,55 @@ public class TestsPekamaSettingsPersonal {
         }
 
     }
-    @Ignore // TODO: 22-Feb-17
     @Test
     public void tabTimeTracker_A() {
         TIME_TRACKER_TAB_TITLE.shouldBe(visible).click();
         rootLogger.info("Check Defaults");
+        TIME_TRACKER_TAB_SAVE_BTN.shouldBe(disabled);
 
+        rootLogger.info("DeSelect: Prompt me to bill my time whenever I leave a project ");
+        TIME_TRACKER_TAB_ENABLE.setSelected(false).shouldNotBe(selected);
+        submitEnabledButton(TIME_TRACKER_TAB_SAVE_BTN);
+        TIME_TRACKER_TAB_SAVE_BTN.shouldBe(disabled);
+        TIME_TRACKER_TAB_ENABLE.shouldNotBe(selected);
 
-        rootLogger.info("Check selections");
+        rootLogger.info("Select: Prompt me to bill my time whenever I leave a project ");
+        TIME_TRACKER_TAB_ENABLE.setSelected(true).shouldBe(selected);
+        submitEnabledButton(TIME_TRACKER_TAB_SAVE_BTN);
+        TIME_TRACKER_TAB_SAVE_BTN.shouldBe(disabled);
+        TIME_TRACKER_TAB_ENABLE.shouldBe(selected);
 
+        rootLogger.info("Set Hourly rate");
+        fillField(TIME_TRACKER_TAB_RATE, "1000");
+        submitEnabledButton(TIME_TRACKER_TAB_SAVE_BTN);
+        TIME_TRACKER_TAB_SAVE_BTN.shouldBe(disabled);
+        TIME_TRACKER_TAB_RATE.shouldHave(value("1000"));
+        rootLogger.info("Clear Hourly rate");
+        fillField(TIME_TRACKER_TAB_RATE, "");
+        submitEnabledButton(TIME_TRACKER_TAB_SAVE_BTN);
+        TIME_TRACKER_TAB_SAVE_BTN.shouldBe(disabled);
+        TIME_TRACKER_TAB_RATE.shouldHave(value(""));
+
+        String currency;
+        rootLogger.info("Select currency");
+        selectItemInDropdown(
+                TIME_TRACKER_TAB_SELECT_CURRENCY,
+                TIME_TRACKER_TAB_INPUT_CURRENCY,
+                USD);
+        submitEnabledButton(TIME_TRACKER_TAB_SAVE_BTN);
+        TIME_TRACKER_TAB_SAVE_BTN.shouldBe(disabled);
+        currency = TIME_TRACKER_TAB_SELECT_CURRENCY.getText();
+        Assert.assertEquals(USD, currency);
+
+        rootLogger.info("Select currency");
+        selectItemInDropdown(
+                TIME_TRACKER_TAB_SELECT_CURRENCY,
+                TIME_TRACKER_TAB_INPUT_CURRENCY,
+                GBP);
+        submitEnabledButton(TIME_TRACKER_TAB_SAVE_BTN);
+        TIME_TRACKER_TAB_SAVE_BTN.shouldBe(disabled);
+        currency = TIME_TRACKER_TAB_SELECT_CURRENCY.getText();
+        Assert.assertEquals(GBP, currency);
 
 
     }

@@ -82,6 +82,14 @@ public class PekamaPersonalSettings extends Page {
   //tab fields find by NAME
     public static final SelenideElement TIME_TRACKER_TAB_TITLE = $(byXpath("//*[@data-target='#timeTracker']"));
 
+    public static final SelenideElement TIME_TRACKER_TAB_ENABLE = $(byXpath(personalSettingsTabTimeTracker+"//input[@type='checkbox']"));
+
+    public static final SelenideElement TIME_TRACKER_TAB_RATE = $(byXpath(personalSettingsTabTimeTracker+"//input[@name='financial_settings.hourly_rate']"));
+
+    public static final SelenideElement TIME_TRACKER_TAB_SELECT_CURRENCY = $(byXpath(personalSettingsTabTimeTracker+"//span[2]/span"));
+    public static final SelenideElement TIME_TRACKER_TAB_INPUT_CURRENCY = $(byXpath(personalSettingsTabTimeTracker+"//input[@type='search']"));
+    public static final SelenideElement TIME_TRACKER_TAB_SAVE_BTN = $(byXpath(personalSettingsTabTimeTracker+"//button[contains(.,'Save')]"));
+
 
 
 }

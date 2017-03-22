@@ -49,6 +49,7 @@ public class TestsMessages {
     }
     @Before
     public void before() {
+        clearBrowserCache();
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(
                 TEST_USER_EMAIL,
@@ -59,12 +60,7 @@ public class TestsMessages {
             String testProjectName = createProject();
             String testProjectUrl = getActualUrl ();
     }
-    @AfterClass
-    public static void after() {
-        //open(URL_Logout);
-        //rootLogger.info("Open URL - "+URL_Logout);
-        clearBrowserCache();
-    }
+
     @Test
     public void testA_DefaultState() {
         String subject = randomString(513);
@@ -212,16 +208,19 @@ public class TestsMessages {
 
         String emailFollowerTo = randomString(15)+"@mail.com";
         fillField(CONVERSATION_EXTERNAL_INPUT_TO, emailFollowerTo);
-        sleep(1000);
+        sleep(2000);
+        CONVERSATION_EXTERNAL_INPUT_TO.click();
         String emailFollowerCc = randomString(15)+"@post.de";
         fillField(CONVERSATION_EXTERNAL_INPUT_CC, emailFollowerCc);
-        sleep(1000);
+        sleep(2000);
+        CONVERSATION_EXTERNAL_INPUT_CC.click();
         String emailFollowerBcc = randomString(15)+"@liamg.usa";
         fillField(CONVERSATION_EXTERNAL_INPUT_BCC, emailFollowerBcc);
-        sleep(1000);
+        sleep(2000);
+        CONVERSATION_EXTERNAL_INPUT_BCC.click();
         String emailSubject = "externalEmail"+randomString(20);
         fillField(CONVERSATION_EXTERNAL_INPUT_SUBJECT, emailSubject);
-        sleep(1000);
+        sleep(3000);
 
         fillTextEditor(LOREM_IPSUM_SHORT);
         sleep(1000);

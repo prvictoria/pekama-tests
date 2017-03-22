@@ -165,10 +165,10 @@ public class TestsPekamaResetPassword {
             openUrlWithBaseAuth(REDIRECT_LINK);
             sleep(1000);
             rootLogger.info("Validation test");
-           NEWPASSWORD_PAGE_NEW_PASSWORD.waitUntil(visible, 10000).sendKeys(User1.GMAIL_EMAIL.getValue());
-           NEWPASSWORD_PAGE_CONFIRM_PASSWORD.shouldBe(Condition.visible).sendKeys(User1.GMAIL_EMAIL.getValue());
-           NEWPASSWORD_PAGE_RESTORE_BTN.click();
-           checkText(ERROR_MSG_FAMILIAR_TO_EMAIL_PASSWORD);
+            NEWPASSWORD_PAGE_NEW_PASSWORD.waitUntil(visible, 10000).sendKeys(User1.GMAIL_EMAIL.getValue());
+            NEWPASSWORD_PAGE_CONFIRM_PASSWORD.shouldBe(Condition.visible).sendKeys(User1.GMAIL_EMAIL.getValue());
+            NEWPASSWORD_PAGE_RESTORE_BTN.click();
+            checkText(ERROR_MSG_FAMILIAR_TO_EMAIL_PASSWORD);
             checkText(ERROR_MSG_WEAK_PASSWORD);
             rootLogger.info("User submitted familiar to email passwords - "+ERROR_MSG_FAMILIAR_TO_EMAIL_PASSWORD);
         }
