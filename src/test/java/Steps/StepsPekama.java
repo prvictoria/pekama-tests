@@ -20,6 +20,7 @@ import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
 import static Steps.StepsHttpAuth.*;
 import static Steps.StepsModalWindows.*;
+import static Utils.Utils.getDate;
 import static Utils.Utils.randomString;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
@@ -257,7 +258,7 @@ public class StepsPekama implements StepsFactory{
 
     public static void selectItemInDropdown(SelenideElement uiSelectName, SelenideElement uiSelectInput, String inputValue) {
         rootLogger.info("select - "+inputValue);
-        uiSelectName.shouldBe(visible).click();
+        uiSelectName.waitUntil(visible, 15000).click();
         fillField(uiSelectInput, inputValue);
         CSS_SelectHighlighted.waitUntil(visible, 15000).click();
         rootLogger.info("selected - "+inputValue);
@@ -658,20 +659,31 @@ public class StepsPekama implements StepsFactory{
     }
     public static String taskCreate(){
         taskAdd();
-        String taskName = taskNewModal();
+        String taskName = taskNewModalSetName();
+        taskNewModalSubmit();
         return taskName;
     }
     //TODO
-    public static String taskCreate(String taskPriority){
+    public static String taskCreate(int dueDateFromToday, String importance, String status){
         taskAdd();
-        String taskName = taskNewModal();
+        String taskName = taskNewModalSetName();
+        taskNewModalSetDueDateFromToday(dueDateFromToday);
+        taskNewModalSelectImportance(importance);
+        taskNewModalSelectStatus(status);
+        taskNewModalSubmit();
         return taskName;
     }
-    //TODO
-    public static String taskCreate(int taskDueDateFromToday){
-        taskAdd();
-        String taskName = taskNewModal();
-        return taskName;
+    public static boolean verifyTaskFirstRow(String taskName, String importance, String status, String action){
+        String taskStatus;
+        String taskAction;
+                rootLogger.info("Check task row state");
+        TASKS_NAME_IN_FIRST_ROW.shouldHave(text(taskName));
+        TASKS_PRIORITY_IN_FIRST_ROW.shouldHave(text(importance));
+        taskStatus = TASKS_BTN_STATUS_IN_FIRST_ROW.shouldHave(text(status)).getText();
+        rootLogger.info("Task status is - "+taskStatus);
+        taskAction = TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.shouldHave(text(action)).getText();
+        rootLogger.info("User able to - "+taskAction+" task");
+        return true;
     }
     public static boolean taskAdd(){
         try {
@@ -687,21 +699,58 @@ public class StepsPekama implements StepsFactory{
         }
     }
 
-    public static String taskNewModal(){
-        try {
-            String taskName = "TASK_" + randomString(10);
-            rootLogger.info("Create task with name: " + taskName);
-            waitForModalWindow(TITLE_MW_NEW_TASK);
-            MW_BTN_OK.shouldBe(disabled);
-            fillField(MW_DeployTask_Title, taskName);
-            submitEnabledButton(MW_BTN_OK);
-            MW.shouldNotBe(visible);
-            return taskName;
-        }
-        catch (Exception e){
-            return null;
-        }
+    private static String taskNewModalSetName(){
+        String taskName = "TASK_" + randomString(10);
+        waitForModalWindow(TITLE_MW_NEW_TASK);
+        MW_BTN_OK.shouldBe(disabled);
+        fillField(MW_DeployTask_Title, taskName);
+        return taskName;
     }
+    private static String taskNewModalSetName(String taskName){
+        waitForModalWindow(TITLE_MW_NEW_TASK);
+        MW_BTN_OK.shouldBe(disabled);
+        fillField(MW_DeployTask_Title, taskName);
+        return taskName;
+    }
+    private static void taskNewModalSetDueDateFromToday(int dueDateFromToday){
+        fillField(MW_TASK_INPUT_DUE_DATE, getDate(dueDateFromToday));
+        sleep(500);
+        MW.click();
+
+    }
+    private static void taskNewModalSelectAssignor(String assignor){
+        selectItemInDropdown(
+                MW_TASK_SELECT_ASSIGNOR,
+                MW_TASK_INPUT_ASSIGNOR,
+                assignor
+        );
+    }
+    private static void taskNewModalSelectAssignee(String assignee){
+        selectItemInDropdown(
+                MW_TASK_SELECT_ASSIGNEE,
+                MW_TASK_INPUT_ASSIGNEE,
+                assignee
+        );
+    }
+    private static void taskNewModalSelectImportance(String importance){
+        selectItemInDropdown(
+                MW_TASK_SELECT_IMPORTANCE,
+                MW_TASK_INPUT_IMPORTANCE,
+                importance
+        );
+    }
+    private static void taskNewModalSelectStatus(String status){
+        selectItemInDropdown(
+                MW_TASK_INPUT_STATUS,
+                MW_TASK_SELECT_STATUS,
+                status
+        );
+    }
+    private static void taskNewModalSubmit(){
+        submitEnabledButton(MW_BTN_OK);
+        MW.waitUntil(not(visible), 15000);
+    }
+
 
     @Test
     public void testDebug(){

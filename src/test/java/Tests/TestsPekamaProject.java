@@ -575,26 +575,6 @@ public class TestsPekamaProject {
 
     }
     @Test
-    public void createProject_Task_CRUD() {
-        String taskName = "new task";
-        PROJECT_TAB_TASKS.click();
-        $$(byText(PLACEHOLDER_EmptyList)).shouldHaveSize(1);
-        TAB_TASKS_ADD.click();
-        TAB_TASKS_NEW_TASK.shouldBe(visible).click();
-
-        waitForModalWindow(TITLE_MW_NEW_TASK);
-        MW_BTN_OK.shouldBe(disabled);
-        fillField(MW_DeployTask_Title, taskName);
-        submitEnabledButton(MW_BTN_OK);
-        MW.shouldNotBe(visible);
-        $$(byText(taskName)).shouldHaveSize(1);
-
-        rootLogger.info("delete task");
-        projectAllCheckbox.click();
-        TAB_TASKS_BTN_DELETE.click();
-        submitConfirmAction();
-    }
-    @Test
     public void createProject_L1_autoDeployEvent() {
         scrollUp();
         rootLogger.info("Check timeline state");
@@ -1064,7 +1044,89 @@ public class TestsPekamaProject {
         rootLogger.info("Test passed");
 
     }
+    @Test
+    public void createProject_Task_CRUD() {
+        String taskName = "new task";
+        PROJECT_TAB_TASKS.click();
+        $$(byText(PLACEHOLDER_EmptyList)).shouldHaveSize(1);
+        TAB_TASKS_ADD.click();
+        TAB_TASKS_NEW_TASK.shouldBe(visible).click();
 
+        waitForModalWindow(TITLE_MW_NEW_TASK);
+        MW_BTN_OK.shouldBe(disabled);
+        fillField(MW_DeployTask_Title, taskName);
+        submitEnabledButton(MW_BTN_OK);
+        MW.shouldNotBe(visible);
+        $$(byText(taskName)).shouldHaveSize(1);
+
+        rootLogger.info("delete task");
+        projectAllCheckbox.click();
+        TAB_TASKS_BTN_DELETE.click();
+        submitConfirmAction();
+    }
+    @Test
+    public void createProject_Task_Importance() {
+        String taskName;
+        taskName = taskCreate(
+                4,
+                TASK_IMPORTANCE_DEADLINE,
+                "New");
+        TASKS_ROWS.shouldHaveSize(1);
+        Assert.assertTrue(verifyTaskFirstRow(
+                taskName,
+                TASK_IMPORTANCE_DEADLINE,
+                "Not Started",
+                "Start")
+        );
+        taskName = taskCreate(
+                3,
+                TASK_IMPORTANCE_FATAL,
+                "New");
+        TASKS_ROWS.shouldHaveSize(2);
+        Assert.assertTrue(verifyTaskFirstRow(
+                taskName,
+                TASK_IMPORTANCE_FATAL,
+                "Not Started",
+                "Start")
+        );
+        taskName = taskCreate(
+                2,
+                TASK_IMPORTANCE_FINAL_DEADLINE,
+                "New");
+        TASKS_ROWS.shouldHaveSize(3);
+        rootLogger.info("Check default task order - due date acceding");
+        Assert.assertTrue(verifyTaskFirstRow(
+                taskName,
+                TASK_IMPORTANCE_FINAL_DEADLINE,
+                "Not Started",
+                "Start")
+        );
+        taskName = taskCreate(
+                1,
+                TASK_IMPORTANCE_REMINDER,
+                "New");
+        TASKS_ROWS.shouldHaveSize(4);
+        rootLogger.info("Check default task order - due date acceding");
+        Assert.assertTrue(verifyTaskFirstRow(
+                taskName,
+                TASK_IMPORTANCE_REMINDER,
+                "Not Started",
+                "Start")
+        );
+        taskName = taskCreate(
+                0,
+                TASK_IMPORTANCE_TASK,
+                "New");
+        TASKS_ROWS.shouldHaveSize(5);
+        rootLogger.info("Check default task order - due date acceding");
+        Assert.assertTrue(verifyTaskFirstRow(
+                taskName,
+                TASK_IMPORTANCE_TASK,
+                "Not Started",
+                "Start")
+        );
+        rootLogger.info("Test passed");
+    }
     @Test
     public void createProject_TasksAccept() {
         String taskAction = null;

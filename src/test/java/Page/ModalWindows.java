@@ -194,16 +194,32 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_DeployTask_Apply = $(byXpath("//button[contains(.,'Apply')]"));
     public static final SelenideElement MW_DeployTask_Cancel = $(byXpath(""));
 
-    public static final SelenideElement MW_TaskAssignorField = $(byXpath(""));
-    public static final SelenideElement MW_TaskAssineeField = $(byXpath(""));
-    public static final SelenideElement MW_TaskAssignorSelect = $(byXpath("css=span.ng-binding.ng-scope"));
-    public static final SelenideElement MW_TaskAssineeSelect = $(byXpath("//div[2]/div/div/span/span[2]/span"));
-    public static final SelenideElement MW_TaskImportanceField = $(byXpath(""));
-    public static final SelenideElement MW_TaskImportanceSelect = $(byXpath("//pkm-values-dropdown/div/div/span/span[2]"));
-    public static final SelenideElement MW_TaskStatusField = $(byXpath(""));
-    public static final SelenideElement MW_TaskStatusSelect = $(byXpath(""));
-    public static final SelenideElement MW_TaskStatusCanceled = $(byXpath(""));
-    public static final SelenideElement MW_Task = $(byXpath(""));
+    //MW NEW TASK
+    public static final SelenideElement MW_TASK_NAME = $(byName("title"));
+    public static final SelenideElement MW_TASK_INPUT_DUE_DATE = MW_INPUT_DATE;
+    public static final SelenideElement MW_TASK_SELECT_ASSIGNOR = $(byXpath(mw+"//label[contains(.,'Assignor')]/following-sibling::div//span"));
+    public static final SelenideElement MW_TASK_INPUT_ASSIGNOR = $(byXpath(mw+"//label[contains(.,'Assignor')]/following-sibling::div//input[@type='search']"));
+    public static final SelenideElement MW_TASK_SELECT_ASSIGNEE = $(byXpath(mw+"//label[contains(.,'Assignee')]/following-sibling::div//span"));
+    public static final SelenideElement MW_TASK_INPUT_ASSIGNEE = $(byXpath(mw+"//label[contains(.,'Assignee')]/following-sibling::div//input[@type='search']"));
+    public static final SelenideElement MW_TASK_SELECT_IMPORTANCE = $(byXpath(mw+"//label[contains(.,'Importance')]/following-sibling::pkm-values-dropdown//span"));
+    public static final SelenideElement MW_TASK_INPUT_IMPORTANCE = $(byXpath(mw+"//label[contains(.,'Importance')]/following-sibling::pkm-values-dropdown//input[@type='search']"));
+    public static final String TASK_IMPORTANCE_DEADLINE = "Deadline";
+    public static final String TASK_IMPORTANCE_FATAL = "Fatal";
+    public static final String TASK_IMPORTANCE_FINAL_DEADLINE = "Final Deadline";
+    public static final String TASK_IMPORTANCE_REMINDER = "Reminder";
+    public static final String TASK_IMPORTANCE_TASK = "Task";
+
+    public static final SelenideElement MW_TASK_INPUT_STATUS = $(byXpath(mw+"//label[contains(.,'Status')]/following-sibling::div//span"));
+    public static final SelenideElement MW_TASK_SELECT_STATUS = $(byXpath(mw+"//label[contains(.,'Status')]/following-sibling::div//input[@type='search']"));
+    public static final String MW_TASK_NOT_STARTED = "Not Started";
+    public static final String MW_TASK_STATUS_NEW = "New";
+    public static final String MW_TASK_STATUS_IN_PROGRESS = "In Progress";
+    public static final String MW_TASK_STATUS_COMPLETED = "Completed";
+    public static final String MW_TASK_STATUS_APPROVED = "Approved";
+    public static final String MW_TASK_STATUS_REJECTED = "Rejected";
+    public static final String MW_TASK_STATUS_CANCELLED = "Cancelled";
+    public static final SelenideElement MW_TASK = $(byXpath(mw+""));
+
     //MW CHARGES
     public static final SelenideElement MW_CHARGES_ = $(byXpath(mw+""));
     public static final SelenideElement MW_CHARGES_SELECT_FROM = $(byXpath(mw+"//label[contains(.,'From:')]/following-sibling::div//span[@class='ng-binding ng-scope']"));
