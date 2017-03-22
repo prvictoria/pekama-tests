@@ -1066,64 +1066,145 @@ public class TestsPekamaProject {
     }
     @Test
     public void createProject_Task_Importance() {
+        rootLogger.info("Check default task order - due date acceding");
         String taskName;
         taskName = taskCreate(
                 4,
                 TASK_IMPORTANCE_DEADLINE,
-                "New");
+                MW_TASK_STATUS_NEW);
         TASKS_ROWS.shouldHaveSize(1);
         Assert.assertTrue(verifyTaskFirstRow(
                 taskName,
                 TASK_IMPORTANCE_DEADLINE,
-                "Not Started",
-                "Start")
+                TASK_STATUS_NOT_STARTED,
+                TASKS_ACTION_START)
         );
         taskName = taskCreate(
                 3,
                 TASK_IMPORTANCE_FATAL,
-                "New");
+                MW_TASK_STATUS_NEW);
         TASKS_ROWS.shouldHaveSize(2);
         Assert.assertTrue(verifyTaskFirstRow(
                 taskName,
                 TASK_IMPORTANCE_FATAL,
-                "Not Started",
-                "Start")
+                TASK_STATUS_NOT_STARTED,
+                TASKS_ACTION_START)
         );
         taskName = taskCreate(
                 2,
                 TASK_IMPORTANCE_FINAL_DEADLINE,
-                "New");
+                MW_TASK_STATUS_NEW);
         TASKS_ROWS.shouldHaveSize(3);
-        rootLogger.info("Check default task order - due date acceding");
+
         Assert.assertTrue(verifyTaskFirstRow(
                 taskName,
                 TASK_IMPORTANCE_FINAL_DEADLINE,
-                "Not Started",
-                "Start")
+                TASK_STATUS_NOT_STARTED,
+                TASKS_ACTION_START)
         );
         taskName = taskCreate(
                 1,
                 TASK_IMPORTANCE_REMINDER,
-                "New");
+                MW_TASK_STATUS_NEW);
         TASKS_ROWS.shouldHaveSize(4);
-        rootLogger.info("Check default task order - due date acceding");
+
         Assert.assertTrue(verifyTaskFirstRow(
                 taskName,
                 TASK_IMPORTANCE_REMINDER,
-                "Not Started",
-                "Start")
+                TASK_STATUS_NOT_STARTED,
+                TASKS_ACTION_START)
         );
         taskName = taskCreate(
                 0,
                 TASK_IMPORTANCE_TASK,
-                "New");
+                MW_TASK_STATUS_NEW);
         TASKS_ROWS.shouldHaveSize(5);
-        rootLogger.info("Check default task order - due date acceding");
+
         Assert.assertTrue(verifyTaskFirstRow(
                 taskName,
                 TASK_IMPORTANCE_TASK,
-                "Not Started",
-                "Start")
+                TASK_STATUS_NOT_STARTED,
+                TASKS_ACTION_START)
+        );
+        rootLogger.info("Test passed");
+    }
+    @Test
+    public void createProject_Task_Status_in_All_Tasks() {
+        rootLogger.info("Select all tasks");
+        rootLogger.info("Check default task order - due date acceding");
+        PROJECT_TAB_TASKS.waitUntil(visible, 15000).click();
+        TAB_TASKS_ALL.shouldBe(visible).click();
+        TASKS_ROWS.shouldHaveSize(0);
+
+        String taskName;
+        taskName = taskCreate(
+                4,
+                TASK_IMPORTANCE_DEADLINE,
+                MW_TASK_STATUS_NEW);
+        TASKS_ROWS.shouldHaveSize(1);
+        Assert.assertTrue(verifyTaskFirstRow(
+                taskName,
+                TASK_IMPORTANCE_DEADLINE,
+                TASK_STATUS_NOT_STARTED,
+                TASKS_ACTION_START)
+        );
+        taskName = taskCreate(
+                3,
+                TASK_IMPORTANCE_DEADLINE,
+                MW_TASK_STATUS_IN_PROGRESS);
+        TASKS_ROWS.shouldHaveSize(2);
+        Assert.assertTrue(verifyTaskFirstRow(
+                taskName,
+                TASK_IMPORTANCE_DEADLINE,
+                TASK_STATUS_IN_PROGRESS,
+                TASKS_ACTION_FINISH)
+        );
+        taskName = taskCreate(
+                2,
+                TASK_IMPORTANCE_DEADLINE,
+                MW_TASK_STATUS_COMPLETED);
+        TASKS_ROWS.shouldHaveSize(3);
+        Assert.assertTrue(verifyTaskFirstRow(
+                taskName,
+                TASK_IMPORTANCE_DEADLINE,
+                TASK_STATUS_COMPLETED,
+                TASKS_ACTION_ACCEPT)
+        );
+
+        taskName = taskCreate(
+                1,
+                TASK_IMPORTANCE_DEADLINE,
+                MW_TASK_STATUS_APPROVED);
+        TASKS_ROWS.shouldHaveSize(4);
+        Assert.assertTrue(verifyTaskFirstRow(
+                taskName,
+                TASK_IMPORTANCE_DEADLINE,
+                TASK_STATUS_ACCEPTED,
+                null)
+        );
+
+        taskName = taskCreate(
+                0,
+                TASK_IMPORTANCE_DEADLINE,
+                MW_TASK_STATUS_REJECTED);
+        TASKS_ROWS.shouldHaveSize(5);
+        Assert.assertTrue(verifyTaskFirstRow(
+                taskName,
+                TASK_IMPORTANCE_DEADLINE,
+                TASK_STATUS_REJECTED,
+                TASKS_ACTION_RESTART)
+        );
+
+        taskName = taskCreate(
+                -1,
+                TASK_IMPORTANCE_DEADLINE,
+                MW_TASK_STATUS_CANCELLED);
+        TASKS_ROWS.shouldHaveSize(6);
+        Assert.assertTrue(verifyTaskFirstRow(
+                taskName,
+                TASK_IMPORTANCE_DEADLINE,
+                TASK_STATUS_CANCELLED,
+                null)
         );
         rootLogger.info("Test passed");
     }

@@ -211,7 +211,6 @@ public class ModalWindows extends Page {
 
     public static final SelenideElement MW_TASK_INPUT_STATUS = $(byXpath(mw+"//label[contains(.,'Status')]/following-sibling::div//span"));
     public static final SelenideElement MW_TASK_SELECT_STATUS = $(byXpath(mw+"//label[contains(.,'Status')]/following-sibling::div//input[@type='search']"));
-    public static final String MW_TASK_NOT_STARTED = "Not Started";
     public static final String MW_TASK_STATUS_NEW = "New";
     public static final String MW_TASK_STATUS_IN_PROGRESS = "In Progress";
     public static final String MW_TASK_STATUS_COMPLETED = "Completed";

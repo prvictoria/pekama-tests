@@ -253,6 +253,12 @@ public class PekamaProject extends Page {
     public static final String TASKS_ACTION_REJECT = "reject";
     public static final String TASKS_ACTION_RESTART = "Restart";
 
+    public static final String TASK_STATUS_NOT_STARTED = "Not Started";
+    public static final String TASK_STATUS_IN_PROGRESS = "In Progress";
+    public static final String TASK_STATUS_COMPLETED = "Completed";
+    public static final String TASK_STATUS_ACCEPTED = " Accepted";
+    public static final String TASK_STATUS_REJECTED = "Rejected";
+    public static final String TASK_STATUS_CANCELLED = "Cancelled";
 
     public static final String TASKS_FIRST_ROW = TASKS_LIST+TASKS_ROW+"[1]";
     public static final SelenideElement TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW = $(byXpath(TASKS_FIRST_ROW+TASKS_BTN_STATUS_ACTION));

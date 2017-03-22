@@ -681,9 +681,35 @@ public class StepsPekama implements StepsFactory{
         TASKS_PRIORITY_IN_FIRST_ROW.shouldHave(text(importance));
         taskStatus = TASKS_BTN_STATUS_IN_FIRST_ROW.shouldHave(text(status)).getText();
         rootLogger.info("Task status is - "+taskStatus);
-        taskAction = TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.shouldHave(text(action)).getText();
-        rootLogger.info("User able to - "+taskAction+" task");
-        return true;
+        if (status.equals(TASK_STATUS_ACCEPTED)){
+            taskStatus = TASKS_BTN_STATUS_IN_FIRST_ROW.shouldHave(text(TASK_STATUS_ACCEPTED)).getText();
+            rootLogger.info("Task was "+taskStatus);
+            TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.shouldNot(exist);
+            TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW_REJECT.shouldNot(exist);
+            TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW_ACCEPT.shouldNot(exist);
+            return true;
+        }
+        if (status.equals(TASK_STATUS_CANCELLED)){
+            taskStatus = TASKS_BTN_STATUS_IN_FIRST_ROW.shouldHave(text(TASK_STATUS_CANCELLED)).getText();
+            rootLogger.info("Task was "+taskStatus);
+            TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.shouldNot(exist);
+            TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW_REJECT.shouldNot(exist);
+            TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW_ACCEPT.shouldNot(exist);
+            return true;
+        }
+        if(status.equals(TASK_STATUS_COMPLETED))
+        {
+            taskAction = TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW_ACCEPT.shouldHave(text("accept")).getText();
+            rootLogger.info("User able to - "+taskAction+" task");
+            taskAction = TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW_REJECT.shouldHave(text("reject")).getText();
+            rootLogger.info("User able to - "+taskAction+" task");
+            return true;
+        }
+        else {
+            taskAction = TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.shouldHave(text(action)).getText();
+            rootLogger.info("User able to - " + taskAction + " task");
+            return true;
+        }
     }
     public static boolean taskAdd(){
         try {
