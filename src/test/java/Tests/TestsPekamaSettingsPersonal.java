@@ -107,7 +107,7 @@ public class TestsPekamaSettingsPersonal {
         rootLogger.info("New data saved in all fields");
     }
     @Test
-    public void personalDetails_Z_CheckSavedData() {
+    public void Z_personalDetails_Z_CheckSavedData() {
         rootLogger.info("Check Saved Data");
         sleep(2000);
         $(byText("First name:")).shouldBe(Condition.visible);
@@ -149,7 +149,7 @@ public class TestsPekamaSettingsPersonal {
         rootLogger.info("Validation present - "+ERROR_MSG_BLANK_NAME);
     }
     @Test
-    public void personalDetails_Name_B() {
+    public void Z_personalDetails_Name_B() {
         rootLogger.info("Validation max length Name field");
         $(byText("First name:")).shouldBe(Condition.visible);
         String RANDOM_101_LETTER = Utils.randomString(101);
@@ -468,14 +468,6 @@ public class TestsPekamaSettingsPersonal {
         rootLogger.info("validation 3 attempts present");
 
     }
-    @Ignore // todo - need phone SMS-to-email integration
-    @Test
-    public void tabSecurity_TwoStepVerification_B() {
-        rootLogger.info("Positive flow");
-        rootLogger.info("");
-      rootLogger.info("");
-
-    }
     @Test
     public void tabEmails_A() {
         EMAILS_TAB_TITLE.shouldBe(visible).click();
@@ -550,7 +542,7 @@ public class TestsPekamaSettingsPersonal {
         sleep(500);
         IMAP_TAB_BTN_DELETE.shouldNotBe(visible);
     }
-    @Ignore // TODO bug
+
     @Test
     public void tabIMAP_B_GoggleAuthConnect() {
         IMAP_TAB_TITLE.shouldBe(visible).click();
@@ -587,6 +579,12 @@ public class TestsPekamaSettingsPersonal {
             sleep(500);
             IMAP_TAB_BTN_DELETE.shouldNotBe(visible);
         }
+        PERSONAL_DETAILS_TAB_TITLE.shouldBe(visible).click();
+        refresh();
+        rootLogger.info("Check Data retreved from Gmail");
+        sleep(2000);
+        PERSONAL_DETAILS_INPUT_NAME.shouldHave(Condition.value("TestEmail03"));
+        PERSONAL_DETAILS_INPUT_SURNAME.shouldHave(Condition.value("GmailAccount03"));
 
     }
     @Test
