@@ -182,7 +182,7 @@ public class StepsModalWindows implements StepsFactory {
         TAB_TASKS_NEW_TASK.shouldBe(visible).click();
         waitForModalWindow(TITLE_MW_NEW_TASK);
         MW_BTN_OK.shouldBe(disabled);
-        fillField(MW_DeployTask_Title, taskName);
+        fillField(MW_TASK_NAME, taskName);
         submitEnabledButton(MW_BTN_OK);
         MW.shouldNotBe(visible);
         $$(byText(taskName)).shouldHaveSize(1);

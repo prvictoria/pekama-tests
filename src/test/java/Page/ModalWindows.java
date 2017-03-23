@@ -8,7 +8,7 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 public class ModalWindows extends Page {
-    private static final String mw = "//div[@class='modal-content']";
+    public static final String mw = "//div[@class='modal-content']";
     public static final SelenideElement MW = $(byXpath("//div[@class='modal-content']"));
     public static final SelenideElement MW_BTN_SUBMIT = $(byXpath(mw+"//button[@submit]"));
     public static final SelenideElement MW_INPUT_NEW_MEMBER_EMAIL = $(byXpath(mw+"//*[@id='newFollowerEmail']"));
@@ -186,8 +186,8 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_DeployDoc_SelectEvent = $(byXpath(""));
     public static final SelenideElement MW_DEPLOY_DOC_BTN_CREATE = $(byXpath("//button[contains(.,'Create')]"));
     public static final SelenideElement MW_DeployDoc_ButtonCancel = $(byXpath("//button[contains(.,'Cancel')]"));
+    //MW DEPLOT TASK
 
-    public static final SelenideElement MW_DeployTask_Title = $(byName("title"));
     public static final SelenideElement MW_DeployTask_SelectEvent = $(byXpath("//div[@id='task-template-picker']/div/div/div/span/span"));
     public static final SelenideElement MW_DeployTask_InputEvent = $(byXpath("//input[@placeholder='Select an event...']"));
     public static final SelenideElement MW_DeployTask_01Template = $(byXpath("//div[@id='task-template-picker']/div[2]/div/div/label/span"));

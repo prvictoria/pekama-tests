@@ -231,7 +231,6 @@ public class TestsCredentials {
         TRADEMARK_CONSUMER_TRADEMARK("Consumer Trademark Defining"),
         USA("United States"),
         ALL("All countries"),
-
         GENERIC("");
 
         private String value;

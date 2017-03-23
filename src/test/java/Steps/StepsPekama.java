@@ -656,15 +656,21 @@ public class StepsPekama implements StepsFactory{
             Assert.fail("No redirect to Community");
         }
     }
+
     public static String taskCreate(){
-        taskAdd();
+        taskAddNew();
         String taskName = taskNewModalSetName();
         taskNewModalSubmit();
         return taskName;
     }
+    public static String taskDeploy(String eventType, String templateName){
+        taskAddDeploy();
+        String taskName = taskModalDeployTemplate(eventType, templateName);
+        return taskName;
+    }
 
     public static String taskCreate(int dueDateFromToday, String importance, String status){
-        taskAdd();
+        taskAddNew();
         String taskName = taskNewModalSetName();
         taskNewModalSetDueDateFromToday(dueDateFromToday);
         taskNewModalSelectImportance(importance);
@@ -722,11 +728,11 @@ public class StepsPekama implements StepsFactory{
             return null;
         }
     }
-    public final static SelenideElement PROJECT_TEMPLATE_SELECTED_IN_DROPDOWN_MENU(String statusName) {
-        String selectStatus = "//button[@type='button']/following-sibling::ul//a[@href and text()='%s']";
-        String selectStatusSelected = String.format(selectStatus, statusName);
-        SelenideElement selectStatusSelectedElement = $(byXpath(selectStatusSelected));
-        return selectStatusSelectedElement;
+    public final static SelenideElement PROJECT_TEMPLATE_SELECTED_IN_DROPDOWN_MENU(String templateProjectName) {
+        String selectedTemplatePath = "//button[@type='button']/following-sibling::ul//a[@href and text()='%s']";
+        String selectedTemplateString = String.format(selectedTemplatePath, templateProjectName);
+        SelenideElement selectedTemplate = $(byXpath(selectedTemplateString));
+        return selectedTemplate;
     }
     public static String taskSelectProjectTemplateFormDropDown(String templateProjectName){
         sleep(1500);
@@ -742,20 +748,25 @@ public class StepsPekama implements StepsFactory{
             return null;
         }
     }
-
-
-    public static boolean taskAdd(){
+    public static boolean taskAddNew(){
         try {
             rootLogger.info("Call new task MW in Project");
-            PROJECT_TAB_TASKS.click();
+            PROJECT_TAB_TASKS.waitUntil(visible, 15000).click();
             TAB_TASKS_ADD.waitUntil(visible, 20000).click();
             TAB_TASKS_NEW_TASK.waitUntil(visible, 20000).click();
             return true;
         }
-        catch (Exception e)
-        {
-            return false;
+        catch (Exception e){return false;}
+    }
+    public static boolean taskAddDeploy(){
+        try {
+            rootLogger.info("Call new Task Templates MW in Project");
+            PROJECT_TAB_TASKS.waitUntil(visible, 15000).click();
+            TAB_TASKS_ADD.waitUntil(visible, 20000).click();
+            TAB_TASKS_DEPLOY_TASK.waitUntil(visible, 20000).click();
+            return true;
         }
+        catch (Exception e){return false;}
     }
     public static boolean taskSelectFilterAllOrActive(boolean selectAllFilter){
         if (selectAllFilter == true) {
@@ -780,18 +791,30 @@ public class StepsPekama implements StepsFactory{
         }
         return false;
     }
-
     private static String taskNewModalSetName(){
         String taskName = "TASK_" + randomString(10);
         waitForModalWindow(TITLE_MW_NEW_TASK);
         MW_BTN_OK.shouldBe(disabled);
-        fillField(MW_DeployTask_Title, taskName);
+        fillField(MW_TASK_NAME, taskName);
         return taskName;
+    }
+    private static String taskModalDeployTemplate(String eventType, String templateName){
+        waitForModalWindow("Task Templates");
+        MW_DeployTask_Apply.shouldBe(disabled);
+        selectItemInDropdown(
+                MW_DeployTask_SelectEvent,
+                MW_DeployTask_InputEvent,
+                eventType);
+        String selectTaskTemplateByNamePath = mw+"//label[@class='clickable' and ./span[text()='"+templateName+"']]/input";
+        $(byXpath(selectTaskTemplateByNamePath)).click();
+        submitEnabledButton(MW_DeployTask_Apply);
+        MW.waitUntil(not(visible), 15000);
+        return templateName;
     }
     private static String taskNewModalSetName(String taskName){
         waitForModalWindow(TITLE_MW_NEW_TASK);
         MW_BTN_OK.shouldBe(disabled);
-        fillField(MW_DeployTask_Title, taskName);
+        fillField(MW_TASK_NAME, taskName);
         return taskName;
     }
     private static void taskNewModalSetDueDateFromToday(int dueDateFromToday){

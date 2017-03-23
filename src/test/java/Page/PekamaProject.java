@@ -230,6 +230,7 @@ public class PekamaProject extends Page {
     public static SelenideElement TAB_TASKS_ACTUAL_ORDER = $(byXpath(CONTROLS_ROW+"//a[contains(.,'"+TASKS_ORDER+"')]"));        //order value
     public static final SelenideElement TAB_TASKS_ADD = $(byXpath(CONTROLS_ROW+"//button[contains(.,'add')]"));
     public static final SelenideElement TAB_TASKS_NEW_TASK = $(byLinkText("Create task"));
+    public static final SelenideElement TAB_TASKS_DEPLOY_TASK = $(byLinkText("Deploy template"));
 
     public static final SelenideElement TAB_TASKS_BTN_DELETE = $(byXpath("//button[@class='btn-link' and contains(.,'Delete')]"));
     public static final SelenideElement TAB_TASKS_BTN_UPDATE_STATUS = $(byXpath("//button[@class='btn-link' and contains(.,'Update Status')]"));

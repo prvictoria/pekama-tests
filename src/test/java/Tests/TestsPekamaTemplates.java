@@ -11,6 +11,8 @@ import org.junit.runners.MethodSorters;
 import java.io.IOException;
 import static Page.ModalWindows.*;
 import static Page.PekamaDashboard.*;
+import static Page.PekamaProject.TASKS_ACTION_START;
+import static Page.PekamaProject.TASK_STATUS_NOT_STARTED;
 import static Page.PekamaReports.REPORTS_BTN_NEW_PROJECT_TEMPLATE;
 import static Page.PekamaTeamSettings.*;
 import static Page.TestsStrings.*;
@@ -37,6 +39,9 @@ public class TestsPekamaTemplates {
     String TEST_USER_LOGIN = User3.GMAIL_EMAIL.getValue();
     String TEST_USER_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
     static String templateProjectName;
+    static String setName;
+    static String templateName;
+    static String templateDueDate;
     @Rule
     public Timeout tests = Timeout.seconds(600);
     @BeforeClass
@@ -177,9 +182,9 @@ public class TestsPekamaTemplates {
     }
     @Test
     public void templateTask_B_Create () {
-        String setName = "SET_ALL_" + randomString(15);
-        String templateName = "TEMPLATE_" + randomString(15);
-        String templateDueDate = "10";
+        setName = "SET_RELEVANT_TO_ALL_" + randomString(15);
+        templateName = "TASK_TEMPLATE_" + randomString(15);
+        templateDueDate = "10";
         rootLogger.info("Open URL - " + URL_TEMPLATES_TASKS);
         openPageWithSpinner(URL_TEMPLATES_TASKS);
 
@@ -190,8 +195,10 @@ public class TestsPekamaTemplates {
         fillField(MW_SET_NAME, setName);
         submitEnabledButton(MW_BTN_OK);
         MW.shouldNotBe(visible);
+
         checkText(setName);
         templateRow.shouldHave(text(setName)).click();
+        TEMPLATES_AUTO_DEPLOY.shouldNotBe(selected);
 
         rootLogger.info("Create template");
         BTN_TEMPLATE_ADD_IN_1st_ROW.shouldBe(visible).click();
@@ -207,6 +214,20 @@ public class TestsPekamaTemplates {
         submitEnabledButton(MW_BTN_OK);
         MW.shouldNotBe(visible);
         checkText(templateName);
+        rootLogger.info("Test passed");
+    }
+    @Test
+    public void templateTask_B_DeployInProject () {
+        DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 15000).click();
+        String eventType = TrademarkEvents.MARK_CREATED.getValue();
+        String projectName = createProject("TASK_DEPLOY_TEST_");
+        taskDeploy(eventType, setName);
+        Assert.assertTrue(verifyTaskFirstRow(
+                templateName,
+                TASK_IMPORTANCE_DEADLINE,
+                TASK_STATUS_NOT_STARTED,
+                TASKS_ACTION_START)
+        );
         rootLogger.info("Test passed");
     }
     @Test
