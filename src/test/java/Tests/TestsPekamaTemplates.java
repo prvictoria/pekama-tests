@@ -8,10 +8,10 @@ import org.apache.logging.log4j.Logger;
 import org.junit.*;
 import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
-
 import java.io.IOException;
-
 import static Page.ModalWindows.*;
+import static Page.PekamaDashboard.*;
+import static Page.PekamaReports.REPORTS_BTN_NEW_PROJECT_TEMPLATE;
 import static Page.PekamaTeamSettings.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
@@ -20,12 +20,12 @@ import static Page.UrlStrings.*;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static Steps.StepsHttpAuth.*;
-import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
+import static Tests.BeforeTestsSetUp.*;
 import static Tests.BeforeTestsSetUp.setBrowser;
 import static Utils.Utils.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
+import static com.codeborne.selenide.WebDriverRunner.*;
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
@@ -36,6 +36,7 @@ public class TestsPekamaTemplates {
     String TEAM = TestsCredentials.User3.TEAM_NAME.getValue();
     String TEST_USER_LOGIN = User3.GMAIL_EMAIL.getValue();
     String TEST_USER_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
+    static String templateProjectName;
     @Rule
     public Timeout tests = Timeout.seconds(600);
     @BeforeClass
@@ -54,15 +55,13 @@ public class TestsPekamaTemplates {
         sleep(1000);
     }
     @After
-    public void logout(){openUrlWithBaseAuth(URL_Logout);}
-    @AfterClass
-    public static void afterClass() {
-        clearBrowserCache();
-    }
+    public void logout(){
+        openUrlWithBaseAuth(URL_Logout);
+        clearBrowserCache();}
     @Test
-    public void templateCrudProject() {
+    public void templateProject_A_Validation() {
         String projectName;
-        rootLogger.info("Open URL - " +URL_TEMPLATES_PROJECT);
+        rootLogger.info("Open URL - " + URL_TEMPLATES_PROJECT);
         openPageWithSpinner(URL_TEMPLATES_PROJECT);
 
         rootLogger.info("Validation - Title and Type");
@@ -109,13 +108,17 @@ public class TestsPekamaTemplates {
         checkText(ERROR_MSG_VALIDATION_LENGTH_255);
         MW_BTN_CANCEL.click();
         MW.shouldNotBe(visible);
-
+        rootLogger.info("Test passed");
+    }
+    @Test
+    public void templateProject_B_Create() {
+        openPageWithSpinner(URL_TEMPLATES_PROJECT);
         rootLogger.info("Create template");
-        projectName = "PROJECT_TEMPLATE_"+randomString(15);
+        templateProjectName = "PROJECT_IN_"+MATTER_TYPE_PATENT+"_"+randomString(15);
         submitEnabledButton(SETTINGS_VALUES_ADD);
         waitForModalWindow(MW_PROJECT_TEMPLATE_TITLE);
         MW_BTN_OK.shouldBe(disabled);
-        fillField(MW_Project_Title, projectName);
+        fillField(MW_Project_Title, templateProjectName);
         selectItemInDropdown(
                 MW_Project_SelectType,
                 MW_Project_InputType,
@@ -126,11 +129,42 @@ public class TestsPekamaTemplates {
                 Countries.PITCAIRN_ISLANDS.getValue());
         submitEnabledButton(MW_BTN_OK);
         MW.shouldNotBe(visible);
-        checkText(projectName);
+        checkText(templateProjectName);
+        if (SETTINGS_DELETE_X.isDisplayed() == false) {
+            Assert.fail("Project not created");
+        }
+    }
+    @Test
+    public void templateProject_C_DeployFromDashboard() {
+        rootLogger.info("Deploy Project template from dashboard");
+        String defaultProjectTitle = "New project (temporary name)";
+        if (templateProjectName==null){Assert.fail("No project templates created");}
+
+        DASHBOARD_BTN_PROJECT_TEMPLATES.waitUntil(visible, 20000).click();
+        taskSelectProjectTemplateFormDropDown(templateProjectName);
+        scrollUp();
+        waitForTextPresent(defaultProjectTitle);
+        rootLogger.info("Test passed");
+    }
+    @Test
+    public void templateProject_D_DeployFromReports() {
+        rootLogger.info("Deploy Project template from Project Reports");
+        openPageWithSpinner(URL_ReportsProjects);
+        rootLogger.info("Deploy Project template from dashboard");
+        String defaultProjectTitle = "New project (temporary name)";
+        if (templateProjectName==null){Assert.fail("No project templates created");}
+
+        REPORTS_BTN_NEW_PROJECT_TEMPLATE.waitUntil(visible, 20000).click();
+        taskSelectProjectTemplateFormDropDown(templateProjectName);
+        scrollUp();
+        waitForTextPresent(defaultProjectTitle);
+        rootLogger.info("Test passed");
+    }
+    @Test
+    public void templateProject_Z_Delete() {
+        openPageWithSpinner(URL_TEMPLATES_PROJECT);
         rootLogger.info("Delete template");
-        if (SETTINGS_DELETE_X.isDisplayed()==false){
-                Assert.fail("Project not created");
-            }
+        sleep(5000);
         while (PekamaTeamSettings.SETTINGS_DELETE_X.isDisplayed()){
             SETTINGS_DELETE_X.click();
             submitConfirmAction();
@@ -142,14 +176,14 @@ public class TestsPekamaTemplates {
         rootLogger.info("Test passed");
     }
     @Test
-    public void templateCrudTask (){
-        String setName = "SET_ALL_"+randomString(15);
-        String templateName = "TEMPLATE_"+randomString(15);
+    public void templateTask_B_Create () {
+        String setName = "SET_ALL_" + randomString(15);
+        String templateName = "TEMPLATE_" + randomString(15);
         String templateDueDate = "10";
-        rootLogger.info("Open URL - " +URL_TEMPLATES_TASKS);
+        rootLogger.info("Open URL - " + URL_TEMPLATES_TASKS);
         openPageWithSpinner(URL_TEMPLATES_TASKS);
 
-        rootLogger.info("Create set relevant to ALL");
+        rootLogger.info("Create Task Template set relevant to ALL");
         submitEnabledButton(SETTINGS_VALUES_ADD);
         waitForModalWindow(MW_TASK_SET_TITLE);
         MW_BTN_OK.shouldBe(disabled);
@@ -173,7 +207,11 @@ public class TestsPekamaTemplates {
         submitEnabledButton(MW_BTN_OK);
         MW.shouldNotBe(visible);
         checkText(templateName);
-
+        rootLogger.info("Test passed");
+    }
+    @Test
+    public void templateTask_Z_Delete (){
+        openPageWithSpinner(URL_TEMPLATES_TASKS);
         rootLogger.info("Delete template");
         if (SETTINGS_DELETE_X.isDisplayed()==false){
             Assert.fail("Project not created");

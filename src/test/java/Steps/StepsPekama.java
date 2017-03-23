@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriverException;
 import java.util.Set;
 import static Page.ModalWindows.*;
+import static Page.PekamaDashboard.DROPDOWN_PROJECT_TEMPLATES_LIST;
 import static Page.PekamaLogin.*;
 import static Page.PekamaPersonalSettings.*;
 import static Page.PekamaProject.*;
@@ -721,6 +722,28 @@ public class StepsPekama implements StepsFactory{
             return null;
         }
     }
+    public final static SelenideElement PROJECT_TEMPLATE_SELECTED_IN_DROPDOWN_MENU(String statusName) {
+        String selectStatus = "//button[@type='button']/following-sibling::ul//a[@href and text()='%s']";
+        String selectStatusSelected = String.format(selectStatus, statusName);
+        SelenideElement selectStatusSelectedElement = $(byXpath(selectStatusSelected));
+        return selectStatusSelectedElement;
+    }
+    public static String taskSelectProjectTemplateFormDropDown(String templateProjectName){
+        sleep(1500);
+        int size = DROPDOWN_PROJECT_TEMPLATES_LIST.size();
+        if (size==0){Assert.fail("Dropdown not present");}
+        try {
+            PROJECT_TEMPLATE_SELECTED_IN_DROPDOWN_MENU(templateProjectName).click();
+            sleep(1000);
+            return templateProjectName;
+        }
+        catch (Exception e)
+        {   rootLogger.info("ERROR: Status "+templateProjectName+" not selected");
+            return null;
+        }
+    }
+
+
     public static boolean taskAdd(){
         try {
             rootLogger.info("Call new task MW in Project");

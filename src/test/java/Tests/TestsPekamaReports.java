@@ -8,7 +8,6 @@ import org.junit.*;
 import org.junit.experimental.categories.Category;
 import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
-import org.openqa.selenium.NoSuchElementException;
 
 import java.io.IOException;
 
@@ -25,7 +24,6 @@ import static Steps.StepsPekama.*;
 import static Steps.StepsHttpAuth.*;
 import static Tests.BeforeTestsSetUp.*;
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selectors.byLinkText;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
@@ -238,7 +236,7 @@ public class TestsPekamaReports {
     public void objectProjectDeleteAll(){
         openPageWithSpinner(URL_ReportsProjects);
         rootLogger.info("Create project");
-        submitEnabledButton(REPORTS_BTN_New);
+        submitEnabledButton(REPORTS_BTN_NEW_PROJECT);
         String projectName = createProject();
         openPageWithSpinner(URL_ReportsProjects);
         REPORTS_SORT_BY_NONE.waitUntil(visible, 15000).click();

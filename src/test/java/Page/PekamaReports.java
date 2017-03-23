@@ -3,6 +3,7 @@ package Page;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
@@ -10,6 +11,8 @@ import org.junit.runners.MethodSorters;
 import static com.codeborne.selenide.Selectors.byLinkText;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
+
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PekamaReports extends Page {
 
@@ -21,7 +24,9 @@ public class PekamaReports extends Page {
     public static final SelenideElement REPORTS_Spinner = $(byXpath("//i[@class='pkm-icon-spinner icon-spin']"));
     public static final SelenideElement REPORTS_BTN_List = $(byXpath("//button[contains(.,'List')]"));
     public static final SelenideElement REPORTS_BTN_Report = $(byXpath("//button[contains(.,'Report')]"));
-    public static final SelenideElement REPORTS_BTN_New = $(byXpath("//button[@type='button'][contains(.,'New')]"));
+    public static final SelenideElement REPORTS_BTN_NEW_PROJECT = $(byXpath("//button[@type='button'][contains(.,'New')]"));
+    public static final SelenideElement REPORTS_BTN_NEW_PROJECT_TEMPLATE = $(byXpath("//button[@type='button'][contains(.,'New')]/following-sibling::button"));
+    public static final ElementsCollection REPORTS_PROJECT_TEMPLATES_LIST = $$(byXpath("//button[@type='button'][contains(.,'New')]/following-sibling::ul//a"));
     public static final SelenideElement REPORTS_BTN_Import = $(byXpath("//button[@type='button'][contains(.,'Import')]"));
     public static final SelenideElement REPORTS_BTN_AddContact = $(byXpath("//button[@type='button'][contains(.,'Add contact')]"));
 //list view

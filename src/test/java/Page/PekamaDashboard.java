@@ -3,11 +3,10 @@ package Page;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-
-import static com.codeborne.selenide.Selectors.byLinkText;
-import static com.codeborne.selenide.Selectors.byXpath;
-import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selectors.*;
+import static com.codeborne.selenide.Selenide.*;
 
 /**
  * Created by Viachaslau_Balashevi on 12/29/2016.
@@ -21,11 +20,8 @@ public class PekamaDashboard extends Page {
     public static final SelenideElement DASHBOARD_BTN_PROJECT_TEMPLATES = $(byXpath("//button[@type='button'][2]"));
     public static final SelenideElement DASHBOARD_SelectProjectTemplatesTemplate01 = $(byXpath("//a[@ng-click='applyTemplate(template)'][1]"));
     public static final SelenideElement DASHBOARD_BTN_NEW_PROJECT = $(byXpath("//button[@type='button'][contains(.,'+ NEW')]"));
-    public static final SelenideElement DASHBOARD_ProjectList01 = $(byXpath("//li[@class='item matter ng-scope']/a"));
-    public static final SelenideElement DASHBOARD_ProjectList02 = $(byXpath("//li[2][@class='item matter ng-scope']/a"));
-    public static final SelenideElement DASHBOARD_ProjectList03 = $(byXpath("//li[3][@class='item matter ng-scope']/a"));
-    public static final SelenideElement DASHBOARD_ProjectList04 = $(byXpath("//li[4][@class='item matter ng-scope']/a"));
-    public static final SelenideElement DASHBOARD_ProjectList05 = $(byXpath("//li[5][@class='item matter ng-scope']/a"));
+    public static final ElementsCollection DROPDOWN_PROJECT_TEMPLATES_LIST = $$(byXpath("//button[@type='button']/following-sibling::ul//a"));
+
 
     public static final SelenideElement DASHBOARD_Invite = $(byXpath("//button[contains(.,'+ INVITE')]"));
     public static final SelenideElement DASHBOARD_TeamMembersQTY = $(byXpath("//*[@ui-sref='settings.organization.members']"));
