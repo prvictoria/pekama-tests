@@ -268,6 +268,19 @@ public class PekamaProject extends Page {
     public static final String TASKS_BTN_STATUS_ACTUAL = "//pkm-task-change-status//div[./i]";
     public static final SelenideElement TASKS_BTN_STATUS_IN_FIRST_ROW = $(byXpath(TASKS_FIRST_ROW+TASKS_BTN_STATUS_ACTUAL));
 
+    public final static SelenideElement TASKS_STATUS_SELECTED_IN_DROPDOWN_MENU(String statusName) {
+        String selectStatus = "//*[@role='menu']//li/a[1][@href and text()='%s']";
+        String selectStatusSelected = String.format(selectStatus, statusName);
+        SelenideElement selectStatusSelectedElement = $(byXpath(selectStatusSelected));
+        return selectStatusSelectedElement;
+    }
+    public static final String PROJECT_TASK_DROPDOWN_STATUS_NEW = "New";
+    public static final String PROJECT_TASK_DROPDOWN_STATUS_IN_PROGRESS = "In progress";
+    public static final String PROJECT_TASK_DROPDOWN_STATUS_COMPLETED = "Completed";
+    public static final String PROJECT_TASK_DROPDOWN_STATUS_APPROVED = "Approved";
+    public static final String PROJECT_TASK_DROPDOWN_STATUS_REJECTED = "Rejected";
+    public static final String PROJECT_TASK_DROPDOWN_STATUS_CANCELLED = "Cancelled";
+
     //TAB CHARGES
     public static SelenideElement TAB_CHARGES_ACTUAL_ORDER = $(byXpath(CONTROLS_ROW+"//a[contains(.,'"+TASKS_ORDER+"')]"));        //order value
 

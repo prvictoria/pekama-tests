@@ -1,5 +1,4 @@
 package Steps;
-import Utils.Utils;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
@@ -59,16 +58,15 @@ public class StepsPekama implements StepsFactory{
     public void  loginByURL(String PEKAMA_USER_EMAIL, String PEKAMA_USER_PASSWORD, String AUTH_URL){
         openUrlWithBaseAuth(AUTH_URL);
         rootLogger.info(AUTH_URL+"URL opened");
-        submitCookie();
         fillField(loginField_Email,PEKAMA_USER_EMAIL);
         rootLogger.info(PEKAMA_USER_EMAIL+ " - login selected");
         fillField(loginField_Password, PEKAMA_USER_PASSWORD);
-        submitEnabledButton(loginButton_Login);
-        sleep(4000);
-        btnLogin.shouldBe(Condition.not(visible));
-        rootLogger.info("Valid Credentials were submitted");
+        sleep(3000);
+        submitCookie();
         hideZopim();
-        sleep(2000);
+        submitEnabledButton(loginButton_Login);
+        btnLogin.waitUntil(not(visible), 15000);
+        rootLogger.info("Valid Credentials were submitted");
     }
     public void  submitLoginCredentials(String PEKAMA_USER_EMAIL){
         hideZopim();
@@ -663,7 +661,7 @@ public class StepsPekama implements StepsFactory{
         taskNewModalSubmit();
         return taskName;
     }
-    //TODO
+
     public static String taskCreate(int dueDateFromToday, String importance, String status){
         taskAdd();
         String taskName = taskNewModalSetName();
@@ -711,6 +709,18 @@ public class StepsPekama implements StepsFactory{
             return true;
         }
     }
+    public static String taskSelectStatusFormDropDown(String statusName){
+        try {
+            TASKS_BTN_STATUS_IN_FIRST_ROW.waitUntil(visible, 15000).click();
+            TASKS_STATUS_SELECTED_IN_DROPDOWN_MENU(statusName).click();
+            sleep(1000);
+            return statusName;
+        }
+        catch (Exception e)
+        {   rootLogger.info("ERROR: Status "+statusName+" not selected");
+            return null;
+        }
+    }
     public static boolean taskAdd(){
         try {
             rootLogger.info("Call new task MW in Project");
@@ -723,6 +733,29 @@ public class StepsPekama implements StepsFactory{
         {
             return false;
         }
+    }
+    public static boolean taskSelectFilterAllOrActive(boolean selectAllFilter){
+        if (selectAllFilter == true) {
+            try {
+                TAB_TASKS_ALL.waitUntil(visible, 15000).click();
+                TAB_TASKS_ALL.shouldBe(visible).shouldHave(attribute("class", "btn-link ng-binding active-link"));
+                TAB_TASKS_ACTIVE.shouldBe(visible).shouldHave(attribute("class", "btn-link ng-binding"));
+               return true;
+            } catch (Exception e) {
+                return false;
+            }
+        }
+        if (selectAllFilter == false) {
+            try {
+                TAB_TASKS_ACTIVE.waitUntil(visible, 15000).click();
+                TAB_TASKS_ACTIVE.shouldBe(visible).shouldHave(attribute("class", "btn-link ng-binding active-link"));
+                TAB_TASKS_ALL.shouldBe(visible).shouldHave(attribute("class", "btn-link ng-binding"));
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
+        }
+        return false;
     }
 
     private static String taskNewModalSetName(){
@@ -739,12 +772,14 @@ public class StepsPekama implements StepsFactory{
         return taskName;
     }
     private static void taskNewModalSetDueDateFromToday(int dueDateFromToday){
+        waitForModalWindow(TITLE_MW_NEW_TASK);
         fillField(MW_TASK_INPUT_DUE_DATE, getDate(dueDateFromToday));
         sleep(500);
         MW.click();
 
     }
     private static void taskNewModalSelectAssignor(String assignor){
+        waitForModalWindow(TITLE_MW_NEW_TASK);
         selectItemInDropdown(
                 MW_TASK_SELECT_ASSIGNOR,
                 MW_TASK_INPUT_ASSIGNOR,
@@ -752,6 +787,7 @@ public class StepsPekama implements StepsFactory{
         );
     }
     private static void taskNewModalSelectAssignee(String assignee){
+        waitForModalWindow(TITLE_MW_NEW_TASK);
         selectItemInDropdown(
                 MW_TASK_SELECT_ASSIGNEE,
                 MW_TASK_INPUT_ASSIGNEE,
@@ -759,6 +795,7 @@ public class StepsPekama implements StepsFactory{
         );
     }
     private static void taskNewModalSelectImportance(String importance){
+        waitForModalWindow(TITLE_MW_NEW_TASK);
         selectItemInDropdown(
                 MW_TASK_SELECT_IMPORTANCE,
                 MW_TASK_INPUT_IMPORTANCE,
@@ -766,6 +803,7 @@ public class StepsPekama implements StepsFactory{
         );
     }
     private static void taskNewModalSelectStatus(String status){
+        waitForModalWindow(TITLE_MW_NEW_TASK);
         selectItemInDropdown(
                 MW_TASK_INPUT_STATUS,
                 MW_TASK_SELECT_STATUS,
@@ -773,6 +811,7 @@ public class StepsPekama implements StepsFactory{
         );
     }
     private static void taskNewModalSubmit(){
+        waitForModalWindow(TITLE_MW_NEW_TASK);
         submitEnabledButton(MW_BTN_OK);
         MW.waitUntil(not(visible), 15000);
     }

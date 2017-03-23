@@ -112,6 +112,7 @@ public class TestsPekamaProject {
         rootLogger.info("Project url: "+ testProjectURL);
         rootLogger.info("ProjectValues '"+testProjectTitle+"' created");
         waitForTextPresent(testProjectTitle);
+        hideZopim();
     }
     @Test
     public void createProject_A_CheckDefaultStateAndDelete() {
@@ -646,7 +647,7 @@ public class TestsPekamaProject {
     @Test
     public void createProject_M_addChargePositive() {
         PROJECT_TAB_CHARGES.click();
-        checkText(PLACEHOLDER_EmptyList);
+        checkText(PLACEHOLDER_EMPTY_LIST);
         TAB_CHARGES_ADD.click();
         rootLogger.info("Create charge");
         waitForModalWindow(TITLE_MW_CHARGE);
@@ -656,7 +657,7 @@ public class TestsPekamaProject {
         fillField(MW_CHARGES_INPUT_PRICE, "1000");
         submitEnabledButton(MW_BTN_OK);
         MW.shouldNot(visible);
-        checkTextNotPresent(PLACEHOLDER_EmptyList);
+        checkTextNotPresent(PLACEHOLDER_EMPTY_LIST);
         checkText(TEST_USER_FULL_TEAM_NAME+" ->");
         checkText(CHARGES_TYPE_ASSOCIATE);
         checkText(getCurrentDate());
@@ -666,7 +667,7 @@ public class TestsPekamaProject {
         projectAllCheckbox.click();
         TAB_CHARGES_BTN_DELETE.click();
         submitConfirmAction();
-        checkText(PLACEHOLDER_EmptyList);
+        checkText(PLACEHOLDER_EMPTY_LIST);
         rootLogger.info("Test passed");
     }
     @Test
@@ -1048,7 +1049,7 @@ public class TestsPekamaProject {
     public void createProject_Task_CRUD() {
         String taskName = "new task";
         PROJECT_TAB_TASKS.click();
-        $$(byText(PLACEHOLDER_EmptyList)).shouldHaveSize(1);
+        $$(byText(PLACEHOLDER_EMPTY_LIST)).shouldHaveSize(1);
         TAB_TASKS_ADD.click();
         TAB_TASKS_NEW_TASK.shouldBe(visible).click();
 
@@ -1206,6 +1207,65 @@ public class TestsPekamaProject {
                 TASK_STATUS_CANCELLED,
                 null)
         );
+        rootLogger.info("Test passed");
+    }
+    @Test
+    public void createProject_TasksActiveAndAllFilters() {
+        String taskName;
+        PROJECT_TAB_TASKS.waitUntil(visible, 15000).click();
+        TASKS_ROWS.shouldHaveSize(0);
+        taskName = taskCreate(
+                0,
+                TASK_IMPORTANCE_TASK,
+                MW_TASK_STATUS_NEW);
+        TASKS_ROWS.shouldHaveSize(1);
+        Assert.assertTrue(verifyTaskFirstRow(
+                taskName,
+                TASK_IMPORTANCE_TASK,
+                TASK_STATUS_NOT_STARTED,
+                TASKS_ACTION_START)
+        );
+        rootLogger.info("Check that active tasks filter selected by default");
+
+        TAB_TASKS_ACTIVE.shouldBe(visible).shouldHave(attribute("class", "btn-link ng-binding active-link"));
+        TAB_TASKS_ALL.shouldBe(visible).shouldHave(attribute("class", "btn-link ng-binding"));
+        rootLogger.info("Check that Task "+PROJECT_TASK_DROPDOWN_STATUS_NEW+" state IS in Active filter");
+        TASKS_ROWS.shouldHaveSize(1);
+        taskSelectFilterAllOrActive(true);
+
+        rootLogger.info("Check that Task "+PROJECT_TASK_DROPDOWN_STATUS_IN_PROGRESS+" state displayed in Active filter");
+        taskSelectStatusFormDropDown(PROJECT_TASK_DROPDOWN_STATUS_IN_PROGRESS);
+        taskSelectFilterAllOrActive(false);
+        TASKS_ROWS.shouldHaveSize(1);
+        taskSelectFilterAllOrActive(true);
+
+        rootLogger.info("Check that Task "+PROJECT_TASK_DROPDOWN_STATUS_REJECTED+" state displayed in Active filter");
+        taskSelectStatusFormDropDown(PROJECT_TASK_DROPDOWN_STATUS_REJECTED);
+        taskSelectFilterAllOrActive(false);
+        TASKS_ROWS.shouldHaveSize(1);
+        taskSelectFilterAllOrActive(true);
+
+        rootLogger.info("Check that Task "+PROJECT_TASK_DROPDOWN_STATUS_COMPLETED+" state NOT in Active filter");
+        taskSelectStatusFormDropDown(PROJECT_TASK_DROPDOWN_STATUS_COMPLETED);
+        taskSelectFilterAllOrActive(false);
+        TASKS_ROWS.shouldHaveSize(0);
+        checkText(PLACEHOLDER_EMPTY_LIST);
+        taskSelectFilterAllOrActive(true);
+
+        rootLogger.info("Check that Task "+PROJECT_TASK_DROPDOWN_STATUS_APPROVED+" state NOT in Active filter");
+        taskSelectStatusFormDropDown(PROJECT_TASK_DROPDOWN_STATUS_APPROVED);
+        taskSelectFilterAllOrActive(false);
+        TASKS_ROWS.shouldHaveSize(0);
+        checkText(PLACEHOLDER_EMPTY_LIST);
+        taskSelectFilterAllOrActive(true);
+
+        rootLogger.info("Check that Task "+PROJECT_TASK_DROPDOWN_STATUS_CANCELLED+" state NOT in Active filter");
+        taskSelectStatusFormDropDown(PROJECT_TASK_DROPDOWN_STATUS_CANCELLED);
+        taskSelectFilterAllOrActive(false);
+        TASKS_ROWS.shouldHaveSize(0);
+        checkText(PLACEHOLDER_EMPTY_LIST);
+        taskSelectFilterAllOrActive(true);
+
         rootLogger.info("Test passed");
     }
     @Test

@@ -83,7 +83,7 @@ public class TestsStrings {
     public static final String TITLE_MW_CONTACT = "Contact";
 
     public static final String PLACEHOLDER_NoFiles = "No files found.";
-    public static final String PLACEHOLDER_EmptyList = "Empty list.";
+    public static final String PLACEHOLDER_EMPTY_LIST = "Empty list.";
     public static final String PLACEHOLDER_NO_CASES = "No community cases.";
 
     public static final String placeholderNoNumbers = "No numbers yet. Use the form below to create one.";
