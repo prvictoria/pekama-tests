@@ -2,6 +2,10 @@ package Page;
 import Page.TestsCredentials.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.Test;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 
 /**
@@ -36,6 +40,16 @@ public class UrlConfig {
                 MATTER_TYPE_PATENT = CaseType.PATENT.getValue();
                 COMMUNITY_SERVICE = "Filing an Application";
                 INTRODUCER_NAME = "Rand, Kaldor & Zane LLP (RKNZ)";
+//                int thread = 1; // users accounts which will be used by test execution
+//                switch (thread){
+//                    case 1:
+////                        PEKAMA_USER.add(User1.GMAIL_EMAIL.getValue(), User1.PEKAMA_PASSWORD.getValue());
+//    //                    PEKAMA_COLLABORATOR.add(User2.GMAIL_EMAIL.getValue());
+//                        break;
+//                    case 2:
+//                        break;
+
+//                }
                 break;
             case 2:
                 rootLogger.info("Tests will executed on Test server");
@@ -59,7 +73,38 @@ public class UrlConfig {
                 break;
         }
     }
-
+//    //Users config
+//    public static String USER_EMAIL;
+//    public static String EMAIL_PASSWORD;
+//    public enum User {
+//
+//        GMAIL_EMAIL(USER_EMAIL),
+//        GMAIL_PASSWORD(EMAIL_PASSWORD),
+//        PEKAMA_PASSWORD("asui67we34"),
+//        LINKEDIN_PASSWORD("asui67we34@Q"),
+//        BOX_PASSWORD("32qew8127a12a"),
+//        NAME("Test001"),
+//        SURNAME("Quality01"),
+//        NAME_SURNAME("Test001 Quality01"),
+//        TEAM_NAME("QweecoTeam01"),
+//        TEAM_CODE("QT01"),
+//        FULL_TEAM_NAME("QweecoTeam01 (QT01)"),
+//        COMMUNITY_CASE_TYPE("Patent"),
+//        COMMUNITY_CASE_COUNTRY("Pitcairn Islands");
+//
+//
+//        private String value;
+//        User(String gmailLogin) {
+//            this.value = gmailLogin;
+//        }
+//        public String value() {
+//            return value;
+//        }
+//    }
+//    @Test
+//    public void sometest(){
+//        System.out.print(User.GMAIL_EMAIL.value);
+//    }
 
     //users and passwords
 }

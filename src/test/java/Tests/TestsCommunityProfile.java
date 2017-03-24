@@ -19,7 +19,7 @@ import static Page.CommunityWizard.*;
 import static Page.ModalWindows.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
-import static Page.UrlConfig.MATTER_TYPE_TRADEMARK;
+import static Page.UrlConfig.*;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
 import static Steps.StepsCommunity.*;
