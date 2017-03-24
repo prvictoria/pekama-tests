@@ -1,9 +1,9 @@
 package Page;
-
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-
 import static com.codeborne.selenide.Selectors.*;
-import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.*;
+
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
@@ -78,4 +78,11 @@ public class PekamaTeamSettings extends Page {
     public static final SelenideElement BTN_TEMPLATE_ADD_IN_1st_ROW = $(byXpath("//*[@class='inner']//button[contains(.,'Add') and ./i]"));
     public static final SelenideElement TEMPLATES_TEXT_FIELD = $(byXpath("//textarea"));
     public static final SelenideElement TEMPLATES_AUTO_DEPLOY = $(byXpath("//div[contains(.,'Auto-deploy')]/input"));
+    public static final ElementsCollection TEMPLATES_LIST = $$(byXpath("//ul[starts-with(@class, 'like-table')]//li"));
+    public static final SelenideElement TEMPLATES_FILTER_SELECT_DEFINING = $(byXpath("//div[@class='row']//div[1]//label/following-sibling::div//span"));
+    public static final SelenideElement TEMPLATES_FILTER_INPUT_DEFINING = $(byXpath("//div[@class='row']//div[1]//label/following-sibling::div//input[@type='search']"));
+    public static final SelenideElement TEMPLATES_FILTER_SELECT_TYPE = $(byXpath("//div[@class='row']//div[2]//label/following-sibling::div//span"));
+    public static final SelenideElement TEMPLATES_FILTER_INPUT_TYPE = $(byXpath("//div[@class='row']//div[2]//label/following-sibling::div//input[@type='search']"));
+    public static final SelenideElement TEMPLATES_FILTER_SELECT_EVENT = $(byXpath("//div[@class='row']//div[3]//label/following-sibling::div//span"));
+    public static final SelenideElement TEMPLATES_FILTER_INPUT_EVENT = $(byXpath("//div[@class='row']//div[3]//label/following-sibling::div//input[@type='search']"));
 }

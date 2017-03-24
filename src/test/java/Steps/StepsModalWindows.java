@@ -1,15 +1,20 @@
 package Steps;
+import Page.PekamaTeamSettings;
 import Page.TestsCredentials;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.Assert;
+
 import static Page.ModalWindows.*;
 import static Page.PekamaProject.*;
 import static Page.PekamaTeamSettings.BTN_TEMPLATE_ADD_IN_1st_ROW;
+import static Page.PekamaTeamSettings.SETTINGS_DELETE_X;
 import static Page.PekamaTeamSettings.SETTINGS_VALUES_ADD;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
+import static Page.UrlStrings.URL_TEMPLATES_PROJECT;
 import static Steps.StepsPekama.*;
 import static Utils.Utils.*;
 import static com.codeborne.selenide.Condition.*;
@@ -257,6 +262,52 @@ public class StepsModalWindows implements StepsFactory {
 
         checkText(title);
         return title;
+    }
+
+    public static String createTaskTemplateSet(String setName, String defining, String type, String event){
+        submitEnabledButton(SETTINGS_VALUES_ADD);
+
+        rootLogger.info("Create Task Template set relevant to defining: "+defining);
+        String title = setName+randomString(15);
+        waitForModalWindow(MW_TASK_SET_TITLE);
+        MW_BTN_OK.shouldBe(disabled);
+        if(setName!=null){
+            fillField(MW_SET_NAME, title);}
+        if(defining!=null){
+            fillField(MW_SET_MULTICHOICE_DEFINING, defining);
+            CSS_SelectHighlighted.click();}
+        if(type!=null){
+            fillField(MW_SET_MULTICHOICE_TYPE, type);
+            CSS_SelectHighlighted.click();}
+        if(event!=null){
+            fillField(MW_SET_MULTICHOICE_EVENT, event);
+            CSS_SelectHighlighted.click();}
+        sleep(1500);
+            submitEnabledButton(MW_BTN_OK);
+        if(setName!=null) {
+            MW.waitUntil(not(visible), 15000);}
+        return title;
+    }
+    public static boolean deleteTemplate(){
+        rootLogger.info("Delete template");
+        sleep(3000);
+        if(!SETTINGS_DELETE_X.isDisplayed()){
+            sleep(6000);
+        }
+        if (SETTINGS_DELETE_X.isDisplayed()==false){
+            Assert.fail("Template not created");
+        }
+        int i = 0;
+        while (PekamaTeamSettings.SETTINGS_DELETE_X.isDisplayed() && i<7){
+            SETTINGS_DELETE_X.click();
+            submitConfirmAction();
+            sleep(4000);
+            i++;
+            if(SETTINGS_DELETE_X.isDisplayed()==false){
+                return true;
+            }
+        }
+        return false;
     }
     public static String createTaskTemplate (String templateName, String templateDueDate){
         String title = templateName+randomString(15);

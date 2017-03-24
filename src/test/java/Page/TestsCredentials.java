@@ -295,6 +295,34 @@ public class TestsCredentials {
             return value;
         }
     }
+    public enum TrademarkTypes {
+        CONVENTION("Paris Convention"),
+        NATIONAL_RIGHT("National right of Madrid"),
+        LEGAL("Legal - Infringement"),
+        BASIC("Basic Filing");
+
+        private String eventName;
+        TrademarkTypes(String value) {
+            this.eventName = value;
+        }
+        public String getValue() {
+            return eventName;
+        }
+    }
+    public enum PatentTypes {
+        CONVENTION("Paris Convention"),
+        VALIDATION("Validation of EP Divisional"),
+        CONTINUATION("Continuation in Part"),
+        BASIC("Basic Filing");
+
+        private String eventName;
+        PatentTypes(String value) {
+            this.eventName = value;
+        }
+        public String getValue() {
+            return eventName;
+        }
+    }
     public enum TrademarkEvents {
         CASE_SUSPENDED("Case still suspended"),
         PRIORITY_APLICATION_FILED("Priority Application Filed"),
@@ -304,6 +332,21 @@ public class TestsCredentials {
 
         private String eventName;
         TrademarkEvents(String value) {
+            this.eventName = value;
+        }
+        public String getValue() {
+            return eventName;
+        }
+    }
+    public enum PatentEvents {
+        APPLICATION("Application Entered National Stage"),
+        CHANGE("Change - lapse in a contracting state"),
+        DELETION("Deletion: Date of oral proceedings"),
+        NEW_ENTRY("New entry: Date of receipt of notice of appeal"),
+        WITHDRAW("Withdrawal of application");
+
+        private String eventName;
+        PatentEvents(String value) {
             this.eventName = value;
         }
         public String getValue() {

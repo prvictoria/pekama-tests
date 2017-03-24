@@ -882,6 +882,21 @@ public class StepsPekama implements StepsFactory{
         MW.waitUntil(not(visible), 15000);
     }
 
+    public static boolean setAutoDeploy(boolean selectAutoCheckbox){
+        if(selectAutoCheckbox==true){
+            templateRow.waitUntil(visible, 15000).click();
+            TEMPLATES_AUTO_DEPLOY.shouldNotBe(selected).setSelected(true);
+            TEMPLATES_AUTO_DEPLOY.shouldBe(selected);
+            return selectAutoCheckbox;
+        }
+        if(selectAutoCheckbox==false){
+            templateRow.waitUntil(visible, 15000).click();
+            TEMPLATES_AUTO_DEPLOY.shouldBe(selected).setSelected(false);
+            TEMPLATES_AUTO_DEPLOY.shouldNotBe(selected);
+            return selectAutoCheckbox;
+        }
+        return false;
+    }
 
     @Test
     public void testDebug(){
