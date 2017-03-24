@@ -692,6 +692,7 @@ public class StepsPekama implements StepsFactory{
             TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.shouldNot(exist);
             TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW_REJECT.shouldNot(exist);
             TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW_ACCEPT.shouldNot(exist);
+            rootLogger.info("User not able to do any action");
             return true;
         }
         if (status.equals(TASK_STATUS_CANCELLED)){
@@ -700,6 +701,7 @@ public class StepsPekama implements StepsFactory{
             TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.shouldNot(exist);
             TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW_REJECT.shouldNot(exist);
             TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW_ACCEPT.shouldNot(exist);
+            rootLogger.info("User not able to do any action");
             return true;
         }
         if(status.equals(TASK_STATUS_COMPLETED))

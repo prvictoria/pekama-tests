@@ -1269,37 +1269,50 @@ public class TestsPekamaProject {
         rootLogger.info("Test passed");
     }
     @Test
-    public void createProject_TasksAccept() {
+    public void createProject_TasksAcceptFlow() {
         String taskAction = null;
         String taskStatus = null;
         String taskName = taskCreate();
         rootLogger.info(taskName);
         TASKS_ROWS.shouldHaveSize(1);
         rootLogger.info("New task - start");
-        taskStatus = TASKS_BTN_STATUS_IN_FIRST_ROW.shouldHave(text("Not Started")).getText();
-        taskAction = TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.shouldHave(text("Start")).getText();
-        TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.shouldHave(text("Start")).click();
+        Assert.assertTrue(verifyTaskFirstRow(
+                taskName,
+                TASK_IMPORTANCE_TASK,
+                TASK_STATUS_NOT_STARTED,
+                TASKS_ACTION_START)
+        );
+        TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.click();
 
         rootLogger.info("Finish task status");
-        taskStatus = TASKS_BTN_STATUS_IN_FIRST_ROW.shouldHave(text("In progress")).getText();
-        taskAction = TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.shouldHave(text("finish")).getText();
-        TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.shouldHave(text("finish")).click();
+        Assert.assertTrue(verifyTaskFirstRow(
+                taskName,
+                TASK_IMPORTANCE_TASK,
+                TASK_STATUS_IN_PROGRESS,
+                TASKS_ACTION_FINISH)
+        );
+        TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.click();
 
         rootLogger.info("Select Accepts task");
-        taskStatus = TASKS_BTN_STATUS_IN_FIRST_ROW.shouldHave(text("Completed")).getText();
-        TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW_ACCEPT.shouldHave(text("accept"));
-        TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW_REJECT.shouldHave(text("reject"));
+        Assert.assertTrue(verifyTaskFirstRow(
+                taskName,
+                TASK_IMPORTANCE_TASK,
+                TASK_STATUS_COMPLETED,
+                TASKS_ACTION_ACCEPT)
+        );
         TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW_ACCEPT.click();
 
         rootLogger.info("Task was accepted");
-        taskStatus = TASKS_BTN_STATUS_IN_FIRST_ROW.shouldHave(text("Accepted")).getText();
-        TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.shouldNot(exist);
-        TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW_REJECT.shouldNot(exist);
-        TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW_ACCEPT.shouldNot(exist);
+        Assert.assertTrue(verifyTaskFirstRow(
+                taskName,
+                TASK_IMPORTANCE_TASK,
+                TASK_STATUS_ACCEPTED,
+                null)
+        );
         rootLogger.info("Test passed");
     }
     @Test
-    public void createProject_TasksReject() {
+    public void createProject_TasksRejectFlow() {
         String taskAction;
         String taskStatus;
         String taskName = taskCreate();
@@ -1307,44 +1320,49 @@ public class TestsPekamaProject {
         TASKS_ROWS.shouldHaveSize(1);
         TASKS_NAME_IN_FIRST_ROW.shouldHave(text(taskName));
         TASKS_PRIORITY_IN_FIRST_ROW.shouldHave(text("Task"));
-        rootLogger.info("New task");
-        taskStatus = TASKS_BTN_STATUS_IN_FIRST_ROW.shouldHave(text("Not Started")).getText();
-        rootLogger.info("Task status is - "+taskStatus);
-        taskAction = TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.shouldHave(text("Start")).getText();
-        rootLogger.info("User able to - "+taskAction+" task");
-        rootLogger.info("Click "+taskAction+" task");
-        TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.shouldHave(text("Start")).click();
+        rootLogger.info("New task - start");
+        Assert.assertTrue(verifyTaskFirstRow(
+                taskName,
+                TASK_IMPORTANCE_TASK,
+                TASK_STATUS_NOT_STARTED,
+                TASKS_ACTION_START)
+        );
+        TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.click();
 
-        rootLogger.info("Finish task status");
-        taskStatus = TASKS_BTN_STATUS_IN_FIRST_ROW.shouldHave(text("In progress")).getText();
-        rootLogger.info("Task status is - "+taskStatus);
-        taskAction = TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.shouldHave(text("finish")).getText();
-        rootLogger.info("User able to - "+taskAction+" task");
-        rootLogger.info("Click "+taskAction+" task");
-        TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.shouldHave(text("finish")).click();
+        rootLogger.info("Select "+TASKS_ACTION_FINISH+" task");
+        Assert.assertTrue(verifyTaskFirstRow(
+                taskName,
+                TASK_IMPORTANCE_TASK,
+                TASK_STATUS_IN_PROGRESS,
+                TASKS_ACTION_FINISH)
+        );
+        TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.click();
 
-        taskStatus = TASKS_BTN_STATUS_IN_FIRST_ROW.shouldHave(text("Completed")).getText();
-        rootLogger.info("Task status is - "+taskStatus);
-        taskAction =  TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW_ACCEPT.shouldHave(text("accept")).getText();
-        rootLogger.info("User able to - "+taskAction+" task");
-        taskAction =  TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW_REJECT.shouldHave(text("reject")).getText();
-        rootLogger.info("User able to - "+taskAction+" task");
-        rootLogger.info("Click "+taskAction+" task");
+        rootLogger.info("Select "+TASKS_ACTION_REJECT+" task");
+        Assert.assertTrue(verifyTaskFirstRow(
+                taskName,
+                TASK_IMPORTANCE_TASK,
+                TASK_STATUS_COMPLETED,
+                TASKS_ACTION_REJECT)
+        );
         TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW_REJECT.click();
 
+        rootLogger.info("Select "+TASKS_ACTION_RESTART+" task");
+        Assert.assertTrue(verifyTaskFirstRow(
+                taskName,
+                TASK_IMPORTANCE_TASK,
+                TASK_STATUS_REJECTED,
+                TASKS_ACTION_RESTART)
+        );
+        TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.click();
 
-        taskStatus = TASKS_BTN_STATUS_IN_FIRST_ROW.shouldHave(text("Rejected")).getText();
-        rootLogger.info("Task status is - "+taskStatus);
-        taskAction =  TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.getText();
-        rootLogger.info("User able to - "+taskAction+" task");
-        rootLogger.info("Click "+taskAction+" task");
-        TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.shouldHave(text("Restart")).click();
-
-
-        taskStatus = TASKS_BTN_STATUS_IN_FIRST_ROW.shouldHave(text("In progress")).getText();
-        rootLogger.info("Task status is - "+taskStatus);
-        taskAction = TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.shouldHave(text("finish")).getText();
-        rootLogger.info("User able to - "+taskAction+" task");
+        rootLogger.info("Task is in status"+TASK_STATUS_IN_PROGRESS);
+        Assert.assertTrue(verifyTaskFirstRow(
+                taskName,
+                TASK_IMPORTANCE_TASK,
+                TASK_STATUS_IN_PROGRESS,
+                TASKS_ACTION_FINISH)
+        );
         rootLogger.info("Test passed");
     }
     @Ignore
