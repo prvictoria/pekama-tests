@@ -28,7 +28,7 @@ public class StepsCommunity implements StepsFactory{
     public static String searchQueryUrl;
 
     public static void searchExpertsQuery(String caseType, String country, String service) {
-        WIZARD_BTN_GetStarted.shouldBe(visible).shouldBe(disabled);
+        WIZARD_BTN_GetStarted.waitUntil(visible, 20000).shouldBe(disabled);
         WIZARD_SELECT_CaseType.click();
         WIZARD_INPUT_CaseType.sendKeys(caseType);
         CSS_SelectHighlighted.click();
