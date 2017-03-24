@@ -818,18 +818,18 @@ public class StepsPekama implements StepsFactory{
         fillField(MW_TASK_NAME, taskName);
         return taskName;
     }
-    private static String taskModalDeployTemplate(String eventType, String templateName){
+    private static String taskModalDeployTemplate(String eventType, String templateSetName){
         waitForModalWindow("Task Templates");
         MW_DeployTask_Apply.shouldBe(disabled);
         selectItemInDropdown(
                 MW_DeployTask_SelectEvent,
                 MW_DeployTask_InputEvent,
                 eventType);
-        String selectTaskTemplateByNamePath = mw+"//label[@class='clickable' and ./span[text()='"+templateName+"']]/input";
+        String selectTaskTemplateByNamePath = mw+"//label[@class='clickable' and ./span[text()='"+ templateSetName +"']]/input";
         $(byXpath(selectTaskTemplateByNamePath)).click();
         submitEnabledButton(MW_DeployTask_Apply);
         MW.waitUntil(not(visible), 15000);
-        return templateName;
+        return templateSetName;
     }
     private static String taskNewModalSetName(String taskName){
         waitForModalWindow(TITLE_MW_NEW_TASK);

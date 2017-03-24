@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import static Page.ModalWindows.*;
 import static Page.PekamaProject.*;
+import static Page.PekamaTeamSettings.BTN_TEMPLATE_ADD_IN_1st_ROW;
 import static Page.PekamaTeamSettings.SETTINGS_VALUES_ADD;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
@@ -237,16 +238,16 @@ public class StepsModalWindows implements StepsFactory {
         MW.waitUntil(not(visible), 15000);
 
         checkText(setName);
-        return title;
+        return setName;
     }
-    public static String createTaskTemplateSet(String title, String defining){
+    public static String createTaskTemplateSet(String setName, String defining){
         submitEnabledButton(SETTINGS_VALUES_ADD);
 
         rootLogger.info("Create Task Template set relevant to defining: "+defining);
-        String setName = title+ randomString(15);
+        String title = setName+randomString(15);
         waitForModalWindow(MW_TASK_SET_TITLE);
         MW_BTN_OK.shouldBe(disabled);
-        fillField(MW_SET_NAME, setName);
+        fillField(MW_SET_NAME, title);
         fillField(MW_SET_MULTICHOICE_DEFINING, defining);
         sleep(1500);
         CSS_SelectHighlighted.click();
@@ -254,7 +255,27 @@ public class StepsModalWindows implements StepsFactory {
         submitEnabledButton(MW_BTN_OK);
         MW.waitUntil(not(visible), 15000);
 
-        checkText(setName);
+        checkText(title);
+        return title;
+    }
+    public static String createTaskTemplate (String templateName, String templateDueDate){
+        String title = templateName+randomString(15);
+        rootLogger.info("Create Task template with name: "+title);
+        BTN_TEMPLATE_ADD_IN_1st_ROW.shouldBe(visible).click();
+
+        waitForModalWindow(MW_TASK_TEMPLATE_TITLE);
+        fillField(MW_TaskTemplate_FieldTitle, title);
+        MW_TaskTemplate_Importance.click();
+        MW_TaskImportanceDeadline.click();
+        MW_TaskTemplate_Status.click();
+        MW_TaskStatusNew.click();
+
+        fillField(MW_TaskTemplate_DateOffset, templateDueDate);
+        MW_TaskTemplate_DateOffsetUnit.selectOptionByValue("Days");
+        submitEnabledButton(MW_BTN_OK);
+        MW.waitUntil(not(visible), 15000);
+
+        checkText(title);
         return title;
     }
 }

@@ -181,31 +181,20 @@ public class TestsPekamaTemplates {
     }
     @Test
     public void templateTask_B1_Create () {
-        setName = "SET_RELEVANT_TO_ALL_" + randomString(15);
-        templateName = "TASK_TEMPLATE_" + randomString(15);
+        templateName = null;
+        setName = null;
+        setName = "SET_RELEVANT_TO_ALL_";
+        templateName = "TASK_TEMPLATE_";
         templateDueDate = "10";
         rootLogger.info("Open URL - " + URL_TEMPLATES_TASKS_TRADEMARK);
         openPageWithSpinner(URL_TEMPLATES_TASKS_TRADEMARK);
 
-        createTaskTemplateSet(setName);
+        setName = createTaskTemplateSet(setName);
 
         templateRow.shouldHave(text(setName)).click();
         TEMPLATES_AUTO_DEPLOY.shouldNotBe(selected);
 
-        rootLogger.info("Create template");
-        BTN_TEMPLATE_ADD_IN_1st_ROW.shouldBe(visible).click();
-        waitForModalWindow(MW_TASK_TEMPLATE_TITLE);
-        fillField(MW_TaskTemplate_FieldTitle, templateName);
-        MW_TaskTemplate_Importance.click();
-        MW_TaskImportanceDeadline.click();
-        MW_TaskTemplate_Status.click();
-        MW_TaskStatusNew.click();
-
-        fillField(MW_TaskTemplate_DateOffset, templateDueDate);
-        MW_TaskTemplate_DateOffsetUnit.selectOptionByValue("Days");
-        submitEnabledButton(MW_BTN_OK);
-        MW.shouldNotBe(visible);
-        checkText(templateName);
+        templateName = createTaskTemplate(templateName, templateDueDate);
         rootLogger.info("Test passed");
     }
     @Test
@@ -225,44 +214,24 @@ public class TestsPekamaTemplates {
     }
     @Test
     public void templateTask_C1_CreateAutoDeploy () {
-        setName = "SET_RELEVANT_TO_PitcairnIslands_" + randomString(15);
-        templateName = "TASK_TEMPLATE_IN_PitcairnIslands_"+randomString(15);
+        templateName = null;
+        setName = null;
+        setName = "SET_RELEVANT_TO_PitcairnIslands_";
+        templateName = "TASK_TEMPLATE_IN_PitcairnIslands_";
         templateDueDate = "10";
         rootLogger.info("Open URL - "+URL_TEMPLATES_TASKS_TRADEMARK);
         openPageWithSpinner(URL_TEMPLATES_TASKS_TRADEMARK);
 
-        rootLogger.info("Create Task Template set relevant to ALL");
-        submitEnabledButton(SETTINGS_VALUES_ADD);
-        waitForModalWindow(MW_TASK_SET_TITLE);
-        MW_BTN_OK.shouldBe(disabled);
-        fillField(MW_SET_NAME, setName);
-        submitEnabledButton(MW_BTN_OK);
-        MW.shouldNotBe(visible);
-
-        createTaskTemplateSet(setName, Countries.PITCAIRN_ISLANDS.getValue());
+        setName = createTaskTemplateSet(setName, Countries.PITCAIRN_ISLANDS.getValue());
         templateRow.shouldHave(text(setName)).click();
         TEMPLATES_AUTO_DEPLOY.shouldNotBe(selected).setSelected(true);
         TEMPLATES_AUTO_DEPLOY.shouldBe(selected);
 
-        rootLogger.info("Create template");
-        BTN_TEMPLATE_ADD_IN_1st_ROW.shouldBe(visible).click();
-        waitForModalWindow(MW_TASK_TEMPLATE_TITLE);
-        fillField(MW_TaskTemplate_FieldTitle, templateName);
-        MW_TaskTemplate_Importance.click();
-        MW_TaskImportanceDeadline.click();
-        MW_TaskTemplate_Status.click();
-        MW_TaskStatusNew.click();
-
-        fillField(MW_TaskTemplate_DateOffset, templateDueDate);
-        MW_TaskTemplate_DateOffsetUnit.selectOptionByValue("Days");
-        submitEnabledButton(MW_BTN_OK);
-        MW.shouldNotBe(visible);
-        checkText(templateName);
+        templateName = createTaskTemplate (templateName, templateDueDate);
         rootLogger.info("Test passed");
     }
     @Test
     public void templateTask_C2_CheckAutoDeploy_Positive() {
-        templateName = "TASK_TEMPLATE_IN_PitcairnIslands_R9ZG6KKV1KEQRSR";
         if (templateName==null){Assert.fail("No Task template");}
         DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 15000).click();
         String projectName = createProject(
@@ -281,7 +250,6 @@ public class TestsPekamaTemplates {
     }
     @Test
     public void templateTask_C3_CheckAutoDeploy_Negative() {
-        templateName = "TASK_TEMPLATE_IN_PitcairnIslands_R9ZG6KKV1KEQRSR";
         if (templateName==null){Assert.fail("No Task template");}
         DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 15000).click();
         String projectName = createProject(
