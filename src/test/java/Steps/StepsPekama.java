@@ -240,6 +240,7 @@ public class StepsPekama implements StepsFactory{
         fieldName.clear();
         fieldName.shouldHave(Condition.value("")).val(enteredValue);
         fieldName.shouldHave(Condition.value(enteredValue));
+        sleep(500);
         rootLogger.info("This data was entered - "+enteredValue);
    }
     public static void checkInputValue(SelenideElement selector, String enteredValue) {
@@ -692,7 +693,7 @@ public class StepsPekama implements StepsFactory{
             TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.shouldNot(exist);
             TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW_REJECT.shouldNot(exist);
             TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW_ACCEPT.shouldNot(exist);
-            rootLogger.info("User not able to do any action");
+
             return true;
         }
         if (status.equals(TASK_STATUS_CANCELLED)){
@@ -717,6 +718,23 @@ public class StepsPekama implements StepsFactory{
             rootLogger.info("User able to - " + taskAction + " task");
             return true;
         }
+    }
+    public static boolean verifyTaskFirstRow(String taskName, String importance, String status, boolean assigneeNotDefined){
+        String taskStatus;
+        rootLogger.info("Check task row state");
+        TASKS_NAME_IN_FIRST_ROW.shouldHave(text(taskName));
+        TASKS_PRIORITY_IN_FIRST_ROW.shouldHave(text(importance));
+        taskStatus = TASKS_BTN_STATUS_IN_FIRST_ROW.shouldHave(text(status)).getText();
+        rootLogger.info("Task status is - "+taskStatus);
+        if (assigneeNotDefined==true){
+            taskStatus = TASKS_BTN_STATUS_IN_FIRST_ROW.shouldHave(text(status)).getText();
+            rootLogger.info("Task was "+taskStatus);
+            TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.shouldNot(exist);
+            TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW_REJECT.shouldNot(exist);
+            TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW_ACCEPT.shouldNot(exist);
+            return true;
+        }
+        return false;
     }
     public static String taskSelectStatusFormDropDown(String statusName){
         try {

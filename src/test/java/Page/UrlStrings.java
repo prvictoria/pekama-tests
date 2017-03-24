@@ -27,6 +27,7 @@ public class UrlStrings {
     public static final String URL_VALUES = ENVIRONMENT_PEKAMA +"/a/settings/team/values/";
     public static final String URL_TEMPLATES_PROJECT = ENVIRONMENT_PEKAMA +"/a/settings/team/templates/projects";
     public static final String URL_TEMPLATES_TASKS = ENVIRONMENT_PEKAMA +"/a/settings/team/templates/tasks";
+    public static final String URL_TEMPLATES_TASKS_TRADEMARK = ENVIRONMENT_PEKAMA +"/a/settings/team/templates/tasks/trademarks";
     public static final String URL_TEMPLATES_MSG = ENVIRONMENT_PEKAMA +"/a/settings/team/templates/messages";
     public static final String URL_TEMPLATES_EVENT = ENVIRONMENT_PEKAMA +"/a/settings/team/templates/events";
     public static final String URL_TEMPLATES_DOC = ENVIRONMENT_PEKAMA +"/a/settings/team/templates/documents";

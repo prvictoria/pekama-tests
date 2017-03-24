@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import static Page.ModalWindows.*;
 import static Page.PekamaProject.*;
+import static Page.PekamaTeamSettings.SETTINGS_VALUES_ADD;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Steps.StepsPekama.*;
@@ -54,10 +55,10 @@ public class StepsModalWindows implements StepsFactory {
         sleep(500);
         MW.shouldNotBe(visible);
     }
-    public static void createProject(
-            String projectType,
-            String projectDefining,
-            String projectName) {
+    public static String createProject(String projectCustomName) {
+        String projectType = MATTER_TYPE_TRADEMARK;
+        String projectDefining = TestsCredentials.Countries.PITCAIRN_ISLANDS.getValue();
+        String projectName = projectCustomName+"_"+randomString(10);
         waitForModalWindow(TILE_MW_PROJECT);
         rootLogger.info("Select project type, actual: "+projectType);
         selectItemInDropdown(MW_Project_SelectType, MW_Project_InputType, projectType);
@@ -66,14 +67,13 @@ public class StepsModalWindows implements StepsFactory {
         rootLogger.info("Fill title");
         fillField(MW_Project_Title, projectName);
         submitEnabledButton(MW_ProjectFinishButton);
-        MW.shouldNot(exist);
+        MW.waitUntil(not(visible), 20000);
         sleep(1000);
         checkText(projectName);
         rootLogger.info("Created project: "+projectName);
+        return projectName;
     }
-    public static String createProject(String projectCustomName) {
-        String projectType = MATTER_TYPE_TRADEMARK;
-        String projectDefining = TestsCredentials.Countries.PITCAIRN_ISLANDS.getValue();
+    public static String createProject(String projectCustomName, String projectType, String projectDefining) {
         String projectName = projectCustomName+"_"+randomString(10);
         waitForModalWindow(TILE_MW_PROJECT);
         rootLogger.info("Select project type, actual: "+projectType);
@@ -224,5 +224,37 @@ public class StepsModalWindows implements StepsFactory {
         $(byXpath(searchedRadio)).shouldBe(visible);
         $(byXpath(searchedRadio)).click();
     }
+    //TEMPLATES
+    public static String createTaskTemplateSet(String title){
+        submitEnabledButton(SETTINGS_VALUES_ADD);
 
+        rootLogger.info("Create Task Template set relevant to ALL");
+        String setName = title+ randomString(15);
+        waitForModalWindow(MW_TASK_SET_TITLE);
+        MW_BTN_OK.shouldBe(disabled);
+        fillField(MW_SET_NAME, setName);
+        submitEnabledButton(MW_BTN_OK);
+        MW.waitUntil(not(visible), 15000);
+
+        checkText(setName);
+        return title;
+    }
+    public static String createTaskTemplateSet(String title, String defining){
+        submitEnabledButton(SETTINGS_VALUES_ADD);
+
+        rootLogger.info("Create Task Template set relevant to defining: "+defining);
+        String setName = title+ randomString(15);
+        waitForModalWindow(MW_TASK_SET_TITLE);
+        MW_BTN_OK.shouldBe(disabled);
+        fillField(MW_SET_NAME, setName);
+        fillField(MW_SET_MULTICHOICE_DEFINING, defining);
+        sleep(1500);
+        CSS_SelectHighlighted.click();
+        sleep(1500);
+        submitEnabledButton(MW_BTN_OK);
+        MW.waitUntil(not(visible), 15000);
+
+        checkText(setName);
+        return title;
+    }
 }

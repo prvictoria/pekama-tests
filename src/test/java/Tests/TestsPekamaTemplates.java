@@ -11,8 +11,7 @@ import org.junit.runners.MethodSorters;
 import java.io.IOException;
 import static Page.ModalWindows.*;
 import static Page.PekamaDashboard.*;
-import static Page.PekamaProject.TASKS_ACTION_START;
-import static Page.PekamaProject.TASK_STATUS_NOT_STARTED;
+import static Page.PekamaProject.*;
 import static Page.PekamaReports.REPORTS_BTN_NEW_PROJECT_TEMPLATE;
 import static Page.PekamaTeamSettings.*;
 import static Page.TestsStrings.*;
@@ -181,22 +180,15 @@ public class TestsPekamaTemplates {
         rootLogger.info("Test passed");
     }
     @Test
-    public void templateTask_B_Create () {
+    public void templateTask_B1_Create () {
         setName = "SET_RELEVANT_TO_ALL_" + randomString(15);
         templateName = "TASK_TEMPLATE_" + randomString(15);
         templateDueDate = "10";
-        rootLogger.info("Open URL - " + URL_TEMPLATES_TASKS);
-        openPageWithSpinner(URL_TEMPLATES_TASKS);
+        rootLogger.info("Open URL - " + URL_TEMPLATES_TASKS_TRADEMARK);
+        openPageWithSpinner(URL_TEMPLATES_TASKS_TRADEMARK);
 
-        rootLogger.info("Create Task Template set relevant to ALL");
-        submitEnabledButton(SETTINGS_VALUES_ADD);
-        waitForModalWindow(MW_TASK_SET_TITLE);
-        MW_BTN_OK.shouldBe(disabled);
-        fillField(MW_SET_NAME, setName);
-        submitEnabledButton(MW_BTN_OK);
-        MW.shouldNotBe(visible);
+        createTaskTemplateSet(setName);
 
-        checkText(setName);
         templateRow.shouldHave(text(setName)).click();
         TEMPLATES_AUTO_DEPLOY.shouldNotBe(selected);
 
@@ -217,7 +209,8 @@ public class TestsPekamaTemplates {
         rootLogger.info("Test passed");
     }
     @Test
-    public void templateTask_B_DeployInProject () {
+    public void templateTask_B2_DeployInProject () {
+        if (templateName==null){Assert.fail("No Task template");}
         DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 15000).click();
         String eventType = TrademarkEvents.MARK_CREATED.getValue();
         String projectName = createProject("TASK_DEPLOY_TEST_");
@@ -228,6 +221,77 @@ public class TestsPekamaTemplates {
                 TASK_STATUS_NOT_STARTED,
                 TASKS_ACTION_START)
         );
+        rootLogger.info("Test passed");
+    }
+    @Test
+    public void templateTask_C1_CreateAutoDeploy () {
+        setName = "SET_RELEVANT_TO_PitcairnIslands_" + randomString(15);
+        templateName = "TASK_TEMPLATE_IN_PitcairnIslands_"+randomString(15);
+        templateDueDate = "10";
+        rootLogger.info("Open URL - "+URL_TEMPLATES_TASKS_TRADEMARK);
+        openPageWithSpinner(URL_TEMPLATES_TASKS_TRADEMARK);
+
+        rootLogger.info("Create Task Template set relevant to ALL");
+        submitEnabledButton(SETTINGS_VALUES_ADD);
+        waitForModalWindow(MW_TASK_SET_TITLE);
+        MW_BTN_OK.shouldBe(disabled);
+        fillField(MW_SET_NAME, setName);
+        submitEnabledButton(MW_BTN_OK);
+        MW.shouldNotBe(visible);
+
+        createTaskTemplateSet(setName, Countries.PITCAIRN_ISLANDS.getValue());
+        templateRow.shouldHave(text(setName)).click();
+        TEMPLATES_AUTO_DEPLOY.shouldNotBe(selected).setSelected(true);
+        TEMPLATES_AUTO_DEPLOY.shouldBe(selected);
+
+        rootLogger.info("Create template");
+        BTN_TEMPLATE_ADD_IN_1st_ROW.shouldBe(visible).click();
+        waitForModalWindow(MW_TASK_TEMPLATE_TITLE);
+        fillField(MW_TaskTemplate_FieldTitle, templateName);
+        MW_TaskTemplate_Importance.click();
+        MW_TaskImportanceDeadline.click();
+        MW_TaskTemplate_Status.click();
+        MW_TaskStatusNew.click();
+
+        fillField(MW_TaskTemplate_DateOffset, templateDueDate);
+        MW_TaskTemplate_DateOffsetUnit.selectOptionByValue("Days");
+        submitEnabledButton(MW_BTN_OK);
+        MW.shouldNotBe(visible);
+        checkText(templateName);
+        rootLogger.info("Test passed");
+    }
+    @Test
+    public void templateTask_C2_CheckAutoDeploy_Positive() {
+        templateName = "TASK_TEMPLATE_IN_PitcairnIslands_R9ZG6KKV1KEQRSR";
+        if (templateName==null){Assert.fail("No Task template");}
+        DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 15000).click();
+        String projectName = createProject(
+                "TASK_AUTO_DEPLOY_",
+                MATTER_TYPE_TRADEMARK,
+                Countries.PITCAIRN_ISLANDS.getValue());
+        PROJECT_TAB_TASKS.waitUntil(visible, 15000).click();
+
+        Assert.assertTrue(verifyTaskFirstRow(
+                templateName,
+                TASK_IMPORTANCE_DEADLINE,
+                TASK_STATUS_NOT_STARTED,
+                true)
+        );
+        rootLogger.info("Test passed");
+    }
+    @Test
+    public void templateTask_C3_CheckAutoDeploy_Negative() {
+        templateName = "TASK_TEMPLATE_IN_PitcairnIslands_R9ZG6KKV1KEQRSR";
+        if (templateName==null){Assert.fail("No Task template");}
+        DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 15000).click();
+        String projectName = createProject(
+                "TASK_AUTO_DEPLOY_",
+                MATTER_TYPE_TRADEMARK,
+                Countries.NETHERLANDS_ANTILES.getValue());
+        PROJECT_TAB_TASKS.waitUntil(visible, 15000).click();
+
+        TASKS_ROWS.shouldHaveSize(0);
+        checkText(PLACEHOLDER_EMPTY_LIST);
         rootLogger.info("Test passed");
     }
     @Test
