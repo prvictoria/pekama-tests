@@ -9,9 +9,7 @@ import org.junit.Assert;
 
 import static Page.ModalWindows.*;
 import static Page.PekamaProject.*;
-import static Page.PekamaTeamSettings.BTN_TEMPLATE_ADD_IN_1st_ROW;
-import static Page.PekamaTeamSettings.SETTINGS_DELETE_X;
-import static Page.PekamaTeamSettings.SETTINGS_VALUES_ADD;
+import static Page.PekamaTeamSettings.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlStrings.URL_TEMPLATES_PROJECT;
@@ -398,5 +396,32 @@ public class StepsModalWindows implements StepsFactory {
         if(templateName!=null && templateDueDate!=null && dateOffsetUnit!=null ) {
         MW.shouldNotBe(visible);}
         return title;
+    }
+    public static int applyTemplatesFilters(String defining[], String type[], String event[], int listSize){
+        refresh();
+        SETTINGS_DELETE_X.waitUntil(visible, 15000);
+        if(defining!=null) {
+            selectItemInDropdown(
+                    TEMPLATES_FILTER_SELECT_DEFINING,
+                    TEMPLATES_FILTER_INPUT_DEFINING,
+                    defining[0]);
+        }
+        if(type!=null) {
+            selectItemInDropdown(
+                    TEMPLATES_FILTER_SELECT_TYPE,
+                    TEMPLATES_FILTER_INPUT_TYPE,
+                    type[0]
+            );
+        }
+        if(event!=null) {
+            selectItemInDropdown(
+                    TEMPLATES_FILTER_SELECT_EVENT,
+                    TEMPLATES_FILTER_INPUT_EVENT,
+                    event[0]
+            );
+        }
+        TEMPLATES_LIST.shouldHaveSize(listSize);
+
+        return listSize;
     }
 }

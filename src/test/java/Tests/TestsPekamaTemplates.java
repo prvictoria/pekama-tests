@@ -621,9 +621,9 @@ public class TestsPekamaTemplates {
                 TEMPLATES_FILTER_INPUT_DEFINING,
                 defining[2]);
         TEMPLATES_LIST.shouldHaveSize(2);
+
         refresh();
         SETTINGS_DELETE_X.waitUntil(visible, 15000);
-
         rootLogger.info("Check TYPE filter");
         selectItemInDropdown(
                 TEMPLATES_FILTER_SELECT_TYPE,
@@ -631,9 +631,9 @@ public class TestsPekamaTemplates {
                 type[2]
         );
         TEMPLATES_LIST.shouldHaveSize(2);
+
         refresh();
         SETTINGS_DELETE_X.waitUntil(visible, 15000);
-
         rootLogger.info("Check EVENT filter");
         selectItemInDropdown(
                 TEMPLATES_FILTER_SELECT_EVENT,
@@ -641,8 +641,8 @@ public class TestsPekamaTemplates {
                 event[2]
         );
         TEMPLATES_LIST.shouldHaveSize(2);
-        refresh();
 
+        refresh();
         rootLogger.info("Check ALL filters");
         selectItemInDropdown(
                 TEMPLATES_FILTER_SELECT_DEFINING,
@@ -659,8 +659,6 @@ public class TestsPekamaTemplates {
                 event[1]
         );
         TEMPLATES_LIST.shouldHaveSize(1);
-        refresh();
-        SETTINGS_DELETE_X.waitUntil(visible, 15000);
 
         deleteTemplate();
         rootLogger.info("Test passed");
