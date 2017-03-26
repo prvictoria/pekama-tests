@@ -178,6 +178,18 @@ public class TestsPekamaTemplates {
         deleteTemplate();
         rootLogger.info("Test passed");
     }
+    public void templateTask_A1_Validation () {
+        openPageWithSpinner(URL_TEMPLATES_TASKS_PATENT);
+        rootLogger.info("Validation - Check if title is required");
+        createTaskTemplateSet(
+                null,
+                defining[0],
+                type[0],
+                event[0]);
+        checkText(ERROR_MSG_REQUIRED_FIELD);
+        MW_BTN_CANCEL.click();
+        checkTextNotPresent(ERROR_MSG_REQUIRED_FIELD);
+    }
     @Test
     public void templateTask_B1_Create() {
         templateName = null;
@@ -268,19 +280,7 @@ public class TestsPekamaTemplates {
     }
     @Test
     public void templateTask_D1_CreateTaskTemplateSetParametrized (){
-        String setName = null;
-
         openPageWithSpinner(URL_TEMPLATES_TASKS_PATENT);
-        rootLogger.info("Validation - Check if title is required");
-        createTaskTemplateSet(
-                null,
-                defining[0],
-                type[0],
-                event[0]);
-        checkText(ERROR_MSG_REQUIRED_FIELD);
-        MW_BTN_CANCEL.click();
-        checkTextNotPresent(ERROR_MSG_REQUIRED_FIELD);
-
         rootLogger.info("Check if user able to create set with custom DEFINING");
         setName = "SET_TASKS_WITH_DEFINING_";
         createTaskTemplateSet(
@@ -407,13 +407,11 @@ public class TestsPekamaTemplates {
     }
     @Test
     public void templateMessage_A2_Crud () {
-        String templateName = "MESSAGE_TEMPLATE_"+randomString(15);
         rootLogger.info("Open URL - " +URL_TEMPLATES_MSG);
         openPageWithSpinner(URL_TEMPLATES_MSG_TRADEMARK);
         String textMsg = LOREM_IPSUM_SHORT;
         rootLogger.info("Create message template relevant to ALL");
-        setName = "MESSAGE_T_VALIDATION_";
-        rootLogger.info("Validation - Check if msg body is required");
+        setName = "MESSAGE_T_";
         createMessageTemplateSet(
                 setName,
                 null,
@@ -529,50 +527,44 @@ public class TestsPekamaTemplates {
         rootLogger.info("Test passed");
     }
     @Test
-    public void templateCrudEvent (){
-        String setName = "SET_ALL_"+randomString(15);
+    public void templateEvent_A1_Validation () {
+        openPageWithSpinner(URL_TEMPLATES_EVENT_PATENT);
+        rootLogger.info("Validation - Check if title is required");
+        createEventTemplateSet(
+                null,
+                defining[0],
+                type[0],
+                event[0]);
+        checkText(ERROR_MSG_REQUIRED_FIELD);
+        MW_BTN_CANCEL.click();
+        checkTextNotPresent(ERROR_MSG_REQUIRED_FIELD);
+    }
+    @Test
+    public void templateEvent_B1_CRUD (){
+        String setName = "SET_RELEVANT_TO_ALL_";
         String templateName = "TEMPLATE_"+randomString(15);
         String templateDueDate = "10";
+        String eventInfo = LOREM_IPSUM_SHORT;
+        String dateOffsetUnit = "Days";
         rootLogger.info("Open URL - " + URL_TEMPLATES_EVENT);
-        openPageWithSpinner(URL_TEMPLATES_EVENT);
+        openPageWithSpinner(URL_TEMPLATES_EVENT_PATENT);
 
         rootLogger.info("Create set relevant to ALL");
-        submitEnabledButton(SETTINGS_VALUES_ADD);
-        waitForModalWindow(MW_EVENT_SET_TITLE);
-        MW_BTN_OK.shouldBe(disabled);
-        fillField(MW_SET_NAME, setName);
-        submitEnabledButton(MW_BTN_OK);
-        MW.shouldNotBe(visible);
-        checkText(setName);
+        createEventTemplateSet(
+                setName,
+                null,
+                null,
+                null);
         templateRow.shouldHave(text(setName)).click();
 
-        rootLogger.info("Create template");
-        BTN_TEMPLATE_ADD_IN_1st_ROW.shouldBe(visible).click();
-        waitForModalWindow(MW_EVENT_TEMPLATE_TITLE);
-        selectItemInDropdown(
-                MW_EVENT_SELECT_TYPE,
-                MW_EVENT_INPUT_TYPE,
-                TrademarkEvents.APPLICATION_REGISTERED.getValue()
-        );
-        fillField(MW_EVENT_INPUT_INFO, LOREM_IPSUM_SHORT);
-        fillField(MW_EVENT_Template_DateOffset, templateDueDate);
-        MW_EVENT_Template_DateOffsetUnit.selectOptionByValue("Days");
-        submitEnabledButton(MW_BTN_OK);
-        MW.shouldNotBe(visible);
+        createEventTemplate(
+                templateName,
+                event[0],
+                eventInfo,
+                templateDueDate,
+                dateOffsetUnit);
         TEMPLATES_TEXT_FIELD.shouldHave(value(LOREM_IPSUM_SHORT));
-
-        rootLogger.info("Delete template");
-        if (SETTINGS_DELETE_X.isDisplayed()==false){
-            Assert.fail("Project not created");
-        }
-        while (PekamaTeamSettings.SETTINGS_DELETE_X.isDisplayed()){
-            SETTINGS_DELETE_X.click();
-            submitConfirmAction();
-            sleep(3000);
-            if(SETTINGS_DELETE_X.isDisplayed()==false){
-                break;
-            }
-        }
+        deleteTemplate();
         rootLogger.info("Test passed");
     }
 }

@@ -288,6 +288,30 @@ public class StepsModalWindows implements StepsFactory {
             MW.waitUntil(not(visible), 15000);}
         return title;
     }
+    public static String createEventTemplateSet(String setName, String defining, String type, String event){
+        submitEnabledButton(SETTINGS_VALUES_ADD);
+
+        rootLogger.info("Create Event Template set");
+        String title = setName+randomString(15);
+        waitForModalWindow(MW_EVENT_SET_TITLE);
+        MW_BTN_OK.shouldBe(disabled);
+        if(setName!=null){
+            fillField(MW_SET_NAME, title);}
+        if(defining!=null){
+            fillField(MW_SET_MULTICHOICE_DEFINING, defining);
+            CSS_SelectHighlighted.click();}
+        if(type!=null){
+            fillField(MW_SET_MULTICHOICE_TYPE, type);
+            CSS_SelectHighlighted.click();}
+        if(event!=null){
+            fillField(MW_SET_MULTICHOICE_EVENT, event);
+            CSS_SelectHighlighted.click();}
+        sleep(1500);
+        submitEnabledButton(MW_BTN_OK);
+        if(setName!=null) {
+            MW.waitUntil(not(visible), 15000);}
+        return title;
+    }
     public static String createMessageTemplateSet(String setName, String defining, String type, String event, String textMsg){
         submitEnabledButton(SETTINGS_VALUES_ADD);
 
@@ -352,6 +376,27 @@ public class StepsModalWindows implements StepsFactory {
         MW.waitUntil(not(visible), 15000);
 
         checkText(title);
+        return title;
+    }
+    public static String createEventTemplate(String templateName, String eventType, String eventInfo, String templateDueDate, String dateOffsetUnit){
+        String title = templateName+randomString(15);
+        rootLogger.info("Create Event template with name: "+title);
+        BTN_TEMPLATE_ADD_IN_1st_ROW.shouldBe(visible).click();
+        waitForModalWindow(MW_EVENT_TEMPLATE_TITLE);
+        if(templateName!=null) {
+            selectItemInDropdown(
+                    MW_EVENT_SELECT_TYPE,
+                    MW_EVENT_INPUT_TYPE,
+                    eventType);}
+        if(eventInfo!=null) {
+        fillField(MW_EVENT_INPUT_INFO, eventInfo);}
+        if(templateDueDate!=null) {
+        fillField(MW_EVENT_Template_DateOffset, templateDueDate);}
+        if(dateOffsetUnit!=null) {
+        MW_EVENT_Template_DateOffsetUnit.selectOptionByValue(dateOffsetUnit);}
+        submitEnabledButton(MW_BTN_OK);
+        if(templateName!=null && templateDueDate!=null && dateOffsetUnit!=null ) {
+        MW.shouldNotBe(visible);}
         return title;
     }
 }
