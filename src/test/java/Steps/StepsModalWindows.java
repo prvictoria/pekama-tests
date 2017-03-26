@@ -267,7 +267,7 @@ public class StepsModalWindows implements StepsFactory {
     public static String createTaskTemplateSet(String setName, String defining, String type, String event){
         submitEnabledButton(SETTINGS_VALUES_ADD);
 
-        rootLogger.info("Create Task Template set relevant to defining: "+defining);
+        rootLogger.info("Create Task Template set");
         String title = setName+randomString(15);
         waitForModalWindow(MW_TASK_SET_TITLE);
         MW_BTN_OK.shouldBe(disabled);
@@ -285,6 +285,31 @@ public class StepsModalWindows implements StepsFactory {
         sleep(1500);
             submitEnabledButton(MW_BTN_OK);
         if(setName!=null) {
+            MW.waitUntil(not(visible), 15000);}
+        return title;
+    }
+    public static String createMessageTemplateSet(String setName, String defining, String type, String event, String textMsg){
+        submitEnabledButton(SETTINGS_VALUES_ADD);
+
+        rootLogger.info("Create Message Template set");
+        String title = setName+randomString(15);
+        waitForModalWindow(MW_MESSAGE_TEMPLATE_TITLE);
+        //MW_BTN_OK.shouldBe(disabled);
+        if(setName!=null){
+            fillField(MW_SET_NAME, title);}
+        if(defining!=null){
+            selectItemInDropdown(MW_MSG_TEMPLATE_SELECT_DEFINING, MW_MSG_TEMPLATE_INPUT_DEFINING, defining);}
+        if(type!=null){
+            selectItemInDropdown(MW_MSG_TEMPLATE_SELECT_TYPE, MW_MSG_TEMPLATE_INPUT_TYPE, type);}
+        if(event!=null){
+            selectItemInDropdown(MW_MSG_TEMPLATE_SELECT_EVENT, MW_MSG_TEMPLATE_INPUT_EVENT, event);}
+        if(textMsg!=null){
+            MW_SET_TEXT_EDITOR.setValue(textMsg);
+            MW_SET_TEXT_EDITOR.setValue(textMsg);
+        }
+        sleep(1500);
+        submitEnabledButton(MW_BTN_OK);
+        if(setName!=null && textMsg!=null) {
             MW.waitUntil(not(visible), 15000);}
         return title;
     }

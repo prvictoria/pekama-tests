@@ -282,7 +282,7 @@ public class TestsPekamaTemplates {
         checkTextNotPresent(ERROR_MSG_REQUIRED_FIELD);
 
         rootLogger.info("Check if user able to create set with custom DEFINING");
-        setName = "SET_TASKS_"+randomString(10);
+        setName = "SET_TASKS_WITH_DEFINING_";
         createTaskTemplateSet(
                 setName,
                 defining[0],
@@ -291,7 +291,7 @@ public class TestsPekamaTemplates {
         templateRow.shouldHave(text(setName));
 
         rootLogger.info("Check if user able to create set with custom TYPE");
-        setName = "SET_TASKS_"+randomString(10);
+        setName = "SET_TASKS_WITH_TYPE_";
         createTaskTemplateSet(
                 setName,
                 null,
@@ -300,7 +300,7 @@ public class TestsPekamaTemplates {
         templateRow.shouldHave(text(setName));
 
         rootLogger.info("Check if user able to create set with custom EVENT");
-        setName = "SET_TASKS_"+randomString(10);
+        setName = "SET_TASKS_WITH_EVENT";
         createTaskTemplateSet(
                 setName,
                 null,
@@ -309,7 +309,7 @@ public class TestsPekamaTemplates {
         templateRow.shouldHave(text(setName));
 
         rootLogger.info("Check if user able to create set with custom All fields");
-        setName = "SET_TASKS_"+randomString(10);
+        setName = "SET_TASKS_ALL_CUSTOM_";
         createTaskTemplateSet(
                 setName,
                 defining[1],
@@ -377,34 +377,155 @@ public class TestsPekamaTemplates {
         rootLogger.info("Test passed");
     }
     @Test
-    public void templateCrudMessage () {
-        String templateName = "TEMPLATE_"+randomString(15);
-        String templateDueDate = "10";
+    public void templateMessage_A1_Validation () {
+        String setName = null;
+        String textMsg = LOREM_IPSUM_SHORT;
+        openPageWithSpinner(URL_TEMPLATES_MSG_TRADEMARK);
+        rootLogger.info("Validation - Check if title is required");
+        createMessageTemplateSet(
+                null,
+                null,
+                null,
+                null,
+                textMsg);
+        checkText(ERROR_MSG_REQUIRED_FIELD);
+        MW_BTN_CANCEL.click();
+        checkTextNotPresent(ERROR_MSG_REQUIRED_FIELD);
+
+        setName = "MESSAGE_T_VALIDATION_";
+        rootLogger.info("Validation - Check if msg body is required");
+        createMessageTemplateSet(
+                setName,
+                null,
+                null,
+                null,
+                null);
+        checkText(ERROR_MSG_BLANK_FIELD);
+        MW_BTN_CANCEL.click();
+        checkTextNotPresent(ERROR_MSG_BLANK_FIELD);
+        rootLogger.info("Test passed");
+    }
+    @Test
+    public void templateMessage_A2_Crud () {
+        String templateName = "MESSAGE_TEMPLATE_"+randomString(15);
         rootLogger.info("Open URL - " +URL_TEMPLATES_MSG);
-        openPageWithSpinner(URL_TEMPLATES_MSG);
-
+        openPageWithSpinner(URL_TEMPLATES_MSG_TRADEMARK);
+        String textMsg = LOREM_IPSUM_SHORT;
         rootLogger.info("Create message template relevant to ALL");
-        submitEnabledButton(SETTINGS_VALUES_ADD);
-        waitForModalWindow(MW_MESSAGE_TEMPLATE_TITLE);
-        // MW_BTN_OK.shouldBe(disabled); todo BUG
-        fillField(MW_SET_NAME, templateName);
-        MW_SET_TEXT_EDITOR.setValue(LOREM_IPSUM_SHORT);
-        submitEnabledButton(MW_BTN_OK);
-        MW.shouldNotBe(visible);
-        checkText(templateName);
+        setName = "MESSAGE_T_VALIDATION_";
+        rootLogger.info("Validation - Check if msg body is required");
+        createMessageTemplateSet(
+                setName,
+                null,
+                null,
+                null,
+                textMsg);
+        templateRow.shouldHave(text(setName));
+        deleteTemplate();
+        rootLogger.info("Test passed");
+    }
+    @Test
+    public void templateMessage_D1_CreateTemplateSetParametrized (){
+        String setName = null;
+        String textMsg = LOREM_IPSUM_SHORT;
+        openPageWithSpinner(URL_TEMPLATES_MSG_PATENT);
+        rootLogger.info("Check if user able to create set with custom DEFINING");
+        setName = "MESSAGE_T_DEFINIG_";
+        createMessageTemplateSet(
+                setName,
+                defining[0],
+                null,
+                null,
+                textMsg);
+        templateRow.shouldHave(text(setName));
 
-        rootLogger.info("Delete template");
-        if (SETTINGS_DELETE_X.isDisplayed()==false){
-            Assert.fail("Project not created");
-        }
-        while (PekamaTeamSettings.SETTINGS_DELETE_X.isDisplayed()){
-            SETTINGS_DELETE_X.click();
-            submitConfirmAction();
-            sleep(3000);
-            if(SETTINGS_DELETE_X.isDisplayed()==false){
-                break;
-            }
-        }
+        rootLogger.info("Check if user able to create set with custom TYPE");
+        setName = "MESSAGE_T_TYPE_";
+        createMessageTemplateSet(
+                setName,
+                null,
+                type[0],
+                null,
+                textMsg);
+        templateRow.shouldHave(text(setName));
+
+        rootLogger.info("Check if user able to create set with custom EVENT");
+        setName = "MESSAGE_T_EVENT_";
+        createMessageTemplateSet(
+                setName,
+                null,
+                null,
+                event[0],
+                textMsg);
+        templateRow.shouldHave(text(setName));
+
+        rootLogger.info("Check if user able to create set with custom All fields");
+        setName = "MESSAGE_T_ALL_CUSTOM_";
+        createMessageTemplateSet(
+                setName,
+                defining[1],
+                type[1],
+                event[1],
+                textMsg);
+        templateRow.shouldHave(text(setName));
+        rootLogger.info("Test passed");
+    }
+    @Test
+    public void templateMessage_D2_CheckFilters (){
+        openPageWithSpinner(URL_TEMPLATES_MSG_PATENT);
+        rootLogger.info("Check no filter");
+        TEMPLATES_LIST.shouldHaveSize(4);
+        refresh();
+        SETTINGS_DELETE_X.waitUntil(visible, 15000);
+
+        rootLogger.info("Check DEFINING filter");
+        selectItemInDropdown(
+                TEMPLATES_FILTER_SELECT_DEFINING,
+                TEMPLATES_FILTER_INPUT_DEFINING,
+                defining[2]);
+        TEMPLATES_LIST.shouldHaveSize(2);
+        refresh();
+        SETTINGS_DELETE_X.waitUntil(visible, 15000);
+
+        rootLogger.info("Check TYPE filter");
+        selectItemInDropdown(
+                TEMPLATES_FILTER_SELECT_TYPE,
+                TEMPLATES_FILTER_INPUT_TYPE,
+                type[2]
+        );
+        TEMPLATES_LIST.shouldHaveSize(2);
+        refresh();
+        SETTINGS_DELETE_X.waitUntil(visible, 15000);
+
+        rootLogger.info("Check EVENT filter");
+        selectItemInDropdown(
+                TEMPLATES_FILTER_SELECT_EVENT,
+                TEMPLATES_FILTER_INPUT_EVENT,
+                event[2]
+        );
+        TEMPLATES_LIST.shouldHaveSize(2);
+        refresh();
+
+        rootLogger.info("Check ALL filters");
+        selectItemInDropdown(
+                TEMPLATES_FILTER_SELECT_DEFINING,
+                TEMPLATES_FILTER_INPUT_DEFINING,
+                defining[1]);
+        selectItemInDropdown(
+                TEMPLATES_FILTER_SELECT_TYPE,
+                TEMPLATES_FILTER_INPUT_TYPE,
+                type[1]
+        );
+        selectItemInDropdown(
+                TEMPLATES_FILTER_SELECT_EVENT,
+                TEMPLATES_FILTER_INPUT_EVENT,
+                event[1]
+        );
+        TEMPLATES_LIST.shouldHaveSize(1);
+        refresh();
+        SETTINGS_DELETE_X.waitUntil(visible, 15000);
+
+        deleteTemplate();
         rootLogger.info("Test passed");
     }
     @Test

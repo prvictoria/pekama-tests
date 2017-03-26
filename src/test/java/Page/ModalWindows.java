@@ -79,9 +79,9 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_EnableVerificationErrorArea = $(byXpath("//div[2]/form/div"));
 
     //MW template set
-    //templates Task Template Set
+    //templates Template Set
     public static final String MW_TASK_SET_TITLE = "Task Template Set";
-    public static final String MW_MESSAGE_TEMPLATE_TITLE = "Message Template";
+
     public static final String MW_EVENT_SET_TITLE = "Event Template Set";
     public static final String MW_DOC_TEMPLATE_TITLE = "Documents Template";
     public static final SelenideElement MW_SET_NAME = $(byXpath("//div[@class='modal-body']//input[@name]"));
@@ -89,6 +89,13 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_SET_MULTICHOICE_TYPE = $(byXpath("//div[@class='modal-body']/div[4]//input"));
     public static final SelenideElement MW_SET_MULTICHOICE_EVENT = $(byXpath("//div[@class='modal-body']/div[5]//input"));
     //MSG template
+    public static final String MW_MESSAGE_TEMPLATE_TITLE = "Message Template";
+    public static final SelenideElement MW_MSG_TEMPLATE_SELECT_DEFINING = $(byXpath(mw+"//div[@class='modal-body']//div[3]//span"));
+    public static final SelenideElement MW_MSG_TEMPLATE_INPUT_DEFINING = $(byXpath(mw+"//div[@class='modal-body']//div[3]//input[@type='search']"));
+    public static final SelenideElement MW_MSG_TEMPLATE_SELECT_TYPE = $(byXpath(mw+"//div[@class='modal-body']//div[4]//span"));
+    public static final SelenideElement MW_MSG_TEMPLATE_INPUT_TYPE = $(byXpath(mw+"//div[@class='modal-body']//div[4]//input[@type='search']"));
+    public static final SelenideElement MW_MSG_TEMPLATE_SELECT_EVENT = $(byXpath(mw+"//div[@class='modal-body']//div[5]//span"));
+    public static final SelenideElement MW_MSG_TEMPLATE_INPUT_EVENT = $(byXpath(mw+"//div[@class='modal-body']//div[5]//input[@type='search']"));
     public static final SelenideElement MW_SET_TEXT_EDITOR = $(byXpath(mw+"//*[starts-with(@id, 'taTextElement')]"));
 
 
@@ -186,7 +193,7 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_DeployDoc_SelectEvent = $(byXpath(""));
     public static final SelenideElement MW_DEPLOY_DOC_BTN_CREATE = $(byXpath("//button[contains(.,'Create')]"));
     public static final SelenideElement MW_DeployDoc_ButtonCancel = $(byXpath("//button[contains(.,'Cancel')]"));
-    //MW DEPLOT TASK
+    //MW DEPLOY TASK
 
     public static final SelenideElement MW_DeployTask_SelectEvent = $(byXpath("//div[@id='task-template-picker']/div/div/div/span/span"));
     public static final SelenideElement MW_DeployTask_InputEvent = $(byXpath("//input[@placeholder='Select an event...']"));
