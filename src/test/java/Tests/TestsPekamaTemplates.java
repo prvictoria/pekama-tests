@@ -279,7 +279,7 @@ public class TestsPekamaTemplates {
         rootLogger.info("Test passed");
     }
     @Test
-    public void templateTask_D1_CreateTaskTemplateSetParametrized (){
+    public void templateTask_D1_CreateTemplateSetParametrized (){
         openPageWithSpinner(URL_TEMPLATES_TASKS_PATENT);
         rootLogger.info("Check if user able to create set with custom DEFINING");
         setName = "SET_TASKS_WITH_DEFINING_";
@@ -564,6 +564,104 @@ public class TestsPekamaTemplates {
                 templateDueDate,
                 dateOffsetUnit);
         TEMPLATES_TEXT_FIELD.shouldHave(value(LOREM_IPSUM_SHORT));
+        deleteTemplate();
+        rootLogger.info("Test passed");
+    }
+    @Test
+    public void templateEvent_D1_CreateTemplateSetParametrized (){
+        openPageWithSpinner(URL_TEMPLATES_EVENT_PATENT);
+        rootLogger.info("Check if user able to create set with custom DEFINING");
+        setName = "SET_EVENTS_WITH_DEFINING_";
+        createEventTemplateSet(
+                setName,
+                defining[0],
+                null,
+                null);
+        templateRow.shouldHave(text(setName));
+
+        rootLogger.info("Check if user able to create set with custom TYPE");
+        setName = "SET_EVENTS_WITH_TYPE_";
+        createEventTemplateSet(
+                setName,
+                null,
+                type[0],
+                null);
+        templateRow.shouldHave(text(setName));
+
+        rootLogger.info("Check if user able to create set with custom EVENT");
+        setName = "SET_EVENTS_WITH_EVENT";
+        createEventTemplateSet(
+                setName,
+                null,
+                null,
+                event[0]);
+        templateRow.shouldHave(text(setName));
+
+        rootLogger.info("Check if user able to create set with custom All fields");
+        setName = "SET_EVENTS_ALL_CUSTOM_";
+        createEventTemplateSet(
+                setName,
+                defining[1],
+                type[1],
+                event[1]);
+        templateRow.shouldHave(text(setName));
+        rootLogger.info("Test passed");
+    }
+    @Test
+    public void templateEvent_D2_CheckFilters (){
+        openPageWithSpinner(URL_TEMPLATES_EVENT_PATENT);
+        rootLogger.info("Check no filter");
+        TEMPLATES_LIST.shouldHaveSize(4);
+        refresh();
+        SETTINGS_DELETE_X.waitUntil(visible, 15000);
+
+        rootLogger.info("Check DEFINING filter");
+        selectItemInDropdown(
+                TEMPLATES_FILTER_SELECT_DEFINING,
+                TEMPLATES_FILTER_INPUT_DEFINING,
+                defining[2]);
+        TEMPLATES_LIST.shouldHaveSize(2);
+        refresh();
+        SETTINGS_DELETE_X.waitUntil(visible, 15000);
+
+        rootLogger.info("Check TYPE filter");
+        selectItemInDropdown(
+                TEMPLATES_FILTER_SELECT_TYPE,
+                TEMPLATES_FILTER_INPUT_TYPE,
+                type[2]
+        );
+        TEMPLATES_LIST.shouldHaveSize(2);
+        refresh();
+        SETTINGS_DELETE_X.waitUntil(visible, 15000);
+
+        rootLogger.info("Check EVENT filter");
+        selectItemInDropdown(
+                TEMPLATES_FILTER_SELECT_EVENT,
+                TEMPLATES_FILTER_INPUT_EVENT,
+                event[2]
+        );
+        TEMPLATES_LIST.shouldHaveSize(2);
+        refresh();
+
+        rootLogger.info("Check ALL filters");
+        selectItemInDropdown(
+                TEMPLATES_FILTER_SELECT_DEFINING,
+                TEMPLATES_FILTER_INPUT_DEFINING,
+                defining[1]);
+        selectItemInDropdown(
+                TEMPLATES_FILTER_SELECT_TYPE,
+                TEMPLATES_FILTER_INPUT_TYPE,
+                type[1]
+        );
+        selectItemInDropdown(
+                TEMPLATES_FILTER_SELECT_EVENT,
+                TEMPLATES_FILTER_INPUT_EVENT,
+                event[1]
+        );
+        TEMPLATES_LIST.shouldHaveSize(1);
+        refresh();
+        SETTINGS_DELETE_X.waitUntil(visible, 15000);
+
         deleteTemplate();
         rootLogger.info("Test passed");
     }
