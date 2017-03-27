@@ -607,10 +607,16 @@ public class TestsPekamaTemplates {
     @Test
     public void templateEvent_D2_CheckFilters (){
         openPageWithSpinner(URL_TEMPLATES_EVENT_PATENT);
-        rootLogger.info("Check list size without filter");
-        SETTINGS_DELETE_X.waitUntil(visible, 15000);
-        TEMPLATES_LIST.shouldHaveSize(4);
     try {
+        checkTemplatesFilters(
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                4
+        );
         checkTemplatesFilters(
                 defining,
                 2,
