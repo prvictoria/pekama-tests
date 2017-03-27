@@ -897,6 +897,40 @@ public class StepsPekama implements StepsFactory{
         }
         return false;
     }
+    public static Integer checkTemplatesFilters(
+            String defining,
+            String type,
+            String event,
+            Integer listSize){
+        rootLogger.info("Check template filters");
+        refresh();
+        SETTINGS_DELETE_X.waitUntil(visible, 15000);
+        if(defining!=null) {
+            rootLogger.info("Select DEFINING filter");
+            selectItemInDropdown(
+                    TEMPLATES_FILTER_SELECT_DEFINING,
+                    TEMPLATES_FILTER_INPUT_DEFINING,
+                    defining);
+        }
+        if(type!=null) {
+            rootLogger.info("Select TYPE filter");
+            selectItemInDropdown(
+                    TEMPLATES_FILTER_SELECT_TYPE,
+                    TEMPLATES_FILTER_INPUT_TYPE,
+                    type);
+        }
+        if(event!=null) {
+            rootLogger.info("Select EVENT filter");
+            selectItemInDropdown(
+                    TEMPLATES_FILTER_SELECT_EVENT,
+                    TEMPLATES_FILTER_INPUT_EVENT,
+                    event);
+        }
+        if(listSize!=null) {
+            rootLogger.info("Check templates list size");
+            TEMPLATES_LIST.shouldHaveSize(listSize);}
+        return listSize;
+    }
 
     @Test
     public void testDebug(){
@@ -908,7 +942,5 @@ public class StepsPekama implements StepsFactory{
                 URL_COMMUNITY_LOGIN);
         refresh();
         hideZopim();
-
-
     }
 }

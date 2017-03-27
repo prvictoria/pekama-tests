@@ -2,6 +2,7 @@ package Tests;
 import Page.TestsCredentials;
 import Page.TestsCredentials.*;
 import Steps.*;
+import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
@@ -10,7 +11,9 @@ import org.junit.runners.MethodSorters;
 import java.io.IOException;
 
 import static Page.ModalWindows.*;
+import static Page.PekamaConversationProject.*;
 import static Page.PekamaDashboard.*;
+import static Page.PekamaPersonalSettings.TEXT_EDITOR;
 import static Page.PekamaProject.*;
 import static Page.PekamaReports.REPORTS_BTN_NEW_PROJECT_TEMPLATE;
 import static Page.PekamaTeamSettings.*;
@@ -42,6 +45,7 @@ public class TestsPekamaTemplates {
     static String setName;
     static String templateName;
     static String templateDueDate;
+    static String messageTemplateName;
 
     static String[] defining = {AMERICAN_SAMOA.getValue(), PITCAIRN_ISLANDS.getValue(), NETHERLANDS_ANTILES.getValue()};
     static String[] type = {PatentTypes.CONVENTION.getValue(), PatentTypes.VALIDATION.getValue(), PatentTypes.CONTINUATION.getValue()};
@@ -403,20 +407,49 @@ public class TestsPekamaTemplates {
         rootLogger.info("Test passed");
     }
     @Test
-    public void templateMessage_A2_Crud () {
-        rootLogger.info("Open URL - " +URL_TEMPLATES_MSG);
-        openPageWithSpinner(URL_TEMPLATES_MSG_TRADEMARK);
-        String textMsg = LOREM_IPSUM_SHORT;
-        rootLogger.info("Create message template relevant to ALL");
-        setName = "MESSAGE_T_";
-        createMessageTemplateSet(
-                setName,
-                null,
-                null,
-                null,
-                textMsg);
-        templateRow.shouldHave(text(setName));
-        deleteTemplate();
+    public void templateMessage_B1_Create () {
+        try {
+            rootLogger.info("Open URL - " + URL_TEMPLATES_MSG);
+            openPageWithSpinner(URL_TEMPLATES_MSG_TRADEMARK);
+            String textMsg = LOREM_IPSUM_SHORT;
+            rootLogger.info("Create message template relevant to ALL");
+            messageTemplateName = "MESSAGE_T_";
+            createMessageTemplateSet(
+                    messageTemplateName,
+                    null,
+                    null,
+                    null,
+                    textMsg);
+            templateRow.shouldHave(text(messageTemplateName));
+            TEXT_EDITOR.shouldHave(text(textMsg));
+
+        }
+        finally {
+            //deleteTemplate();
+        }
+        rootLogger.info("Test passed");
+    }
+    @Test
+    public void templateMessage_B2_Deploy () {
+        //messageTemplateName = "MESSAGE_T_9C0675CCF2N9RUH";
+        if(messageTemplateName==null){Assert.fail("Message template not created");}
+        try {
+            DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 15000).click();
+            createProject(
+                    "MSG_TEMPLATE_TEST_",
+                    MATTER_TYPE_TRADEMARK,
+                    Countries.PITCAIRN_ISLANDS.getValue());
+            scrollUp();
+            createConversationTeam("DEPLOY_TEST_");
+            deployMessageTemplate(messageTemplateName, 1);
+            submitEnabledButton(CONVERSATION_BTN_POST);
+            MESSAGES_LIST.filter(visible).shouldHaveSize(1);
+            MESSAGE_FIRST_TEXT.shouldHave(text(LOREM_IPSUM_SHORT));
+        }
+        finally {
+            openPageWithSpinner(URL_TEMPLATES_MSG_TRADEMARK);
+            deleteTemplate();
+        }
         rootLogger.info("Test passed");
     }
     @Test
@@ -468,59 +501,36 @@ public class TestsPekamaTemplates {
     @Test
     public void templateMessage_D2_CheckFilters (){
         openPageWithSpinner(URL_TEMPLATES_MSG_PATENT);
-        rootLogger.info("Check no filter");
-        TEMPLATES_LIST.shouldHaveSize(4);
-        refresh();
-        SETTINGS_DELETE_X.waitUntil(visible, 15000);
-
-        rootLogger.info("Check DEFINING filter");
-        selectItemInDropdown(
-                TEMPLATES_FILTER_SELECT_DEFINING,
-                TEMPLATES_FILTER_INPUT_DEFINING,
-                defining[2]);
-        TEMPLATES_LIST.shouldHaveSize(2);
-        refresh();
-        SETTINGS_DELETE_X.waitUntil(visible, 15000);
-
-        rootLogger.info("Check TYPE filter");
-        selectItemInDropdown(
-                TEMPLATES_FILTER_SELECT_TYPE,
-                TEMPLATES_FILTER_INPUT_TYPE,
-                type[2]
-        );
-        TEMPLATES_LIST.shouldHaveSize(2);
-        refresh();
-        SETTINGS_DELETE_X.waitUntil(visible, 15000);
-
-        rootLogger.info("Check EVENT filter");
-        selectItemInDropdown(
-                TEMPLATES_FILTER_SELECT_EVENT,
-                TEMPLATES_FILTER_INPUT_EVENT,
-                event[2]
-        );
-        TEMPLATES_LIST.shouldHaveSize(2);
-        refresh();
-
-        rootLogger.info("Check ALL filters");
-        selectItemInDropdown(
-                TEMPLATES_FILTER_SELECT_DEFINING,
-                TEMPLATES_FILTER_INPUT_DEFINING,
-                defining[1]);
-        selectItemInDropdown(
-                TEMPLATES_FILTER_SELECT_TYPE,
-                TEMPLATES_FILTER_INPUT_TYPE,
-                type[1]
-        );
-        selectItemInDropdown(
-                TEMPLATES_FILTER_SELECT_EVENT,
-                TEMPLATES_FILTER_INPUT_EVENT,
-                event[1]
-        );
-        TEMPLATES_LIST.shouldHaveSize(1);
-        refresh();
-        SETTINGS_DELETE_X.waitUntil(visible, 15000);
-
-        deleteTemplate();
+        try {
+            checkTemplatesFilters(
+                    null,
+                    null,
+                    null,
+                    4);
+            checkTemplatesFilters(
+                    defining[2],
+                    null,
+                    null,
+                    2);
+            checkTemplatesFilters(
+                    null,
+                    type[2],
+                    null,
+                    2);
+            checkTemplatesFilters(
+                    null,
+                    null,
+                    event[2],
+                    2);
+            checkTemplatesFilters(
+                    defining[1],
+                    type[1],
+                    event[1],
+                    1);
+        }
+        finally {
+            deleteTemplate();
+        }
         rootLogger.info("Test passed");
     }
     @Test
@@ -607,56 +617,36 @@ public class TestsPekamaTemplates {
     @Test
     public void templateEvent_D2_CheckFilters (){
         openPageWithSpinner(URL_TEMPLATES_EVENT_PATENT);
-    try {
-        checkTemplatesFilters(
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                4
-        );
-        checkTemplatesFilters(
-                defining,
-                2,
-                null,
-                null,
-                null,
-                null,
-                2
-        );
-        checkTemplatesFilters(
-                null,
-                null,
-                type,
-                2,
-                null,
-                null,
-                2
-        );
-        checkTemplatesFilters(
-                null,
-                null,
-                null,
-                null,
-                event,
-                2,
-                2
-        );
-        checkTemplatesFilters(
-                defining,
-                1,
-                type,
-                1,
-                event,
-                1,
-                1
-        );
-    }
-    finally {
-        deleteTemplate();
-    }
+        try {
+            checkTemplatesFilters(
+                    null,
+                    null,
+                    null,
+                    4);
+            checkTemplatesFilters(
+                    defining[2],
+                    null,
+                    null,
+                    2);
+            checkTemplatesFilters(
+                    null,
+                    type[2],
+                    null,
+                    2);
+            checkTemplatesFilters(
+                    null,
+                    null,
+                    event[2],
+                    2);
+            checkTemplatesFilters(
+                    defining[1],
+                    type[1],
+                    event[1],
+                    1);
+        }
+        finally {
+            deleteTemplate();
+        }
         rootLogger.info("Test passed");
     }
 }

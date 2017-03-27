@@ -8,6 +8,9 @@ import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 
 import static Page.ModalWindows.*;
+import static Page.PekamaConversationProject.CONVERSATION_BTN_New;
+import static Page.PekamaConversationProject.CONVERSATION_BTN_TEMPLATE;
+import static Page.PekamaConversationProject.CONVERSATION_INPUT_TEXT_COLLAPSED;
 import static Page.PekamaProject.*;
 import static Page.PekamaTeamSettings.*;
 import static Page.TestsStrings.*;
@@ -80,17 +83,25 @@ public class StepsModalWindows implements StepsFactory {
     public static String createProject(String projectCustomName, String projectType, String projectDefining) {
         String projectName = projectCustomName+"_"+randomString(10);
         waitForModalWindow(TILE_MW_PROJECT);
-        rootLogger.info("Select project type, actual: "+projectType);
-        selectItemInDropdown(MW_Project_SelectType, MW_Project_InputType, projectType);
-        rootLogger.info("Select defining, actual: "+projectDefining);
-        selectItemInDropdown(MW_Project_SelectDefining, MW_Project_InputDefining, projectDefining);
-        rootLogger.info("Fill title");
-        fillField(MW_Project_Title, projectName);
+        if(projectType!=null) {
+            rootLogger.info("Select project type, actual: " + projectType);
+            selectItemInDropdown(MW_Project_SelectType, MW_Project_InputType, projectType);
+        }
+        if(projectDefining!=null) {
+            rootLogger.info("Select defining, actual: " + projectDefining);
+            selectItemInDropdown(MW_Project_SelectDefining, MW_Project_InputDefining, projectDefining);
+        }
+        if(projectCustomName!=null) {
+            rootLogger.info("Fill title");
+            fillField(MW_Project_Title, projectName);
+        }
         submitEnabledButton(MW_ProjectFinishButton);
-        MW.waitUntil(not(visible), 20000);
-        sleep(1000);
-        checkText(projectName);
-        rootLogger.info("Created project: "+projectName);
+        if(projectType!=null && projectDefining!=null && projectCustomName!=null) {
+            MW.waitUntil(not(visible), 20000);
+            sleep(1000);
+            checkText(projectName);
+            rootLogger.info("Created project: " + projectName);
+        }
         return projectName;
     }
     public static String createProject() {
@@ -398,43 +409,27 @@ public class StepsModalWindows implements StepsFactory {
         MW.shouldNotBe(visible);}
         return title;
     }
-    public static Integer checkTemplatesFilters(
-            String defining[],
-            Integer indexDefining,
-            String type[],
-            Integer indexType,
-            String event[],
-            Integer indexEvent,
-            Integer listSize){
-        rootLogger.info("Check template filters");
-        refresh();
-        SETTINGS_DELETE_X.waitUntil(visible, 15000);
-        if(defining!=null && indexDefining!=null) {
-            rootLogger.info("Select DEFINING filter");
-            selectItemInDropdown(
-                    TEMPLATES_FILTER_SELECT_DEFINING,
-                    TEMPLATES_FILTER_INPUT_DEFINING,
-                    defining[indexDefining]);
+    public static String createConversationTeam(String subject){
+        String title = subject+randomString(10);
+        CONVERSATION_BTN_New.waitUntil(visible, 15000).click();
+        waitForModalWindow(TITLE_MW_CONVERSATION);
+        if(title!=null) {
+        fillField(MW_CONVERSATION_INPUT_Subject, title);}
+        MW_BTN_CREATE.click();
+        MW.shouldNotBe(visible);
+        return title;
+    }
+    public static String deployMessageTemplate(String messageTemplateName, Integer listSize){
+        CONVERSATION_INPUT_TEXT_COLLAPSED.shouldBe(visible).click();
+        sleep(1000);
+        CONVERSATION_BTN_TEMPLATE.shouldBe(visible).click();
+        waitForModalWindow("Templates");
+        if(listSize!=null){
+        MW_DEPLOY_MSG_TEMPLATE_LIST.shouldHaveSize(listSize);
         }
-        if(type!=null && indexType!=null) {
-            rootLogger.info("Select TYPE filter");
-            selectItemInDropdown(
-                    TEMPLATES_FILTER_SELECT_TYPE,
-                    TEMPLATES_FILTER_INPUT_TYPE,
-                    type[indexType]
-            );
-        }
-        if(event!=null && indexEvent!=null) {
-            rootLogger.info("Select EVENT filter");
-            selectItemInDropdown(
-                    TEMPLATES_FILTER_SELECT_EVENT,
-                    TEMPLATES_FILTER_INPUT_EVENT,
-                    event[indexEvent]
-            );
-        }
-        if(listSize!=null) {
-            rootLogger.info("Check templates list size");
-            TEMPLATES_LIST.shouldHaveSize(listSize);}
-        return listSize;
+        MW_DEPLOY_MSG_TEMPLATE_TEMPLATE(messageTemplateName).shouldBe(visible).click();
+        MW_BTN_OK.shouldBe(visible).click();
+        MW.shouldNotBe(visible);
+        return messageTemplateName;
     }
 }

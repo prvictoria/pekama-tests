@@ -71,10 +71,6 @@ public class PekamaTeamSettings extends Page {
     public static final SelenideElement templatesIconCopy = $("css=i.memobox-icon-docs");
     public static final SelenideElement templatesIconEdit = $("css=i.pkm-icon-edit");
     public static final SelenideElement templatesIconCancel = $(byXpath("//div[@class='cells-row']//*[@pkm-confirm-click='remove(templateSet)']"));
-    public static final SelenideElement templatesRow001 = $(byXpath("//li/div/div"));
-    public static final SelenideElement templatesRow002 = $(byXpath("//li[2]/div/div"));
-    public static final SelenideElement templatesRow003 = $(byXpath("//li[3]/div/div"));
-    public static final SelenideElement projectTypeRow001 = $(byXpath("//div[2]/div/div/div/span/span[2]/span"));
     public static final SelenideElement BTN_TEMPLATE_ADD_IN_1st_ROW = $(byXpath("//*[@class='inner']//button[contains(.,'Add') and ./i]"));
     public static final SelenideElement TEMPLATES_TEXT_FIELD = $(byXpath("//textarea"));
     public static final SelenideElement TEMPLATES_AUTO_DEPLOY = $(byXpath("//div[contains(.,'Auto-deploy')]/input"));

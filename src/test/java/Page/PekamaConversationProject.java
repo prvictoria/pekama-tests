@@ -3,12 +3,15 @@ package Page;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 import static Page.PekamaPersonalSettings.SIGNATURE_TAB_TEXT_EDITOR;
 import static com.codeborne.selenide.Selectors.byLinkText;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
+
 public class PekamaConversationProject extends Page {
     public static final String CONVERSATION_BLOCK = "//pkm-conversations";
     public static final String CONVERSATION_TEAM_TAB_NAME = "Talk to your team";
@@ -22,7 +25,7 @@ public class PekamaConversationProject extends Page {
     public static final SelenideElement CONVERSATION_BTN_Client = $(byXpath( CONVERSATION_BLOCK+"//button[@class='external-email-button']"));
 
     //THREAD LIST
-    public static final SelenideElement THREAD_LIST = $(byXpath(""));
+    public static final ElementsCollection THREAD_LIST = $$(byXpath(""));
 
 
     //INSIDE THREAD
@@ -50,7 +53,7 @@ public class PekamaConversationProject extends Page {
     public static final SelenideElement CONVERSATION_BTN_EMAIL_SETTINGS = $(byXpath( CONVERSATION_BLOCK+""));
     public static final SelenideElement CONVERSATION_TEXT_EDITOR = SIGNATURE_TAB_TEXT_EDITOR;
     public static final SelenideElement CONVERSATION_BTN_POST = $(byXpath( CONVERSATION_BLOCK+"//*[@class='btn btn-primary'][contains(.,'Post')]"));
-    public static final SelenideElement CONVERSATION_BTN_TEMPLATE = $(byXpath( CONVERSATION_BLOCK+"//i[@class='pkm-icon-template']"));
+    public static final SelenideElement CONVERSATION_BTN_TEMPLATE = $(byXpath( CONVERSATION_BLOCK+"//div[@class='editor-holder']/following-sibling::div//i[@class='pkm-icon-template']"));
     public static final SelenideElement CONVERSATION_BTN_ATTACH = $(byXpath( CONVERSATION_BLOCK+"//i[@class='pkm-icon-attach']"));
     public static final SelenideElement CONVERSATION_BTN_CLOUD = $(byXpath( CONVERSATION_BLOCK+"//i[@class='pkm-icon-cloud']"));
 
@@ -95,8 +98,8 @@ public class PekamaConversationProject extends Page {
     public static final SelenideElement CONVERSATION_AddInviteToPekama = $(byXpath( CONVERSATION_BLOCK+"//*[@class='btn btn-primary btn-small ng-scope'][contains .,'invite to Pekama' ]"));
     public static final SelenideElement CONVERSATION_AddAsGuest = $(byXpath( CONVERSATION_BLOCK+"//*[@class='btn btn-primary btn-small'][contains .,'add as guest' ]"));
 
-
-
+    public static final ElementsCollection MESSAGES_LIST =  $$(byXpath("//*[@class='message-list']/li[1]//div[@class='message-holder']"));
+    public static final SelenideElement MESSAGE_FIRST_TEXT =  $(byXpath("//*[@class='message-list']/li[1]//div[@class='message-holder']//*[@class='message-body ng-binding ng-scope']/p"));
 
 
 

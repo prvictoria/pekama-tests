@@ -50,6 +50,7 @@ public class PekamaPersonalSettings extends Page {
 
 
     //tab fields find by NAME
+    public static final SelenideElement TEXT_EDITOR = $(byXpath("//*[starts-with(@id, 'taTextElement')]"));
     public static final SelenideElement EMAILS_TAB_TITLE = $(byXpath("//*[@data-target='#emails']"));
     public static final SelenideElement EMAILS_TAB_RADIO_ALWAYS = $(byXpath("//label[contains(.,'Always')]//input[@type='radio']"));
     public static final SelenideElement EMAILS_TAB_RADIO_OFFLINE = $(byXpath("//label[contains(.,'offline')]//input[@type='radio']"));
