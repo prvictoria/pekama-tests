@@ -337,6 +337,7 @@ public class StepsModalWindows implements StepsFactory {
     }
     public static boolean deleteTemplate(){
         rootLogger.info("Delete template");
+        refresh();
         sleep(3000);
         if(!SETTINGS_DELETE_X.isDisplayed()){
             sleep(6000);

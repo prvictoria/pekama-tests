@@ -610,7 +610,7 @@ public class TestsPekamaTemplates {
         rootLogger.info("Check list size without filter");
         SETTINGS_DELETE_X.waitUntil(visible, 15000);
         TEMPLATES_LIST.shouldHaveSize(4);
-
+    try {
         checkTemplatesFilters(
                 defining,
                 2,
@@ -626,7 +626,7 @@ public class TestsPekamaTemplates {
                 type,
                 2,
                 null,
-                null ,
+                null,
                 2
         );
         checkTemplatesFilters(
@@ -647,8 +647,10 @@ public class TestsPekamaTemplates {
                 1,
                 1
         );
-
+    }
+    finally {
         deleteTemplate();
+    }
         rootLogger.info("Test passed");
     }
 }
