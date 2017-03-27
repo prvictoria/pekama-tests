@@ -397,31 +397,43 @@ public class StepsModalWindows implements StepsFactory {
         MW.shouldNotBe(visible);}
         return title;
     }
-    public static int applyTemplatesFilters(String defining[], String type[], String event[], int listSize){
+    public static Integer checkTemplatesFilters(
+            String defining[],
+            Integer indexDefining,
+            String type[],
+            Integer indexType,
+            String event[],
+            Integer indexEvent,
+            Integer listSize){
+        rootLogger.info("Check template filters");
         refresh();
         SETTINGS_DELETE_X.waitUntil(visible, 15000);
-        if(defining!=null) {
+        if(defining!=null && indexDefining!=null) {
+            rootLogger.info("Select DEFINING filter");
             selectItemInDropdown(
                     TEMPLATES_FILTER_SELECT_DEFINING,
                     TEMPLATES_FILTER_INPUT_DEFINING,
-                    defining[0]);
+                    defining[indexDefining]);
         }
-        if(type!=null) {
+        if(type!=null && indexType!=null) {
+            rootLogger.info("Select TYPE filter");
             selectItemInDropdown(
                     TEMPLATES_FILTER_SELECT_TYPE,
                     TEMPLATES_FILTER_INPUT_TYPE,
-                    type[0]
+                    type[indexType]
             );
         }
-        if(event!=null) {
+        if(event!=null && indexEvent!=null) {
+            rootLogger.info("Select EVENT filter");
             selectItemInDropdown(
                     TEMPLATES_FILTER_SELECT_EVENT,
                     TEMPLATES_FILTER_INPUT_EVENT,
-                    event[0]
+                    event[indexEvent]
             );
         }
-        TEMPLATES_LIST.shouldHaveSize(listSize);
-
+        if(listSize!=null) {
+            rootLogger.info("Check templates list size");
+            TEMPLATES_LIST.shouldHaveSize(listSize);}
         return listSize;
     }
 }

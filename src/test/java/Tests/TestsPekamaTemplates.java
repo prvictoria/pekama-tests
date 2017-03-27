@@ -1,5 +1,4 @@
 package Tests;
-import Page.PekamaTeamSettings;
 import Page.TestsCredentials;
 import Page.TestsCredentials.*;
 import Steps.*;
@@ -9,7 +8,6 @@ import org.junit.*;
 import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import static Page.ModalWindows.*;
 import static Page.PekamaDashboard.*;
@@ -17,7 +15,6 @@ import static Page.PekamaProject.*;
 import static Page.PekamaReports.REPORTS_BTN_NEW_PROJECT_TEMPLATE;
 import static Page.PekamaTeamSettings.*;
 import static Page.TestsCredentials.Countries.*;
-import static Page.TestsCredentials.TrademarkTypes.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlConfig.setEnvironment;
@@ -610,55 +607,46 @@ public class TestsPekamaTemplates {
     @Test
     public void templateEvent_D2_CheckFilters (){
         openPageWithSpinner(URL_TEMPLATES_EVENT_PATENT);
-        rootLogger.info("Check no filter");
+        rootLogger.info("Check list size without filter");
+        SETTINGS_DELETE_X.waitUntil(visible, 15000);
         TEMPLATES_LIST.shouldHaveSize(4);
-        refresh();
-        SETTINGS_DELETE_X.waitUntil(visible, 15000);
 
-        rootLogger.info("Check DEFINING filter");
-        selectItemInDropdown(
-                TEMPLATES_FILTER_SELECT_DEFINING,
-                TEMPLATES_FILTER_INPUT_DEFINING,
-                defining[2]);
-        TEMPLATES_LIST.shouldHaveSize(2);
-
-        refresh();
-        SETTINGS_DELETE_X.waitUntil(visible, 15000);
-        rootLogger.info("Check TYPE filter");
-        selectItemInDropdown(
-                TEMPLATES_FILTER_SELECT_TYPE,
-                TEMPLATES_FILTER_INPUT_TYPE,
-                type[2]
+        checkTemplatesFilters(
+                defining,
+                2,
+                null,
+                null,
+                null,
+                null,
+                2
         );
-        TEMPLATES_LIST.shouldHaveSize(2);
-
-        refresh();
-        SETTINGS_DELETE_X.waitUntil(visible, 15000);
-        rootLogger.info("Check EVENT filter");
-        selectItemInDropdown(
-                TEMPLATES_FILTER_SELECT_EVENT,
-                TEMPLATES_FILTER_INPUT_EVENT,
-                event[2]
+        checkTemplatesFilters(
+                null,
+                null,
+                type,
+                2,
+                null,
+                null ,
+                2
         );
-        TEMPLATES_LIST.shouldHaveSize(2);
-
-        refresh();
-        rootLogger.info("Check ALL filters");
-        selectItemInDropdown(
-                TEMPLATES_FILTER_SELECT_DEFINING,
-                TEMPLATES_FILTER_INPUT_DEFINING,
-                defining[1]);
-        selectItemInDropdown(
-                TEMPLATES_FILTER_SELECT_TYPE,
-                TEMPLATES_FILTER_INPUT_TYPE,
-                type[1]
+        checkTemplatesFilters(
+                null,
+                null,
+                null,
+                null,
+                event,
+                2,
+                2
         );
-        selectItemInDropdown(
-                TEMPLATES_FILTER_SELECT_EVENT,
-                TEMPLATES_FILTER_INPUT_EVENT,
-                event[1]
+        checkTemplatesFilters(
+                defining,
+                1,
+                type,
+                1,
+                event,
+                1,
+                1
         );
-        TEMPLATES_LIST.shouldHaveSize(1);
 
         deleteTemplate();
         rootLogger.info("Test passed");
