@@ -420,8 +420,9 @@ public class StepsModalWindows implements StepsFactory {
         return title;
     }
     public static String deployMessageTemplate(String messageTemplateName, Integer listSize){
+        sleep(2000);
         CONVERSATION_INPUT_TEXT_COLLAPSED.shouldBe(visible).click();
-        sleep(1000);
+        sleep(2000);
         CONVERSATION_BTN_TEMPLATE.shouldBe(visible).click();
         waitForModalWindow("Templates");
         if(listSize!=null){

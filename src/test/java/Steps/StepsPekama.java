@@ -78,8 +78,7 @@ public class StepsPekama implements StepsFactory{
         loginField_Password.sendKeys(GENERIC_PEKAMA_PASSWORD);
         sleep(500);
         loginButton_Login.click();
-        btnLogin.shouldBe(Condition.not(visible));
-        sleep(1000);
+        btnLogin.waitUntil(not(visible), 15000);
         rootLogger.info("Valid Credentials were submitted");
 
     }
