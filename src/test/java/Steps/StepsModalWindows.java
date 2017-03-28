@@ -13,9 +13,9 @@ import static Page.PekamaConversationProject.CONVERSATION_BTN_TEMPLATE;
 import static Page.PekamaConversationProject.CONVERSATION_INPUT_TEXT_COLLAPSED;
 import static Page.PekamaProject.*;
 import static Page.PekamaTeamSettings.*;
+import static Page.TestsCredentials.TrademarkEvents.MARK_CREATED;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
-import static Page.UrlStrings.URL_TEMPLATES_PROJECT;
 import static Steps.StepsPekama.*;
 import static Utils.Utils.*;
 import static com.codeborne.selenide.Condition.*;
@@ -204,7 +204,7 @@ public class StepsModalWindows implements StepsFactory {
         rootLogger.info(taskName+" - Task created");
         return taskName;
     }
-    public static String createEvent(String eventTypeName) {
+    public static String eventDeploy(String eventTypeName) {
         scrollUp();
         rootLogger.info("Deploy new event");
         projectButtonPlus.shouldBe(visible).click();
@@ -215,12 +215,38 @@ public class StepsModalWindows implements StepsFactory {
         sleep(500);
         MW.click();
         fillField(MW_EVENT_INPUT_INFO, LOREM_IPSUM_SHORT);
-        selectItemInDropdown(MW_EVENT_SELECT_TYPE, MW_EVENT_INPUT_TYPE, eventTypeName);
+        if(eventTypeName!=null) {
+            selectItemInDropdown(MW_EVENT_SELECT_TYPE, MW_EVENT_INPUT_TYPE, eventTypeName);
+        }
         submitEnabledButton(MW_BTN_SAVE);
-        MW.shouldNotBe(visible);
-        $$(byText(eventTypeName)).filter(visible).shouldHaveSize(1);
-        rootLogger.info(eventTypeName+" - Event created");
+        if(eventTypeName!=null) {
+            MW.shouldNotBe(visible);
+            $$(byText(eventTypeName)).filter(visible).shouldHaveSize(1);
+            rootLogger.info(eventTypeName + " - Event created");
+        }
         return eventTypeName;
+    }
+    public static String eventDeploy(String eventType, String eventInfo, Integer dueDateFromToday) {
+        clickPlusButtonNewEvent();
+
+        waitForModalWindow(TITLE_MW_EVENT);
+        MW_BTN_SAVE.shouldBe(disabled);
+        if(dueDateFromToday!=null) {
+            setDueDateFromToday(dueDateFromToday);
+        }
+        if(eventType !=null) {
+        fillField(MW_EVENT_INPUT_INFO, eventInfo);
+        }
+        if(eventType !=null) {
+            selectItemInDropdown(MW_EVENT_SELECT_TYPE, MW_EVENT_INPUT_TYPE, eventType);
+        }
+        submitEnabledButton(MW_BTN_SAVE);
+        if(eventType !=null) {
+            MW.shouldNotBe(visible);
+            $$(byText(eventType)).filter(visible).shouldHaveSize(1);
+            rootLogger.info(eventType + " - Event created");
+        }
+        return eventType;
     }
     public static String createCharge(String chargeType, String currency, String price) {
         PROJECT_TAB_CHARGES.waitUntil(visible, 15000).click();
@@ -432,5 +458,26 @@ public class StepsModalWindows implements StepsFactory {
         MW_BTN_OK.shouldBe(visible).click();
         MW.shouldNotBe(visible);
         return messageTemplateName;
+    }
+    public static int setDueDateFromToday(Integer dueDateFromToday){
+        if(dueDateFromToday!=null) {
+            fillField(MW_INPUT_DATE, getDate(dueDateFromToday));
+            sleep(500);
+            MW.click();
+        }
+        return dueDateFromToday;
+    }
+    public static void clickPlusButtonNewEvent(){
+        scrollUp();
+        rootLogger.info("Deploy new event");
+        projectButtonPlus.waitUntil(visible, 15000).click();
+        projectPlusNewEvent.shouldBe(visible).click();
+    }
+    public static boolean checkDeployedEvent(String eventType, String eventInfo){
+        scrollUp();
+        $$(byText(eventType)).filter(visible).shouldHaveSize(1);
+        $(byText(eventType)).click();
+        $$(byText(eventInfo)).filter(visible).shouldHaveSize(1);
+        return true;
     }
 }

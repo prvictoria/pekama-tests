@@ -2,7 +2,6 @@ package Tests;
 import Page.TestsCredentials;
 import Page.TestsCredentials.*;
 import Steps.*;
-import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
@@ -523,14 +522,14 @@ public class TestsPekamaTemplates {
         checkTextNotPresent(ERROR_MSG_REQUIRED_FIELD);
     }
     @Test
-    public void templateEvent_B1_CRUD (){
+    public void templateEvent_B1_Create (){
         String setName = "SET_RELEVANT_TO_ALL_";
         String templateName = "TEMPLATE_"+randomString(15);
         String templateDueDate = "10";
         String eventInfo = LOREM_IPSUM_SHORT;
         String dateOffsetUnit = "Days";
-        rootLogger.info("Open URL - " + URL_TEMPLATES_EVENT);
-        openPageWithSpinner(URL_TEMPLATES_EVENT_PATENT);
+        rootLogger.info("Open URL - " + URL_TEMPLATES_EVENT_TRADEMARK);
+        openPageWithSpinner(URL_TEMPLATES_EVENT_TRADEMARK);
 
         rootLogger.info("Create set relevant to ALL");
         createEventTemplateSet(
@@ -542,12 +541,28 @@ public class TestsPekamaTemplates {
 
         createEventTemplate(
                 templateName,
-                event[0],
+                TrademarkEvents.OPPOSITION_END_DATE.getValue(),
                 eventInfo,
                 templateDueDate,
                 dateOffsetUnit);
         TEMPLATES_TEXT_FIELD.shouldHave(value(LOREM_IPSUM_SHORT));
-        deleteTemplate();
+        rootLogger.info("Test passed");
+    }
+    @Test
+    public void templateEvent_B2_DeployInProject() {
+        String eventType = TrademarkEvents.OPPOSITION_END_DATE.getValue();
+        templateName = "";
+        if (templateName==null){Assert.fail("No Task template");}
+        try {
+            DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 15000).click();
+            DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 15000).click();
+            String projectName = createProject("TASK_DEPLOY_TEST_");
+            checkDeployedEvent(eventType, LOREM_IPSUM_SHORT);
+            }
+        finally {
+            openPageWithSpinner(URL_TEMPLATES_EVENT_TRADEMARK);
+            deleteTemplate();
+        }
         rootLogger.info("Test passed");
     }
     @Test

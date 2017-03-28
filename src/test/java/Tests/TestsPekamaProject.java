@@ -372,7 +372,6 @@ public class TestsPekamaProject {
         // $$(byText(PLACEHOLDER_NO_DATA)).filter(visible).shouldHaveSize(1);
         //todo BUG #140196199 https://www.pivotaltracker.com/n/projects/1239770/stories/140196199
     }
-
     @Test
     public void createProject_F2_addExistedContact() {
         PROJECT_TAB_CONTACTS.click();
@@ -741,7 +740,7 @@ public class TestsPekamaProject {
         String codeValue = createNumber();
         String classType = createClassification();
         rootLogger.info("Create Event");
-        createEvent(testEventType);
+        eventDeploy(testEventType);
         rootLogger.info("Create Doc");
         createFileInRoot(MW_DeployDoc_01TemplateWord, testSearchFileName);
         rootLogger.info("Create Folder");
@@ -1370,7 +1369,6 @@ public class TestsPekamaProject {
     public void createProject_TasksSorting() {
 
     }
-
     @Test
     public void checkRedirectToCommunityWizard() {
         if (testProjectTitle ==null || testProjectURL==null){
@@ -1389,7 +1387,6 @@ public class TestsPekamaProject {
                 .shouldBe(disabled);
         rootLogger.info("Test passed");
     }
-
     @Test
     public void createDraftCommunityCaseFormPekama() {
         if (testProjectTitle ==null || testProjectURL==null){
@@ -1458,7 +1455,6 @@ public class TestsPekamaProject {
         sleep(1000);
         rootLogger.info("Test passed");
     }
-
     @Test
     public void createCaseAndCheckPekamaState() {
         if (testProjectTitle ==null || testProjectURL==null){
@@ -1523,5 +1519,4 @@ public class TestsPekamaProject {
         checkText(EXPERT_FULL_TEAM_NAME);
         rootLogger.info("Test passed");
     }
-
 }

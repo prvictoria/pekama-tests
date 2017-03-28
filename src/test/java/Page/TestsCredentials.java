@@ -30,7 +30,6 @@ public class TestsCredentials {
             return value;
         }
     } //Requester
-
     public enum User2 {
         GMAIL_EMAIL("testqweeco002@gmail.com"),
         GMAIL_PASSWORD("123456789qasw1"),
@@ -325,8 +324,8 @@ public class TestsCredentials {
     }
     public enum TrademarkEvents {
         CASE_SUSPENDED("Case still suspended"),
-        PRIORITY_APLICATION_FILED("Priority Application Filed"),
-        OPPSITION_END_DATE("Opposition end date"),
+        PRIORITY_APPLICATION_FILED("Priority Application FIled"),
+        OPPOSITION_END_DATE("Opposition end date"),
         APPLICATION_REGISTERED("Application Registered"),
         MARK_CREATED("Mark Created");
 
