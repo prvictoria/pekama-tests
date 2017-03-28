@@ -178,6 +178,7 @@ public class TestsPekamaTemplates {
         deleteTemplate();
         rootLogger.info("Test passed");
     }
+    @Test
     public void templateTask_A1_Validation () {
         openPageWithSpinner(URL_TEMPLATES_TASKS_PATENT);
         rootLogger.info("Validation - Check if title is required");
@@ -555,10 +556,54 @@ public class TestsPekamaTemplates {
         if (templateName==null){Assert.fail("No Task template");}
         try {
             DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 15000).click();
-            DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 15000).click();
             String projectName = createProject("TASK_DEPLOY_TEST_");
             checkDeployedEvent(eventType, LOREM_IPSUM_SHORT);
             }
+        finally {
+//            openPageWithSpinner(URL_TEMPLATES_EVENT_TRADEMARK);
+//            deleteTemplate();
+        }
+        rootLogger.info("Test passed");
+    }
+    @Test
+    public void templateEvent_C1_CreateWithCustomRelevant (){
+        String setName = "SET_RELEVANT_TO_CUSTOM_";
+        String templateName = "MSG_CUSTOM_TEMPLATE_";
+        String templateDueDate = "10";
+        String eventInfo = LOREM_IPSUM_SHORT;
+        String dateOffsetUnit = "Days";
+        rootLogger.info("Open URL - " + URL_TEMPLATES_EVENT_TRADEMARK);
+        openPageWithSpinner(URL_TEMPLATES_EVENT_TRADEMARK);
+
+        rootLogger.info("Create set relevant to ALL");
+        createEventTemplateSet(
+                setName,
+                defining[1],
+                TrademarkTypes.CONVENTION.getValue(),
+                TrademarkEvents.MARK_CREATED.getValue());
+        templateRow.shouldHave(text(setName)).click();
+
+        createEventTemplate(
+                templateName,
+                TrademarkEvents.APPLICATION_REGISTERED.getValue(),
+                eventInfo,
+                templateDueDate,
+                dateOffsetUnit);
+        TEMPLATES_TEXT_FIELD.shouldHave(value(LOREM_IPSUM_SHORT));
+        rootLogger.info("Test passed");
+    }
+    //TODO FIX it
+    @Test
+    public void templateEvent_C2_DeployInProject() {
+        String eventType = TrademarkEvents.APPLICATION_REGISTERED.getValue();
+        templateName = "";
+        if (templateName==null){Assert.fail("No Task template");}
+        try {
+            DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 15000).click();
+            String projectName = createProject("TASK_DEPLOY_TEST_");
+            setProjectType(TrademarkTypes.CONVENTION.getValue());
+            checkDeployedEvent(eventType, LOREM_IPSUM_SHORT);
+        }
         finally {
             openPageWithSpinner(URL_TEMPLATES_EVENT_TRADEMARK);
             deleteTemplate();

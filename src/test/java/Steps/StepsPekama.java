@@ -931,6 +931,42 @@ public class StepsPekama implements StepsFactory{
         return listSize;
     }
 
+    public static String setProjectDefining(String defining){
+                if(defining!=null) {
+                    selectItemInDropdown(
+                            TAB_INFO_SELECT_Defining,
+                            TAB_INFO_INPUT_Defining,
+                            defining);
+                    sleep(1500);
+                    checkText(defining);
+                    return defining;
+                }
+                return null;
+    }
+    public static String setProjectType(String type){
+        if(type!=null) {
+            selectItemInDropdown(
+                    TAB_INFO_SELECT_Type,
+                    TAB_INFO_INPUT_Type,
+                    type);
+            sleep(1500);
+            checkText(type);
+            return type;
+        }
+        return null;
+    }
+    public static String setProjectSubType(String subType){
+        if(subType!=null) {
+            selectItemInDropdown(
+                    TAB_INFO_SELECT_SubType,
+                    TAB_INFO_INPUT_SubType,
+                    subType);
+            sleep(1500);
+            checkText(subType);
+            return subType;
+        }
+        return null;
+    }
     @Test
     public void testDebug(){
         setEnvironment();

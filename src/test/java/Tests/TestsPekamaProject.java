@@ -92,7 +92,7 @@ public class TestsPekamaProject {
                 TEST_USER_PEKAMA_PASSWORD,
                 URL_LogIn);
         rootLogger.info("Create project");
-        DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 15000).click();
+        DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 25000).click();
         rootLogger.info("NW - New project");
         waitForModalWindow(TILE_MW_PROJECT);
         rootLogger.info("select project type");
@@ -671,23 +671,11 @@ public class TestsPekamaProject {
     }
     @Test
     public void createProject_N_selectValues() {
+        scrollUp();
         TAB_INFO_PROJECT_TYPE.shouldHave(text(CaseType.TRADEMARK.getValue()));
-        selectItemInDropdown(
-                TAB_INFO_SELECT_Defining,
-                TAB_INFO_INPUT_Defining,
-                Countries.NETHERLANDS_ANTILES.getValue());
-        sleep(2000);
-        selectItemInDropdown(
-                TAB_INFO_SELECT_Type,
-                TAB_INFO_INPUT_Type,"Basic Filing");
-        sleep(2000);
-        selectItemInDropdown(
-                TAB_INFO_SELECT_SubType,
-                TAB_INFO_INPUT_SubType, "Certification Mark");
-        sleep(1000);
-        checkText(Countries.NETHERLANDS_ANTILES.getValue());
-        checkText("Basic Filing");
-        checkText("Certification Mark");
+        setProjectDefining(Countries.NETHERLANDS_ANTILES.getValue());
+        setProjectType(TrademarkTypes.BASIC.getValue());
+        setProjectSubType("Certification Mark");
         rootLogger.info("Test passed");
     }
     @Test
