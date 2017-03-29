@@ -25,12 +25,12 @@ import static com.codeborne.selenide.Selenide.sleep;
  */
 public class SignUp {
     static final Logger rootLogger = LogManager.getRootLogger();
-    String email;
-    String password;
-    String name;
-    String surname;
-    String company;
-    Boolean isSignUpSucceed;
+    public String email;
+    public String password;
+    public String name;
+    public String surname;
+    public String company;
+    public Boolean isSignUpSucceed;
     public boolean signUp(String email,  String password, String name, String surname, String company){
         this.email = email;
         this.password = password;
