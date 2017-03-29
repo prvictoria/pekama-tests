@@ -6,18 +6,29 @@ import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
+import org.junit.Test;
+
+import java.io.IOException;
 
 import static Page.ModalWindows.*;
 import static Page.PekamaConversationProject.CONVERSATION_BTN_New;
 import static Page.PekamaConversationProject.CONVERSATION_BTN_TEMPLATE;
 import static Page.PekamaConversationProject.CONVERSATION_INPUT_TEXT_COLLAPSED;
 import static Page.PekamaProject.*;
+import static Page.PekamaSignUp.*;
+import static Page.PekamaSignUp.signupNext;
+import static Page.PekamaSignUp.signupPassword;
 import static Page.PekamaTeamSettings.*;
+import static Page.TestsCredentials.*;
 import static Page.TestsCredentials.TrademarkEvents.APPLICATION_REGISTERED;
 import static Page.TestsCredentials.TrademarkEvents.MARK_CREATED;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
+import static Page.UrlStrings.URL_SingUp;
+import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static Steps.StepsPekama.*;
+import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
+import static Tests.BeforeTestsSetUp.setBrowser;
 import static Utils.Utils.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
@@ -497,5 +508,22 @@ public class StepsModalWindows implements StepsFactory {
         $(byText(eventType)).click();
         $$(byText(eventInfo)).filter(visible).shouldHaveSize(1);
         return true;
+    }
+
+    @Test
+    public void testDebug()throws IOException {
+        setEnvironment ();
+        setBrowser();
+        holdBrowserAfterTest(true);
+        String AUTH_URL = URL_SingUp;
+        openUrlWithBaseAuth(AUTH_URL);
+        SignUp user1 = new SignUp();
+        user1.signUp(
+                "123@mail.com",
+                "Aa@2132312",
+                "21312321",
+                "asd",
+                "sasasa");
+        rootLogger.info(user1.company);
     }
 }

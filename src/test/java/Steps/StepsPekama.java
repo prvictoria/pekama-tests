@@ -13,6 +13,9 @@ import static Page.PekamaLogin.*;
 import static Page.PekamaPersonalSettings.*;
 import static Page.PekamaProject.*;
 import static Page.PekamaReports.*;
+import static Page.PekamaSignUp.*;
+import static Page.PekamaSignUp.signupNext;
+import static Page.PekamaSignUp.signupPassword;
 import static Page.PekamaTeamSettings.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
@@ -967,15 +970,5 @@ public class StepsPekama implements StepsFactory{
         }
         return null;
     }
-    @Test
-    public void testDebug(){
-        setEnvironment();
-        StepsPekama loginIntoPekama = new StepsPekama();
-        loginIntoPekama.loginByURL(
-                User1.GMAIL_EMAIL.getValue(),
-                User1.PEKAMA_PASSWORD.getValue(),
-                URL_COMMUNITY_LOGIN);
-        refresh();
-        hideZopim();
-    }
+
 }

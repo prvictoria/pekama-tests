@@ -1,5 +1,6 @@
 package Tests;
 import Steps.StepsHttpAuth;
+import Steps.*;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,20 +11,21 @@ import org.junit.rules.Timeout;
 import java.io.IOException;
 
 import static Page.Emails.*;
-import static Page.UrlConfig.setEnvironment;
+import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
 import static Page.PekamaSignUp.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
-import static Steps.StepsExternal.checkInboxEmail;
-import static Steps.StepsPekama.checkText;
-import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
+import static Steps.StepsExternal.*;
+import static Steps.SignUp.*;
+import static Steps.StepsPekama.*;
+import static Tests.BeforeTestsSetUp.*;
 import static Tests.BeforeTestsSetUp.setBrowser;
-import static com.codeborne.selenide.CollectionCondition.size;
+import static com.codeborne.selenide.CollectionCondition.empty;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
+import static com.codeborne.selenide.WebDriverRunner.*;
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
@@ -61,24 +63,36 @@ public class TestsPekamaSignUp {
     public static void afterClass() {
         clearBrowserCache();
     }
+    @Ignore
+    @Test
+    public void allFieldsEmptyX() {
+
+    }
     @Test
     public void allFieldsEmpty() {
     //check default form state
-        $(signupEmail).shouldBe(visible).shouldBe(empty);
-        $(signupName).shouldBe(visible).shouldBe(empty);
-        $(signupSurname).shouldBe(visible).shouldBe(empty);
-        $(signupCompany).shouldBe(visible).shouldBe(empty);
-        $(signupPassword).shouldBe(visible).shouldBe(empty);
-        $(signupUpload).shouldBe(visible).shouldBe();
-        $(signupSubscribeNews).shouldBe(visible).shouldBe(selected);
-        $(signupAgree).shouldBe(selected);
+        signupEmail.shouldBe(visible).shouldHave(value(""));
+        signupName.shouldBe(visible).shouldHave(value(""));
+        signupSurname.shouldBe(visible).shouldHave(value(""));
+        signupCompany.shouldBe(visible).shouldHave(value(""));
+        signupPassword.shouldBe(visible).shouldHave(value(""));
+        signupUpload.shouldBe(visible).shouldHave(value(""));
+        signupSubscribeNews.shouldBe(visible).shouldBe(selected);
+        signupAgree.shouldBe(selected);
         signupTerms.shouldBe(visible);
-        $(signupNext).shouldBe(visible).shouldBe(enabled).click();
+        signupNext.shouldBe(visible).shouldBe(enabled).click();
         checkText(ERROR_MSG_REQUIRED_FIELD, 5);
         rootLogger.info("Test if all fields are blank - passed");
     }
     @Test
     public void onlyEmailSubmitted() {
+        SignUp userFacke = new SignUp();
+        userFacke.signUp(
+                VALID_EMAIL,
+                null,
+                null,
+                null,
+                null);
         $(signupEmail).sendKeys(VALID_EMAIL);
         $(signupNext).shouldBe(visible).shouldNot(disabled).click();
         checkText(ERROR_MSG_REQUIRED_FIELD, 4);
@@ -137,7 +151,7 @@ public class TestsPekamaSignUp {
             $(signupPassword).shouldBe(visible).sendKeys(arrayInvalidPasswords[arrayLength]);
             $(signupNext).shouldBe(visible).shouldNot(disabled).click();
             sleep(1500);
-            signupError.shouldHave(size(1));
+            signupError.shouldHaveSize(1);
 //            $(signupNext).shouldBe(disabled);
             refresh();
 //            $(signupAgree).shouldBe(visible).shouldNot(selected);
