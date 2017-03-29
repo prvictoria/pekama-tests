@@ -1,4 +1,5 @@
 package Tests;
+import Steps.User;
 import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,6 +13,7 @@ import static Page.UrlStrings.*;
 import static Page.PekamaLogin.*;
 import static Page.TestsCredentials.*;
 import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
+import static Steps.StepsPekama.checkText;
 import static Steps.StepsPekama.fillField;
 import static Steps.StepsPekama.submitEnabledButton;
 import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
@@ -36,6 +38,7 @@ public class TestsPekamaLogin {
     public Timeout tests = Timeout.seconds(600);
     @BeforeClass
     public static void beforeClass() throws IOException {
+        clearBrowserCache();
         setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
@@ -44,11 +47,11 @@ public class TestsPekamaLogin {
     public void openUrlLogin() {
         openUrlWithBaseAuth(URL_LogIn);
     }
-    @After
-    public void openUrlLogout() {
-        openUrlWithBaseAuth(URL_Logout);
-        clearBrowserCache();
-    }
+//    @After
+//    public void openUrlLogout() {
+//        openUrlWithBaseAuth(URL_Logout);
+//        clearBrowserCache();
+//    }
 
     @Test
     public void testEnvironment() {
@@ -59,10 +62,11 @@ public class TestsPekamaLogin {
     }
     @Test
     public void invalidPassword() {
-        fillField(loginField_Email, "testqweeco001@gmail.com");
-        fillField(loginField_Password, "12345");
-        submitEnabledButton(loginButton_Login);
-
+        User invalid = new User();
+        invalid.submitLoginCredentials(
+                "testqweeco001@gmail.com",
+                "12345");
+        Assert.assertFalse(invalid.isLoginSucceed);
         loginError.shouldHave(Condition.exactText(loginErrorMsg));
         btnLogin.shouldBe(visible);
         btnSignup.shouldBe(visible);

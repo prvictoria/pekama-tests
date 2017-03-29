@@ -191,7 +191,7 @@ public class TestsCredentials {
         public String getValue() {
             return value;
         }
-    } //SignUp flow
+    } //User flow
     public enum User8 {
     GMAIL_EMAIL("");
 

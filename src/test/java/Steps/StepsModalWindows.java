@@ -15,13 +15,7 @@ import static Page.PekamaConversationProject.CONVERSATION_BTN_New;
 import static Page.PekamaConversationProject.CONVERSATION_BTN_TEMPLATE;
 import static Page.PekamaConversationProject.CONVERSATION_INPUT_TEXT_COLLAPSED;
 import static Page.PekamaProject.*;
-import static Page.PekamaSignUp.*;
-import static Page.PekamaSignUp.signupNext;
-import static Page.PekamaSignUp.signupPassword;
 import static Page.PekamaTeamSettings.*;
-import static Page.TestsCredentials.*;
-import static Page.TestsCredentials.TrademarkEvents.APPLICATION_REGISTERED;
-import static Page.TestsCredentials.TrademarkEvents.MARK_CREATED;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlStrings.URL_SingUp;
@@ -517,8 +511,8 @@ public class StepsModalWindows implements StepsFactory {
         holdBrowserAfterTest(true);
         String AUTH_URL = URL_SingUp;
         openUrlWithBaseAuth(AUTH_URL);
-        SignUp user1 = new SignUp();
-        user1.signUp(
+        User user1 = new User();
+        user1.submitSignUp(
                 "123@mail.com",
                 "Aa@2132312",
                 "21312321",

@@ -1,5 +1,4 @@
 package Tests;
-import Steps.StepsHttpAuth;
 import Steps.*;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
@@ -17,13 +16,10 @@ import static Page.PekamaSignUp.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Steps.StepsExternal.*;
-import static Steps.SignUp.*;
 import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static Steps.StepsPekama.*;
 import static Tests.BeforeTestsSetUp.*;
 import static Tests.BeforeTestsSetUp.setBrowser;
-import static com.codeborne.selenide.CollectionCondition.empty;
-import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
@@ -35,7 +31,6 @@ import static com.codeborne.selenide.WebDriverRunner.*;
  */
 public class TestsPekamaSignUp {
     static final Logger rootLogger = LogManager.getRootLogger();
-    public String passwordFieldValue = "";
     public String EXIST_USER = User1.GMAIL_EMAIL.getValue();
     private String NEW_USER = User5.GMAIL_EMAIL.getValue();
     String actualBackLink;
@@ -54,6 +49,7 @@ public class TestsPekamaSignUp {
     }
     @Before
     public void selectAgreeCheckbox() {
+        clearBrowserCache();
         rootLogger.info("Open URL - "+URL_SingUp);
         String AUTH_URL = URL_SingUp;
         openUrlWithBaseAuth(AUTH_URL);
@@ -62,15 +58,7 @@ public class TestsPekamaSignUp {
         submitCookie();
         rootLogger.info("Opened - " +URL_SingUp);
     }
-    @AfterClass
-    public static void afterClass() {
-        clearBrowserCache();
-    }
-    @Ignore
-    @Test
-    public void allFieldsEmptyX() {
 
-    }
     @Test
     public void allFieldsEmpty() {
     //check default form state
@@ -89,8 +77,8 @@ public class TestsPekamaSignUp {
     }
     @Test
     public void onlyEmailSubmitted() {
-        SignUp userFacke = new SignUp();
-        userFacke.signUp(
+        User userFacke = new User();
+        userFacke.submitSignUp(
                 VALID_EMAIL,
                 null,
                 null,
@@ -102,8 +90,8 @@ public class TestsPekamaSignUp {
     }
     @Test
     public void onlyNameSubmitted() {
-        SignUp userFacke = new SignUp();
-        userFacke.signUp(
+        User userFacke = new User();
+        userFacke.submitSignUp(
                 null,
                 null,
                 VALID_NAME,
@@ -115,8 +103,8 @@ public class TestsPekamaSignUp {
     }
     @Test
     public void onlySurnameSubmitted() {
-        SignUp userFacke = new SignUp();
-        userFacke.signUp(
+        User userFacke = new User();
+        userFacke.submitSignUp(
                 null,
                 null,
                 null,
@@ -128,8 +116,8 @@ public class TestsPekamaSignUp {
     }
     @Test
     public void onlyCompanySubmitted() {
-        SignUp userFacke = new SignUp();
-        userFacke.signUp(
+        User userFacke = new User();
+        userFacke.submitSignUp(
                 null,
                 null,
                 null,
@@ -141,8 +129,8 @@ public class TestsPekamaSignUp {
     }
     @Test
     public void onlyPasswordSubmitted() {
-        SignUp userFacke = new SignUp();
-        userFacke.signUp(
+        User userFacke = new User();
+        userFacke.submitSignUp(
                 null,
                 VALID_PASSWORD,
                 null,
@@ -156,8 +144,8 @@ public class TestsPekamaSignUp {
     public void validationEmail() {
 
         for (int arrayLength = 0; arrayLength < arrayInvalidEmails.length; arrayLength++) {
-            SignUp userFacke = new SignUp();
-            userFacke.signUp(
+            User userFacke = new User();
+            userFacke.submitSignUp(
                     arrayInvalidEmails[arrayLength],
                     null,
                     null,
@@ -173,8 +161,8 @@ public class TestsPekamaSignUp {
     @Test
     public void validationPassword() {
         for (int arrayLength = 0; arrayLength < arrayInvalidPasswords.length; arrayLength++) {
-            SignUp userFacke = new SignUp();
-            userFacke.signUp(
+            User userFacke = new User();
+            userFacke.submitSignUp(
                     VALID_EMAIL,
                     VALID_SURNAME,
                     VALID_NAME,
@@ -188,8 +176,8 @@ public class TestsPekamaSignUp {
     }
     @Test
     public void userExist() {
-        SignUp userFacke = new SignUp();
-        userFacke.signUp(
+        User userFacke = new User();
+        userFacke.submitSignUp(
                 EXIST_USER,
                 VALID_SURNAME,
                 VALID_NAME,
@@ -226,9 +214,9 @@ public class TestsPekamaSignUp {
     public void sendSignUpEmail() {
         String GMAIL_LOGIN = User5.GMAIL_EMAIL.getValue();
         String GMAIL_PASSWORD = User5.GMAIL_PASSWORD.getValue();
-        rootLogger.info("Check signUp email");
-        SignUp userFacke = new SignUp();
-        userFacke.signUp(
+        rootLogger.info("Check submitSignUp email");
+        User userFacke = new User();
+        userFacke.submitSignUp(
                 NEW_USER,
                 VALID_SURNAME,
                 VALID_NAME,
@@ -250,8 +238,8 @@ public class TestsPekamaSignUp {
     }
     @Test
     public void joinToTeam() {
-        SignUp userFacke = new SignUp();
-        userFacke.signUp(
+        User userFacke = new User();
+        userFacke.submitSignUp(
                 VALID_EMAIL,
                 VALID_SURNAME,
                 VALID_NAME,
