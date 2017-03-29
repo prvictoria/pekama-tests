@@ -607,18 +607,9 @@ public class TestsPekamaProject {
         scrollUp();
         rootLogger.info("Deploy new event");
         BTN_HIDE_TIMELINE.shouldBe(visible);
-        projectButtonPlus.shouldBe(visible).click();
-        projectPlusNewEvent.shouldBe(visible).click();
-        waitForModalWindow(TITLE_MW_EVENT);
-        MW_BTN_SAVE.shouldBe(disabled);
-        MW_INPUT_DATE.click();
-        sleep(500);
-        MW.click();
-        fillField(MW_EVENT_INPUT_INFO, LOREM_IPSUM_SHORT);
-        selectItemInDropdown(MW_EVENT_SELECT_TYPE, MW_EVENT_INPUT_TYPE, APPLICATION_REGISTERED.getValue());
-        submitEnabledButton(MW_BTN_SAVE);
-        MW.shouldNotBe(visible);
-        $$(byText(APPLICATION_REGISTERED.getValue())).filter(visible).shouldHaveSize(1);
+        clickPlusButtonNewEvent();
+        deployEvent(APPLICATION_REGISTERED.getValue());
+        checkDeployedEvent(APPLICATION_REGISTERED.getValue(), LOREM_IPSUM_SHORT);
 
         rootLogger.info("Check expanded timeline");
         TIMELINE_CheckboxShrinkedEventsView.setSelected(true);

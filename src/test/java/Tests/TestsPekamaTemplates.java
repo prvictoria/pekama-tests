@@ -17,6 +17,7 @@ import static Page.PekamaProject.*;
 import static Page.PekamaReports.REPORTS_BTN_NEW_PROJECT_TEMPLATE;
 import static Page.PekamaTeamSettings.*;
 import static Page.TestsCredentials.Countries.*;
+import static Page.TestsCredentials.TrademarkEvents.APPLICATION_REGISTERED;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlConfig.setEnvironment;
@@ -277,7 +278,6 @@ public class TestsPekamaTemplates {
         }
         rootLogger.info("Test passed");
     }
-
     @Test
     public void templateTask_D1_CreateTemplateSetParametrized (){
         openPageWithSpinner(URL_TEMPLATES_TASKS_PATENT);
@@ -592,7 +592,6 @@ public class TestsPekamaTemplates {
         TEMPLATES_TEXT_FIELD.shouldHave(value(LOREM_IPSUM_SHORT));
         rootLogger.info("Test passed");
     }
-    //TODO FIX it
     @Test
     public void templateEvent_C2_DeployInProject() {
         String eventType = TrademarkEvents.APPLICATION_REGISTERED.getValue();
@@ -602,6 +601,8 @@ public class TestsPekamaTemplates {
             DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 15000).click();
             String projectName = createProject("TASK_DEPLOY_TEST_");
             setProjectType(TrademarkTypes.CONVENTION.getValue());
+            clickPlusButtonNewEvent();
+            deployEvent(TrademarkEvents.MARK_CREATED.getValue());
             checkDeployedEvent(eventType, LOREM_IPSUM_SHORT);
         }
         finally {

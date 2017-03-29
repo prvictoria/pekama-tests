@@ -13,6 +13,7 @@ import static Page.PekamaConversationProject.CONVERSATION_BTN_TEMPLATE;
 import static Page.PekamaConversationProject.CONVERSATION_INPUT_TEXT_COLLAPSED;
 import static Page.PekamaProject.*;
 import static Page.PekamaTeamSettings.*;
+import static Page.TestsCredentials.TrademarkEvents.APPLICATION_REGISTERED;
 import static Page.TestsCredentials.TrademarkEvents.MARK_CREATED;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
@@ -473,6 +474,23 @@ public class StepsModalWindows implements StepsFactory {
         projectButtonPlus.waitUntil(visible, 15000).click();
         projectPlusNewEvent.shouldBe(visible).click();
     }
+    public static String deployEvent(String eventType){
+        waitForModalWindow(TITLE_MW_EVENT);
+        MW_BTN_SAVE.shouldBe(disabled);
+        rootLogger.info("Set date today");
+        MW_INPUT_DATE.click();
+        sleep(500);
+        MW.click();
+        fillField(MW_EVENT_INPUT_INFO, LOREM_IPSUM_SHORT);
+        selectItemInDropdown(
+                MW_EVENT_SELECT_TYPE,
+                MW_EVENT_INPUT_TYPE,
+                eventType);
+        submitEnabledButton(MW_BTN_SAVE);
+        MW.waitUntil(not(visible), 15000);
+        return eventType;
+    }
+
     public static boolean checkDeployedEvent(String eventType, String eventInfo){
         scrollUp();
         $$(byText(eventType)).filter(visible).shouldHaveSize(1);
