@@ -2,6 +2,7 @@ package Tests;
 import Steps.StepsExternal;
 import Steps.StepsHttpAuth;
 import Steps.StepsPekama;
+import Steps.User;
 import Utils.Utils;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
@@ -165,11 +166,12 @@ public class TestsPekamaResetPassword {
             openUrlWithBaseAuth(REDIRECT_LINK);
             sleep(1000);
             rootLogger.info("Validation test");
-            NEWPASSWORD_PAGE_NEW_PASSWORD.waitUntil(visible, 10000).sendKeys(User1.GMAIL_EMAIL.getValue());
-            NEWPASSWORD_PAGE_CONFIRM_PASSWORD.shouldBe(Condition.visible).sendKeys(User1.GMAIL_EMAIL.getValue());
-            NEWPASSWORD_PAGE_RESTORE_BTN.click();
+            User newPassword = new User();
+            newPassword.submitResetPassword(
+                    User1.GMAIL_EMAIL.getValue(),
+                    User1.GMAIL_EMAIL.getValue());
             checkText(ERROR_MSG_FAMILIAR_TO_EMAIL_PASSWORD);
-            checkText(ERROR_MSG_WEAK_PASSWORD);
+            //checkText(ERROR_MSG_WEAK_PASSWORD);
             rootLogger.info("User submitted familiar to email passwords - "+ERROR_MSG_FAMILIAR_TO_EMAIL_PASSWORD);
         }
         else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
@@ -185,10 +187,11 @@ public class TestsPekamaResetPassword {
 
             rootLogger.info("Validation Loop");
             for (int arrayLength = 0; arrayLength < arrayInvalidPasswords.length; arrayLength++) {
-               NEWPASSWORD_PAGE_NEW_PASSWORD.waitUntil(visible, 10000).sendKeys(arrayInvalidPasswords[arrayLength]);
-               NEWPASSWORD_PAGE_CONFIRM_PASSWORD.shouldBe(Condition.visible).sendKeys(arrayInvalidPasswords[arrayLength]);
-               NEWPASSWORD_PAGE_RESTORE_BTN.click();
-                $$(RESET_PAGE_ERROR).filter(visible);
+                User newPassword = new User();
+                newPassword.submitResetPassword(
+                        arrayInvalidPasswords[arrayLength],
+                        arrayInvalidPasswords[arrayLength]);
+                RESET_PAGE_ERROR.filter(visible);
                 refresh();
                 sleep(500);
             }
@@ -203,12 +206,13 @@ public class TestsPekamaResetPassword {
             openUrlWithBaseAuth(REDIRECT_LINK);
             sleep(1000);
             rootLogger.info("Validation test - name");
-           NEWPASSWORD_PAGE_NEW_PASSWORD.waitUntil(visible, 10000).sendKeys(USERNAME);
-           NEWPASSWORD_PAGE_CONFIRM_PASSWORD.shouldBe(Condition.visible).sendKeys(USERNAME);
-           NEWPASSWORD_PAGE_RESTORE_BTN.click();
+            User newPassword = new User();
+            newPassword.submitResetPassword(
+                    USERNAME,
+                    USERNAME);
            checkText("The password is too similar to the first name.");
-            $$(RESET_PAGE_ERROR).filter(visible).shouldHave(size(3));
-//            $(byText("The password is too similar to the first name.")).shouldBe(visible);
+           checkText("This password is too short. It must contain at least 8 characters.");
+            RESET_PAGE_ERROR.filter(visible).shouldHave(size(2));
             rootLogger.info("User submitted own Username to email passwords - "+"The password is too similar to the first name.");
         }
         else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
@@ -220,12 +224,12 @@ public class TestsPekamaResetPassword {
             openUrlWithBaseAuth(REDIRECT_LINK);
             sleep(1000);
             rootLogger.info("Validation test");
-           NEWPASSWORD_PAGE_NEW_PASSWORD.waitUntil(visible, 10000).sendKeys(USERSURNAME);
-           NEWPASSWORD_PAGE_CONFIRM_PASSWORD.shouldBe(Condition.visible).sendKeys(USERSURNAME);
-           NEWPASSWORD_PAGE_RESTORE_BTN.click();
-           checkText("The password is too similar to the last name.");
-            $$(RESET_PAGE_ERROR).filter(visible).shouldHave(size(2));
-//            $(byText("The password is too similar to the last name.")).shouldBe(visible);
+            User newPassword = new User();
+            newPassword.submitResetPassword(
+                    USERSURNAME,
+                    USERSURNAME);
+            checkText("The password is too similar to the last name.");
+            RESET_PAGE_ERROR.filter(visible).shouldHave(size(1));
             rootLogger.info("User submitted own Surname to email passwords - "+"The password is too similar to the last name.");
         }
         else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
@@ -238,12 +242,11 @@ public class TestsPekamaResetPassword {
             sleep(1000);
             rootLogger.info("Validation test");
             String RANDOM_129_LETTER = Utils.randomString(129);
-           NEWPASSWORD_PAGE_NEW_PASSWORD.waitUntil(visible, 10000).sendKeys(RANDOM_129_LETTER);
-           NEWPASSWORD_PAGE_CONFIRM_PASSWORD.shouldBe(Condition.visible).sendKeys(RANDOM_129_LETTER);
-           NEWPASSWORD_PAGE_RESTORE_BTN.click();
-           checkText("Ensure this value has at most 128 characters (it has 129).");
-//            $$(RESET_PAGE_ERROR).filter(visible).shouldHave(size(1));
-//            $(byText("Ensure this value has at most 128 characters (it has 129).")).shouldBe(visible);
+            User newPassword = new User();
+            newPassword.submitResetPassword(
+                    RANDOM_129_LETTER,
+                    RANDOM_129_LETTER);
+            checkText("Ensure this value has at most 128 characters (it has 129).");
             rootLogger.info("Max length validation present - "+ERROR_MSG_FAMILIAR_TO_EMAIL_PASSWORD);
         }
         else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
@@ -255,14 +258,11 @@ public class TestsPekamaResetPassword {
             openUrlWithBaseAuth(REDIRECT_LINK);
             sleep(1000);
             rootLogger.info("Positive test");
-            String RANDOM_8_LETTER = Utils.randomString(8);
-            NEW_PASSWORD = VALID_PASSWORD+RANDOM_8_LETTER;
-           NEWPASSWORD_PAGE_NEW_PASSWORD.shouldBe(Condition.visible).sendKeys(NEW_PASSWORD);
-           NEWPASSWORD_PAGE_CONFIRM_PASSWORD.shouldBe(Condition.visible).sendKeys(NEW_PASSWORD);
-           NEWPASSWORD_PAGE_RESTORE_BTN.click();
+            User newPassword = new User();
+            newPassword.submitResetPassword(null);
 
             $(byText(RESET_PAGE_FINISHED_TITLE)).waitUntil(visible, 10000);
-           RESET_PAGE_FINISHED_BTN_LOGIN.shouldBe(visible);
+            RESET_PAGE_FINISHED_BTN_LOGIN.shouldBe(visible);
             String thisUrl = url();
             assertEquals(thisUrl, URL_ResetPasswordComplete);
             rootLogger.info("User submitted valid credentials");
@@ -309,10 +309,11 @@ public class TestsPekamaResetPassword {
             rootLogger.info("Email and links correspond requirements");
 
             openUrlWithBaseAuth(REDIRECT_LINK);
-            NEWPASSWORD_PAGE_NEW_PASSWORD.waitUntil(visible, 10000).sendKeys(NEW_PASSWORD);
-            NEWPASSWORD_PAGE_CONFIRM_PASSWORD.shouldBe(Condition.visible).sendKeys(NEW_PASSWORD);
-            NEWPASSWORD_PAGE_RESTORE_BTN.click();
-            $$(byText(ERROR_MSG_NEW_PASSOWRD_EQUALS_TO_OLD)).shouldHaveSize(1);
+            User newPassword = new User();
+            newPassword.submitResetPassword(
+                    NEW_PASSWORD,
+                    NEW_PASSWORD);
+            checkText(ERROR_MSG_NEW_PASSOWRD_EQUALS_TO_OLD);
             rootLogger.info("Validation old password present");
         }
         else Assert.fail("password - "+NEW_PASSWORD);

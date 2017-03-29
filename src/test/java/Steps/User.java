@@ -1,5 +1,6 @@
 package Steps;
 
+import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Test;
@@ -7,10 +8,14 @@ import org.junit.Test;
 import java.io.IOException;
 
 import static Page.PekamaLogin.*;
+import static Page.PekamaResetPassword.NEWPASSWORD_PAGE_CONFIRM_PASSWORD;
+import static Page.PekamaResetPassword.NEWPASSWORD_PAGE_NEW_PASSWORD;
+import static Page.PekamaResetPassword.NEWPASSWORD_PAGE_RESTORE_BTN;
 import static Page.PekamaSignUp.*;
 import static Page.PekamaSignUp.signupNext;
 import static Page.PekamaSignUp.signupPassword;
 import static Page.TestsCredentials.GENERIC_PEKAMA_PASSWORD;
+import static Page.TestsCredentials.VALID_PASSWORD;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.URL_Dashboard;
 import static Page.UrlStrings.URL_SingUp;
@@ -18,6 +23,7 @@ import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static Steps.StepsPekama.*;
 import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
 import static Tests.BeforeTestsSetUp.setBrowser;
+import static Utils.Utils.randomString;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
@@ -44,7 +50,7 @@ public class User {
         hideZopim();
         submitLoginCredentials(email, password);
     }
-    public boolean submitLoginCredentials(String email, String password){
+    public void submitLoginCredentials(String email, String password){
         this.email = email;
         this.password = password;
 
@@ -58,16 +64,6 @@ public class User {
         }
         submitEnabledButton(loginButton_Login);
         sleep(5000);
-        String url = getActualUrl();
-        if(url.equals(URL_Dashboard)){
-            rootLogger.info("Valid Credentials were submitted");
-            isLoginSucceed = true;
-            return true;
-        }
-        else
-            rootLogger.info("Wrong Credentials were submitted");
-            isLoginSucceed = false;
-            return false;
     }
 
     public boolean submitSignUp(String email, String password, String name, String surname, String company){
@@ -102,6 +98,26 @@ public class User {
             return true;}
         isSignUpSucceed = false;
         return false;
+    }
+    public String submitResetPassword(String newPassword){
+        if(newPassword==null){
+        newPassword = VALID_PASSWORD+randomString(10);
+        }
+        NEWPASSWORD_PAGE_NEW_PASSWORD.waitUntil(visible, 10000).sendKeys(newPassword);
+        NEWPASSWORD_PAGE_CONFIRM_PASSWORD.shouldBe(Condition.visible).sendKeys(newPassword);
+        this.password = newPassword;
+        return newPassword;
+    }
+    public String submitResetPassword(String newPassword, String confirmPassword){
+        if(newPassword!=null){
+            NEWPASSWORD_PAGE_NEW_PASSWORD.waitUntil(visible, 10000).sendKeys(newPassword);
+        }
+        if(confirmPassword!=null){
+            NEWPASSWORD_PAGE_CONFIRM_PASSWORD.shouldBe(Condition.visible).sendKeys(confirmPassword);
+        }
+        NEWPASSWORD_PAGE_RESTORE_BTN.shouldBe(visible).click();
+        this.password = newPassword;
+        return newPassword;
     }
     @Test
     public void testDebug()throws IOException {
