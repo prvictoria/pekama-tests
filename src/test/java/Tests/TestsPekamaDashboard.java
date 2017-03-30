@@ -3,7 +3,6 @@ package Tests;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
-import Page.TestsCredentials;
 import Page.TestsCredentials.User1;
 import Page.TestsCredentials.User3;
 import Steps.StepsPekama;
@@ -12,8 +11,10 @@ import org.apache.logging.log4j.Logger;
 import org.junit.*;
 import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.io.IOException;
+import java.util.List;
 
 import static Page.ModalWindows.*;
 import static Page.PekamaDashboard.*;
@@ -355,7 +356,8 @@ public class TestsPekamaDashboard {
                 null,
                 null,
                 randomString(50));
-        MW_ProjectFinishButton.waitUntil(enabled, 100000);
+        ExpectedConditions.alertIsPresent().wait(2000);
+        confirm("Ok");
         try{confirm("Ok");}
         catch (org.openqa.selenium.TimeoutException e){
             rootLogger.info("Timeout Gateway prompt not present");}
@@ -363,19 +365,20 @@ public class TestsPekamaDashboard {
         rootLogger.info("Wrong TM number check that tooltip present - passed");
     }
     @Test
-    public void testF8_ModalNewProjectValidation() {
-        DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 20000).click();
-        submitMwNewProject(
+    public void testF8_ModalNewProjectValidation() throws InterruptedException {
+        DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 30000).click();
+        String projectName = submitMwNewProject(
                 "VALID",
                 MATTER_TYPE_TRADEMARK,
                 null,
                 null,
                 "76686873");
-        MW_ProjectFinishButton.waitUntil(enabled, 100000);
-        try{confirm("Ok");}
-        catch (org.openqa.selenium.TimeoutException e){
-        rootLogger.info("Timeout Gateway prompt not present");}
+        checkModalWindowNotPresent(70000);
+//        try{confirm("Ok");}
+//        catch (org.openqa.selenium.TimeoutException e){
+//            rootLogger.info("Timeout Gateway prompt not present");}
         //checkText("Official data not found. We will notify you once it become available. ");
+        checkText(projectName);
         rootLogger.info("Valid TM number check - passed");
     }
 }

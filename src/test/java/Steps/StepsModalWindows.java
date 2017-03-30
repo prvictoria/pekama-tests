@@ -177,6 +177,11 @@ public class StepsModalWindows implements StepsFactory {
         MW.pressEscape();
         MW.shouldNotBe(visible);
     }
+    public static void checkModalWindowNotPresent(int time){
+        MW.waitUntil(not(visible), time);
+        sleep(1000);
+    }
+
     //in root in Project
     public static void createFileInRoot(SelenideElement fileType, String fileName) {
         PROJECT_TAB_DOCS.waitUntil(visible, 15000).click();
