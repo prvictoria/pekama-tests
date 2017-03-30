@@ -25,6 +25,7 @@ public class UrlConfig {
     public static String SELECT_HOST;
     public static String MATTER_TYPE_TRADEMARK;
     public static String MATTER_TYPE_PATENT;
+    public static String MATTER_TYPE_CRM;
     public static String COMMUNITY_SERVICE;
     public static String INTRODUCER_NAME;
 
@@ -38,6 +39,7 @@ public class UrlConfig {
                 SELECT_HOST = ENVIRONMENT_PEKAMA;
                 MATTER_TYPE_TRADEMARK = CaseType.TRADEMARK.getValue();
                 MATTER_TYPE_PATENT = CaseType.PATENT.getValue();
+                MATTER_TYPE_CRM = CaseType.CRM.getValue();
                 COMMUNITY_SERVICE = "Filing an Application";
                 INTRODUCER_NAME = "Rand, Kaldor & Zane LLP (RKNZ)";
 //                int thread = 1; // users accounts which will be used by test execution
@@ -58,6 +60,7 @@ public class UrlConfig {
                 SELECT_HOST = ENVIRONMENT_PEKAMA;
                 MATTER_TYPE_TRADEMARK = CaseType.TRADEMARK.getValue();
                 MATTER_TYPE_PATENT = CaseType.PATENT.getValue();
+                MATTER_TYPE_CRM = ProductionCaseType.CRM.getValue();
                 COMMUNITY_SERVICE = "Filing an Application";
                 INTRODUCER_NAME = "Rand, Kaldor & Zane LLP (RKNZ)";
                 break;

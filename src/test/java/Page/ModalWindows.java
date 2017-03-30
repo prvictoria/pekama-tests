@@ -185,11 +185,14 @@ public class ModalWindows extends Page {
     //NEW
     //New project
     public static final SelenideElement MW_ProjectFinishButton = $(byXpath(mw+"//button[@type='submit'][contains(.,'FINISH')]"));
-    public static final SelenideElement MW_Project_SelectType = $(byXpath(mw+"//div[@name='matter_type']/div/span/span[1]"));
+    public static final SelenideElement MW_Project_SelectType = $(byXpath(mw+"//div[@name='matter_type']/div/span//span[1]"));
     public static final SelenideElement MW_Project_InputType = $(byXpath(mw+"//div[@name='matter_type']/input[1]"));
-    public static final SelenideElement MW_Project_SelectDefining = $(byXpath(mw+"//div[@name='defining']/div/span/span[1]"));
+    public static final SelenideElement MW_Project_SelectDefining = $(byXpath(mw+"//div[@name='defining']/div/span//span[1]"));
     public static final SelenideElement MW_Project_InputDefining = $(byXpath(mw+"//div[@name='defining']/input[1]"));
+    public static final SelenideElement MW_PROJECT_ACTUAL_DEFINING = $(byXpath(mw+"//div[@name='defining']/div//strong/preceding-sibling::span"));
+    public static final SelenideElement MW_PROJECT_ACTUAL_DEFINING_CODE = $(byXpath(mw+"//div[@name='defining']/div//strong"));
     public static final SelenideElement MW_Project_TMNumber = $(byXpath(mw+"//input[@name='official_lookup']"));
+    public static final SelenideElement MW_Project_ApplicationNumber = $(byXpath(mw+"//input[@name='official_lookup']"));
     public static final SelenideElement MW_Project_Title = $(byXpath(mw+"//input[@name='title']"));
     public static final SelenideElement MW_Project_Reference = $(byXpath(mw+"//input[@name='number']"));
 

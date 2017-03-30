@@ -4,7 +4,6 @@ import Page.TestsCredentials;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
-import Page.TestsCredentials;
 import Steps.StepsPekama;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,7 +17,6 @@ import static Page.CommunityDashboard.*;
 import static Page.CommunityOutgoing.BTN_CONFIRM_COMPLETION_NAME;
 import static Page.CommunityOutgoing.BTN_CONFIRM_INSTRUCTION_NAME;
 import static Page.CommunityOutgoing.BTN_WITHDRAW_NAME;
-import static Page.CommunityWizard.*;
 import static Page.PekamaDashboard.*;
 import static Page.PekamaProject.*;
 import static Page.UrlConfig.*;
@@ -73,7 +71,7 @@ public class TestsCommunityIntegration {
                 URL_LogIn);
         rootLogger.info("Create project");
         DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 20000).click();
-        testProjectTitle = createProject();
+        testProjectTitle = submitMwNewProject();
         testProjectURL = getActualUrl();
         if (testProjectTitle ==null || testProjectURL==null){
             Assert.fail("Project not created for precondition");

@@ -17,7 +17,6 @@ import static Page.PekamaProject.*;
 import static Page.PekamaReports.REPORTS_BTN_NEW_PROJECT_TEMPLATE;
 import static Page.PekamaTeamSettings.*;
 import static Page.TestsCredentials.Countries.*;
-import static Page.TestsCredentials.TrademarkEvents.APPLICATION_REGISTERED;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlConfig.setEnvironment;
@@ -215,7 +214,7 @@ public class TestsPekamaTemplates {
         if (templateName==null){Assert.fail("No Task template");}
         DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 15000).click();
         String eventType = TrademarkEvents.MARK_CREATED.getValue();
-        String projectName = createProject("TASK_DEPLOY_TEST_");
+        String projectName = submitMwNewProject("TASK_DEPLOY_TEST_");
         taskDeploy(eventType, setName);
         Assert.assertTrue(verifyTaskFirstRow(
                 templateName,
@@ -245,7 +244,7 @@ public class TestsPekamaTemplates {
     public void templateTask_C2_CheckAutoDeploy_Positive() {
         if (templateName==null){Assert.fail("No Task template");}
         DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 15000).click();
-        String projectName = createProject(
+        String projectName = submitMwNewProject(
                 "TASK_AUTO_DEPLOY_",
                 MATTER_TYPE_TRADEMARK,
                 PITCAIRN_ISLANDS.getValue());
@@ -264,7 +263,7 @@ public class TestsPekamaTemplates {
         if (templateName==null){Assert.fail("No Task template");}
         try {
         DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 15000).click();
-        String projectName = createProject(
+        String projectName = submitMwNewProject(
                 "TASK_AUTO_DEPLOY_",
                 MATTER_TYPE_TRADEMARK,
                 NETHERLANDS_ANTILES.getValue());
@@ -411,7 +410,7 @@ public class TestsPekamaTemplates {
         if(messageTemplateName==null){Assert.fail("Message template not created");}
         try {
             DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 15000).click();
-            createProject(
+            submitMwNewProject(
                     "MSG_TEMPLATE_TEST_",
                     MATTER_TYPE_TRADEMARK,
                     Countries.PITCAIRN_ISLANDS.getValue());
@@ -556,7 +555,7 @@ public class TestsPekamaTemplates {
         if (templateName==null){Assert.fail("No Task template");}
         try {
             DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 15000).click();
-            String projectName = createProject("TASK_DEPLOY_TEST_");
+            String projectName = submitMwNewProject("TASK_DEPLOY_TEST_");
             checkDeployedEvent(eventType, LOREM_IPSUM_SHORT);
             }
         finally {
@@ -599,7 +598,7 @@ public class TestsPekamaTemplates {
         if (templateName==null){Assert.fail("No Task template");}
         try {
             DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 15000).click();
-            String projectName = createProject("TASK_DEPLOY_TEST_");
+            String projectName = submitMwNewProject("TASK_DEPLOY_TEST_");
             setProjectType(TrademarkTypes.CONVENTION.getValue());
             clickPlusButtonNewEvent();
             deployEvent(TrademarkEvents.MARK_CREATED.getValue());

@@ -68,7 +68,7 @@ public class StepsModalWindows implements StepsFactory {
         sleep(500);
         MW.shouldNotBe(visible);
     }
-    public static String createProject(String projectCustomName) {
+    public static String submitMwNewProject(String projectCustomName) {
         String projectType = MATTER_TYPE_TRADEMARK;
         String projectDefining = TestsCredentials.Countries.PITCAIRN_ISLANDS.getValue();
         String projectName = projectCustomName+"_"+randomString(10);
@@ -86,7 +86,7 @@ public class StepsModalWindows implements StepsFactory {
         rootLogger.info("Created project: "+projectName);
         return projectName;
     }
-    public static String createProject(String projectCustomName, String projectType, String projectDefining) {
+    public static String submitMwNewProject(String projectCustomName, String projectType, String projectDefining) {
         String projectName = projectCustomName+"_"+randomString(10);
         waitForModalWindow(TILE_MW_PROJECT);
         if(projectType!=null) {
@@ -110,7 +110,39 @@ public class StepsModalWindows implements StepsFactory {
         }
         return projectName;
     }
-    public static String createProject() {
+    public static String submitMwNewProject(String projectCustomName, String projectType, String projectDefining, String referenceNumber, String tmNumber) {
+        String projectName = projectCustomName+"_"+randomString(10);
+        waitForModalWindow(TILE_MW_PROJECT);
+        //MW_ProjectFinishButton.shouldBe(disabled);
+        if(projectType!=null) {
+            rootLogger.info("Select project type, actual: " + projectType);
+            selectItemInDropdown(MW_Project_SelectType, MW_Project_InputType, projectType);
+        }
+        if(projectDefining!=null) {
+            rootLogger.info("Select defining, actual: " + projectDefining);
+            selectItemInDropdown(MW_Project_SelectDefining, MW_Project_InputDefining, projectDefining);
+        }
+        if(projectCustomName!=null) {
+            rootLogger.info("Fill title");
+            fillField(MW_Project_Title, projectName);
+        }
+        if(referenceNumber!=null) {
+            rootLogger.info("Fill ref number");
+            fillField(MW_Project_Reference, referenceNumber);
+        }
+        if(tmNumber!=null && (projectType.equals(MATTER_TYPE_TRADEMARK) || projectType.equals(MATTER_TYPE_PATENT))) {
+            rootLogger.info("Fill TM number");
+            fillField(MW_Project_TMNumber, tmNumber);
+        }
+        submitEnabledButton(MW_ProjectFinishButton);
+        sleep(3000);
+        if(MW_ProjectFinishButton.exists()==false){
+        rootLogger.info("Created project: " + projectName);
+            return projectName;
+        }
+        return null;
+    }
+    public static String submitMwNewProject() {
         String projectType = MATTER_TYPE_TRADEMARK;
         String projectDefining = TestsCredentials.Countries.PITCAIRN_ISLANDS.getValue();
         String projectName = "DEFAULT_PROJECT_"+randomString(10);
@@ -127,6 +159,21 @@ public class StepsModalWindows implements StepsFactory {
         checkText(projectName);
         rootLogger.info("Created project: "+projectName);
         return projectName;
+    }
+    public static boolean checkSelectedDefining(String defining, String code){
+        if(defining!=null){
+            String defaultDefiningPatent = MW_PROJECT_ACTUAL_DEFINING.getText();
+            Assert.assertEquals("Check defining", defining, defaultDefiningPatent);
+        }
+        if(code!=null){
+            String defaultDefiningCodePatent = MW_PROJECT_ACTUAL_DEFINING_CODE.getText();
+            Assert.assertEquals("Check defining code", code, defaultDefiningCodePatent);
+        }
+        return true;
+    }
+    public static void escapeModalWindow(){
+        MW.pressEscape();
+        MW.shouldNotBe(visible);
     }
     //in root in Project
     public static void createFileInRoot(SelenideElement fileType, String fileName) {

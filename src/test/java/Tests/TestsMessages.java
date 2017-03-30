@@ -57,7 +57,7 @@ public class TestsMessages {
                 URL_LogIn);
             rootLogger.info("Create project");
             DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 15000).click();
-            String testProjectName = createProject();
+            String testProjectName = submitMwNewProject();
             String testProjectUrl = getActualUrl ();
     }
 
