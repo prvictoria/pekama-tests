@@ -133,7 +133,9 @@ public class StepsModalWindows implements StepsFactory {
         if(tmNumber!=null && (projectType.equals(MATTER_TYPE_TRADEMARK) || projectType.equals(MATTER_TYPE_PATENT))) {
             rootLogger.info("Fill TM number");
             fillField(MW_Project_TMNumber, tmNumber);
+            sleep(1000);
         }
+        sleep(2000);
         submitEnabledButton(MW_ProjectFinishButton);
         sleep(3000);
         if(MW_ProjectFinishButton.exists()==false){

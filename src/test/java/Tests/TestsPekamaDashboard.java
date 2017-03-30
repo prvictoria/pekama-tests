@@ -50,7 +50,7 @@ public class TestsPekamaDashboard {
     private final String TEST_USER_FULL_TEAM_NAME = User3.FULL_TEAM_NAME.getValue();
     private final String TEST_USER_TEAM_NAME = User1.TEAM_NAME.getValue();
     @Rule
-    public Timeout tests = Timeout.seconds(500);
+    public Timeout tests = Timeout.seconds(300);
     @BeforeClass
     public static void beforeClass() throws IOException {
         setEnvironment();
@@ -264,7 +264,6 @@ public class TestsPekamaDashboard {
                 null,
                 null);
         checkText(ERROR_MSG_REQUIRED_FIELD);
-        checkText(ERROR_MSG_NULL_NOT_VALID);
         checkText("Application Number (optional):");
 
         rootLogger.info("Check default defining for "+MATTER_TYPE_PATENT);
@@ -300,7 +299,7 @@ public class TestsPekamaDashboard {
                 null,
                 null);
         checkText(ERROR_MSG_REQUIRED_FIELD);
-        checkText("TM Serial Number (optional):");
+        checkText(ERROR_MSG_NULL_NOT_VALID);
 
         rootLogger.info("Check that no default defining for other Matter types");
         String notDefaultDefining = MW_Project_SelectDefining.getText();
@@ -332,9 +331,7 @@ public class TestsPekamaDashboard {
                 null,
                 randomString(256),
                 null);
-        // TODO: 2/24/2017 BUG https://www.pivotaltracker.com/n/projects/1239770/stories/140549597
         checkText(ERROR_MSG_VALIDATION_LENGTH_255);
-        escapeModalWindow();
         rootLogger.info("Validation max length reference number - passed");
     }
     @Test
@@ -345,8 +342,40 @@ public class TestsPekamaDashboard {
                 MATTER_TYPE_TRADEMARK,
                 null,
                 null,
-                randomString(1025));
-        checkText(ERROR_MSG_VALIDATION_LENGTH_1024);
+                randomString(256));
+        checkText(ERROR_MSG_VALIDATION_LENGTH_255);
         rootLogger.info("Validation max length TM number - passed");
+    }
+    @Test
+    public void testF7_ModalNewProjectValidation() {
+        DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 20000).click();
+        submitMwNewProject(
+                "VALID",
+                MATTER_TYPE_TRADEMARK,
+                null,
+                null,
+                randomString(50));
+        MW_ProjectFinishButton.waitUntil(enabled, 100000);
+        try{confirm("Ok");}
+        catch (org.openqa.selenium.TimeoutException e){
+            rootLogger.info("Timeout Gateway prompt not present");}
+        checkText("Official data not found. We will notify you once it become available. ");
+        rootLogger.info("Wrong TM number check that tooltip present - passed");
+    }
+    @Test
+    public void testF8_ModalNewProjectValidation() {
+        DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 20000).click();
+        submitMwNewProject(
+                "VALID",
+                MATTER_TYPE_TRADEMARK,
+                null,
+                null,
+                "76686873");
+        MW_ProjectFinishButton.waitUntil(enabled, 100000);
+        try{confirm("Ok");}
+        catch (org.openqa.selenium.TimeoutException e){
+        rootLogger.info("Timeout Gateway prompt not present");}
+        //checkText("Official data not found. We will notify you once it become available. ");
+        rootLogger.info("Valid TM number check - passed");
     }
 }

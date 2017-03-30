@@ -255,7 +255,7 @@ public class StepsPekama implements StepsFactory{
         buttonName.waitUntil(enabled, 15000);
         buttonName.click();
         sleep(500);
-        rootLogger.info("Button was clicked");
+        //rootLogger.info("Button was clicked");
     }
 
     public static void selectItemInDropdown(SelenideElement uiSelectName, SelenideElement uiSelectInput, String inputValue) {
