@@ -137,8 +137,8 @@ public class TestsStrings {
     public static String PROFILE_SERVICE_CASE_TYPE;
     public static String PROFILE_SERVICE_COUNTRY;
 
-    public static String TITLE_MW_BOOST_YOUR_PROFILE = "If you want to boost your community profile and appear higher on the search results, there are two ways to do this:";
-    public static String TITLE_MW_INVITE_AN_ATTORNEY = "Invite an Attorney";
+    public static final String TITLE_MW_BOOST_YOUR_PROFILE = "If you want to boost your community profile and appear higher on the search results, there are two ways to do this:";
+    public static final String TITLE_MW_INVITE_AN_ATTORNEY = "Invite an Attorney";
 
     public static final String EUR = "EUR";
     public static final String GBP = "GBP";

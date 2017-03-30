@@ -1,7 +1,6 @@
 package Tests;
 import Page.TestsCredentials;
 import Steps.*;
-import com.codeborne.selenide.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
@@ -60,7 +59,7 @@ public class TestsCommunityWizard {
     private final static String INVITED_PASSWORD = User5.GMAIL_PASSWORD.getValue();
 
     @Rule
-    public Timeout tests = Timeout.seconds(600);
+    public Timeout tests = Timeout.seconds(400);
     @BeforeClass
     public static void beforeClass() throws IOException {
         setEnvironment();
@@ -70,12 +69,19 @@ public class TestsCommunityWizard {
     }
     @Before
     public void before() {
-
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(
                 REQUESTER_EMAIL,
                 REQUESTER_PEKAMA_PASSWORD,
-                URL_COMMUNITY_LOGIN);
+                URL_COMMUNITY_LOGIN
+        );
+    }
+    @Test
+    public void checkDefaultWizardSelection() {
+        submitWizard1Step(CASE_TYPE);
+        submitEnabledButton(PROFILE_BTN_BOOST_YOUR_PROFILE);
+        submitMwBoostProfile("start");
+
     }
     @Test
     public void boostYourProfileDismiss() {
@@ -91,46 +97,60 @@ public class TestsCommunityWizard {
         MW_BOOST_YOUR_PROFILE_BTN_START_NEW_CASE.shouldBe(visible);
         checkText("Invite a member of your team to the community - when you invite a team member who signs up, your score is boosted.");
         MW_BOOST_YOUR_PROFILE_BTN_INVITE_MEMBER.shouldBe(visible);
-        MW.pressEscape();
-        MW.shouldNotBe(visible);
+        escapeModalWindow();
     }
+
     @Test
     public void boostYourProfileToWizardRedirect() {
+        checkWizard1StepSelection(
+                MATTER_TYPE_PATENT,
+                Countries.ALL.getValue(),
+                "Choose supplier type...");
+        rootLogger.info("Test passed");
+    }
+    @Test
+    public void boostYourProfileToProfileRedirect() {
         submitWizard1Step(CASE_TYPE);
         submitEnabledButton(PROFILE_BTN_BOOST_YOUR_PROFILE);
-        rootLogger.info("Boost Your profile - send new case");
-        waitForModalWindow(TITLE_MW_BOOST_YOUR_PROFILE);
-        MW_BOOST_YOUR_PROFILE_BTN_START_NEW_CASE.click();
-        WIZARD_BTN_GetStarted.shouldBe(visible).shouldBe(Condition.disabled);
+        submitMwBoostProfile("invite");
+        sleep(2000);
+        Assert.assertEquals(URL_COMMUNITY_PROFILE_TEAM+"#inviteMemberButton", getActualUrl());
+        rootLogger.info("Test passed");
+    }
+    @Test
+    public void boostYourProfileInviteTeam_withCustomText_A0_NoMailValidation() {
+        submitWizard1Step(CASE_TYPE);
+        submitEnabledButton(PROFILE_BTN_BOOST_YOUR_PROFILE);
+        submitMwBoostProfile("refer");
+        submitMwInviteAttorney(true, null, null);
+        acceptMwConfirmAction(
+                MW_CONFIRM_INVITE_ATTOTNEY_TITLE,
+                MW_CONFIRM_INVITE_ATTOTNEY_TEXT,
+                MW_COMMUNITY_CONFIRM_SUBMIT);
+        rootLogger.info("Check no email validation");
+        checkText(ERROR_MSG_BLANK_FIELD);
+        rootLogger.info("Test passed");
+    }
+    @Test
+    public void boostYourProfileInviteTeam_withCustomText_A1_DismissWarning() {
+        submitWizard1Step(CASE_TYPE);
+        submitEnabledButton(PROFILE_BTN_BOOST_YOUR_PROFILE);
+        submitMwBoostProfile("refer");
+        submitMwInviteAttorney(true, null, null);
+        dismissMwConfirmAction(
+                MW_CONFIRM_INVITE_ATTOTNEY_TITLE,
+                MW_CONFIRM_INVITE_ATTOTNEY_TEXT,
+                MW_COMMUNITY_CONFIRM_DISMISS);
+        waitForModalWindow(TITLE_MW_INVITE_AN_ATTORNEY);
+        rootLogger.info("Test passed");
     }
     @Test @Category(AllEmailsTests.class)
-    public void boostYourProfileInviteTeam_withCustomText_A() {
+    public void boostYourProfileInviteTeam_withCustomText_A2_WriteCustomText() {
         submitWizard1Step(CASE_TYPE);
-        submitEnabledButton(PROFILE_BTN_BOOST_YOUR_PROFILE); //TODO FIX it - BOOST community not present
-        rootLogger.info("Boost Your profile - send new case");
-        waitForModalWindow(TITLE_MW_BOOST_YOUR_PROFILE);
-        MW_BOOST_YOUR_PROFILE_BTN_REFER_ATTORNEY.click();
-
-        sleep(500);
-        waitForModalWindow(TITLE_MW_INVITE_AN_ATTORNEY);
-        MW_COMMUNITY_INVITE_ATTORNEY_BTN_INVITE.click();
-        fillField(MW_COMMUNITY_INVITE_FIELD_EMAIL, INVITED_EMAIL);
-        submitEnabledButton(MW_COMMUNITY_INVITE_ATTORNEY_BTN_INVITE);
-
-        sleep(500);
-        rootLogger.info("Check dismiss modal window");
-        SelenideElement mwTitle = MW_CONFIRM_INVITE_ATTOTNEY_TITLE;
-        SelenideElement mwText = MW_CONFIRM_INVITE_ATTOTNEY_TEXT;
-        SelenideElement btnDismiss = MW_COMMUNITY_CONFIRM_DISMISS;
-        dismissModalConfirmAction(mwTitle, mwText, btnDismiss);
-        rootLogger.info("Sent email = invitation email");
-
-        sleep(500);
-        waitForModalWindow(TITLE_MW_INVITE_AN_ATTORNEY);
-        MW_COMMUNITY_INVITE_FIELD_EMAIL.shouldHave(Condition.value(INVITED_EMAIL));
-        fillField(MW_COMMUNITY_INVITE_FIELD_MESSAGE, "Hello world");
-        submitEnabledButton(MW_COMMUNITY_INVITE_ATTORNEY_BTN_INVITE);
-        MW_COMMUNITY_INVITE_ATTORNEY_BTN_INVITE.shouldNotBe(visible);
+        submitEnabledButton(PROFILE_BTN_BOOST_YOUR_PROFILE);
+        submitMwBoostProfile("refer");
+        submitMwInviteAttorney(true, INVITED_EMAIL, LOREM_IPSUM_SHORT);
+        waitForModalWindowNotPresent(TITLE_MW_INVITE_AN_ATTORNEY);
         rootLogger.info("Test passed");
     }
     @Test @Category(AllEmailsTests.class)
@@ -140,7 +160,8 @@ public class TestsCommunityWizard {
                 INVITED_EMAIL,
                 INVITED_PASSWORD,
                 EMAIL_INVITE_IN_COMMUNITY_SUBJECT,
-                EMAIL_INVITE_IN_COMMUNITY_TITLE, "Hello world",
+                EMAIL_INVITE_IN_COMMUNITY_TITLE,
+                LOREM_IPSUM_SHORT,
                 EMAIL_INVITE_IN_COMMUNITY_BTN,
                 EMAIL_INVITE_IN_COMMUNITY_BACKLINK);
         rootLogger.info("Email redirect link is - "+REDIRECT_LINK);
@@ -163,30 +184,24 @@ public class TestsCommunityWizard {
         submitEnabledButton(PROFILE_BTN_BOOST_YOUR_PROFILE);
         rootLogger.info("Boost Your profile - send new case");
         waitForModalWindow(TITLE_MW_BOOST_YOUR_PROFILE);
-        MW_BOOST_YOUR_PROFILE_BTN_REFER_ATTORNEY.click();
-
-        sleep(500);
-        waitForModalWindow(TITLE_MW_INVITE_AN_ATTORNEY);
-        MW_COMMUNITY_INVITE_ATTORNEY_BTN_INVITE.click();
-        fillField(MW_COMMUNITY_INVITE_FIELD_EMAIL, INVITED_EMAIL);
-        submitEnabledButton(MW_COMMUNITY_INVITE_ATTORNEY_BTN_INVITE);
-
-        sleep(500);
-        rootLogger.info("Check dismiss warning modal window");
-        SelenideElement mwTitle = MW_CONFIRM_INVITE_ATTOTNEY_TITLE;
-        SelenideElement mwText = MW_CONFIRM_INVITE_ATTOTNEY_TEXT;
-        SelenideElement btnAccept = MW_COMMUNITY_CONFIRM_SUBMIT;
-        acceptModalConfirmAction(mwTitle, mwText, btnAccept);
+        submitMwBoostProfile("refer");
+        submitMwInviteAttorney(true, INVITED_EMAIL, null);
+        acceptMwConfirmAction(
+                MW_CONFIRM_INVITE_ATTOTNEY_TITLE,
+                MW_CONFIRM_INVITE_ATTOTNEY_TEXT,
+                MW_COMMUNITY_CONFIRM_SUBMIT);
         rootLogger.info("Test passed");
     }
     @Test
     public void boostYourProfileInviteTeam_withDefaultText_A_CheckEmail() {
         rootLogger.info("Check invitation email");
+        String defaultInviteMsg = "Dear ,\\n\\nI am a member of the Pekama community, a community of over hundreds of IP firms that work with each other in preferential terms. Pekama is a great tool to control outgoing work and is a great source of incoming work. I firmly recommend that you sign up and become a supplier. This way, we can also work together on the platform.";
         checkInboxEmail(
                 INVITED_EMAIL,
                 INVITED_PASSWORD,
                 EMAIL_INVITE_IN_COMMUNITY_SUBJECT,
-                EMAIL_INVITE_IN_COMMUNITY_TITLE, "Hello world",
+                EMAIL_INVITE_IN_COMMUNITY_TITLE,
+                defaultInviteMsg,
                 EMAIL_INVITE_IN_COMMUNITY_BTN,
                 EMAIL_INVITE_IN_COMMUNITY_BACKLINK);
         rootLogger.info("Email redirect link is - "+REDIRECT_LINK);
@@ -197,49 +212,50 @@ public class TestsCommunityWizard {
         checkInboxEmail(
                 REQUESTER_EMAIL,
                 GMAIL_PASSWORD,
-                EMAIL_CONGRATULATION_SUBJECT,
+                EMAIL_THANKS_FOR_INVITING_SUBJECT,
                 EMAIL_CONGRATULATION_TITLE,
                 EMAIL_CONGRATULATION_TEXT);
         rootLogger.info("Test passed");
     }
     @Test
-    public void returnBackFrom3rdStep(){
-        submitWizard1Step(CASE_TYPE);
-        submitWizard2Step(EXPERT_TEAM_NAME);
-        rootLogger.info("Jump to 2-nd step");
-        WIZARD_STEP2.click();
-        checkIfExpertPresent(EXPERT_TEAM_NAME);
-        rootLogger.info("Jump to 1-st step");
+    public void returnBackFrom2ndStep(){
+        submitWizard1Step(CASE_TYPE, TEST_CASE_COUNTRY, COMMUNITY_SERVICE);
+        wizardSelectExpert(EXPERT_TEAM_NAME);
+        rootLogger.info("Jump to 1-nd step");
         WIZARD_STEP1.click();
-        WIZARD_SELECT_CaseType.shouldHave(text(CASE_TYPE));
-        WIZARD_SELECT_Defining.shouldHave(text(TEST_CASE_COUNTRY));
+        checkIfExpertPresent(EXPERT_TEAM_NAME);
+        checkWizard1StepSelection(
+                CASE_TYPE,
+                TEST_CASE_COUNTRY,
+                COMMUNITY_SERVICE);
         rootLogger.info("Test passed");
     }
     @Test
-    public void returnBackFrom4thStep(){
-        submitWizard1Step(CASE_TYPE);
-        submitWizard2Step(EXPERT_TEAM_NAME);
-
+    public void returnBackFrom3rdStep(){
+        submitWizard1Step(CASE_TYPE, TEST_CASE_COUNTRY, COMMUNITY_SERVICE);
+        wizardSelectExpert(EXPERT_TEAM_NAME);
         rootLogger.info("3 select NO");
-        WIZARD_BTN_SKIP.click();
-        sleep(2000);
-        BTN_SEND_INSTRUCTION.shouldBe(visible);
+        WIZARD_BTN_SKIP.shouldBe(visible).click();
+        BTN_SEND_INSTRUCTION.waitUntil(visible, 15000);
         rootLogger.info("Return to 1-st step");
         WIZARD_STEP1.click();
         acceptReturnToFirstWizardStep();
-        WIZARD_BTN_GetStarted.shouldBe(visible).shouldBe(disabled);
+        checkIfExpertPresent(EXPERT_TEAM_NAME);
+        checkWizard1StepSelection(
+                CASE_TYPE,
+                TEST_CASE_COUNTRY,
+                COMMUNITY_SERVICE);
         rootLogger.info("Test passed");
     }
     @Test
     public void createDraftCaseSimpleWay(){
         String status = COMMUNITY_STATUS_DRAFT;
         submitWizard1Step(CASE_TYPE);
-        submitWizard2Step(EXPERT_TEAM_NAME);
+        wizardSelectExpert(EXPERT_TEAM_NAME);
 
         rootLogger.info("3rd select SKIP");
         WIZARD_BTN_SKIP.click();
-        sleep(3000);
-        BTN_SEND_INSTRUCTION.shouldBe(visible);
+        BTN_SEND_INSTRUCTION.waitUntil(visible, 15000);
 
         rootLogger.info("Check Draft");
         COMMUNITY_TAB_Outgoing.click();
@@ -258,15 +274,12 @@ public class TestsCommunityWizard {
         String status = COMMUNITY_STATUS_DRAFT;
         String caseName = "DRAFT_CASE_"+randomString(10);
         submitWizard1Step(CASE_TYPE);
-
-        rootLogger.info("2nd select expert");
-        WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.shouldBe(disabled);
         selectExpert(EXPERT_TEAM_NAME);
         String alreadyWorkedBefore = WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.getText();
         rootLogger.info(alreadyWorkedBefore);
         submitEnabledButton(WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS);
 
-        rootLogger.info("3rd select NEXT");
+        rootLogger.info("2nd select NEXT");
         WIZARD_FIELD_CASE_NAME.shouldHave(value(CASE_TYPE +" in "+TEST_CASE_COUNTRY));
         fillField(WIZARD_FIELD_CASE_NAME, caseName);
 
@@ -303,11 +316,11 @@ public class TestsCommunityWizard {
         rootLogger.info("Test passed");
     }
     @Test
-    public void returnBackFrom5thStep(){
+    public void returnBackFrom4thStep(){
         String status = COMMUNITY_STATUS_DRAFT;
         String caseName = "CUSTOM_NAME"+randomString(10);
         submitWizard1Step(CASE_TYPE);
-        submitWizard2Step(EXPERT_TEAM_NAME);
+        wizardSelectExpert(EXPERT_TEAM_NAME);
 
         rootLogger.info("3rd select NEXT");
         WIZARD_FIELD_CASE_NAME.shouldHave(value(CASE_TYPE +" in "+TEST_CASE_COUNTRY));
@@ -316,31 +329,35 @@ public class TestsCommunityWizard {
         WIZARD_BTN_NEXT.click();
         sleep(3000);
 
-        submitWizard4Step();
-
-        rootLogger.info("Back to 4th Step");
-        WIZARD_STEP4.click();
+        submitWizard3Step();
+        rootLogger.info("Back to 3rd Step");
+        WIZARD_STEP3.click();
         BTN_SEND_INSTRUCTION.shouldBe(visible).click();
 
         rootLogger.info("Back to 1st step");
         WIZARD_STEP1.click();
         acceptReturnToFirstWizardStep();
-        WIZARD_BTN_GetStarted.shouldBe(visible).shouldBe(disabled);
+
+        checkIfExpertPresent(EXPERT_TEAM_NAME);
+        checkWizard1StepSelection(
+                CASE_TYPE,
+                TEST_CASE_COUNTRY,
+                COMMUNITY_SERVICE);
         rootLogger.info("Test passed");
     }
     @Test
-    public void cancelCaseOn5thStep_A(){
+    public void cancelCaseOn4thStep_A(){
         String status = COMMUNITY_STATUS_SENT;
         String caseName = "SENT_CASE_"+randomString(10);
         submitWizard1Step(CASE_TYPE);
-        submitWizard2Step(EXPERT_TEAM_NAME);
+        wizardSelectExpert(EXPERT_TEAM_NAME);
 
         rootLogger.info("3rd select NEXT");
         WIZARD_FIELD_CASE_NAME.shouldHave(value(CASE_TYPE +" in "+TEST_CASE_COUNTRY));
         fillField(WIZARD_FIELD_CASE_NAME, caseName);
         WIZARD_BTN_NEXT.click();
 
-        submitWizard4Step();
+        submitWizard3Step();
 
         rootLogger.info("5th step - cancel case");
         WIZARD_BTN_CANCEL.shouldBe(visible).click();
@@ -349,20 +366,20 @@ public class TestsCommunityWizard {
         rootLogger.info("Test passed");
     }
     @Test
-    public void cancelCaseOn5thStep_B(){
+    public void cancelCaseOn4thStep_B(){
         String status = COMMUNITY_STATUS_SENT;
         String caseName = "SENT_CASE_"+randomString(10);
         submitWizard1Step(CASE_TYPE);
-        submitWizard2Step(EXPERT_TEAM_NAME);
+        wizardSelectExpert(EXPERT_TEAM_NAME);
 
-        rootLogger.info("3rd select NEXT");
+        rootLogger.info("2nd select NEXT");
         WIZARD_FIELD_CASE_NAME.shouldHave(value(CASE_TYPE +" in "+TEST_CASE_COUNTRY));
         fillField(WIZARD_FIELD_CASE_NAME, caseName);
         WIZARD_BTN_NEXT.click();
 
-        submitWizard4Step();
+        submitWizard3Step();
 
-        rootLogger.info("5th step - cancel case");
+        rootLogger.info("4th step - cancel case");
         WIZARD_BTN_CANCEL.shouldBe(visible).click();
         acceptCancelCase(false);
         checkTextNotPresent(msgCaseCancelled(EXPERT_NAME), 2);
@@ -374,10 +391,10 @@ public class TestsCommunityWizard {
         String status = COMMUNITY_STATUS_SENT;
         String caseName = "SENT_CASE_"+randomString(10);
         submitWizard1Step(CASE_TYPE);
-        submitWizard2Step(EXPERT_TEAM_NAME);
-        submitWizard3Step(caseName);
+        wizardSelectExpert(EXPERT_TEAM_NAME);
+        submitWizard2Step(caseName);
+        submitWizard3Step();
         submitWizard4Step();
-        submitWizard5Step();
 
         sleep(2000);
         checkCaseNameFirstRow(caseName);

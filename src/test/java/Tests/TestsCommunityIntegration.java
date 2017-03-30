@@ -84,9 +84,9 @@ public class TestsCommunityIntegration {
         checkThatWindowsQtyIs(2);
         switchToCommunityWindow();
         submitCookie();
-        submitWizard2Step(EXPERT_TEAM_NAME);
+        wizardSelectExpert(EXPERT_TEAM_NAME);
         submitCookie();
-        submitWizard3Step(CASE_NAME);
+        submitWizard2Step(CASE_NAME);
         rootLogger.info("Case was created");
     }
 
@@ -164,8 +164,8 @@ public class TestsCommunityIntegration {
     }
     @Test
     public void deleteProjectIfCaseIsWithdrawn() {
+        submitWizard3Step();
         submitWizard4Step();
-        submitWizard5Step();
 
         COMMUNITY_TAB_Outgoing.click();
         sleep(3000);
@@ -208,8 +208,8 @@ public class TestsCommunityIntegration {
     }
     @Test
     public void deleteProjectIfCaseIsActive() {
+        submitWizard3Step();
         submitWizard4Step();
-        submitWizard5Step();
 
         switchToPekamaWindow();
         refresh();
@@ -230,8 +230,8 @@ public class TestsCommunityIntegration {
     }
     @Test
     public void confirmInstructionInPekamaAsExpert_MsgTrue() {
+        submitWizard3Step();
         submitWizard4Step();
-        submitWizard5Step();
         switchToPekamaWindow();
 
         rootLogger.info("Expert login");
@@ -263,8 +263,8 @@ public class TestsCommunityIntegration {
     }
     @Test
     public void confirmInstructionInPekamaAsExpert_MsgFalse() {
+        submitWizard3Step();
         submitWizard4Step();
-        submitWizard5Step();
         switchToPekamaWindow();
 
         rootLogger.info("Expert login");
@@ -296,8 +296,8 @@ public class TestsCommunityIntegration {
     }
     @Test //TODO BUG https://www.pivotaltracker.com/story/show/141800023
     public void cancelCaseInPekama_MsgFalse() {
+        submitWizard3Step();
         submitWizard4Step();
-        submitWizard5Step();
         switchToPekamaWindow();
         String actualUrl = getActualUrl();
         Assert.assertEquals
@@ -316,8 +316,8 @@ public class TestsCommunityIntegration {
     }
     @Test //TODO BUG https://www.pivotaltracker.com/story/show/141800023
     public void cancelCaseInPekama_MsgTrue() {
+        submitWizard3Step();
         submitWizard4Step();
-        submitWizard5Step();
         switchToPekamaWindow();
         String actualUrl = getActualUrl();
         Assert.assertEquals

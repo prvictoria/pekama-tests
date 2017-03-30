@@ -29,8 +29,8 @@ public class CommunityWizard extends Page {
     public static final SelenideElement WIZARD_INPUT_CaseType = $(byXpath("//div[@class='panel-body']//div[@name='matterType']//input"));
     public static final SelenideElement WIZARD_SELECT_Defining = $(byXpath("//div[@class='panel-body']//div[@name='defining']//span"));
     public static final SelenideElement WIZARD_INPUT_Defining = $(byXpath("//div[@class='panel-body']//div[@name='defining']//input"));
-    public static final SelenideElement WIZARD_SELECT_ExpertType = $(byXpath("//div[@class='panel-body']//div[@name='expertiseType']//span"));
-    public static final SelenideElement WIZARD_INPUT_ExpertType = $(byXpath("//div[@class='panel-body']//div[@name='expertiseType']//input"));
+    public static final SelenideElement WIZARD_SELECT_Service = $(byXpath("//div[@class='panel-body']//div[@name='expertiseType']//span"));
+    public static final SelenideElement WIZARD_INPUT_Service = $(byXpath("//div[@class='panel-body']//div[@name='expertiseType']//input"));
 
     //2nd step
     public static String expertRowLabel = "//div[@profile='profile']//span[contains(.,'Member of %s')]";

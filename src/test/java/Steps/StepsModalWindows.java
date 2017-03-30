@@ -34,10 +34,16 @@ public class StepsModalWindows implements StepsFactory {
     static final Logger rootLogger = LogManager.getRootLogger();
     public static boolean waitForModalWindow(String modalTitle) {
         rootLogger.info("Wait for '"+modalTitle+"' modal window");
-        MW.waitUntil(visible, 15000).shouldBe(visible);
-        //MW.should(matchText(modalTitle));
+        MW.waitUntil(visible, 20000).shouldBe(visible);
         MW.shouldHave(text(modalTitle));
         rootLogger.info("modal window '"+modalTitle+"' was opened");
+        return true;
+    }
+    public static boolean waitForModalWindowNotPresent(String modalTitle) {
+        rootLogger.info("Wait for '"+modalTitle+"' modal window no present");
+        MW.waitUntil(not(visible), 20000).shouldNotBe(visible);
+        MW.shouldNotHave(text(modalTitle));
+        rootLogger.info("modal window '"+modalTitle+"' was not visible");
         return true;
     }
     public static void submitConfirmAction(){
@@ -67,6 +73,53 @@ public class StepsModalWindows implements StepsFactory {
         MW_BTN_OK.shouldBe(visible).click();
         sleep(500);
         MW.shouldNotBe(visible);
+    }
+    public static String submitMwBoostProfile(String option){
+        waitForModalWindow(TITLE_MW_BOOST_YOUR_PROFILE);
+        if(option.equals("start")){
+            rootLogger.info("Boost Your profile - send new case");
+            MW_BOOST_YOUR_PROFILE_BTN_START_NEW_CASE.click();
+            waitForModalWindowNotPresent(TITLE_MW_BOOST_YOUR_PROFILE);
+            return option;
+        }
+        if(option.equals("refer")){
+            rootLogger.info("Boost Your profile - Invite an Attorney");
+            MW_BOOST_YOUR_PROFILE_BTN_REFER_ATTORNEY.click();
+            return option;
+        }
+        if(option.equals("invite")){
+            MW_BOOST_YOUR_PROFILE_BTN_INVITE_MEMBER.click();
+            waitForModalWindowNotPresent(TITLE_MW_BOOST_YOUR_PROFILE);
+            return option;
+        }
+        escapeModalWindow();
+        return null;
+    }
+    public static String submitMwInviteAttorney(Boolean invite, String email, String message){
+        waitForModalWindow(TITLE_MW_INVITE_AN_ATTORNEY);
+        if(invite==false){
+            rootLogger.info("Cancel");
+            MW_COMMUNITY_INVITE_ATTORNEY_BTN_CANCEL.click();
+            return null;
+        }
+        if(invite==true){
+            rootLogger.info("Click Invite");
+            MW_COMMUNITY_INVITE_ATTORNEY_BTN_INVITE.click();
+        }
+        if(email!=null){
+            rootLogger.info("Fill email address");
+            fillField(MW_COMMUNITY_INVITE_FIELD_EMAIL, email);
+        }
+        if(message!=null){
+            rootLogger.info("Type custom text");
+            fillField(MW_COMMUNITY_INVITE_FIELD_MESSAGE, message);
+        }
+        if(invite==true){
+            rootLogger.info("Click Invite");
+            MW_COMMUNITY_INVITE_ATTORNEY_BTN_INVITE.click();
+            return message;
+        }
+        return null;
     }
     public static String submitMwNewProject(String projectCustomName) {
         String projectType = MATTER_TYPE_TRADEMARK;
@@ -133,6 +186,8 @@ public class StepsModalWindows implements StepsFactory {
         if(tmNumber!=null && (projectType.equals(MATTER_TYPE_TRADEMARK) || projectType.equals(MATTER_TYPE_PATENT))) {
             rootLogger.info("Fill TM number");
             fillField(MW_Project_TMNumber, tmNumber);
+            sleep(1000);
+            MW_Project_TMNumber.pressTab();
             sleep(1000);
         }
         sleep(2000);

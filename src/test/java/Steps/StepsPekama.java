@@ -260,7 +260,7 @@ public class StepsPekama implements StepsFactory{
 
     public static void selectItemInDropdown(SelenideElement uiSelectName, SelenideElement uiSelectInput, String inputValue) {
         rootLogger.info("select - "+inputValue);
-        uiSelectName.waitUntil(visible, 15000).click();
+        uiSelectName.waitUntil(visible, 20000).click();
         fillField(uiSelectInput, inputValue);
         CSS_SelectHighlighted.waitUntil(visible, 15000).click();
         rootLogger.info("selected - "+inputValue);

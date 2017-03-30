@@ -217,7 +217,6 @@ public class TestsCredentials {
 
     public enum Countries {
         AFGHANISTAN("Afghanistan"),
-        ALL_COUNTRIES("All countries"),
         AMERICAN_SAMOA("American Samoa"),
         GREENLAND("Greenland"),
         PITCAIRN_ISLANDS("Pitcairn Islands"),

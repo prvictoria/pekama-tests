@@ -3,9 +3,11 @@ package Tests;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
+import Page.TestsCredentials;
 import Page.TestsCredentials.User1;
 import Page.TestsCredentials.User3;
 import Steps.StepsPekama;
+import com.codeborne.selenide.Selenide;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
@@ -23,6 +25,7 @@ import static Page.PekamaLanding.*;
 import static Page.PekamaPersonalSettings.*;
 import static Page.PekamaReports.*;
 import static Page.PekamaTeamSettings.*;
+import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlConfig.setEnvironment;
@@ -33,9 +36,12 @@ import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
 import static Tests.BeforeTestsSetUp.setBrowser;
 import static Utils.Utils.*;
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Configuration.timeout;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
+import static org.openqa.selenium.support.ui.ExpectedConditions.alertIsPresent;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaDashboard {
@@ -322,7 +328,6 @@ public class TestsPekamaDashboard {
         checkText(ERROR_MSG_VALIDATION_LENGTH_1024);
         rootLogger.info("Validation Title max length passed");
     }
-
     @Test
     public void testF5_ModalNewProjectValidation() {
         DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 20000).click();
@@ -341,9 +346,15 @@ public class TestsPekamaDashboard {
         submitMwNewProject(
                 "VALID",
                 MATTER_TYPE_TRADEMARK,
-                null,
+                Countries.PITCAIRN_ISLANDS.getValue(),
                 null,
                 randomString(256));
+        try{
+            Selenide.Wait().withTimeout(70000, MILLISECONDS).until(alertIsPresent());
+            confirm("GATEWAY_TIMEOUT");
+        }
+        catch (org.openqa.selenium.TimeoutException e){
+            rootLogger.info("Timeout Gateway prompt not present");}
         checkText(ERROR_MSG_VALIDATION_LENGTH_255);
         rootLogger.info("Validation max length TM number - passed");
     }
@@ -351,17 +362,18 @@ public class TestsPekamaDashboard {
     public void testF7_ModalNewProjectValidation() {
         DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 20000).click();
         submitMwNewProject(
-                "VALID",
+                null,
                 MATTER_TYPE_TRADEMARK,
+                Countries.PITCAIRN_ISLANDS.getValue(),
                 null,
-                null,
-                randomString(50));
-        ExpectedConditions.alertIsPresent().wait(2000);
-        confirm("Ok");
-        try{confirm("Ok");}
+                randomString(10));
+        try{
+            Selenide.Wait().withTimeout(70000, MILLISECONDS).until(alertIsPresent());
+            confirm("GATEWAY_TIMEOUT");
+        }
         catch (org.openqa.selenium.TimeoutException e){
             rootLogger.info("Timeout Gateway prompt not present");}
-        checkText("Official data not found. We will notify you once it become available. ");
+        checkText("Official data not found.");
         rootLogger.info("Wrong TM number check that tooltip present - passed");
     }
     @Test
@@ -374,10 +386,6 @@ public class TestsPekamaDashboard {
                 null,
                 "76686873");
         checkModalWindowNotPresent(70000);
-//        try{confirm("Ok");}
-//        catch (org.openqa.selenium.TimeoutException e){
-//            rootLogger.info("Timeout Gateway prompt not present");}
-        //checkText("Official data not found. We will notify you once it become available. ");
         checkText(projectName);
         rootLogger.info("Valid TM number check - passed");
     }
