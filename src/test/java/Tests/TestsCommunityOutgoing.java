@@ -66,6 +66,7 @@ public class TestsCommunityOutgoing {
     }
     @Before
     public void before() {
+        clearBrowserCache();
         rootLogger.info("Open host");
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(
@@ -79,12 +80,6 @@ public class TestsCommunityOutgoing {
         openUrlWithBaseAuth(URL_COMMUNITY_LOGOUT);
         rootLogger.info("Open URL - "+URL_COMMUNITY_LOGOUT);
     }
-
-    @AfterClass
-    public static void afterClass() {
-        clearBrowserCache();
-    }
-
     @Test
     public void testA_EditCaseName() {
         rootLogger.info("Create case");

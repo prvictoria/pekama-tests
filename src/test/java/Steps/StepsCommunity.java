@@ -60,6 +60,7 @@ public class StepsCommunity implements StepsFactory{
         }
         sleep(1000);
    }
+    @Deprecated
     public static String searchExpertsSubmit() {
         WIZARD_BTN_GetStarted.shouldBe(enabled).click();
         searchQueryUrl = url();
@@ -486,8 +487,6 @@ public class StepsCommunity implements StepsFactory{
         String caseName = "DEFAULT_CASE"+randomString(10);
 
         searchExpertsQuery(caseType, caseCountry, COMMUNITY_SERVICE);
-        searchExpertsSubmit();
-
         rootLogger.info("2nd Step - select expert");
         WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.shouldBe(disabled);
         selectExpert(expertTeam);
@@ -522,8 +521,6 @@ public class StepsCommunity implements StepsFactory{
         String caseName = "DEFAULT_CASE"+randomString(10);
 
         searchExpertsQuery(caseType, caseCountry, COMMUNITY_SERVICE);
-        searchExpertsSubmit();
-
         rootLogger.info("2nd Step - select expert");
         WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.shouldBe(disabled);
         selectExpert(expertTeam);

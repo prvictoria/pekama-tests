@@ -104,7 +104,6 @@ public class TestsCommunityDashboard {
         String caseType = MATTER_TYPE_PATENT;
         String country = Countries.PITCAIRN_ISLANDS.getValue();
         searchExpertsQuery(caseType, country, COMMUNITY_SERVICE);
-        searchExpertsSubmit();
         COMMUNITY_INNRER_BTN_SIGNUP.shouldBe(Condition.visible);
         COMMUNITY_INNRER_BTN_LOGIN.shouldBe(Condition.visible).click();
         sleep(1500);
