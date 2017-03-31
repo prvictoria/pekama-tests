@@ -153,7 +153,6 @@ public class TestsCommunityOutgoing {
         rootLogger.info("Cancel case");
         cancelCase(caseName, true);
         rootLogger.info("Test passed");
-
     }
     @Test
     public void testF2_cancelCase() {

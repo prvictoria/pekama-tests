@@ -3,6 +3,7 @@
  * https://www.linkedin.com/in/viachaslau
  */
 package Tests;
+import Steps.User;
 import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,7 +33,8 @@ import static com.codeborne.selenide.WebDriverRunner.url;
 import static org.junit.Assert.assertEquals;
 public class TestsCommunityDashboard {
     static final Logger rootLogger = LogManager.getRootLogger();
-    String userEmail = User2.GMAIL_EMAIL.getValue();
+    String email = User2.GMAIL_EMAIL.getValue();
+    String password = User2.PEKAMA_PASSWORD.getValue();
     @Rule
     public Timeout tests = Timeout.seconds(600);
     @BeforeClass
@@ -73,63 +75,48 @@ public class TestsCommunityDashboard {
 
     @Test
     public void redirectBackFromHeaderLogin() {
+        sleep(1500);
+        String urlBeforeLogin = getActualUrl();
         COMMUNITY_HEADER_LOGIN.shouldBe(Condition.visible).click();
-        sleep(1500);
-        $(loginField_Email).sendKeys(userEmail);
-        $(loginField_Password).sendKeys(GENERIC_PEKAMA_PASSWORD);
-        loginButton_Login.click();
-        btnLogin.shouldBe(Condition.not(visible));
-        btnSignup.shouldBe(Condition.not(visible));
-        rootLogger.info("Valid Credentials were submitted");
-        sleep(1500);
-        String urlAfterLogin = url();
+        User user = new User();
+        user.submitLoginCredentials(email, password);
+
+        sleep(2000);
+        rootLogger.info("Check default selection");
+        checkWizard1StepSelection(
+                MATTER_TYPE_PATENT,
+                Countries.ALL.getValue(),
+                "Choose supplier type...");
+        String urlAfterLogin = getActualUrl();
         rootLogger.info(urlAfterLogin);
-        assertEquals(URL_COMMUNITY_WIZARD, urlAfterLogin);
+        assertEquals(urlBeforeLogin, urlAfterLogin);
         rootLogger.info("User redirected back to Wizard");
-        COMMUNITY_HEADER_UserDropdown.click();
-        COMMUNITY_HEADER_LogOut.shouldBe(Condition.visible).click();
-        sleep(1500);
-        String urlAfterLogout = url();
-        rootLogger.info(urlAfterLogout);
-        assertEquals(ENVIRONMENT_COMMUNITY +"/", urlAfterLogout);
-        rootLogger.info("User logged out");
+        Assert.assertTrue(logoutCommunity());
         rootLogger.info("Test Passed");
     }
 
     @Test
     public void checkWizardLoginRedirect() {
+        sleep(1500);
+        String urlBeforeLogin = getActualUrl();
         COMMUNITY_HEADER_LOGIN.shouldBe(Condition.visible);
         COMMUNITY_TAB_Supplier.shouldBe(Condition.visible).shouldHave(Condition.text("find a supplier")).click();
-        WIZARD_BTN_GetStarted.shouldBe(visible).shouldBe(disabled);
-        String caseType = MATTER_TYPE_PATENT;
-        String country = Countries.PITCAIRN_ISLANDS.getValue();
-        searchExpertsQuery(caseType, country, COMMUNITY_SERVICE);
+
         COMMUNITY_INNRER_BTN_SIGNUP.shouldBe(Condition.visible);
         COMMUNITY_INNRER_BTN_LOGIN.shouldBe(Condition.visible).click();
-        sleep(1500);
-        loginField_Email.sendKeys(userEmail);
-        loginField_Password.sendKeys(GENERIC_PEKAMA_PASSWORD);
-        loginButton_Login.click();
-        btnLogin.shouldBe(Condition.not(visible));
-        btnSignup.shouldBe(Condition.not(visible));
-        rootLogger.info("Valid Credentials were submitted");
-        sleep(2000);
+        User user = new User();
+        user.submitLoginCredentials(email, password);
+
+        sleep(3000);
         String urlAfterLogin = url();
         rootLogger.info(urlAfterLogin);
-        assertEquals(searchQueryUrl, urlAfterLogin);
-        rootLogger.info("User redirected back to Incoming");
+        assertEquals(urlBeforeLogin, urlAfterLogin);
+        rootLogger.info("User redirected back to Wizard");
 
         WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.waitUntil(visible, 10000).shouldBe(disabled);
-        rootLogger.info("All elements in STEP 2 displayed for authorized user");
+        rootLogger.info("All elements in STEP#1 displayed for authorized user");
 
-        COMMUNITY_HEADER_UserDropdown.click();
-        COMMUNITY_HEADER_LogOut.shouldBe(Condition.visible).click();
-        sleep(1500);
-
-        String urlAfterLogout = url();
-        rootLogger.info(urlAfterLogout);
-        assertEquals(ENVIRONMENT_COMMUNITY +"/", urlAfterLogout);
-        rootLogger.info("User logged out");
+        Assert.assertTrue(logoutCommunity());
         rootLogger.info("Test Passed");
     }
 
@@ -140,26 +127,16 @@ public class TestsCommunityDashboard {
         COMMUNITY_INNRER_BTN_SIGNUP.shouldBe(Condition.visible);
         COMMUNITY_INNRER_BTN_LOGIN.shouldBe(Condition.visible).click();
         rootLogger.info("All elements in Outgoing Tab displayed for Guest user");
-        sleep(1500);
-        loginField_Email.sendKeys(userEmail);
-        loginField_Password.sendKeys(GENERIC_PEKAMA_PASSWORD);
-        loginButton_Login.click();
-        btnLogin.shouldBe(Condition.not(visible));
-        btnSignup.shouldBe(Condition.not(visible));
-        rootLogger.info("Valid Credentials were submitted");
-        sleep(1500);
+        User user = new User();
+        user.submitLoginCredentials(email, password);
+
+        sleep(3000);
         String urlAfterLogin = url();
         rootLogger.info(urlAfterLogin);
         assertEquals(URL_COMMUNITY_OUTGOING, urlAfterLogin);
         rootLogger.info("User redirected back to Incoming");
-        COMMUNITY_HEADER_UserDropdown.click();
-        COMMUNITY_HEADER_LogOut.shouldBe(Condition.visible).click();
-        sleep(3000);
-        LANDING_SIGNUP.waitUntil(visible, 20000);
-        String urlAfterLogout = url();
-        rootLogger.info(urlAfterLogout);
-        assertEquals(ENVIRONMENT_COMMUNITY +"/", urlAfterLogout);
-        rootLogger.info("User logged out");
+
+        Assert.assertTrue(logoutCommunity());
         rootLogger.info("Test Passed");
 
     }
@@ -170,27 +147,16 @@ public class TestsCommunityDashboard {
         COMMUNITY_INNRER_BTN_SIGNUP.shouldBe(Condition.visible);
         COMMUNITY_INNRER_BTN_LOGIN.shouldBe(Condition.visible).click();
         rootLogger.info("All elements in Incoming Tab displayed for Guest user");
-        sleep(1500);
-        loginField_Email.sendKeys(userEmail);
-        loginField_Password.sendKeys(GENERIC_PEKAMA_PASSWORD);
-        loginButton_Login.click();
-        btnLogin.shouldBe(Condition.not(visible));
-        btnSignup.shouldBe(Condition.not(visible));
-        rootLogger.info("Valid Credentials were submitted");
-        sleep(1500);
+        User user = new User();
+        user.submitLoginCredentials(email, password);
+
+        sleep(3000);
         String urlAfterLogin = url();
         rootLogger.info(urlAfterLogin);
         assertEquals(URL_COMMUNITY_INCOMING, urlAfterLogin);
         rootLogger.info("User redirected back to Incoming");
-        COMMUNITY_HEADER_UserDropdown.click();
-        COMMUNITY_HEADER_LogOut.shouldBe(Condition.visible).click();
-        sleep(1500);
-        String urlAfterLogout = url();
-        rootLogger.info(urlAfterLogout);
-        assertEquals(ENVIRONMENT_COMMUNITY +"/", urlAfterLogout);
-        rootLogger.info("User logged out");
+        Assert.assertTrue(logoutCommunity());
         rootLogger.info("Test Passed");
-
     }
 
     @Test
@@ -201,25 +167,15 @@ public class TestsCommunityDashboard {
         COMMUNITY_INNRER_BTN_SIGNUP.shouldBe(Condition.visible);
         COMMUNITY_INNRER_BTN_LOGIN.shouldBe(Condition.visible).click();
         rootLogger.info("All elements in Profile Tab displayed for Guest user");
-        sleep(1500);
-        loginField_Email.sendKeys(userEmail);
-        loginField_Password.sendKeys(GENERIC_PEKAMA_PASSWORD);
-        loginButton_Login.click();
-        btnLogin.shouldBe(Condition.not(visible));
-        btnSignup.shouldBe(Condition.not(visible));
-        rootLogger.info("Valid Credentials were submitted");
-        sleep(1500);
+        User user = new User();
+        user.submitLoginCredentials(email, password);
+
+        sleep(3000);
         String urlAfterLogin = url();
         rootLogger.info(urlAfterLogin);
         assertEquals(URL_COMMUNITY_PROFILE_TEAM, urlAfterLogin);
         rootLogger.info("User redirected back to Incoming");
-        COMMUNITY_HEADER_UserDropdown.click();
-        COMMUNITY_HEADER_LogOut.shouldBe(Condition.visible).click();
-        sleep(1500);
-        String urlAfterLogout = url();
-        rootLogger.info(urlAfterLogout);
-        assertEquals(ENVIRONMENT_COMMUNITY +"/", urlAfterLogout);
-        rootLogger.info("User logged out");
+        Assert.assertTrue(logoutCommunity());
         rootLogger.info("Test Passed");
     }
 }

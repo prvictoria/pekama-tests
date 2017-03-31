@@ -19,6 +19,8 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.url;
+import static org.junit.Assert.assertEquals;
+
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
@@ -415,7 +417,7 @@ public class StepsCommunity implements StepsFactory{
     }
     public static boolean cancelCase(String caseName, boolean sendMsgToCollaborator) {
         String status = COMMUNITY_STATUS_CANCELLED;
-        rootLogger.info(caseName);
+        rootLogger.info("Cancel case - "+caseName);
         String row = String.format(caseRowByName, caseName);
         rootLogger.info(row);
         $(byXpath(row)).waitUntil(visible, 20000);
@@ -552,10 +554,7 @@ public class StepsCommunity implements StepsFactory{
         String caseType = MATTER_TYPE_PATENT;
         String caseCountry = TestsCredentials.Countries.PITCAIRN_ISLANDS.getValue();
         String caseName = "DEFAULT_DRAFT_CASE" + randomString(10);
-
         searchExpertsQuery(caseType, caseCountry, COMMUNITY_SERVICE);
-        searchExpertsSubmit();
-
         rootLogger.info("2nd Step - select expert");
         WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.shouldBe(disabled);
         selectExpert(expertTeam);
@@ -571,5 +570,14 @@ public class StepsCommunity implements StepsFactory{
         BTN_SEND_INSTRUCTION.shouldBe(visible);
         return caseName;
     }
-
+    public static boolean logoutCommunity(){
+        COMMUNITY_HEADER_UserDropdown.shouldBe(visible).click();
+        COMMUNITY_HEADER_LogOut.shouldBe(visible).click();
+        sleep(3000);
+        String urlAfterLogout = url();
+        rootLogger.info(urlAfterLogout);
+        assertEquals(ENVIRONMENT_COMMUNITY +"/", urlAfterLogout);
+        rootLogger.info("User is logged out and redirected to Landing");
+        return true;
+    }
 }
