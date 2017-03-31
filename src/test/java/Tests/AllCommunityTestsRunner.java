@@ -10,6 +10,7 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         TestsCommunityIntegration.class,
+        TestCommunityIntegrationRedirect.class,
         TestsCommunityDashboard.class,
         TestsCommynityLanding.class,
         TestsCommunityWizard.class,

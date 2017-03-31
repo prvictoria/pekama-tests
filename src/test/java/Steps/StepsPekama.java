@@ -23,8 +23,7 @@ import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
-import static Steps.StepsCommunity.acceptCancelCase;
-import static Steps.StepsCommunity.acceptWithdrawCase;
+import static Steps.StepsCommunity.*;
 import static Steps.StepsHttpAuth.*;
 import static Steps.StepsModalWindows.*;
 import static Utils.Utils.getDate;
@@ -111,14 +110,20 @@ public class StepsPekama implements StepsFactory{
     }
     public static void  submitCookie(int waitTimeSec){
         rootLogger.info("Check if cookie present");
-        int i =0;
-        while ($(byText("Got it!")).isDisplayed()==false || i<waitTimeSec){
+        int i = 0;
+        while ($(byText("Got it!")).isDisplayed()==false && i<waitTimeSec){
             sleep(1000);
             i++;
             if($(byText("Got it!")).isDisplayed()){
+                $(byText("Got it!")).click();
+                rootLogger.info("cookie were submitted");
+                return;
+                }
+        }
+        if($(byText("Got it!")).isDisplayed()) {
             $(byText("Got it!")).click();
             rootLogger.info("cookie were submitted");
-            break;}
+            return;
         }
     }
     public static void waitForSpinnerNotPresent(){
@@ -997,6 +1002,11 @@ public class StepsPekama implements StepsFactory{
         switchToCommunityWindow();
         sleep(2000);
     }
+    public static void switchToWindowByIndex(int windowIndex, int windowsQty){
+        checkThatWindowsQtyIs(windowsQty);
+        switchTo().window(windowIndex);
+        sleep(2000);
+    }
     public static void switchToPekama(){
         checkThatWindowsQtyIs(2);
         switchToPekamaWindow();
@@ -1012,14 +1022,30 @@ public class StepsPekama implements StepsFactory{
         rootLogger.info("Withdraw case");
         TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_SENT));
         TAB_INFO_COMMUNITY_CASE_ACTION.shouldBe(visible).click();
-        acceptWithdrawCase(true);
+        acceptWithdrawCase(sendMsgToCollaborator);
         TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_WITHDRAWN));
     }
     public static void cancelCaseInPekama(boolean sendMsgToCollaborator){
-        rootLogger.info("Withdraw case");
+        rootLogger.info("Cancel case");
         TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_DRAFT));
         TAB_INFO_COMMUNITY_CASE_ACTION.shouldBe(visible).click();
-        acceptWithdrawCase(true);
+        acceptCancelCase(sendMsgToCollaborator);
         TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_CANCELLED));
     }
+    public static void confirmCaseInPekama(boolean sendMsgToCollaborator){
+        rootLogger.info("Confirm case");
+        TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_RECEIVED));
+        TAB_INFO_COMMUNITY_CASE_ACTION.shouldBe(visible).click();
+        acceptConfirmInstruction(sendMsgToCollaborator);
+        TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_CONFIRMED));
+    }
+    public static void completeCaseInPekama(boolean sendMsgToCollaborator){
+        rootLogger.info("Complete case");
+        TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_CONFIRMED));
+        TAB_INFO_COMMUNITY_CASE_ACTION.shouldBe(visible).click();
+        acceptCompletion(sendMsgToCollaborator);
+        TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_COMPLETED));
+    }
+
+
 }

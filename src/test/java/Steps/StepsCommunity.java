@@ -161,7 +161,7 @@ public class StepsCommunity implements StepsFactory{
             rootLogger.info("Message will send to Collaborator");
             MW_COMMUNITY_BTN_YES.click();}
         if (sendMsgToCollaborator==false){
-            rootLogger.info("Withdraw case without notification");
+            rootLogger.info("Cancel case without notification");
             MW_CANCEL_LINK_SUBMIT_WITHOUT_MSG.click();}
         MW_CANCEL_CASE_TITLE.shouldNotBe(visible);
         rootLogger.info("MW closed");
@@ -579,5 +579,17 @@ public class StepsCommunity implements StepsFactory{
         assertEquals(ENVIRONMENT_COMMUNITY +"/", urlAfterLogout);
         rootLogger.info("User is logged out and redirected to Landing");
         return true;
+    }
+    public static void checkOutgoingDetailedCaseView(String caseName, String caseStatus){
+        COMMUNITY_TAB_TITLE.shouldHave(text("Outgoing Cases"));
+        checkText(caseName);
+        checkText("Show all outgoing cases");
+        checkText(caseStatus);
+    }
+    public static void checkIncomingDetailedCaseView(String caseName, String caseStatus){
+        COMMUNITY_TAB_TITLE.shouldHave(text("Incoming Cases"));
+        checkText(caseName);
+        checkText("Show all incoming cases");
+        checkText(caseStatus);
     }
 }

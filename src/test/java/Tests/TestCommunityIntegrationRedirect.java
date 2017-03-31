@@ -11,6 +11,7 @@ import org.junit.*;
 import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
 
+import java.awt.*;
 import java.io.IOException;
 
 import static Page.CommunityDashboard.*;
@@ -83,15 +84,15 @@ public class TestCommunityIntegrationRedirect {
         refresh();
         TAB_INFO_COMMUNITY_CASES_LIST.shouldHaveSize(1);
         TAB_INFO_COMMUNITY_CASE_ROW.click();
-        switchToCommunity(3);
+        switchToWindowByIndex(2, 3);
         COMMUNITY_BTN_SendInstructions.waitUntil(visible, 20000);
         rootLogger.info("Redirected to Wizard - Test passed");
     }
     @Test
     public void redirectFormPekamaToCommunity_A2_SupplierDraft() {
-        testProjectURL = "https://staging.pekama.com/a/projects/30551/info";
-        testProjectTitle = "DEFAULT_PROJECT_SUV77RO3Q0";
-        caseName = "INTEGRATION_CASE_KW3QPAGWUG";
+//        testProjectURL = "https://staging.pekama.com/a/projects/30551/info";
+//        testProjectTitle = "DEFAULT_PROJECT_SUV77RO3Q0";
+//        caseName = "INTEGRATION_CASE_KW3QPAGWUG";
         User requester = new User();
         requester.submitLoginCredentials(EXPERT_EMAIL, EXPERT_PEKAMA_PASSWORD);
 
@@ -102,13 +103,12 @@ public class TestCommunityIntegrationRedirect {
         TAB_INFO_COMMUNITY_CASE_ROW.click();
         switchToCommunity(2);
         submitCookie(30);
-        COMMUNITY_TAB_TITLE.shouldHave(text("Incoming Cases"));
-        checkText(caseName);
+        checkIncomingDetailedCaseView(caseName, COMMUNITY_STATUS_INQUIRY);
         rootLogger.info("Redirected to Incoming - Test passed");
     }
 
     @Test
-    public void redirectFormPekamaToCommunity_B1_RequesterCancelled() {
+    public void redirectFormPekamaToCommunity_B1_RequesterCancelled() throws AWTException {
         User requester = new User();
         requester.submitLoginCredentials(REQUESTER_EMAIL, REQUESTER_PEKAMA_PASSWORD);
         DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 30000).click();
@@ -117,25 +117,28 @@ public class TestCommunityIntegrationRedirect {
 
         TAB_INFO_COMMUNITY_BTN_START_NEW.waitUntil(visible, 20000).click();
         switchToCommunity();
-        submitCookie(30);
+        submitCookie(15);
         wizardSelectExpert(EXPERT_TEAM_NAME);
         submitWizard2Step(caseName);
+        submitWizard3Step();
+        WIZARD_BTN_CANCEL.shouldBe(visible).click();
+        acceptCancelCase(false);
 
         rootLogger.info("Check that if requester clicks on case (with status == DRAFT/CANCELLED) it leads to redirect to the Community (Wizard) with relevant case in detailed view");
-        switchToPekama();
+
+        switchToPekama(2);
         refresh();
-        cancelCaseInPekama(false);
         TAB_INFO_COMMUNITY_CASES_LIST.shouldHaveSize(1);
         TAB_INFO_COMMUNITY_CASE_ROW.click();
-        switchToCommunity(3);
+        switchToWindowByIndex(2, 3);
         checkText(COMMUNITY_STATUS_CANCELLED);
         rootLogger.info("Redirected to Wizard - Test passed");
     }
     @Test
     public void redirectFormPekamaToCommunity_B2_SupplierCancelled() {
-        testProjectURL = "https://staging.pekama.com/a/projects/30551/info";
-        testProjectTitle = "DEFAULT_PROJECT_SUV77RO3Q0";
-        caseName = "INTEGRATION_CASE_KW3QPAGWUG";
+//        testProjectURL = "https://staging.pekama.com/a/projects/30563/info";
+//        testProjectTitle = "DEFAULT_PROJECT_8I6L92BGF2";
+//        caseName = "INTEGRATION_CASE_7SBHS1FQJ0";
         User requester = new User();
         requester.submitLoginCredentials(EXPERT_EMAIL, EXPERT_PEKAMA_PASSWORD);
 
@@ -145,48 +148,161 @@ public class TestCommunityIntegrationRedirect {
         TAB_INFO_COMMUNITY_CASES_LIST.shouldHaveSize(1);
         TAB_INFO_COMMUNITY_CASE_ROW.click();
         switchToCommunity(2);
-        submitCookie(30);
-        COMMUNITY_TAB_TITLE.shouldHave(text("Incoming Cases"));
-        checkText(caseName);
+        submitCookie(15);
+        checkIncomingDetailedCaseView(caseName, COMMUNITY_STATUS_CANCELLED);
         rootLogger.info("Redirected to Incoming - Test passed");
     }
 
     @Test
     public void redirectFormPekamaToCommunity_C1_RequesterSent() {
-        rootLogger.info("Check that if requester clicks on case(with status != DRAFT/CANCELLED) it leads to redirect to the Community (Outgoing cases) with relevant case in detailed view");
+        User requester = new User();
+        requester.submitLoginCredentials(REQUESTER_EMAIL, REQUESTER_PEKAMA_PASSWORD);
+        DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 30000).click();
+        testProjectTitle = submitMwNewProject();
+        testProjectURL = getActualUrl();
 
+        TAB_INFO_COMMUNITY_BTN_START_NEW.waitUntil(visible, 20000).click();
+        switchToCommunity();
+        submitCookie(15);
+        wizardSelectExpert(EXPERT_TEAM_NAME);
+        submitWizard2Step(caseName);
+        submitWizard3Step();
+        submitWizard4Step();
+
+        rootLogger.info("Check that if requester clicks on case(with status != DRAFT/CANCELLED) it leads to redirect to the Community (Outgoing cases) with relevant case in detailed view");
+        switchToPekama();
+        refresh();
+        TAB_INFO_COMMUNITY_CASE_ROW.click();
+        switchToWindowByIndex(2, 3);
+        submitCookie(5);
+        checkOutgoingDetailedCaseView(caseName, COMMUNITY_STATUS_SENT);
         rootLogger.info("Redirected to Outgoing - Test passed");
     }
     @Test
-    public void redirectFormPekamaToCommunity_C1_SupplierSent() {
-        rootLogger.info("Check that if supplier clicks on case (with any status) it leads to redirect to the Community (Incoming cases) with relevant case in detailed view");
+    public void redirectFormPekamaToCommunity_C2_SupplierSent() {
+//        testProjectURL = "https://staging.pekama.com/a/projects/30551/info";
+//        testProjectTitle = "DEFAULT_PROJECT_SUV77RO3Q0";
+//        caseName = "INTEGRATION_CASE_KW3QPAGWUG";
+        User requester = new User();
+        requester.submitLoginCredentials(EXPERT_EMAIL, EXPERT_PEKAMA_PASSWORD);
 
+        rootLogger.info("Check that if supplier clicks on case (with any status) it leads to redirect to the Community (Incoming cases) with relevant case in detailed view");
+        openUrlWithBaseAuth(testProjectURL);
+        checkText(testProjectTitle);
+        TAB_INFO_COMMUNITY_CASES_LIST.shouldHaveSize(1);
+        TAB_INFO_COMMUNITY_CASE_ROW.click();
+        switchToCommunity(2);
+        submitCookie(15);
+        checkIncomingDetailedCaseView(caseName, COMMUNITY_STATUS_RECEIVED);
         rootLogger.info("Redirected to Incoming - Test passed");
+    }
+    @Test
+    public void redirectFormPekamaToCommunity_C3_SupplierConfirmed() {
+        User requester = new User();
+        requester.submitLoginCredentials(EXPERT_EMAIL, EXPERT_PEKAMA_PASSWORD);
+
+        rootLogger.info("Check that if supplier clicks on case (with any status) it leads to redirect to the Community (Incoming cases) with relevant case in detailed view");
+        openUrlWithBaseAuth(testProjectURL);
+        checkText(testProjectTitle);
+
+        confirmCaseInPekama(false);
+        TAB_INFO_COMMUNITY_CASES_LIST.shouldHaveSize(1);
+        TAB_INFO_COMMUNITY_CASE_ROW.click();
+        switchToCommunity(2);
+        submitCookie(15);
+        checkIncomingDetailedCaseView(caseName, COMMUNITY_STATUS_CONFIRMED);
+        rootLogger.info("Redirected to Incoming - Test passed");
+    }
+    @Test
+    public void redirectFormPekamaToCommunity_C4_RequesterConfirmed() {
+        User requester = new User();
+        requester.submitLoginCredentials(REQUESTER_EMAIL, REQUESTER_PEKAMA_PASSWORD);
+
+        openUrlWithBaseAuth(testProjectURL);
+        checkText(testProjectTitle);
+        rootLogger.info("Check that if requester clicks on case(with status != DRAFT/CANCELLED) it leads to redirect to the Community (Outgoing cases) with relevant case in detailed view");
+
+        TAB_INFO_COMMUNITY_CASE_ROW.click();
+        switchToCommunity();
+        submitCookie(5);
+        checkOutgoingDetailedCaseView(caseName, COMMUNITY_STATUS_CONFIRMED);
+        rootLogger.info("Redirected to Outgoing - Test passed");
     }
 
     @Test
-    public void redirectFormPekamaToCommunity_D1_RequesterWithdrawn() {
+    public void redirectFormPekamaToCommunity_C5_SupplierCompleted() {
+        User requester = new User();
+        requester.submitLoginCredentials(EXPERT_EMAIL, EXPERT_PEKAMA_PASSWORD);
+
+        rootLogger.info("Check that if supplier clicks on case (with any status) it leads to redirect to the Community (Incoming cases) with relevant case in detailed view");
+        openUrlWithBaseAuth(testProjectURL);
+        checkText(testProjectTitle);
+
+        completeCaseInPekama(false);
+
+        TAB_INFO_COMMUNITY_CASES_LIST.shouldHaveSize(1);
+        TAB_INFO_COMMUNITY_CASE_ROW.click();
+        switchToCommunity(2);
+        submitCookie(15);
+        checkIncomingDetailedCaseView(caseName, COMMUNITY_STATUS_COMPLETED);
+        rootLogger.info("Redirected to Incoming - Test passed");
+    }
+    @Test
+    public void redirectFormPekamaToCommunity_C6_RequesterCompleted() {
+        User requester = new User();
+        requester.submitLoginCredentials(REQUESTER_EMAIL, REQUESTER_PEKAMA_PASSWORD);
+
+        openUrlWithBaseAuth(testProjectURL);
+        checkText(testProjectTitle);
         rootLogger.info("Check that if requester clicks on case(with status != DRAFT/CANCELLED) it leads to redirect to the Community (Outgoing cases) with relevant case in detailed view");
 
+        TAB_INFO_COMMUNITY_CASE_ROW.click();
+        switchToCommunity();
+        submitCookie(5);
+        checkOutgoingDetailedCaseView(caseName, COMMUNITY_STATUS_COMPLETED);
+        rootLogger.info("Redirected to Outgoing - Test passed");
+    }
+    @Test
+    public void redirectFormPekamaToCommunity_D1_RequesterWithdrawn() {
+        User requester = new User();
+        requester.submitLoginCredentials(REQUESTER_EMAIL, REQUESTER_PEKAMA_PASSWORD);
+        DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 30000).click();
+        testProjectTitle = submitMwNewProject();
+        testProjectURL = getActualUrl();
+
+        TAB_INFO_COMMUNITY_BTN_START_NEW.waitUntil(visible, 20000).click();
+        switchToCommunity();
+        submitCookie(15);
+        wizardSelectExpert(EXPERT_TEAM_NAME);
+        submitWizard2Step(caseName);
+        submitWizard3Step();
+        submitWizard4Step();
+
+        rootLogger.info("Check that if requester clicks on case(with status != DRAFT/CANCELLED) it leads to redirect to the Community (Outgoing cases) with relevant case in detailed view");
+        switchToPekama();
+        refresh();
+        withdrawCaseInPekama(false);
+        TAB_INFO_COMMUNITY_CASE_ROW.click();
+        switchToWindowByIndex(2, 3);
+        submitCookie(5);
+        checkOutgoingDetailedCaseView(caseName, COMMUNITY_STATUS_WITHDRAWN);
         rootLogger.info("Redirected to Outgoing - Test passed");
     }
     @Test
     public void redirectFormPekamaToCommunity_D2_SupplierWithdrawn() {
-        rootLogger.info("Check that if supplier clicks on case (with any status) it leads to redirect to the Community (Incoming cases) with relevant case in detailed view");
+        User requester = new User();
+        requester.submitLoginCredentials(EXPERT_EMAIL, EXPERT_PEKAMA_PASSWORD);
 
+        rootLogger.info("Check that if supplier clicks on case (with any status) it leads to redirect to the Community (Incoming cases) with relevant case in detailed view");
+        openUrlWithBaseAuth(testProjectURL);
+        checkText(testProjectTitle);
+        TAB_INFO_COMMUNITY_CASES_LIST.shouldHaveSize(1);
+        TAB_INFO_COMMUNITY_CASE_ROW.click();
+        switchToCommunity(2);
+        submitCookie(15);
+        checkIncomingDetailedCaseView(caseName, COMMUNITY_STATUS_WITHDRAWN);
         rootLogger.info("Redirected to Incoming - Test passed");
     }
 
-    @Test
-    public void redirectFormPekamaToCommunity_SupplierConfirmed() {
-        rootLogger.info("Check that if supplier clicks on case (with any status) it leads to redirect to the Community (Incoming cases) with relevant case in detailed view");
 
-        rootLogger.info("Redirected to Incoming - Test passed");
-    }
-    @Test
-    public void redirectFormPekamaToCommunity_SupplierCompleted() {
-        rootLogger.info("Check that if supplier clicks on case (with any status) it leads to redirect to the Community (Incoming cases) with relevant case in detailed view");
-
-        rootLogger.info("Redirected to Incoming - Test passed");
-    }
 }
