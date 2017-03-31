@@ -83,9 +83,9 @@ public class TestsCommunityIntegration {
         TAB_INFO_COMMUNITY_BTN_START_NEW.waitUntil(visible, 20000).click();
         checkThatWindowsQtyIs(2);
         switchToCommunityWindow();
+        sleep(3000);
         submitCookie();
         wizardSelectExpert(EXPERT_TEAM_NAME);
-        submitCookie();
         submitWizard2Step(CASE_NAME);
         rootLogger.info("Case was created");
     }
@@ -188,8 +188,7 @@ public class TestsCommunityIntegration {
         PROJECT_TAB_CONTACTS.shouldBe(visible).click();
         checkText(OWNER);
         checkText(REQUESTER_FULL_TEAM_NAME);
-        checkText(INTRODUCER_NAME);
-        checkText(ADMIN, 2);
+        checkText(ADMIN);
         checkText(EXPERT_FULL_TEAM_NAME);
 
         deleteProject();
