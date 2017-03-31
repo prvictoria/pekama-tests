@@ -7,6 +7,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.WebDriverException;
 import java.util.Set;
+
+import static Page.CommunityDashboard.*;
 import static Page.ModalWindows.*;
 import static Page.PekamaDashboard.DROPDOWN_PROJECT_TEMPLATES_LIST;
 import static Page.PekamaLogin.*;
@@ -21,6 +23,8 @@ import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
+import static Steps.StepsCommunity.acceptCancelCase;
+import static Steps.StepsCommunity.acceptWithdrawCase;
 import static Steps.StepsHttpAuth.*;
 import static Steps.StepsModalWindows.*;
 import static Utils.Utils.getDate;
@@ -103,6 +107,18 @@ public class StepsPekama implements StepsFactory{
         if ($(byText("Got it!")).isDisplayed()){
             $(byText("Got it!")).click();
             rootLogger.info("cookie were submitted");
+        }
+    }
+    public static void  submitCookie(int waitTimeSec){
+        rootLogger.info("Check if cookie present");
+        int i =0;
+        while ($(byText("Got it!")).isDisplayed()==false || i<waitTimeSec){
+            sleep(1000);
+            i++;
+            if($(byText("Got it!")).isDisplayed()){
+            $(byText("Got it!")).click();
+            rootLogger.info("cookie were submitted");
+            break;}
         }
     }
     public static void waitForSpinnerNotPresent(){
@@ -990,5 +1006,20 @@ public class StepsPekama implements StepsFactory{
         checkThatWindowsQtyIs(windowsQty);
         switchToPekamaWindow();
         sleep(2000);
+    }
+    //Community area
+    public static void withdrawCaseInPekama(boolean sendMsgToCollaborator){
+        rootLogger.info("Withdraw case");
+        TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_SENT));
+        TAB_INFO_COMMUNITY_CASE_ACTION.shouldBe(visible).click();
+        acceptWithdrawCase(true);
+        TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_WITHDRAWN));
+    }
+    public static void cancelCaseInPekama(boolean sendMsgToCollaborator){
+        rootLogger.info("Withdraw case");
+        TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_DRAFT));
+        TAB_INFO_COMMUNITY_CASE_ACTION.shouldBe(visible).click();
+        acceptWithdrawCase(true);
+        TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_CANCELLED));
     }
 }

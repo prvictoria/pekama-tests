@@ -90,7 +90,6 @@ public class TestsCommunityIntegration {
         submitWizard2Step(CASE_NAME);
         rootLogger.info("Case was created");
     }
-
     @Test
     public void deleteProjectIfCaseIsDraft() {
         switchToPekamaWindow();
@@ -295,7 +294,7 @@ public class TestsCommunityIntegration {
         rootLogger.info("Test passed");
     }
     @Test
-    public void cancelCaseInPekama_MsgFalse() {
+    public void withdrawCaseInPekama_MsgFalse() {
         submitWizard3Step();
         submitWizard4Step();
         switchToPekamaWindow();
@@ -304,18 +303,13 @@ public class TestsCommunityIntegration {
                 ("Opened url not same to the project url", testProjectURL, actualUrl);
         refresh();
 
-        rootLogger.info("Withdraw case");
         sleep(4000);
         TAB_INFO_COMMUNITY_CASE_NAME.waitUntil(visible, 15000).shouldHave(text(CASE_NAME));
-        TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_SENT));
-        TAB_INFO_COMMUNITY_CASE_ACTION.shouldBe(visible).click();
-        acceptWithdrawCase(false);
-
-        TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_WITHDRAWN));
+        withdrawCaseInPekama(false);
         rootLogger.info("Test passed");
     }
     @Test
-    public void cancelCaseInPekama_MsgTrue() {
+    public void withdrawCaseInPekama_MsgTrue() {
         submitWizard3Step();
         submitWizard4Step();
         switchToPekamaWindow();
@@ -324,14 +318,9 @@ public class TestsCommunityIntegration {
                 ("Opened url not same to the project url", testProjectURL, actualUrl);
         refresh();
 
-        rootLogger.info("Withdraw case");
         sleep(4000);
         TAB_INFO_COMMUNITY_CASE_NAME.waitUntil(visible, 15000).shouldHave(text(CASE_NAME));
-        TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_SENT));
-        TAB_INFO_COMMUNITY_CASE_ACTION.shouldBe(visible).click();
-        acceptWithdrawCase(true);
-
-        TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_WITHDRAWN));
+        withdrawCaseInPekama(true);
         rootLogger.info("Test passed");
-    }
+}
 }

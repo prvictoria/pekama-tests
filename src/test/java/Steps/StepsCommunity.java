@@ -260,6 +260,7 @@ public class StepsCommunity implements StepsFactory{
         rootLogger.info("2nd Step - select NEXT");
         fillField(WIZARD_FIELD_CASE_NAME, caseName);
         WIZARD_BTN_NEXT.click();
+        sleep(2000);
         return caseName;
     }
     public static String submitWizard3Step(){

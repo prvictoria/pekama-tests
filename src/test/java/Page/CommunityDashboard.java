@@ -27,6 +27,7 @@ public class CommunityDashboard extends Page {
     public static final SelenideElement COMMUNITY_TAB_Experts = $(byXpath("//a[contains(@href, '/a/community/experts')]"));
     public static final SelenideElement COMMUNITY_TAB_Profile = $(byXpath("//a[contains(@href, '/a/community/profile')]"));
 
+    public static final SelenideElement COMMUNITY_TAB_TITLE = $(byXpath("//*[@class='panel-heading']//*[@class='title']"));
     public static final SelenideElement COMMUNITY_INNRER_BTN_SIGNUP = $(byXpath("//a[@type='button' and contains(.,'Sign up')]"));
     public static final SelenideElement COMMUNITY_INNRER_BTN_LOGIN = $(byXpath("//a[@type='button' and contains(.,'Login')]"));
 

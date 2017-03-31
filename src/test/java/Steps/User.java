@@ -62,6 +62,8 @@ public class User {
         if(password!=null) {
             fillField(loginField_Password, password);
         }
+        submitCookie();
+        hideZopim();
         submitEnabledButton(loginButton_Login);
         sleep(5000);
     }
