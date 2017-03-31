@@ -31,6 +31,7 @@ import static Utils.Utils.randomString;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsCommunityIntegration {
@@ -64,6 +65,7 @@ public class TestsCommunityIntegration {
     }
     @Before
     public void before() {
+        clearBrowserCache();
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(
                 REQUESTER_EMAIL,
@@ -81,9 +83,8 @@ public class TestsCommunityIntegration {
 
         rootLogger.info("Check redirect to Community Wizard");
         TAB_INFO_COMMUNITY_BTN_START_NEW.waitUntil(visible, 20000).click();
-        checkThatWindowsQtyIs(2);
-        switchToCommunityWindow();
-        sleep(3000);
+        switchToCommunity();
+        sleep(4000);
         submitCookie();
         wizardSelectExpert(EXPERT_TEAM_NAME);
         submitWizard2Step(CASE_NAME);
@@ -293,7 +294,7 @@ public class TestsCommunityIntegration {
         TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_COMPLETED));
         rootLogger.info("Test passed");
     }
-    @Test //TODO BUG https://www.pivotaltracker.com/story/show/141800023
+    @Test
     public void cancelCaseInPekama_MsgFalse() {
         submitWizard3Step();
         submitWizard4Step();
@@ -313,7 +314,7 @@ public class TestsCommunityIntegration {
         TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_WITHDRAWN));
         rootLogger.info("Test passed");
     }
-    @Test //TODO BUG https://www.pivotaltracker.com/story/show/141800023
+    @Test
     public void cancelCaseInPekama_MsgTrue() {
         submitWizard3Step();
         submitWizard4Step();
@@ -333,5 +334,4 @@ public class TestsCommunityIntegration {
         TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_WITHDRAWN));
         rootLogger.info("Test passed");
     }
-
 }

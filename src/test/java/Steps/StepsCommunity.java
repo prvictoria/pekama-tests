@@ -251,8 +251,7 @@ public class StepsCommunity implements StepsFactory{
     }
     public static String wizardSelectExpert(String expertTeamName){
         rootLogger.info("Select expert");
-        WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.waitUntil(visible, 20000)
-                .shouldBe(disabled);
+        WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.waitUntil(visible, 20000).shouldBe(disabled);
         selectExpert(expertTeamName);
         submitEnabledButton(WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS);
         return expertTeamName;

@@ -1426,10 +1426,7 @@ public class TestsPekamaProject {
         TAB_INFO_COMMUNITY_CASE_ROW.click();
         sleep(2000);
         checkThatWindowsQtyIs(3);
-        switchTo().window(PAGE_TITLE_COMMUNITY);
-        if (checkPageTitle(PAGE_TITLE_COMMUNITY)==false){
-            Assert.fail("No redirect to Community");
-        }
+        switchToCommunityWindow();
         BTN_SEND_INSTRUCTION.waitUntil(visible, 20000);
         sleep(1000);
         rootLogger.info("Test passed");

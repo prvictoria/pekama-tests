@@ -495,6 +495,7 @@ public class StepsPekama implements StepsFactory{
         }
     }
     public static boolean checkThatWindowsQtyIs(int windowsQty) {
+        sleep(1500);
         Set<String> windows = getWebDriver().getWindowHandles();
         rootLogger.info("Actual windows qty is: "+windows.size());
         if (windows.size()!=windowsQty){
@@ -649,7 +650,7 @@ public class StepsPekama implements StepsFactory{
         rootLogger.info("Switch to Community window");
         switchTo().window(PAGE_TITLE_COMMUNITY);
         if (checkPageTitle(PAGE_TITLE_COMMUNITY)==false){
-            Assert.fail("Page is no Community");
+            Assert.fail("Page is not Community");
         }
     }
     public static void switchToPekamaWindow(){
@@ -970,5 +971,24 @@ public class StepsPekama implements StepsFactory{
         }
         return null;
     }
-
+    public static void switchToCommunity(){
+        checkThatWindowsQtyIs(2);
+        switchToCommunityWindow();
+        sleep(2000);
+    }
+    public static void switchToCommunity(int windowsQty){
+        checkThatWindowsQtyIs(windowsQty);
+        switchToCommunityWindow();
+        sleep(2000);
+    }
+    public static void switchToPekama(){
+        checkThatWindowsQtyIs(2);
+        switchToPekamaWindow();
+        sleep(2000);
+    }
+    public static void switchToPekama(int windowsQty){
+        checkThatWindowsQtyIs(windowsQty);
+        switchToPekamaWindow();
+        sleep(2000);
+    }
 }

@@ -1,13 +1,13 @@
-2017-03-29 17:43:32.598 [main] INFO   - Tests will executed on Staging server
-2017-03-29 17:43:32.615 [main] INFO   - Local driver path is selected
-2017-03-29 17:43:32.615 [main] INFO   - Tests will performed in Firefox
-2017-03-29 17:43:41.484 [Time-limited test] INFO   - https://staging.pekama.com/accounts/login/URL opened
-2017-03-29 17:43:41.676 [Time-limited test] INFO   - Input data
-2017-03-29 17:43:42.742 [Time-limited test] INFO   - This data was entered - testqweeco001@gmail.com
-2017-03-29 17:43:42.742 [Time-limited test] INFO   - testqweeco001@gmail.com - login selected
-2017-03-29 17:43:42.805 [Time-limited test] INFO   - Input data
-2017-03-29 17:43:43.948 [Time-limited test] INFO   - This data was entered - 12345
-2017-03-29 17:43:44.997 [Time-limited test] INFO   - Button was clicked
-2017-03-29 17:44:16.834 [Time-limited test] INFO   - opened URL is - https://staging.pekama.com/a/dashboard
-2017-03-29 17:44:24.170 [Time-limited test] INFO   - Valid Credentials were submitted
-2017-03-29 17:44:58.595 [Time-limited test] INFO   - https://staging.pekama.com/accounts/logoutURL opened
+2017-03-31 13:20:31.119 [main] INFO   - Tests will executed on Staging server
+2017-03-31 13:20:31.130 [main] INFO   - Local driver path is selected
+2017-03-31 13:20:31.131 [main] INFO   - Tests will performed in Firefox
+2017-03-31 13:20:42.065 [Time-limited test] INFO   - https://staging.pekama.com/accounts/login/URL opened
+2017-03-31 13:20:42.065 [Time-limited test] INFO   - https://staging.pekama.com/accounts/login/URL opened
+2017-03-31 13:20:42.251 [Time-limited test] INFO   - Input data
+2017-03-31 13:20:43.306 [Time-limited test] INFO   - This data was entered - testqweeco003@gmail.com
+2017-03-31 13:20:43.306 [Time-limited test] INFO   - testqweeco003@gmail.com - login selected
+2017-03-31 13:20:43.345 [Time-limited test] INFO   - Input data
+2017-03-31 13:20:44.072 [Time-limited test] INFO   - This data was entered - asui67we34
+2017-03-31 13:20:47.073 [Time-limited test] INFO   - Check if cookie present
+2017-03-31 13:20:48.210 [Time-limited test] INFO   - cookie were submitted
+2017-03-31 13:20:48.229 [Time-limited test] INFO   - Zopim collapsed
