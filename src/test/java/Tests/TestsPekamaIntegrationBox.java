@@ -79,7 +79,7 @@ public class TestsPekamaIntegrationBox {
     public void testA_PrepareProject() {
 
         submitEnabledButton(DASHBOARD_BTN_NEW_PROJECT);
-        String projectName = createProject("BOX_TEST_PRJ");
+        String projectName = submitMwNewProject("BOX_TEST_PRJ");
         String projectFullName = PROJECT_FULL_NAME.getText();
         boxProjectName = ""+" "+projectName;
         //TM.PN.029350 BOX_TEST_PRJ_0F9TQOOGXM  pekama - BOX_TEST_PRJ_0F9TQOOGXM (TM.PN.029350)

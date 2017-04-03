@@ -1,4 +1,5 @@
 package Tests;
+import Steps.User;
 import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,6 +13,7 @@ import static Page.UrlStrings.*;
 import static Page.PekamaLogin.*;
 import static Page.TestsCredentials.*;
 import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
+import static Steps.StepsPekama.checkText;
 import static Steps.StepsPekama.fillField;
 import static Steps.StepsPekama.submitEnabledButton;
 import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
@@ -36,6 +38,7 @@ public class TestsPekamaLogin {
     public Timeout tests = Timeout.seconds(600);
     @BeforeClass
     public static void beforeClass() throws IOException {
+        clearBrowserCache();
         setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
@@ -43,11 +46,6 @@ public class TestsPekamaLogin {
     @Before
     public void openUrlLogin() {
         openUrlWithBaseAuth(URL_LogIn);
-    }
-    @After
-    public void openUrlLogout() {
-        openUrlWithBaseAuth(URL_Logout);
-        clearBrowserCache();
     }
 
     @Test
@@ -59,30 +57,30 @@ public class TestsPekamaLogin {
     }
     @Test
     public void invalidPassword() {
-        fillField(loginField_Email, "testqweeco001@gmail.com");
-        fillField(loginField_Password, "12345");
-        submitEnabledButton(loginButton_Login);
-
+        User invalid = new User();
+        invalid.submitLoginCredentials(
+                "testqweeco001@gmail.com",
+                "12345");
         loginError.shouldHave(Condition.exactText(loginErrorMsg));
         btnLogin.shouldBe(visible);
         btnSignup.shouldBe(visible);
     }
     @Test
     public void invalidLogin() {
-        fillField(loginField_Email, "1a2a3a12aa31231@gmail.com");
-        fillField(loginField_Password, "asui67we34");
-        submitEnabledButton(loginButton_Login);
-
+        User invalid = new User();
+        invalid.submitLoginCredentials(
+                "1a2a3a12aa31231@gmail.com",
+                "asui67we34");
         loginError.shouldHave(Condition.exactText(loginErrorMsg));
         btnLogin.shouldBe(visible);
         btnSignup.shouldBe(visible);
     }
     @Test
     public void invalidLoginAndPassword() {
-        fillField(loginField_Email, "teastaaaqweeco001@gmail.com");
-        fillField(loginField_Password, "asui2132367we34");
-        submitEnabledButton(loginButton_Login);
-
+        User invalid = new User();
+        invalid.submitLoginCredentials(
+                "teastaaaqweeco001@gmail.com",
+                "asui2132367we34");
         loginError.shouldHave(Condition.exactText(loginErrorMsg));
         btnLogin.shouldBe(visible);
         btnSignup.shouldBe(visible);
@@ -94,14 +92,19 @@ public class TestsPekamaLogin {
         loginField_Password.getAttribute("required");
         assertTrue(loginField_Password.getAttribute("required"), true);
 
-        fillField(loginField_Password, "asui2132367we34");
-        loginButton_Login.click();
+        User invalid = new User();
+        invalid.submitLoginCredentials(
+                null,
+                "asui2132367we34");
         btnLogin.shouldBe(visible);
         btnSignup.shouldBe(visible);
         loginField_Password.clear();
         loginField_Password.shouldBe(empty);
         rootLogger.info("Login only was submitted");
 
+        invalid.submitLoginCredentials(
+                "teastaaaqweeco001@gmail.com",
+                "");
         fillField(loginField_Email, "teastaaaqweeco001@gmail.com");
         loginButton_Login.click();
         loginField_Email.clear();
@@ -110,6 +113,9 @@ public class TestsPekamaLogin {
         btnSignup.shouldBe(visible);
         rootLogger.info("Password only was submitted");
 
+        invalid.submitLoginCredentials(
+                "",
+                "");
         loginField_Password.clear();
         loginField_Email.clear();
         loginButton_Login.click();
@@ -119,9 +125,10 @@ public class TestsPekamaLogin {
     }
     @Test
     public void validCredentials() {
-        loginField_Email.waitUntil(visible, 20000).sendKeys(User1.GMAIL_EMAIL.getValue());
-        loginField_Password.sendKeys(GENERIC_PEKAMA_PASSWORD);
-        loginButton_Login.click();
+        User invalid = new User();
+        invalid.submitLoginCredentials(
+                User1.GMAIL_EMAIL.getValue(),
+                User1.PEKAMA_PASSWORD.getValue());
         btnLogin.shouldBe(Condition.not(visible));
         btnSignup.shouldBe(Condition.not(visible));
         rootLogger.info("Valid Credentials were submitted");

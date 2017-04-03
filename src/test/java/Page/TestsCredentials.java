@@ -30,7 +30,6 @@ public class TestsCredentials {
             return value;
         }
     } //Requester
-
     public enum User2 {
         GMAIL_EMAIL("testqweeco002@gmail.com"),
         GMAIL_PASSWORD("123456789qasw1"),
@@ -192,7 +191,7 @@ public class TestsCredentials {
         public String getValue() {
             return value;
         }
-    } //SignUp flow
+    } //User flow
     public enum User8 {
     GMAIL_EMAIL("");
 
@@ -218,7 +217,6 @@ public class TestsCredentials {
 
     public enum Countries {
         AFGHANISTAN("Afghanistan"),
-        ALL_COUNTRIES("All countries"),
         AMERICAN_SAMOA("American Samoa"),
         GREENLAND("Greenland"),
         PITCAIRN_ISLANDS("Pitcairn Islands"),
@@ -325,8 +323,8 @@ public class TestsCredentials {
     }
     public enum TrademarkEvents {
         CASE_SUSPENDED("Case still suspended"),
-        PRIORITY_APLICATION_FILED("Priority Application Filed"),
-        OPPSITION_END_DATE("Opposition end date"),
+        PRIORITY_APPLICATION_FILED("Priority Application FIled"),
+        OPPOSITION_END_DATE("Opposition end date"),
         APPLICATION_REGISTERED("Application Registered"),
         MARK_CREATED("Mark Created");
 

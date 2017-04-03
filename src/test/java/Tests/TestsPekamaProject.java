@@ -92,7 +92,7 @@ public class TestsPekamaProject {
                 TEST_USER_PEKAMA_PASSWORD,
                 URL_LogIn);
         rootLogger.info("Create project");
-        DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 15000).click();
+        DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 25000).click();
         rootLogger.info("NW - New project");
         waitForModalWindow(TILE_MW_PROJECT);
         rootLogger.info("select project type");
@@ -372,7 +372,6 @@ public class TestsPekamaProject {
         // $$(byText(PLACEHOLDER_NO_DATA)).filter(visible).shouldHaveSize(1);
         //todo BUG #140196199 https://www.pivotaltracker.com/n/projects/1239770/stories/140196199
     }
-
     @Test
     public void createProject_F2_addExistedContact() {
         PROJECT_TAB_CONTACTS.click();
@@ -608,18 +607,9 @@ public class TestsPekamaProject {
         scrollUp();
         rootLogger.info("Deploy new event");
         BTN_HIDE_TIMELINE.shouldBe(visible);
-        projectButtonPlus.shouldBe(visible).click();
-        projectPlusNewEvent.shouldBe(visible).click();
-        waitForModalWindow(TITLE_MW_EVENT);
-        MW_BTN_SAVE.shouldBe(disabled);
-        MW_INPUT_DATE.click();
-        sleep(500);
-        MW.click();
-        fillField(MW_EVENT_INPUT_INFO, LOREM_IPSUM_SHORT);
-        selectItemInDropdown(MW_EVENT_SELECT_TYPE, MW_EVENT_INPUT_TYPE, APPLICATION_REGISTERED.getValue());
-        submitEnabledButton(MW_BTN_SAVE);
-        MW.shouldNotBe(visible);
-        $$(byText(APPLICATION_REGISTERED.getValue())).filter(visible).shouldHaveSize(1);
+        clickPlusButtonNewEvent();
+        deployEvent(APPLICATION_REGISTERED.getValue());
+        checkDeployedEvent(APPLICATION_REGISTERED.getValue(), LOREM_IPSUM_SHORT);
 
         rootLogger.info("Check expanded timeline");
         TIMELINE_CheckboxShrinkedEventsView.setSelected(true);
@@ -672,23 +662,11 @@ public class TestsPekamaProject {
     }
     @Test
     public void createProject_N_selectValues() {
+        scrollUp();
         TAB_INFO_PROJECT_TYPE.shouldHave(text(CaseType.TRADEMARK.getValue()));
-        selectItemInDropdown(
-                TAB_INFO_SELECT_Defining,
-                TAB_INFO_INPUT_Defining,
-                Countries.NETHERLANDS_ANTILES.getValue());
-        sleep(2000);
-        selectItemInDropdown(
-                TAB_INFO_SELECT_Type,
-                TAB_INFO_INPUT_Type,"Basic Filing");
-        sleep(2000);
-        selectItemInDropdown(
-                TAB_INFO_SELECT_SubType,
-                TAB_INFO_INPUT_SubType, "Certification Mark");
-        sleep(1000);
-        checkText(Countries.NETHERLANDS_ANTILES.getValue());
-        checkText("Basic Filing");
-        checkText("Certification Mark");
+        setProjectDefining(Countries.NETHERLANDS_ANTILES.getValue());
+        setProjectType(TrademarkTypes.BASIC.getValue());
+        setProjectSubType("Certification Mark");
         rootLogger.info("Test passed");
     }
     @Test
@@ -741,7 +719,7 @@ public class TestsPekamaProject {
         String codeValue = createNumber();
         String classType = createClassification();
         rootLogger.info("Create Event");
-        createEvent(testEventType);
+        eventDeploy(testEventType);
         rootLogger.info("Create Doc");
         createFileInRoot(MW_DeployDoc_01TemplateWord, testSearchFileName);
         rootLogger.info("Create Folder");
@@ -1370,7 +1348,6 @@ public class TestsPekamaProject {
     public void createProject_TasksSorting() {
 
     }
-
     @Test
     public void checkRedirectToCommunityWizard() {
         if (testProjectTitle ==null || testProjectURL==null){
@@ -1389,7 +1366,6 @@ public class TestsPekamaProject {
                 .shouldBe(disabled);
         rootLogger.info("Test passed");
     }
-
     @Test
     public void createDraftCommunityCaseFormPekama() {
         if (testProjectTitle ==null || testProjectURL==null){
@@ -1450,15 +1426,11 @@ public class TestsPekamaProject {
         TAB_INFO_COMMUNITY_CASE_ROW.click();
         sleep(2000);
         checkThatWindowsQtyIs(3);
-        switchTo().window(PAGE_TITLE_COMMUNITY);
-        if (checkPageTitle(PAGE_TITLE_COMMUNITY)==false){
-            Assert.fail("No redirect to Community");
-        }
+        switchToCommunityWindow();
         BTN_SEND_INSTRUCTION.waitUntil(visible, 20000);
         sleep(1000);
         rootLogger.info("Test passed");
     }
-
     @Test
     public void createCaseAndCheckPekamaState() {
         if (testProjectTitle ==null || testProjectURL==null){
@@ -1523,5 +1495,4 @@ public class TestsPekamaProject {
         checkText(EXPERT_FULL_TEAM_NAME);
         rootLogger.info("Test passed");
     }
-
 }

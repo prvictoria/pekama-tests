@@ -56,12 +56,14 @@ public class testemail {
                 System.out.println("Date : " + message.getSentDate());
                 System.out.println("From : " + from[0]);
                 System.out.println("Subject: " + message.getSubject());
-                System.out.println("Content :");
+
 
                 Object content = message.getContent();
+                System.out.println("Content :" +content);
+                System.out.println("--------------------------------");
                 Multipart multiPart = (Multipart) content;
                 //procesMultiPart(multiPart);
-
+                System.out.println("Multipart :" +multiPart);
                 System.out.println("--------------------------------");
             } else {
                 System.out.println("not found");

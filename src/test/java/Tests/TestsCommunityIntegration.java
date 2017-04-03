@@ -4,7 +4,6 @@ import Page.TestsCredentials;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
-import Page.TestsCredentials;
 import Steps.StepsPekama;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,7 +17,6 @@ import static Page.CommunityDashboard.*;
 import static Page.CommunityOutgoing.BTN_CONFIRM_COMPLETION_NAME;
 import static Page.CommunityOutgoing.BTN_CONFIRM_INSTRUCTION_NAME;
 import static Page.CommunityOutgoing.BTN_WITHDRAW_NAME;
-import static Page.CommunityWizard.*;
 import static Page.PekamaDashboard.*;
 import static Page.PekamaProject.*;
 import static Page.UrlConfig.*;
@@ -33,6 +31,7 @@ import static Utils.Utils.randomString;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsCommunityIntegration {
@@ -66,6 +65,7 @@ public class TestsCommunityIntegration {
     }
     @Before
     public void before() {
+        clearBrowserCache();
         StepsPekama loginIntoPekama = new StepsPekama();
         loginIntoPekama.loginByURL(
                 REQUESTER_EMAIL,
@@ -73,7 +73,7 @@ public class TestsCommunityIntegration {
                 URL_LogIn);
         rootLogger.info("Create project");
         DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 20000).click();
-        testProjectTitle = createProject();
+        testProjectTitle = submitMwNewProject();
         testProjectURL = getActualUrl();
         if (testProjectTitle ==null || testProjectURL==null){
             Assert.fail("Project not created for precondition");
@@ -83,15 +83,13 @@ public class TestsCommunityIntegration {
 
         rootLogger.info("Check redirect to Community Wizard");
         TAB_INFO_COMMUNITY_BTN_START_NEW.waitUntil(visible, 20000).click();
-        checkThatWindowsQtyIs(2);
-        switchToCommunityWindow();
+        switchToCommunity();
+        sleep(4000);
         submitCookie();
-        submitWizard2Step(EXPERT_TEAM_NAME);
-        submitCookie();
-        submitWizard3Step(CASE_NAME);
+        wizardSelectExpert(EXPERT_TEAM_NAME);
+        submitWizard2Step(CASE_NAME);
         rootLogger.info("Case was created");
     }
-
     @Test
     public void deleteProjectIfCaseIsDraft() {
         switchToPekamaWindow();
@@ -166,8 +164,8 @@ public class TestsCommunityIntegration {
     }
     @Test
     public void deleteProjectIfCaseIsWithdrawn() {
+        submitWizard3Step();
         submitWizard4Step();
-        submitWizard5Step();
 
         COMMUNITY_TAB_Outgoing.click();
         sleep(3000);
@@ -190,8 +188,7 @@ public class TestsCommunityIntegration {
         PROJECT_TAB_CONTACTS.shouldBe(visible).click();
         checkText(OWNER);
         checkText(REQUESTER_FULL_TEAM_NAME);
-        checkText(INTRODUCER_NAME);
-        checkText(ADMIN, 2);
+        checkText(ADMIN);
         checkText(EXPERT_FULL_TEAM_NAME);
 
         deleteProject();
@@ -210,8 +207,8 @@ public class TestsCommunityIntegration {
     }
     @Test
     public void deleteProjectIfCaseIsActive() {
+        submitWizard3Step();
         submitWizard4Step();
-        submitWizard5Step();
 
         switchToPekamaWindow();
         refresh();
@@ -232,8 +229,8 @@ public class TestsCommunityIntegration {
     }
     @Test
     public void confirmInstructionInPekamaAsExpert_MsgTrue() {
+        submitWizard3Step();
         submitWizard4Step();
-        submitWizard5Step();
         switchToPekamaWindow();
 
         rootLogger.info("Expert login");
@@ -265,8 +262,8 @@ public class TestsCommunityIntegration {
     }
     @Test
     public void confirmInstructionInPekamaAsExpert_MsgFalse() {
+        submitWizard3Step();
         submitWizard4Step();
-        submitWizard5Step();
         switchToPekamaWindow();
 
         rootLogger.info("Expert login");
@@ -296,45 +293,34 @@ public class TestsCommunityIntegration {
         TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_COMPLETED));
         rootLogger.info("Test passed");
     }
-    @Test //TODO BUG https://www.pivotaltracker.com/story/show/141800023
-    public void cancelCaseInPekama_MsgFalse() {
+    @Test
+    public void withdrawCaseInPekama_MsgFalse() {
+        submitWizard3Step();
         submitWizard4Step();
-        submitWizard5Step();
         switchToPekamaWindow();
         String actualUrl = getActualUrl();
         Assert.assertEquals
                 ("Opened url not same to the project url", testProjectURL, actualUrl);
         refresh();
 
-        rootLogger.info("Withdraw case");
         sleep(4000);
         TAB_INFO_COMMUNITY_CASE_NAME.waitUntil(visible, 15000).shouldHave(text(CASE_NAME));
-        TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_SENT));
-        TAB_INFO_COMMUNITY_CASE_ACTION.shouldBe(visible).click();
-        acceptWithdrawCase(false);
-
-        TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_WITHDRAWN));
+        withdrawCaseInPekama(false);
         rootLogger.info("Test passed");
     }
-    @Test //TODO BUG https://www.pivotaltracker.com/story/show/141800023
-    public void cancelCaseInPekama_MsgTrue() {
+    @Test
+    public void withdrawCaseInPekama_MsgTrue() {
+        submitWizard3Step();
         submitWizard4Step();
-        submitWizard5Step();
         switchToPekamaWindow();
         String actualUrl = getActualUrl();
         Assert.assertEquals
                 ("Opened url not same to the project url", testProjectURL, actualUrl);
         refresh();
 
-        rootLogger.info("Withdraw case");
         sleep(4000);
         TAB_INFO_COMMUNITY_CASE_NAME.waitUntil(visible, 15000).shouldHave(text(CASE_NAME));
-        TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_SENT));
-        TAB_INFO_COMMUNITY_CASE_ACTION.shouldBe(visible).click();
-        acceptWithdrawCase(true);
-
-        TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_WITHDRAWN));
+        withdrawCaseInPekama(true);
         rootLogger.info("Test passed");
-    }
-
+}
 }

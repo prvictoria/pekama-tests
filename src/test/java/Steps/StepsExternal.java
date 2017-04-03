@@ -105,7 +105,7 @@ public class StepsExternal implements StepsFactory{
         open(INBOX_URL);
         sleep(2000);
         INBOX_SIGNIN.waitUntil(visible, 15000).click();
-        sleep(6000);
+        sleep(8000);
         if(GMAIL_LOGIN_FIELD.is(visible) == true) {
             rootLogger.info("Type email");
             GMAIL_LOGIN_FIELD.sendKeys(GMAIL_LOGIN);

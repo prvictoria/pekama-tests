@@ -83,9 +83,11 @@ public class TestsCommunityProfile {
     public void boostScrores() {
         log.info("Check redirect to wizard");
         PROFILE_BTN_BOOST_YOUR_SCORE.click();
-        waitForModalWindow(TITLE_MW_BOOST_YOUR_PROFILE);
-        MW_BOOST_YOUR_PROFILE_BTN_START_NEW_CASE.click();
-        WIZARD_BTN_GetStarted.shouldBe(visible).shouldBe(Condition.disabled);
+        submitMwBoostProfile("start");
+        checkWizard1StepSelection(
+                MATTER_TYPE_PATENT,
+                Countries.ALL.getValue(),
+                "Choose supplier type...");
         log.info("Test passed");
     }
     @Test

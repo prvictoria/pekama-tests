@@ -7,13 +7,16 @@ import Page.TestsCredentials;
 import Page.TestsCredentials.User1;
 import Page.TestsCredentials.User3;
 import Steps.StepsPekama;
+import com.codeborne.selenide.Selenide;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
 import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.io.IOException;
+import java.util.List;
 
 import static Page.ModalWindows.*;
 import static Page.PekamaDashboard.*;
@@ -22,20 +25,23 @@ import static Page.PekamaLanding.*;
 import static Page.PekamaPersonalSettings.*;
 import static Page.PekamaReports.*;
 import static Page.PekamaTeamSettings.*;
+import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
-import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
 import static Tests.BeforeTestsSetUp.setBrowser;
 import static Utils.Utils.*;
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Configuration.timeout;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
+import static org.openqa.selenium.support.ui.ExpectedConditions.alertIsPresent;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaDashboard {
@@ -51,7 +57,7 @@ public class TestsPekamaDashboard {
     private final String TEST_USER_FULL_TEAM_NAME = User3.FULL_TEAM_NAME.getValue();
     private final String TEST_USER_TEAM_NAME = User1.TEAM_NAME.getValue();
     @Rule
-    public Timeout tests = Timeout.seconds(500);
+    public Timeout tests = Timeout.seconds(300);
     @BeforeClass
     public static void beforeClass() throws IOException {
         setEnvironment();
@@ -227,18 +233,17 @@ public class TestsPekamaDashboard {
         SETTINGS_TEAM_TAB_PROFILE.waitUntil(visible, 20000);
         rootLogger.info("Test passed");
     }
-    @Ignore //todo - No validation BUG
     @Test
     public void testF1_ModalNewProjectValidation() {
         DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 20000).click();
-        rootLogger.info("");
-        waitForModalWindow("New Project");
-        MW_ProjectFinishButton.click();
-        submitEnabledButton(MW_ProjectFinishButton); //todo BUG not disabled
+        submitMwNewProject(
+                null,
+                null,
+                null,
+                null,
+                null);
         checkText(ERROR_MSG_REQUIRED_FIELD, 2);
-        MW.pressEscape();
-        MW.shouldNotBe(visible);
-
+        escapeModalWindow();
         rootLogger.info("Validation mandatory Type and Title passed");
     }
     @Test
@@ -253,66 +258,135 @@ public class TestsPekamaDashboard {
         sleep(2000);
         submitEnabledButton(MW_ProjectFinishButton);
         checkText(ERROR_MSG_REQUIRED_FIELD);
-        MW.pressEscape();
-        MW.shouldNotBe(visible);
-
+        escapeModalWindow();
         rootLogger.info("Validation mandatory Title passed");
     }
     @Test
     public void testF3_ModalNewProjectValidation() {
         DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 20000).click();
-        rootLogger.info("");
-        waitForModalWindow("New Project");
-        selectItemInDropdown(
-                MW_Project_SelectType,
-                MW_Project_InputType,
-                TestsCredentials.CaseType.CRM.getValue());
-        sleep(2000);
-        submitEnabledButton(MW_ProjectFinishButton);
-        checkText(ERROR_MSG_NULL_NOT_VALID);
+        submitMwNewProject(
+                null,
+                MATTER_TYPE_PATENT,
+                null,
+                null,
+                null);
         checkText(ERROR_MSG_REQUIRED_FIELD);
-        MW.pressEscape();
-        MW.shouldNotBe(visible);
+        checkText("Application Number (optional):");
 
-        rootLogger.info("Validation mandatory Definig and Title passed");
+        rootLogger.info("Check default defining for "+MATTER_TYPE_PATENT);
+        checkSelectedDefining("United Kingdom", "GB");
+
+        String defaultDefiningPatent = MW_PROJECT_ACTUAL_DEFINING.getText();
+        Assert.assertEquals("Check default defining for "+MATTER_TYPE_PATENT, "United Kingdom", defaultDefiningPatent);
+        String defaultDefiningCodePatent = MW_PROJECT_ACTUAL_DEFINING_CODE.getText();
+        Assert.assertEquals("Check default defining code for "+MATTER_TYPE_PATENT, "GB", defaultDefiningCodePatent);
+        escapeModalWindow();
+        rootLogger.info("Validation mandatory Defining and Title passed");
+
+        DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 20000).click();
+        submitMwNewProject(
+                null,
+                MATTER_TYPE_TRADEMARK,
+                null,
+                null,
+                null);
+        checkText(ERROR_MSG_REQUIRED_FIELD);
+        checkText("TM Serial Number (optional):");
+
+        rootLogger.info("Check default defining for "+MATTER_TYPE_TRADEMARK);
+        checkSelectedDefining("United States", "US");
+        escapeModalWindow();
+        rootLogger.info("Validation mandatory Defining and Title passed");
+
+        DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 20000).click();
+        submitMwNewProject(
+                null,
+                MATTER_TYPE_CRM,
+                null,
+                null,
+                null);
+        checkText(ERROR_MSG_REQUIRED_FIELD);
+        checkText(ERROR_MSG_NULL_NOT_VALID);
+
+        rootLogger.info("Check that no default defining for other Matter types");
+        String notDefaultDefining = MW_Project_SelectDefining.getText();
+        Assert.assertEquals("Pick one...", notDefaultDefining);
+        escapeModalWindow();
+        rootLogger.info("Validation mandatory Defining and Title passed");
     }
     @Test
     public void testF4_ModalNewProjectValidation() {
         DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 20000).click();
-        rootLogger.info("");
+        submitMwNewProject(
+                randomString(1025),
+                MATTER_TYPE_TRADEMARK,
+                null,
+                null,
+                null);
         waitForModalWindow("New Project");
-        selectItemInDropdown(
-                MW_Project_SelectType,
-                MW_Project_InputType,
-                TEST_PROJECT_TYPE);
-        fillField(MW_Project_Title, randomString(1025));
-        sleep(2000);
         submitEnabledButton(MW_ProjectFinishButton);
         checkText(ERROR_MSG_VALIDATION_LENGTH_1024);
-        MW.pressEscape();
-        MW.shouldNotBe(visible);
-
-        rootLogger.info("Validation Definig and Title passed");
+        rootLogger.info("Validation Title max length passed");
     }
-
     @Test
     public void testF5_ModalNewProjectValidation() {
         DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 20000).click();
-        rootLogger.info("");
-        waitForModalWindow("New Project");
-        selectItemInDropdown(
-                MW_Project_SelectType,
-                MW_Project_InputType,
-                TEST_PROJECT_TYPE);
-        fillField(MW_Project_Title, randomString(30));
-        fillField(MW_Project_Reference, randomString(256));
-        sleep(2000);
-        submitEnabledButton(MW_ProjectFinishButton);
-        // TODO: 2/24/2017 BUG https://www.pivotaltracker.com/n/projects/1239770/stories/140549597
+        submitMwNewProject(
+                "VALID",
+                MATTER_TYPE_TRADEMARK,
+                null,
+                randomString(256),
+                null);
         checkText(ERROR_MSG_VALIDATION_LENGTH_255);
-        MW.pressEscape();
-        MW.shouldNotBe(visible);
         rootLogger.info("Validation max length reference number - passed");
     }
-
+    @Test
+    public void testF6_ModalNewProjectValidation() {
+        DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 20000).click();
+        submitMwNewProject(
+                "VALID",
+                MATTER_TYPE_TRADEMARK,
+                Countries.PITCAIRN_ISLANDS.getValue(),
+                null,
+                randomString(256));
+        try{
+            Selenide.Wait().withTimeout(70000, MILLISECONDS).until(alertIsPresent());
+            confirm("GATEWAY_TIMEOUT");
+        }
+        catch (org.openqa.selenium.TimeoutException e){
+            rootLogger.info("Timeout Gateway prompt not present");}
+        checkText(ERROR_MSG_VALIDATION_LENGTH_255);
+        rootLogger.info("Validation max length TM number - passed");
+    }
+    @Test
+    public void testF7_ModalNewProjectValidation() {
+        DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 20000).click();
+        submitMwNewProject(
+                null,
+                MATTER_TYPE_TRADEMARK,
+                Countries.PITCAIRN_ISLANDS.getValue(),
+                null,
+                randomString(10));
+        try{
+            Selenide.Wait().withTimeout(70000, MILLISECONDS).until(alertIsPresent());
+            confirm("GATEWAY_TIMEOUT");
+        }
+        catch (org.openqa.selenium.TimeoutException e){
+            rootLogger.info("Timeout Gateway prompt not present");}
+        checkText("Official data not found.");
+        rootLogger.info("Wrong TM number check that tooltip present - passed");
+    }
+    @Test
+    public void testF8_ModalNewProjectValidation() throws InterruptedException {
+        DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 30000).click();
+        String projectName = submitMwNewProject(
+                "VALID",
+                MATTER_TYPE_TRADEMARK,
+                null,
+                null,
+                "76686873");
+        checkModalWindowNotPresent(70000);
+        checkText(projectName);
+        rootLogger.info("Valid TM number check - passed");
+    }
 }

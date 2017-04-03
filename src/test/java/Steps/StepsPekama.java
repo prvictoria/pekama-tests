@@ -7,17 +7,23 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.WebDriverException;
 import java.util.Set;
+
+import static Page.CommunityDashboard.*;
 import static Page.ModalWindows.*;
 import static Page.PekamaDashboard.DROPDOWN_PROJECT_TEMPLATES_LIST;
 import static Page.PekamaLogin.*;
 import static Page.PekamaPersonalSettings.*;
 import static Page.PekamaProject.*;
 import static Page.PekamaReports.*;
+import static Page.PekamaSignUp.*;
+import static Page.PekamaSignUp.signupNext;
+import static Page.PekamaSignUp.signupPassword;
 import static Page.PekamaTeamSettings.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
+import static Steps.StepsCommunity.*;
 import static Steps.StepsHttpAuth.*;
 import static Steps.StepsModalWindows.*;
 import static Utils.Utils.getDate;
@@ -78,8 +84,7 @@ public class StepsPekama implements StepsFactory{
         loginField_Password.sendKeys(GENERIC_PEKAMA_PASSWORD);
         sleep(500);
         loginButton_Login.click();
-        btnLogin.shouldBe(Condition.not(visible));
-        sleep(1000);
+        btnLogin.waitUntil(not(visible), 15000);
         rootLogger.info("Valid Credentials were submitted");
 
     }
@@ -101,6 +106,24 @@ public class StepsPekama implements StepsFactory{
         if ($(byText("Got it!")).isDisplayed()){
             $(byText("Got it!")).click();
             rootLogger.info("cookie were submitted");
+        }
+    }
+    public static void  submitCookie(int waitTimeSec){
+        rootLogger.info("Check if cookie present");
+        int i = 0;
+        while ($(byText("Got it!")).isDisplayed()==false && i<waitTimeSec){
+            sleep(1000);
+            i++;
+            if($(byText("Got it!")).isDisplayed()){
+                $(byText("Got it!")).click();
+                rootLogger.info("cookie were submitted");
+                return;
+                }
+        }
+        if($(byText("Got it!")).isDisplayed()) {
+            $(byText("Got it!")).click();
+            rootLogger.info("cookie were submitted");
+            return;
         }
     }
     public static void waitForSpinnerNotPresent(){
@@ -253,12 +276,12 @@ public class StepsPekama implements StepsFactory{
         buttonName.waitUntil(enabled, 15000);
         buttonName.click();
         sleep(500);
-        rootLogger.info("Button was clicked");
+        //rootLogger.info("Button was clicked");
     }
 
     public static void selectItemInDropdown(SelenideElement uiSelectName, SelenideElement uiSelectInput, String inputValue) {
         rootLogger.info("select - "+inputValue);
-        uiSelectName.waitUntil(visible, 15000).click();
+        uiSelectName.waitUntil(visible, 20000).click();
         fillField(uiSelectInput, inputValue);
         CSS_SelectHighlighted.waitUntil(visible, 15000).click();
         rootLogger.info("selected - "+inputValue);
@@ -493,6 +516,7 @@ public class StepsPekama implements StepsFactory{
         }
     }
     public static boolean checkThatWindowsQtyIs(int windowsQty) {
+        sleep(1500);
         Set<String> windows = getWebDriver().getWindowHandles();
         rootLogger.info("Actual windows qty is: "+windows.size());
         if (windows.size()!=windowsQty){
@@ -647,7 +671,7 @@ public class StepsPekama implements StepsFactory{
         rootLogger.info("Switch to Community window");
         switchTo().window(PAGE_TITLE_COMMUNITY);
         if (checkPageTitle(PAGE_TITLE_COMMUNITY)==false){
-            Assert.fail("Page is no Community");
+            Assert.fail("Page is not Community");
         }
     }
     public static void switchToPekamaWindow(){
@@ -897,18 +921,131 @@ public class StepsPekama implements StepsFactory{
         }
         return false;
     }
-
-    @Test
-    public void testDebug(){
-        setEnvironment();
-        StepsPekama loginIntoPekama = new StepsPekama();
-        loginIntoPekama.loginByURL(
-                User1.GMAIL_EMAIL.getValue(),
-                User1.PEKAMA_PASSWORD.getValue(),
-                URL_COMMUNITY_LOGIN);
+    public static Integer checkTemplatesFilters(
+            String defining,
+            String type,
+            String event,
+            Integer listSize){
+        rootLogger.info("Check template filters");
         refresh();
-        hideZopim();
-
-
+        SETTINGS_DELETE_X.waitUntil(visible, 15000);
+        if(defining!=null) {
+            rootLogger.info("Select DEFINING filter");
+            selectItemInDropdown(
+                    TEMPLATES_FILTER_SELECT_DEFINING,
+                    TEMPLATES_FILTER_INPUT_DEFINING,
+                    defining);
+        }
+        if(type!=null) {
+            rootLogger.info("Select TYPE filter");
+            selectItemInDropdown(
+                    TEMPLATES_FILTER_SELECT_TYPE,
+                    TEMPLATES_FILTER_INPUT_TYPE,
+                    type);
+        }
+        if(event!=null) {
+            rootLogger.info("Select EVENT filter");
+            selectItemInDropdown(
+                    TEMPLATES_FILTER_SELECT_EVENT,
+                    TEMPLATES_FILTER_INPUT_EVENT,
+                    event);
+        }
+        if(listSize!=null) {
+            rootLogger.info("Check templates list size");
+            TEMPLATES_LIST.shouldHaveSize(listSize);}
+        return listSize;
     }
+
+    public static String setProjectDefining(String defining){
+                if(defining!=null) {
+                    selectItemInDropdown(
+                            TAB_INFO_SELECT_Defining,
+                            TAB_INFO_INPUT_Defining,
+                            defining);
+                    sleep(1500);
+                    checkText(defining);
+                    return defining;
+                }
+                return null;
+    }
+    public static String setProjectType(String type){
+        if(type!=null) {
+            selectItemInDropdown(
+                    TAB_INFO_SELECT_Type,
+                    TAB_INFO_INPUT_Type,
+                    type);
+            sleep(1500);
+            checkText(type);
+            return type;
+        }
+        return null;
+    }
+    public static String setProjectSubType(String subType){
+        if(subType!=null) {
+            selectItemInDropdown(
+                    TAB_INFO_SELECT_SubType,
+                    TAB_INFO_INPUT_SubType,
+                    subType);
+            sleep(1500);
+            checkText(subType);
+            return subType;
+        }
+        return null;
+    }
+    public static void switchToCommunity(){
+        checkThatWindowsQtyIs(2);
+        switchToCommunityWindow();
+        sleep(2000);
+    }
+    public static void switchToCommunity(int windowsQty){
+        checkThatWindowsQtyIs(windowsQty);
+        switchToCommunityWindow();
+        sleep(2000);
+    }
+    public static void switchToWindowByIndex(int windowIndex, int windowsQty){
+        checkThatWindowsQtyIs(windowsQty);
+        switchTo().window(windowIndex);
+        sleep(2000);
+    }
+    public static void switchToPekama(){
+        checkThatWindowsQtyIs(2);
+        switchToPekamaWindow();
+        sleep(2000);
+    }
+    public static void switchToPekama(int windowsQty){
+        checkThatWindowsQtyIs(windowsQty);
+        switchToPekamaWindow();
+        sleep(2000);
+    }
+    //Community area
+    public static void withdrawCaseInPekama(boolean sendMsgToCollaborator){
+        rootLogger.info("Withdraw case");
+        TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_SENT));
+        TAB_INFO_COMMUNITY_CASE_ACTION.shouldBe(visible).click();
+        acceptWithdrawCase(sendMsgToCollaborator);
+        TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_WITHDRAWN));
+    }
+    public static void cancelCaseInPekama(boolean sendMsgToCollaborator){
+        rootLogger.info("Cancel case");
+        TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_DRAFT));
+        TAB_INFO_COMMUNITY_CASE_ACTION.shouldBe(visible).click();
+        acceptCancelCase(sendMsgToCollaborator);
+        TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_CANCELLED));
+    }
+    public static void confirmCaseInPekama(boolean sendMsgToCollaborator){
+        rootLogger.info("Confirm case");
+        TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_RECEIVED));
+        TAB_INFO_COMMUNITY_CASE_ACTION.shouldBe(visible).click();
+        acceptConfirmInstruction(sendMsgToCollaborator);
+        TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_CONFIRMED));
+    }
+    public static void completeCaseInPekama(boolean sendMsgToCollaborator){
+        rootLogger.info("Complete case");
+        TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_CONFIRMED));
+        TAB_INFO_COMMUNITY_CASE_ACTION.shouldBe(visible).click();
+        acceptCompletion(sendMsgToCollaborator);
+        TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_COMPLETED));
+    }
+
+
 }

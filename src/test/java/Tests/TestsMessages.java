@@ -57,7 +57,7 @@ public class TestsMessages {
                 URL_LogIn);
             rootLogger.info("Create project");
             DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 15000).click();
-            String testProjectName = createProject();
+            String testProjectName = submitMwNewProject();
             String testProjectUrl = getActualUrl ();
     }
 
@@ -145,7 +145,7 @@ public class TestsMessages {
 
         CONVERSATION_LABEL_ACTIVE_TAB.shouldHave(text(CONVERSATION_TEAM_TAB_NAME));
 
-        CONVERSATION_INPUT_TEXT_COLLAPSED.click();
+        CONVERSATION_INPUT_TEXT_COLLAPSED.shouldBe(visible).click();
         sleep(4000);
         CONVERSATION_TEXT_EDITOR.shouldHave(value(""));
         CONVERSATION_TEXT_EDITOR.val(LOREM_IPSUM_SHORT);
@@ -153,9 +153,8 @@ public class TestsMessages {
         sleep(2000);
         CONVERSATION_TEXT_EDITOR.shouldHave(text(LOREM_IPSUM_SHORT));
         submitEnabledButton(CONVERSATION_BTN_POST);
-        $$(byXpath("//*[@class='message-list']/li[1]//div[@class='message-holder']")).filter(visible).shouldHaveSize(1);
-        $(byXpath("//*[@class='message-list']/li[1]//div[@class='message-holder']//*[@class='message-body ng-binding ng-scope']/p")).shouldHave(text(LOREM_IPSUM_SHORT));
-        //$(byText(LOREM_IPSUM_SHORT)).shouldBe(visible);
+        MESSAGES_LIST.filter(visible).shouldHaveSize(1);
+        MESSAGE_FIRST_TEXT.shouldHave(text(LOREM_IPSUM_SHORT));
 
         rootLogger.info("Delete message");
         CONVERSATION_MsgDelete.waitUntil(visible, 10000);

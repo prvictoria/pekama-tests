@@ -3,6 +3,8 @@ import Steps.StepsFactory;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import io.github.bonigarcia.wdm.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -28,6 +30,7 @@ import static org.openqa.selenium.remote.CapabilityType.LOGGING_PREFS;
  * https://www.linkedin.com/in/viachaslau
  */
 public class StepsHttpAuth implements StepsFactory {
+    static final Logger rootLogger = LogManager.getRootLogger();
     public void httpAuthStagingPekama() {
         //assumeTrue(isFirefox());
         Selenide.open("https://staging.pekama.com/",
@@ -46,21 +49,23 @@ public class StepsHttpAuth implements StepsFactory {
         sleep(250);
 
    }
-    public static void openUrlWithBaseAuth(String AUTH_URL) {
+    public static void openUrlWithBaseAuth(String url) {
         if(testBrowser==1){
             getWebDriver().manage().window().maximize();
-            Selenide.open(AUTH_URL,
+            Selenide.open(url,
                     "",
                     "qweeco",
                     "qw33coStudi0");
             sleep(250);
+            rootLogger.info(url+"URL opened");
         }
         if(testBrowser==2){
-        Selenide.open(AUTH_URL,
+        Selenide.open(url,
                     "",
                     "qweeco",
                     "qw33coStudi0");
             sleep(250);
+            rootLogger.info(url+"URL opened");
         }
     }
 }

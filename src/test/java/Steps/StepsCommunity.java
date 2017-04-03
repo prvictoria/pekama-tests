@@ -19,6 +19,8 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.url;
+import static org.junit.Assert.assertEquals;
+
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
@@ -28,22 +30,39 @@ public class StepsCommunity implements StepsFactory{
     public static String searchQueryUrl;
 
     public static void searchExpertsQuery(String caseType, String country, String service) {
-        WIZARD_BTN_GetStarted.waitUntil(visible, 20000).shouldBe(disabled);
-        WIZARD_SELECT_CaseType.click();
-        WIZARD_INPUT_CaseType.sendKeys(caseType);
-        CSS_SelectHighlighted.click();
-        rootLogger.info("Selected case type - "+caseType);
-
-        WIZARD_SELECT_Defining.click();
-        WIZARD_INPUT_Defining.sendKeys(country);
-        CSS_SelectHighlighted.click();
-        rootLogger.info("Selected defining - "+country);
-
-        WIZARD_SELECT_ExpertType.click();
-        WIZARD_INPUT_ExpertType.sendKeys(service);
-        CSS_SelectHighlighted.click();
-        rootLogger.info("Selected service - "+service);
+//        if(country==null && defaultValues==true) {
+//            country = TestsCredentials.Countries.PITCAIRN_ISLANDS.getValue();
+//        }
+//        if(service==null && defaultValues==true) {
+//            service = COMMUNITY_SERVICE;
+//        }
+        if(caseType!=null) {
+            rootLogger.info("Selected case type - " + caseType);
+            selectItemInDropdown(
+                    WIZARD_SELECT_CaseType,
+                    WIZARD_INPUT_CaseType,
+                    caseType
+            );
+        }
+        if(country!=null) {
+            rootLogger.info("Selected defining - " + country);
+            selectItemInDropdown(
+                    WIZARD_SELECT_Defining,
+                    WIZARD_INPUT_Defining,
+                    country
+            );
+        }
+        if(service!=null) {
+            rootLogger.info("Selected service - "+service);
+            selectItemInDropdown(
+                    WIZARD_SELECT_Service,
+                    WIZARD_INPUT_Service,
+                    service
+            );
+        }
+        sleep(1000);
    }
+    @Deprecated
     public static String searchExpertsSubmit() {
         WIZARD_BTN_GetStarted.shouldBe(enabled).click();
         searchQueryUrl = url();
@@ -105,16 +124,16 @@ public class StepsCommunity implements StepsFactory{
 
     }
 
-    public static void dismissModalConfirmAction(SelenideElement mwTitle, SelenideElement mwText, SelenideElement btnDismiss) {
+    public static void dismissMwConfirmAction(SelenideElement mwTitle, SelenideElement mwText, SelenideElement btnDismiss) {
         rootLogger.info("Check that MW '"+mwTitle+"' is present");
         mwTitle.shouldBe(visible);
         mwText.shouldBe(visible);
-        rootLogger.info("Dismiss modal window - "+mwTitle);
+        rootLogger.info("Dismiss warning modal window - "+mwTitle);
         btnDismiss.click();
         mwTitle.shouldNotBe(visible);
         rootLogger.info("MW '"+mwTitle+"' closed");
     }
-    public static void acceptModalConfirmAction(SelenideElement mwTitle, SelenideElement mwText, SelenideElement btnAccept) {
+    public static void acceptMwConfirmAction(SelenideElement mwTitle, SelenideElement mwText, SelenideElement btnAccept) {
         rootLogger.info("Check that MW '"+mwTitle+"' is present");
         mwTitle.shouldBe(visible);
         mwText.shouldBe(visible);
@@ -142,7 +161,7 @@ public class StepsCommunity implements StepsFactory{
             rootLogger.info("Message will send to Collaborator");
             MW_COMMUNITY_BTN_YES.click();}
         if (sendMsgToCollaborator==false){
-            rootLogger.info("Withdraw case without notification");
+            rootLogger.info("Cancel case without notification");
             MW_CANCEL_LINK_SUBMIT_WITHOUT_MSG.click();}
         MW_CANCEL_CASE_TITLE.shouldNotBe(visible);
         rootLogger.info("MW closed");
@@ -212,41 +231,46 @@ public class StepsCommunity implements StepsFactory{
         rootLogger.info(teamName+" - expert selected");
         return true;
     }
+    public static boolean checkWizard1StepSelection(String CASE_TYPE, String TEST_CASE_COUNTRY, String COMMUNITY_SERVICE){
+        WIZARD_SELECT_CaseType.shouldHave(text(CASE_TYPE));
+        WIZARD_SELECT_Defining.shouldHave(text(TEST_CASE_COUNTRY));
+        WIZARD_SELECT_Service.shouldHave(text(COMMUNITY_SERVICE));
+        return true;
+    }
     //Wizard steps
     public static String submitWizard1Step(String caseType, String country, String service){
         rootLogger.info("1st Step - Search");
         searchExpertsQuery(caseType, country, service);
-        String searchQueryUrl = searchExpertsSubmit();
+        //String searchQueryUrl = searchExpertsSubmit();
         return searchQueryUrl;
     }
     public static String submitWizard1Step(String caseType){
-        rootLogger.info("1st Step - Search");
         searchExpertsQuery(caseType, TestsCredentials.Countries.PITCAIRN_ISLANDS.getValue(), COMMUNITY_SERVICE);
-        String searchQueryUrl = searchExpertsSubmit();
+        //String searchQueryUrl = searchExpertsSubmit();
         return searchQueryUrl;
     }
-    public static String submitWizard2Step(String expertTeamName){
-        rootLogger.info("2nd Step - select expert");
-        WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.waitUntil(visible, 20000)
-                .shouldBe(disabled);
+    public static String wizardSelectExpert(String expertTeamName){
+        rootLogger.info("Select expert");
+        WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.waitUntil(visible, 20000).shouldBe(disabled);
         selectExpert(expertTeamName);
         submitEnabledButton(WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS);
         return expertTeamName;
     }
-    public static String submitWizard3Step(String caseName){
-        rootLogger.info("3rd Step - select NEXT");
+    public static String submitWizard2Step(String caseName){
+        rootLogger.info("2nd Step - select NEXT");
         fillField(WIZARD_FIELD_CASE_NAME, caseName);
         WIZARD_BTN_NEXT.click();
+        sleep(2000);
         return caseName;
     }
-    public static String submitWizard4Step(){
-        rootLogger.info("4th Step - select Send Instruction");
+    public static String submitWizard3Step(){
+        rootLogger.info("3rd Step - select Send Instruction");
         BTN_SEND_INSTRUCTION.waitUntil(visible, 20000).click();
         String a = "";
         return a;
     }
-    public static String submitWizard5Step(){
-        rootLogger.info("5th Step - select Instruct Now");
+    public static String submitWizard4Step(){
+        rootLogger.info("4th Step - select Instruct Now");
         WIZARD_BTN_INSTRUCT_NOW.waitUntil(visible, 20000).click();
         waitForModalWindow("Congratulations!");
         MW_CONGRATULATION_OK.click();
@@ -393,7 +417,7 @@ public class StepsCommunity implements StepsFactory{
     }
     public static boolean cancelCase(String caseName, boolean sendMsgToCollaborator) {
         String status = COMMUNITY_STATUS_CANCELLED;
-        rootLogger.info(caseName);
+        rootLogger.info("Cancel case - "+caseName);
         String row = String.format(caseRowByName, caseName);
         rootLogger.info(row);
         $(byXpath(row)).waitUntil(visible, 20000);
@@ -465,8 +489,6 @@ public class StepsCommunity implements StepsFactory{
         String caseName = "DEFAULT_CASE"+randomString(10);
 
         searchExpertsQuery(caseType, caseCountry, COMMUNITY_SERVICE);
-        searchExpertsSubmit();
-
         rootLogger.info("2nd Step - select expert");
         WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.shouldBe(disabled);
         selectExpert(expertTeam);
@@ -501,8 +523,6 @@ public class StepsCommunity implements StepsFactory{
         String caseName = "DEFAULT_CASE"+randomString(10);
 
         searchExpertsQuery(caseType, caseCountry, COMMUNITY_SERVICE);
-        searchExpertsSubmit();
-
         rootLogger.info("2nd Step - select expert");
         WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.shouldBe(disabled);
         selectExpert(expertTeam);
@@ -534,10 +554,7 @@ public class StepsCommunity implements StepsFactory{
         String caseType = MATTER_TYPE_PATENT;
         String caseCountry = TestsCredentials.Countries.PITCAIRN_ISLANDS.getValue();
         String caseName = "DEFAULT_DRAFT_CASE" + randomString(10);
-
         searchExpertsQuery(caseType, caseCountry, COMMUNITY_SERVICE);
-        searchExpertsSubmit();
-
         rootLogger.info("2nd Step - select expert");
         WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.shouldBe(disabled);
         selectExpert(expertTeam);
@@ -553,5 +570,26 @@ public class StepsCommunity implements StepsFactory{
         BTN_SEND_INSTRUCTION.shouldBe(visible);
         return caseName;
     }
-
+    public static boolean logoutCommunity(){
+        COMMUNITY_HEADER_UserDropdown.shouldBe(visible).click();
+        COMMUNITY_HEADER_LogOut.shouldBe(visible).click();
+        sleep(3000);
+        String urlAfterLogout = url();
+        rootLogger.info(urlAfterLogout);
+        assertEquals(ENVIRONMENT_COMMUNITY +"/", urlAfterLogout);
+        rootLogger.info("User is logged out and redirected to Landing");
+        return true;
+    }
+    public static void checkOutgoingDetailedCaseView(String caseName, String caseStatus){
+        COMMUNITY_TAB_TITLE.shouldHave(text("Outgoing Cases"));
+        checkText(caseName);
+        checkText("Show all outgoing cases");
+        checkText(caseStatus);
+    }
+    public static void checkIncomingDetailedCaseView(String caseName, String caseStatus){
+        COMMUNITY_TAB_TITLE.shouldHave(text("Incoming Cases"));
+        checkText(caseName);
+        checkText("Show all incoming cases");
+        checkText(caseStatus);
+    }
 }
