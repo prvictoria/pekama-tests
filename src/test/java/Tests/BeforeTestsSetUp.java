@@ -2,25 +2,18 @@ package Tests;
 
 import com.codeborne.selenide.Configuration;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
-import io.github.bonigarcia.wdm.EdgeDriverManager;
 import io.github.bonigarcia.wdm.FirefoxDriverManager;
 import io.github.bonigarcia.wdm.InternetExplorerDriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.logging.Level;
 
 import static com.codeborne.selenide.Configuration.browser;
 import static com.codeborne.selenide.Configuration.startMaximized;
-import static com.codeborne.selenide.Selenide.executeJavaScript;
 import static com.codeborne.selenide.WebDriverRunner.*;
 import static com.codeborne.selenide.WebDriverRunner.FIREFOX;
-import static org.openqa.selenium.logging.LogType.BROWSER;
-import static org.openqa.selenium.remote.BrowserType.EDGE;
-import static org.openqa.selenium.remote.CapabilityType.LOGGING_PREFS;
 
 /**
  * Created by Viachaslau_Balashevi on 3/8/2017.
@@ -28,18 +21,19 @@ import static org.openqa.selenium.remote.CapabilityType.LOGGING_PREFS;
 public class BeforeTestsSetUp {
     static final Logger rootLogger = LogManager.getRootLogger();
 
-    public static boolean localDriverPath = false;
+    public static boolean localDriverPathWindows = true;
+    public static boolean localDriverPathLinux = false;
+    public static boolean localDriverPathWeb = false;
     public static int testBrowser = 2;
     public static void setBrowser() throws IOException {
         switch (testBrowser) {
             case 1:
                 browser = CHROME;
 
-                if (localDriverPath == true){
+                if (localDriverPathWindows == true){
                     setChromeDriverPath();
-
                     rootLogger.info("Local driver path is selected");}
-                if (localDriverPath == false){
+                if (localDriverPathWeb == true){
                     startMaximized = false;
                     ChromeDriverManager.getInstance().setup();
                 }
@@ -51,24 +45,18 @@ public class BeforeTestsSetUp {
                 rootLogger.info("Tests will performed in Chrome");
                 break;
             case 2:
-//                DesiredCapabilities cap = new FirefoxOptions().setLogLevel(Level.OFF).addTo(DesiredCapabilities.firefox());
-//                LoggingPreferences prefs = new LoggingPreferences();
-//                prefs.enable(BROWSER, Level.WARNING);
-//                cap.setCapability(LOGGING_PREFS, prefs);
                 browser = MARIONETTE;
                 startMaximized = true;
-                if (localDriverPath == true){
-                    setFirefoxDriverPath();
+                if (localDriverPathLinux == true){
+                    setFirefoxDriverPathLinux();
                     rootLogger.info("Local driver path is selected");}
-                if (localDriverPath == false){
+                if (localDriverPathWindows == true){
+                    setFirefoxDriverPathWin();
+                    rootLogger.info("Local driver path is selected");}
+                if (localDriverPathWeb == true){
                     startMaximized = false;
                     FirefoxDriverManager.getInstance().setup();
                 }
-//                System.out.println(getWebDriver().manage().logs());
-                //getWebDriver().manage();
-                //getWebDriverLogs(BROWSER, WARNING);
-                //setWebDriver(getWebDriverLogs(BROWSER, WARNING));
-                //executeJavaScript("console.info()");
                 rootLogger.info("Tests will performed in Firefox");
                 break;
             case 3:
@@ -84,11 +72,11 @@ public class BeforeTestsSetUp {
                 c.setCapability("firefox_binary", firefox_binary_path);
                 c.setCapability("version", "46.0.1");
 
-                if (localDriverPath == true){
+                if (localDriverPathWindows == true){
                     startMaximized = true;
-                    setFirefoxDriverPath();
+                    setFirefoxDriverPathWin();
                     rootLogger.info("Local driver path is selected");}
-                if (localDriverPath == false){
+                if (localDriverPathWindows == false){
                     startMaximized = false;
                     FirefoxDriverManager.getInstance().setup();
                 }
@@ -103,8 +91,13 @@ public class BeforeTestsSetUp {
         System.setProperty("webdriver.chrome.driver", chromeDriverPath);
         return chromeDriverPath;
     }
-    public static String setFirefoxDriverPath() {
+    public static String setFirefoxDriverPathWin() {
         String ffDriverPath = "src/test/lib/geckodriver.exe";
+        System.setProperty("webdriver.gecko.driver", ffDriverPath);
+        return ffDriverPath;
+    }
+    public static String setFirefoxDriverPathLinux() {
+        String ffDriverPath = "src/test/lib/geckodriver";
         System.setProperty("webdriver.gecko.driver", ffDriverPath);
         return ffDriverPath;
     }
