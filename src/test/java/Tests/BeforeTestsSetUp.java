@@ -28,7 +28,7 @@ import static org.openqa.selenium.remote.CapabilityType.LOGGING_PREFS;
 public class BeforeTestsSetUp {
     static final Logger rootLogger = LogManager.getRootLogger();
 
-    public static boolean localDriverPath = true;
+    public static boolean localDriverPath = false;
     public static int testBrowser = 2;
     public static void setBrowser() throws IOException {
         switch (testBrowser) {
