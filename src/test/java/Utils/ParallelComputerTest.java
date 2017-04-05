@@ -3,6 +3,7 @@ import Page.TestsCredentials;
 import Steps.StepsPekama;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.ParallelComputer;
 import org.junit.runner.JUnitCore;
@@ -36,6 +37,7 @@ public class ParallelComputerTest {
         private String supplierEmail = TestsCredentials.User1.GMAIL_EMAIL.getValue();
         private String supplierPassword = TestsCredentials.User1.PEKAMA_PASSWORD.getValue();
         private static String caseName;
+        @Ignore
         @Test public void a(){
             rootLogger.info("Open host");
             StepsPekama loginIntoPekama = new StepsPekama();
@@ -46,6 +48,7 @@ public class ParallelComputerTest {
             rootLogger.info("Redirect back after login");
 
         }
+        @Ignore
         @Test public void b(){
             rootLogger.info("Open host");
             StepsPekama loginIntoPekama = new StepsPekama();
@@ -64,6 +67,7 @@ public class ParallelComputerTest {
         private String supplierEmail = TestsCredentials.User1.GMAIL_EMAIL.getValue();
         private String supplierPassword = TestsCredentials.User1.PEKAMA_PASSWORD.getValue();
         private static String caseName;
+        @Ignore
         @Test public void a(){
             rootLogger.info("Open host");
             StepsPekama loginIntoPekama = new StepsPekama();
@@ -73,6 +77,7 @@ public class ParallelComputerTest {
                     URL_COMMUNITY_LOGIN);
             rootLogger.info("Redirect back after login");
         }
+        @Ignore
         @Test public void b(){
             rootLogger.info("Open host");
             StepsPekama loginIntoPekama = new StepsPekama();

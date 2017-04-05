@@ -48,10 +48,10 @@ public class BeforeTestsSetUp {
                 startMaximized = true;
                 if (localDriverPathLinux == true){
                     setFirefoxDriverPathLinux();
-                    rootLogger.info("Local driver path is selected");}
+                    rootLogger.info("Linux Local driver path is selected");}
                 if (localDriverPathWindows == true){
                     setFirefoxDriverPathWin();
-                    rootLogger.info("Local driver path is selected");}
+                    rootLogger.info("Windows Local driver path is selected");}
                 if (localDriverPathWeb == true){
                     startMaximized = false;
                     FirefoxDriverManager.getInstance().setup();

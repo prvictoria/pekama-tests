@@ -1,4 +1,5 @@
 package Utils;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.text.DateFormat;
@@ -65,6 +66,7 @@ public class Utils {
 //    public static void enumSelection (enum a){
 //        a.getValue;
 //    }
+    @Ignore
     @Test
     public void test() throws ParseException {
         System.out.println(randomString(10));
