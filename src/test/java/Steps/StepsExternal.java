@@ -363,29 +363,7 @@ public class StepsExternal implements StepsFactory{
         String emailText = String.format(EMAIL_INVITE_IN_PROJECT_TEXT, args);
         return emailText;
     }
-    @Test
-    public void externalTestDebug1() {
-        checkEmailGeneric(
-                TestsCredentials.User2.GMAIL_EMAIL.getValue(),
-                GMAIL_PASSWORD,
-                $(byText("EMAIL_SUBJECT")),
-                "EMAIL_TITLE",
-                "EMAIL_TEXT",
-                "EMAIL_BTN",
-                $(byText("EMAIL_REDIRECT_LINK")),
-                "thisMailingListName");
-//        signInGmailInbox(
-//                TestsCredentials.User1.GMAIL_EMAIL.getValue(),
-//                GMAIL_PASSWORD);
-//        logoutGoogleInbox();
-    }
-    @Test
-    public void externalTestDebug2() {
-        signInGmailInbox(
-                TestsCredentials.User2.GMAIL_EMAIL.getValue(),
-                GMAIL_PASSWORD);
-        logoutGoogleInbox();
-    }
+
 
 
 

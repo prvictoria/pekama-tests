@@ -1,4 +1,5 @@
 package draft;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -73,6 +74,7 @@ public class testemail {
         store.close();
 
     }
+    @Ignore
     @Test
     public void test() throws Exception {
         readMails();

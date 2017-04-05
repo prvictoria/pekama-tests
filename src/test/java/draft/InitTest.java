@@ -3,6 +3,7 @@ import io.github.bonigarcia.wdm.FirefoxDriverManager;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.Ignore;
 import org.junit.Test;
 import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static com.codeborne.selenide.Configuration.browser;
@@ -15,6 +16,7 @@ import static com.codeborne.selenide.WebDriverRunner.*;
  */
 public class InitTest {
     static final Logger rootLogger = LogManager.getRootLogger();
+    @Ignore
     @Test
     public void newTest1(){
         browser = CHROME;
@@ -24,6 +26,7 @@ public class InitTest {
         openUrlWithBaseAuth("https://mvnrepository.com");
         //open("https://mvnrepository.com");
     }
+    @Ignore
     @Test
     public void newTest2(){
         browser = MARIONETTE;

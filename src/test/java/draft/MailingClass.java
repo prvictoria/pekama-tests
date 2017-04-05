@@ -3,6 +3,7 @@ package draft;
 /**
  * Created by Viachaslau_Balashevi on 3/8/2017.
  */
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -56,7 +57,7 @@ public class MailingClass {
 
         return inbox.getMessages();
     }
-
+    @Ignore
     @Test
     public void test() throws MessagingException {
         receiveMail(user, password);

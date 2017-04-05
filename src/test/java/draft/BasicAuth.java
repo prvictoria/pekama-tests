@@ -37,6 +37,7 @@ public class BasicAuth {
 ////        $(By.xpath("")).sendKeys("");
 ////        $(By.xpath("")).click();
 ////    }
+    @Ignore
     @Test
     public void openLogin() {
 
@@ -51,7 +52,7 @@ public class BasicAuth {
         lOGIN_TITLE.shouldBe(Condition.visible).shouldHave(Condition.text(lOGIN_TITLE_TEXT));
     };
 
-
+    @Ignore
         @Test
         public void canPassBasicAuthInFirefox() {
             assumeTrue(isFirefox());
@@ -69,7 +70,7 @@ public class BasicAuth {
 //            $(By.tagName("pre")).waitUntil(visible, 10000);
 //            assertThat(source(), containsString("\"authenticated\": true,"));
         }
-
+    @Ignore
         @Test
         public void canPassBasicAuthInHtmlUnit() {
             assumeTrue(isHtmlUnit());
@@ -79,7 +80,7 @@ public class BasicAuth {
                     "passwd");
             assertThat(source(), containsString("\"authenticated\": true,"));
         }
-
+    @Ignore
         @Test
         public void canPassBasicAuthInPhantomJS() {
             assumeTrue(isPhantomjs());
@@ -90,7 +91,7 @@ public class BasicAuth {
             $(By.tagName("pre")).waitUntil(visible, 10000);
             assertThat(source(), containsString("\"authenticated\": true,"));
         }
-
+    @Ignore
         @Test
         public void canPassBasicAuthInChrome() {
             assumeTrue(isChrome());
@@ -101,7 +102,7 @@ public class BasicAuth {
             $(By.tagName("pre")).waitUntil(visible, 10000);
             assertThat(source(), containsString("\"authenticated\": true,"));
         }
-
+    @Ignore
         @Test
         public void canPassBasicAuthInIe() {
             assumeTrue(isIE());

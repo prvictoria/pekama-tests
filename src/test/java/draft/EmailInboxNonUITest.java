@@ -4,6 +4,7 @@ import Page.TestsCredentials;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.mail.MessagingException;
@@ -92,6 +93,7 @@ public class EmailInboxNonUITest {
         check(host, mailStoreType, username, password);
 
     }
+    @Ignore
     @Test
     public void test1() {
         String host = "pop.gmail.com";// change accordingly
