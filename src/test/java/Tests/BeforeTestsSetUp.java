@@ -21,15 +21,14 @@ import static com.codeborne.selenide.WebDriverRunner.FIREFOX;
 public class BeforeTestsSetUp {
     static final Logger rootLogger = LogManager.getRootLogger();
 
-    public static boolean localDriverPathWindows = true;
-    public static boolean localDriverPathLinux = false;
+    public static boolean localDriverPathWindows = false;
+    public static boolean localDriverPathLinux = true;
     public static boolean localDriverPathWeb = false;
     public static int testBrowser = 2;
     public static void setBrowser() throws IOException {
         switch (testBrowser) {
             case 1:
                 browser = CHROME;
-
                 if (localDriverPathWindows == true){
                     setChromeDriverPath();
                     rootLogger.info("Local driver path is selected");}
