@@ -26,7 +26,7 @@ public class EmailSearcher {
      * @param keyword
      */
     public void searchEmail(String host, String port, String userName,
-                            String password, final String keyword) {
+                            String password, final String keyword, String subjectToDelete) {
         Properties properties = new Properties();
 
         // server setting
@@ -83,11 +83,15 @@ public class EmailSearcher {
                 System.out.println("Subject: " + message.getSubject());
                 System.out.println("From: " + message.getFrom()[0]);
                 System.out.println("Text: " + message.getContent().toString());
+                if (subject.contains(subjectToDelete)) {
+                    message.setFlag(Flags.Flag.DELETED, true);
+                    System.out.println("Marked DELETE for message: " + subject);
+                }
 
             }
 
             // disconnect
-            folderInbox.close(false);
+            folderInbox.close(true);
             store.close();
         } catch (NoSuchProviderException ex) {
             System.out.println("No provider.");
@@ -104,13 +108,13 @@ public class EmailSearcher {
      * Test this program with a Gmail's account
      */
     public static void main(String[] args) {
+        String subjectToDelete = "Confirm Registration [Pekama]";
         String host = "imap.gmail.com";
         String port = "993";
         EmailSearcher searcher = new EmailSearcher();
         String keyword = subject;
-        searcher.searchEmail(host, port, login, password, keyword);
-    }
-
+        searcher.searchEmail(host, port, login, password, keyword, subjectToDelete);
+        }
     }
 
     //todo email test

@@ -45,12 +45,12 @@ public class TestsCommunityDashboard {
     }
     @Before
     public void before() {
+        clearBrowserCache();
         openUrlWithBaseAuth(URL_COMMUNITY_DASHBOARD);
     }
     @After
     public void after() {
         openUrlWithBaseAuth(URL_COMMUNITY_LOGOUT);
-        clearBrowserCache();
     }
 
     @Test
