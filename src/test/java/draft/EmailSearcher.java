@@ -1,5 +1,7 @@
 package draft;
 
+import org.junit.Test;
+
 import javax.mail.*;
 import javax.mail.search.SearchTerm;
 import java.io.IOException;
@@ -13,7 +15,10 @@ import static Utils.Utils.getCurrentDate;
 public class EmailSearcher {
     static String login = "testqweeco005@gmail.com";
     static String password = "123456789qasw11";
-    static String subject = "Confirm Registration [Pekama]";
+    static String subject = "Pekama Report \"Last week's Events\"";
+    static String emailFrom = "noreply@emstaging.pekama.com";
+    static String host = "imap.gmail.com";
+    static String port = "993";
 
     /**
      * Searches for e-mail messages containing the specified keyword in
@@ -25,6 +30,7 @@ public class EmailSearcher {
      * @param password
      * @param keyword
      */
+
     public void searchEmail(String host, String port, String userName,
                             String password, final String keyword, String subjectToDelete) {
         Properties properties = new Properties();
@@ -49,7 +55,7 @@ public class EmailSearcher {
 
             // opens the inbox folder
             Folder folderInbox = store.getFolder("INBOX");
-            folderInbox.open(Folder.READ_ONLY);
+            folderInbox.open(Folder.READ_WRITE);
 
             // creates a search criterion
             SearchTerm searchCondition = new SearchTerm() {
@@ -71,23 +77,14 @@ public class EmailSearcher {
 
             for (int i = 0; i < foundMessages.length; i++) {
                 Message message = foundMessages[i];
-                String subject = message.getSubject();
-                System.out.println("Found message #" + i + ": " + subject);
-
-                Date date = message.getSentDate();
-                formatDateToString(date);
-                System.out.println("Found message #" + i + ": " + date);
-                String today = getCurrentDate();
-
+                System.out.println("---------------------------------");
                 System.out.println("Email Number " + (i + 1));
-                System.out.println("Subject: " + message.getSubject());
+                System.out.println("Found message #" + i + ": " + message.getSubject());
                 System.out.println("From: " + message.getFrom()[0]);
+                System.out.println("Send date message #" + i + ": " + formatDateToString(message.getSentDate()));
                 System.out.println("Text: " + message.getContent().toString());
-                if (subject.contains(subjectToDelete)) {
-                    message.setFlag(Flags.Flag.DELETED, true);
-                    System.out.println("Marked DELETE for message: " + subject);
-                }
 
+                //deleteDetectedEmailBySubject(subjectToDelete, message);
             }
 
             // disconnect
@@ -107,15 +104,55 @@ public class EmailSearcher {
     /**
      * Test this program with a Gmail's account
      */
+    public static void searchTerm(final String keyword) {
+        // creates a search criterion
+        SearchTerm searchCondition = new SearchTerm() {
+            @Override
+            public boolean match(Message message) {
+                try {
+                    if (message.getSubject().contains(keyword)) {
+                        return true;
+                    }
+                } catch (MessagingException ex) {
+                    ex.printStackTrace();
+                }
+                return false;
+            }
+        };
+    }
+    public static void deleteDetectedEmailBySubject(String subjectToDelete, Message message) throws MessagingException {
+        if (subjectToDelete!=null) {
+            if (subject.contains(subjectToDelete)) {
+                message.setFlag(Flags.Flag.DELETED, true);
+                System.out.println("Marked DELETE for message: " + subject);
+            }
+        }
+    }
+    public static void deleteDetectedEmailBySenderEmail(String fromAddress, Message message) throws MessagingException {
+        if (fromAddress !=null) {
+            Address messageFrom = message.getFrom()[0];
+
+            if (messageFrom.equals(fromAddress)) {
+                message.setFlag(Flags.Flag.DELETED, true);
+                System.out.println("Marked DELETE for message: " + subject);
+            }
+        }
+    }
     public static void main(String[] args) {
-        String subjectToDelete = "Confirm Registration [Pekama]";
+        //String subjectToDelete = "Confirm Registration [Pekama]";
+        String subjectToDelete = subject;
         String host = "imap.gmail.com";
         String port = "993";
         EmailSearcher searcher = new EmailSearcher();
         String keyword = subject;
         searcher.searchEmail(host, port, login, password, keyword, subjectToDelete);
         }
-    }
 
-    //todo email test
+    //TODO DELETE TEST
+    @Test
+    public void deleteEmailByAddressFrom(){
+
+    }
+}
+
 
