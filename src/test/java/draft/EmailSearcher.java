@@ -70,32 +70,11 @@ public class EmailSearcher {
             Message[] foundMessages = folderInbox.search(searchCondition);
 
             for (int i = 0; i < foundMessages.length; i++) {
-                Message message = foundMessages[i];
-                System.out.println("---------------------------------");
-                System.out.println("Email Number " + (i + 1));
-                System.out.println("Found message #" + i + ": " + message.getSubject());
-                System.out.println("From: " + message.getFrom()[0]);
-                System.out.println("TO: " + message.getRecipients(TO)[0]);
-                try{
-                System.out.println("CC: " + message.getRecipients(CC)[0]);
-                }
-                    catch (java.lang.NullPointerException e){
-                        System.out.println("CC: " + "No CC in email");
-                    }
-                System.out.println("Send date message #" + i + ": " + formatDateToString(message.getSentDate()));
-                System.out.println("Text: " + message.getContent().toString());
 
-                Object content = message.getContent();
-                System.out.println("Content :" +content);
-                System.out.println("--------------------------------");
-                Multipart multiPart = (Multipart) content;
-                //procesMultiPart(multiPart);
-                System.out.println("Multipart :" +multiPart);
-                System.out.println("--------------------------------");
-                //emailHtmlPart(message);
+                Message message = emailDetails (foundMessages, i);
+                emailHtmlPart(message);
                 emailPlainTextPart(message);
             }
-
             // disconnect
             folderInbox.close(true);
             store.close();
@@ -109,11 +88,7 @@ public class EmailSearcher {
             e.printStackTrace();
         }
     }
-
-    /**
-     * Test this program with a Gmail's account
-     */
-    public static SearchTerm searchTerm(final String keyword) {
+    private static SearchTerm searchTerm(final String keyword) {
         // creates a search criterion
         SearchTerm searchCondition = new SearchTerm() {
             @Override
@@ -130,7 +105,24 @@ public class EmailSearcher {
         };
         return searchCondition;
     }
-    public static void deleteDetectedEmailBySubject(String subjectToDelete, Message message) throws MessagingException {
+    private static SearchTerm searchTermFromAddress(final String keyword) {
+        // creates a search criterion
+        SearchTerm searchCondition = new SearchTerm() {
+            @Override
+            public boolean match(Message message) {
+                try {
+                    if (message.getFrom().equals(keyword)) {
+                        return true;
+                    }
+                } catch (MessagingException ex) {
+                    ex.printStackTrace();
+                }
+                return false;
+            }
+        };
+        return searchCondition;
+    }
+    private static void deleteDetectedEmailBySubject(String subjectToDelete, Message message) throws MessagingException {
         if (subjectToDelete!=null) {
             if (subject.contains(subjectToDelete)) {
                 message.setFlag(Flags.Flag.DELETED, true);
@@ -148,17 +140,8 @@ public class EmailSearcher {
             }
         }
     }
-    public static void main(String[] args) {
-        //String subjectToDelete = "Confirm Registration [Pekama]";
-        String subjectToDelete = "We are waiting for you!";
-       //String subject = "Pekama Report \"Last week's Events\"";
-       // String host = "imap.gmail.com";
-       // String port = "993";
-        EmailSearcher searcher = new EmailSearcher();
-        String keyword = subjectToDelete;
-        searcher.searchEmail(IMAP_HOST, IMAP_PORT, login, password, keyword, subjectToDelete);
-        }
-    public static Object emailHtmlPart(Message message) throws IOException, MessagingException {
+
+    private static Object emailHtmlPart(Message message) throws IOException, MessagingException {
         Object content = message.getContent();
         if (content instanceof Multipart) {
             Multipart mp = (Multipart) content;
@@ -177,7 +160,7 @@ public class EmailSearcher {
         }
         return content;
     }
-    public static Object emailPlainTextPart(Message message) throws IOException, MessagingException {
+    private static Object emailPlainTextPart(Message message) throws IOException, MessagingException {
         Object content = message.getContent();
         if (content instanceof Multipart) {
             Multipart mp = (Multipart) content;
@@ -187,8 +170,9 @@ public class EmailSearcher {
                         .compile(Pattern.quote("text/plain"),
                                 Pattern.CASE_INSENSITIVE)
                         .matcher(bp.getContentType()).find()) {
-                    // found html part
+                    // found text part
                     System.out.println((String) bp.getContent());
+                    System.out.println("--------------------------------");
                 } else {
                     // some other bodypart...
                 }
@@ -196,7 +180,34 @@ public class EmailSearcher {
         }
         return content;
     }
+    private static Message emailDetails (Message[] foundMessages, Integer i) throws MessagingException, IOException {
+        Message message = foundMessages[i];
+        System.out.println("---------------------------------");
+        System.out.println("Email Number " + (i + 1));
+        System.out.println("Found message #" + i + ": " + message.getSubject());
+        System.out.println("From: " + message.getFrom()[0]);
+        System.out.println("TO: " + message.getRecipients(TO)[0]);
+        try{
+            System.out.println("CC: " + message.getRecipients(CC)[0]);
+        }
+        catch (java.lang.NullPointerException e){
+            System.out.println("CC: " + "No CC in email");
+        }
+        System.out.println("Send date message #" + i + ": " + formatDateToString(message.getSentDate()));
+        System.out.println("Text: " + message.getContent().toString());
+        return message;
+    }
     //TODO DELETE TEST
+    public static void main(String[] args) {
+        //String subjectToDelete = "Confirm Registration [Pekama]";
+        String subjectToDelete = "We are waiting for you!";
+        //String subject = "Pekama Report \"Last week's Events\"";
+        // String host = "imap.gmail.com";
+        // String port = "993";
+        EmailSearcher searcher = new EmailSearcher();
+        String keyword = subjectToDelete;
+        searcher.searchEmail(IMAP_HOST, IMAP_PORT, login, password, keyword, subjectToDelete);
+    }
     @Test
     public void deleteEmailByAddressFrom(){
 
