@@ -1,8 +1,10 @@
 package draft;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import javax.mail.*;
+import javax.mail.internet.InternetAddress;
 import javax.mail.search.SearchTerm;
 import java.io.IOException;
 import java.util.Properties;
@@ -32,28 +34,16 @@ public class EmailSearcher {
      * Searches for e-mail messages containing the specified keyword in
      * Subject field.
      *
-     * @param host
-     * @param port
      * @param userName
      * @param password
      * @param keyword
      */
 
-    public void searchEmail(String host, String port, String userName,
-                            String password, final String keyword, String subjectToDelete) {
-        Properties properties = new Properties();
+    public void searchEmail(
 
-        // server setting
-        properties.put("mail.imap.host", host);
-        properties.put("mail.imap.port", port);
-
-        // SSL setting
-        properties.setProperty("mail.imap.socketFactory.class",
-                "javax.net.ssl.SSLSocketFactory");
-        properties.setProperty("mail.imap.socketFactory.fallback", "false");
-        properties.setProperty("mail.imap.socketFactory.port",
-                String.valueOf(port));
-
+            String userName, String password,
+            final String keyword, String subjectToDelete) {
+        Properties properties = setProperties (IMAP_HOST, IMAP_PORT);
         Session session = Session.getDefaultInstance(properties);
 
         try {
@@ -61,19 +51,21 @@ public class EmailSearcher {
             Store store = session.getStore("imap");
             store.connect(userName, password);
 
+
             // opens the inbox folder
             Folder folderInbox = store.getFolder("INBOX");
             folderInbox.open(Folder.READ_WRITE);
-            SearchTerm searchCondition = searchTerm(keyword);
+            SearchTerm searchCondition = searchTermFromAddress(keyword);
 
             // performs search through the folder
             Message[] foundMessages = folderInbox.search(searchCondition);
 
             for (int i = 0; i < foundMessages.length; i++) {
-
                 Message message = emailDetails (foundMessages, i);
-                emailHtmlPart(message);
-                emailPlainTextPart(message);
+               // emailHtmlPart(message);
+               // emailPlainTextPart(message);
+                deleteDetectedEmailBySenderEmail(keyword, message);
+
             }
             // disconnect
             folderInbox.close(true);
@@ -111,7 +103,10 @@ public class EmailSearcher {
             @Override
             public boolean match(Message message) {
                 try {
-                    if (message.getFrom().equals(keyword)) {
+                    Address[] froms = message.getFrom();
+                    String email = froms == null ? null : ((InternetAddress) froms[0]).getAddress();
+                    System.out.println(email);
+                    if (email.equals(keyword)) {
                         return true;
                     }
                 } catch (MessagingException ex) {
@@ -123,20 +118,22 @@ public class EmailSearcher {
         return searchCondition;
     }
     private static void deleteDetectedEmailBySubject(String subjectToDelete, Message message) throws MessagingException {
+        String subject = message.getSubject();
         if (subjectToDelete!=null) {
-            if (subject.contains(subjectToDelete)) {
+            if (subject.equals(subjectToDelete)) {
                 message.setFlag(Flags.Flag.DELETED, true);
                 System.out.println("Marked DELETE for message: " + subject);
             }
         }
     }
-    public static void deleteDetectedEmailBySenderEmail(String fromAddress, Message message) throws MessagingException {
-        if (fromAddress !=null) {
-            Address messageFrom = message.getFrom()[0];
-
-            if (messageFrom.equals(fromAddress)) {
+    public static void deleteDetectedEmailBySenderEmail(String keyword, Message message) throws MessagingException {
+        if (keyword != null) {
+            Address[] froms = message.getFrom();
+            String email = froms == null ? null : ((InternetAddress) froms[0]).getAddress();
+            System.out.println(email);
+            if (email.equals(keyword)) {
                 message.setFlag(Flags.Flag.DELETED, true);
-                System.out.println("Marked DELETE for message: " + subject);
+                System.out.println("Marked DELETE for message: " + message.getSubject());
             }
         }
     }
@@ -197,16 +194,36 @@ public class EmailSearcher {
         System.out.println("Text: " + message.getContent().toString());
         return message;
     }
+    private Properties setProperties (String host, String port){
+        Properties properties = new Properties();
+
+        // server setting
+        properties.put("mail.imap.host", host);
+        properties.put("mail.imap.port", port);
+
+        // SSL setting
+        properties.setProperty("mail.imap.socketFactory.class",
+                "javax.net.ssl.SSLSocketFactory");
+        properties.setProperty("mail.imap.socketFactory.fallback", "false");
+        properties.setProperty("mail.imap.socketFactory.port", String.valueOf(port));
+        // Timeout
+        properties.setProperty("mail.imap.connectiontimeout", String.valueOf(10000));
+        return properties;
+    }
     //TODO DELETE TEST
     public static void main(String[] args) {
         //String subjectToDelete = "Confirm Registration [Pekama]";
-        String subjectToDelete = "We are waiting for you!";
+        //String subjectToDelete = "no-reply@accounts.google.com";
+        String subjectToDelete = "dan@pekama.com";
+        //String subjectToDelete = "noreply@emstaging.pekama.com";
+        //String subjectToDelete = "We are waiting for you!";
         //String subject = "Pekama Report \"Last week's Events\"";
-        // String host = "imap.gmail.com";
-        // String port = "993";
         EmailSearcher searcher = new EmailSearcher();
         String keyword = subjectToDelete;
-        searcher.searchEmail(IMAP_HOST, IMAP_PORT, login, password, keyword, subjectToDelete);
+        searcher.searchEmail(login, password, keyword, subjectToDelete);
+    }
+    public static void deleteAllPekamaEmails(){
+        
     }
     @Test
     public void deleteEmailByAddressFrom(){
