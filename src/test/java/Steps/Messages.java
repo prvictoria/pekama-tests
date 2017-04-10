@@ -8,6 +8,15 @@ import org.apache.logging.log4j.Logger;
  */
 public class Messages implements StepsFactory{
     static final Logger rootLogger = LogManager.getRootLogger();
+    //Subject strings
+    public static final String EMAIL_SUBJECT_ = "";
+    public static final String EMAIL_SUBJECT_CONFIRM_REGISTRATION = "Confirm Registration [Pekama]";
+    public static final String EMAIL_BODY_CONFIRM_REGISTRATION_1 = "Registration Complete";
+    public static final String EMAIL_BODY_CONFIRM_REGISTRATION_2 = "To finish registration, please confirm your account.";
+    public static final String EMAIL_BODY_CONFIRM_REGISTRATION_3 = "Confirm Account";
+    public static final String EMAIL_SUBJECT_4 = "";
+
+
     //Common messages
 
 

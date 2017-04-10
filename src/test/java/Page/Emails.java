@@ -19,6 +19,7 @@ public class Emails extends Page {
 
     public static String EMAIL_SUBJECT = "//span[contains(.,'%1$s')]";
 
+
     //Email confirm registration
     public static final SelenideElement EMAIL_CONFIRM_REGISTRATION = $(byXpath(""));
     public static final SelenideElement EMAIL_CONFIRM_REGISTRATION_SUBJECT = $(byXpath("//span[contains(.,'Confirm Registration [Pekama]')]"));
