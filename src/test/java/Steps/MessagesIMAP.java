@@ -4,6 +4,8 @@ import Page.TestsCredentials;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+import org.junit.Assert;
 import org.junit.Test;
 
 import javax.mail.*;
@@ -15,6 +17,7 @@ import java.lang.reflect.Array;
 import java.util.Properties;
 import java.util.regex.Pattern;
 
+import static Steps.Messages.EMAIL_BODY_CONFIRM_REGISTRATION_1;
 import static Steps.Messages.EMAIL_SUBJECT_CONFIRM_REGISTRATION;
 import static Utils.Utils.formatDateToString;
 import static javax.mail.Message.RecipientType.*;
@@ -128,8 +131,12 @@ public class MessagesIMAP {
             for (int i = 0; i < foundMessages.length; i++) {
                 Message message = emailDetails (foundMessages, i);
                 String html = emailHtmlPart(message).toString();
-                System.out.println(html);
-                parseHtml(html);
+                //System.out.println(html);
+                String link = parseHtmlHref(html);
+                Assert.assertTrue(link.contains("https://staging.pekama.com/accounts/confirm/"));
+                String linkText = parseHtmlLinkText(html);
+                Assert.assertTrue(linkText.equals("Confirm Account"));
+                parseHtmlHrefArray(html);
             }
             // disconnect
             folderInbox.close(true);
@@ -256,8 +263,8 @@ public class MessagesIMAP {
                                 Pattern.CASE_INSENSITIVE)
                         .matcher(bp.getContentType()).find()) {
                     // found html part
-                    System.out.println((String) bp.getContent());
-                    System.out.println("--------------------------------");
+                    //System.out.println((String) bp.getContent());
+                    //System.out.println("--------------------------------");
                 } else {
                     // some other bodypart...
                 }
@@ -344,6 +351,35 @@ public class MessagesIMAP {
         System.out.println(linkInnerH);
         System.out.println("--------------------------------");
         return linkHref;
+    }
+    private String parseHtmlHref(String html){
+        Document doc = Jsoup.parse(html);
+        Element link = doc.select("a[href]").first();
+        String linkHref = link.attr("href"); // "http://example.com/"
+        System.out.println("Link attribute "+linkHref);
+        System.out.println("--------------------------------");
+        return linkHref;
+    }
+    private Elements parseHtmlHrefArray(String html){
+        Document doc = Jsoup.parse(html);
+        Elements link = doc.getElementsByAttribute("href");
+        Integer size = link.size();
+        Integer i = 0;
+        while (size>0) {
+            System.out.println("Link attribute " + link.get(i).attr("href"));
+            System.out.println("--------------------------------");
+        size--;
+        i++;
+        }
+        return link;
+    }
+    private String parseHtmlLinkText(String html){
+        Document doc = Jsoup.parse(html);
+        Element link = doc.select("a[href]").first();
+        String linkText = link.text(); // "example""
+        System.out.println(linkText);
+        System.out.println("--------------------------------");
+        return linkText;
     }
     //TODO DELETE TEST
     public static void main(String[] args) {
