@@ -1,6 +1,8 @@
 package Tests;
+import Steps.MessagesIMAP;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
+
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
@@ -8,6 +10,7 @@ import org.junit.runners.Suite;
 //@Categories.ExcludeCategory(AllEmailsTests.class) //Emails not stable
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
+        MessagesIMAP.class,
         TestsCommunityIntegration.class,
         TestCommunityIntegrationRedirect.class,
         TestsCommynityLanding.class,
@@ -32,6 +35,5 @@ import org.junit.runners.Suite;
         TestsPekamaReports.class //last suite
 })
 public class AllTestsRunner {
-
 
 }

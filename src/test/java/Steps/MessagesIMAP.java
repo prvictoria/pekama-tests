@@ -1,10 +1,11 @@
-package draft;
+package Steps;
 
-import org.junit.Assert;
+import Page.TestsCredentials;
 import org.junit.Test;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
+import javax.mail.search.FlagTerm;
 import javax.mail.search.SearchTerm;
 import java.io.IOException;
 import java.util.Properties;
@@ -22,7 +23,7 @@ import javax.mail.Multipart;
 import javax.mail.Session;
 import javax.mail.Store;
 
-public class EmailSearcher {
+public class MessagesIMAP {
     static String login = "testqweeco005@gmail.com";
     static String password = "123456789qasw11";
     static String subject = "Pekama Report \"Last week's Events\"";
@@ -39,10 +40,7 @@ public class EmailSearcher {
      * @param keyword
      */
 
-    public void searchEmail(
-
-            String userName, String password,
-            final String keyword, String subjectToDelete) {
+    public void searchEmailByAddress(String userName, String password, final String keyword) {
         Properties properties = setProperties (IMAP_HOST, IMAP_PORT);
         Session session = Session.getDefaultInstance(properties);
 
@@ -51,21 +49,16 @@ public class EmailSearcher {
             Store store = session.getStore("imap");
             store.connect(userName, password);
 
-
             // opens the inbox folder
             Folder folderInbox = store.getFolder("INBOX");
             folderInbox.open(Folder.READ_WRITE);
-            SearchTerm searchCondition = searchTermFromAddress(keyword);
+            SearchTerm searchCondition = searchTermAddress(keyword);
 
             // performs search through the folder
             Message[] foundMessages = folderInbox.search(searchCondition);
 
             for (int i = 0; i < foundMessages.length; i++) {
                 Message message = emailDetails (foundMessages, i);
-               // emailHtmlPart(message);
-               // emailPlainTextPart(message);
-                deleteDetectedEmailBySenderEmail(keyword, message);
-
             }
             // disconnect
             folderInbox.close(true);
@@ -80,7 +73,83 @@ public class EmailSearcher {
             e.printStackTrace();
         }
     }
-    private static SearchTerm searchTerm(final String keyword) {
+    public void searchEmailBySubject(String userName, String password, final String keyword) {
+        Properties properties = setProperties (IMAP_HOST, IMAP_PORT);
+        Session session = Session.getDefaultInstance(properties);
+
+        try {
+            // connects to the message store
+            Store store = session.getStore("imap");
+            store.connect(userName, password);
+
+            // opens the inbox folder
+            Folder folderInbox = store.getFolder("INBOX");
+            folderInbox.open(Folder.READ_WRITE);
+            SearchTerm searchCondition = searchTermSubject(keyword);
+
+            // performs search through the folder
+            Message[] foundMessages = folderInbox.search(searchCondition);
+
+            for (int i = 0; i < foundMessages.length; i++) {
+                Message message = emailDetails (foundMessages, i);
+            }
+            // disconnect
+            folderInbox.close(true);
+            store.close();
+        } catch (NoSuchProviderException ex) {
+            System.out.println("No provider.");
+            ex.printStackTrace();
+        } catch (MessagingException ex) {
+            System.out.println("Could not connect to the message store.");
+            ex.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void searchEmailDeleteAll(String userName, String password) {
+        System.out.println("---------------------------------");
+        System.out.println("Checked email " +userName);
+        Properties properties = setProperties (IMAP_HOST, IMAP_PORT);
+        Session session = Session.getDefaultInstance(properties);
+
+        try {
+            // connects to the message store
+            Store store = session.getStore("imap");
+            store.connect(userName, password);
+
+            // opens the inbox folder
+            Folder folderInbox = store.getFolder("INBOX");
+            folderInbox.open(Folder.READ_WRITE);
+
+            // performs search through the folder
+            Message foundMessagesUnread[] = folderInbox.search(new FlagTerm(new Flags(
+                    Flags.Flag.SEEN), false));
+            System.out.println("No. of Unread Messages : " + foundMessagesUnread.length);
+            for (int i = 0; i < foundMessagesUnread.length; i++) {
+                Message message = foundMessagesUnread[i];
+                message.setFlag(Flags.Flag.DELETED, true);
+                System.out.println("Marked DELETE for message: " + subject);
+            }
+            Message foundMessagesRead[] = folderInbox.search(new FlagTerm(new Flags(
+                    Flags.Flag.SEEN), true));
+            System.out.println("No. of already read Messages : " + foundMessagesRead.length);
+            for (int i = 0; i < foundMessagesRead.length; i++) {
+                Message message = foundMessagesRead[i];
+                message.setFlag(Flags.Flag.DELETED, true);
+                System.out.println("Marked DELETE for message: " + subject);
+            }
+            // disconnect
+            folderInbox.close(true);
+            store.close();
+        } catch (NoSuchProviderException ex) {
+            System.out.println("No provider.");
+            ex.printStackTrace();
+        } catch (MessagingException ex) {
+            System.out.println("Could not connect to the message store.");
+            ex.printStackTrace();
+        }
+    }
+    private static SearchTerm searchTermSubject(final String keyword) {
         // creates a search criterion
         SearchTerm searchCondition = new SearchTerm() {
             @Override
@@ -97,7 +166,7 @@ public class EmailSearcher {
         };
         return searchCondition;
     }
-    private static SearchTerm searchTermFromAddress(final String keyword) {
+    private static SearchTerm searchTermAddress(final String keyword) {
         // creates a search criterion
         SearchTerm searchCondition = new SearchTerm() {
             @Override
@@ -105,7 +174,7 @@ public class EmailSearcher {
                 try {
                     Address[] froms = message.getFrom();
                     String email = froms == null ? null : ((InternetAddress) froms[0]).getAddress();
-                    System.out.println(email);
+                    //System.out.println(email);
                     if (email.equals(keyword)) {
                         return true;
                     }
@@ -126,7 +195,7 @@ public class EmailSearcher {
             }
         }
     }
-    public static void deleteDetectedEmailBySenderEmail(String keyword, Message message) throws MessagingException {
+    private static void deleteDetectedEmailBySenderEmail(String keyword, Message message) throws MessagingException {
         if (keyword != null) {
             Address[] froms = message.getFrom();
             String email = froms == null ? null : ((InternetAddress) froms[0]).getAddress();
@@ -137,7 +206,6 @@ public class EmailSearcher {
             }
         }
     }
-
     private static Object emailHtmlPart(Message message) throws IOException, MessagingException {
         Object content = message.getContent();
         if (content instanceof Multipart) {
@@ -207,7 +275,7 @@ public class EmailSearcher {
         properties.setProperty("mail.imap.socketFactory.fallback", "false");
         properties.setProperty("mail.imap.socketFactory.port", String.valueOf(port));
         // Timeout
-        properties.setProperty("mail.imap.connectiontimeout", String.valueOf(10000));
+        properties.setProperty("mail.imap.connectiontimeout", String.valueOf(30000));
         return properties;
     }
     //TODO DELETE TEST
@@ -218,16 +286,28 @@ public class EmailSearcher {
         //String subjectToDelete = "noreply@emstaging.pekama.com";
         //String subjectToDelete = "We are waiting for you!";
         //String subject = "Pekama Report \"Last week's Events\"";
-        EmailSearcher searcher = new EmailSearcher();
+        MessagesIMAP searcher = new MessagesIMAP();
         String keyword = subjectToDelete;
-        searcher.searchEmail(login, password, keyword, subjectToDelete);
-    }
-    public static void deleteAllPekamaEmails(){
-        
+        searcher.searchEmailByAddress(login, password, keyword);
     }
     @Test
-    public void deleteEmailByAddressFrom(){
-
+    public void clearAllEmails(){
+        MessagesIMAP emailTask = new MessagesIMAP();
+        emailTask.searchEmailDeleteAll(
+                TestsCredentials.User1.GMAIL_EMAIL.getValue(),
+                TestsCredentials.User1.GMAIL_PASSWORD.getValue());
+        emailTask.searchEmailDeleteAll(
+                TestsCredentials.User2.GMAIL_EMAIL.getValue(),
+                TestsCredentials.User2.GMAIL_PASSWORD.getValue());
+        emailTask.searchEmailDeleteAll(
+                TestsCredentials.User3.GMAIL_EMAIL.getValue(),
+                TestsCredentials.User3.GMAIL_PASSWORD.getValue());
+        emailTask.searchEmailDeleteAll(
+                TestsCredentials.User4.GMAIL_EMAIL.getValue(),
+                TestsCredentials.User4.GMAIL_PASSWORD.getValue());
+        emailTask.searchEmailDeleteAll(
+                TestsCredentials.User5.GMAIL_EMAIL.getValue(),
+                TestsCredentials.User5.GMAIL_PASSWORD.getValue());
     }
 }
 

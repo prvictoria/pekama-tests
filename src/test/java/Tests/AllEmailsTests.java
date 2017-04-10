@@ -1,4 +1,5 @@
 package Tests;
+import Steps.MessagesIMAP;
 import org.junit.FixMethodOrder;
 import org.junit.experimental.categories.Categories;
 import org.junit.runner.RunWith;
@@ -11,6 +12,7 @@ import org.junit.runners.Suite;
 @RunWith(Categories.class)
 @Categories.IncludeCategory(AllEmailsTests.class)
 @Suite.SuiteClasses({
+       MessagesIMAP.class,
        TestsCommunityIntegration.class,
        TestsCommunityDashboard.class,
        TestsCommynityLanding.class,
