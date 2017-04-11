@@ -57,7 +57,7 @@ public class StepsHttpAuth implements StepsFactory {
                     "qweeco",
                     "qw33coStudi0");
             sleep(250);
-            rootLogger.info(url+"URL opened");
+            rootLogger.info(url+" URL opened");
         }
         if(testBrowser==2){
         Selenide.open(url,
@@ -65,7 +65,7 @@ public class StepsHttpAuth implements StepsFactory {
                     "qweeco",
                     "qw33coStudi0");
             sleep(250);
-            rootLogger.info(url+"URL opened");
+            rootLogger.info(url+" URL opened");
         }
     }
 }

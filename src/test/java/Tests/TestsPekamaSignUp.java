@@ -15,21 +15,18 @@ import static Page.Emails.*;
 import static Page.PekamaSignUp.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
-import static Page.UrlConfig.setEnvironment;
-import static Page.UrlStrings.URL_SingUp;
-import static Steps.Messages.EMAIL_SUBJECT_CONFIRM_REGISTRATION;
-import static Steps.MessagesIMAP.detectEmailIMAP;
-import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
-import static Steps.StepsPekama.checkText;
-import static Steps.StepsPekama.submitCookie;
-import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
-import static Tests.BeforeTestsSetUp.setBrowser;
-import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
+import static Page.UrlConfig.*;
+import static Page.UrlStrings.*;
+import static Steps.MessagesIMAP.*;
+import static Steps.StepsHttpAuth.*;
+import static Steps.StepsPekama.*;
+import static Tests.BeforeTestsSetUp.*;
+import static com.codeborne.selenide.CollectionCondition.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.refresh;
-import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
+import static com.codeborne.selenide.WebDriverRunner.*;
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
@@ -73,7 +70,7 @@ public class TestsPekamaSignUp {
         signupCompany.shouldBe(visible).shouldHave(value(""));
         signupPassword.shouldBe(visible).shouldHave(value(""));
         signupUpload.shouldBe(visible).shouldHave(value(""));
-        signupSubscribeNews.shouldBe(visible).shouldBe(selected);
+        // signupSubscribeNews.shouldBe(visible).shouldBe(selected);
         signupAgree.shouldBe(selected);
         signupTerms.shouldBe(visible);
         signupNext.shouldBe(visible).shouldBe(enabled).click();
@@ -221,6 +218,7 @@ public class TestsPekamaSignUp {
                 GMAIL_PASSWORD,
                 "Welcome to Pekama! Just one more click",
                 new MessagesValidator.ValidationSignUp());
+        rootLogger.info("Test passed");
     }
     @Test
     public void joinToTeam() {

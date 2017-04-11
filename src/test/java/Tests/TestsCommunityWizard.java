@@ -38,6 +38,7 @@ import static com.codeborne.selenide.Selenide.*;
 public class TestsCommunityWizard {
     static final Logger rootLogger = LogManager.getRootLogger();
     private static String CASE_TYPE;
+    static String REDIRECT_LINK;
     private final static String TEST_CASE_COUNTRY = Countries.PITCAIRN_ISLANDS.getValue();
 
     private final static String REQUESTER_EMAIL = User3.GMAIL_EMAIL.getValue();

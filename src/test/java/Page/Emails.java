@@ -16,7 +16,7 @@ public class Emails extends Page {
     public static final String EMAIL_RESET_PASSWORD_BTN = "Reset Password";
     public static final SelenideElement EMAIL_RESET_PASSWORD_SUBJECT = $(byXpath("//span[contains(.,'Password Restoration [Pekama]')]"));
     public static final SelenideElement EMAIL_RESET_PASSWORD_BACKLINK = $(byXpath("//td/a[contains(@href, '"+SELECT_HOST+"/accounts/password/reset/')]"));
-
+    public static String EMAIL_RESET_PASSWORD_LINK = SELECT_HOST+"/accounts/password/reset/";
     public static String EMAIL_SUBJECT = "//span[contains(.,'%1$s')]";
 
 

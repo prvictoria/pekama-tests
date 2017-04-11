@@ -14,6 +14,7 @@ import static Steps.MessagesIMAP.*;
  */
 public interface MessagesValidator extends StepsFactory {
     boolean validationEmail(String html);
+    String validateLink(String html, Integer index);
 
     //}
     class ValidationSignUp implements MessagesValidator {
@@ -39,6 +40,11 @@ public interface MessagesValidator extends StepsFactory {
             Assert.assertTrue(html.contains(EMAIL_CONFIRM_REGISTRATION_YOUR_EMAIL_IS));
             return true;
         }
+
+        @Override
+        public String validateLink(String html, Integer index) {
+            return null;
+        }
     }
 
     class ValidationInvite implements MessagesValidator {
@@ -53,6 +59,11 @@ public interface MessagesValidator extends StepsFactory {
             Assert.assertTrue(linkText.equals("Confirm Account"));
             parseHtmlHrefArray(html);
             return true;
+        }
+
+        @Override
+        public String validateLink(String html, Integer index) {
+            return null;
         }
     }
 
@@ -69,6 +80,11 @@ public interface MessagesValidator extends StepsFactory {
             parseHtmlHrefArray(html);
             return true;
         }
+
+        @Override
+        public String validateLink(String html, Integer index) {
+            return null;
+        }
     }
 
     class ValidationInviteCommunity implements MessagesValidator {
@@ -83,6 +99,11 @@ public interface MessagesValidator extends StepsFactory {
             Assert.assertTrue(linkText.equals("Confirm Account"));
             parseHtmlHrefArray(html);
             return true;
+        }
+
+        @Override
+        public String validateLink(String html, Integer index) {
+            return null;
         }
     }
 
@@ -99,6 +120,11 @@ public interface MessagesValidator extends StepsFactory {
             parseHtmlHrefArray(html);
             return true;
         }
+
+        @Override
+        public String validateLink(String html, Integer index) {
+            return null;
+        }
     }
 
     class ValidationInviteInTeam implements MessagesValidator {
@@ -114,6 +140,11 @@ public interface MessagesValidator extends StepsFactory {
             parseHtmlHrefArray(html);
             return true;
         }
+
+        @Override
+        public String validateLink(String html, Integer index) {
+            return null;
+        }
     }
 
     class ValidationCongratulation implements MessagesValidator {
@@ -126,6 +157,11 @@ public interface MessagesValidator extends StepsFactory {
             parseHtmlHrefArray(html);
             return true;
         }
+
+        @Override
+        public String validateLink(String html, Integer index) {
+            return null;
+        }
     }
 
     class ValidationResetPassword implements MessagesValidator {
@@ -133,10 +169,27 @@ public interface MessagesValidator extends StepsFactory {
 
         @Override
         public boolean validationEmail(String html) {
-
             this.html = html;
-            parseHtmlHrefArray(html);
+            String resetLink = null;
+            String linkText = parseHtmlLinkText(html);
+            Assert.assertTrue(linkText.equals(EMAIL_RESET_PASSWORD_BTN));
+            Assert.assertTrue(parseHtmlHrefArray(html).size() == 2);
+            Elements links = parseHtmlHrefArray(html);
+            String link1 = getLink(links, 0);
+            Assert.assertTrue(link1.contains(EMAIL_RESET_PASSWORD_LINK));
+            String link2 = getLink(links, 1);
+            Assert.assertTrue(link2.contains(EMAIL_RESET_PASSWORD_LINK));
+            Assert.assertTrue(html.contains(EMAIL_RESET_PASSWORD_TITLE));
+            Assert.assertTrue(html.contains(EMAIL_RESET_PASSWORD_TEXT));
+            Assert.assertTrue(html.contains("You may copy/paste this link into your browser:"));
             return true;
+        }
+
+        @Override
+        public String validateLink(String html, Integer index) {
+            Elements links = parseHtmlHrefArray(html);
+            String link = getLink(links, index);
+            return link;
         }
     }
 
@@ -149,6 +202,11 @@ public interface MessagesValidator extends StepsFactory {
             this.html = html;
             parseHtmlHrefArray(html);
             return true;
+        }
+
+        @Override
+        public String validateLink(String html, Integer index) {
+            return null;
         }
     }
 }

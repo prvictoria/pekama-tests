@@ -1,8 +1,5 @@
 package Tests;
-import Steps.StepsExternal;
-import Steps.StepsHttpAuth;
-import Steps.StepsPekama;
-import Steps.User;
+import Steps.*;
 import Utils.Utils;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
@@ -23,7 +20,7 @@ import static Page.UrlConfig.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.UrlStrings.*;
-import static Steps.StepsExternal.*;
+import static Steps.MessagesIMAP.detectEmailIMAP;
 import static Steps.StepsHttpAuth.*;
 import static Steps.StepsPekama.checkText;
 import static Tests.BeforeTestsSetUp.*;
@@ -40,6 +37,7 @@ import static org.junit.Assert.assertEquals;
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaResetPassword {
+    static String REDIRECT_LINK;
     static final Logger rootLogger = LogManager.getLogger(TestsPekamaResetPassword.class);
     public static String SELECT_HOST = ENVIRONMENT_PEKAMA;
     private static String NEW_PASSWORD = null;
@@ -50,7 +48,7 @@ public class TestsPekamaResetPassword {
     private String EMAIL_TEXT = EMAIL_RESET_PASSWORD_TEXT;
     private String EMAIL_BTN = EMAIL_RESET_PASSWORD_BTN;
     private SelenideElement EMAIL_REDIRECT_LINK = EMAIL_RESET_PASSWORD_BACKLINK;
-    private String PEKAMA_USER_EMAIL = User4.GMAIL_EMAIL.getValue();
+    private String email = User4.GMAIL_EMAIL.getValue();
     private static final String USERNAME = User4.NAME.getValue();
     private static final String USERSURNAME = User4.SURNAME.getValue();
     @Rule
@@ -76,17 +74,16 @@ public class TestsPekamaResetPassword {
         sleep(1000);
         lOGIN_TITLE.shouldBe(Condition.visible).shouldHave(Condition.text(lOGIN_TITLE_TEXT));
         LINK_FORGOT_PASSWORD.click();
-        sleep(1000);
+        RESET_PAGE_TITLE.waitUntil(visible, 20000).shouldHave(Condition.text(RESET_PAGE_TITLE_TEXT));
+        RESET_PAGE_EMAIL.shouldHave(value(""));
+        RESET_PAGE_RESET_BTN.shouldBe(visible).shouldBe(enabled);
     }
     @Test
     public void invalidEmailResetPassword() {
-        rootLogger.info("Open URL - " +URL_ResetPassword);
-        openUrlWithBaseAuth(URL_ResetPassword);
-        sleep(1000);
-       RESET_PAGE_TITLE.shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_TITLE_TEXT));
-       RESET_PAGE_EMAIL.sendKeys("123@123");
-       RESET_PAGE_RESET_BTN.click();
-        sleep(1000);
+       rootLogger.info("Open URL - " +URL_ResetPassword);
+       openUrlWithBaseAuth(URL_ResetPassword);
+       User userInvalidPassword = new User();
+       userInvalidPassword.submitReset(null);
        RESET_PAGE_ERROR.shouldHaveSize(1);
        $(byText(ERROR_MSG_INVALID_EMAIL)).shouldBe(visible);
     }
@@ -95,26 +92,28 @@ public class TestsPekamaResetPassword {
         REDIRECT_LINK = null;
         rootLogger.info("Open URL - " + URL_ResetPassword);
         openUrlWithBaseAuth(URL_ResetPassword);
-        sleep(1000);
-       RESET_PAGE_TITLE.shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_TITLE_TEXT));
-       RESET_PAGE_EMAIL.sendKeys(User4.GMAIL_EMAIL.getValue());
-       RESET_PAGE_RESET_BTN.click();
-        sleep(1000);
+
+        User userNewPassword = new User();
+        userNewPassword.submitReset(email);
+
        RESET_PAGE_SUCCESS.shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_SUCCESS_MSG));
         String testSuccessMsg = RESET_PAGE_SUCCESS.getText();
         rootLogger.info(testSuccessMsg + " displayed, valid email submitted");
-        sleep(5000);
-        StepsExternal loginGmailInboxApp = new StepsExternal();
-        checkInboxEmail(
+
+        rootLogger.info("Check reset password email");
+        detectEmailIMAP(
                 GMAIL_LOGIN,
                 GMAIL_PASSWORD,
-                EMAIL_SUBJECT,
-                EMAIL_TITLE,
-                EMAIL_TEXT,
-                EMAIL_BTN,
-                EMAIL_REDIRECT_LINK);
-        rootLogger.info("Email and links correspond requirements");
+                "Password Restoration [Pekama]");
+        MessagesIMAP searcher = new MessagesIMAP();
+        REDIRECT_LINK = searcher.searchEmailBySubjectAndValidate(
+                GMAIL_LOGIN,
+                GMAIL_PASSWORD,
+                "Password Restoration [Pekama]",
+                new MessagesValidator.ValidationResetPassword(), 0);
+        rootLogger.info("Test passed");
     }
+    @Category(AllEmailsTests.class)
     @Test
     public void resetPassword_B() {
         if (REDIRECT_LINK != null) {
@@ -131,6 +130,7 @@ public class TestsPekamaResetPassword {
             }
         else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
     }
+    @Category(AllEmailsTests.class)
     @Test
     public void resetPassword_C() {
         if (REDIRECT_LINK != null) {
@@ -144,6 +144,7 @@ public class TestsPekamaResetPassword {
         }
         else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
     }
+    @Category(AllEmailsTests.class)
     @Test
     public void resetPassword_D() {
         if (REDIRECT_LINK != null) {
@@ -159,6 +160,7 @@ public class TestsPekamaResetPassword {
         }
         else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
     }
+    @Category(AllEmailsTests.class)
     @Test
     public void resetPassword_E() {
         if (REDIRECT_LINK != null) {
@@ -176,7 +178,7 @@ public class TestsPekamaResetPassword {
         }
         else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
     }
-
+    @Category(AllEmailsTests.class)
     @Test
     public void resetPassword_F() {
         if (REDIRECT_LINK != null) {
@@ -199,6 +201,7 @@ public class TestsPekamaResetPassword {
         }
         else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
     }
+    @Category(AllEmailsTests.class)
     @Test
     public void resetPassword_G() {
         if (REDIRECT_LINK != null) {
@@ -217,6 +220,7 @@ public class TestsPekamaResetPassword {
         }
         else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
     }
+    @Category(AllEmailsTests.class)
     @Test
     public void resetPassword_H() {
         if (REDIRECT_LINK != null) {
@@ -234,6 +238,7 @@ public class TestsPekamaResetPassword {
         }
         else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
     }
+    @Category(AllEmailsTests.class)
     @Test
     public void resetPassword_I() {
         if (REDIRECT_LINK != null) {
@@ -251,6 +256,7 @@ public class TestsPekamaResetPassword {
         }
         else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
     }
+    @Category(AllEmailsTests.class)
     @Test
     public void resetPassword_P() {
         if (REDIRECT_LINK != null) {
@@ -258,10 +264,10 @@ public class TestsPekamaResetPassword {
             openUrlWithBaseAuth(REDIRECT_LINK);
             sleep(1000);
             rootLogger.info("Positive test");
-            User newPassword = new User();
-            newPassword.submitResetPassword(null);
-
-            $(byText(RESET_PAGE_FINISHED_TITLE)).waitUntil(visible, 10000);
+            User userResetPassword = new User();
+            userResetPassword.submitResetPassword(null);
+            NEW_PASSWORD = userResetPassword.password;
+            $(byText(RESET_PAGE_FINISHED_TITLE)).waitUntil(visible, 15000);
             RESET_PAGE_FINISHED_BTN_LOGIN.shouldBe(visible);
             String thisUrl = url();
             assertEquals(thisUrl, URL_ResetPasswordComplete);
@@ -269,7 +275,7 @@ public class TestsPekamaResetPassword {
         }
         else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
     }
-
+    @Category(AllEmailsTests.class)
     @Test
     public void resetPassword_Q() {
         if (NEW_PASSWORD != null) {
@@ -280,8 +286,7 @@ public class TestsPekamaResetPassword {
             sleep(1000);
 
             StepsPekama loginWithNewPassword = new StepsPekama();
-            String USER_PEKAMA_PASSWORD = NEW_PASSWORD;
-            loginWithNewPassword.submitLoginCredentials(PEKAMA_USER_EMAIL,USER_PEKAMA_PASSWORD);
+            loginWithNewPassword.submitLoginCredentials(email,NEW_PASSWORD);
                 sleep(3000);
                 String thisUrl = url();
                 assertEquals(thisUrl, URL_Dashboard);
@@ -290,37 +295,9 @@ public class TestsPekamaResetPassword {
         }
         else Assert.fail("password - "+NEW_PASSWORD);
     }
-
+    @Category(AllEmailsTests.class)
     @Test
     public void resetPassword_S() {
-        if (NEW_PASSWORD != null) {
-            REDIRECT_LINK = null;
-            rootLogger.info("User password - " +NEW_PASSWORD);
-            openUrlWithBaseAuth(URL_ResetPassword);
-            sleep(1000);
-           RESET_PAGE_TITLE.shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_TITLE_TEXT));
-           RESET_PAGE_EMAIL.sendKeys(User4.GMAIL_EMAIL.getValue());
-           RESET_PAGE_RESET_BTN.click();
-            sleep(1000);
-           RESET_PAGE_SUCCESS.shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_SUCCESS_MSG));
-            String testSuccessMsg = RESET_PAGE_SUCCESS.getText();
-            rootLogger.info(testSuccessMsg + " displayed, valid email submitted");
-            checkInboxEmail(GMAIL_LOGIN, GMAIL_PASSWORD,EMAIL_SUBJECT, EMAIL_TITLE, EMAIL_TEXT, EMAIL_BTN, EMAIL_REDIRECT_LINK);
-            rootLogger.info("Email and links correspond requirements");
-
-            openUrlWithBaseAuth(REDIRECT_LINK);
-            User newPassword = new User();
-            newPassword.submitResetPassword(
-                    NEW_PASSWORD,
-                    NEW_PASSWORD);
-            checkText(ERROR_MSG_NEW_PASSOWRD_EQUALS_TO_OLD);
-            rootLogger.info("Validation old password present");
-        }
-        else Assert.fail("password - "+NEW_PASSWORD);
-    }
-    @Ignore("stub")
-    @Test
-    public void resetPassword_Z() {
         if (REDIRECT_LINK != null) {
             rootLogger.info("Open URL - " +REDIRECT_LINK);
             openUrlWithBaseAuth(REDIRECT_LINK);
@@ -334,7 +311,41 @@ public class TestsPekamaResetPassword {
         else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
 
     }
+    @Category(AllEmailsTests.class)
+    @Test
+    public void resetPassword_Z() {
+        if (NEW_PASSWORD != null) {
+            REDIRECT_LINK = null;
+            rootLogger.info("User password - " +NEW_PASSWORD);
+            openUrlWithBaseAuth(URL_ResetPassword);
+            sleep(1000);
+            User userOldPassword = new User();
+            userOldPassword.submitReset(email);
+           RESET_PAGE_SUCCESS.shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_SUCCESS_MSG));
+            String testSuccessMsg = RESET_PAGE_SUCCESS.getText();
+            rootLogger.info(testSuccessMsg + " displayed, valid email submitted");
 
+            rootLogger.info("Check reset password email");
+            detectEmailIMAP(
+                    GMAIL_LOGIN,
+                    GMAIL_PASSWORD,
+                    "Password Restoration [Pekama]");
+            MessagesIMAP searcher = new MessagesIMAP();
+            REDIRECT_LINK = searcher.searchEmailBySubjectAndValidate(
+                    GMAIL_LOGIN,
+                    GMAIL_PASSWORD,
+                    "Password Restoration [Pekama]",
+                    new MessagesValidator.ValidationResetPassword(), 0);
+            rootLogger.info("Email and links correspond requirements");
 
+            openUrlWithBaseAuth(REDIRECT_LINK);
+            userOldPassword.submitResetPassword(
+                    NEW_PASSWORD,
+                    NEW_PASSWORD);
+            checkText(ERROR_MSG_NEW_PASSOWRD_EQUALS_TO_OLD);
+            rootLogger.info("Validation old password present");
+        }
+        else Assert.fail("password - "+NEW_PASSWORD);
+    }
 
 }

@@ -23,7 +23,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.stalenessOf;
  */
 public class StepsExternal implements StepsFactory{
     static final Logger rootLogger = LogManager.getRootLogger();
-    public static String REDIRECT_LINK;
+    static String REDIRECT_LINK;
     public static String checkReportBackLink;
     private static String[] args;
 

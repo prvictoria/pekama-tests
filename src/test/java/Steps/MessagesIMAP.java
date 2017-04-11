@@ -155,6 +155,51 @@ public class MessagesIMAP {
             e.printStackTrace();
         }
     }
+    public String searchEmailBySubjectAndValidate(String userName, String password, final String keyword, MessagesValidator validator, Integer index) {
+        Properties properties = setProperties (IMAP_HOST, IMAP_PORT);
+        Session session = Session.getDefaultInstance(properties);
+        try {
+            // connects to the message store
+            Store store = session.getStore("imap");
+            store.connect(userName, password);
+
+            // opens the inbox folder
+            Folder folderInbox = store.getFolder("INBOX");
+            folderInbox.open(Folder.READ_WRITE);
+            SearchTerm searchCondition = searchTermSubject(keyword);
+
+            // performs search through the folder
+            Message[] foundMessages = folderInbox.search(searchCondition);
+            if (foundMessages.length < 1) {
+                Assert.fail("No Mails in inbox");
+            }
+            String link = null;
+            for (int i = 0; i < foundMessages.length; i++) {
+                //Message message = emailDetails (foundMessages, i);
+                String html = emailHtmlPart(foundMessages[i]).toString();
+                //System.out.println(html);
+                if (validator.validationEmail(html) == true) {
+                    link = validator.validateLink(html, index);
+                    deleteDetectedEmailBySubject(keyword, foundMessages[i]);
+                } else {
+                    Assert.fail("Mail validation failed");
+                }
+            }
+            // disconnect
+            folderInbox.close(true);
+            store.close();
+            return link;
+        } catch (NoSuchProviderException ex) {
+            System.out.println("No provider.");
+            ex.printStackTrace();
+        } catch (MessagingException ex) {
+            System.out.println("Could not connect to the message store.");
+            ex.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     public void searchEmailDeleteAll(String userName, String password) {
         System.out.println("---------------------------------");
         System.out.println("Checked email " +userName);

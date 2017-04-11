@@ -8,9 +8,7 @@ import org.junit.Test;
 import java.io.IOException;
 
 import static Page.PekamaLogin.*;
-import static Page.PekamaResetPassword.NEWPASSWORD_PAGE_CONFIRM_PASSWORD;
-import static Page.PekamaResetPassword.NEWPASSWORD_PAGE_NEW_PASSWORD;
-import static Page.PekamaResetPassword.NEWPASSWORD_PAGE_RESTORE_BTN;
+import static Page.PekamaResetPassword.*;
 import static Page.PekamaSignUp.*;
 import static Page.PekamaSignUp.signupNext;
 import static Page.PekamaSignUp.signupPassword;
@@ -67,7 +65,6 @@ public class User {
         submitEnabledButton(loginButton_Login);
         sleep(5000);
     }
-
     public boolean submitSignUp(String email, String surname, String name, String company, String password){
         this.email = email;
         this.password = password;
@@ -101,23 +98,41 @@ public class User {
         isSignUpSucceed = false;
         return false;
     }
+    public String submitReset(String email){
+        if(email==null) {
+            email = "123@"+randomString(10);
+        }
+            RESET_PAGE_TITLE.waitUntil(visible, 20000).shouldHave(Condition.text(RESET_PAGE_TITLE_TEXT));
+            RESET_PAGE_EMAIL.sendKeys(email);
+            RESET_PAGE_RESET_BTN.shouldBe(visible).click();
+            sleep(1000);
+        rootLogger.info("Reset email password is: "+email);
+        this.password = email;
+        return email;
+    }
     public String submitResetPassword(String newPassword){
         if(newPassword==null){
         newPassword = VALID_PASSWORD+randomString(10);
         }
         NEWPASSWORD_PAGE_NEW_PASSWORD.waitUntil(visible, 10000).sendKeys(newPassword);
         NEWPASSWORD_PAGE_CONFIRM_PASSWORD.shouldBe(Condition.visible).sendKeys(newPassword);
+        NEWPASSWORD_PAGE_RESTORE_BTN.shouldBe(visible).click();
+        sleep(1000);
+        rootLogger.info("New password "+newPassword);
         this.password = newPassword;
         return newPassword;
     }
     public String submitResetPassword(String newPassword, String confirmPassword){
         if(newPassword!=null){
             NEWPASSWORD_PAGE_NEW_PASSWORD.waitUntil(visible, 10000).sendKeys(newPassword);
+            rootLogger.info("New password "+newPassword);
         }
         if(confirmPassword!=null){
             NEWPASSWORD_PAGE_CONFIRM_PASSWORD.shouldBe(Condition.visible).sendKeys(confirmPassword);
+            rootLogger.info("Confirm password "+confirmPassword);
         }
         NEWPASSWORD_PAGE_RESTORE_BTN.shouldBe(visible).click();
+        sleep(1000);
         this.password = newPassword;
         return newPassword;
     }
