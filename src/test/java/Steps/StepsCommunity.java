@@ -26,7 +26,7 @@ import static org.junit.Assert.assertEquals;
  * https://www.linkedin.com/in/viachaslau
  */
 public class StepsCommunity implements StepsFactory{
-    static final Logger rootLogger = LogManager.getLogger(StepsCommunity.class);
+    static final Logger rootLogger = LogManager.getRootLogger();
     public static String searchQueryUrl;
 
     public static void searchExpertsQuery(String caseType, String country, String service) {

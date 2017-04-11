@@ -14,13 +14,13 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.search.FlagTerm;
 import javax.mail.search.SearchTerm;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.Properties;
 import java.util.regex.Pattern;
 
-import static Steps.Messages.EMAIL_BODY_CONFIRM_REGISTRATION_1;
 import static Steps.Messages.EMAIL_SUBJECT_CONFIRM_REGISTRATION;
+import static Steps.Messages.rootLogger;
 import static Utils.Utils.formatDateToString;
+import static com.codeborne.selenide.Selenide.sleep;
 import static javax.mail.Message.RecipientType.*;
 
 import javax.mail.Address;
@@ -80,7 +80,7 @@ public class MessagesIMAP {
             e.printStackTrace();
         }
     }
-    public void searchEmailBySubject(String userName, String password, final String keyword) {
+    public Boolean searchEmailBySubject(String userName, String password, final String keyword) {
         Properties properties = setProperties (IMAP_HOST, IMAP_PORT);
         Session session = Session.getDefaultInstance(properties);
 
@@ -96,12 +96,14 @@ public class MessagesIMAP {
 
             // performs search through the folder
             Message[] foundMessages = folderInbox.search(searchCondition);
-
-            for (int i = 0; i < foundMessages.length; i++) {
-                Message message = emailDetails (foundMessages, i);
+            if(foundMessages.length>0) {
+                for (int i = 0; i < foundMessages.length; i++) {
+                    Message message = emailDetails(foundMessages, i);
+                }
+                return true;
             }
             // disconnect
-            folderInbox.close(true);
+            folderInbox.close(false);
             store.close();
         } catch (NoSuchProviderException ex) {
             System.out.println("No provider.");
@@ -112,6 +114,7 @@ public class MessagesIMAP {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
     public void searchEmailBySubjectAndValidate(String userName, String password, final String keyword, MessagesValidator validator) {
@@ -129,12 +132,15 @@ public class MessagesIMAP {
 
             // performs search through the folder
             Message[] foundMessages = folderInbox.search(searchCondition);
-
+            if (foundMessages.length<1){Assert.fail("No Mails in inbox");}
             for (int i = 0; i < foundMessages.length; i++) {
                 Message message = emailDetails (foundMessages, i);
                 String html = emailHtmlPart(message).toString();
                 //System.out.println(html);
-                validator.validationEmail(html);
+                if(validator.validationEmail(html)==true) {
+                    //deleteDetectedEmailBySubject(keyword, message);
+                }
+                else {Assert.fail("Mail validation failed");}
             }
             // disconnect
             folderInbox.close(true);
@@ -371,6 +377,12 @@ public class MessagesIMAP {
         }
         return link;
     }
+    public static String getLink (Elements links, Integer index){
+        String link = links.get(index).attr("href");
+        rootLogger.info("Link "+link);
+        rootLogger.info("-------------------------------------");
+        return link;
+    }
     public static String parseHtmlLinkText(String html){
         Document doc = Jsoup.parse(html);
         Element link = doc.select("a[href]").first();
@@ -379,9 +391,27 @@ public class MessagesIMAP {
         System.out.println("--------------------------------");
         return linkText;
     }
+    public static boolean detectEmail(String login, String password, String keyword){
+        Boolean searchResult = false;
+        Integer i = 0;
+        MessagesIMAP searcher = new MessagesIMAP();
+        while (searchResult!=true && i<10) {
+            searchResult = searcher.searchEmailBySubject(login, password, keyword);
+            if(searchResult==true){
+                rootLogger.info("Email with subject '"+keyword+"' detected");
+                return true;}
+            sleep(5000);
+            i++;
+            rootLogger.info("Loop # "+i);
+        }
+        if(searchResult!=true){
+            Assert.fail("Email not detected in Inbox");
+            return false;
+        }
+        return false;
+    }
 
-
-
+    private static String invitedEmail = "asasas";
     //TODO DELETE TEST
     @Ignore
     @Test
@@ -392,10 +422,11 @@ public class MessagesIMAP {
         //String subjectToDelete = "noreply@emstaging.pekama.com";
         //String subjectToDelete = "We are waiting for you!";
         //String subject = "Pekama Report \"Last week's Events\"";
-        MessagesIMAP searcher = new MessagesIMAP();
         String keyword = EMAIL_SUBJECT_CONFIRM_REGISTRATION;
-        //searcher.searchEmailBySubject(login, password, keyword);
-        searcher.searchEmailBySubjectAndValidate(login, password, keyword, new ValidationInvite());
+
+        MessagesIMAP searcher = new MessagesIMAP();
+        //detectEmail(login, password, keyword);
+        searcher.searchEmailBySubjectAndValidate(login, password, keyword, new ValidationSignUp());
     }
 
     @Test
