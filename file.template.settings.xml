@@ -1,0 +1,10 @@
+<application>
+  <component name="ExportableFileTemplateSettings">
+    <default_templates>
+      <template name="ClassTest.java" reformat="true" live-template-enabled="true" />
+    </default_templates>
+    <code_templates>
+      <template name="Arquillian Deployment Method.java" reformat="true" live-template-enabled="true" enabled="true" />
+    </code_templates>
+  </component>
+</application>
