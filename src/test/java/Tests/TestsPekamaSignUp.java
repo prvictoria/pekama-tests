@@ -1,5 +1,7 @@
 package Tests;
-import Steps.*;
+import Steps.MessagesIMAP;
+import Steps.User;
+import Steps.MessagesValidator;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,21 +12,24 @@ import org.junit.rules.Timeout;
 import java.io.IOException;
 
 import static Page.Emails.*;
-import static Page.UrlConfig.*;
-import static Page.UrlStrings.*;
 import static Page.PekamaSignUp.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
-import static Steps.StepsExternal.*;
+import static Page.UrlConfig.setEnvironment;
+import static Page.UrlStrings.URL_SingUp;
+import static Steps.Messages.EMAIL_SUBJECT_CONFIRM_REGISTRATION;
+import static Steps.MessagesIMAP.detectEmailIMAP;
 import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
-import static Steps.StepsPekama.*;
-import static Tests.BeforeTestsSetUp.*;
+import static Steps.StepsPekama.checkText;
+import static Steps.StepsPekama.submitCookie;
+import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
 import static Tests.BeforeTestsSetUp.setBrowser;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.refresh;
+import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
@@ -40,7 +45,7 @@ public class TestsPekamaSignUp {
     String EMAIL_BTN = EMAIL_CONFIRM_REGISTRATION_BTN;
     SelenideElement EMAIL_REDIRECT_LINK = EMAIL_CONFIRM_REGISTRATION_BACKLINK;
     @Rule
-    public Timeout tests = Timeout.seconds(600);
+    public Timeout tests = Timeout.seconds(500);
     @BeforeClass
     public static void beforeClass() throws IOException {
         setEnvironment ();
@@ -189,27 +194,7 @@ public class TestsPekamaSignUp {
            // $(byText(ERROR_MSG_EMAIL_IS_USED)).shouldBe(visible);
             rootLogger.info(ERROR_MSG_EMAIL_IS_USED);
     }
-    @Ignore("not implemented")
-    @Test
-    public void userExistAlias() {
-    for (int arrayLength = 0; arrayLength < arrayInvalidPasswords.length; arrayLength++) {
-        rootLogger.info("Exist user - check by email+some");
-        $(signupEmail).shouldBe(visible).sendKeys(VALID_EMAIL);
-        $(signupName).shouldBe(visible).sendKeys(VALID_NAME);
-        $(signupSurname).shouldBe(visible).sendKeys(VALID_SURNAME);
-        $(signupCompany).shouldBe(visible).sendKeys(VALID_COMPANY);
-        $(signupPassword).shouldBe(visible).sendKeys(arrayInvalidPasswords[arrayLength]);
-        $(signupNext).shouldBe(visible).shouldNot(disabled).click();
-        sleep(1500);
-        $$(signupError).shouldHaveSize(1);
-        $(signupNext).shouldBe(disabled);
 
-        refresh();
-        $(signupAgree).shouldBe(visible).shouldNot(selected);
-        $(signupNext).shouldBe(visible).shouldBe(disabled);
-        $(signupAgree).setSelected(true).shouldBe(selected);
-        }
-    }
     @Test @Category(AllEmailsTests.class)
     public void sendSignUpEmail() {
         String GMAIL_LOGIN = User5.GMAIL_EMAIL.getValue();
@@ -226,15 +211,16 @@ public class TestsPekamaSignUp {
         $(byText("Confirm your Account")).shouldBe(visible);
         $(byText("You were sent an email message with the account activation link. Please check your inbox.")).shouldBe(visible);
         rootLogger.info("Check email invite from pekama");
-        actualBackLink = checkInboxEmail(
+        detectEmailIMAP(
                 GMAIL_LOGIN,
                 GMAIL_PASSWORD,
-                EMAIL_SUBJECT,
-                EMAIL_TITLE, EMAIL_TEXT, EMAIL_BTN, EMAIL_REDIRECT_LINK);
-            if (actualBackLink == null) {
-                rootLogger.info("User followed reset link");
-                Assert.fail("Redirect Link not found");
-            }
+                "Welcome to Pekama! Just one more click");
+        MessagesIMAP searcher = new MessagesIMAP();
+        searcher.searchEmailBySubjectAndValidate(
+                GMAIL_LOGIN,
+                GMAIL_PASSWORD,
+                "Welcome to Pekama! Just one more click",
+                new MessagesValidator.ValidationSignUp());
     }
     @Test
     public void joinToTeam() {

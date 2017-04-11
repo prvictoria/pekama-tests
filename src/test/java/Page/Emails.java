@@ -26,7 +26,9 @@ public class Emails extends Page {
     public static final String EMAIL_CONFIRM_REGISTRATION_TITLE = "Registration Complete";
     public static final String EMAIL_CONFIRM_REGISTRATION_TEXT = "To finish registration, please confirm your account.";
     public static final String EMAIL_CONFIRM_REGISTRATION_BTN = "Confirm Account";
+    public static final String EMAIL_CONFIRM_REGISTRATION_YOUR_EMAIL_IS = "Your sign in email is:";
     public static final SelenideElement EMAIL_CONFIRM_REGISTRATION_BACKLINK = $(byXpath("//td/a[contains(@href, '"+SELECT_HOST+"/accounts/confirm/')]"));
+    public static final String EMAIL_CONFIRM_REGISTRATION_LINK = ENVIRONMENT_PEKAMA+"/accounts/confirm/";
     
     //Invite in TEAM
     public static final SelenideElement EMAIL_INVITE_IN_TEAM = $(byXpath(""));

@@ -26,7 +26,7 @@ public class TestsPekamaLanding {
     public Timeout tests = Timeout.seconds(400);
     @BeforeClass
     public static void beforeClass() throws IOException {
-        setEnvironment ();
+        setEnvironment();
         setBrowser();
         holdBrowserAfterTest();
     }

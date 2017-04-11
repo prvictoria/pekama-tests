@@ -68,7 +68,7 @@ public class User {
         sleep(5000);
     }
 
-    public boolean submitSignUp(String email, String password, String name, String surname, String company){
+    public boolean submitSignUp(String email, String surname, String name, String company, String password){
         this.email = email;
         this.password = password;
         this.name = name;

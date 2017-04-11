@@ -6,7 +6,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.mail.*;
@@ -17,6 +16,7 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.regex.Pattern;
 
+import static Page.UrlConfig.setEnvironment;
 import static Steps.Messages.EMAIL_SUBJECT_CONFIRM_REGISTRATION;
 import static Steps.Messages.rootLogger;
 import static Utils.Utils.formatDateToString;
@@ -134,11 +134,11 @@ public class MessagesIMAP {
             Message[] foundMessages = folderInbox.search(searchCondition);
             if (foundMessages.length<1){Assert.fail("No Mails in inbox");}
             for (int i = 0; i < foundMessages.length; i++) {
-                Message message = emailDetails (foundMessages, i);
-                String html = emailHtmlPart(message).toString();
+                //Message message = emailDetails (foundMessages, i);
+                String html = emailHtmlPart(foundMessages[i]).toString();
                 //System.out.println(html);
                 if(validator.validationEmail(html)==true) {
-                    //deleteDetectedEmailBySubject(keyword, message);
+                    deleteDetectedEmailBySubject(keyword, foundMessages[i]);
                 }
                 else {Assert.fail("Mail validation failed");}
             }
@@ -369,17 +369,17 @@ public class MessagesIMAP {
         Elements link = doc.getElementsByAttribute("href");
         Integer size = link.size();
         Integer i = 0;
-        while (size>0) {
-            System.out.println("Link attribute " + link.get(i).attr("href"));
-            System.out.println("--------------------------------");
-        size--;
-        i++;
-        }
+//        while (size>0) {
+//            System.out.println("Link attribute " + link.get(i).attr("href"));
+//            System.out.println("--------------------------------");
+//        size--;
+//        i++;
+//        }
         return link;
     }
     public static String getLink (Elements links, Integer index){
         String link = links.get(index).attr("href");
-        rootLogger.info("Link "+link);
+        rootLogger.info("Link #"+index+": "+link);
         rootLogger.info("-------------------------------------");
         return link;
     }
@@ -391,7 +391,7 @@ public class MessagesIMAP {
         System.out.println("--------------------------------");
         return linkText;
     }
-    public static boolean detectEmail(String login, String password, String keyword){
+    public static boolean detectEmailIMAP(String login, String password, String keyword){
         Boolean searchResult = false;
         Integer i = 0;
         MessagesIMAP searcher = new MessagesIMAP();
@@ -410,12 +410,9 @@ public class MessagesIMAP {
         }
         return false;
     }
-
-    private static String invitedEmail = "asasas";
-    //TODO DELETE TEST
-    @Ignore
-    @Test
+//test app
     public static void main(String[] args) {
+        setEnvironment();
         //String subjectToDelete = "Confirm Registration [Pekama]";
         //String subjectToDelete = "no-reply@accounts.google.com";
         String subjectToDelete = "dan@pekama.com";
@@ -424,9 +421,10 @@ public class MessagesIMAP {
         //String subject = "Pekama Report \"Last week's Events\"";
         String keyword = EMAIL_SUBJECT_CONFIRM_REGISTRATION;
 
+
+        detectEmailIMAP(login, password, keyword);
         MessagesIMAP searcher = new MessagesIMAP();
-        //detectEmail(login, password, keyword);
-        searcher.searchEmailBySubjectAndValidate(login, password, keyword, new ValidationSignUp());
+        searcher.searchEmailBySubjectAndValidate(login, password, keyword, new MessagesValidator.ValidationSignUp());
     }
 
     @Test
