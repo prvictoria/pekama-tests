@@ -395,7 +395,7 @@ public class MessagesIMAP {
         MessagesIMAP searcher = new MessagesIMAP();
         String keyword = EMAIL_SUBJECT_CONFIRM_REGISTRATION;
         //searcher.searchEmailBySubject(login, password, keyword);
-        searcher.searchEmailBySubjectAndValidate(login, password, keyword, new  ValidationInvite());
+        searcher.searchEmailBySubjectAndValidate(login, password, keyword, new ValidationInvite());
     }
 
     @Test
