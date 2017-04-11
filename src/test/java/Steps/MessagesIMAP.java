@@ -6,6 +6,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.mail.*;
@@ -112,7 +113,8 @@ public class MessagesIMAP {
             e.printStackTrace();
         }
     }
-    public void searchEmailBySubjectAndValidate(String userName, String password, final String keyword) {
+
+    public void searchEmailBySubjectAndValidate(String userName, String password, final String keyword, MessagesValidator validator) {
         Properties properties = setProperties (IMAP_HOST, IMAP_PORT);
         Session session = Session.getDefaultInstance(properties);
         try {
@@ -132,11 +134,7 @@ public class MessagesIMAP {
                 Message message = emailDetails (foundMessages, i);
                 String html = emailHtmlPart(message).toString();
                 //System.out.println(html);
-                String link = parseHtmlHref(html);
-                Assert.assertTrue(link.contains("https://staging.pekama.com/accounts/confirm/"));
-                String linkText = parseHtmlLinkText(html);
-                Assert.assertTrue(linkText.equals("Confirm Account"));
-                parseHtmlHrefArray(html);
+                validator.validationEmail(html);
             }
             // disconnect
             folderInbox.close(true);
@@ -325,11 +323,11 @@ public class MessagesIMAP {
         properties.setProperty("mail.imap.connectiontimeout", String.valueOf(30000));
         return properties;
     }
-    private static boolean setReadFlag(Message message) throws MessagingException {
+    public static boolean setReadFlag(Message message) throws MessagingException {
         message.setFlag(Flags.Flag.SEEN, true);
         return true;
     }
-    private String parseHtml(String html){
+    public static String parseHtml(String html){
         Document doc = Jsoup.parse(html);
         Element link = doc.select("a[href]").first();
         System.out.println(link);
@@ -352,7 +350,7 @@ public class MessagesIMAP {
         System.out.println("--------------------------------");
         return linkHref;
     }
-    private String parseHtmlHref(String html){
+    public static String parseHtmlHref(String html){
         Document doc = Jsoup.parse(html);
         Element link = doc.select("a[href]").first();
         String linkHref = link.attr("href"); // "http://example.com/"
@@ -360,7 +358,7 @@ public class MessagesIMAP {
         System.out.println("--------------------------------");
         return linkHref;
     }
-    private Elements parseHtmlHrefArray(String html){
+    public static Elements parseHtmlHrefArray(String html){
         Document doc = Jsoup.parse(html);
         Elements link = doc.getElementsByAttribute("href");
         Integer size = link.size();
@@ -373,7 +371,7 @@ public class MessagesIMAP {
         }
         return link;
     }
-    private String parseHtmlLinkText(String html){
+    public static String parseHtmlLinkText(String html){
         Document doc = Jsoup.parse(html);
         Element link = doc.select("a[href]").first();
         String linkText = link.text(); // "example""
@@ -381,7 +379,12 @@ public class MessagesIMAP {
         System.out.println("--------------------------------");
         return linkText;
     }
+
+
+
     //TODO DELETE TEST
+    @Ignore
+    @Test
     public static void main(String[] args) {
         //String subjectToDelete = "Confirm Registration [Pekama]";
         //String subjectToDelete = "no-reply@accounts.google.com";
@@ -392,8 +395,9 @@ public class MessagesIMAP {
         MessagesIMAP searcher = new MessagesIMAP();
         String keyword = EMAIL_SUBJECT_CONFIRM_REGISTRATION;
         //searcher.searchEmailBySubject(login, password, keyword);
-        searcher.searchEmailBySubjectAndValidate(login, password, keyword);
+        searcher.searchEmailBySubjectAndValidate(login, password, keyword, new  ValidationInvite());
     }
+
     @Test
     public void clearAllEmails(){
         MessagesIMAP emailTask = new MessagesIMAP();
