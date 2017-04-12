@@ -52,6 +52,7 @@ public class TestsPekamaResetPassword {
     private String email = User4.GMAIL_EMAIL.getValue();
     private static final String USERNAME = User4.NAME.getValue();
     private static final String USERSURNAME = User4.SURNAME.getValue();
+    private static boolean skipBefore = false;
     @Rule
     public Timeout tests = Timeout.seconds(600);
     @BeforeClass

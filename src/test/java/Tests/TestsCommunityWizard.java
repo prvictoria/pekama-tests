@@ -64,6 +64,7 @@ public class TestsCommunityWizard {
     private final static String INVITED_EMAIL = User5.GMAIL_EMAIL.getValue();
     private final static String INVITED_PASSWORD = User5.GMAIL_PASSWORD.getValue();
     private final static String INVITED_NAME_SURNAME = User5.NAME_SURNAME.getValue();
+    private static boolean skipBefore = false;
 
     @Rule
     public Timeout tests = Timeout.seconds(400);
@@ -76,12 +77,15 @@ public class TestsCommunityWizard {
     }
     @Before
     public void before() {
-        StepsPekama loginIntoPekama = new StepsPekama();
-        loginIntoPekama.loginByURL(
-                REQUESTER_EMAIL,
-                REQUESTER_PEKAMA_PASSWORD,
-                URL_COMMUNITY_LOGIN
-        );
+        if(skipBefore==false) {
+            StepsPekama loginIntoPekama = new StepsPekama();
+            loginIntoPekama.loginByURL(
+                    REQUESTER_EMAIL,
+                    REQUESTER_PEKAMA_PASSWORD,
+                    URL_COMMUNITY_LOGIN
+            );
+        }
+        else {rootLogger.info("Before step skipped");}
     }
     @Test
     public void checkDefaultWizardSelection() {
@@ -159,6 +163,7 @@ public class TestsCommunityWizard {
         submitMwInviteAttorney(true, INVITED_EMAIL, LOREM_IPSUM_SHORT);
         waitForModalWindowNotPresent(TITLE_MW_INVITE_AN_ATTORNEY);
         rootLogger.info("Test passed");
+        skipBefore = true;
     }
     @Test @Category(AllEmailsTests.class)
     public void boostYourProfileInviteTeam_withCustomText_A_CheckEmail() {
@@ -175,6 +180,7 @@ public class TestsCommunityWizard {
                 customText);
         Assert.assertTrue(validationResult);
         rootLogger.info("Test passed");
+        skipBefore = true;
     }
     @Test @Category(AllEmailsTests.class)
     public void boostYourProfileInviteTeam_withCustomText_B_CheckCongratulationEmail() {
@@ -189,6 +195,7 @@ public class TestsCommunityWizard {
                 invitedEmail);
         Assert.assertTrue(validationResult);
         rootLogger.info("Test passed");
+        skipBefore = false;
     }
     @Test @Category(AllEmailsTests.class)
     public void boostYourProfileInviteTeam_withDefaultText_A() {
@@ -203,6 +210,7 @@ public class TestsCommunityWizard {
                 MW_CONFIRM_INVITE_ATTOTNEY_TEXT,
                 MW_COMMUNITY_CONFIRM_SUBMIT);
         rootLogger.info("Test passed");
+        skipBefore = true;
     }
     @Test @Category(AllEmailsTests.class)
     public void boostYourProfileInviteTeam_withDefaultText_A_CheckEmail() {
@@ -219,6 +227,7 @@ public class TestsCommunityWizard {
                 customText);
         Assert.assertTrue(validationResult);
         rootLogger.info("Test passed");
+        skipBefore = true;
     }
     @Test @Category(AllEmailsTests.class)
     public void boostYourProfileInviteTeam_withDefaultText_B_CheckCongratulationEmail() {
@@ -233,6 +242,7 @@ public class TestsCommunityWizard {
                 invitedEmail);
         Assert.assertTrue(validationResult);
         rootLogger.info("Test passed");
+        skipBefore = false;
     }
     @Test
     public void returnBackFrom2ndStep(){
@@ -423,6 +433,7 @@ public class TestsCommunityWizard {
         checkCaseNameFirstRow(caseName);
         checkCaseStatus(caseName, 1, status);
         rootLogger.info("Test passed");
+        skipBefore = true;
     }
     @Test @Category(AllEmailsTests.class)
     public void createCaseInstructWithDetails_B_CheckEmail() {
@@ -437,7 +448,8 @@ public class TestsCommunityWizard {
                 password,
                 teamName);
         Assert.assertTrue(validationResult);
-
+        rootLogger.info("Test passed");
+        skipBefore = false;
     }
 
 }

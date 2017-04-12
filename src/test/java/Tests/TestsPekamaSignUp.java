@@ -46,6 +46,7 @@ public class TestsPekamaSignUp {
     String EMAIL_TEXT = EMAIL_CONFIRM_REGISTRATION_TEXT;
     String EMAIL_BTN = EMAIL_CONFIRM_REGISTRATION_BTN;
     SelenideElement EMAIL_REDIRECT_LINK = EMAIL_CONFIRM_REGISTRATION_BACKLINK;
+    private static boolean skipBefore = false;
     @Rule
     public Timeout tests = Timeout.seconds(500);
     @BeforeClass
@@ -56,14 +57,17 @@ public class TestsPekamaSignUp {
     }
     @Before
     public void selectAgreeCheckbox() {
-        clearBrowserCache();
-        rootLogger.info("Open URL - "+URL_SingUp);
-        String AUTH_URL = URL_SingUp;
-        openUrlWithBaseAuth(AUTH_URL);
-        $(signupNext).shouldBe(visible).shouldNotBe(disabled);
-        $(signupAgree).shouldBe(selected);
-        submitCookie();
-        rootLogger.info("Opened - " +URL_SingUp);
+        if(skipBefore==false) {
+            clearBrowserCache();
+            rootLogger.info("Open URL - " + URL_SingUp);
+            String AUTH_URL = URL_SingUp;
+            openUrlWithBaseAuth(AUTH_URL);
+            $(signupNext).shouldBe(visible).shouldNotBe(disabled);
+            $(signupAgree).shouldBe(selected);
+            submitCookie();
+            rootLogger.info("Opened - " + URL_SingUp);
+        }
+        else {rootLogger.info("Before was skipped");}
     }
 
     @Test
@@ -213,6 +217,7 @@ public class TestsPekamaSignUp {
         $(byText("Confirm your Account")).shouldBe(visible);
         $(byText("You were sent an email message with the account activation link. Please check your inbox.")).shouldBe(visible);
         rootLogger.info("Check email invite from pekama");
+        skipBefore = true;
     }
     @Test @Category(AllEmailsTests.class)
     public void sendSignUpEmail_B_CheckEmail() {
@@ -222,6 +227,7 @@ public class TestsPekamaSignUp {
         Boolean validationResult = validation.validateEmailSignUp(login, password);
         Assert.assertTrue(validationResult);
         rootLogger.info("Test passed");
+        skipBefore = false;
     }
 
     @Test
