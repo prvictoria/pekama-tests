@@ -10,7 +10,6 @@ import static Steps.MessagesIMAP.*;
 public interface MessagesValidator extends StepsFactory {
     boolean validationEmail(String...strings);
     String validateLink(String html, Integer index);
-
     //}
     class ValidationSignUp implements MessagesValidator {
         private String html = null;
@@ -25,9 +24,9 @@ public interface MessagesValidator extends StepsFactory {
             Assert.assertTrue(parseHtmlHrefArray(html).size() == 3);
             Elements links = parseHtmlHrefArray(html);
             String link1 = getLink(links, 0);
-            Assert.assertTrue(link1.contains(EMAIL_CONFIRM_REGISTRATION_LINK));
+            Assert.assertTrue(link1.contains(EMAIL_CONFIRM_REGISTRATION_LINK_PEKAMA));
             String link2 = getLink(links, 1);
-            Assert.assertTrue(link2.contains(EMAIL_CONFIRM_REGISTRATION_LINK));
+            Assert.assertTrue(link2.contains(EMAIL_CONFIRM_REGISTRATION_LINK_PEKAMA));
             String link3 = getLink(links, 2);
             Assert.assertTrue(link3.contains(userEmail));
             Assert.assertTrue(html.contains("Almost there..."));
@@ -82,15 +81,38 @@ public interface MessagesValidator extends StepsFactory {
     }
     class ValidationInviteCommunity implements MessagesValidator {
         private String html = null;
+        public static String userEmail = null;
+        public static String inviterNameSurname = null;
+        public static String customText = null;
 
         @Override
         public boolean validationEmail(String...strings) {
-            this.html = html;
-            String link = parseHtmlHref(html);
-            Assert.assertTrue(link.contains("https://staging.pekama.com/accounts/confirm/"));
+            this.html = strings[0];
+            this.userEmail = userEmail;
+            this.customText = customText;
+            this.inviterNameSurname = inviterNameSurname;
             String linkText = parseHtmlLinkText(html);
-            Assert.assertTrue(linkText.equals("Confirm Account"));
-            parseHtmlHrefArray(html);
+            Assert.assertTrue(linkText.equals(EMAIL_INVITED_IN_COMMUNITY_ACTION_BTN_TEXT));
+            Assert.assertTrue(parseHtmlHrefArray(html).size() == 3);
+            Elements links = parseHtmlHrefArray(html);
+            String link1 = getLink(links, 0);
+            Assert.assertTrue(link1.contains(EMAIL_CONFIRM_INVITATION_LINK_COMMUNITY));
+            String link2 = getLink(links, 1);
+            Assert.assertTrue(link2.contains(EMAIL_CONFIRM_INVITATION_LINK_COMMUNITY));
+            String link3 = getLink(links, 2);
+            Assert.assertTrue(link3.contains(userEmail));
+            Assert.assertTrue(html.contains(EMAIL_INVITED_IN_COMMUNITY_TITLE));
+            System.out.println(inviterNameSurname);
+            System.out.println(EMAIL_INVITED_IN_COMMUNITY_BODY_1(inviterNameSurname));
+            Assert.assertTrue(html.contains(EMAIL_INVITED_IN_COMMUNITY_BODY_1(inviterNameSurname)));
+            Assert.assertTrue(html.contains(EMAIL_CONFIRM_REGISTRATION_YOUR_EMAIL_IS));
+            if(customText==null){
+                Assert.assertTrue(html.contains(EMAIL_INVITED_IN_COMMUNITY_DEFAULT_TEXT));
+            }
+            if(customText!=null){
+                Assert.assertTrue(html.contains(customText));
+            }
+            rootLogger.info("Email validation passed");
             return true;
         }
 
@@ -154,6 +176,33 @@ public interface MessagesValidator extends StepsFactory {
             Assert.assertTrue(link1.contains(userEmail));
             Assert.assertTrue(html.contains(EMAIL_CONGRATULATION_BODY_1(teamName)));
             Assert.assertTrue(html.contains(EMAIL_CONGRATULATION_BODY_2(teamName)));
+            Assert.assertTrue(html.contains(EMAIL_CONFIRM_REGISTRATION_YOUR_EMAIL_IS));
+            rootLogger.info("Email validation passed");
+            return true;
+        }
+
+        @Override
+        public String validateLink(String html, Integer index) {
+            return null;
+        }
+    }
+    class ValidationCongratulationForInvite implements MessagesValidator {
+        private String html = null;
+        public static String userEmail = null;
+        public static String invitedEmail = null;
+
+        @Override
+        public boolean validationEmail(String...strings) {
+            this.html = strings[0];
+            this.userEmail = userEmail;
+            this.invitedEmail = invitedEmail;
+
+            Assert.assertTrue(parseHtmlHrefArray(html).size() == 1);
+            Elements links = parseHtmlHrefArray(html);
+            String link1 = getLink(links, 0);
+            Assert.assertTrue(link1.contains(userEmail));
+            Assert.assertTrue(html.contains(EMAIL_CONGRATULATION_INVITE_BODY_1(invitedEmail)));
+            Assert.assertTrue(html.contains(EMAIL_CONGRATULATION_INVITE_BODY_2(invitedEmail)));
             Assert.assertTrue(html.contains(EMAIL_CONFIRM_REGISTRATION_YOUR_EMAIL_IS));
             rootLogger.info("Email validation passed");
             return true;

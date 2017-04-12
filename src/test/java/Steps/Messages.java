@@ -12,22 +12,8 @@ public class Messages implements StepsFactory{
     public static final String EMAIL_SUBJECT_ = "";
     public static final String EMAIL_SUBJECT_CONFIRM_REGISTRATION = "Welcome to Pekama! Just one more click";
     public static final String EMAIL_SUBJECT_PASSWORD_REGISTRATION = "Password Restoration [Pekama]";
-
-
-
-
-    public static final String EMAIL_BODY_CONFIRM_REGISTRATION_1 = "Registration Complete";
-    public static final String EMAIL_BODY_CONFIRM_REGISTRATION_2 = "To finish registration, please confirm your account.";
-    public static final String EMAIL_BODY_CONFIRM_REGISTRATION_3 = "Confirm Account";
-    public static final String EMAIL_SUBJECT_4 = "";
-
-
     //Common messages
-
-
     //Pekama Messages
-
-
     //Community Messages
     public final static String msgIntroduce(String REQUESTER_NAME, String REQUESTER_SURNAME, String EXPERT_NAME, String EXPERT_SURNAME) {
         String introduce = "Dear %s %s and %s %s,";
@@ -59,12 +45,40 @@ public class Messages implements StepsFactory{
     }
 
     //Email messages and other formated strings
-    //Email Case successfully instructed via Pekama!
-    public static final String EMAIL_SUBJECT_CONGRATULATION_CASE_CREATED = "Case successfully instructed via Pekama!";
-    public static final String EMAIL_CONGRATULATION_BODY_1(String teamName) { String.format("Congratulations, you instructed %s through the Pekama platform!", teamName);
-        return teamName;
+    //Email NAME SURNAME invited you to join Pekama Community
+    public static final String EMAIL_SUBJECT_YOU_INVITED_IN_COMMUNITY(String name_surname) {
+        String subject = String.format("%s invited you to join Pekama Community", name_surname);
+        return subject;
+    }
+    public static final String EMAIL_INVITED_IN_COMMUNITY_TITLE = "You're invited to Pekama Community";
+    public static final String EMAIL_INVITED_IN_COMMUNITY_BODY_1(String name_surname) {
+        String text = String.format("%s has sent you an invitation to join Pekama Community", name_surname);
+        return text;
     };
-    public static final String EMAIL_CONGRATULATION_BODY_2(String teamName) { String.format("Your community score will be raised once the work is marked as confirmed by %s and this will lead to improved placement in your jurisdiction.", teamName);
-        return teamName;
+    public static final String EMAIL_INVITED_IN_COMMUNITY_DEFAULT_TEXT = "I am a member of the Pekama community, a community of over hundreds of IP firms that work with each other in preferential terms. Pekama is a great tool to control outgoing work and is a great source of incoming work. I firmly recommend that you sign up and become a supplier. This way, we can also work together on the platform.";
+    public static final String EMAIL_INVITED_IN_COMMUNITY_ACTION_BTN_TEXT = "Join Pekama Community";
+
+    //Email Congratulations - Case successfully instructed via Pekama!
+    public static final String EMAIL_SUBJECT_CONGRATULATION_CASE_CREATED = "Case successfully instructed via Pekama!";
+    public static final String EMAIL_CONGRATULATION_BODY_1(String teamName) {
+        String text = String.format("Congratulations, you instructed %s through the Pekama platform!", teamName);
+        return text;
+    };
+    public static final String EMAIL_CONGRATULATION_BODY_2(String teamName) {
+        String text = String.format("Your community score will be raised once the work is marked as confirmed by %s and this will lead to improved placement in your jurisdiction.", teamName);
+        return text;
+    };
+    //Email Congratulations - Thank you for inviting EMAIL_INVITED to Pekama!
+    public static final String EMAIL_SUBJECT_CONGRATULATION_FOR_INVITE(String invitedEmail) {
+        String subject = String.format("Thank you for inviting %s to Pekama!", invitedEmail);
+        return subject;
+    }
+    public static final String EMAIL_CONGRATULATION_INVITE_BODY_1(String invitedEmail) {
+        String text = String.format("Congratulations, you invited testqweeco005@gmail.com to join Pekama!", invitedEmail);
+        return text;
+    };
+    public static final String EMAIL_CONGRATULATION_INVITE_BODY_2(String invitedEmail) {
+        String text = String.format("If testqweeco005@gmail.com indeed joins Pekama, your community score will be increased and this will lead to improved placement in your jurisdiction.", invitedEmail);
+        return text;
     };
 }

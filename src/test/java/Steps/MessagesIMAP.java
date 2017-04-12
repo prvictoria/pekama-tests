@@ -17,9 +17,8 @@ import java.util.Properties;
 import java.util.regex.Pattern;
 
 import static Page.UrlConfig.setEnvironment;
-import static Steps.Messages.EMAIL_SUBJECT_CONFIRM_REGISTRATION;
-import static Steps.Messages.EMAIL_SUBJECT_CONGRATULATION_CASE_CREATED;
-import static Steps.Messages.rootLogger;
+import static Steps.Messages.*;
+import static Steps.Messages.EMAIL_SUBJECT_YOU_INVITED_IN_COMMUNITY;
 import static Steps.MessagesValidator.ValidationSignUp.userEmail;
 import static Utils.Utils.formatDateToString;
 import static com.codeborne.selenide.Selenide.sleep;
@@ -514,6 +513,22 @@ public class MessagesIMAP {
                 new MessagesValidator.ValidationCongratulationCaseCreated());
         return true;
     }
+    public boolean validateEmailCongratulationForInvite(String login, String password, String invitedEmail){
+        MessagesValidator.ValidationCongratulationForInvite.userEmail = login;
+        MessagesValidator.ValidationCongratulationForInvite.invitedEmail = invitedEmail;
+        Boolean detectResult = detectEmailIMAP(
+                login,
+                password,
+                EMAIL_SUBJECT_CONGRATULATION_FOR_INVITE(invitedEmail));
+        MessagesIMAP searcher = new MessagesIMAP();
+        Assert.assertTrue(detectResult);
+        searcher.searchEmailBySubjectAndValidate(
+                login,
+                password,
+                EMAIL_SUBJECT_CONGRATULATION_FOR_INVITE(invitedEmail),
+                new MessagesValidator.ValidationCongratulationForInvite());
+        return true;
+    }
     public boolean validateEmailInviteInTeam(){
 
         return true;
@@ -522,8 +537,23 @@ public class MessagesIMAP {
 
         return true;
     }
-    public boolean validateEmailInviteInCommunity(){
-
+    public boolean validateEmailInviteInCommunity(String login, String password, String name_surname, String customText){
+        MessagesValidator.ValidationInviteCommunity.userEmail = login;
+        MessagesValidator.ValidationInviteCommunity.inviterNameSurname = name_surname;
+        MessagesValidator.ValidationInviteCommunity.customText = customText;
+        System.out.println(EMAIL_SUBJECT_YOU_INVITED_IN_COMMUNITY(name_surname));
+        Boolean detectResult = detectEmailIMAP(
+                login,
+                password,
+                EMAIL_SUBJECT_YOU_INVITED_IN_COMMUNITY(name_surname));
+        Assert.assertTrue(detectResult);
+        MessagesIMAP searcher = new MessagesIMAP();
+        Boolean validationResult = searcher.searchEmailBySubjectAndValidate(
+                login,
+                password,
+                EMAIL_SUBJECT_YOU_INVITED_IN_COMMUNITY(name_surname),
+                new MessagesValidator.ValidationInviteCommunity());
+        Assert.assertTrue(validationResult==true);
         return true;
     }
     public boolean validateEmailInviteInPekama(){

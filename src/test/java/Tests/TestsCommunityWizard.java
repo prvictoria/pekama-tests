@@ -63,6 +63,7 @@ public class TestsCommunityWizard {
     private final static String INTRODUCER_NAME = "Rand, Kaldor & Zane LLP (RKNZ)";
     private final static String INVITED_EMAIL = User5.GMAIL_EMAIL.getValue();
     private final static String INVITED_PASSWORD = User5.GMAIL_PASSWORD.getValue();
+    private final static String INVITED_NAME_SURNAME = User5.NAME_SURNAME.getValue();
 
     @Rule
     public Timeout tests = Timeout.seconds(400);
@@ -162,29 +163,34 @@ public class TestsCommunityWizard {
     @Test @Category(AllEmailsTests.class)
     public void boostYourProfileInviteTeam_withCustomText_A_CheckEmail() {
         rootLogger.info("Check invitation email");
-        checkInboxEmail(
-                INVITED_EMAIL,
-                INVITED_PASSWORD,
-                EMAIL_INVITE_IN_COMMUNITY_SUBJECT,
-                EMAIL_INVITE_IN_COMMUNITY_TITLE,
-                LOREM_IPSUM_SHORT,
-                EMAIL_INVITE_IN_COMMUNITY_BTN,
-                EMAIL_INVITE_IN_COMMUNITY_BACKLINK);
-        rootLogger.info("Email redirect link is - "+REDIRECT_LINK);
+        String login = INVITED_EMAIL;
+        String password = INVITED_PASSWORD;
+        String name_surname = REQUESTER_NAME_SURNAME;
+        String customText = LOREM_IPSUM_SHORT;
+        MessagesIMAP validation = new MessagesIMAP();
+        Boolean validationResult = validation.validateEmailInviteInCommunity(
+                login,
+                password,
+                name_surname,
+                customText);
+        Assert.assertTrue(validationResult);
         rootLogger.info("Test passed");
     }
     @Test @Category(AllEmailsTests.class)
-    public void boostYourProfileInviteTeam_withCustomText_B_CheckEmail() {
+    public void boostYourProfileInviteTeam_withCustomText_B_CheckCongratulationEmail() {
         rootLogger.info("Check congratulation for invitation email");
-        checkInboxEmail(
-                REQUESTER_EMAIL,
-                GMAIL_PASSWORD,
-                EMAIL_THANKS_FOR_INVITING_SUBJECT,
-                EMAIL_CONGRATULATION_FOR_INVITING_TITLE,
-                EMAIL_CONGRATULATION_FOR_INVITING_TEXT);
+        String login = REQUESTER_EMAIL;
+        String password = REQUESTER_EMAIL_PASSWORD;
+        String invitedEmail = INVITED_EMAIL;
+        MessagesIMAP validation = new MessagesIMAP();
+        Boolean validationResult = validation.validateEmailCongratulationForInvite(
+                login,
+                password,
+                invitedEmail);
+        Assert.assertTrue(validationResult);
         rootLogger.info("Test passed");
     }
-    @Test
+    @Test @Category(AllEmailsTests.class)
     public void boostYourProfileInviteTeam_withDefaultText_A() {
         submitWizard1Step(CASE_TYPE);
         submitEnabledButton(PROFILE_BTN_BOOST_YOUR_PROFILE);
@@ -198,29 +204,34 @@ public class TestsCommunityWizard {
                 MW_COMMUNITY_CONFIRM_SUBMIT);
         rootLogger.info("Test passed");
     }
-    @Test
+    @Test @Category(AllEmailsTests.class)
     public void boostYourProfileInviteTeam_withDefaultText_A_CheckEmail() {
         rootLogger.info("Check invitation email");
-        String defaultInviteMsg = "Dear ,\\n\\nI am a member of the Pekama community, a community of over hundreds of IP firms that work with each other in preferential terms. Pekama is a great tool to control outgoing work and is a great source of incoming work. I firmly recommend that you sign up and become a supplier. This way, we can also work together on the platform.";
-        checkInboxEmail(
-                INVITED_EMAIL,
-                INVITED_PASSWORD,
-                EMAIL_INVITE_IN_COMMUNITY_SUBJECT,
-                EMAIL_INVITE_IN_COMMUNITY_TITLE,
-                defaultInviteMsg,
-                EMAIL_INVITE_IN_COMMUNITY_BTN,
-                EMAIL_INVITE_IN_COMMUNITY_BACKLINK);
-        rootLogger.info("Email redirect link is - "+REDIRECT_LINK);
+        String login = INVITED_EMAIL;
+        String password = INVITED_PASSWORD;
+        String name_surname = REQUESTER_NAME_SURNAME;
+        String customText = null;
+        MessagesIMAP validation = new MessagesIMAP();
+        Boolean validationResult = validation.validateEmailInviteInCommunity(
+                login,
+                password,
+                name_surname,
+                customText);
+        Assert.assertTrue(validationResult);
         rootLogger.info("Test passed");
     }
-    @Test
-    public void boostYourProfileInviteTeam_withDefaultText_B_CheckEmail() {
-        checkInboxEmail(
-                REQUESTER_EMAIL,
-                GMAIL_PASSWORD,
-                EMAIL_THANKS_FOR_INVITING_SUBJECT,
-                EMAIL_CONGRATULATION_TITLE,
-                EMAIL_CONGRATULATION_TEXT);
+    @Test @Category(AllEmailsTests.class)
+    public void boostYourProfileInviteTeam_withDefaultText_B_CheckCongratulationEmail() {
+        rootLogger.info("Check congratulation email");
+        String login = REQUESTER_EMAIL;
+        String password = REQUESTER_EMAIL_PASSWORD;
+        String invitedEmail = INVITED_EMAIL;
+        MessagesIMAP validation = new MessagesIMAP();
+        Boolean validationResult = validation.validateEmailCongratulationForInvite(
+                login,
+                password,
+                invitedEmail);
+        Assert.assertTrue(validationResult);
         rootLogger.info("Test passed");
     }
     @Test
@@ -396,6 +407,12 @@ public class TestsCommunityWizard {
     public void createCaseInstructWithDetails_A(){
         String status = COMMUNITY_STATUS_SENT;
         String caseName = "SENT_CASE_"+randomString(10);
+
+        MessagesIMAP emailTask = new MessagesIMAP();
+        emailTask.searchEmailDeleteAll(
+                REQUESTER_EMAIL,
+                REQUESTER_EMAIL_PASSWORD);
+
         submitWizard1Step(CASE_TYPE);
         wizardSelectExpert(EXPERT_TEAM_NAME);
         submitWizard2Step(caseName);
@@ -409,6 +426,7 @@ public class TestsCommunityWizard {
     }
     @Test @Category(AllEmailsTests.class)
     public void createCaseInstructWithDetails_B_CheckEmail() {
+        rootLogger.info("Check congratulation for case creation email");
         login = REQUESTER_EMAIL;
         password = REQUESTER_EMAIL_PASSWORD;
         teamName = EXPERT_TEAM_NAME;

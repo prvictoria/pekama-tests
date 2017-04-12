@@ -64,7 +64,6 @@ public class StepsPekama implements StepsFactory{
     }
     public void  loginByURL(String PEKAMA_USER_EMAIL, String PEKAMA_USER_PASSWORD, String AUTH_URL){
         openUrlWithBaseAuth(AUTH_URL);
-        rootLogger.info(AUTH_URL+"URL opened");
         fillField(loginField_Email,PEKAMA_USER_EMAIL);
         rootLogger.info(PEKAMA_USER_EMAIL+ " - login selected");
         fillField(loginField_Password, PEKAMA_USER_PASSWORD);

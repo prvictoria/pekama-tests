@@ -77,14 +77,16 @@ public class TestsCommynityLanding {
     public void clickExploreUpper() {
         LANDING_EXPLORE_UPPER.shouldBe(Condition.visible).click();
         sleep(2000);
-        COMMUNITY_HEADER_MANAGEMENT.shouldBe(visible);
+        COMMUNITY_HEADER_SIGNUP.waitUntil(visible, 15000).shouldBe(visible);
+        COMMUNITY_HEADER_LOGIN.waitUntil(visible, 15000).shouldBe(visible);
         rootLogger.info("Community Wizard page was opened");
     }
     @Test
     public void clickExploreFooter() {
         LANDING_EXPLORE_FOOTER.shouldBe(Condition.visible).click();
         sleep(2000);
-        COMMUNITY_HEADER_MANAGEMENT.shouldBe(visible);
+        COMMUNITY_HEADER_SIGNUP.waitUntil(visible, 15000).shouldBe(visible);
+        COMMUNITY_HEADER_LOGIN.waitUntil(visible, 15000).shouldBe(visible);
         rootLogger.info("Community Wizard page was opened");
     }
     @Test
