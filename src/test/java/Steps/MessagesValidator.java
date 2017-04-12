@@ -169,7 +169,7 @@ public interface MessagesValidator extends StepsFactory {
 
         @Override
         public boolean validationEmail(String...strings) {
-            this.html = html;
+            this.html = strings[0];
             String linkText = parseHtmlLinkText(html);
             Assert.assertTrue(linkText.equals(EMAIL_RESET_PASSWORD_BTN));
             Assert.assertTrue(parseHtmlHrefArray(html).size() == 2);

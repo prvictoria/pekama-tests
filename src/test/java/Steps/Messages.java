@@ -11,6 +11,7 @@ public class Messages implements StepsFactory{
     //Subject strings
     public static final String EMAIL_SUBJECT_ = "";
     public static final String EMAIL_SUBJECT_CONFIRM_REGISTRATION = "Welcome to Pekama! Just one more click";
+    public static final String EMAIL_SUBJECT_PASSWORD_REGISTRATION = "Password Restoration [Pekama]";
 
 
 

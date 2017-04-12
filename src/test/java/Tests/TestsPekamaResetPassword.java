@@ -20,6 +20,7 @@ import static Page.UrlConfig.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.UrlStrings.*;
+import static Steps.Messages.EMAIL_SUBJECT_PASSWORD_REGISTRATION;
 import static Steps.MessagesIMAP.detectEmailIMAP;
 import static Steps.StepsHttpAuth.*;
 import static Steps.StepsPekama.checkText;
@@ -101,16 +102,18 @@ public class TestsPekamaResetPassword {
         rootLogger.info(testSuccessMsg + " displayed, valid email submitted");
 
         rootLogger.info("Check reset password email");
-        detectEmailIMAP(
+        Boolean detectResult = detectEmailIMAP(
                 GMAIL_LOGIN,
                 GMAIL_PASSWORD,
-                "Password Restoration [Pekama]");
+                EMAIL_SUBJECT_PASSWORD_REGISTRATION);
         MessagesIMAP searcher = new MessagesIMAP();
+        Assert.assertTrue(detectResult);
         REDIRECT_LINK = searcher.searchEmailBySubjectAndValidate(
                 GMAIL_LOGIN,
                 GMAIL_PASSWORD,
-                "Password Restoration [Pekama]",
+                EMAIL_SUBJECT_PASSWORD_REGISTRATION,
                 new MessagesValidator.ValidationResetPassword(), 0);
+        Assert.assertTrue(REDIRECT_LINK!=null);
         rootLogger.info("Test passed");
     }
     @Category(AllEmailsTests.class)
