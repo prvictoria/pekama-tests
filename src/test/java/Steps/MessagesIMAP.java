@@ -18,6 +18,7 @@ import java.util.regex.Pattern;
 
 import static Page.UrlConfig.setEnvironment;
 import static Steps.Messages.EMAIL_SUBJECT_CONFIRM_REGISTRATION;
+import static Steps.Messages.EMAIL_SUBJECT_CONGRATULATION_CASE_CREATED;
 import static Steps.Messages.rootLogger;
 import static Utils.Utils.formatDateToString;
 import static com.codeborne.selenide.Selenide.sleep;
@@ -33,10 +34,11 @@ import javax.mail.Session;
 import javax.mail.Store;
 
 public class MessagesIMAP {
-    static String login = "testqweeco005@gmail.com";
-    static String password = "123456789qasw11";
-    static String subject = "Pekama Report \"Last week's Events\"";
-    static String emailFrom = "noreply@emstaging.pekama.com";
+    static String login = null;
+    static String password = null;
+    static String subject = null;
+    static String emailFrom = null;
+    static String teamName = null;
     public static final String IMAP_HOST = "imap.gmail.com";
     public static final String IMAP_PORT = "993";
     /**
@@ -138,7 +140,7 @@ public class MessagesIMAP {
                 String html = emailHtmlPart(foundMessages[i]).toString();
                 //System.out.println(html);
                 if(validator.validationEmail(html)==true) {
-                    deleteDetectedEmailBySubject(keyword, foundMessages[i]);
+                    //deleteDetectedEmailBySubject(keyword, foundMessages[i]);
                 }
                 else {Assert.fail("Mail validation failed");}
             }
@@ -222,7 +224,7 @@ public class MessagesIMAP {
             for (int i = 0; i < foundMessagesUnread.length; i++) {
                 Message message = foundMessagesUnread[i];
                 message.setFlag(Flags.Flag.DELETED, true);
-                System.out.println("Marked DELETE for message: " + subject);
+                System.out.println("Marked DELETE for message: " + message.getSubject());
             }
             Message foundMessagesRead[] = folderInbox.search(new FlagTerm(new Flags(
                     Flags.Flag.SEEN), true));
@@ -230,7 +232,7 @@ public class MessagesIMAP {
             for (int i = 0; i < foundMessagesRead.length; i++) {
                 Message message = foundMessagesRead[i];
                 message.setFlag(Flags.Flag.DELETED, true);
-                System.out.println("Marked DELETE for message: " + subject);
+                System.out.println("Marked DELETE for message: " + message.getSubject());
             }
             // disconnect
             folderInbox.close(true);
@@ -457,6 +459,8 @@ public class MessagesIMAP {
     }
 //test app
     public static void main(String[] args) {
+        login = "";
+        password = "";
         setEnvironment();
         //String subjectToDelete = "Confirm Registration [Pekama]";
         //String subjectToDelete = "no-reply@accounts.google.com";
@@ -464,12 +468,12 @@ public class MessagesIMAP {
         //String subjectToDelete = "noreply@emstaging.pekama.com";
         //String subjectToDelete = "We are waiting for you!";
         //String subject = "Pekama Report \"Last week's Events\"";
-        String keyword = EMAIL_SUBJECT_CONFIRM_REGISTRATION;
+        String keyword = EMAIL_SUBJECT_CONGRATULATION_CASE_CREATED;
 
 
         detectEmailIMAP(login, password, keyword);
         MessagesIMAP searcher = new MessagesIMAP();
-        searcher.searchEmailBySubjectAndValidate(login, password, keyword, new MessagesValidator.ValidationSignUp());
+        searcher.searchEmailBySubjectAndValidate(login, password, keyword, new MessagesValidator.ValidationCongratulationCaseCreated());
     }
 
     @Test

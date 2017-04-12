@@ -20,6 +20,7 @@ import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
 import static Steps.Messages.*;
+import static Steps.MessagesIMAP.detectEmailIMAP;
 import static Steps.StepsCommunity.*;
 import static Steps.StepsExternal.*;
 import static Steps.StepsModalWindows.*;
@@ -36,12 +37,17 @@ import static com.codeborne.selenide.Selenide.*;
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsCommunityWizard {
+    static String login = null;
+    static String password = null;
+    static String userEmail = null;
+    static String teamName = null;
     static final Logger rootLogger = LogManager.getRootLogger();
     private static String CASE_TYPE;
     static String REDIRECT_LINK;
     private final static String TEST_CASE_COUNTRY = Countries.PITCAIRN_ISLANDS.getValue();
 
     private final static String REQUESTER_EMAIL = User3.GMAIL_EMAIL.getValue();
+    private final static String REQUESTER_EMAIL_PASSWORD = User3.GMAIL_PASSWORD.getValue();
     private final static String REQUESTER_PEKAMA_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
     private final static String REQUESTER_NAME = TestsCredentials.User3.NAME.getValue();
     private final static String REQUESTER_SURNAME = TestsCredentials.User3.SURNAME.getValue();
@@ -404,13 +410,28 @@ public class TestsCommunityWizard {
     }
     @Test @Category(AllEmailsTests.class)
     public void createCaseInstructWithDetails_B_CheckEmail() {
-       checkInboxEmail(
-               REQUESTER_EMAIL,
-               GMAIL_PASSWORD,
-               EMAIL_CONGRATULATION_SUBJECT,
-               EMAIL_CONGRATULATION_TITLE,
-               EMAIL_CONGRATULATION_TEXT);
-       rootLogger.info("Test passed");
+        login = REQUESTER_EMAIL;
+        password = REQUESTER_EMAIL_PASSWORD;
+        MessagesValidator.ValidationCongratulationCaseCreated.userEmail = REQUESTER_EMAIL;
+        MessagesValidator.ValidationCongratulationCaseCreated.teamName = EXPERT_TEAM_NAME;
+        detectEmailIMAP(
+                login,
+                password,
+                EMAIL_SUBJECT_CONGRATULATION_CASE_CREATED);
+        MessagesIMAP searcher = new MessagesIMAP();
+        searcher.searchEmailBySubjectAndValidate(
+                login,
+                password,
+                EMAIL_SUBJECT_CONGRATULATION_CASE_CREATED,
+                new MessagesValidator.ValidationCongratulationCaseCreated());
+
+//       checkInboxEmail(
+//               REQUESTER_EMAIL,
+//               GMAIL_PASSWORD,
+//               EMAIL_CONGRATULATION_SUBJECT,
+//               EMAIL_CONGRATULATION_TITLE,
+//               EMAIL_CONGRATULATION_TEXT);
+//       rootLogger.info("Test passed");
     }
 
 }

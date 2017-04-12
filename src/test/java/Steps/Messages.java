@@ -11,6 +11,7 @@ public class Messages implements StepsFactory{
     //Subject strings
     public static final String EMAIL_SUBJECT_ = "";
     public static final String EMAIL_SUBJECT_CONFIRM_REGISTRATION = "Confirm Registration [Pekama]";
+    public static final String EMAIL_SUBJECT_CONGRATULATION_CASE_CREATED = "Case successfully instructed via Pekama!";
     public static final String EMAIL_BODY_CONFIRM_REGISTRATION_1 = "Registration Complete";
     public static final String EMAIL_BODY_CONFIRM_REGISTRATION_2 = "To finish registration, please confirm your account.";
     public static final String EMAIL_BODY_CONFIRM_REGISTRATION_3 = "Confirm Account";
@@ -54,4 +55,11 @@ public class Messages implements StepsFactory{
     }
 
     //Email messages and other formated strings
+    //Email Case successfully instructed via Pekama!
+    public static final String EMAIL_CONGRATULATION_BODY_1(String teamName) { String.format("Congratulations, you instructed %s through the Pekama platform!", teamName);
+        return teamName;
+    };
+    public static final String EMAIL_CONGRATULATION_BODY_2(String teamName) { String.format("Your community score will be raised once the work is marked as confirmed by %s and this will lead to improved placement in your jurisdiction.", teamName);
+        return teamName;
+    };
 }

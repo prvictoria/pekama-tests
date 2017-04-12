@@ -1,19 +1,14 @@
 package Steps;
-
 import org.jsoup.select.Elements;
 import org.junit.Assert;
-
-import javax.lang.model.element.Element;
-import java.lang.reflect.Array;
-
 import static Page.Emails.*;
+import static Steps.Messages.*;
 import static Steps.MessagesIMAP.*;
-
 /**
  * Created by Viachaslau_Balashevi on 4/11/2017.
  */
 public interface MessagesValidator extends StepsFactory {
-    boolean validationEmail(String html);
+    boolean validationEmail(String...strings);
     String validateLink(String html, Integer index);
 
     //}
@@ -22,7 +17,7 @@ public interface MessagesValidator extends StepsFactory {
         private String invitedEmail = null;
 
         @Override
-        public boolean validationEmail(String html) {
+        public boolean validationEmail(String...strings) {
             this.html = html;
             this.invitedEmail = login;
             String linkText = parseHtmlLinkText(html);
@@ -46,12 +41,11 @@ public interface MessagesValidator extends StepsFactory {
             return null;
         }
     }
-
     class ValidationInvite implements MessagesValidator {
         private String html = null;
 
         @Override
-        public boolean validationEmail(String html) {
+        public boolean validationEmail(String...strings) {
             this.html = html;
             String link = parseHtmlHref(html);
             Assert.assertTrue(link.contains("https://staging.pekama.com/accounts/confirm/"));
@@ -66,12 +60,11 @@ public interface MessagesValidator extends StepsFactory {
             return null;
         }
     }
-
     class ValidationInviteInPekama implements MessagesValidator {
         private String html = null;
 
         @Override
-        public boolean validationEmail(String html) {
+        public boolean validationEmail(String...strings) {
             this.html = html;
             String link = parseHtmlHref(html);
             Assert.assertTrue(link.contains("https://staging.pekama.com/accounts/confirm/"));
@@ -86,12 +79,11 @@ public interface MessagesValidator extends StepsFactory {
             return null;
         }
     }
-
     class ValidationInviteCommunity implements MessagesValidator {
         private String html = null;
 
         @Override
-        public boolean validationEmail(String html) {
+        public boolean validationEmail(String...strings) {
             this.html = html;
             String link = parseHtmlHref(html);
             Assert.assertTrue(link.contains("https://staging.pekama.com/accounts/confirm/"));
@@ -106,12 +98,11 @@ public interface MessagesValidator extends StepsFactory {
             return null;
         }
     }
-
     class ValidationInviteInProject implements MessagesValidator {
         private String html = null;
 
         @Override
-        public boolean validationEmail(String html) {
+        public boolean validationEmail(String...strings) {
             this.html = html;
             String link = parseHtmlHref(html);
             Assert.assertTrue(link.contains("https://staging.pekama.com/accounts/confirm/"));
@@ -126,12 +117,11 @@ public interface MessagesValidator extends StepsFactory {
             return null;
         }
     }
-
     class ValidationInviteInTeam implements MessagesValidator {
         private String html = null;
 
         @Override
-        public boolean validationEmail(String html) {
+        public boolean validationEmail(String...strings) {
             this.html = html;
             String link = parseHtmlHref(html);
             Assert.assertTrue(link.contains("https://staging.pekama.com/accounts/confirm/"));
@@ -146,15 +136,25 @@ public interface MessagesValidator extends StepsFactory {
             return null;
         }
     }
-
-    class ValidationCongratulation implements MessagesValidator {
+    class ValidationCongratulationCaseCreated implements MessagesValidator {
         private String html = null;
+        public static String userEmail = null;
+        public static String teamName = null;
 
         @Override
-        public boolean validationEmail(String html) {
+        public boolean validationEmail(String...strings) {
+            this.html = strings[0];
+            this.userEmail = userEmail;
+            this.teamName = teamName;
 
-            this.html = html;
-            parseHtmlHrefArray(html);
+            Assert.assertTrue(parseHtmlHrefArray(html).size() == 1);
+            Elements links = parseHtmlHrefArray(html);
+            String link1 = getLink(links, 0);
+            Assert.assertTrue(link1.contains(userEmail));
+            Assert.assertTrue(html.contains(EMAIL_CONGRATULATION_BODY_1(teamName)));
+            Assert.assertTrue(html.contains(EMAIL_CONGRATULATION_BODY_2(teamName)));
+            Assert.assertTrue(html.contains(EMAIL_CONFIRM_REGISTRATION_YOUR_EMAIL_IS));
+            rootLogger.info("Email validation passed");
             return true;
         }
 
@@ -163,14 +163,12 @@ public interface MessagesValidator extends StepsFactory {
             return null;
         }
     }
-
     class ValidationResetPassword implements MessagesValidator {
         private String html = null;
 
         @Override
-        public boolean validationEmail(String html) {
+        public boolean validationEmail(String...strings) {
             this.html = html;
-            String resetLink = null;
             String linkText = parseHtmlLinkText(html);
             Assert.assertTrue(linkText.equals(EMAIL_RESET_PASSWORD_BTN));
             Assert.assertTrue(parseHtmlHrefArray(html).size() == 2);
@@ -192,12 +190,11 @@ public interface MessagesValidator extends StepsFactory {
             return link;
         }
     }
-
     class ValidationReport implements MessagesValidator {
         private String html = null;
 
         @Override
-        public boolean validationEmail(String html) {
+        public boolean validationEmail(String...strings) {
 
             this.html = html;
             parseHtmlHrefArray(html);
