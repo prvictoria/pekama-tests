@@ -14,12 +14,12 @@ public interface MessagesValidator extends StepsFactory {
     //}
     class ValidationSignUp implements MessagesValidator {
         private String html = null;
-        private String invitedEmail = null;
+        public static String userEmail = null;
 
         @Override
         public boolean validationEmail(String...strings) {
-            this.html = html;
-            this.invitedEmail = login;
+            this.html = strings[0];
+            this.userEmail = userEmail;
             String linkText = parseHtmlLinkText(html);
             Assert.assertTrue(linkText.equals("Complete my registration"));
             Assert.assertTrue(parseHtmlHrefArray(html).size() == 3);
@@ -29,7 +29,7 @@ public interface MessagesValidator extends StepsFactory {
             String link2 = getLink(links, 1);
             Assert.assertTrue(link2.contains(EMAIL_CONFIRM_REGISTRATION_LINK));
             String link3 = getLink(links, 2);
-            Assert.assertTrue(link3.contains(login));
+            Assert.assertTrue(link3.contains(userEmail));
             Assert.assertTrue(html.contains("Almost there..."));
             Assert.assertTrue(html.contains(EMAIL_CONFIRM_REGISTRATION_TEXT));
             Assert.assertTrue(html.contains(EMAIL_CONFIRM_REGISTRATION_YOUR_EMAIL_IS));

@@ -140,7 +140,7 @@ public class MessagesIMAP {
                 String html = emailHtmlPart(foundMessages[i]).toString();
                 //System.out.println(html);
                 if(validator.validationEmail(html)==true) {
-                    //deleteDetectedEmailBySubject(keyword, foundMessages[i]);
+                    deleteDetectedEmailBySubject(keyword, foundMessages[i]);
                 }
                 else {Assert.fail("Mail validation failed");}
             }

@@ -55,7 +55,7 @@ public class TestsCommunityDashboard {
 
     @Test
     public void checkDashboardGui() {
-        COMMUNITY_HEADER_LOGO.shouldBe(Condition.visible);
+        COMMUNITY_HEADER_LOGO.shouldBe(Condition.visible).click();
         COMMUNITY_HEADER_MANAGEMENT.shouldBe(Condition.visible);
         COMMUNITY_HEADER_SIGNUP.shouldBe(Condition.visible);
         COMMUNITY_HEADER_LOGIN.shouldBe(Condition.visible);
@@ -63,6 +63,7 @@ public class TestsCommunityDashboard {
         COMMUNITY_TAB_Supplier.shouldBe(Condition.visible).shouldHave(Condition.text("find a supplier"));
         COMMUNITY_TAB_Incoming.shouldBe(Condition.visible).shouldHave(Condition.text("incoming cases"));
         COMMUNITY_TAB_Outgoing.shouldBe(Condition.visible).shouldHave(Condition.text("outgoing cases"));
+        COMMUNITY_TAB_Experts.shouldBe(Condition.visible).shouldHave(Condition.text("my experts"));
         COMMUNITY_TAB_Profile.shouldBe(Condition.visible).shouldHave(Condition.text("become a supplier"));
         rootLogger.info("Tabs names correct and user isn`t logged in");
 

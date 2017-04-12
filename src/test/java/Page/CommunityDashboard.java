@@ -11,10 +11,12 @@ import static com.codeborne.selenide.Selenide.$;
 public class CommunityDashboard extends Page {
 
     public static final SelenideElement COMMUNITY_DASHBOARD_ = $(byXpath(""));
-    public static final SelenideElement COMMUNITY_HEADER_LOGO = $(byXpath("//header//*[@class='logo']"));
-    public static final SelenideElement COMMUNITY_HEADER_MANAGEMENT = $(byXpath("//header//*[@href and contains(.,'management')]"));
+    public static final SelenideElement COMMUNITY_HEADER_LOGO = $(byXpath("//header//*[@class='navigation']//img"));
+    public static final SelenideElement COMMUNITY_HEADER_MANAGEMENT = $(byXpath("//header//*[@class='navigation']//ul[@class='dropdown-menu']//a"));
     public static final SelenideElement COMMUNITY_HEADER_SIGNUP = $(byXpath("//header//*[starts-with(@href, '/signup/?next=%2Fa%2Fcommunity%2Fwizard')]"));
+    // //header//*[@href='/signup/?next=%2Fa%2Fcommunity%2Foutgoing']
     public static final SelenideElement COMMUNITY_HEADER_LOGIN = $(byXpath("//header//*[starts-with(@href, '/accounts/login/?next=%2Fa%2Fcommunity%2Fwizard')]"));
+    // //header//*[@href='/accounts/login/?next=%2Fa%2Fcommunity%2Foutgoing']
 
     public static final SelenideElement COMMUNITY_HEADER_UserDropdown = $(byXpath("//*[@class='pkm-icon-down-open']"));
     public static final SelenideElement COMMUNITY_HEADER_PersonalSettings = $(byXpath("//ul[@role='menu']//*[text()='Personal settings']"));

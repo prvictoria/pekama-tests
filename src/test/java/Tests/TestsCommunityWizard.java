@@ -21,6 +21,7 @@ import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
 import static Steps.Messages.*;
 import static Steps.MessagesIMAP.detectEmailIMAP;
+import static Steps.MessagesValidator.*;
 import static Steps.StepsCommunity.*;
 import static Steps.StepsExternal.*;
 import static Steps.StepsModalWindows.*;
@@ -39,8 +40,6 @@ import static com.codeborne.selenide.Selenide.*;
 public class TestsCommunityWizard {
     static String login = null;
     static String password = null;
-    static String userEmail = null;
-    static String teamName = null;
     static final Logger rootLogger = LogManager.getRootLogger();
     private static String CASE_TYPE;
     static String REDIRECT_LINK;
@@ -412,26 +411,19 @@ public class TestsCommunityWizard {
     public void createCaseInstructWithDetails_B_CheckEmail() {
         login = REQUESTER_EMAIL;
         password = REQUESTER_EMAIL_PASSWORD;
-        MessagesValidator.ValidationCongratulationCaseCreated.userEmail = REQUESTER_EMAIL;
-        MessagesValidator.ValidationCongratulationCaseCreated.teamName = EXPERT_TEAM_NAME;
-        detectEmailIMAP(
+        ValidationCongratulationCaseCreated.userEmail = REQUESTER_EMAIL;
+        ValidationCongratulationCaseCreated.teamName = EXPERT_TEAM_NAME;
+        Boolean detectResult = detectEmailIMAP(
                 login,
                 password,
                 EMAIL_SUBJECT_CONGRATULATION_CASE_CREATED);
         MessagesIMAP searcher = new MessagesIMAP();
+        Assert.assertTrue(detectResult);
         searcher.searchEmailBySubjectAndValidate(
                 login,
                 password,
                 EMAIL_SUBJECT_CONGRATULATION_CASE_CREATED,
-                new MessagesValidator.ValidationCongratulationCaseCreated());
-
-//       checkInboxEmail(
-//               REQUESTER_EMAIL,
-//               GMAIL_PASSWORD,
-//               EMAIL_CONGRATULATION_SUBJECT,
-//               EMAIL_CONGRATULATION_TITLE,
-//               EMAIL_CONGRATULATION_TEXT);
-//       rootLogger.info("Test passed");
+                new ValidationCongratulationCaseCreated());
     }
 
 }
