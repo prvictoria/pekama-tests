@@ -476,7 +476,38 @@ public class MessagesIMAP {
         MessagesIMAP searcher = new MessagesIMAP();
         searcher.searchEmailBySubjectAndValidate(login, password, keyword, new MessagesValidator.ValidationCongratulationCaseCreated());
     }
+    public boolean validateEmailSignUp(){
 
+        return true;
+    }
+    public boolean validateEmailResetPassword(){
+
+        return true;
+    }
+    public boolean validateEmailCongratulation(){
+
+        return true;
+    }
+    public boolean validateEmailInviteInTeam(){
+
+        return true;
+    }
+    public boolean validateEmailInviteInProject(){
+
+        return true;
+    }
+    public boolean validateEmailInviteInCommunity(){
+
+        return true;
+    }
+    public boolean validateEmailInviteInPekama(){
+
+        return true;
+    }
+    public boolean validateEmailReport(){
+
+        return true;
+    }
     @Test
     public void clearAllEmails(){
         MessagesIMAP emailTask = new MessagesIMAP();
