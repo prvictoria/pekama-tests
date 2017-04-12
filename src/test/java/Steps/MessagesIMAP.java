@@ -17,8 +17,10 @@ import java.util.Properties;
 import java.util.regex.Pattern;
 
 import static Page.UrlConfig.setEnvironment;
+import static Steps.Messages.EMAIL_SUBJECT_CONFIRM_REGISTRATION;
 import static Steps.Messages.EMAIL_SUBJECT_CONGRATULATION_CASE_CREATED;
 import static Steps.Messages.rootLogger;
+import static Steps.MessagesValidator.ValidationSignUp.userEmail;
 import static Utils.Utils.formatDateToString;
 import static com.codeborne.selenide.Selenide.sleep;
 import static javax.mail.Message.RecipientType.*;
@@ -476,16 +478,40 @@ public class MessagesIMAP {
         MessagesIMAP searcher = new MessagesIMAP();
         searcher.searchEmailBySubjectAndValidate(login, password, keyword, new MessagesValidator.ValidationCongratulationCaseCreated());
     }
-    public boolean validateEmailSignUp(){
-
+    public boolean validateEmailSignUp(String login, String password){
+        MessagesValidator.ValidationSignUp.userEmail = login;
+        Boolean detectResult = detectEmailIMAP(
+                login,
+                password,
+                EMAIL_SUBJECT_CONFIRM_REGISTRATION);
+        Assert.assertTrue(detectResult);
+        MessagesIMAP searcher = new MessagesIMAP();
+        Boolean validationResult = searcher.searchEmailBySubjectAndValidate(
+                login,
+                password,
+                EMAIL_SUBJECT_CONFIRM_REGISTRATION,
+                new MessagesValidator.ValidationSignUp());
+        Assert.assertTrue(validationResult==true);
         return true;
     }
     public boolean validateEmailResetPassword(){
 
         return true;
     }
-    public boolean validateEmailCongratulation(){
-
+    public boolean validateEmailCongratulation(String login, String password, String teamName){
+        MessagesValidator.ValidationCongratulationCaseCreated.userEmail = login;
+        MessagesValidator.ValidationCongratulationCaseCreated.teamName = teamName;
+        Boolean detectResult = detectEmailIMAP(
+                login,
+                password,
+                EMAIL_SUBJECT_CONGRATULATION_CASE_CREATED);
+        MessagesIMAP searcher = new MessagesIMAP();
+        Assert.assertTrue(detectResult);
+        searcher.searchEmailBySubjectAndValidate(
+                login,
+                password,
+                EMAIL_SUBJECT_CONGRATULATION_CASE_CREATED,
+                new MessagesValidator.ValidationCongratulationCaseCreated());
         return true;
     }
     public boolean validateEmailInviteInTeam(){

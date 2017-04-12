@@ -11,6 +11,7 @@ import org.junit.rules.Timeout;
 
 import java.io.IOException;
 
+import static Page.CommunityDashboard.teamName;
 import static Page.Emails.*;
 import static Page.PekamaSignUp.*;
 import static Page.TestsCredentials.*;
@@ -35,6 +36,8 @@ import static com.codeborne.selenide.WebDriverRunner.*;
  */
 public class TestsPekamaSignUp {
     static final Logger rootLogger = LogManager.getRootLogger();
+    static String login = null;
+    static String password = null;
     public String EXIST_USER = User1.GMAIL_EMAIL.getValue();
     private String NEW_USER = User5.GMAIL_EMAIL.getValue();
     String actualBackLink;
@@ -195,9 +198,8 @@ public class TestsPekamaSignUp {
     }
 
     @Test @Category(AllEmailsTests.class)
-    public void sendSignUpEmail() {
-        String GMAIL_LOGIN = User5.GMAIL_EMAIL.getValue();
-        String GMAIL_PASSWORD = User5.GMAIL_PASSWORD.getValue();
+    public void sendSignUpEmail_A_Send() {
+
         ValidationSignUp.userEmail = User5.GMAIL_EMAIL.getValue();
         rootLogger.info("Check submitSignUp email");
         User userFacke = new User();
@@ -211,20 +213,17 @@ public class TestsPekamaSignUp {
         $(byText("Confirm your Account")).shouldBe(visible);
         $(byText("You were sent an email message with the account activation link. Please check your inbox.")).shouldBe(visible);
         rootLogger.info("Check email invite from pekama");
-        Boolean detectResult = detectEmailIMAP(
-                GMAIL_LOGIN,
-                GMAIL_PASSWORD,
-                EMAIL_SUBJECT_CONFIRM_REGISTRATION);
-        Assert.assertTrue(detectResult);
-        MessagesIMAP searcher = new MessagesIMAP();
-        Boolean validationResult = searcher.searchEmailBySubjectAndValidate(
-                GMAIL_LOGIN,
-                GMAIL_PASSWORD,
-                EMAIL_SUBJECT_CONFIRM_REGISTRATION,
-                new ValidationSignUp());
-        Assert.assertTrue(validationResult==true);
+    }
+    @Test @Category(AllEmailsTests.class)
+    public void sendSignUpEmail_B_CheckEmail() {
+        login = User5.GMAIL_EMAIL.getValue();
+        password = User5.GMAIL_PASSWORD.getValue();
+        MessagesIMAP validation = new MessagesIMAP();
+        Boolean validationResult = validation.validateEmailSignUp(login, password);
+        Assert.assertTrue(validationResult);
         rootLogger.info("Test passed");
     }
+
     @Test
     public void joinToTeam() {
         User userFacke = new User();

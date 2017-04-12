@@ -411,19 +411,15 @@ public class TestsCommunityWizard {
     public void createCaseInstructWithDetails_B_CheckEmail() {
         login = REQUESTER_EMAIL;
         password = REQUESTER_EMAIL_PASSWORD;
-        ValidationCongratulationCaseCreated.userEmail = REQUESTER_EMAIL;
-        ValidationCongratulationCaseCreated.teamName = EXPERT_TEAM_NAME;
-        Boolean detectResult = detectEmailIMAP(
+        teamName = EXPERT_TEAM_NAME;
+
+        MessagesIMAP validation = new MessagesIMAP();
+        Boolean validationResult = validation.validateEmailCongratulation(
                 login,
                 password,
-                EMAIL_SUBJECT_CONGRATULATION_CASE_CREATED);
-        MessagesIMAP searcher = new MessagesIMAP();
-        Assert.assertTrue(detectResult);
-        searcher.searchEmailBySubjectAndValidate(
-                login,
-                password,
-                EMAIL_SUBJECT_CONGRATULATION_CASE_CREATED,
-                new ValidationCongratulationCaseCreated());
+                teamName);
+        Assert.assertTrue(validationResult);
+
     }
 
 }
