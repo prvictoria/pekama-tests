@@ -17,7 +17,6 @@ import java.util.Properties;
 import java.util.regex.Pattern;
 
 import static Page.UrlConfig.setEnvironment;
-import static Steps.Messages.EMAIL_SUBJECT_CONFIRM_REGISTRATION;
 import static Steps.Messages.EMAIL_SUBJECT_CONGRATULATION_CASE_CREATED;
 import static Steps.Messages.rootLogger;
 import static Utils.Utils.formatDateToString;
@@ -119,7 +118,7 @@ public class MessagesIMAP {
         return false;
     }
 
-    public void searchEmailBySubjectAndValidate(String userName, String password, final String keyword, MessagesValidator validator) {
+    public boolean searchEmailBySubjectAndValidate(String userName, String password, final String keyword, MessagesValidator validator) {
         Properties properties = setProperties (IMAP_HOST, IMAP_PORT);
         Session session = Session.getDefaultInstance(properties);
         try {
@@ -147,6 +146,7 @@ public class MessagesIMAP {
             // disconnect
             folderInbox.close(true);
             store.close();
+            return true;
         } catch (NoSuchProviderException ex) {
             System.out.println("No provider.");
             ex.printStackTrace();
@@ -156,6 +156,7 @@ public class MessagesIMAP {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return false;
     }
     public String searchEmailBySubjectAndValidate(String userName, String password, final String keyword, MessagesValidator validator, Integer index) {
         Properties properties = setProperties (IMAP_HOST, IMAP_PORT);

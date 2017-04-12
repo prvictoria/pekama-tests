@@ -17,7 +17,9 @@ import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
+import static Steps.Messages.*;
 import static Steps.MessagesIMAP.*;
+import static Steps.MessagesValidator.*;
 import static Steps.StepsHttpAuth.*;
 import static Steps.StepsPekama.*;
 import static Tests.BeforeTestsSetUp.*;
@@ -196,6 +198,7 @@ public class TestsPekamaSignUp {
     public void sendSignUpEmail() {
         String GMAIL_LOGIN = User5.GMAIL_EMAIL.getValue();
         String GMAIL_PASSWORD = User5.GMAIL_PASSWORD.getValue();
+        ValidationSignUp.userEmail = User5.GMAIL_EMAIL.getValue();
         rootLogger.info("Check submitSignUp email");
         User userFacke = new User();
         userFacke.submitSignUp(
@@ -208,16 +211,18 @@ public class TestsPekamaSignUp {
         $(byText("Confirm your Account")).shouldBe(visible);
         $(byText("You were sent an email message with the account activation link. Please check your inbox.")).shouldBe(visible);
         rootLogger.info("Check email invite from pekama");
-        detectEmailIMAP(
+        Boolean detectResult = detectEmailIMAP(
                 GMAIL_LOGIN,
                 GMAIL_PASSWORD,
-                "Welcome to Pekama! Just one more click");
+                EMAIL_SUBJECT_CONFIRM_REGISTRATION);
+        Assert.assertTrue(detectResult);
         MessagesIMAP searcher = new MessagesIMAP();
-        searcher.searchEmailBySubjectAndValidate(
+        Boolean validationResult = searcher.searchEmailBySubjectAndValidate(
                 GMAIL_LOGIN,
                 GMAIL_PASSWORD,
-                "Welcome to Pekama! Just one more click",
-                new MessagesValidator.ValidationSignUp());
+                EMAIL_SUBJECT_CONFIRM_REGISTRATION,
+                new ValidationSignUp());
+        Assert.assertTrue(validationResult==true);
         rootLogger.info("Test passed");
     }
     @Test

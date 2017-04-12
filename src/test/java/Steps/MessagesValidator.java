@@ -33,6 +33,7 @@ public interface MessagesValidator extends StepsFactory {
             Assert.assertTrue(html.contains("Almost there..."));
             Assert.assertTrue(html.contains(EMAIL_CONFIRM_REGISTRATION_TEXT));
             Assert.assertTrue(html.contains(EMAIL_CONFIRM_REGISTRATION_YOUR_EMAIL_IS));
+            rootLogger.info("Email validation passed");
             return true;
         }
 
