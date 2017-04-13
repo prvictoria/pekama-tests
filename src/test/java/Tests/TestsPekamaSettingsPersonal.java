@@ -68,7 +68,7 @@ public class TestsPekamaSettingsPersonal {
         rootLogger.info("Personal settings GUI is consistent");
     }
     @Test
-    public void personalDetails_Y_SaveUserData() {
+    public void tabPersonalDetails_Y_SaveUserData() {
         rootLogger.info("Enter and Save User Data");
         $(byText("First name:")).waitUntil(Condition.visible, 10000);
         PERSONAL_DETAILS_INPUT_NAME.clear();
@@ -107,7 +107,7 @@ public class TestsPekamaSettingsPersonal {
         rootLogger.info("New data saved in all fields");
     }
     @Test
-    public void Z_personalDetails_Z_CheckSavedData() {
+    public void tabPersonalDetails_Z_CheckSavedData() {
         rootLogger.info("Check Saved Data");
         sleep(2000);
         $(byText("First name:")).shouldBe(Condition.visible);
@@ -135,7 +135,7 @@ public class TestsPekamaSettingsPersonal {
         rootLogger.info("User default data present");
     }
     @Test
-    public void personalDetails_Name_A() {
+    public void tabPersonalDetails_Name_A() {
         rootLogger.info("Validation Name field");
         $(byText("First name:")).shouldBe(Condition.visible);
         String RANDOM_20_LETTER = Utils.randomString(20);
@@ -149,7 +149,7 @@ public class TestsPekamaSettingsPersonal {
         rootLogger.info("Validation present - "+ERROR_MSG_BLANK_NAME);
     }
     @Test
-    public void Z_personalDetails_Name_B() {
+    public void tabPersonalDetails_Name_B() {
         rootLogger.info("Validation max length Name field");
         $(byText("First name:")).shouldBe(Condition.visible);
         String RANDOM_101_LETTER = Utils.randomString(101);
@@ -161,7 +161,7 @@ public class TestsPekamaSettingsPersonal {
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_100);
     }
     @Test
-    public void personalDetails_NameSurname_A() {
+    public void tabPersonalDetails_NameSurname_A() {
         rootLogger.info("Validation Name field");
         $(byText("Last name:")).shouldBe(Condition.visible);
         PERSONAL_DETAILS_INPUT_NAME.clear();
@@ -175,7 +175,7 @@ public class TestsPekamaSettingsPersonal {
         rootLogger.info("Validation present - "+ERROR_MSG_BLANK_SURNAME);
     }
     @Test
-    public void personalDetails_Surname_A() {
+    public void tabPersonalDetails_Surname_A() {
         rootLogger.info("Validation Name field");
         $(byText("Last name:")).shouldBe(Condition.visible);
         String RANDOM_20_LETTER = Utils.randomString(20);
@@ -187,7 +187,7 @@ public class TestsPekamaSettingsPersonal {
         rootLogger.info("Validation present - "+ERROR_MSG_BLANK_SURNAME);
     }
     @Test
-    public void personalDetails_Surname_B() {
+    public void tabPersonalDetails_Surname_B() {
         rootLogger.info("Validation max length Surname field");
         $(byText("Last name:")).shouldBe(Condition.visible);
         String RANDOM_101_LETTER = Utils.randomString(101);
@@ -198,7 +198,7 @@ public class TestsPekamaSettingsPersonal {
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_100);
     }
     @Test
-    public void personalDetails_Phone_A() {
+    public void tabPersonalDetails_Phone_A() {
         rootLogger.info("Validation max length Phone field");
         $(byText("Phone #")).shouldBe(Condition.visible);
         String RANDOM_101_LETTER = Utils.randomString(21);
@@ -209,7 +209,7 @@ public class TestsPekamaSettingsPersonal {
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_20);
     }
     @Test
-    public void personalDetails_Fax_A() {
+    public void tabPersonalDetails_Fax_A() {
         rootLogger.info("Validation max length Fax field");
         $(byText("Fax #")).shouldBe(Condition.visible);
         String RANDOM_21_LETTER = Utils.randomString(21);
@@ -220,7 +220,7 @@ public class TestsPekamaSettingsPersonal {
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_20);
     }
     @Test
-    public void personalDetails_Mobile_A() {
+    public void tabPersonalDetails_Mobile_A() {
         rootLogger.info("Validation max length Mobile field");
         $(byText("Mobile #")).shouldBe(Condition.visible);
         String RANDOM_21_LETTER = Utils.randomString(21);
@@ -231,7 +231,7 @@ public class TestsPekamaSettingsPersonal {
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_20);
     }
     @Test
-    public void personalDetails_LegalEntity_A() {
+    public void tabPersonalDetails_LegalEntity_A() {
         rootLogger.info("Validation max length Legal entity field");
         $(byText("Legal entity:")).shouldBe(Condition.visible);
         String RANDOM_256_LETTER = Utils.randomString(256);
@@ -242,7 +242,7 @@ public class TestsPekamaSettingsPersonal {
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_255);
     }
     @Test
-    public void personalDetails_StreetAddress_A() {
+    public void tabPersonalDetails_StreetAddress_A() {
         rootLogger.info("Validation max length Legal entity field");
         $(byText("Street address:")).shouldBe(Condition.visible);
         String RANDOM_256_LETTER = Utils.randomString(256);
@@ -253,7 +253,7 @@ public class TestsPekamaSettingsPersonal {
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_255);
     }
     @Test
-    public void personalDetails_PostalCode_A() {
+    public void tabPersonalDetails_PostalCode_A() {
         rootLogger.info("Validation max length Post code field");
         $(byText("Post code:")).shouldBe(Condition.visible);
         String RANDOM_21_LETTER = Utils.randomString(21);
@@ -264,7 +264,7 @@ public class TestsPekamaSettingsPersonal {
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_20);
     }
     @Test
-    public void personalDetails_City_A() {
+    public void tabPersonalDetails_City_A() {
         rootLogger.info("Validation max length City field");
         $(byText("City:")).shouldBe(Condition.visible);
         String RANDOM_256_LETTER = Utils.randomString(256);
@@ -275,7 +275,7 @@ public class TestsPekamaSettingsPersonal {
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_255);
     }
     @Test
-    public void personalDetails_Region_A() {
+    public void tabPersonalDetails_Region_A() {
         rootLogger.info("Validation max length Region entity field");
         $(byText("State/Region")).shouldBe(Condition.visible);
         String RANDOM_256_LETTER = Utils.randomString(256);
@@ -286,7 +286,7 @@ public class TestsPekamaSettingsPersonal {
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_255);
     }
     @Test
-    public void personalDetails_SelectCountry_A() {
+    public void tabPersonalDetails_SelectCountry_A() {
         rootLogger.info("Select new country");
        PERSONAL_DETAILS_COUNTRY_SELECT.shouldBe(visible).click();
        PERSONAL_DETAILS_COUNTRY_INPUT.sendKeys("United Kingdom");

@@ -2,6 +2,9 @@ package Steps;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import static Page.Emails.EMAIL_INVITE_IN_PROJECT_TEXT;
+import static Page.Emails.EMAIL_INVITE_IN_PROJECT_TITLE;
+
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
@@ -14,6 +17,14 @@ public class Messages implements StepsFactory{
     public static final String EMAIL_SUBJECT_PASSWORD_REGISTRATION = "Password Restoration [Pekama]";
     //Common messages
     //Pekama Messages
+    public static String emailInviteInProjectTitle(String... args){
+        String emailTitle = String.format(EMAIL_INVITE_IN_PROJECT_TITLE, args);
+        return emailTitle;
+    }
+    public static String emailInviteInProjectText(String... args){
+        String emailText = String.format(EMAIL_INVITE_IN_PROJECT_TEXT, args);
+        return emailText;
+    }
     //Community Messages
     public final static String msgIntroduce(String REQUESTER_NAME, String REQUESTER_SURNAME, String EXPERT_NAME, String EXPERT_SURNAME) {
         String introduce = "Dear %s %s and %s %s,";
@@ -81,4 +92,30 @@ public class Messages implements StepsFactory{
         String text = String.format("If testqweeco005@gmail.com indeed joins Pekama, your community score will be increased and this will lead to improved placement in your jurisdiction.", invitedEmail);
         return text;
     };
+    //EMAIL Pekama notification: TEAM_NAME confirmed instructions!
+    public static final String DEFAULT_CASE_NAME(String caseType, String defining) {
+        String subject = String.format("%s in %s", caseType, defining);
+        return subject;
+    }
+    public static final String EMAIL_SUBJECT_NOTIFICATION_INSTRUCTION_CONFIRMED(String expertTeam) {
+        String subject = String.format("Pekama notification: %s confirmed instructions!", expertTeam);
+        return subject;
+    }
+    public static final String EMAIL_NOTIFICATION_INSTRUCTION_CONFIRMED_TITLE = "Congratulations!";
+    public static final String EMAIL_NOTIFICATION_INSTRUCTION_CONFIRMED_1(String expertTeam, String caseName) {
+        String text = String.format("%s has confirmed your instructions for %s!", expertTeam, caseName);
+        return text;
+    };
+    public static final String EMAIL_NOTIFICATION_INSTRUCTION_CONFIRMED_2 = "Your community score has been increased";
+    public static final String EMAIL_NOTIFICATION_INSTRUCTION_CONFIRMED_BTN_TEXT = "GO TO CASE";
+    //EMAIL reports
+    public static final String EMAIL_SUBJECT_REPORT(String reportName) {
+        String subject = String.format("Pekama Report \"%s\"", reportName);
+        return subject;
+    }
+    public static final String EMAIL_SUBJECT_SCHEDULE(String reportSchedule) {
+        String subject = String.format("This is the report that you configured in Pekama. You will get it every %s days.", reportSchedule);
+        return subject;
+    }
+
 }

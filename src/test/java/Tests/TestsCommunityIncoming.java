@@ -1,5 +1,6 @@
 package Tests;
 
+import Steps.MessagesIMAP;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.FixMethodOrder;
@@ -16,6 +17,7 @@ import static Page.CommunityOutgoing.*;
 import static Page.PekamaConversationProject.*;
 import static Page.PekamaProject.*;
 import static Page.TestsCredentials.*;
+import static Page.TestsCredentials.Countries.*;
 import static Page.UrlConfig.*;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
@@ -41,29 +43,31 @@ import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsCommunityIncoming {
     static final Logger rootLogger = LogManager.getRootLogger();
+
     private static String caseName;
     private static String testProjectTitle;
     private static String testProjectURL;
     private static String TEST_CASE_TYPE;
-    private final static String TEST_CASE_COUNTRY = Countries.PITCAIRN_ISLANDS.getValue();
-    private final static String TEST_CASE_NAME = "CUSTOM_NAME"+randomString(10);
-    
-    private String REQUESTER_EMAIL = User1.GMAIL_EMAIL.getValue();
-    private String REQUESTER_PEKAMA_PASSWORD = User1.PEKAMA_PASSWORD.getValue();
-    private final static String REQUESTER_NAME = TestsCredentials.User1.NAME.getValue();
-    private final static String REQUESTER_SURNAME = TestsCredentials.User1.SURNAME.getValue();
-    private final static String REQUESTER_FULL_TEAM_NAME = TestsCredentials.User1.FULL_TEAM_NAME.getValue();
-    private final static String REQUESTER_NAME_SURNAME = TestsCredentials.User3.NAME_SURNAME.getValue();
+
+    private static final String REQUESTER_EMAIL = User1.GMAIL_EMAIL.getValue();
+    private static final String REQUESTER_EMAIL_PASSWORD = User1.GMAIL_PASSWORD.getValue();
+    private static final String REQUESTER_PEKAMA_PASSWORD = User1.PEKAMA_PASSWORD.getValue();
+    private final static String REQUESTER_NAME = User1.NAME.getValue();
+    private final static String REQUESTER_SURNAME = User1.SURNAME.getValue();
+    private final static String REQUESTER_FULL_TEAM_NAME = User1.FULL_TEAM_NAME.getValue();
+    private final static String REQUESTER_NAME_SURNAME = User3.NAME_SURNAME.getValue();
     private String EXPERT_EMAIL = User2.GMAIL_EMAIL.getValue();
     private String EXPERT_PEKAMA_PASSWORD = User2.PEKAMA_PASSWORD.getValue();
-    private String EXPERT_NAME = TestsCredentials.User2.NAME.getValue();
-    private final static String EXPERT_SURNAME = TestsCredentials.User2.SURNAME.getValue();
-    private String EXPERT_TEAM_NAME = TestsCredentials.User2.TEAM_NAME.getValue();
-    private final static String EXPERT_FULL_TEAM_NAME = TestsCredentials.User2.FULL_TEAM_NAME.getValue();
-    private static final String EXPERT_NAME_SURNAME = TestsCredentials.User2.NAME_SURNAME.getValue();
+    private String EXPERT_NAME = User2.NAME.getValue();
+    private final static String EXPERT_SURNAME = User2.SURNAME.getValue();
+    private String EXPERT_TEAM_NAME = User2.TEAM_NAME.getValue();
+    private final static String EXPERT_FULL_TEAM_NAME = User2.FULL_TEAM_NAME.getValue();
+    private static final String EXPERT_NAME_SURNAME = User2.NAME_SURNAME.getValue();
     private final static String INTRODUCER_NAME = "Rand, Kaldor & Zane LLP (RKNZ)";
     @Rule
     public Timeout tests = Timeout.seconds(600);
+    private static boolean skipBefore = false;
+
     @BeforeClass
     public static void beforeClass() throws IOException {
         setEnvironment ();
@@ -73,16 +77,25 @@ public class TestsCommunityIncoming {
     }
     @Before
     public void before() {
-        rootLogger.info("Open host");
-        StepsPekama loginIntoPekama = new StepsPekama();
-        loginIntoPekama.loginByURL(
-                REQUESTER_EMAIL,
-                REQUESTER_PEKAMA_PASSWORD,
-                URL_COMMUNITY_LOGIN);
-        rootLogger.info("Redirect back after login");
+        if (skipBefore==false) {
+            rootLogger.info("Open host");
+            StepsPekama loginIntoPekama = new StepsPekama();
+            loginIntoPekama.loginByURL(
+                    REQUESTER_EMAIL,
+                    REQUESTER_PEKAMA_PASSWORD,
+                    URL_COMMUNITY_LOGIN);
+            rootLogger.info("Redirect back after login");
+        }
+        else {rootLogger.info("Before skipped");}
     }
     @After
-    public void after() {openUrlWithBaseAuth(URL_COMMUNITY_LOGOUT); clearBrowserCache();}
+    public void after() {
+        if (skipBefore==false) {
+            openUrlWithBaseAuth(URL_COMMUNITY_LOGOUT);
+            clearBrowserCache();
+        }
+        else {rootLogger.info("After skipped");}
+    }
 
     @Test
     public void testA_ArchiveCase() {
@@ -123,7 +136,7 @@ public class TestsCommunityIncoming {
         rootLogger.info("Test passed");
     }
     @Test
-    public void testB1_ConfirmInstruction() {
+    public void testB1_ConfirmInstruction_Action() {
         rootLogger.info("Supplier Create case");
         caseName = createCase(EXPERT_TEAM_NAME);
         rootLogger.info("Expert login");
@@ -144,9 +157,24 @@ public class TestsCommunityIncoming {
         rootLogger.info("Check message");
         $(byText(MSG_DEFAULT_CONFIRM_INSTRUCTIONS)).shouldBe(visible);
         rootLogger.info("Test passed");
+        skipBefore = true;
     }
     @Test
-    public void testB2_ConfirmInstruction() {
+    public void testB1_ConfirmInstruction_ValidationEmail() {
+        if (caseName==null){Assert.fail("Case not created");}
+        rootLogger.info("Check notification email - case confirmed");
+        String login = REQUESTER_EMAIL;
+        String password = REQUESTER_EMAIL_PASSWORD;
+        String expertTeam = EXPERT_TEAM_NAME;
+        String caseName = DEFAULT_CASE_NAME(MATTER_TYPE_PATENT, PITCAIRN_ISLANDS.getValue());
+        MessagesIMAP validation = new MessagesIMAP();
+        Boolean validationResult = validation.validateEmailNotificationCaseConfirmed(login, password, expertTeam, caseName);
+        Assert.assertTrue(validationResult);
+        rootLogger.info("Test passed");
+        skipBefore = false;
+    }
+    @Test
+    public void testB2_ConfirmInstruction_Action() {
         rootLogger.info("Supplier Create case");
         caseName = createCase(EXPERT_TEAM_NAME);
         rootLogger.info("Expert login");
@@ -173,6 +201,20 @@ public class TestsCommunityIncoming {
         rootLogger.info("project link is: " + testProjectURL);
         rootLogger.info("Test passed");
         
+    }
+    @Test
+    public void testB2_ConfirmInstruction_ValidationEmail() {
+        if (caseName==null){Assert.fail("Case not created");}
+        rootLogger.info("Check notification email - case confirmed");
+        String login = REQUESTER_EMAIL;
+        String password = REQUESTER_EMAIL_PASSWORD;
+        String expertTeam = EXPERT_TEAM_NAME;
+        String caseName = DEFAULT_CASE_NAME(MATTER_TYPE_PATENT, PITCAIRN_ISLANDS.getValue());
+        MessagesIMAP validation = new MessagesIMAP();
+        Boolean validationResult = validation.validateEmailNotificationCaseConfirmed(login, password, expertTeam, caseName);
+        Assert.assertTrue(validationResult);
+        rootLogger.info("Test passed");
+        skipBefore = false;
     }
     @Ignore //Todo obsolete flow - no project link
     @Test

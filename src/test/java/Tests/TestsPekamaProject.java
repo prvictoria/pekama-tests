@@ -331,6 +331,7 @@ public class TestsPekamaProject {
         String EMAIL_BTN = EMAIL_INVITE_IN_PROJECT_BTN;
         SelenideElement EMAIL_REDIRECT_LINK = EMAIL_INVITE_IN_PROJECT_BACKLINK;
         rootLogger.info("Open inbox email");
+        //TODO IMAP Validation
         String inviteLink = checkInboxEmail(
                 USER_EMAIL,
                 GMAIL_PASSWORD,

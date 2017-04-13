@@ -145,6 +145,7 @@ public class TestsPekamaSettingsTeam {
         rootLogger.info("Check email inbox");
         String newMemberEmail = User5.GMAIL_EMAIL.getValue();
         String newMemberPassword = User5.GMAIL_PASSWORD.getValue();
+        //TODO IMAP Validation
         String actualBackLink = checkInboxEmail(
                 newMemberEmail, newMemberPassword,
                 EMAIL_INVITE_IN_TEAM_SUBJECT,

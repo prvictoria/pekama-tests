@@ -27,6 +27,7 @@ public class StepsExternal implements StepsFactory{
     public static String checkReportBackLink;
     private static String[] args;
 
+    @Deprecated
     public static void checkEmailGeneric(String GMAIL_LOGIN, String GMAIL_PASSWORD, SelenideElement EMAIL_SUBJECT, String EMAIL_TITLE, String EMAIL_TEXT, String EMAIL_BTN, SelenideElement EMAIL_REDIRECT_LINK, String thisMailingListName){
        try {
            signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
@@ -45,6 +46,7 @@ public class StepsExternal implements StepsFactory{
            logoutGoogleInbox();
        }
     }
+    @Deprecated
     public static String checkInboxEmail(String GMAIL_LOGIN, String GMAIL_PASSWORD, SelenideElement EMAIL_SUBJECT, String EMAIL_TITLE, String EMAIL_TEXT, String EMAIL_BTN, SelenideElement EMAIL_REDIRECT_LINK) {
         try {
             signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
@@ -62,6 +64,7 @@ public class StepsExternal implements StepsFactory{
         }
         return REDIRECT_LINK;
     }
+    @Deprecated
     public static String checkInboxEmail(String GMAIL_LOGIN, String GMAIL_PASSWORD, SelenideElement EMAIL_SUBJECT, String EMAIL_TITLE, String EMAIL_TEXT) {
         try {
             signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
@@ -77,6 +80,7 @@ public class StepsExternal implements StepsFactory{
         }
         return REDIRECT_LINK;
     }
+    @Deprecated
     public static String checkEmailReport(String GMAIL_LOGIN, String GMAIL_PASSWORD, String thisMailingListName){
         rootLogger.info("Check email - report");
         try {
@@ -355,14 +359,7 @@ public class StepsExternal implements StepsFactory{
         SelenideElement actualSubject = $(byXpath(buildSubject));
         return actualSubject;
     }
-    public static String emailInviteInProjectTitle(String... args){
-        String emailTitle = String.format(EMAIL_INVITE_IN_PROJECT_TITLE, args);
-        return emailTitle;
-    }
-    public static String emailInviteInProjectText(String... args){
-        String emailText = String.format(EMAIL_INVITE_IN_PROJECT_TEXT, args);
-        return emailText;
-    }
+
 
 
 

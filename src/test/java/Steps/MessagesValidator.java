@@ -11,6 +11,39 @@ public interface MessagesValidator extends StepsFactory {
     boolean validationEmail(String...strings);
     String validateLink(String html, Integer index);
     //}
+    class ValidationNotificationCaseConfirmed implements MessagesValidator {
+        private String html = null;
+        public static String userEmail = null;
+        public static String expertTeam = null;
+        public static String caseName = null;
+
+        @Override
+        public boolean validationEmail(String...strings) {
+            this.html = strings[0];
+            this.userEmail = userEmail;
+            this.expertTeam = expertTeam;
+            this.caseName = caseName;
+            String linkText = parseHtmlLinkText(html);
+            Assert.assertTrue(linkText.equals(EMAIL_NOTIFICATION_INSTRUCTION_CONFIRMED_BTN_TEXT));
+            Assert.assertTrue(parseHtmlHrefArray(html).size() == 2);
+            Elements links = parseHtmlHrefArray(html);
+            String link1 = getLink(links, 0);
+            Assert.assertTrue(link1.contains(COMMUNITY_CONVERSATION_LINK));
+            String link2 = getLink(links, 1);
+            Assert.assertTrue(link2.contains(userEmail));
+            Assert.assertTrue(html.contains(EMAIL_NOTIFICATION_INSTRUCTION_CONFIRMED_TITLE));
+            Assert.assertTrue(html.contains(EMAIL_NOTIFICATION_INSTRUCTION_CONFIRMED_1(expertTeam, caseName)));
+            Assert.assertTrue(html.contains(EMAIL_NOTIFICATION_INSTRUCTION_CONFIRMED_2));
+            Assert.assertTrue(html.contains(EMAIL_TEXT_YOUR_EMAIL_IS));
+            rootLogger.info("Email validation passed");
+            return true;
+        }
+
+        @Override
+        public String validateLink(String html, Integer index) {
+            return null;
+        }
+    }
     class ValidationSignUp implements MessagesValidator {
         private String html = null;
         public static String userEmail = null;
@@ -31,7 +64,7 @@ public interface MessagesValidator extends StepsFactory {
             Assert.assertTrue(link3.contains(userEmail));
             Assert.assertTrue(html.contains("Almost there..."));
             Assert.assertTrue(html.contains(EMAIL_CONFIRM_REGISTRATION_TEXT));
-            Assert.assertTrue(html.contains(EMAIL_CONFIRM_REGISTRATION_YOUR_EMAIL_IS));
+            Assert.assertTrue(html.contains(EMAIL_TEXT_YOUR_EMAIL_IS));
             rootLogger.info("Email validation passed");
             return true;
         }
@@ -105,7 +138,7 @@ public interface MessagesValidator extends StepsFactory {
             System.out.println(inviterNameSurname);
             System.out.println(EMAIL_INVITED_IN_COMMUNITY_BODY_1(inviterNameSurname));
             Assert.assertTrue(html.contains(EMAIL_INVITED_IN_COMMUNITY_BODY_1(inviterNameSurname)));
-            Assert.assertTrue(html.contains(EMAIL_CONFIRM_REGISTRATION_YOUR_EMAIL_IS));
+            Assert.assertTrue(html.contains(EMAIL_TEXT_YOUR_EMAIL_IS));
             if(customText==null){
                 Assert.assertTrue(html.contains(EMAIL_INVITED_IN_COMMUNITY_DEFAULT_TEXT));
             }
@@ -176,7 +209,7 @@ public interface MessagesValidator extends StepsFactory {
             Assert.assertTrue(link1.contains(userEmail));
             Assert.assertTrue(html.contains(EMAIL_CONGRATULATION_BODY_1(teamName)));
             Assert.assertTrue(html.contains(EMAIL_CONGRATULATION_BODY_2(teamName)));
-            Assert.assertTrue(html.contains(EMAIL_CONFIRM_REGISTRATION_YOUR_EMAIL_IS));
+            Assert.assertTrue(html.contains(EMAIL_TEXT_YOUR_EMAIL_IS));
             rootLogger.info("Email validation passed");
             return true;
         }
@@ -203,7 +236,7 @@ public interface MessagesValidator extends StepsFactory {
             Assert.assertTrue(link1.contains(userEmail));
             Assert.assertTrue(html.contains(EMAIL_CONGRATULATION_INVITE_BODY_1(invitedEmail)));
             Assert.assertTrue(html.contains(EMAIL_CONGRATULATION_INVITE_BODY_2(invitedEmail)));
-            Assert.assertTrue(html.contains(EMAIL_CONFIRM_REGISTRATION_YOUR_EMAIL_IS));
+            Assert.assertTrue(html.contains(EMAIL_TEXT_YOUR_EMAIL_IS));
             rootLogger.info("Email validation passed");
             return true;
         }
@@ -242,12 +275,21 @@ public interface MessagesValidator extends StepsFactory {
     }
     class ValidationReport implements MessagesValidator {
         private String html = null;
-
+        public static String reportSchedule = null;
+        public static String reportBackLink = null;
+        public static String unsubscribeLink = null;
         @Override
         public boolean validationEmail(String...strings) {
-
-            this.html = html;
-            parseHtmlHrefArray(html);
+            this.html = strings[0];
+            this.reportSchedule = reportSchedule;
+            Assert.assertTrue(parseHtmlHrefArray(html).size() == 2);
+            Elements links = parseHtmlHrefArray(html);
+            reportBackLink = getLink(links, 0);
+            Assert.assertTrue(reportBackLink.contains(REPORT_BACK_LINK));
+            unsubscribeLink = getLink(links, 1);
+            Assert.assertTrue(unsubscribeLink.contains(REPORT_UNSUBSCRIBE_LINK));
+            Assert.assertTrue(html.contains(EMAIL_SUBJECT_SCHEDULE(reportSchedule)));
+            rootLogger.info("Email validation passed");
             return true;
         }
 

@@ -1,6 +1,7 @@
 package Steps;
 
 import Page.TestsCredentials;
+import Steps.MessagesValidator.ValidationNotificationCaseConfirmed;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -19,6 +20,9 @@ import java.util.regex.Pattern;
 import static Page.UrlConfig.setEnvironment;
 import static Steps.Messages.*;
 import static Steps.Messages.EMAIL_SUBJECT_YOU_INVITED_IN_COMMUNITY;
+import static Steps.MessagesValidator.*;
+import static Steps.MessagesValidator.ValidationNotificationCaseConfirmed.caseName;
+import static Steps.MessagesValidator.ValidationNotificationCaseConfirmed.expertTeam;
 import static Steps.MessagesValidator.ValidationSignUp.userEmail;
 import static Utils.Utils.formatDateToString;
 import static com.codeborne.selenide.Selenide.sleep;
@@ -138,6 +142,7 @@ public class MessagesIMAP {
             for (int i = 0; i < foundMessages.length; i++) {
                 //Message message = emailDetails (foundMessages, i);
                 String html = emailHtmlPart(foundMessages[i]).toString();
+                //String html = emailMixedPart(foundMessages[i]).toString();
                 //System.out.println(html);
                 if(validator.validationEmail(html)==true) {
                     deleteDetectedEmailBySubject(keyword, foundMessages[i]);
@@ -287,10 +292,12 @@ public class MessagesIMAP {
     private static void deleteDetectedEmailBySubject(String subjectToDelete, Message message) throws MessagingException {
         String subject = message.getSubject();
         if (subjectToDelete!=null) {
-            if (subject.equals(subjectToDelete)) {
+            if (subject.contains(subjectToDelete)) {
                 message.setFlag(Flags.Flag.DELETED, true);
                 System.out.println("Marked DELETE for message: " + subject);
+                return;
             }
+            else {rootLogger.info("Email with defined subject not detected");}
         }
     }
     private static void deleteDetectedEmailBySenderEmail(String keyword, Message message) throws MessagingException {
@@ -305,6 +312,7 @@ public class MessagesIMAP {
         }
     }
     private static Object emailHtmlPart(Message message) throws IOException, MessagingException {
+        String html = null;
         Object content = message.getContent();
         BodyPart bp = null;
         if (content instanceof Multipart) {
@@ -316,8 +324,31 @@ public class MessagesIMAP {
                                 Pattern.CASE_INSENSITIVE)
                         .matcher(bp.getContentType()).find()) {
                     // found html part
+                    System.out.println(bp.getContentType());
                     //System.out.println((String) bp.getContent());
-                    //System.out.println("--------------------------------");
+                    System.out.println("--------------------------------");
+                    html = (String) bp.getContent();
+                } else {
+                    // some other bodypart...
+                }
+            }
+        }
+        return html;
+    }
+    private static Object emailMixedCSVPart(Message message) throws IOException, MessagingException {
+        Object content = message.getContent();
+        BodyPart bp = null;
+        if (content instanceof Multipart) {
+            Multipart mp = (Multipart) content;
+            for (int i = 0; i < mp.getCount(); i++) {
+                bp = mp.getBodyPart(i);
+                if (Pattern
+                        .compile(Pattern.quote("text/csv"),
+                                Pattern.CASE_INSENSITIVE)
+                        .matcher(bp.getContentType()).find()) {
+                     //found html part
+                    System.out.println(bp.getContent());
+                    System.out.println("--------------------------------");
                 } else {
                     // some other bodypart...
                 }
@@ -475,10 +506,28 @@ public class MessagesIMAP {
 
         detectEmailIMAP(login, password, keyword);
         MessagesIMAP searcher = new MessagesIMAP();
-        searcher.searchEmailBySubjectAndValidate(login, password, keyword, new MessagesValidator.ValidationCongratulationCaseCreated());
+        searcher.searchEmailBySubjectAndValidate(login, password, keyword, new ValidationCongratulationCaseCreated());
+    }
+    public boolean validateEmailNotificationCaseConfirmed(String login, String password, String expertTeam, String caseName){
+        ValidationNotificationCaseConfirmed.userEmail = login;
+        ValidationNotificationCaseConfirmed.expertTeam = expertTeam;
+        ValidationNotificationCaseConfirmed.caseName = caseName;
+        Boolean detectResult = detectEmailIMAP(
+                login,
+                password,
+                EMAIL_SUBJECT_NOTIFICATION_INSTRUCTION_CONFIRMED(expertTeam) );
+        Assert.assertTrue(detectResult);
+        MessagesIMAP searcher = new MessagesIMAP();
+        Boolean validationResult = searcher.searchEmailBySubjectAndValidate(
+                login,
+                password,
+                EMAIL_SUBJECT_NOTIFICATION_INSTRUCTION_CONFIRMED(expertTeam),
+                new ValidationNotificationCaseConfirmed());
+        Assert.assertTrue(validationResult==true);
+        return true;
     }
     public boolean validateEmailSignUp(String login, String password){
-        MessagesValidator.ValidationSignUp.userEmail = login;
+        ValidationSignUp.userEmail = login;
         Boolean detectResult = detectEmailIMAP(
                 login,
                 password,
@@ -489,7 +538,7 @@ public class MessagesIMAP {
                 login,
                 password,
                 EMAIL_SUBJECT_CONFIRM_REGISTRATION,
-                new MessagesValidator.ValidationSignUp());
+                new ValidationSignUp());
         Assert.assertTrue(validationResult==true);
         return true;
     }
@@ -498,8 +547,8 @@ public class MessagesIMAP {
         return true;
     }
     public boolean validateEmailCongratulation(String login, String password, String teamName){
-        MessagesValidator.ValidationCongratulationCaseCreated.userEmail = login;
-        MessagesValidator.ValidationCongratulationCaseCreated.teamName = teamName;
+        ValidationCongratulationCaseCreated.userEmail = login;
+        ValidationCongratulationCaseCreated.teamName = teamName;
         Boolean detectResult = detectEmailIMAP(
                 login,
                 password,
@@ -510,12 +559,12 @@ public class MessagesIMAP {
                 login,
                 password,
                 EMAIL_SUBJECT_CONGRATULATION_CASE_CREATED,
-                new MessagesValidator.ValidationCongratulationCaseCreated());
+                new ValidationCongratulationCaseCreated());
         return true;
     }
     public boolean validateEmailCongratulationForInvite(String login, String password, String invitedEmail){
-        MessagesValidator.ValidationCongratulationForInvite.userEmail = login;
-        MessagesValidator.ValidationCongratulationForInvite.invitedEmail = invitedEmail;
+        ValidationCongratulationForInvite.userEmail = login;
+        ValidationCongratulationForInvite.invitedEmail = invitedEmail;
         Boolean detectResult = detectEmailIMAP(
                 login,
                 password,
@@ -526,7 +575,7 @@ public class MessagesIMAP {
                 login,
                 password,
                 EMAIL_SUBJECT_CONGRATULATION_FOR_INVITE(invitedEmail),
-                new MessagesValidator.ValidationCongratulationForInvite());
+                new ValidationCongratulationForInvite());
         return true;
     }
     public boolean validateEmailInviteInTeam(){
@@ -538,9 +587,9 @@ public class MessagesIMAP {
         return true;
     }
     public boolean validateEmailInviteInCommunity(String login, String password, String name_surname, String customText){
-        MessagesValidator.ValidationInviteCommunity.userEmail = login;
-        MessagesValidator.ValidationInviteCommunity.inviterNameSurname = name_surname;
-        MessagesValidator.ValidationInviteCommunity.customText = customText;
+        ValidationInviteCommunity.userEmail = login;
+        ValidationInviteCommunity.inviterNameSurname = name_surname;
+        ValidationInviteCommunity.customText = customText;
         System.out.println(EMAIL_SUBJECT_YOU_INVITED_IN_COMMUNITY(name_surname));
         Boolean detectResult = detectEmailIMAP(
                 login,
@@ -552,7 +601,7 @@ public class MessagesIMAP {
                 login,
                 password,
                 EMAIL_SUBJECT_YOU_INVITED_IN_COMMUNITY(name_surname),
-                new MessagesValidator.ValidationInviteCommunity());
+                new ValidationInviteCommunity());
         Assert.assertTrue(validationResult==true);
         return true;
     }
@@ -560,8 +609,21 @@ public class MessagesIMAP {
 
         return true;
     }
-    public boolean validateEmailReport(){
-
+    public boolean validateEmailReport(String login, String password, String reportSchedule, String reportName){
+        ValidationReport.reportSchedule = reportSchedule;
+        System.out.println(EMAIL_SUBJECT_REPORT(reportName));
+        Boolean detectResult = detectEmailIMAP(
+                login,
+                password,
+                EMAIL_SUBJECT_REPORT(reportName));
+        Assert.assertTrue(detectResult);
+        MessagesIMAP searcher = new MessagesIMAP();
+        Boolean validationResult = searcher.searchEmailBySubjectAndValidate(
+                login,
+                password,
+                EMAIL_SUBJECT_REPORT(reportName),
+                new ValidationReport());
+        Assert.assertTrue(validationResult==true);
         return true;
     }
     @Test

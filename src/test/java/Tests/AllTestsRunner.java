@@ -10,7 +10,7 @@ import org.junit.runners.Suite;
 //@Categories.ExcludeCategory(AllEmailsTests.class) //Emails not stable
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        MessagesIMAP.class,
+        MessagesIMAP.class, //conditional clean emails
         TestsCommunityIntegration.class,
         TestCommunityIntegrationRedirect.class,
         TestsCommynityLanding.class,
@@ -32,7 +32,8 @@ import org.junit.runners.Suite;
         TestsPekamaSettingsTeam.class,
         TestsPekamaSettingValues.class,
         TestsPekamaTemplates.class,
-        TestsPekamaReports.class //last suite
+        TestsPekamaReports.class, //last suite
+        MessagesIMAP.class, //conditional clean emails
 })
 public class AllTestsRunner {
 

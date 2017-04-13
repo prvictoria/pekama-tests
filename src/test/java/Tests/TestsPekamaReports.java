@@ -15,9 +15,13 @@ import static Page.Emails.*;
 import static Page.ModalWindows.*;
 import static Page.PekamaReports.*;
 import static Page.TestsCredentials.*;
+import static Page.TestsCredentials.Countries.PITCAIRN_ISLANDS;
 import static Page.TestsStrings.*;
+import static Page.UrlConfig.MATTER_TYPE_PATENT;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
+import static Steps.Messages.DEFAULT_CASE_NAME;
+import static Steps.MessagesValidator.ValidationReport.unsubscribeLink;
 import static Steps.StepsExternal.*;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
@@ -36,8 +40,11 @@ public class TestsPekamaReports {
     static final Logger rootLogger = LogManager.getRootLogger();
     private static final String TEST_USER_LOGIN = User3.GMAIL_EMAIL.getValue();
     private static final String GMAIL_LOGIN = TEST_USER_LOGIN;
+    private static final String GMAIL_PASSWORD = User3.GMAIL_PASSWORD.getValue();
     @Rule
     public Timeout tests = Timeout.seconds(600);
+    private static boolean skipBefore = false;
+
     @BeforeClass
     public static void beforeClass() throws IOException {
         setEnvironment ();
@@ -46,11 +53,13 @@ public class TestsPekamaReports {
     }
     @Before
     public void login() {
-        clearBrowserCache();
-        openUrlWithBaseAuth(URL_LogIn);
-        StepsPekama login = new StepsPekama();
-        login.submitLoginCredentials(TEST_USER_LOGIN);
-        sleep(3000);
+        if(skipBefore==false) {
+            clearBrowserCache();
+            openUrlWithBaseAuth(URL_LogIn);
+            StepsPekama login = new StepsPekama();
+            login.submitLoginCredentials(TEST_USER_LOGIN);
+            sleep(3000);
+        }
     }
 
     @Test //1-st test in stack
@@ -91,16 +100,22 @@ public class TestsPekamaReports {
         mailingListCreateNew(thisMailingListName);
         rootLogger.info("Send report");
         mailingListSendReport(thisMailingListName);
+        skipBefore =true;
     }
     @Test @Category({AllEmailsTests.class, AllImapTests.class})
     public void sendProjectReport_B_CheckEmail() {
         String thisMailingListName = "Projects Test Mailing List";
-        checkEmailReport(
-                GMAIL_LOGIN,
-                GMAIL_PASSWORD,
-                thisMailingListName);
-        rootLogger.info("Email - report present in inbox");
+        //if (thisMailingListName==null){Assert.fail("Case not created");}
+        rootLogger.info("Check report email");
+        String login = GMAIL_LOGIN;
+        String password = GMAIL_PASSWORD;
+        String reportSchedule = "999";
+        String reportName = thisMailingListName;
+        MessagesIMAP validation = new MessagesIMAP();
+        Boolean validationResult = validation.validateEmailReport(login, password, reportSchedule, reportName);
+        Assert.assertTrue(validationResult);
         rootLogger.info("Test passed");
+        skipBefore = false;
     }
 
     @Test @Category(AllEmailsTests.class)
@@ -111,16 +126,23 @@ public class TestsPekamaReports {
         rootLogger.info("Open Dropdown and create new mailing list");
         mailingListCreateNew(thisMailingListName);
         mailingListSendReport(thisMailingListName);
+        skipBefore = true;
     }
     @Test @Category({AllEmailsTests.class, AllImapTests.class})
     public void sendTasksReport_B_CheckEmail() {
         String thisMailingListName = "Tasks Test Mailing List";
-        checkEmailReport(
-                GMAIL_LOGIN,
-                GMAIL_PASSWORD,
-                thisMailingListName);
-        rootLogger.info("Email - report present in inbox");
+
+        //if (thisMailingListName==null){Assert.fail("Case not created");}
+        rootLogger.info("Check report email");
+        String login = GMAIL_LOGIN;
+        String password = GMAIL_PASSWORD;
+        String reportSchedule = "999";
+        String reportName = thisMailingListName;
+        MessagesIMAP validation = new MessagesIMAP();
+        Boolean validationResult = validation.validateEmailReport(login, password, reportSchedule, reportName);
+        Assert.assertTrue(validationResult);
         rootLogger.info("Test passed");
+        skipBefore = false;
     }
 
     @Test @Category(AllEmailsTests.class)
@@ -133,16 +155,22 @@ public class TestsPekamaReports {
         mailingListCreateNew(thisMailingListName);
         rootLogger.info("Send report");
         mailingListSendReport(thisMailingListName);
+        skipBefore = true;
     }
     @Test @Category({AllEmailsTests.class, AllImapTests.class})
     public void sendEventsReport_B_CheckEmail() {
         String thisMailingListName = "Events Test Mailing List";
-        checkEmailReport(
-                GMAIL_LOGIN,
-                GMAIL_PASSWORD,
-                thisMailingListName);
-        rootLogger.info("Email - report present in inbox");
+        //if (thisMailingListName==null){Assert.fail("Case not created");}
+        rootLogger.info("Check report email");
+        String login = GMAIL_LOGIN;
+        String password = GMAIL_PASSWORD;
+        String reportSchedule = "999";
+        String reportName = thisMailingListName;
+        MessagesIMAP validation = new MessagesIMAP();
+        Boolean validationResult = validation.validateEmailReport(login, password, reportSchedule, reportName);
+        Assert.assertTrue(validationResult);
         rootLogger.info("Test passed");
+        skipBefore = false;
     }
 
     @Test @Category(AllEmailsTests.class)
@@ -155,17 +183,23 @@ public class TestsPekamaReports {
         mailingListCreateNew(thisMailingListName);
         rootLogger.info("Send report");
         mailingListSendReport(thisMailingListName);
+        skipBefore = true;
     }
     @Test @Category({AllEmailsTests.class, AllImapTests.class})
     public void sendChargesReport_B_CheckEmail() {
         String thisMailingListName = "Charges Test Mailing List";
         rootLogger.info("Check email - report");
-        checkEmailReport(
-                GMAIL_LOGIN,
-                GMAIL_PASSWORD,
-                thisMailingListName);
-        rootLogger.info("Email - report present in inbox");
+        //if (thisMailingListName==null){Assert.fail("Case not created");}
+        rootLogger.info("Check report email");
+        String login = GMAIL_LOGIN;
+        String password = GMAIL_PASSWORD;
+        String reportSchedule = "999";
+        String reportName = thisMailingListName;
+        MessagesIMAP validation = new MessagesIMAP();
+        Boolean validationResult = validation.validateEmailReport(login, password, reportSchedule, reportName);
+        Assert.assertTrue(validationResult);
         rootLogger.info("Test passed");
+        skipBefore = false;
     }
 
     @Test @Category(AllEmailsTests.class)
@@ -178,16 +212,22 @@ public class TestsPekamaReports {
         mailingListCreateNew(thisMailingListName);
         rootLogger.info("Send report");
         mailingListSendReport(thisMailingListName);
+        skipBefore = true;
     }
     @Test @Category({AllEmailsTests.class, AllImapTests.class})
     public void sendContactsReport_B_CheckEmail() {
         String thisMailingListName = "Contacts Test Mailing List";
-         checkEmailReport(
-                GMAIL_LOGIN,
-                GMAIL_PASSWORD,
-                thisMailingListName);
-        rootLogger.info("Email - report present in inbox");
+        //if (thisMailingListName==null){Assert.fail("Case not created");}
+        rootLogger.info("Check report email");
+        String login = GMAIL_LOGIN;
+        String password = GMAIL_PASSWORD;
+        String reportSchedule = "999";
+        String reportName = thisMailingListName;
+        MessagesIMAP validation = new MessagesIMAP();
+        Boolean validationResult = validation.validateEmailReport(login, password, reportSchedule, reportName);
+        Assert.assertTrue(validationResult);
         rootLogger.info("Test passed");
+        skipBefore = false;
     }
 
     @Test @Category({AllEmailsTests.class, AllImapTests.class})
@@ -201,20 +241,21 @@ public class TestsPekamaReports {
         rootLogger.info("Send report");
         mailingListSendReport(thisMailingListName);
 
+        //if (thisMailingListName==null){Assert.fail("Case not created");}
+        rootLogger.info("Check report email");
+        String login = GMAIL_LOGIN;
+        String password = GMAIL_PASSWORD;
+        String reportSchedule = "999";
+        String reportName = thisMailingListName;
+        MessagesIMAP validation = new MessagesIMAP();
+        Boolean validationResult = validation.validateEmailReport(login, password, reportSchedule, reportName);
+        Assert.assertTrue(validationResult);
+        rootLogger.info("Test passed");
+        skipBefore = false;
+
         rootLogger.info("Check email - report usubscribe link");
         SelenideElement EMAIL_SUBJECT = EMAIL_REPORT_SUBJECT;
-        String link = null;
-        signInGmailInbox(GMAIL_LOGIN, GMAIL_PASSWORD);
-        detectEmail(EMAIL_SUBJECT);
-        openEmail(EMAIL_SUBJECT);
-        try {
-            link = checkUnsubscribeLink();
-        }
-        finally {
-            deleteEmail();
-            inboxEmptyTrash();
-            logoutGoogleInbox();
-        }
+        String link = unsubscribeLink;
 
         openUrlWithBaseAuth(link);
         sleep(5000);

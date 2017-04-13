@@ -520,7 +520,7 @@ public class StepsCommunity implements StepsFactory{
         String caseType = MATTER_TYPE_PATENT;
         String caseCountry = TestsCredentials.Countries.PITCAIRN_ISLANDS.getValue();
         String status = COMMUNITY_STATUS_SENT;
-        String caseName = "DEFAULT_CASE"+randomString(10);
+        String caseName = "DEFAULT_CASE_"+randomString(10);
 
         searchExpertsQuery(caseType, caseCountry, COMMUNITY_SERVICE);
         rootLogger.info("2nd Step - select expert");
