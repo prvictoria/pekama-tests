@@ -1,6 +1,8 @@
 package Tests;
 import Page.TestsCredentials;
+import Steps.MessagesIMAP;
 import Steps.StepsPekama;
+import Steps.User;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.ex.SoftAssertionError;
@@ -21,12 +23,16 @@ import static Page.ModalWindows.*;
 import static Page.PekamaDashboard.*;
 import static Page.PekamaProject.*;
 import static Page.TestsCredentials.*;
+import static Page.TestsCredentials.Countries.*;
 import static Page.TestsCredentials.TrademarkEvents.*;
 import static Page.TestsStrings.*;
+import static Page.UrlConfig.MATTER_TYPE_PATENT;
+import static Page.UrlConfig.MATTER_TYPE_TRADEMARK;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
 import static Page.Xero.*;
 import static Steps.Messages.*;
+import static Steps.MessagesValidator.ValidationInviteInProject.projectBackLink;
 import static Steps.StepsCommunity.checkCaseNameFirstRow;
 import static Steps.StepsCommunity.selectExpert;
 import static Steps.StepsExternal.*;
@@ -52,12 +58,13 @@ public class TestsPekamaProject {
     private static String testContactSurname = "surname"+ randomString(10);
     private static String testProjectURL;
     private final static String TEST_USER_EMAIL = User3.GMAIL_EMAIL.getValue();
+    private final static String TEST_USER_NAME_SURNAME = User3.NAME_SURNAME.getValue();
     private final static String TEST_USER_PEKAMA_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
     private final static String TEST_USER_XERO_PASSWORD = User3.XERO_PASSWORD.getValue();
     private final static String TEST_USER_FULL_TEAM_NAME = User3.FULL_TEAM_NAME.getValue();
     private final static String COLLABORATOR_TEAM_NAME = User1.TEAM_NAME.getValue();
-    private final static String TEST_CASE_TYPE = CaseType.TRADEMARK.getValue();
-    private final static String TEST_CASE_COUNTRY = Countries.PITCAIRN_ISLANDS.getValue();
+    private static String TEST_CASE_TYPE = null;
+    private final static String TEST_CASE_COUNTRY = PITCAIRN_ISLANDS.getValue();
     private final static String TEST_CASE_NAME = "CUSTOM_NAME"+randomString(10);
 
     private final static String REQUESTER_EMAIL = TestsCredentials.User3.GMAIL_EMAIL.getValue();
@@ -77,42 +84,35 @@ public class TestsPekamaProject {
     private final static String INTRODUCER_NAME = "Rand, Kaldor & Zane LLP (RKNZ)";
     @Rule
     public Timeout tests = Timeout.seconds(600);
+    private static boolean skipBefore = false;
+
     @BeforeClass
     public static void beforeClass() throws IOException {
         setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
+        TEST_CASE_TYPE = MATTER_TYPE_TRADEMARK;
     }
     @Before
     public void before() {
-        clearBrowserCache();
-        StepsPekama loginIntoPekama = new StepsPekama();
-        loginIntoPekama.loginByURL(
-                TEST_USER_EMAIL,
-                TEST_USER_PEKAMA_PASSWORD,
-                URL_LogIn);
-        rootLogger.info("Create project");
-        DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 25000).click();
-        rootLogger.info("NW - New project");
-        waitForModalWindow(TILE_MW_PROJECT);
-        rootLogger.info("select project type");
-        selectItemInDropdown(
-                MW_Project_SelectType,
-                MW_Project_InputType,
-                CaseType.TRADEMARK.getValue());
-        rootLogger.info("select defining");
-        selectItemInDropdown(MW_Project_SelectDefining, MW_Project_InputDefining, Countries.PITCAIRN_ISLANDS.getValue());
-        rootLogger.info("fill title");
-        fillField(MW_Project_Title, testProjectTitle);
-        rootLogger.info("submit");
-        submitEnabledButton(MW_ProjectFinishButton);
-        MW.shouldNot(exist);
-        sleep(1000);
-        testProjectURL = getActualUrl ();
-        rootLogger.info("Project url: "+ testProjectURL);
-        rootLogger.info("ProjectValues '"+testProjectTitle+"' created");
-        waitForTextPresent(testProjectTitle);
-        hideZopim();
+        if (skipBefore==false) {
+            clearBrowserCache();
+            openUrlWithBaseAuth(URL_LogIn);
+            User requester = new User();
+            requester.submitLoginCredentials(REQUESTER_EMAIL, REQUESTER_PEKAMA_PASSWORD);
+            DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 30000).click();
+            testProjectTitle = submitMwNewProject(
+                    "INNER_VALIDATION",
+                    TEST_CASE_TYPE,
+                    PITCAIRN_ISLANDS.getValue(),
+                    null,
+                    null);
+            testProjectURL = getActualUrl();
+            rootLogger.info("Project url: " + testProjectURL);
+            rootLogger.info("ProjectValues '" + testProjectTitle + "' created");
+            waitForTextPresent(testProjectTitle);
+        }
+        else {rootLogger.info("Before was skipped");}
     }
     @Test
     public void createProject_A_CheckDefaultStateAndDelete() {
@@ -301,10 +301,9 @@ public class TestsPekamaProject {
         $$(byText(ADMIN)).shouldHaveSize(0);
         $$(byText(COLLABORATOR)).shouldHaveSize(0);
         $$(byText(VIEWER)).shouldHaveSize(0);
-
     }
     @Test @Category(AllEmailsTests.class)
-    public void createProject_E_inviteCollaborator() {
+    public void createProject_E_inviteCollaborator_Action() {
         rootLogger.info("Invite new team to Pekama project");
         PROJECT_TAB_CONTACTS.click();
         projectTabContacts_AddCollaborator.click();
@@ -316,32 +315,22 @@ public class TestsPekamaProject {
         MW.shouldNotBe(visible);
         $$(byText(OWNER)).shouldHaveSize(1);
         $$(byText(COLLABORATOR)).shouldHaveSize(1);
-
-        rootLogger.info("Check email - set vars");
-        String USER_EMAIL = User5.GMAIL_EMAIL.getValue();
-        String GMAIL_PASSWORD = User5.GMAIL_PASSWORD.getValue();
-        SelenideElement EMAIL_SUBJECT = emailSubject(testProjectTitle);
-        String EMAIL_TITLE = emailInviteInProjectTitle(
-                User2.NAME.getValue(),
-                User2.SURNAME.getValue());
-        String EMAIL_TEXT = emailInviteInProjectText(
-                User2.NAME.getValue(),
-                User2.SURNAME.getValue(),
-                testProjectTitle);
-        String EMAIL_BTN = EMAIL_INVITE_IN_PROJECT_BTN;
-        SelenideElement EMAIL_REDIRECT_LINK = EMAIL_INVITE_IN_PROJECT_BACKLINK;
-        rootLogger.info("Open inbox email");
-        //TODO IMAP Validation
-        String inviteLink = checkInboxEmail(
-                USER_EMAIL,
-                GMAIL_PASSWORD,
-                EMAIL_SUBJECT,
-                EMAIL_TITLE,
-                EMAIL_TEXT,
-                EMAIL_BTN,
-                EMAIL_REDIRECT_LINK);
-        if (inviteLink==null){Assert.fail("no link in email");};
-
+        skipBefore = true;
+    }
+    @Test
+    public void createProject_E_inviteCollaborator_ValidationEmail() {
+        rootLogger.info("Check report email");
+        String login = User5.GMAIL_EMAIL.getValue();
+        String password = User5.GMAIL_PASSWORD.getValue();
+        String inviterNameSurname = TEST_USER_NAME_SURNAME;
+        String projectName = testProjectTitle;
+        MessagesIMAP validation = new MessagesIMAP();
+        Boolean validationResult = validation.validateEmailInviteInProject(login, password, inviterNameSurname, projectName);
+        Assert.assertTrue(validationResult);
+        Assert.assertNotNull(projectBackLink);
+        rootLogger.info("Link invite to project is: "+projectBackLink);
+        rootLogger.info("Test passed");
+        skipBefore = false;
     }
     @Test
     public void createProject_F1_addNewContact_Person() {
@@ -665,7 +654,7 @@ public class TestsPekamaProject {
     public void createProject_N_selectValues() {
         scrollUp();
         TAB_INFO_PROJECT_TYPE.shouldHave(text(CaseType.TRADEMARK.getValue()));
-        setProjectDefining(Countries.NETHERLANDS_ANTILES.getValue());
+        setProjectDefining(NETHERLANDS_ANTILES.getValue());
         setProjectType(TrademarkTypes.BASIC.getValue());
         setProjectSubType("Certification Mark");
         rootLogger.info("Test passed");
@@ -683,7 +672,7 @@ public class TestsPekamaProject {
         submitEnabledButton(MW_ProjectFinishButton);
         MW.shouldNot(exist);
         sleep(2000);
-        checkText(Countries.USA.getValue());
+        checkText(USA.getValue());
         checkText("FAMILY-"+testProjectTitle);
 
         PROJECT_TAB_FAMILY.click();

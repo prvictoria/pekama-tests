@@ -156,15 +156,36 @@ public interface MessagesValidator extends StepsFactory {
     }
     class ValidationInviteInProject implements MessagesValidator {
         private String html = null;
+        public static String userEmail = null;
+        public static String projectName = null;
+        public static String inviterNameSurname = null;
+        public static String projectBackLink = null;
 
         @Override
         public boolean validationEmail(String...strings) {
-            this.html = html;
-            String link = parseHtmlHref(html);
-            Assert.assertTrue(link.contains("https://staging.pekama.com/accounts/confirm/"));
+            this.html = strings[0];
+            this.userEmail = userEmail;
+            this.projectName = projectName;
+            this.inviterNameSurname = inviterNameSurname;
             String linkText = parseHtmlLinkText(html);
-            Assert.assertTrue(linkText.equals("Confirm Account"));
-            parseHtmlHrefArray(html);
+            Assert.assertTrue(linkText.equals(EMAIL_BTN_YOU_INVITED_IN_PROJECT(projectName)));
+            Assert.assertTrue(parseHtmlHrefArray(html).size() == 3);
+            Elements links = parseHtmlHrefArray(html);
+            projectBackLink = getLink(links, 0);
+            Assert.assertTrue(projectBackLink.contains(EMAIL_INVITE_IN_PROJECT_LINK1_PEKAMA));
+            Assert.assertTrue(projectBackLink.contains(EMAIL_INVITE_IN_PROJECT_LINK2_PEKAMA));
+            projectBackLink = getLink(links, 1);
+            Assert.assertTrue(projectBackLink.contains(EMAIL_INVITE_IN_PROJECT_LINK1_PEKAMA));
+            Assert.assertTrue(projectBackLink.contains(EMAIL_INVITE_IN_PROJECT_LINK2_PEKAMA));
+            String link3 = getLink(links, 2);
+            Assert.assertTrue(link3.contains(userEmail));
+
+            System.out.println(EMAIL_INVITED_IN_COMMUNITY_BODY_1(inviterNameSurname));
+            Assert.assertTrue(html.contains(EMAIL_TITLE_YOU_INVITED_IN_PROJECT(inviterNameSurname)));
+            System.out.println(EMAIL_TEXT_YOU_INVITED_IN_PROJECT(inviterNameSurname, projectName));
+            Assert.assertTrue(html.contains(EMAIL_TEXT_YOU_INVITED_IN_PROJECT(inviterNameSurname, projectName)));
+            Assert.assertTrue(html.contains(EMAIL_BTN_YOU_INVITED_IN_PROJECT(projectName)));
+            Assert.assertTrue(html.contains(EMAIL_TEXT_YOUR_EMAIL_IS));
             return true;
         }
 

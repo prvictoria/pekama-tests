@@ -21,6 +21,7 @@ import static Page.UrlConfig.setEnvironment;
 import static Steps.Messages.*;
 import static Steps.Messages.EMAIL_SUBJECT_YOU_INVITED_IN_COMMUNITY;
 import static Steps.MessagesValidator.*;
+import static Steps.MessagesValidator.ValidationInviteInProject.projectBackLink;
 import static Steps.MessagesValidator.ValidationNotificationCaseConfirmed.caseName;
 import static Steps.MessagesValidator.ValidationNotificationCaseConfirmed.expertTeam;
 import static Steps.MessagesValidator.ValidationSignUp.userEmail;
@@ -278,7 +279,7 @@ public class MessagesIMAP {
                     Address[] froms = message.getFrom();
                     String email = froms == null ? null : ((InternetAddress) froms[0]).getAddress();
                     //System.out.println(email);
-                    if (email.equals(keyword)) {
+                    if (email.contains(keyword)) {
                         return true;
                     }
                 } catch (MessagingException ex) {
@@ -447,15 +448,18 @@ public class MessagesIMAP {
     public static Elements parseHtmlHrefArray(String html){
         Document doc = Jsoup.parse(html);
         Elements link = doc.getElementsByAttribute("href");
+        //printAllLInks(link);
+        return link;
+    }
+    private static void printAllLInks(Elements link){
         Integer size = link.size();
         Integer i = 0;
-//        while (size>0) {
-//            System.out.println("Link attribute " + link.get(i).attr("href"));
-//            System.out.println("--------------------------------");
-//        size--;
-//        i++;
-//        }
-        return link;
+        while (size>0) {
+            System.out.println("Link attribute " + link.get(i).attr("href"));
+            System.out.println("--------------------------------");
+        size--;
+        i++;
+        }
     }
     public static String getLink (Elements links, Integer index){
         String link = links.get(index).attr("href");
@@ -492,21 +496,36 @@ public class MessagesIMAP {
     }
 //test app
     public static void main(String[] args) {
-        login = "";
-        password = "";
+        login = TestsCredentials.User5.GMAIL_EMAIL.getValue();
+        password = TestsCredentials.User5.GMAIL_PASSWORD.getValue();
         setEnvironment();
         //String subjectToDelete = "Confirm Registration [Pekama]";
         //String subjectToDelete = "no-reply@accounts.google.com";
-        String subjectToDelete = "dan@pekama.com";
+        //String subjectToDelete = "dan@pekama.com";
         //String subjectToDelete = "noreply@emstaging.pekama.com";
         //String subjectToDelete = "We are waiting for you!";
         //String subject = "Pekama Report \"Last week's Events\"";
-        String keyword = EMAIL_SUBJECT_CONGRATULATION_CASE_CREATED;
+        //String keyword = EMAIL_SUBJECT_CONGRATULATION_CASE_CREATED;
+//        String name_surname = TestsCredentials.User3.NAME_SURNAME.getValue();
+//        String projectName = "new test project - 83B25I";
+//        String keyword = EMAIL_SUBJECT_YOU_INVITED_IN_PROJECT(name_surname);
+//        rootLogger.info(keyword);
+//        detectEmailIMAP(login, password, keyword);
+       // MessagesIMAP searcher = new MessagesIMAP();
+        //searcher.searchEmailBySubject(login, password, keyword);
+        //searcher.searchEmailBySubjectAndValidate(login, password, keyword, new ValidationCongratulationCaseCreated());
 
-
-        detectEmailIMAP(login, password, keyword);
-        MessagesIMAP searcher = new MessagesIMAP();
-        searcher.searchEmailBySubjectAndValidate(login, password, keyword, new ValidationCongratulationCaseCreated());
+        rootLogger.info("Check report email");
+        String login = TestsCredentials.User5.GMAIL_EMAIL.getValue();
+        String password = TestsCredentials.User5.GMAIL_PASSWORD.getValue();
+        String inviterNameSurname = TestsCredentials.User3.NAME_SURNAME.getValue();
+        String projectName = "new test project - 83B25I";
+        MessagesIMAP validation = new MessagesIMAP();
+        Boolean validationResult = validation.validateEmailInviteInProject(login, password, inviterNameSurname, projectName);
+        Assert.assertTrue(validationResult);
+        Assert.assertNotNull(projectBackLink);
+        rootLogger.info("Link invite to project is: "+projectBackLink);
+        rootLogger.info("Test passed");
     }
     public boolean validateEmailNotificationCaseConfirmed(String login, String password, String expertTeam, String caseName){
         ValidationNotificationCaseConfirmed.userEmail = login;
@@ -582,8 +601,21 @@ public class MessagesIMAP {
 
         return true;
     }
-    public boolean validateEmailInviteInProject(){
-
+    public boolean validateEmailInviteInProject(String login, String password, String inviterNameSurname, String projectName){
+        ValidationInviteInProject.inviterNameSurname = inviterNameSurname;
+        ValidationInviteInProject.projectName = projectName;
+        ValidationInviteInProject.userEmail = login;
+        Boolean detectResult = detectEmailIMAP(
+                login,
+                password,
+                EMAIL_SUBJECT_YOU_INVITED_IN_PROJECT(inviterNameSurname));
+        Assert.assertTrue(detectResult);
+        MessagesIMAP searcher = new MessagesIMAP();
+        Boolean validationResult = searcher.searchEmailBySubjectAndValidate(
+                login,
+                password,
+                EMAIL_SUBJECT_YOU_INVITED_IN_PROJECT(inviterNameSurname),
+                new ValidationInviteInProject());
         return true;
     }
     public boolean validateEmailInviteInCommunity(String login, String password, String name_surname, String customText){
