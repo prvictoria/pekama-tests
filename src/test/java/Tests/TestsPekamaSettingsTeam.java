@@ -1,5 +1,6 @@
 package Tests;
 import Page.TestsCredentials;
+import Steps.MessagesIMAP;
 import Steps.StepsPekama;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
@@ -19,6 +20,8 @@ import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
+import static Steps.MessagesValidator.ValidationInviteInProject.projectBackLink;
+import static Steps.MessagesValidator.ValidationInviteInTeam.teamBackLink;
 import static Steps.StepsExternal.*;
 import static Steps.StepsHttpAuth.*;
 import static Steps.StepsModalWindows.*;
@@ -40,10 +43,16 @@ import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaSettingsTeam {
     static final Logger rootLogger = LogManager.getRootLogger();
-    private final String TEST_USER_LOGIN = TestsCredentials.User1.GMAIL_EMAIL.getValue();
-    private final String TEST_USER_PASSWORD = TestsCredentials.User1.PEKAMA_PASSWORD.getValue();
+    private final String TEST_USER_LOGIN = User1.GMAIL_EMAIL.getValue();
+    private final String TEST_USER_PASSWORD = User1.PEKAMA_PASSWORD.getValue();
+    private final String TEST_USER_NAME_SURNAME = User1.NAME_SURNAME.getValue();
+    private final String TEST_USER_FULL_TEAM_NAME = User1.FULL_TEAM_NAME.getValue();
+    private final String TEST_USER_NAME = User1.NAME.getValue();
+
     @Rule
     public Timeout tests = Timeout.seconds(600);
+    private static boolean skipBefore = false;
+
     @BeforeClass
     public static void beforeClass() throws IOException {
         setEnvironment ();
@@ -52,18 +61,24 @@ public class TestsPekamaSettingsTeam {
     }
     @Before
     public void before() {
-        rootLogger.info("Open host");
-        StepsPekama loginIntoPekama = new StepsPekama();
-        loginIntoPekama.loginByURL(
-                TEST_USER_LOGIN,
-                TEST_USER_PASSWORD,
-                URL_TeamSettings);
+        if (skipBefore==false){
+            clearBrowserCache();
+            rootLogger.info("Open host");
+            StepsPekama loginIntoPekama = new StepsPekama();
+            loginIntoPekama.loginByURL(
+                    TEST_USER_LOGIN,
+                    TEST_USER_PASSWORD,
+                    URL_TeamSettings);
+        }
+        else {rootLogger.info("Before was skipped");}
     }
-    @After
-    public void after() {
-        openUrlWithBaseAuth(URL_Logout);
-        clearBrowserCache();
-    }
+//    @After
+//    public void after() {
+//        if (skipBefore==false) {
+//            openUrlWithBaseAuth(URL_Logout);
+//        }
+//        else {rootLogger.info("After was skipped");}
+//    }
 
     @Test
     public void profile_testA_GUI() {
@@ -101,26 +116,21 @@ public class TestsPekamaSettingsTeam {
 
     @Test
     public void members_testB_addSameMember() {
-        String testEmail = "123@mail.com";
         rootLogger.info("Add member");
         SETTINGS_TEAM_TAB_MEMBERS.waitUntil(visible, 20000).click();
+        deleteLoopIconX();
         TAB_MEMBERS_BTN_ADD.shouldBe(visible).click();
-        waitForModalWindow("Members");
-        fillField(MW_MEMBERS_EMAIL, testEmail);
-        submitEnabledButton(MW_BTN_OK);
-        MW.shouldNot(visible);
-        checkMember(testEmail);
+        String newMemberEmail = submitAddMemberWindow();
+        checkMemberInactive(newMemberEmail);
 
         TAB_MEMBERS_BTN_ADD.shouldBe(visible).click();
-        waitForModalWindow("Members");
-        fillField(MW_MEMBERS_EMAIL, testEmail);
-        submitEnabledButton(MW_BTN_OK);
+        submitAddMemberWindow(newMemberEmail, false);
         MW.shouldHave(text("Already a member"));
         MW_BTN_CANCEL.click();
-        checkMember(testEmail);
+        checkMemberInactive(newMemberEmail);
 
         rootLogger.info("Delete member");
-        deleteMember(testEmail);
+        deleteMemberInactive(newMemberEmail);
         rootLogger.info("Test passed");
     }
     @Test @Category(AllEmailsTests.class)
@@ -130,31 +140,30 @@ public class TestsPekamaSettingsTeam {
         rootLogger.info("Add member");
         SETTINGS_TEAM_TAB_MEMBERS.waitUntil(visible, 20000).click();
         TAB_MEMBERS_BTN_ADD.shouldBe(visible).click();
-        waitForModalWindow("Members");
-        fillField(MW_MEMBERS_EMAIL, newMemberEmail);
-        submitEnabledButton(MW_BTN_OK);
-        MW.shouldNot(visible);
+        submitAddMemberWindow(newMemberEmail,  true);
         checkMember(newMemberEmail);
 
-        sleep(300);
         rootLogger.info("Delete member");
         deleteMember(newMemberEmail);
+        skipBefore = true;
     }
     @Test @Category({AllEmailsTests.class, AllImapTests.class})
     public void testC_inviteNewMember_B_CheckEmail() {
-        rootLogger.info("Check email inbox");
-        String newMemberEmail = User5.GMAIL_EMAIL.getValue();
-        String newMemberPassword = User5.GMAIL_PASSWORD.getValue();
-        //TODO IMAP Validation
-        String actualBackLink = checkInboxEmail(
-                newMemberEmail, newMemberPassword,
-                EMAIL_INVITE_IN_TEAM_SUBJECT,
-                EMAIL_INVITE_IN_TEAM_TITLE,
-                EMAIL_INVITE_IN_TEAM_TEXT,
-                EMAIL_INVITE_IN_TEAM_BTN,
-                EMAIL_INVITE_IN_TEAM_BACKLINK);
-        if (actualBackLink == null) {Assert.fail("Redirect Link not found");}
+        rootLogger.info("Check invite email");
+        String login = User5.GMAIL_EMAIL.getValue();
+        String password = User5.GMAIL_PASSWORD.getValue();
+        String inviterNameSurname = TEST_USER_NAME_SURNAME;
+        String inviterFullTeamName = TEST_USER_FULL_TEAM_NAME;
+        String inviterName = TEST_USER_NAME;
+        MessagesIMAP validation = new MessagesIMAP();
+        Boolean validationResult = validation.validateEmailInviteInTeam(
+                login, password,
+                inviterNameSurname, inviterName, inviterFullTeamName);
+        Assert.assertTrue(validationResult);
+        Assert.assertNotNull(teamBackLink);
+        rootLogger.info("Link invite to Team is: "+teamBackLink);
         rootLogger.info("Test passed");
+        skipBefore = false;
     }
 
      @Test

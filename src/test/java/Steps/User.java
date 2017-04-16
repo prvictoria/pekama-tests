@@ -75,18 +75,18 @@ public class User {
             signupEmail.waitUntil(visible, 20000).sendKeys(email);
         }
         if(name!=null) {
-            signupName.shouldBe(visible).sendKeys(name);
+            signupName.waitUntil(visible, 20000).sendKeys(name);
         }
         if(surname!=null) {
-            signupSurname.shouldBe(visible).sendKeys(surname);
+            signupSurname.waitUntil(visible, 20000).sendKeys(surname);
         }
         if(company!=null) {
-            signupCompany.shouldBe(visible).sendKeys(company);
+            signupCompany.waitUntil(visible, 20000).sendKeys(company);
         }
         if(password!=null) {
-            signupPassword.shouldBe(visible).sendKeys(password);
+            signupPassword.waitUntil(visible, 20000).sendKeys(password);
         }
-        signupNext.shouldBe(visible).shouldNot(disabled).click();
+        signupNext.waitUntil(visible, 20000).shouldNot(disabled).click();
         sleep(3000);
 
         if($(byText("Confirm your Account")).exists()){

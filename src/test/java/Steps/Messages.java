@@ -56,6 +56,24 @@ public class Messages implements StepsFactory{
     }
 
     //Email messages and other formated strings
+    //Email Invite in Team
+    public static final String EMAIL_SUBJECT_YOU_INVITED_IN_TEAM(String name_surname, String fullTeamName) {
+        String subject = String.format("%s invited you to join %s on Pekama", name_surname, fullTeamName);
+        return subject;
+    }
+    public static final String EMAIL_TITLE_YOU_INVITED_IN_TEAM(String fullTeamName) {
+        String subject = String.format("You're invited to %s", fullTeamName);
+        return subject;
+    }
+    public static final String EMAIL_TEXT_YOU_INVITED_IN_TEAM(String name_surname, String fullTeamName, String name) {
+        String subject = String.format("%s has sent you an invitation to join %s on Pekama. %s uses Pekama to work collaboratively on legal matters.", name_surname, fullTeamName, name);
+        return subject;
+    }
+    public static final String EMAIL_BTN_YOU_INVITED_IN_TEAM(String fullTeamName) {
+        String subject = String.format("Join %s", fullTeamName);
+        return subject;
+    }
+
     //Email Invite in Project
     //new test project - 83B25l   new test project - 83B25l (TM.PN.030993)
     public static final String EMAIL_SUBJECT_YOU_INVITED_IN_PROJECT(String name_surname) {

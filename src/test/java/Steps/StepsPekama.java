@@ -397,8 +397,24 @@ public class StepsPekama implements StepsFactory{
         rootLogger.info(email+" - member is the Team");
         return true;
     }
+    public static boolean checkMemberInactive(String email) {
+        String inactiveEmail = email.toLowerCase()+" (inactive)";
+        String row = String.format(BTN_DELETE_MEMBER, inactiveEmail);
+        $(byXpath(row)).shouldBe(visible);
+        rootLogger.info(email+" - member is the Team");
+        return true;
+    }
     public static void deleteMember(String email) {
         String row = String.format(BTN_DELETE_MEMBER, email);
+        $(byXpath(row)).shouldBe(visible);
+        $(byXpath(row)).click();
+        submitConfirmAction();
+        $(byXpath(row)).shouldNotBe(visible);
+        rootLogger.info(email+" - member was deleted");
+    }
+    public static void deleteMemberInactive(String email) {
+        String inactiveEmail = email.toLowerCase()+" (inactive)";
+        String row = String.format(BTN_DELETE_MEMBER, inactiveEmail);
         $(byXpath(row)).shouldBe(visible);
         $(byXpath(row)).click();
         submitConfirmAction();
@@ -421,6 +437,19 @@ public class StepsPekama implements StepsFactory{
     }
     public static void deleteLoopIconX(String testTeamNameSurname) {
         checkText(testTeamNameSurname);
+        if ($$(byXpath(ICON_DELETE_MEMBER)).size()!=0){
+            do {
+                $(byXpath(ICON_DELETE_MEMBER)).shouldBe(visible);
+                $(byXpath(ICON_DELETE_MEMBER)).click();
+                submitConfirmAction();
+                sleep(2000);
+            }
+            while ($$(byXpath(ICON_DELETE_MEMBER)).size()!=0);
+            rootLogger.info("All - members were deleted");
+        }
+    }
+    public static void deleteLoopIconX() {
+        sleep(2000);
         if ($$(byXpath(ICON_DELETE_MEMBER)).size()!=0){
             do {
                 $(byXpath(ICON_DELETE_MEMBER)).shouldBe(visible);

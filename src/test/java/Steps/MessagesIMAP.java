@@ -597,9 +597,24 @@ public class MessagesIMAP {
                 new ValidationCongratulationForInvite());
         return true;
     }
-    public boolean validateEmailInviteInTeam(){
+    public boolean validateEmailInviteInTeam(String login, String password, String inviterNameSurname, String inviterName, String inviterFullTeamName){
+        ValidationInviteInTeam.userEmail = login;
+        ValidationInviteInTeam.inviterNameSurname = inviterNameSurname;
+        ValidationInviteInTeam.inviterName = inviterName;
+        ValidationInviteInTeam.inviterFullTeamName = inviterFullTeamName;
 
-        return true;
+        Boolean detectResult = detectEmailIMAP(
+                login,
+                password,
+                EMAIL_SUBJECT_YOU_INVITED_IN_TEAM(inviterNameSurname, inviterFullTeamName));
+        Assert.assertTrue(detectResult);
+        MessagesIMAP searcher = new MessagesIMAP();
+        Boolean validationResult = searcher.searchEmailBySubjectAndValidate(
+                login,
+                password,
+                EMAIL_SUBJECT_YOU_INVITED_IN_TEAM(inviterNameSurname, inviterFullTeamName),
+                new ValidationInviteInTeam());
+        return validationResult;
     }
     public boolean validateEmailInviteInProject(String login, String password, String inviterNameSurname, String projectName){
         ValidationInviteInProject.inviterNameSurname = inviterNameSurname;

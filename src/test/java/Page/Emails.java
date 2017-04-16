@@ -33,8 +33,9 @@ public class Emails extends Page {
     public static final String EMAIL_CONFIRM_INVITATION_LINK_COMMUNITY = ENVIRONMENT_COMMUNITY+"/community/activate/";
     public static final String EMAIL_CONFIRM_REGISTRATION_LINK_PEKAMA = ENVIRONMENT_PEKAMA+"/accounts/confirm/";
     public static final String EMAIL_CONFIRM_REGISTRATION_LINK_COMMUNITY = ENVIRONMENT_COMMUNITY+"/accounts/confirm/";
-    public static final String EMAIL_INVITE_IN_PROJECT_LINK1_PEKAMA = ENVIRONMENT_PEKAMA+"/accounts/invitation/";
-    public static final String EMAIL_INVITE_IN_PROJECT_LINK2_PEKAMA = "/?next=/n/legal/submatter/";
+    public static final String EMAIL_INVITE_IN_PEKAMA_LINK1 = ENVIRONMENT_PEKAMA+"/accounts/invitation/";
+    public static final String EMAIL_INVITE_IN_PROJECT_LINK2 = "/?next=/n/legal/submatter/";
+    public static final String EMAIL_INVITE_IN_TEAM_LINK2 = "/?next=/organizations/primary/";
     public static final String COMMUNITY_CONVERSATION_LINK = ENVIRONMENT_COMMUNITY+"/community/conversation/";
     public static final String REPORT_BACK_LINK = ENVIRONMENT_PEKAMA+"/filters/mailinglist/edit/";
     public static final String REPORT_UNSUBSCRIBE_LINK = ENVIRONMENT_PEKAMA+"/filters/mailinglist/unsubscribe/";

@@ -74,6 +74,27 @@ public class StepsModalWindows implements StepsFactory {
         sleep(500);
         MW.shouldNotBe(visible);
     }
+    public static void submitAddMemberWindow(String newMemberEmail, Boolean emailIsValid){
+        rootLogger.info("Invite new member in team");
+        waitForModalWindow("Members");
+        if (newMemberEmail!=null) {
+            fillField(MW_MEMBERS_EMAIL, newMemberEmail);
+        }
+        submitEnabledButton(MW_BTN_OK);
+        if (newMemberEmail!=null && emailIsValid==true) {
+            MW.waitUntil(not(visible), 30000);
+        }
+
+    }
+    public static String submitAddMemberWindow(){
+        rootLogger.info("Invite new member in team");
+        String newMemberEmail = randomString(10)+"@member.com";
+        waitForModalWindow("Members");
+        fillField(MW_MEMBERS_EMAIL, newMemberEmail);
+        submitEnabledButton(MW_BTN_OK);
+        MW.waitUntil(not(visible), 30000);
+        return newMemberEmail;
+    }
     public static String submitMwBoostProfile(String option){
         waitForModalWindow(TITLE_MW_BOOST_YOUR_PROFILE);
         if(option.equals("start")){
@@ -219,10 +240,12 @@ public class StepsModalWindows implements StepsFactory {
     }
     public static boolean checkSelectedDefining(String defining, String code){
         if(defining!=null){
+            MW_PROJECT_ACTUAL_DEFINING.waitUntil(exist, 15000);
             String defaultDefiningPatent = MW_PROJECT_ACTUAL_DEFINING.getText();
             Assert.assertEquals("Check defining", defining, defaultDefiningPatent);
         }
         if(code!=null){
+            MW_PROJECT_ACTUAL_DEFINING_CODE.waitUntil(exist, 15000);
             String defaultDefiningCodePatent = MW_PROJECT_ACTUAL_DEFINING_CODE.getText();
             Assert.assertEquals("Check defining code", code, defaultDefiningCodePatent);
         }

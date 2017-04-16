@@ -32,9 +32,9 @@ import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaSettingsPersonal {
     static final Logger rootLogger = LogManager.getRootLogger();
-    private static final String TEST_USER_LOGIN = User3.GMAIL_EMAIL.getValue();
-    private static final String TEST_USER_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
-    private static final String testUserGmailPassword = User3.GMAIL_PASSWORD.getValue();
+    private static final String TEST_USER_LOGIN = User6.GMAIL_EMAIL.getValue();
+    private static final String TEST_USER_PASSWORD = User6.PEKAMA_PASSWORD.getValue();
+    private static final String testUserGmailPassword = User6.GMAIL_PASSWORD.getValue();
     @Rule
     public Timeout tests = Timeout.seconds(400);
     @BeforeClass
@@ -583,8 +583,8 @@ public class TestsPekamaSettingsPersonal {
         refresh();
         rootLogger.info("Check Data retreved from Gmail");
         sleep(2000);
-        PERSONAL_DETAILS_INPUT_NAME.shouldHave(Condition.value("TestEmail03"));
-        PERSONAL_DETAILS_INPUT_SURNAME.shouldHave(Condition.value("GmailAccount03"));
+        PERSONAL_DETAILS_INPUT_NAME.shouldHave(Condition.value("TestEmail06"));
+        PERSONAL_DETAILS_INPUT_SURNAME.shouldHave(Condition.value("GmailAccount06"));
 
     }
     @Test

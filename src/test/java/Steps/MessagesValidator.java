@@ -172,11 +172,11 @@ public interface MessagesValidator extends StepsFactory {
             Assert.assertTrue(parseHtmlHrefArray(html).size() == 3);
             Elements links = parseHtmlHrefArray(html);
             projectBackLink = getLink(links, 0);
-            Assert.assertTrue(projectBackLink.contains(EMAIL_INVITE_IN_PROJECT_LINK1_PEKAMA));
-            Assert.assertTrue(projectBackLink.contains(EMAIL_INVITE_IN_PROJECT_LINK2_PEKAMA));
+            Assert.assertTrue(projectBackLink.contains(EMAIL_INVITE_IN_PEKAMA_LINK1));
+            Assert.assertTrue(projectBackLink.contains(EMAIL_INVITE_IN_PROJECT_LINK2));
             projectBackLink = getLink(links, 1);
-            Assert.assertTrue(projectBackLink.contains(EMAIL_INVITE_IN_PROJECT_LINK1_PEKAMA));
-            Assert.assertTrue(projectBackLink.contains(EMAIL_INVITE_IN_PROJECT_LINK2_PEKAMA));
+            Assert.assertTrue(projectBackLink.contains(EMAIL_INVITE_IN_PEKAMA_LINK1));
+            Assert.assertTrue(projectBackLink.contains(EMAIL_INVITE_IN_PROJECT_LINK2));
             String link3 = getLink(links, 2);
             Assert.assertTrue(link3.contains(userEmail));
 
@@ -196,15 +196,38 @@ public interface MessagesValidator extends StepsFactory {
     }
     class ValidationInviteInTeam implements MessagesValidator {
         private String html = null;
+        public static String userEmail = null;
+        public static String inviterNameSurname = null;
+        public static String inviterName = null;
+        public static String inviterFullTeamName = null;
+        //return
+        public static String teamBackLink = null;
 
         @Override
         public boolean validationEmail(String...strings) {
-            this.html = html;
-            String link = parseHtmlHref(html);
-            Assert.assertTrue(link.contains("https://staging.pekama.com/accounts/confirm/"));
+            this.html = strings[0];
+            this.userEmail = userEmail;
+            this.inviterNameSurname = inviterNameSurname;
+            this.inviterName = inviterName;
+            this.inviterFullTeamName = inviterFullTeamName;
             String linkText = parseHtmlLinkText(html);
-            Assert.assertTrue(linkText.equals("Confirm Account"));
-            parseHtmlHrefArray(html);
+            Assert.assertEquals(EMAIL_BTN_YOU_INVITED_IN_TEAM(inviterFullTeamName), linkText);
+            Assert.assertTrue(parseHtmlHrefArray(html).size() == 3);
+            Elements links = parseHtmlHrefArray(html);
+            teamBackLink = getLink(links, 0);
+            Assert.assertTrue(teamBackLink.contains(EMAIL_INVITE_IN_PEKAMA_LINK1));
+            Assert.assertTrue(teamBackLink.contains(EMAIL_INVITE_IN_TEAM_LINK2));
+            teamBackLink = getLink(links, 1);
+            Assert.assertTrue(teamBackLink.contains(EMAIL_INVITE_IN_PEKAMA_LINK1));
+            Assert.assertTrue(teamBackLink.contains(EMAIL_INVITE_IN_TEAM_LINK2));
+            String link3 = getLink(links, 2);
+            Assert.assertTrue(link3.contains(userEmail));
+
+            System.out.println(EMAIL_TITLE_YOU_INVITED_IN_TEAM(inviterFullTeamName));
+            Assert.assertTrue(html.contains(EMAIL_TITLE_YOU_INVITED_IN_TEAM(inviterFullTeamName)));
+            System.out.println(EMAIL_TEXT_YOU_INVITED_IN_TEAM(inviterNameSurname, inviterFullTeamName, inviterName));
+            Assert.assertTrue(html.contains(EMAIL_TEXT_YOU_INVITED_IN_TEAM(inviterNameSurname, inviterFullTeamName, inviterName)));
+            Assert.assertTrue(html.contains(EMAIL_TEXT_YOUR_EMAIL_IS));
             return true;
         }
 
