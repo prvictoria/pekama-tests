@@ -10,6 +10,8 @@ import java.util.Set;
 
 import static Page.CommunityDashboard.*;
 import static Page.ModalWindows.*;
+import static Page.PekamaConversationProject.*;
+import static Page.PekamaConversationProject.CONVERSATION_CLIENT_TAB_NAME;
 import static Page.PekamaDashboard.DROPDOWN_PROJECT_TEMPLATES_LIST;
 import static Page.PekamaLogin.*;
 import static Page.PekamaPersonalSettings.*;
@@ -983,7 +985,162 @@ public class StepsPekama implements StepsFactory{
             TEMPLATES_LIST.shouldHaveSize(listSize);}
         return listSize;
     }
+    public static boolean callModalNewConversation(){
+        rootLogger.info("Create new thread in Talk to your Team tab");
+        scrollUp();
+        CONVERSATION_BTN_Team.waitUntil(visible, 15000);
+        CONVERSATION_BTN_New.shouldBe(visible).click();
+        return true;
+    }
+    public static boolean createExternalConversation(){
+        rootLogger.info("Create thread in Talk to Your client tab");
+        scrollUp();
+        CONVERSATION_BTN_Client.shouldBe(visible).click();
+        CONVERSATION_BTN_New.click();
+        sleep(2000);
+        CONVERSATION_LABEL_ACTIVE_TAB.shouldHave(text(CONVERSATION_CLIENT_TAB_NAME));
+        return true;
+    }
+    public static boolean sendExternalMsg(
+            String emailFollowerTo,
+            String emailFollowerCc,
+            String emailFollowerBcc,
+            String emailSubject,
+            String emailText){
+        rootLogger.info("Send mas with custom data");
+        if(emailFollowerTo!=null) {
+            fillField(CONVERSATION_EXTERNAL_INPUT_TO, emailFollowerTo);
+            sleep(2000);
+            CONVERSATION_EXTERNAL_INPUT_TO.click();
+        }
+        if(emailFollowerCc!=null) {
+             fillField(CONVERSATION_EXTERNAL_INPUT_CC, emailFollowerCc);
+             sleep(2000);
+             CONVERSATION_EXTERNAL_INPUT_CC.click();
+        }
+        if(emailFollowerBcc!=null) {
+              fillField(CONVERSATION_EXTERNAL_INPUT_BCC, emailFollowerBcc);
+              sleep(2000);
+              CONVERSATION_EXTERNAL_INPUT_BCC.click();
+        }
+        if(emailSubject!=null) {
+              fillField(CONVERSATION_EXTERNAL_INPUT_SUBJECT, emailSubject);
+              sleep(3000);
+        }
+        if(emailText!=null) {
+              fillTextEditor(emailText);
+              sleep(1000);
+        }
+        submitEnabledButton(CONVERSATION_BTN_POST);
+        return true;
+    }
 
+    public static boolean sendExternalMsg(){
+        rootLogger.info("Send mas with dummy data");
+        String emailFollowerTo = randomString(15)+"@mail.com";
+        fillField(CONVERSATION_EXTERNAL_INPUT_TO, emailFollowerTo);
+        sleep(2000);
+        CONVERSATION_EXTERNAL_INPUT_TO.click();
+
+        String emailFollowerCc = randomString(15)+"@post.de";
+        fillField(CONVERSATION_EXTERNAL_INPUT_CC, emailFollowerCc);
+        sleep(2000);
+        CONVERSATION_EXTERNAL_INPUT_CC.click();
+
+        String emailFollowerBcc = randomString(15)+"@liamg.usa";
+        fillField(CONVERSATION_EXTERNAL_INPUT_BCC, emailFollowerBcc);
+        sleep(2000);
+        CONVERSATION_EXTERNAL_INPUT_BCC.click();
+
+        String emailSubject = "externalEmail"+randomString(20);
+        fillField(CONVERSATION_EXTERNAL_INPUT_SUBJECT, emailSubject);
+        sleep(3000);
+
+        fillTextEditor(LOREM_IPSUM_SHORT);
+        sleep(1000);
+
+        submitEnabledButton(CONVERSATION_BTN_POST);
+        return true;
+    }
+    public static boolean validateFollowerExternal(String followerNameSurname){
+        rootLogger.info("Check default follower");
+        CONVERSATION_FOLLOWERS_UI.shouldHave(text("Show")).click();
+        CONVERSATION_FOLLOWERS_UI.shouldHave(text("Hide"));
+        CONVERSATION_FOLLOWERS_LIST.shouldHaveSize(1);
+        SelenideElement FirstFollower = CONVERSATION_FOLLOWERS_LIST.get(0);
+        FirstFollower.shouldHave(text(followerNameSurname));
+        return true;
+    }
+    public static boolean validateFollowerExternal(String followerNameSurname, Integer followersQty, Integer followerIndex){
+        rootLogger.info("Check new follower");
+        CONVERSATION_FOLLOWERS_UI.shouldHave(text("Show")).click();
+        CONVERSATION_FOLLOWERS_UI.shouldHave(text("Hide"));
+        if(followersQty!=null) {
+            CONVERSATION_FOLLOWERS_LIST.shouldHaveSize(followersQty);
+        }
+        if(followerNameSurname!=null && followerIndex!=null) {
+            SelenideElement FirstFollower = CONVERSATION_FOLLOWERS_LIST.get(followerIndex);
+            FirstFollower.shouldHave(text(followerNameSurname));
+        }
+        return true;
+    }
+    public static boolean validateFollowerTeamChat(String followerNameSurname, Integer followersQty, Integer followerIndex){
+        rootLogger.info("Check new follower");
+        if(followersQty!=null) {
+            CONVERSATION_FOLLOWERS_LIST.shouldHaveSize(followersQty);
+        }
+        if(followerNameSurname!=null && followerIndex!=null) {
+            SelenideElement FirstFollower = CONVERSATION_FOLLOWERS_LIST.get(followerIndex);
+            FirstFollower.shouldHave(text(followerNameSurname));
+        }
+        return true;
+    }
+    public static boolean deleteFollower(String followerNameSurname){
+        rootLogger.info("Delete first follower");
+        CONVERSATION_FOLLOWERS_ONE_NAME.shouldHave(text(followerNameSurname));
+        CONVERSATION_FOLLOWERS_ONE_DELETE.shouldBe(visible).click();
+        CONVERSATION_FOLLOWERS_INPUT.shouldHave(value(""));
+        return true;
+    }
+    public static String editTreadTitle(String newThreadName){
+        rootLogger.info("Edit thread title");
+        CONVERSATION_EDIT_TITLE.click();
+        CONVERSATION_FIELD_TITLE.shouldHave(value(""));
+        if(newThreadName==null) {
+            rootLogger.info("Set random thread name");
+            newThreadName = "EXTERNAL"+randomString(15);
+        }
+        fillField(CONVERSATION_FIELD_TITLE, newThreadName);
+        CONVERSATION_SAVE_TITLE.click();
+        CONVERSATION_TITLE.shouldHave(text(newThreadName));
+        return  newThreadName;
+    }
+    public static boolean validateExternalMsg(String emailFollowerTo, String emailFollowerCc, String emailFollowerBcc){
+        CONVERSATION_MsgBody.waitUntil(visible, 20000).shouldBe(visible);
+        $$(byText(LOREM_IPSUM_SHORT)).filter(visible).shouldHaveSize(1);
+        checkText(LOREM_IPSUM_SHORT);
+        CONVERSATION_MsgTaskIcon.shouldBe(visible);
+        if (emailFollowerTo!=null) {
+            CONVERSATION_MsgTo.shouldHave(text(emailFollowerTo));
+        }
+        if (emailFollowerCc!=null) {
+            CONVERSATION_MsgCC.shouldHave(text(emailFollowerCc));
+        }
+        if (emailFollowerBcc!= null) {
+            CONVERSATION_MsgBCC.shouldHave(text(emailFollowerBcc));
+        }
+        return true;
+    }
+    public static boolean deleteMsg(){
+        rootLogger.info("Delete message");
+        CONVERSATION_MsgDelete.shouldBe(visible).click();
+        submitConfirmAction("Delete message?");
+        CONVERSATION_MsgBody.shouldNotBe(visible);
+        return true;
+    }
+    public static boolean sendTeamChatMsg(){
+        return true;
+    }
     public static String setProjectDefining(String defining){
                 if(defining!=null) {
                     selectItemInDropdown(

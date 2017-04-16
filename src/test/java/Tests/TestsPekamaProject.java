@@ -1,10 +1,8 @@
 package Tests;
 import Page.TestsCredentials;
 import Steps.MessagesIMAP;
-import Steps.StepsPekama;
 import Steps.User;
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.ex.SoftAssertionError;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,7 +16,6 @@ import java.io.IOException;
 
 import static Page.CommunityDashboard.*;
 import static Page.CommunityWizard.*;
-import static Page.Emails.*;
 import static Page.ModalWindows.*;
 import static Page.PekamaDashboard.*;
 import static Page.PekamaProject.*;
@@ -26,7 +23,6 @@ import static Page.TestsCredentials.*;
 import static Page.TestsCredentials.Countries.*;
 import static Page.TestsCredentials.TrademarkEvents.*;
 import static Page.TestsStrings.*;
-import static Page.UrlConfig.MATTER_TYPE_PATENT;
 import static Page.UrlConfig.MATTER_TYPE_TRADEMARK;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
@@ -35,7 +31,6 @@ import static Steps.Messages.*;
 import static Steps.MessagesValidator.ValidationInviteInProject.projectBackLink;
 import static Steps.StepsCommunity.checkCaseNameFirstRow;
 import static Steps.StepsCommunity.selectExpert;
-import static Steps.StepsExternal.*;
 import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
@@ -451,7 +446,7 @@ public class TestsPekamaProject {
         PROJECT_TAB_DOCS.click();
         TAB_DOCS_BTN_ADD.click();
         TAB_DOC_NEW_DOCUMENT.shouldBe(Condition.visible).click();
-        modalWindowDeployFileTemplate(MW_DeployDoc_02TemplateExcel, newExcel);
+        submitModalDeployFileTemplate(MW_DeployDoc_02TemplateExcel, newExcel);
 
         rootLogger.info("edit file");
         fileMenuMakeAction(TAB_DOCS_FILES_MENU_RENAME, newExcel);
@@ -556,7 +551,7 @@ public class TestsPekamaProject {
         rootLogger.info("Delete file via inline control");
         TAB_DOCS_BTN_ADD.click();
         TAB_DOC_NEW_DOCUMENT.shouldBe(Condition.visible).click();
-        modalWindowDeployFileTemplate(MW_DeployDoc_02TemplateExcel, newExcel);
+        submitModalDeployFileTemplate(MW_DeployDoc_02TemplateExcel, newExcel);
         clickFileRow(newExcel);
         TAB_DOCS_FILE_DELETE.shouldBe(visible).click();
         submitConfirmAction();

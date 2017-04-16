@@ -340,6 +340,7 @@ public class TestsPekamaDashboard {
         checkText(ERROR_MSG_VALIDATION_LENGTH_255);
         rootLogger.info("Validation max length reference number - passed");
     }
+@Ignore //TODO BUG
     @Test
     public void testF6_ModalNewProjectValidation() {
         DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 20000).click();
@@ -376,6 +377,7 @@ public class TestsPekamaDashboard {
         checkText("Official data not found.");
         rootLogger.info("Wrong TM number check that tooltip present - passed");
     }
+    @Ignore //TODO BUG - no fetching data
     @Test
     public void testF8_ModalNewProjectValidation() throws InterruptedException {
         DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 30000).click();

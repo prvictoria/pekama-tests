@@ -43,6 +43,7 @@ public class TestsPekamaIntegrationBox {
     private static String boxTeamFolderUrl;
     private static String boxProjectFolderUrl;
     private static String actualBoxProjectName;
+    private static boolean skipBefore = false;
 
     private static final String FolderNameBeforeConnect = "Folder created before connect";
     private static final String FolderNameAfterConnect = "Folder created after connect";
@@ -62,22 +63,25 @@ public class TestsPekamaIntegrationBox {
     }
     @Before
     public void before() {
-        StepsPekama loginIntoPekama = new StepsPekama();
-        loginIntoPekama.loginByURL(
-                OWNER_EMAIL,
-                OWNER_PASSWORD,
-                URL_Dashboard);
+        clearBrowserCache();
+        if (skipBefore==false) {
+            StepsPekama loginIntoPekama = new StepsPekama();
+            loginIntoPekama.loginByURL(
+                    OWNER_EMAIL,
+                    OWNER_PASSWORD,
+                    URL_Dashboard);
+        }
+        else {rootLogger.info("Before was skipped");}
     }
     @AfterClass
     public static void afterClass() {
        openUrlWithBaseAuth(URL_Logout);
        open(boxLogoutURL);
-       clearBrowserCache();
     }
 
     @Test
     public void testA_PrepareProject() {
-
+        skipBefore=false;
         submitEnabledButton(DASHBOARD_BTN_NEW_PROJECT);
         String projectName = submitMwNewProject("BOX_TEST_PRJ");
         String projectFullName = PROJECT_FULL_NAME.getText();
@@ -94,6 +98,7 @@ public class TestsPekamaIntegrationBox {
 
     @Test
     public void testB_ConnectToBOX() {
+        skipBefore=false;
        // pekamaProjectUrl = "https://staging.pekama.com/a/projects/29350/files";
         if (pekamaProjectUrl == null){
             Assert.fail("Project url not found");
@@ -151,6 +156,7 @@ public class TestsPekamaIntegrationBox {
 
     @Test
     public void testC_AddFilesInProject() {
+        skipBefore=true;
         //pekamaProjectUrl = "https://staging.pekama.com/a/projects/29350/files";
         rootLogger.info("Add files after connect");
         if (pekamaProjectUrl ==null){
@@ -167,6 +173,7 @@ public class TestsPekamaIntegrationBox {
     }
     @Test
     public void testD_checkSyncToBOX() {
+        skipBefore=false;
         //boxProjectName = "BOX_TEST_PRJ_0F9TQOOGXM";
         //pekamaProjectUrl = "https://staging.pekama.com/a/projects/29350/files";
         if (pekamaProjectUrl ==null){
@@ -209,7 +216,7 @@ public class TestsPekamaIntegrationBox {
     @Test
     public void testE_DeleteFilesAndCheckSyncToBOX() {
         rootLogger.info("Delete files and folders");
-       if (boxTeamFolderUrl == null){
+        if (boxTeamFolderUrl == null){
         Assert.fail("Team or Project folder not found");
     }
         if (pekamaProjectUrl == null){

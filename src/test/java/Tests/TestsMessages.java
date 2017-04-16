@@ -3,6 +3,7 @@ package Tests;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
+import Steps.MessagesIMAP;
 import Steps.StepsPekama;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,12 +16,15 @@ import java.io.IOException;
 import static Page.ModalWindows.*;
 import static Page.PekamaConversationProject.*;
 import static Page.PekamaDashboard.*;
+import static Page.TestsCredentials.*;
 import static Page.TestsCredentials.User1;
 import static Page.TestsCredentials.User3;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
+import static Steps.MessagesValidator.ValidationInviteInProject.projectBackLink;
 import static Steps.StepsModalWindows.*;
+import static Steps.StepsModalWindows.ModalConversationFollowerActions.*;
 import static Steps.StepsPekama.*;
 import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
 import static Tests.BeforeTestsSetUp.setBrowser;
@@ -35,10 +39,16 @@ public class TestsMessages {
     static final Logger rootLogger = LogManager.getRootLogger();
     private final static String TEST_USER_EMAIL = User3.GMAIL_EMAIL.getValue();
     private final static String TEST_USER_PEKAMA_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
+    private static final String INVITED_EMAIL = User5.GMAIL_EMAIL.getValue();
+    private static final String INVITED_PASSWORD = User5.GMAIL_PASSWORD.getValue();
+    private static final String INVITER_NAME_SURNAME = User3.NAME_SURNAME.getValue();
     private final String TEST_USER_FULL_TEAM_NAME = User3.FULL_TEAM_NAME.getValue();
     private final String TEST_USER_TEAM_NAME = User3.TEAM_NAME.getValue();
     private final String COLLABORATOR_TEAM_NAME = User1.TEAM_NAME.getValue();
     private final String USER_NAME_SURNAME = User3.NAME_SURNAME.getValue();
+    private static String testProjectName = null;
+    private static String testProjectUrl = null;
+    private static boolean skipBefore = false;
     @Rule
     public Timeout tests = Timeout.seconds(600);
     @BeforeClass
@@ -49,16 +59,20 @@ public class TestsMessages {
     }
     @Before
     public void before() {
-        clearBrowserCache();
-        StepsPekama loginIntoPekama = new StepsPekama();
-        loginIntoPekama.loginByURL(
-                TEST_USER_EMAIL,
-                TEST_USER_PEKAMA_PASSWORD,
-                URL_LogIn);
+        //skipBefore = true;
+        if (skipBefore==false) {
+            clearBrowserCache();
+            StepsPekama loginIntoPekama = new StepsPekama();
+            loginIntoPekama.loginByURL(
+                    TEST_USER_EMAIL,
+                    TEST_USER_PEKAMA_PASSWORD,
+                    URL_LogIn);
             rootLogger.info("Create project");
             DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 15000).click();
-            String testProjectName = submitMwNewProject();
-            String testProjectUrl = getActualUrl ();
+            testProjectName = submitMwNewProject();
+            testProjectUrl = getActualUrl();
+        }
+        else {rootLogger.info("Before was skipped");}
     }
 
     @Test
@@ -126,10 +140,7 @@ public class TestsMessages {
     @Test
     public void createProject_B_addTeamConversation() {
         rootLogger.info("Create thread in private zone");
-        scrollUp();
-        CONVERSATION_BTN_Team.shouldBe(visible);
-
-        CONVERSATION_BTN_New.click();
+        callModalNewConversation();
         waitForModalWindow(TITLE_MW_CONVERSATION);
         fillField(MW_CONVERSATION_INPUT_Subject, "TEAM_THREAD IN PRIVATE ZONE");
         MW_BTN_CREATE.click();
@@ -165,79 +176,97 @@ public class TestsMessages {
     }
     @Test
     public void createProject_C1_ExternalConversationDefaults() {
-        rootLogger.info("Create thread in i external");
-        scrollUp();
-        CONVERSATION_BTN_Client.shouldBe(visible).click();
-
-        CONVERSATION_BTN_New.click();
-        sleep(2000);
-        CONVERSATION_LABEL_ACTIVE_TAB.shouldHave(text(CONVERSATION_CLIENT_TAB_NAME));
-
-        rootLogger.info("Edit thread title");
-        CONVERSATION_EDIT_TITLE.click();
-        CONVERSATION_FIELD_TITLE.shouldHave(value(""));
-        String treadName = "EXTERNAL"+randomString(15);
-        fillField(CONVERSATION_FIELD_TITLE, treadName);
-        CONVERSATION_SAVE_TITLE.click();
-        CONVERSATION_TITLE.shouldHave(text(treadName));
-
-        rootLogger.info("Check default follower");
-        CONVERSATION_FOLLOWERS_UI.shouldHave(text("Show")).click();
-        CONVERSATION_FOLLOWERS_UI.shouldHave(text("Hide"));
-        CONVERSATION_FOLLOWERS_ONE_NAME.shouldHave(text(USER_NAME_SURNAME));
-        CONVERSATION_FOLLOWERS_ONE_DELETE.shouldBe(visible).click();
-        CONVERSATION_FOLLOWERS_INPUT.shouldHave(value(""));
-
-        rootLogger.info("Check no recipient validation");
-        fillTextEditor(LOREM_IPSUM_SHORT);
-        submitEnabledButton(CONVERSATION_BTN_POST);
-        $$(byText("External conversation message should have recipients")).filter(visible).shouldHaveSize(1);
-        checkText("External conversation message should have recipients");
+        createExternalConversation();
+        editTreadTitle(null);
+        validateFollowerExternal(USER_NAME_SURNAME);
+        deleteFollower(USER_NAME_SURNAME);
         rootLogger.info("Test passed");
     }
     @Test
-    public void createProject_C1_ExternalConversationCreate() {
-        rootLogger.info("Create thread in i external");
-        scrollUp();
-        CONVERSATION_BTN_Client.shouldBe(visible).click();
-
-        CONVERSATION_BTN_New.click();
-        sleep(2000);
-        CONVERSATION_LABEL_ACTIVE_TAB.shouldHave(text(CONVERSATION_CLIENT_TAB_NAME));
-
-        String emailFollowerTo = randomString(15)+"@mail.com";
-        fillField(CONVERSATION_EXTERNAL_INPUT_TO, emailFollowerTo);
-        sleep(2000);
-        CONVERSATION_EXTERNAL_INPUT_TO.click();
+    public void createProject_C1_ExternalConversationValidationEmptyRecipients() {
+        rootLogger.info("Check no recipient validation");
+        createExternalConversation();
+        sendExternalMsg(
+                null,
+                null,
+                null,
+                null,
+                LOREM_IPSUM_SHORT
+        );
+        checkText("External conversation message should have recipients");
+    }
+    @Test
+    public void createProject_C1_ExternalConversationValidationEmptyTo() {
         String emailFollowerCc = randomString(15)+"@post.de";
-        fillField(CONVERSATION_EXTERNAL_INPUT_CC, emailFollowerCc);
-        sleep(2000);
-        CONVERSATION_EXTERNAL_INPUT_CC.click();
         String emailFollowerBcc = randomString(15)+"@liamg.usa";
-        fillField(CONVERSATION_EXTERNAL_INPUT_BCC, emailFollowerBcc);
-        sleep(2000);
-        CONVERSATION_EXTERNAL_INPUT_BCC.click();
+        String emailSubject = "externalEmail"+randomString(10);
+        rootLogger.info("Check no recipient validation");
+        createExternalConversation();
+        sendExternalMsg(
+                null,
+                emailFollowerCc,
+                emailFollowerBcc,
+                emailSubject,
+                LOREM_IPSUM_SHORT
+        );
+        checkText("recipients: External message should have at least one `TO` recipient");
+    }
+    @Test
+    public void createProject_C1_ExternalConversationCreate() {
+        String emailFollowerTo = randomString(15)+"@mail.com";
+        String emailFollowerCc = randomString(15)+"@post.de";
+        String emailFollowerBcc = randomString(15)+"@liamg.usa";
         String emailSubject = "externalEmail"+randomString(20);
-        fillField(CONVERSATION_EXTERNAL_INPUT_SUBJECT, emailSubject);
-        sleep(3000);
+        String emailText = LOREM_IPSUM_SHORT;
 
-        fillTextEditor(LOREM_IPSUM_SHORT);
-        sleep(1000);
-        submitEnabledButton(CONVERSATION_BTN_POST);
-
-        CONVERSATION_MsgBody.waitUntil(visible, 20000).shouldBe(visible);
-        $$(byText(LOREM_IPSUM_SHORT)).filter(visible).shouldHaveSize(1);
-        checkText(LOREM_IPSUM_SHORT);
-        CONVERSATION_MsgTaskIcon.shouldBe(visible);
-        CONVERSATION_MsgTo.shouldHave(text(emailFollowerTo));
-        CONVERSATION_MsgCC.shouldHave(text(emailFollowerCc));
-        CONVERSATION_MsgBCC.shouldHave(text(emailFollowerBcc));
-
-        rootLogger.info("Delete message");
-        CONVERSATION_MsgDelete.shouldBe(visible).click();
-        submitConfirmAction("Delete message?");
-        CONVERSATION_MsgBody.shouldNotBe(visible);
+        createExternalConversation();
+        sendExternalMsg(
+                emailFollowerTo,
+                emailFollowerCc,
+                emailFollowerBcc,
+                emailSubject,
+                emailText
+        );
+        validateExternalMsg(
+                emailFollowerTo,
+                emailFollowerCc,
+                emailFollowerBcc
+        );
+        deleteMsg();
         rootLogger.info("Test passed");
     }
 
+    @Test
+    public void inviteInConversationNewCollaborator_Action(){
+        skipBefore = true;
+        rootLogger.info("Create thread in private zone");
+        callModalNewConversation();
+        String newFollower = User5.GMAIL_EMAIL.getValue();
+        submitNewConversationWindow(
+                INVITE_FOLLOWER,
+                null,
+                newFollower,
+                null,
+                null,
+                false,
+                true
+        );
+        String followerNameSurname = newFollower+" (inactive)";
+        StepsPekama.validateFollowerTeamChat(followerNameSurname, 2, 1);
+    }
+    @Test
+    public void inviteInConversationNewCollaborator_ValidationEmail(){
+        skipBefore = false;
+        rootLogger.info("Check invite email");
+        String login = INVITED_EMAIL;
+        String password = INVITED_PASSWORD;
+        String inviterNameSurname = INVITER_NAME_SURNAME;
+        String projectName = testProjectName;
+        MessagesIMAP validation = new MessagesIMAP();
+        Boolean validationResult = validation.validateEmailInviteInProject(login, password, inviterNameSurname, projectName);
+        Assert.assertTrue(validationResult);
+        Assert.assertNotNull(projectBackLink);
+        rootLogger.info("Test passed");
+        return;
+    }
 }

@@ -168,7 +168,7 @@ public interface MessagesValidator extends StepsFactory {
             this.projectName = projectName;
             this.inviterNameSurname = inviterNameSurname;
             String linkText = parseHtmlLinkText(html);
-            Assert.assertTrue(linkText.equals(EMAIL_BTN_YOU_INVITED_IN_PROJECT(projectName)));
+            Assert.assertEquals(EMAIL_BTN_YOU_INVITED_IN_PROJECT(projectName), linkText);
             Assert.assertTrue(parseHtmlHrefArray(html).size() == 3);
             Elements links = parseHtmlHrefArray(html);
             projectBackLink = getLink(links, 0);

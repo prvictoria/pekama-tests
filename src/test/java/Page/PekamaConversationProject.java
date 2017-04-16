@@ -44,9 +44,10 @@ public class PekamaConversationProject extends Page {
 
     //FOLLOWERS
     public static final SelenideElement CONVERSATION_FOLLOWERS_UI = $(byXpath( CONVERSATION_BLOCK+"//ng-switch/span"));
-    public static final SelenideElement CONVERSATION_FOLLOWERS_INPUT = $(byXpath( CONVERSATION_BLOCK+"//pkm-followers-picker//ul[@class='search-choices']/li[1]//input"));
+    public static final SelenideElement CONVERSATION_FOLLOWERS_INPUT = $(byXpath( CONVERSATION_BLOCK+"//pkm-followers-picker//ul[@class='search-choices']/li//input"));
     public static final SelenideElement CONVERSATION_FOLLOWERS_ONE_NAME = $(byXpath( CONVERSATION_BLOCK+"//pkm-followers-picker//ul[@class='search-choices']/li[1]/span"));
     public static final SelenideElement CONVERSATION_FOLLOWERS_ONE_DELETE = $(byXpath( CONVERSATION_BLOCK+"//pkm-followers-picker//ul[@class='search-choices']/li[1]//a"));
+    public static final ElementsCollection CONVERSATION_FOLLOWERS_LIST = $$(byXpath( CONVERSATION_BLOCK+"//pkm-followers-picker//ul[@class='search-choices']/li[@class='search-choice ng-scope']"));
 
     //TEXT EDITOR AREA
     public static final SelenideElement CONVERSATION_INPUT_TEXT_COLLAPSED = $(byXpath( CONVERSATION_BLOCK+"//input[@placeholder='Write Something']"));

@@ -20,6 +20,9 @@ import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlStrings.URL_SingUp;
 import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
+import static Steps.StepsModalWindows.ModalConversationFollowerActions.*;
+import static Steps.StepsModalWindows.ModalConversationTeamActions.ADD_TEAM;
+import static Steps.StepsModalWindows.ModalConversationTeamActions.INVITE_TEAM;
 import static Steps.StepsPekama.*;
 import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
 import static Tests.BeforeTestsSetUp.setBrowser;
@@ -85,6 +88,52 @@ public class StepsModalWindows implements StepsFactory {
             MW.waitUntil(not(visible), 30000);
         }
 
+    }
+    public enum ModalConversationFollowerActions {ADD_FOLLOWER, INVITE_FOLLOWER, ADD_GUEST}
+    public enum ModalConversationTeamActions {ADD_TEAM, INVITE_TEAM}
+    public static void submitNewConversationWindow(ModalConversationFollowerActions selectFollowerAction, String threadName, String newFollower, String inviteTeam, ModalConversationTeamActions selectTeamAction, Boolean accessForAll, Boolean submittedDataIsValid){
+
+        rootLogger.info("Create team chat thread");
+        waitForModalWindow(TITLE_MW_CONVERSATION);
+        if (threadName!=null) {
+            MW_CONVERSATION_INPUT_Subject.shouldBe(empty);
+            fillField(MW_CONVERSATION_INPUT_Subject, threadName);
+        }
+        if (newFollower!=null) {
+            MW_CONVERSATION_INPUT_Follower.shouldBe(empty);
+            fillField(MW_CONVERSATION_INPUT_Follower, newFollower);
+            if(selectFollowerAction ==ADD_FOLLOWER){
+                checkText(newFollower);
+                //Only 1-st button in list
+                MW_CONVERSATION_BTN_FOLLOWER_LIST.shouldHaveSize(2);
+                MW_CONVERSATION_BTN_ADD_FOLLOWER.shouldBe(visible).click();
+            }
+            if(selectFollowerAction ==INVITE_FOLLOWER){
+                MW_CONVERSATION_BTN_INVITE.shouldBe(visible).click();
+                checkText(newFollower);
+            }
+            if(selectFollowerAction ==ADD_GUEST){
+                MW_CONVERSATION_BTN_ADD_GUEST.shouldBe(visible).click();
+                checkText(newFollower);
+            }
+        }
+        if (accessForAll==true) {
+            MW_ALL_TEAMS_CHECKBOX.setSelected(true).shouldBe(selected);
+        }
+        //TODO logic
+        if (inviteTeam!=null && accessForAll==false && accessForAll!=null) {
+            fillField(MW_CONVERSATION_INPUT_Subject, threadName);
+            if(selectTeamAction ==ADD_TEAM){
+
+            }
+            if(selectTeamAction ==INVITE_TEAM){
+
+            }
+        }
+        submitEnabledButton(MW_BTN_CREATE);
+        if (submittedDataIsValid==true) {
+            MW.waitUntil(not(visible), 30000);
+        }
     }
     public static String submitAddMemberWindow(){
         rootLogger.info("Invite new member in team");
@@ -265,10 +314,10 @@ public class StepsModalWindows implements StepsFactory {
         PROJECT_TAB_DOCS.waitUntil(visible, 15000).click();
         TAB_DOCS_BTN_ADD.waitUntil(enabled, 15000).click();
         TAB_DOC_NEW_DOCUMENT.shouldBe(Condition.visible).click();
-        modalWindowDeployFileTemplate(fileType, fileName);
+        submitModalDeployFileTemplate(fileType, fileName);
 
     }
-    public static void modalWindowDeployFileTemplate(SelenideElement fileType, String fileName) {
+    public static void submitModalDeployFileTemplate(SelenideElement fileType, String fileName) {
         waitForModalWindow(TITLE_MW_ADD_DOCUMENT);
         MW_DEPLOY_DOC_BTN_CREATE.shouldBe(disabled);
         fileType.shouldBe(Condition.visible).click();

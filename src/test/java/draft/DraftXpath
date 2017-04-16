@@ -24,6 +24,7 @@ xpath=//input[@type='checkbox' and @ng-change='selectionService.toggleAll(select
 //*[@class='services-table']//div[@class='row']/[./div[contains(.,'Trademark')]]//button[1]
 [text()='No data available.']
 //div[@class='row']//div[contains(.,'Trademark')]/following-sibling::div[contains(.,'Angola')]/following-sibling::div//button[1]
+/preceding-sibling::div
 //div[@class='row' and contains(.,'Trademark') and contains(.,'Aruba')]//button[1]
 //div[@class='row ng-scope' and contains(.,'Trademark') and contains(.,'Austria')]//input[@name='rate']
 //ul[@class='doc-list-table' and contains(.,'New Excel sheet')]//li[1]

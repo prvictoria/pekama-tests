@@ -60,6 +60,7 @@ public class TestsPekamaReports {
             login.submitLoginCredentials(TEST_USER_LOGIN);
             sleep(3000);
         }
+        else {rootLogger.info("Before was skipped");}
     }
 
     @Test //1-st test in stack
