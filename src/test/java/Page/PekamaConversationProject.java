@@ -28,7 +28,7 @@ public class PekamaConversationProject extends Page {
     public static final ElementsCollection THREAD_LIST = $$(byXpath(""));
 
 
-    //INSIDE THREAD
+   //INSIDE THREAD
    //TOP CONTROLS
     public static final SelenideElement CONVERSATION_LABEL_ACTIVE_TAB = $(byXpath( CONVERSATION_BLOCK+"//pkm-conversation/div/button"));
     public static final SelenideElement CONVERSATION_BTN_BACK = $(byLinkText("Back"));
@@ -48,6 +48,13 @@ public class PekamaConversationProject extends Page {
     public static final SelenideElement CONVERSATION_FOLLOWERS_ONE_NAME = $(byXpath( CONVERSATION_BLOCK+"//pkm-followers-picker//ul[@class='search-choices']/li[1]/span"));
     public static final SelenideElement CONVERSATION_FOLLOWERS_ONE_DELETE = $(byXpath( CONVERSATION_BLOCK+"//pkm-followers-picker//ul[@class='search-choices']/li[1]//a"));
     public static final ElementsCollection CONVERSATION_FOLLOWERS_LIST = $$(byXpath( CONVERSATION_BLOCK+"//pkm-followers-picker//ul[@class='search-choices']/li[@class='search-choice ng-scope']"));
+
+    public static final SelenideElement CONVERSATION_INVITE_ALERT_TITLE = $(byXpath( CONVERSATION_BLOCK+"//*[@role='alert']/h4"));
+    public static final SelenideElement CONVERSATION_INVITE_ALERT_FOLLOWER_EMAIL = $(byXpath( CONVERSATION_BLOCK+"//*[@role='alert']//div/span"));
+    public static final SelenideElement CONVERSATION_INVITE_ALERT_DISMISS = $(byXpath( CONVERSATION_BLOCK+"//*[@role='alert']//div/button[text()='DISMISS']"));
+    public static final SelenideElement CONVERSATION_INVITE_ALERT_INVITE = $(byXpath( CONVERSATION_BLOCK+"//*[@role='alert']//div/button[text()='+ INVITE']"));
+
+
 
     //TEXT EDITOR AREA
     public static final SelenideElement CONVERSATION_INPUT_TEXT_COLLAPSED = $(byXpath( CONVERSATION_BLOCK+"//input[@placeholder='Write Something']"));

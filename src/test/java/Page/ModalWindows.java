@@ -151,8 +151,8 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_CONVERSATION_INPUT_TEAMS = $(byXpath(mw+"//pkm-organizations-picker//li/input"));
     public static final SelenideElement MW_CONVERSATION_BTN_INVITE = $(byXpath(mw+"//button[contains(., 'invite to Pekama')]"));
     public static final SelenideElement MW_CONVERSATION_BTN_ADD_GUEST = $(byXpath(mw+"//button[contains(., 'add as guest')]"));
-    public static final SelenideElement MW_CONVERSATION_BTN_ADD_FOLLOWER = $(byXpath(mw+"//div[@class='modal-content']//div[@class='search-drop']//li/div[@class='buttons organization-add']//button"));
-    public static final ElementsCollection MW_CONVERSATION_BTN_FOLLOWER_LIST = $$(byXpath(mw+"//div[@class='modal-content']//div[@class='search-drop']//li/div[@class='buttons organization-add']//button"));
+    public static final SelenideElement MW_CONVERSATION_BTN_ADD_FOLLOWER = $(byXpath(mw+"//div[@class='search-drop']//li/div[@class='buttons organization-add']//button"));
+    public static final ElementsCollection MW_CONVERSATION_BTN_FOLLOWER_LIST = $$(byXpath(mw+"//div[@class='search-drop']//li/div[@class='buttons organization-add']//button"));
 
 
     public static final SelenideElement MW_CONVERSATION_FollowerField = $(byXpath(mw+"//li/input"));

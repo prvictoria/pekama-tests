@@ -10,25 +10,22 @@ import org.apache.logging.log4j.Logger;
 import org.junit.*;
 import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
-
 import java.io.IOException;
 
 import static Page.ModalWindows.*;
 import static Page.PekamaConversationProject.*;
 import static Page.PekamaDashboard.*;
 import static Page.TestsCredentials.*;
-import static Page.TestsCredentials.User1;
-import static Page.TestsCredentials.User3;
 import static Page.TestsStrings.*;
-import static Page.UrlConfig.setEnvironment;
+import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
-import static Steps.MessagesValidator.ValidationInviteInProject.projectBackLink;
+import static Steps.MessagesValidator.ValidationInviteInProject.*;
+import static Steps.MessagesValidator.ValidationInviteInTeam.*;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsModalWindows.ModalConversationFollowerActions.*;
 import static Steps.StepsPekama.*;
-import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
-import static Tests.BeforeTestsSetUp.setBrowser;
-import static Utils.Utils.randomString;
+import static Tests.BeforeTestsSetUp.*;
+import static Utils.Utils.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
@@ -37,15 +34,19 @@ import static com.codeborne.selenide.WebDriverRunner.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsMessages {
     static final Logger rootLogger = LogManager.getRootLogger();
-    private final static String TEST_USER_EMAIL = User3.GMAIL_EMAIL.getValue();
-    private final static String TEST_USER_PEKAMA_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
+    private static final String TEST_USER_EMAIL = User3.GMAIL_EMAIL.getValue();
+    private static final String TEST_USER_PEKAMA_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
+    private static final String INVITER_NAME_FULL_TEAM_NAME = User3.FULL_TEAM_NAME.getValue();
+    private static final String INVITER_TEAM_NAME = User3.TEAM_NAME.getValue();
+    private static final String INVITER_NAME_SURNAME = User3.NAME_SURNAME.getValue();
+    private static final String INVITER_NAME = User3.NAME.getValue();
+
     private static final String INVITED_EMAIL = User5.GMAIL_EMAIL.getValue();
     private static final String INVITED_PASSWORD = User5.GMAIL_PASSWORD.getValue();
-    private static final String INVITER_NAME_SURNAME = User3.NAME_SURNAME.getValue();
-    private final String TEST_USER_FULL_TEAM_NAME = User3.FULL_TEAM_NAME.getValue();
-    private final String TEST_USER_TEAM_NAME = User3.TEAM_NAME.getValue();
-    private final String COLLABORATOR_TEAM_NAME = User1.TEAM_NAME.getValue();
-    private final String USER_NAME_SURNAME = User3.NAME_SURNAME.getValue();
+
+    private static final String COLLABORATOR_NAME_SURNAME = User1.NAME_SURNAME.getValue();
+    private static final String COLLABORATOR_EMAIL = User1.GMAIL_EMAIL.getValue();
+
     private static String testProjectName = null;
     private static String testProjectUrl = null;
     private static boolean skipBefore = false;
@@ -102,7 +103,7 @@ public class TestsMessages {
         waitForModalWindow(TITLE_MW_CONVERSATION);
         MW_CONVERSATION_INPUT_Subject.shouldBe(empty);
         MW_CONVERSATION_INPUT_Follower.shouldBe(empty);
-        checkText(TEST_USER_TEAM_NAME);
+        checkText(INVITER_TEAM_NAME);
 
         MW_CHECKBOX_ALL_TEAMS.shouldNotBe(checked);
         fillField(MW_CONVERSATION_INPUT_Subject, subject);
@@ -138,24 +139,20 @@ public class TestsMessages {
         rootLogger.info("Test passed");
     }
     @Test
-    public void createProject_B_addTeamConversation() {
+    public void sendMessageInTeamChat() {
+        String oldThreadTitle = "TEAM_THREAD IN PRIVATE ZONE";
+        String newThreadName = "TEAM"+randomString(15);
         rootLogger.info("Create thread in private zone");
         callModalNewConversation();
         waitForModalWindow(TITLE_MW_CONVERSATION);
-        fillField(MW_CONVERSATION_INPUT_Subject, "TEAM_THREAD IN PRIVATE ZONE");
+        fillField(MW_CONVERSATION_INPUT_Subject, oldThreadTitle);
         MW_BTN_CREATE.click();
         MW.shouldNotBe(visible);
         sleep(2000);
 
-        rootLogger.info("Edit thread title");
-        String treadName = "TEAM"+randomString(15);
-        CONVERSATION_EDIT_TITLE.click();
-        CONVERSATION_FIELD_TITLE.shouldHave(value("TEAM_THREAD IN PRIVATE ZONE"));
-        CONVERSATION_FIELD_TITLE.pressEscape();
-        CONVERSATION_TITLE.shouldHave(text("TEAM_THREAD IN PRIVATE ZONE"));
+        editTreadTitle(oldThreadTitle, newThreadName);
 
         CONVERSATION_LABEL_ACTIVE_TAB.shouldHave(text(CONVERSATION_TEAM_TAB_NAME));
-
         CONVERSATION_INPUT_TEXT_COLLAPSED.shouldBe(visible).click();
         sleep(4000);
         CONVERSATION_TEXT_EDITOR.shouldHave(value(""));
@@ -178,8 +175,8 @@ public class TestsMessages {
     public void createProject_C1_ExternalConversationDefaults() {
         createExternalConversation();
         editTreadTitle(null);
-        validateFollowerExternal(USER_NAME_SURNAME);
-        deleteFollower(USER_NAME_SURNAME);
+        validateFollowerExternal(INVITER_NAME_SURNAME);
+        deleteFollower(INVITER_NAME_SURNAME);
         rootLogger.info("Test passed");
     }
     @Test
@@ -235,9 +232,97 @@ public class TestsMessages {
         deleteMsg();
         rootLogger.info("Test passed");
     }
-
     @Test
-    public void inviteInConversationNewCollaborator_Action(){
+    public void inviteInTeamChatCollaborator(){
+        skipBefore = false;
+        rootLogger.info("Create thread in private zone");
+        callModalNewConversation();
+        String newFollower = COLLABORATOR_EMAIL;
+        submitNewConversationWindow(
+                ADD_FOLLOWER,
+                null,
+                newFollower,
+                null,
+                null,
+                false,
+                true
+        );
+        validateFollowerTeamChat(COLLABORATOR_NAME_SURNAME, 2, 1);
+    }
+    //TODO Why ?
+    @Test
+    public void inviteInTeamChatPekamaMemberAsGuest_Dismiss(){
+        skipBefore = false;
+        rootLogger.info("Create thread in private zone");
+        callModalNewConversation();
+        String newFollower = User5.GMAIL_EMAIL.getValue();
+        submitNewConversationWindow(
+                ADD_GUEST,
+                null,
+                newFollower,
+                null,
+                null,
+                false,
+                true
+        );
+        validateFollowerTeamChat(newFollower, 2, 1);
+        inviteGuestInTeam(false, newFollower);
+    }
+    @Test
+    public void inviteInTeamChatPekamaMemberAsGuest_Invite(){
+        skipBefore = true;
+        rootLogger.info("Create thread in private zone");
+        callModalNewConversation();
+        String newFollower = User5.GMAIL_EMAIL.getValue();
+        submitNewConversationWindow(
+                ADD_GUEST,
+                null,
+                newFollower,
+                null,
+                null,
+                false,
+                true
+        );
+        validateFollowerTeamChat(newFollower, 2, 1);
+        inviteGuestInTeam(true, newFollower);
+    }
+    @Test
+    public void inviteInTeamChatPekamaMemberAsGuest_ValidationEmail(){
+        skipBefore = false;
+        String login = INVITED_EMAIL;
+        String password = INVITED_PASSWORD;
+        String inviterNameSurname = INVITER_NAME_SURNAME;
+        String inviterFullTeamName = INVITER_NAME_FULL_TEAM_NAME;
+        String inviterName = INVITER_NAME;
+        MessagesIMAP validation = new MessagesIMAP();
+        Boolean validationResult = validation.validateEmailInviteInTeam(
+                login, password,
+                inviterNameSurname, inviterName, inviterFullTeamName);
+        Assert.assertTrue(validationResult);
+        Assert.assertNotNull(teamBackLink);
+        rootLogger.info("Link invite to Team is: "+teamBackLink);
+        return;
+    }
+    @Test
+    public void inviteInTeamChatGuest(){
+        skipBefore = false;
+        rootLogger.info("Create thread in private zone");
+        callModalNewConversation();
+        String newFollower = randomString(10)+"@mail.com";
+        submitNewConversationWindow(
+                ADD_GUEST,
+                null,
+                newFollower,
+                null,
+                null,
+                false,
+                true
+        );
+        String followerNameSurname = newFollower;
+        StepsPekama.validateFollowerTeamChat(followerNameSurname, 2, 1);
+    }
+    @Test
+    public void inviteInTeamChatNewCollaborator_Action(){
         skipBefore = true;
         rootLogger.info("Create thread in private zone");
         callModalNewConversation();
@@ -255,7 +340,7 @@ public class TestsMessages {
         StepsPekama.validateFollowerTeamChat(followerNameSurname, 2, 1);
     }
     @Test
-    public void inviteInConversationNewCollaborator_ValidationEmail(){
+    public void inviteInTeamChatNewCollaborator_ValidationEmail(){
         skipBefore = false;
         rootLogger.info("Check invite email");
         String login = INVITED_EMAIL;

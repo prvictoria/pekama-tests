@@ -105,7 +105,7 @@ public class StepsModalWindows implements StepsFactory {
             if(selectFollowerAction ==ADD_FOLLOWER){
                 checkText(newFollower);
                 //Only 1-st button in list
-                MW_CONVERSATION_BTN_FOLLOWER_LIST.shouldHaveSize(2);
+                MW_CONVERSATION_BTN_FOLLOWER_LIST.shouldHaveSize(1);
                 MW_CONVERSATION_BTN_ADD_FOLLOWER.shouldBe(visible).click();
             }
             if(selectFollowerAction ==INVITE_FOLLOWER){

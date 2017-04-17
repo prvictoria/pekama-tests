@@ -1095,12 +1095,40 @@ public class StepsPekama implements StepsFactory{
         }
         return true;
     }
+    public static boolean inviteGuestInTeam(Boolean invite, String followerEmail){
+        CONVERSATION_INVITE_ALERT_TITLE.shouldHave(text("Next followers you can invite to your team:"));
+        CONVERSATION_INVITE_ALERT_FOLLOWER_EMAIL.shouldHave(text(followerEmail));
+        if(invite==false){
+            CONVERSATION_INVITE_ALERT_DISMISS.shouldBe(visible).click();
+            CONVERSATION_INVITE_ALERT_TITLE.waitUntil(not(visible), 20000);
+            return false;
+        }
+        if(invite==true){
+            CONVERSATION_INVITE_ALERT_INVITE.shouldBe(visible).click();
+            CONVERSATION_INVITE_ALERT_TITLE.waitUntil(not(visible), 20000);
+        return true;
+        }
+        return false;
+    }
     public static boolean deleteFollower(String followerNameSurname){
         rootLogger.info("Delete first follower");
         CONVERSATION_FOLLOWERS_ONE_NAME.shouldHave(text(followerNameSurname));
         CONVERSATION_FOLLOWERS_ONE_DELETE.shouldBe(visible).click();
         CONVERSATION_FOLLOWERS_INPUT.shouldHave(value(""));
         return true;
+    }
+    public static String editTreadTitle(String oldThreadTitle, String newThreadName){
+        rootLogger.info("Edit thread title");
+        CONVERSATION_EDIT_TITLE.click();
+        CONVERSATION_FIELD_TITLE.shouldHave(value(oldThreadTitle));
+        if(newThreadName==null) {
+            rootLogger.info("Set random thread name");
+            newThreadName = "EXTERNAL"+randomString(15);
+        }
+        fillField(CONVERSATION_FIELD_TITLE, newThreadName);
+        CONVERSATION_SAVE_TITLE.click();
+        CONVERSATION_TITLE.shouldHave(text(newThreadName));
+        return  newThreadName;
     }
     public static String editTreadTitle(String newThreadName){
         rootLogger.info("Edit thread title");
