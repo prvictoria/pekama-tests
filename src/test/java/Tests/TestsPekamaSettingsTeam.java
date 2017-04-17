@@ -1,9 +1,7 @@
 package Tests;
-import Page.TestsCredentials;
 import Steps.MessagesIMAP;
 import Steps.StepsPekama;
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
@@ -13,17 +11,13 @@ import org.junit.runners.MethodSorters;
 
 import java.io.IOException;
 
-import static Page.Emails.*;
 import static Page.ModalWindows.*;
 import static Page.PekamaTeamSettings.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
-import static Steps.MessagesValidator.ValidationInviteInProject.projectBackLink;
-import static Steps.MessagesValidator.ValidationInviteInTeam.teamBackLink;
-import static Steps.StepsExternal.*;
-import static Steps.StepsHttpAuth.*;
+import static Steps.MessagesValidator.ValidationInviteInTeamUnregistered.teamBackLink;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static Tests.BeforeTestsSetUp.*;
@@ -156,7 +150,7 @@ public class TestsPekamaSettingsTeam {
         String inviterFullTeamName = TEST_USER_FULL_TEAM_NAME;
         String inviterName = TEST_USER_NAME;
         MessagesIMAP validation = new MessagesIMAP();
-        Boolean validationResult = validation.validateEmailInviteInTeam(
+        Boolean validationResult = validation.validateEmailInviteInTeamUnregistered(
                 login, password,
                 inviterNameSurname, inviterName, inviterFullTeamName);
         Assert.assertTrue(validationResult);

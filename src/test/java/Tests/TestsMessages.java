@@ -20,7 +20,7 @@ import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
 import static Steps.MessagesValidator.ValidationInviteInProject.*;
-import static Steps.MessagesValidator.ValidationInviteInTeam.*;
+import static Steps.MessagesValidator.ValidationInviteInTeamUnregistered.*;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsModalWindows.ModalConversationFollowerActions.*;
 import static Steps.StepsPekama.*;
@@ -42,10 +42,11 @@ public class TestsMessages {
     private static final String INVITER_NAME = User3.NAME.getValue();
 
     private static final String INVITED_EMAIL = User5.GMAIL_EMAIL.getValue();
-    private static final String INVITED_PASSWORD = User5.GMAIL_PASSWORD.getValue();
+    private static final String INVITED_EMAIL_PASSWORD = User5.GMAIL_PASSWORD.getValue();
 
     private static final String COLLABORATOR_NAME_SURNAME = User1.NAME_SURNAME.getValue();
     private static final String COLLABORATOR_EMAIL = User1.GMAIL_EMAIL.getValue();
+    private static final String COLLABORATOR_EMAIL_PASSWORD = User1.GMAIL_PASSWORD.getValue();
 
     private static String testProjectName = null;
     private static String testProjectUrl = null;
@@ -255,7 +256,7 @@ public class TestsMessages {
         skipBefore = false;
         rootLogger.info("Create thread in private zone");
         callModalNewConversation();
-        String newFollower = User5.GMAIL_EMAIL.getValue();
+        String newFollower = User1.GMAIL_EMAIL.getValue();
         submitNewConversationWindow(
                 ADD_GUEST,
                 null,
@@ -269,38 +270,85 @@ public class TestsMessages {
         inviteGuestInTeam(false, newFollower);
     }
     @Test
-    public void inviteInTeamChatPekamaMemberAsGuest_Invite(){
+    public void inviteInTeamChatPekamaMemberAsGuestRegisteredUser_Invite(){
         skipBefore = true;
-        rootLogger.info("Create thread in private zone");
-        callModalNewConversation();
-        String newFollower = User5.GMAIL_EMAIL.getValue();
-        submitNewConversationWindow(
-                ADD_GUEST,
-                null,
-                newFollower,
-                null,
-                null,
-                false,
-                true
-        );
-        validateFollowerTeamChat(newFollower, 2, 1);
-        inviteGuestInTeam(true, newFollower);
+        try {
+            rootLogger.info("Create thread in private zone");
+            callModalNewConversation();
+            String newFollower = INVITED_EMAIL;
+            submitNewConversationWindow(
+                    ADD_GUEST,
+                    null,
+                    newFollower,
+                    null,
+                    null,
+                    false,
+                    true
+            );
+            validateFollowerTeamChat(newFollower, 2, 1);
+            inviteGuestInTeam(true, newFollower);
+        }
+        finally {
+            deleteAllMembers();
+        }
+        return;
     }
     @Test
-    public void inviteInTeamChatPekamaMemberAsGuest_ValidationEmail(){
+    public void inviteInTeamChatPekamaMemberAsGuestRegisteredUser_ValidationEmail(){
         skipBefore = false;
         String login = INVITED_EMAIL;
-        String password = INVITED_PASSWORD;
+        String password = INVITED_EMAIL_PASSWORD;
         String inviterNameSurname = INVITER_NAME_SURNAME;
         String inviterFullTeamName = INVITER_NAME_FULL_TEAM_NAME;
         String inviterName = INVITER_NAME;
         MessagesIMAP validation = new MessagesIMAP();
-        Boolean validationResult = validation.validateEmailInviteInTeam(
+        Boolean validationResult = validation.validateEmailInviteInTeamUnregistered(
                 login, password,
                 inviterNameSurname, inviterName, inviterFullTeamName);
         Assert.assertTrue(validationResult);
-        Assert.assertNotNull(teamBackLink);
-        rootLogger.info("Link invite to Team is: "+teamBackLink);
+        Assert.assertNotNull(ValidationInviteInTeamUnregistered.teamBackLink);
+        rootLogger.info("Link invite to Team is: "+ValidationInviteInTeamUnregistered.teamBackLink);
+        return;
+    }
+    @Test
+    public void inviteInTeamChatPekamaMemberAsGuestNewUser_Invite(){
+        skipBefore = true;
+        try {
+            rootLogger.info("Create thread in private zone");
+            callModalNewConversation();
+            String newFollower = COLLABORATOR_EMAIL;
+            submitNewConversationWindow(
+                    ADD_GUEST,
+                    null,
+                    newFollower,
+                    null,
+                    null,
+                    false,
+                    true
+            );
+            validateFollowerTeamChat(newFollower, 2, 1);
+            inviteGuestInTeam(true, newFollower);
+        }
+        finally {
+            deleteAllMembers();
+        }
+        return;
+    }
+    @Test
+    public void inviteInTeamChatPekamaMemberAsGuestNewUser_ValidationEmail(){
+        skipBefore = false;
+        String login = COLLABORATOR_EMAIL;
+        String password = COLLABORATOR_EMAIL_PASSWORD;
+        String inviterNameSurname = INVITER_NAME_SURNAME;
+        String inviterFullTeamName = INVITER_NAME_FULL_TEAM_NAME;
+        String inviterName = INVITER_NAME;
+        MessagesIMAP validation = new MessagesIMAP();
+        Boolean validationResult = validation.validateEmailInviteInTeamRegistered(
+                login, password,
+                inviterNameSurname, inviterName, inviterFullTeamName);
+        Assert.assertTrue(validationResult);
+        Assert.assertNotNull(ValidationInviteInTeamRegistered.teamBackLink);
+        rootLogger.info("Link invite to Team is: "+ValidationInviteInTeamRegistered.teamBackLink);
         return;
     }
     @Test
@@ -344,7 +392,7 @@ public class TestsMessages {
         skipBefore = false;
         rootLogger.info("Check invite email");
         String login = INVITED_EMAIL;
-        String password = INVITED_PASSWORD;
+        String password = INVITED_EMAIL_PASSWORD;
         String inviterNameSurname = INVITER_NAME_SURNAME;
         String projectName = testProjectName;
         MessagesIMAP validation = new MessagesIMAP();

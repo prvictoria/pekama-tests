@@ -437,6 +437,20 @@ public class StepsPekama implements StepsFactory{
             rootLogger.info("All - members were deleted");
         }
     }
+    public static void deleteAllMembers() {
+        openUrlWithBaseAuth(URL_Members);
+        sleep(3000);
+        if ($$(byXpath(ICON_DELETE_MEMBER)).size()!=0){
+            do {
+                $(byXpath(ICON_DELETE_MEMBER)).shouldBe(visible);
+                $(byXpath(ICON_DELETE_MEMBER)).click();
+                submitConfirmAction();
+                sleep(2000);
+            }
+            while ($$(byXpath(ICON_DELETE_MEMBER)).size()!=0);
+            rootLogger.info("All - members were deleted");
+        }
+    }
     public static void deleteLoopIconX(String testTeamNameSurname) {
         checkText(testTeamNameSurname);
         if ($$(byXpath(ICON_DELETE_MEMBER)).size()!=0){

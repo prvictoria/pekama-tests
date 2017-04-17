@@ -1,21 +1,16 @@
 package Tests;
 
-import Page.TestsCredentials;
 import Steps.MessagesIMAP;
-import Steps.MessagesValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import static Page.CommunityDashboard.teamName;
 import static Page.TestsStrings.LOREM_IPSUM_SHORT;
 import static Page.UrlConfig.setEnvironment;
-import static Steps.Messages.EMAIL_SUBJECT_CONGRATULATION_CASE_CREATED;
-import static Steps.MessagesIMAP.detectEmailIMAP;
 import static Steps.MessagesValidator.ValidationInviteInProject.projectBackLink;
-import static Steps.MessagesValidator.ValidationInviteInTeam.teamBackLink;
+import static Steps.MessagesValidator.ValidationInviteInTeamUnregistered.teamBackLink;
 
 /**
  * Created by Viachaslau_Balashevi on 4/12/2017.
@@ -88,7 +83,7 @@ public class TestsIMAP {
         String inviterFullTeamName = INVITER_NAME_FULL_TEAM_NAME;
         String inviterName = INVITER_NAME;
         MessagesIMAP validation = new MessagesIMAP();
-        Boolean validationResult = validation.validateEmailInviteInTeam(
+        Boolean validationResult = validation.validateEmailInviteInTeamUnregistered(
                 login, password,
                 inviterNameSurname, inviterName, inviterFullTeamName);
         Assert.assertTrue(validationResult);

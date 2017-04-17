@@ -22,9 +22,6 @@ import static Steps.Messages.*;
 import static Steps.Messages.EMAIL_SUBJECT_YOU_INVITED_IN_COMMUNITY;
 import static Steps.MessagesValidator.*;
 import static Steps.MessagesValidator.ValidationInviteInProject.projectBackLink;
-import static Steps.MessagesValidator.ValidationNotificationCaseConfirmed.caseName;
-import static Steps.MessagesValidator.ValidationNotificationCaseConfirmed.expertTeam;
-import static Steps.MessagesValidator.ValidationSignUp.userEmail;
 import static Utils.Utils.formatDateToString;
 import static com.codeborne.selenide.Selenide.sleep;
 import static javax.mail.Message.RecipientType.*;
@@ -597,11 +594,11 @@ public class MessagesIMAP {
                 new ValidationCongratulationForInvite());
         return true;
     }
-    public boolean validateEmailInviteInTeam(String login, String password, String inviterNameSurname, String inviterName, String inviterFullTeamName){
-        ValidationInviteInTeam.userEmail = login;
-        ValidationInviteInTeam.inviterNameSurname = inviterNameSurname;
-        ValidationInviteInTeam.inviterName = inviterName;
-        ValidationInviteInTeam.inviterFullTeamName = inviterFullTeamName;
+    public boolean validateEmailInviteInTeamUnregistered(String login, String password, String inviterNameSurname, String inviterName, String inviterFullTeamName){
+        ValidationInviteInTeamUnregistered.userEmail = login;
+        ValidationInviteInTeamUnregistered.inviterNameSurname = inviterNameSurname;
+        ValidationInviteInTeamUnregistered.inviterName = inviterName;
+        ValidationInviteInTeamUnregistered.inviterFullTeamName = inviterFullTeamName;
 
         Boolean detectResult = detectEmailIMAP(
                 login,
@@ -613,7 +610,26 @@ public class MessagesIMAP {
                 login,
                 password,
                 EMAIL_SUBJECT_YOU_INVITED_IN_TEAM(inviterNameSurname, inviterFullTeamName),
-                new ValidationInviteInTeam());
+                new ValidationInviteInTeamUnregistered());
+        return validationResult;
+    }
+    public boolean validateEmailInviteInTeamRegistered(String login, String password, String inviterNameSurname, String inviterName, String inviterFullTeamName){
+        ValidationInviteInTeamRegistered.userEmail = login;
+        ValidationInviteInTeamRegistered.inviterNameSurname = inviterNameSurname;
+        ValidationInviteInTeamRegistered.inviterName = inviterName;
+        ValidationInviteInTeamRegistered.inviterFullTeamName = inviterFullTeamName;
+
+        Boolean detectResult = detectEmailIMAP(
+                login,
+                password,
+                EMAIL_SUBJECT_YOU_INVITED_IN_TEAM(inviterNameSurname, inviterFullTeamName));
+        Assert.assertTrue(detectResult);
+        MessagesIMAP searcher = new MessagesIMAP();
+        Boolean validationResult = searcher.searchEmailBySubjectAndValidate(
+                login,
+                password,
+                EMAIL_SUBJECT_YOU_INVITED_IN_TEAM(inviterNameSurname, inviterFullTeamName),
+                new ValidationInviteInTeamRegistered());
         return validationResult;
     }
     public boolean validateEmailInviteInProject(String login, String password, String inviterNameSurname, String projectName){
