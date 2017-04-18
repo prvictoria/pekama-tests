@@ -124,7 +124,6 @@ public class TestsIMAP {
 
         return;
     }
-
     @Test
     public void validateEmailReport(){
         String login = REQUESTER_EMAIL;

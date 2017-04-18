@@ -118,7 +118,8 @@ public class StepsModalWindows implements StepsFactory {
             }
         }
         if (accessForAll==true) {
-            MW_ALL_TEAMS_CHECKBOX.setSelected(true).shouldBe(selected);
+            MW_ALL_TEAMS_CHECKBOX.shouldBe(not(selected));
+            MW_ALL_TEAMS_CHECKBOX.setSelected(true);
         }
         //TODO logic
         if (inviteTeam!=null && accessForAll==false && accessForAll!=null) {
@@ -135,6 +136,7 @@ public class StepsModalWindows implements StepsFactory {
             MW.waitUntil(not(visible), 30000);
         }
     }
+
     public static String submitAddMemberWindow(){
         rootLogger.info("Invite new member in team");
         String newMemberEmail = randomString(10)+"@member.com";

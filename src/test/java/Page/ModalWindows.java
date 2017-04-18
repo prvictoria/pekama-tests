@@ -15,7 +15,7 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW = $(byXpath("//div[@class='modal-content']"));
     public static final SelenideElement MW_BTN_SUBMIT = $(byXpath(mw+"//button[@submit]"));
     public static final SelenideElement MW_INPUT_NEW_MEMBER_EMAIL = $(byXpath(mw+"//*[@id='newFollowerEmail']"));
-    public static final SelenideElement MW_ALL_TEAMS_CHECKBOX = $(byXpath(mw+"//input[@type='checkbox']/following-sibling::span[text()='All teams with access to this project (now or in the future)']"));
+    public static final SelenideElement MW_ALL_TEAMS_CHECKBOX = $(byXpath(mw+"//span[text()='All teams with access to this project (now or in the future)']/preceding-sibling::input[@type='checkbox']"));
 
 //reports
 //mailing list

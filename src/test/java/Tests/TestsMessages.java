@@ -140,37 +140,48 @@ public class TestsMessages {
         rootLogger.info("Test passed");
     }
     @Test
-    public void sendMessageInTeamChat() {
-        String oldThreadTitle = "TEAM_THREAD IN PRIVATE ZONE";
+    public void sendMessageInTeamChat_UserZone() {
+        String oldThreadTitle = "TEAM THREAD IN PRIVATE ZONE";
         String newThreadName = "TEAM"+randomString(15);
         rootLogger.info("Create thread in private zone");
         callModalNewConversation();
-        waitForModalWindow(TITLE_MW_CONVERSATION);
-        fillField(MW_CONVERSATION_INPUT_Subject, oldThreadTitle);
-        MW_BTN_CREATE.click();
-        MW.shouldNotBe(visible);
-        sleep(2000);
-
+        submitNewConversationWindow(
+                null,
+                oldThreadTitle,
+                null,
+                null,
+                null,
+                false,
+                true
+        );
         editTreadTitle(oldThreadTitle, newThreadName);
 
         CONVERSATION_LABEL_ACTIVE_TAB.shouldHave(text(CONVERSATION_TEAM_TAB_NAME));
         CONVERSATION_INPUT_TEXT_COLLAPSED.shouldBe(visible).click();
         sleep(4000);
-        CONVERSATION_TEXT_EDITOR.shouldHave(value(""));
-        CONVERSATION_TEXT_EDITOR.val(LOREM_IPSUM_SHORT);
-        CONVERSATION_TEXT_EDITOR.val(LOREM_IPSUM_SHORT);
-        sleep(2000);
-        CONVERSATION_TEXT_EDITOR.shouldHave(text(LOREM_IPSUM_SHORT));
+        fillTextEditor(LOREM_IPSUM_SHORT);
         submitEnabledButton(CONVERSATION_BTN_POST);
         MESSAGES_LIST.filter(visible).shouldHaveSize(1);
         MESSAGE_FIRST_TEXT.shouldHave(text(LOREM_IPSUM_SHORT));
 
-        rootLogger.info("Delete message");
-        CONVERSATION_MsgDelete.waitUntil(visible, 10000);
-        CONVERSATION_MsgDelete.click();
-        submitConfirmAction(TITLE_MW_DELETE_MESSAGE);
-        $(byXpath("//*[@class='message-list']/li[1]//div[@class='message-holder']")).shouldNot(visible);
+        deleteLastMessage();
+        LAST_MESSAGE.shouldNot(visible);
         rootLogger.info("Test passed");
+    }
+    @Test
+    public void sendMessageInTeamChat_AllZone() {
+        String oldThreadTitle = "TEAM THREAD IN ALL ZONE";
+        rootLogger.info("Create thread in private zone");
+        callModalNewConversation();
+        submitNewConversationWindow(
+                null,
+                oldThreadTitle,
+                null,
+                null,
+                null,
+                true,
+                true
+        );
     }
     @Test
     public void createProject_C1_ExternalConversationDefaults() {

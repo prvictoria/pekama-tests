@@ -2,6 +2,7 @@ package Steps;
 import org.jsoup.select.Elements;
 import org.junit.Assert;
 import static Page.Emails.*;
+import static Page.UrlStrings.*;
 import static Steps.Messages.*;
 import static Steps.MessagesIMAP.*;
 /**

@@ -67,6 +67,7 @@ public class PekamaConversationProject extends Page {
 
 
     //MSG Controls
+    public static final SelenideElement LAST_MESSAGE = $(byXpath("//*[@class='message-list']/li[1]//div[@class='message-holder']"));
     public static final SelenideElement CONVERSATION_MsgTask = $(byXpath( CONVERSATION_BLOCK+"//div[@class='media-body width-float']//span[@class='bubble ng-scope']/i"));
     public static final SelenideElement CONVERSATION_MsgDelete = $(byXpath( CONVERSATION_BLOCK+"//div[@class='media-body width-float']//i[@class='pkm-icon-cancel']"));
     public static final SelenideElement CONVERSATION_MsgTaskIcon = $(byXpath( CONVERSATION_BLOCK+""));

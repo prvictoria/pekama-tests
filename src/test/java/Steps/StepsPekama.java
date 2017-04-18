@@ -1093,19 +1093,22 @@ public class StepsPekama implements StepsFactory{
             CONVERSATION_FOLLOWERS_LIST.shouldHaveSize(followersQty);
         }
         if(followerNameSurname!=null && followerIndex!=null) {
+            CONVERSATION_FOLLOWERS_LIST.filter(visible);
             SelenideElement FirstFollower = CONVERSATION_FOLLOWERS_LIST.get(followerIndex);
-            FirstFollower.shouldHave(text(followerNameSurname));
+            FirstFollower.waitUntil(visible, 10000).shouldHave(text(followerNameSurname));
         }
         return true;
     }
+
     public static boolean validateFollowerTeamChat(String followerNameSurname, Integer followersQty, Integer followerIndex){
         rootLogger.info("Check new follower");
         if(followersQty!=null) {
-            CONVERSATION_FOLLOWERS_LIST.shouldHaveSize(followersQty);
+            CONVERSATION_FOLLOWERS_LIST.filter(visible).shouldHaveSize(followersQty);
         }
         if(followerNameSurname!=null && followerIndex!=null) {
+            CONVERSATION_FOLLOWERS_LIST.filter(visible);
             SelenideElement FirstFollower = CONVERSATION_FOLLOWERS_LIST.get(followerIndex);
-            FirstFollower.shouldHave(text(followerNameSurname));
+            FirstFollower.waitUntil(visible, 10000).shouldHave(text(followerNameSurname));
         }
         return true;
     }
@@ -1179,6 +1182,11 @@ public class StepsPekama implements StepsFactory{
         submitConfirmAction("Delete message?");
         CONVERSATION_MsgBody.shouldNotBe(visible);
         return true;
+    }
+    public static void deleteLastMessage(){
+        rootLogger.info("Delete message");
+        CONVERSATION_MsgDelete.waitUntil(visible, 10000).click();
+        submitConfirmAction(TITLE_MW_DELETE_MESSAGE);
     }
     public static boolean sendTeamChatMsg(){
         return true;
