@@ -8,6 +8,7 @@ import Steps.StepsPekama;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
+import org.junit.experimental.categories.Category;
 import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
 import java.io.IOException;
@@ -20,14 +21,13 @@ import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
 import static Steps.MessagesValidator.ValidationInviteInProject.*;
-import static Steps.MessagesValidator.ValidationInviteInTeamUnregistered.*;
+import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsModalWindows.ModalConversationFollowerActions.*;
 import static Steps.StepsPekama.*;
 import static Tests.BeforeTestsSetUp.*;
 import static Utils.Utils.*;
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.*;
 
@@ -35,6 +35,7 @@ import static com.codeborne.selenide.WebDriverRunner.*;
 public class TestsMessages {
     static final Logger rootLogger = LogManager.getRootLogger();
     private static final String TEST_USER_EMAIL = User3.GMAIL_EMAIL.getValue();
+    private static final String TEST_USER_EMAIL_PASSWORD = User3.GMAIL_PASSWORD.getValue();
     private static final String TEST_USER_PEKAMA_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
     private static final String INVITER_NAME_FULL_TEAM_NAME = User3.FULL_TEAM_NAME.getValue();
     private static final String INVITER_TEAM_NAME = User3.TEAM_NAME.getValue();
@@ -58,6 +59,16 @@ public class TestsMessages {
         setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
+        MessagesIMAP emailTask = new MessagesIMAP();
+        emailTask.searchEmailDeleteAll(
+                TEST_USER_EMAIL,
+                TEST_USER_EMAIL_PASSWORD);
+        emailTask.searchEmailDeleteAll(
+                INVITED_EMAIL,
+                INVITED_EMAIL_PASSWORD);
+        emailTask.searchEmailDeleteAll(
+                COLLABORATOR_EMAIL,
+                COLLABORATOR_EMAIL_PASSWORD);
     }
     @Before
     public void before() {
@@ -155,21 +166,14 @@ public class TestsMessages {
                 true
         );
         editTreadTitle(oldThreadTitle, newThreadName);
-
-        CONVERSATION_LABEL_ACTIVE_TAB.shouldHave(text(CONVERSATION_TEAM_TAB_NAME));
-        CONVERSATION_INPUT_TEXT_COLLAPSED.shouldBe(visible).click();
-        sleep(4000);
-        fillTextEditor(LOREM_IPSUM_SHORT);
-        submitEnabledButton(CONVERSATION_BTN_POST);
-        MESSAGES_LIST.filter(visible).shouldHaveSize(1);
-        MESSAGE_FIRST_TEXT.shouldHave(text(LOREM_IPSUM_SHORT));
-
+        expandTextEditorInTeamChat();
+        postMessage(LOREM_IPSUM_SHORT);
         deleteLastMessage();
         LAST_MESSAGE.shouldNot(visible);
         rootLogger.info("Test passed");
     }
     @Test
-    public void sendMessageInTeamChat_AllZone() {
+    public void createThreadInTeamChat_AllZone() {
         String oldThreadTitle = "TEAM THREAD IN ALL ZONE";
         rootLogger.info("Create thread in private zone");
         callModalNewConversation();
@@ -280,7 +284,7 @@ public class TestsMessages {
         validateFollowerTeamChat(newFollower, 2, 1);
         inviteGuestInTeam(false, newFollower);
     }
-    @Test
+    @Test @Category({AllEmailsTests.class})
     public void inviteInTeamChatPekamaMemberAsGuestRegisteredUser_Invite(){
         skipBefore = true;
         try {
@@ -304,7 +308,7 @@ public class TestsMessages {
         }
         return;
     }
-    @Test
+    @Test @Category({AllEmailsTests.class, AllImapTests.class})
     public void inviteInTeamChatPekamaMemberAsGuestRegisteredUser_ValidationEmail(){
         skipBefore = false;
         String login = INVITED_EMAIL;
@@ -321,7 +325,7 @@ public class TestsMessages {
         rootLogger.info("Link invite to Team is: "+ValidationInviteInTeamUnregistered.teamBackLink);
         return;
     }
-    @Test
+    @Test @Category({AllEmailsTests.class})
     public void inviteInTeamChatPekamaMemberAsGuestNewUser_Invite(){
         skipBefore = true;
         try {
@@ -345,7 +349,7 @@ public class TestsMessages {
         }
         return;
     }
-    @Test
+    @Test @Category({AllEmailsTests.class, AllImapTests.class})
     public void inviteInTeamChatPekamaMemberAsGuestNewUser_ValidationEmail(){
         skipBefore = false;
         String login = COLLABORATOR_EMAIL;
@@ -380,7 +384,7 @@ public class TestsMessages {
         String followerNameSurname = newFollower;
         StepsPekama.validateFollowerTeamChat(followerNameSurname, 2, 1);
     }
-    @Test
+    @Test @Category({AllEmailsTests.class})
     public void inviteInTeamChatNewCollaborator_Action(){
         skipBefore = true;
         rootLogger.info("Create thread in private zone");
@@ -398,7 +402,7 @@ public class TestsMessages {
         String followerNameSurname = newFollower+" (inactive)";
         StepsPekama.validateFollowerTeamChat(followerNameSurname, 2, 1);
     }
-    @Test
+    @Test @Category({AllEmailsTests.class, AllImapTests.class})
     public void inviteInTeamChatNewCollaborator_ValidationEmail(){
         skipBefore = false;
         rootLogger.info("Check invite email");
@@ -412,5 +416,34 @@ public class TestsMessages {
         Assert.assertNotNull(projectBackLink);
         rootLogger.info("Test passed");
         return;
+    }
+    @Ignore
+    @Test
+    public void checkThatUserGetCopyOwnMessages(){
+        rootLogger.info("Set email settings");
+        openSettingsTabEmails();
+        selectReceiveEmailOptions(
+                true,
+                false,
+                false,
+                true,
+                true
+        );
+        openUrlWithBaseAuth(testProjectUrl);
+        rootLogger.info("Create thread");
+        callModalNewConversation();
+        submitNewConversationWindow(
+                null,
+                "OWN_THREAD",
+                null,
+                null,
+                null,
+                false,
+                true
+        );
+        expandTextEditorInTeamChat();
+        postMessage(LOREM_IPSUM_SHORT);
+        rootLogger.info("Check invite email");
+        //TODO logic
     }
 }

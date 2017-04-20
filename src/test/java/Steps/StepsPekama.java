@@ -1,6 +1,7 @@
 package Steps;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import com.sun.istack.internal.Nullable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
@@ -392,6 +393,88 @@ public class StepsPekama implements StepsFactory{
 
     public static void selectOption(SelenideElement optionSelector,String optionName) {
         optionSelector.selectOption(new String[]{optionName});
+    }
+
+    public static void checkReceiveEmailOptions(Boolean receiveAlways, Boolean receiveOffline, Boolean noEmails, Boolean getAttachment, Boolean getCopyOwnMsg){
+        if(receiveAlways==true) {
+            rootLogger.info("Check receive get emails Always radio is selected");
+            EMAILS_TAB_RADIO_ALWAYS.waitUntil(visible, 20000).shouldBe(selected);
+        }
+        if(receiveAlways==false) {
+            rootLogger.info("Check receive get emails Always radio is NOT selected");
+            EMAILS_TAB_RADIO_ALWAYS.waitUntil(visible, 20000).shouldNotBe(selected);
+        }
+        if(receiveOffline==true) {
+            rootLogger.info("Check receive get emails if user is offline radio is selected");
+            EMAILS_TAB_RADIO_OFFLINE.waitUntil(visible, 20000).shouldBe(selected);
+            EMAILS_TAB_RECEIVE_ATTACHMENTS.shouldBe(disabled);
+        }
+        if(receiveOffline==false) {
+            rootLogger.info("Check receive get emails if user is offline radio is NOT selected");
+            EMAILS_TAB_RADIO_OFFLINE.waitUntil(visible, 20000).shouldNotBe(selected);
+        }
+        if(noEmails==true) {
+            rootLogger.info("Check that Always radio is selected");
+            EMAILS_TAB_RADIO_NO_EMAILS.waitUntil(visible, 20000).shouldBe(selected);
+        }
+        if(noEmails==false) {
+            rootLogger.info("Check that Always radio is NOT selected");
+            EMAILS_TAB_RADIO_NO_EMAILS.waitUntil(visible, 20000).shouldNotBe(selected);
+        }
+        if(getAttachment==true) {
+            rootLogger.info("Check that get Attachment checkbox is set");
+            EMAILS_TAB_RECEIVE_ATTACHMENTS.waitUntil(visible, 20000).shouldBe(checked);
+        }
+        if(getAttachment==false) {
+            rootLogger.info("Check that get Attachment checkbox is un-set");
+            EMAILS_TAB_RECEIVE_ATTACHMENTS.waitUntil(visible, 20000).shouldNotBe(checked);
+        }
+        if(getCopyOwnMsg==true) {
+            rootLogger.info("Check that get copy own messages as emails checkbox is set");
+            EMAILS_TAB_GET_COPY_OWN_EMAILS.waitUntil(visible, 20000).shouldBe(checked);
+        }
+        if(getCopyOwnMsg==false) {
+            rootLogger.info("Check that get copy own messages as emails checkbox is un-set");
+            EMAILS_TAB_GET_COPY_OWN_EMAILS.waitUntil(visible, 20000).shouldNotBe(checked);
+        }
+    }
+    public static void selectReceiveEmailOptions(Boolean receiveAlways, Boolean receiveOffline, Boolean noEmails, Boolean getAttachment, Boolean getCopyOwnMsg){
+        if(receiveAlways==true) {
+            rootLogger.info("Select receive get emails Always radio");
+            EMAILS_TAB_RADIO_ALWAYS.waitUntil(visible, 20000).setSelected(true);
+            EMAILS_TAB_RADIO_ALWAYS.shouldBe(selected);
+        }
+        if(receiveOffline==true) {
+            rootLogger.info("Select receive get emails if user is offline radio");
+            EMAILS_TAB_RADIO_OFFLINE.waitUntil(visible, 20000).setSelected(true);
+            EMAILS_TAB_RADIO_OFFLINE.shouldBe(selected);
+        }
+        if(noEmails==true) {
+            rootLogger.info("Select no Always radio");
+            EMAILS_TAB_RADIO_NO_EMAILS.waitUntil(visible, 20000).setSelected(true);
+            EMAILS_TAB_RADIO_NO_EMAILS.shouldBe(selected);
+            EMAILS_TAB_RECEIVE_ATTACHMENTS.shouldBe(disabled);
+        }
+        if(getAttachment==true && noEmails==false) {
+            rootLogger.info("Set get Attachment checkbox");
+            EMAILS_TAB_RECEIVE_ATTACHMENTS.waitUntil(visible, 20000).setSelected(true);
+            EMAILS_TAB_RECEIVE_ATTACHMENTS.shouldBe(checked);
+        }
+        if(getAttachment==false && noEmails==false) {
+            rootLogger.info("Set get Attachment checkbox");
+            EMAILS_TAB_RECEIVE_ATTACHMENTS.waitUntil(visible, 20000).setSelected(false);
+            EMAILS_TAB_RECEIVE_ATTACHMENTS.shouldNotBe(checked);
+        }
+        if(getCopyOwnMsg==true) {
+            rootLogger.info("Set get copy own messages as emails checkbox");
+            EMAILS_TAB_GET_COPY_OWN_EMAILS.waitUntil(visible, 20000).setSelected(true);
+            EMAILS_TAB_GET_COPY_OWN_EMAILS.shouldBe(checked);
+        }
+        if(getCopyOwnMsg==false) {
+            rootLogger.info("Set get copy own messages as emails checkbox");
+            EMAILS_TAB_GET_COPY_OWN_EMAILS.waitUntil(visible, 20000).setSelected(false);
+            EMAILS_TAB_GET_COPY_OWN_EMAILS.shouldNotBe(checked);
+        }
     }
     public static boolean checkMember(String email) {
         String row = String.format(BTN_DELETE_MEMBER, email);
@@ -1282,5 +1365,40 @@ public class StepsPekama implements StepsFactory{
         TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(COMMUNITY_STATUS_COMPLETED));
     }
 
-
+    public static void openSettingsTabPersonalDetails(){
+        openUrlWithBaseAuth(URL_PersonalSettings);
+        PERSONAL_DETAILS_TAB_TITLE.waitUntil(visible, 15000).click();
+    }
+    public static void openSettingsTabSecurity(){
+        openUrlWithBaseAuth(URL_PersonalSettings);
+        SECURITY_TAB_TITLE.waitUntil(visible, 15000).click();
+    }
+    public static void openSettingsTabEmails(){
+        openUrlWithBaseAuth(URL_PersonalSettings);
+        EMAILS_TAB_TITLE.waitUntil(visible, 15000).click();
+    }
+    public static void openSettingsTabSignature(){
+        openUrlWithBaseAuth(URL_PersonalSettings);
+        SIGNATURE_TAB_TITLE.waitUntil(visible, 15000).click();
+    }
+    public static void openSettingsTabIMAP(){
+        openUrlWithBaseAuth(URL_PersonalSettings);
+        IMAP_TAB_TITLE.waitUntil(visible, 15000).click();
+    }
+    public static void openSettingsTabTimeTracker(){
+        openUrlWithBaseAuth(URL_PersonalSettings);
+        TIME_TRACKER_TAB_TITLE.waitUntil(visible, 15000).click();
+    }
+    public static void postMessage(String text){
+        rootLogger.info("Post message");
+        fillTextEditor(text);
+        submitEnabledButton(CONVERSATION_BTN_POST);
+        MESSAGES_LIST.filter(visible).shouldHaveSize(1);
+        MESSAGE_FIRST_TEXT.shouldHave(text(text));
+    }
+    public static void expandTextEditorInTeamChat(){
+        CONVERSATION_LABEL_ACTIVE_TAB.shouldHave(text(CONVERSATION_TEAM_TAB_NAME));
+        CONVERSATION_INPUT_TEXT_COLLAPSED.shouldBe(visible).click();
+        sleep(4000);
+    }
 }

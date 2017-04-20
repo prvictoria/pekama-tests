@@ -151,7 +151,8 @@ public class TestsCredentials {
     public enum User6 {
         GMAIL_EMAIL("testqweeco006@gmail.com"),
         GMAIL_PASSWORD("123456789qasw1"),
-        PEKAMA_PASSWORD("asui67we34Aw!"),
+        PEKAMA_PASSWORD("asui67we34Aw!new"),
+        PEKAMA_OLD_PASSWORD("asui67we34Aw!"),
         LINKEDIN_PASSWORD("123456789qasw"),
         BOX_PASSWORD("32qew8127a12a"),
         NAME("Test006"),
