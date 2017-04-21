@@ -7,6 +7,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import javax.mail.MessagingException;
+
 import static Page.TestsStrings.LOREM_IPSUM_SHORT;
 import static Page.UrlConfig.setEnvironment;
 import static Steps.MessagesValidator.ValidationInviteInProject.projectBackLink;
@@ -136,11 +138,11 @@ public class TestsIMAP {
         return;
     }
     @Test
-    public void deleteAllEmails(){
+    public void deleteAllEmails() throws MessagingException {
         String login = REQUESTER_EMAIL;
         String password = REQUESTER_EMAIL_PASSWORD;
         MessagesIMAP emailTask = new MessagesIMAP();
-        emailTask.searchEmailDeleteAll(
+        emailTask.imapSearchEmailDeleteAll(
                 login,
                 password);
     }

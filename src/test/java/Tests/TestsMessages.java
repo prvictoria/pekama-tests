@@ -11,6 +11,8 @@ import org.junit.*;
 import org.junit.experimental.categories.Category;
 import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
+
+import javax.mail.MessagingException;
 import java.io.IOException;
 
 import static Page.ModalWindows.*;
@@ -55,18 +57,18 @@ public class TestsMessages {
     @Rule
     public Timeout tests = Timeout.seconds(600);
     @BeforeClass
-    public static void beforeClass() throws IOException {
+    public static void beforeClass() throws IOException, MessagingException {
         setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
         MessagesIMAP emailTask = new MessagesIMAP();
-        emailTask.searchEmailDeleteAll(
+        emailTask.imapSearchEmailDeleteAll(
                 TEST_USER_EMAIL,
                 TEST_USER_EMAIL_PASSWORD);
-        emailTask.searchEmailDeleteAll(
+        emailTask.imapSearchEmailDeleteAll(
                 INVITED_EMAIL,
                 INVITED_EMAIL_PASSWORD);
-        emailTask.searchEmailDeleteAll(
+        emailTask.imapSearchEmailDeleteAll(
                 COLLABORATOR_EMAIL,
                 COLLABORATOR_EMAIL_PASSWORD);
     }

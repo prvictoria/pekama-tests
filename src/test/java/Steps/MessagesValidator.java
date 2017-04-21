@@ -383,4 +383,22 @@ public interface MessagesValidator extends StepsFactory {
             return null;
         }
     }
+    class ValidationEmailMessage implements MessagesValidator {
+        private String html = null;
+        private String text = null;
+
+        @Override
+        public boolean validationEmail(String...strings) {
+            this.html = strings[0];
+            this.text = strings[1];
+            Assert.assertTrue(html.contains(text));
+            rootLogger.info("Email validation passed");
+            return true;
+        }
+
+        @Override
+        public String validateLink(String html, Integer index) {
+            return null;
+        }
+    }
 }

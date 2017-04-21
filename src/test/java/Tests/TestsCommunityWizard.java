@@ -8,22 +8,19 @@ import org.junit.experimental.categories.Category;
 import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 
 import static Page.CommunityDashboard.*;
 import static Page.CommunityOutgoing.*;
 import static Page.CommunityWizard.*;
-import static Page.Emails.*;
 import static Page.ModalWindows.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
 import static Steps.Messages.*;
-import static Steps.MessagesIMAP.detectEmailIMAP;
-import static Steps.MessagesValidator.*;
 import static Steps.StepsCommunity.*;
-import static Steps.StepsExternal.*;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
@@ -414,12 +411,12 @@ public class TestsCommunityWizard {
     }
 
     @Test @Category(AllEmailsTests.class)
-    public void createCaseInstructWithDetails_A(){
+    public void createCaseInstructWithDetails_A() throws MessagingException {
         String status = COMMUNITY_STATUS_SENT;
         String caseName = "SENT_CASE_"+randomString(10);
 
         MessagesIMAP emailTask = new MessagesIMAP();
-        emailTask.searchEmailDeleteAll(
+        emailTask.imapSearchEmailDeleteAll(
                 REQUESTER_EMAIL,
                 REQUESTER_EMAIL_PASSWORD);
 
