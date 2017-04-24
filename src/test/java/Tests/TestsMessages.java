@@ -23,6 +23,9 @@ import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
+import static Steps.MessagesValidator.ValidationEmailMessage.followerEmail;
+import static Steps.MessagesValidator.ValidationEmailMessage.replyLink;
+import static Steps.MessagesValidator.ValidationEmailMessage.userNameSurname;
 import static Steps.MessagesValidator.ValidationInviteInProject.*;
 import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static Steps.StepsModalWindows.*;
@@ -463,6 +466,8 @@ public class TestsMessages {
     }
     @Test
     public void checkThatGuestFollowerGetEmail() throws IOException, MessagingException {
+        userNameSurname = INVITER_NAME_SURNAME;
+        followerEmail = FOLLOWER_EMAIL;
         rootLogger.info("Create thread");
         callModalNewConversation();
         submitNewConversationWindow(
@@ -488,5 +493,7 @@ public class TestsMessages {
                         new MessagesValidator.ValidationEmailMessage()
                 )
         );
+//        final String MessageReplyLink = replyLink;
+//        openUrlWithBaseAuth(MessageReplyLink);
     }
 }

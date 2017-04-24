@@ -1,6 +1,7 @@
 package Steps;
 import Steps.MessagesValidator.ValidationNotificationCaseConfirmed;
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -11,6 +12,7 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.search.FlagTerm;
 import javax.mail.search.SearchTerm;
+import java.io.File;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.regex.Pattern;
@@ -19,6 +21,7 @@ import static Page.TestsCredentials.*;
 import static Steps.Messages.*;
 import static Steps.Messages.EMAIL_SUBJECT_YOU_INVITED_IN_COMMUNITY;
 import static Steps.MessagesValidator.*;
+import static Steps.MessagesValidator.ValidationEmailMessage.replyLink;
 import static Steps.MessagesValidator.ValidationInviteInProject.projectBackLink;
 import static Utils.Utils.formatDateToString;
 import static com.codeborne.selenide.Selenide.getElement;
@@ -419,7 +422,36 @@ public class MessagesIMAP {
         System.out.println("--------------------------------");
         return linkText;
     }
+    public static Document document(String html){
+        Document doc = Jsoup.parse(html);
+        return doc;
+    }
+    public static Document parseCleanHtml(Document doc) throws IOException {
+        // Load and parse the document fragment.
+//        File f = new File("myfile.html"); // See also Jsoup#parseBodyFragment(s)
+//        Document doc = Jsoup.parse(f, "UTF-8", "http://example.com");
 
+        // Remove all script and style elements and those of class "hidden".
+        doc.select("script, style, .hidden").remove();
+        //rootLogger.info(doc);
+        // Remove all style and event-handler attributes from all elements.
+        Elements all = doc.select("*");
+        for (Element el : all) {
+            for (Attribute attr : el.attributes()) {
+                String attrKey = attr.getKey();
+                if (attrKey.equals("style") || attrKey.startsWith("on")) {
+                    el.removeAttr(attrKey);
+                }
+            }
+        }
+        //rootLogger.info(doc);
+        // See also - doc.select("*").removeAttr("style");
+        return doc;
+    }
+    public static String getHtmlElementByTag(Document document, String tagName, int index){
+        String element = document.getElementsByTag(tagName).get(index).html();
+        return element;
+    }
     //END TO END IMAP FLOW - need refactor
     public void searchEmailByAddress(String userName, String password, final String keyword) {
         Properties properties = setProperties (IMAP_HOST, IMAP_PORT);
@@ -780,15 +812,17 @@ public class MessagesIMAP {
         return true;
     }
     public boolean validateEmailMessage(String email, String password, String keyword, String text, MessagesValidator validator) throws IOException, MessagingException {
+        String html;
+        Boolean result;
         MessagesIMAP emailTask = new MessagesIMAP();
         Message message = emailTask.getEmail(
                 email,
                 password,
                 keyword);
         Assert.assertNotNull(message);
-        String html = parseHtml(message);
-
-        Boolean result = validator.validationEmail(html, text);
+        html = parseHtml(message);
+        result = validator.validationEmail(html, text);
+//        replyLink = validator.validateLink(html, 0);
         emailTask.imapSearchEmailDeleteAll(email, password);
         if (result==true){
         return true;
@@ -840,6 +874,7 @@ public class MessagesIMAP {
                         text,
                         new MessagesValidator.ValidationEmailMessage()
                 )
+
         );
 
 //        emailTask.getEmail(

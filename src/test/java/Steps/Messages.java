@@ -160,4 +160,8 @@ public class Messages implements StepsFactory{
         String subject = String.format("This is the report that you configured in Pekama. You will get it every %s days.", messageSubject, projectName);
         return subject;
     }
+    public static final String EMAIL_TEXT_SECURE_GROUP(String userNameSurname, String followerEmail) {
+        String secureGroupText = String.format("A <strong>Secure Group Conversation</strong> between <strong>%s</strong>, <strong>%s</strong>.", userNameSurname, followerEmail);
+        return secureGroupText;
+    }
 }

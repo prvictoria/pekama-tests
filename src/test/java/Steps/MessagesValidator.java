@@ -1,6 +1,10 @@
 package Steps;
+import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.junit.Assert;
+
+import java.io.IOException;
+
 import static Page.Emails.*;
 import static Page.UrlStrings.*;
 import static Steps.Messages.*;
@@ -386,19 +390,38 @@ public interface MessagesValidator extends StepsFactory {
     class ValidationEmailMessage implements MessagesValidator {
         private String html = null;
         private String text = null;
-
+        public static String userNameSurname = null;
+        public static String followerEmail = null;
+        public static String replyLink = null;
         @Override
         public boolean validationEmail(String...strings) {
             this.html = strings[0];
             this.text = strings[1];
+            this.userNameSurname = userNameSurname;
+            this.followerEmail = followerEmail;
             Assert.assertTrue(html.contains(text));
+
+            Document document = document(html);
+            try {
+                parseCleanHtml(document);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            String secureGroupText = getHtmlElementByTag(document, "p", 0);
+            Assert.assertEquals(secureGroupText, EMAIL_TEXT_SECURE_GROUP(userNameSurname, followerEmail));
             rootLogger.info("Email validation passed");
             return true;
         }
 
         @Override
         public String validateLink(String html, Integer index) {
-            return null;
+            if (html!=null) {
+                this.html = html;
+                Elements links = parseHtmlHrefArray(html);
+                this.replyLink = getLink(links, index);
+                rootLogger.info(replyLink);
+            }
+            return replyLink;
         }
     }
 }
