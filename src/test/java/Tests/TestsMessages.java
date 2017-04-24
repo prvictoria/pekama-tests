@@ -4,6 +4,7 @@ package Tests;
  * https://www.linkedin.com/in/viachaslau
  */
 import Steps.MessagesIMAP;
+import Steps.MessagesValidator;
 import Steps.StepsPekama;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -50,6 +51,8 @@ public class TestsMessages {
     private static final String COLLABORATOR_NAME_SURNAME = User1.NAME_SURNAME.getValue();
     private static final String COLLABORATOR_EMAIL = User1.GMAIL_EMAIL.getValue();
     private static final String COLLABORATOR_EMAIL_PASSWORD = User1.GMAIL_PASSWORD.getValue();
+    private static final String FOLLOWER_EMAIL = User5.GMAIL_EMAIL.getValue();
+    private static final String FOLLOWER_EMAIL_PASSWORD = User5.GMAIL_PASSWORD.getValue();
 
     private static String testProjectName = null;
     private static String testProjectUrl = null;
@@ -419,9 +422,9 @@ public class TestsMessages {
         rootLogger.info("Test passed");
         return;
     }
-    @Ignore
+//    @Ignore
     @Test
-    public void checkThatUserGetCopyOwnMessages(){
+    public void checkThatUserGetCopyOwnMessages() throws IOException, MessagingException {
         rootLogger.info("Set email settings");
         openSettingsTabEmails();
         selectReceiveEmailOptions(
@@ -436,7 +439,7 @@ public class TestsMessages {
         callModalNewConversation();
         submitNewConversationWindow(
                 null,
-                "OWN_THREAD",
+                "COPY_OF_MY_OWN_MESSAGE",
                 null,
                 null,
                 null,
@@ -445,7 +448,45 @@ public class TestsMessages {
         );
         expandTextEditorInTeamChat();
         postMessage(LOREM_IPSUM_SHORT);
+
         rootLogger.info("Check invite email");
-        //TODO logic
+        MessagesIMAP emailTask = new MessagesIMAP();
+        Assert.assertTrue(
+                emailTask.validateEmailMessage(
+                        TEST_USER_EMAIL,
+                        TEST_USER_EMAIL_PASSWORD,
+                        "COPY_OF_MY_OWN_MESSAGE",
+                        LOREM_IPSUM_SHORT,
+                        new MessagesValidator.ValidationEmailMessage()
+                )
+        );
+    }
+    @Test
+    public void checkThatGuestFollowerGetEmail() throws IOException, MessagingException {
+        rootLogger.info("Create thread");
+        callModalNewConversation();
+        submitNewConversationWindow(
+                ADD_GUEST,
+                "EMAIL_TO_GUEST_MESSAGE",
+                FOLLOWER_EMAIL,
+                null,
+                null,
+                false,
+                true
+        );
+        expandTextEditorInTeamChat();
+        postMessage(LOREM_IPSUM_SHORT);
+
+        rootLogger.info("Check invite email");
+        MessagesIMAP emailTask = new MessagesIMAP();
+        Assert.assertTrue(
+                emailTask.validateEmailMessage(
+                        FOLLOWER_EMAIL,
+                        FOLLOWER_EMAIL_PASSWORD,
+                        "EMAIL_TO_GUEST_MESSAGE",
+                        LOREM_IPSUM_SHORT,
+                        new MessagesValidator.ValidationEmailMessage()
+                )
+        );
     }
 }

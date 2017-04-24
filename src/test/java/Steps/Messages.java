@@ -155,5 +155,9 @@ public class Messages implements StepsFactory{
         String subject = String.format("This is the report that you configured in Pekama. You will get it every %s days.", reportSchedule);
         return subject;
     }
-
+    //Messages email
+    public static final String EMAIL_MESSAGE_SUBJECT(String messageSubject, String projectName) {
+        String subject = String.format("This is the report that you configured in Pekama. You will get it every %s days.", messageSubject, projectName);
+        return subject;
+    }
 }

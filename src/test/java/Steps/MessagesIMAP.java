@@ -75,14 +75,27 @@ public class MessagesIMAP {
         System.out.println("Checked email is: " +userName);
         Session session = Session.getDefaultInstance(properties);
         Store store = null;
-        try {
-            rootLogger.info("Connects to the message store");
-            store = session.getStore("imap");
-            store.connect(userName, password);
-        } catch (NoSuchProviderException e) {
-            e.printStackTrace();
-        } catch (MessagingException e) {
-            e.printStackTrace();
+        Integer loop = 0;
+        Boolean connect = false;
+        while (connect==false && loop<5) {
+            try {
+                loop++;
+                rootLogger.info("Connects to the message store. Loop #: "+loop);
+                store = session.getStore("imap");
+                store.connect(userName, password);
+                connect = store.isConnected();
+                if (connect==true){
+                    rootLogger.info("Connect store present");
+                    return store;
+                }
+                Thread.sleep(2000);
+            } catch (NoSuchProviderException e) {
+                e.printStackTrace();
+            } catch (MessagingException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
         return store;
     }
@@ -127,7 +140,11 @@ public class MessagesIMAP {
             }
             else {
                 result = false;
-                sleep(5000);
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 loop++;
                 rootLogger.info("Loop # "+loop);
             }
@@ -403,7 +420,7 @@ public class MessagesIMAP {
         return linkText;
     }
 
-    //END TO END IMAP FLOW
+    //END TO END IMAP FLOW - need refactor
     public void searchEmailByAddress(String userName, String password, final String keyword) {
         Properties properties = setProperties (IMAP_HOST, IMAP_PORT);
         Session session = Session.getDefaultInstance(properties);
@@ -563,7 +580,7 @@ public class MessagesIMAP {
         }
         return null;
     }
-
+    //NEW Logic
     public Message getEmail(String userName, String password, final String keyword) throws MessagingException, IOException {
         String html = null;
         Properties properties = setProperties (IMAP_HOST, IMAP_PORT);
@@ -762,7 +779,7 @@ public class MessagesIMAP {
         Assert.assertTrue(validationResult==true);
         return true;
     }
-    public boolean validateEmailMessage(String email, String password, String keyword, String text) throws IOException, MessagingException {
+    public boolean validateEmailMessage(String email, String password, String keyword, String text, MessagesValidator validator) throws IOException, MessagingException {
         MessagesIMAP emailTask = new MessagesIMAP();
         Message message = emailTask.getEmail(
                 email,
@@ -771,8 +788,7 @@ public class MessagesIMAP {
         Assert.assertNotNull(message);
         String html = parseHtml(message);
 
-        ValidationEmailMessage validationEmailMessage = new ValidationEmailMessage();
-        Boolean result = validationEmailMessage.validationEmail(html, text);
+        Boolean result = validator.validationEmail(html, text);
         emailTask.imapSearchEmailDeleteAll(email, password);
         if (result==true){
         return true;
@@ -818,10 +834,12 @@ public class MessagesIMAP {
         MessagesIMAP emailTask = new MessagesIMAP();
         Assert.assertTrue(
                 emailTask.validateEmailMessage(
-                User2.GMAIL_EMAIL.getValue(),
-                User2.GMAIL_PASSWORD.getValue(),
-                keyword,
-                text)
+                        User2.GMAIL_EMAIL.getValue(),
+                        User2.GMAIL_PASSWORD.getValue(),
+                        keyword,
+                        text,
+                        new MessagesValidator.ValidationEmailMessage()
+                )
         );
 
 //        emailTask.getEmail(
