@@ -91,7 +91,7 @@ public class MessagesIMAP {
                     rootLogger.info("Connect store present");
                     return store;
                 }
-                Thread.sleep(2000);
+                Thread.sleep(4000);
             } catch (NoSuchProviderException e) {
                 e.printStackTrace();
             } catch (MessagingException e) {
@@ -144,7 +144,7 @@ public class MessagesIMAP {
             else {
                 result = false;
                 try {
-                    Thread.sleep(5000);
+                    Thread.sleep(6000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

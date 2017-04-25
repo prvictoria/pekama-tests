@@ -438,12 +438,13 @@ public class TestsMessages {
                 true
         );
         openUrlWithBaseAuth(testProjectUrl);
+
         rootLogger.info("Create thread");
         callModalNewConversation();
         submitNewConversationWindow(
-                null,
+                ADD_FOLLOWER,
                 "COPY_OF_MY_OWN_MESSAGE",
-                null,
+                COLLABORATOR_EMAIL,
                 null,
                 null,
                 false,
@@ -452,13 +453,25 @@ public class TestsMessages {
         expandTextEditorInTeamChat();
         postMessage(LOREM_IPSUM_SHORT);
 
-        rootLogger.info("Check invite email");
+//        rootLogger.info("Check Follower email");
+//        MessagesIMAP emailTask = new MessagesIMAP();
+//        Assert.assertTrue(
+//                emailTask.validateEmailMessage(
+//                        TEST_USER_EMAIL,
+//                        TEST_USER_EMAIL_PASSWORD,
+//                        "COPY_OF_MY_OWN_MESSAGE",
+//                        LOREM_IPSUM_SHORT,
+//                        new MessagesValidator.ValidationEmailMessage()
+//                )
+//        );
+
+        rootLogger.info("Check Creator email");
         MessagesIMAP emailTask = new MessagesIMAP();
         Assert.assertTrue(
                 emailTask.validateEmailMessage(
                         TEST_USER_EMAIL,
                         TEST_USER_EMAIL_PASSWORD,
-                        "COPY_OF_MY_OWN_MESSAGE",
+                        "EMAIL_TO_GUEST_MESSAGE",
                         LOREM_IPSUM_SHORT,
                         new MessagesValidator.ValidationEmailMessage()
                 )
@@ -468,6 +481,17 @@ public class TestsMessages {
     public void checkThatGuestFollowerGetEmail() throws IOException, MessagingException {
         userNameSurname = INVITER_NAME_SURNAME;
         followerEmail = FOLLOWER_EMAIL;
+        rootLogger.info("Set email settings");
+        openSettingsTabEmails();
+        selectReceiveEmailOptions(
+                true,
+                false,
+                false,
+                true,
+                true
+        );
+        openUrlWithBaseAuth(testProjectUrl);
+
         rootLogger.info("Create thread");
         callModalNewConversation();
         submitNewConversationWindow(
@@ -482,10 +506,22 @@ public class TestsMessages {
         expandTextEditorInTeamChat();
         postMessage(LOREM_IPSUM_SHORT);
 
-        rootLogger.info("Check invite email");
-        MessagesIMAP emailTask = new MessagesIMAP();
+        rootLogger.info("Check Creator email");
+        MessagesIMAP emailTask1 = new MessagesIMAP();
         Assert.assertTrue(
-                emailTask.validateEmailMessage(
+                emailTask1.validateEmailMessage(
+                        TEST_USER_EMAIL,
+                        TEST_USER_EMAIL_PASSWORD,
+                        "EMAIL_TO_GUEST_MESSAGE",
+                        LOREM_IPSUM_SHORT,
+                        new MessagesValidator.ValidationEmailMessage()
+                )
+        );
+
+        rootLogger.info("Check guest email");
+        MessagesIMAP emailTask2 = new MessagesIMAP();
+        Assert.assertTrue(
+                emailTask2.validateEmailMessage(
                         FOLLOWER_EMAIL,
                         FOLLOWER_EMAIL_PASSWORD,
                         "EMAIL_TO_GUEST_MESSAGE",
@@ -493,6 +529,7 @@ public class TestsMessages {
                         new MessagesValidator.ValidationEmailMessage()
                 )
         );
+
 //        final String MessageReplyLink = replyLink;
 //        openUrlWithBaseAuth(MessageReplyLink);
     }
