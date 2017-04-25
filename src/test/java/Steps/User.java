@@ -3,6 +3,7 @@ package Steps;
 import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -136,6 +137,7 @@ public class User {
         this.password = newPassword;
         return newPassword;
     }
+    @Ignore
     @Test
     public void testDebug()throws IOException {
         setEnvironment ();

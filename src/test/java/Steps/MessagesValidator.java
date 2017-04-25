@@ -391,14 +391,14 @@ public interface MessagesValidator extends StepsFactory {
         private String html = null;
         private String text = null;
         public static String userNameSurname = null;
-        public static String followerEmail = null;
+        public static String followerEmailOrTeamNameSurname = null;
         public static String replyLink = null;
         @Override
         public boolean validationEmail(String...strings) {
             this.html = strings[0];
             this.text = strings[1];
             this.userNameSurname = userNameSurname;
-            this.followerEmail = followerEmail;
+            this.followerEmailOrTeamNameSurname = followerEmailOrTeamNameSurname;
             Assert.assertTrue(html.contains(text));
 
             Document document = document(html);
@@ -408,7 +408,7 @@ public interface MessagesValidator extends StepsFactory {
                 e.printStackTrace();
             }
             String secureGroupText = getHtmlElementByTag(document, "p", 0);
-            Assert.assertEquals(secureGroupText, EMAIL_TEXT_SECURE_GROUP(userNameSurname, followerEmail));
+            Assert.assertEquals(secureGroupText, EMAIL_TEXT_SECURE_GROUP(userNameSurname, followerEmailOrTeamNameSurname));
             rootLogger.info("Email validation passed");
             return true;
         }

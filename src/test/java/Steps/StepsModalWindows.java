@@ -102,17 +102,17 @@ public class StepsModalWindows implements StepsFactory {
         if (newFollower!=null) {
             MW_CONVERSATION_INPUT_Follower.shouldBe(empty);
             fillField(MW_CONVERSATION_INPUT_Follower, newFollower);
-            if(selectFollowerAction ==ADD_FOLLOWER){
+            if(selectFollowerAction==ADD_FOLLOWER){
                 checkText(newFollower);
                 //Only 1-st button in list
                 MW_CONVERSATION_BTN_FOLLOWER_LIST.shouldHaveSize(1);
                 MW_CONVERSATION_BTN_ADD_FOLLOWER.shouldBe(visible).click();
             }
-            if(selectFollowerAction ==INVITE_FOLLOWER){
+            if(selectFollowerAction==INVITE_FOLLOWER){
                 MW_CONVERSATION_BTN_INVITE.shouldBe(visible).click();
                 checkText(newFollower);
             }
-            if(selectFollowerAction ==ADD_GUEST){
+            if(selectFollowerAction==ADD_GUEST){
                 MW_CONVERSATION_BTN_ADD_GUEST.shouldBe(visible).click();
                 checkText(newFollower);
             }

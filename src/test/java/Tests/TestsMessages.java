@@ -6,6 +6,7 @@ package Tests;
 import Steps.MessagesIMAP;
 import Steps.MessagesValidator;
 import Steps.StepsPekama;
+import Steps.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
@@ -23,8 +24,7 @@ import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
-import static Steps.MessagesValidator.ValidationEmailMessage.followerEmail;
-import static Steps.MessagesValidator.ValidationEmailMessage.replyLink;
+import static Steps.MessagesValidator.ValidationEmailMessage.followerEmailOrTeamNameSurname;
 import static Steps.MessagesValidator.ValidationEmailMessage.userNameSurname;
 import static Steps.MessagesValidator.ValidationInviteInProject.*;
 import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
@@ -54,8 +54,9 @@ public class TestsMessages {
     private static final String COLLABORATOR_NAME_SURNAME = User1.NAME_SURNAME.getValue();
     private static final String COLLABORATOR_EMAIL = User1.GMAIL_EMAIL.getValue();
     private static final String COLLABORATOR_EMAIL_PASSWORD = User1.GMAIL_PASSWORD.getValue();
-    private static final String FOLLOWER_EMAIL = User5.GMAIL_EMAIL.getValue();
-    private static final String FOLLOWER_EMAIL_PASSWORD = User5.GMAIL_PASSWORD.getValue();
+    private static final String COLLABORATOR_PEKAMA_PASSWORD = User1.PEKAMA_PASSWORD.getValue();
+    private static final String GUEST_EMAIL = User5.GMAIL_EMAIL.getValue();
+    private static final String GUEST_EMAIL_PASSWORD = User5.GMAIL_PASSWORD.getValue();
 
     private static String testProjectName = null;
     private static String testProjectUrl = null;
@@ -83,11 +84,11 @@ public class TestsMessages {
         //skipBefore = true;
         if (skipBefore==false) {
             clearBrowserCache();
-            StepsPekama loginIntoPekama = new StepsPekama();
-            loginIntoPekama.loginByURL(
+            User creator = new User();
+            creator.loginByURL(
                     TEST_USER_EMAIL,
                     TEST_USER_PEKAMA_PASSWORD,
-                    URL_LogIn);
+                    URL_PEKAMA_LOGIN);
             rootLogger.info("Create project");
             DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 15000).click();
             testProjectName = submitMwNewProject();
@@ -466,6 +467,7 @@ public class TestsMessages {
 //        );
 
         rootLogger.info("Check Creator email");
+        sleep(10000);
         MessagesIMAP emailTask = new MessagesIMAP();
         Assert.assertTrue(
                 emailTask.validateEmailMessage(
@@ -480,7 +482,7 @@ public class TestsMessages {
     @Test
     public void checkThatGuestFollowerGetEmail() throws IOException, MessagingException {
         userNameSurname = INVITER_NAME_SURNAME;
-        followerEmail = FOLLOWER_EMAIL;
+        followerEmailOrTeamNameSurname = GUEST_EMAIL;
         rootLogger.info("Set email settings");
         openSettingsTabEmails();
         selectReceiveEmailOptions(
@@ -497,7 +499,7 @@ public class TestsMessages {
         submitNewConversationWindow(
                 ADD_GUEST,
                 "EMAIL_TO_GUEST_MESSAGE",
-                FOLLOWER_EMAIL,
+                GUEST_EMAIL,
                 null,
                 null,
                 false,
@@ -507,6 +509,7 @@ public class TestsMessages {
         postMessage(LOREM_IPSUM_SHORT);
 
         rootLogger.info("Check Creator email");
+        sleep(10000);
         MessagesIMAP emailTask1 = new MessagesIMAP();
         Assert.assertTrue(
                 emailTask1.validateEmailMessage(
@@ -519,18 +522,73 @@ public class TestsMessages {
         );
 
         rootLogger.info("Check guest email");
+        sleep(10000);
         MessagesIMAP emailTask2 = new MessagesIMAP();
         Assert.assertTrue(
                 emailTask2.validateEmailMessage(
-                        FOLLOWER_EMAIL,
-                        FOLLOWER_EMAIL_PASSWORD,
+                        GUEST_EMAIL,
+                        GUEST_EMAIL_PASSWORD,
                         "EMAIL_TO_GUEST_MESSAGE",
                         LOREM_IPSUM_SHORT,
                         new MessagesValidator.ValidationEmailMessage()
                 )
         );
+    }
 
-//        final String MessageReplyLink = replyLink;
-//        openUrlWithBaseAuth(MessageReplyLink);
+    @Test
+    public void checkThatFollowerGetEmail() throws IOException, MessagingException {
+        userNameSurname = INVITER_NAME_SURNAME;
+        followerEmailOrTeamNameSurname = COLLABORATOR_NAME_SURNAME;
+
+        openUrlWithBaseAuth(URL_PEKAMA_LOGOUT);
+
+        rootLogger.info("Set FOLLOWER email settings");
+        User follower = new User();
+        follower.loginByURL(
+                COLLABORATOR_EMAIL,
+                COLLABORATOR_PEKAMA_PASSWORD,
+                URL_PEKAMA_LOGIN);
+        openSettingsTabEmails();
+        selectReceiveEmailOptions(
+                true,
+                false,
+                false,
+                true,
+                false
+        );
+        openUrlWithBaseAuth(URL_PEKAMA_LOGOUT);
+
+        rootLogger.info("Create thread");
+        User creator = new User();
+        creator.loginByURL(
+                TEST_USER_EMAIL,
+                TEST_USER_PEKAMA_PASSWORD,
+                URL_PEKAMA_LOGIN);
+        openUrlWithBaseAuth(testProjectUrl);
+        callModalNewConversation();
+        submitNewConversationWindow(
+                ADD_FOLLOWER,
+                "EMAIL_TO_FOLLOWER_MESSAGE",
+                COLLABORATOR_EMAIL,
+                null,
+                null,
+                false,
+                true
+        );
+        expandTextEditorInTeamChat();
+        postMessage(LOREM_IPSUM_SHORT);
+
+        rootLogger.info("Check follower-collaborator email");
+        sleep(10000);
+        MessagesIMAP emailTask2 = new MessagesIMAP();
+        Assert.assertTrue(
+                emailTask2.validateEmailMessage(
+                        COLLABORATOR_EMAIL,
+                        COLLABORATOR_EMAIL_PASSWORD,
+                        "EMAIL_TO_FOLLOWER_MESSAGE",
+                        LOREM_IPSUM_SHORT,
+                        new MessagesValidator.ValidationEmailMessage()
+                )
+        );
     }
 }
