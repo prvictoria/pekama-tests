@@ -3,6 +3,7 @@ import Steps.StepsHttpAuth;
 import com.codeborne.selenide.Condition;
 import org.junit.*;
 import org.junit.rules.Timeout;
+import org.junit.runners.MethodSorters;
 
 import java.io.IOException;
 
@@ -21,6 +22,7 @@ import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaLanding {
     @Rule
     public Timeout tests = Timeout.seconds(400);

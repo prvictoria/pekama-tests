@@ -866,39 +866,38 @@ public class MessagesIMAP {
    @Test
     public void clearAllEmails() throws MessagingException, IOException {
         MessagesIMAP emailTask = new MessagesIMAP();
-        Assert.assertTrue(
-                emailTask.validateEmailMessage(
-                        User2.GMAIL_EMAIL.getValue(),
-                        User2.GMAIL_PASSWORD.getValue(),
-                        keyword,
-                        text,
-                        new MessagesValidator.ValidationEmailMessage()
-                )
-
-        );
-
+//        Assert.assertTrue(
+//                emailTask.validateEmailMessage(
+//                        User2.GMAIL_EMAIL.getValue(),
+//                        User2.GMAIL_PASSWORD.getValue(),
+//                        keyword,
+//                        text,
+//                        new MessagesValidator.ValidationEmailMessage()
+//                )
+//
+//        );
 //        emailTask.getEmail(
 //               User2.GMAIL_EMAIL.getValue(),
 //               User2.GMAIL_PASSWORD.getValue(),
 //                keyword);
-//        emailTask.imapSearchEmailDeleteAll(
-//                User1.GMAIL_EMAIL.getValue(),
-//                User1.GMAIL_PASSWORD.getValue());
-//        emailTask.imapSearchEmailDeleteAll(
-//                User2.GMAIL_EMAIL.getValue(),
-//                User2.GMAIL_PASSWORD.getValue());
-//        emailTask.imapSearchEmailDeleteAll(
-//                User3.GMAIL_EMAIL.getValue(),
-//                User3.GMAIL_PASSWORD.getValue());
-//        emailTask.imapSearchEmailDeleteAll(
-//                User4.GMAIL_EMAIL.getValue(),
-//                User4.GMAIL_PASSWORD.getValue());
-//        emailTask.imapSearchEmailDeleteAll(
-//                User5.GMAIL_EMAIL.getValue(),
-//                User5.GMAIL_PASSWORD.getValue());
-//        emailTask.imapSearchEmailDeleteAll(
-//                User6.GMAIL_EMAIL.getValue(),
-//                User6.GMAIL_PASSWORD.getValue());
+        emailTask.imapSearchEmailDeleteAll(
+                User1.GMAIL_EMAIL.getValue(),
+                User1.GMAIL_PASSWORD.getValue());
+        emailTask.imapSearchEmailDeleteAll(
+                User2.GMAIL_EMAIL.getValue(),
+                User2.GMAIL_PASSWORD.getValue());
+        emailTask.imapSearchEmailDeleteAll(
+                User3.GMAIL_EMAIL.getValue(),
+                User3.GMAIL_PASSWORD.getValue());
+        emailTask.imapSearchEmailDeleteAll(
+                User4.GMAIL_EMAIL.getValue(),
+                User4.GMAIL_PASSWORD.getValue());
+        emailTask.imapSearchEmailDeleteAll(
+                User5.GMAIL_EMAIL.getValue(),
+                User5.GMAIL_PASSWORD.getValue());
+        emailTask.imapSearchEmailDeleteAll(
+                User6.GMAIL_EMAIL.getValue(),
+                User6.GMAIL_PASSWORD.getValue());
     }
 }
 

@@ -13,10 +13,8 @@ import static Page.PekamaResetPassword.*;
 import static Page.PekamaSignUp.*;
 import static Page.PekamaSignUp.signupNext;
 import static Page.PekamaSignUp.signupPassword;
-import static Page.TestsCredentials.GENERIC_PEKAMA_PASSWORD;
 import static Page.TestsCredentials.VALID_PASSWORD;
 import static Page.UrlConfig.setEnvironment;
-import static Page.UrlStrings.URL_Dashboard;
 import static Page.UrlStrings.URL_SingUp;
 import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static Steps.StepsPekama.*;
@@ -66,7 +64,7 @@ public class User {
         submitEnabledButton(loginButton_Login);
         sleep(5000);
     }
-    public boolean submitSignUp(String email, String surname, String name, String company, String password){
+    public boolean submitSignUp(String email, String surname, String name, String company, String password, String businessTypeValue, String yourRoleValue){
         this.email = email;
         this.password = password;
         this.name = name;
@@ -86,6 +84,12 @@ public class User {
         }
         if(password!=null) {
             signupPassword.waitUntil(visible, 20000).sendKeys(password);
+        }
+        if(businessTypeValue !=null){
+            signupSelectBusinessType.selectOptionByValue(businessTypeValue);
+        }
+        if(yourRoleValue!=null){
+            signupSelectYourRole.selectOptionByValue(yourRoleValue);
         }
         signupNext.waitUntil(visible, 20000).shouldNot(disabled).click();
         sleep(3000);
@@ -151,7 +155,9 @@ public class User {
                 "Aa@2132312",
                 "21312321",
                 "asd",
-                "sasasa");
+                "sasasa",
+                "1",
+                "1");
         rootLogger.info(user1.company);
         rootLogger.info(user1.isSignUpSucceed);
     }

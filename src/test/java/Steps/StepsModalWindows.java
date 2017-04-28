@@ -687,20 +687,4 @@ public class StepsModalWindows implements StepsFactory {
         return true;
     }
 
-    @Test
-    public void testDebug()throws IOException {
-        setEnvironment ();
-        setBrowser();
-        holdBrowserAfterTest(true);
-        String AUTH_URL = URL_SingUp;
-        openUrlWithBaseAuth(AUTH_URL);
-        User user1 = new User();
-        user1.submitSignUp(
-                "123@mail.com",
-                "Aa@2132312",
-                "21312321",
-                "asd",
-                "sasasa");
-        rootLogger.info(user1.company);
-    }
 }
