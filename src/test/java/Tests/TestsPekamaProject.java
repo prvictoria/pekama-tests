@@ -1475,7 +1475,7 @@ public class TestsPekamaProject {
         PROJECT_TAB_CONTACTS.shouldBe(visible).click();
         checkText(OWNER);
         checkText(REQUESTER_FULL_TEAM_NAME);
-        checkText(ADMIN, 2);
+        checkText(ADMIN, 1);
         checkText(INTRODUCER_NAME);
         checkText(EXPERT_FULL_TEAM_NAME);
         rootLogger.info("Test passed");

@@ -310,7 +310,7 @@ public class StepsExternal implements StepsFactory{
         switchTo().window("Sign in - Google Accounts");
         sleep(5000);
         rootLogger.info("Type email");
-        GMAIL_LOGIN_FIELD.shouldBe(visible).sendKeys(GMAIL_LOGIN);
+        GMAIL_LOGIN_FIELD.waitUntil(visible, 15000).sendKeys(GMAIL_LOGIN);
         rootLogger.info("Submit email");
         GMAIL_NEXT_BTN.shouldBe(visible).click();
         rootLogger.info("Type password");

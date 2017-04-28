@@ -195,8 +195,8 @@ public class TestsPekamaSettingsTeam {
         fillField(TAB_PROFILE_TITLE, longString);
         $(byText("Code:")).shouldBe(visible);
         fillField(TAB_PROFILE_CODE, longString);
-        $(byText("Organization type:")).shouldBe(visible);
-        $(byText("This organization is:")).shouldBe(visible);
+        $(byText("Business type:")).shouldBe(visible);
+        $(byText("Your role:")).shouldBe(visible);
         $(byText("Email:")).shouldBe(visible);
         fillField(TAB_PROFILE_EMAIL, longString);
         $(byText("@organizations.pekama.com")).shouldBe(visible);
