@@ -1217,6 +1217,10 @@ public class StepsPekama implements StepsFactory{
         CONVERSATION_FOLLOWERS_INPUT.shouldHave(value(""));
         return true;
     }
+    public static boolean checkTreadTitle(String threadTitle){
+        CONVERSATION_TITLE.shouldHave(text(threadTitle));
+        return true;
+    }
     public static String editTreadTitle(String oldThreadTitle, String newThreadName){
         rootLogger.info("Edit thread title");
         CONVERSATION_EDIT_TITLE.click();

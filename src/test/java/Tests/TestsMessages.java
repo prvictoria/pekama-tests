@@ -40,9 +40,9 @@ import static com.codeborne.selenide.WebDriverRunner.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsMessages {
     static final Logger rootLogger = LogManager.getRootLogger();
-    private static final String TEST_USER_EMAIL = User3.GMAIL_EMAIL.getValue();
-    private static final String TEST_USER_EMAIL_PASSWORD = User3.GMAIL_PASSWORD.getValue();
-    private static final String TEST_USER_PEKAMA_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
+    private static final String INVITER_EMAIL = User3.GMAIL_EMAIL.getValue();
+    private static final String INVITER_EMAIL_PASSWORD = User3.GMAIL_PASSWORD.getValue();
+    private static final String INVITER_PEKAMA_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
     private static final String INVITER_NAME_FULL_TEAM_NAME = User3.FULL_TEAM_NAME.getValue();
     private static final String INVITER_TEAM_NAME = User3.TEAM_NAME.getValue();
     private static final String INVITER_NAME_SURNAME = User3.NAME_SURNAME.getValue();
@@ -60,6 +60,7 @@ public class TestsMessages {
 
     private static String testProjectName = null;
     private static String testProjectUrl = null;
+    private static String repryLink = null;
     private static boolean skipBefore = false;
     @Rule
     public Timeout tests = Timeout.seconds(600);
@@ -68,10 +69,11 @@ public class TestsMessages {
         setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
+
         MessagesIMAP emailTask = new MessagesIMAP();
         emailTask.imapSearchEmailDeleteAll(
-                TEST_USER_EMAIL,
-                TEST_USER_EMAIL_PASSWORD);
+                INVITER_EMAIL,
+                INVITER_EMAIL_PASSWORD);
         emailTask.imapSearchEmailDeleteAll(
                 INVITED_EMAIL,
                 INVITED_EMAIL_PASSWORD);
@@ -86,8 +88,8 @@ public class TestsMessages {
             clearBrowserCache();
             User creator = new User();
             creator.loginByURL(
-                    TEST_USER_EMAIL,
-                    TEST_USER_PEKAMA_PASSWORD,
+                    INVITER_EMAIL,
+                    INVITER_PEKAMA_PASSWORD,
                     URL_PEKAMA_LOGIN);
             rootLogger.info("Create project");
             DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 15000).click();
@@ -275,6 +277,7 @@ public class TestsMessages {
         validateFollowerTeamChat(COLLABORATOR_NAME_SURNAME, 2, 1);
     }
     //TODO Why ?
+    @Ignore
     @Test
     public void inviteInTeamChatPekamaMemberAsGuest_Dismiss(){
         skipBefore = false;
@@ -293,6 +296,7 @@ public class TestsMessages {
         validateFollowerTeamChat(newFollower, 2, 1);
         inviteGuestInTeam(false, newFollower);
     }
+    @Ignore
     @Test @Category({AllEmailsTests.class})
     public void inviteInTeamChatPekamaMemberAsGuestRegisteredUser_Invite(){
         skipBefore = true;
@@ -317,6 +321,7 @@ public class TestsMessages {
         }
         return;
     }
+    @Ignore
     @Test @Category({AllEmailsTests.class, AllImapTests.class})
     public void inviteInTeamChatPekamaMemberAsGuestRegisteredUser_ValidationEmail(){
         skipBefore = false;
@@ -334,6 +339,7 @@ public class TestsMessages {
         rootLogger.info("Link invite to Team is: "+ValidationInviteInTeamUnregistered.teamBackLink);
         return;
     }
+    @Ignore
     @Test @Category({AllEmailsTests.class})
     public void inviteInTeamChatPekamaMemberAsGuestNewUser_Invite(){
         skipBefore = true;
@@ -358,6 +364,7 @@ public class TestsMessages {
         }
         return;
     }
+    @Ignore
     @Test @Category({AllEmailsTests.class, AllImapTests.class})
     public void inviteInTeamChatPekamaMemberAsGuestNewUser_ValidationEmail(){
         skipBefore = false;
@@ -426,9 +433,9 @@ public class TestsMessages {
         rootLogger.info("Test passed");
         return;
     }
-//    @Ignore
-    @Test
-    public void checkThatUserGetCopyOwnMessages() throws IOException, MessagingException {
+
+    @Test @Category({AllEmailsTests.class, AllImapTests.class})
+    public void checkThatUserGetCopyOwnMessages_A_PostMessage() throws IOException, MessagingException {
         rootLogger.info("Set email settings");
         openSettingsTabEmails();
         selectReceiveEmailOptions(
@@ -453,34 +460,55 @@ public class TestsMessages {
         );
         expandTextEditorInTeamChat();
         postMessage(LOREM_IPSUM_SHORT);
-
-//        rootLogger.info("Check Follower email");
-//        MessagesIMAP emailTask = new MessagesIMAP();
-//        Assert.assertTrue(
-//                emailTask.validateEmailMessage(
-//                        TEST_USER_EMAIL,
-//                        TEST_USER_EMAIL_PASSWORD,
-//                        "COPY_OF_MY_OWN_MESSAGE",
-//                        LOREM_IPSUM_SHORT,
-//                        new MessagesValidator.ValidationEmailMessage()
-//                )
-//        );
-
+    }
+    @Test @Category({AllImapTests.class})
+    public void checkThatUserGetCopyOwnMessages_B_CheckEmail() throws IOException, MessagingException {
         rootLogger.info("Check Creator email");
         sleep(10000);
         MessagesIMAP emailTask = new MessagesIMAP();
         Assert.assertTrue(
                 emailTask.validateEmailMessage(
-                        TEST_USER_EMAIL,
-                        TEST_USER_EMAIL_PASSWORD,
-                        "EMAIL_TO_GUEST_MESSAGE",
+                        INVITER_EMAIL,
+                        INVITER_EMAIL_PASSWORD,
+                        "COPY_OF_MY_OWN_MESSAGE",
                         LOREM_IPSUM_SHORT,
+                        INVITER_NAME_SURNAME,
+                        COLLABORATOR_NAME_SURNAME,
                         new MessagesValidator.ValidationEmailMessage()
                 )
         );
+        repryLink = ValidationEmailMessage.replyLink;
     }
-    @Test
-    public void checkThatGuestFollowerGetEmail() throws IOException, MessagingException {
+    @Test @Category({AllImapTests.class})
+    public void checkThatUserGetCopyOwnMessages_C_CheckRedirectReplyLinkFollower() throws IOException, MessagingException {
+      //  repryLink = "https://u1528369.ct.sendgrid.net/wf/click?upn=nlPIBkCFx3ihDwn5X-2FQH25GimnAenIWRK2CNbjwb1wz4MhLyrPlDXqARqX-2FoYxFNbrjSdkTycqH9IUseFSWnM-2F3L2QDDFm6XOpyOMUSqms0-3D_FhKIrNJz0J-2FLui-2BhorTXHazj59U-2BmXqSH3Q93OorhOgeYov1Ufk9vFFXG5Ntep8eoNf46zw8iVivjaYI07Za3OlTl3RkPuH16WaCuXZo-2FdTBRfJTZhKbG8zpyau5YKjB3L3x1mhTWFfaA05p1O7I8EaImFM6KER0npwusk-2FxVocP3SA3-2FbPdMBYnC7pACNNzlLXAQPDcxyBkV1Akw6IOB8DFbnm2tqEGbncvHn53U0EBKnYal25sNsT92EF8Dc68PQ2SvDGda-2FvBdR5UBu81pVgjqAVqOHxI26M0AiFGmwqgKkDIiCJWOX5KCYmZfR-2FO";
+        Assert.assertNotNull(repryLink);
+        User follower = new User();
+        follower.loginByURL(
+                COLLABORATOR_EMAIL,
+                COLLABORATOR_PEKAMA_PASSWORD,
+                URL_PEKAMA_LOGIN);
+        openUrlWithBaseAuth(repryLink);
+        checkTreadTitle("COPY_OF_MY_OWN_MESSAGE");
+        rootLogger.info("Test Passed");
+
+    }
+    @Test @Category({AllImapTests.class})
+    public void checkThatUserGetCopyOwnMessages_D_CheckRedirectReplyLinkCreator() throws IOException, MessagingException {
+        //repryLink = "https://u1528369.ct.sendgrid.net/wf/click?upn=nlPIBkCFx3ihDwn5X-2FQH25GimnAenIWRK2CNbjwb1wz4MhLyrPlDXqARqX-2FoYxFNbrjSdkTycqH9IUseFSWnM-2F3L2QDDFm6XOpyOMUSqms0-3D_FhKIrNJz0J-2FLui-2BhorTXHazj59U-2BmXqSH3Q93OorhOgeYov1Ufk9vFFXG5Ntep8eoNf46zw8iVivjaYI07Za3OlTl3RkPuH16WaCuXZo-2FdTBRfJTZhKbG8zpyau5YKjB3L3x1mhTWFfaA05p1O7I8EaImFM6KER0npwusk-2FxVocP3SA3-2FbPdMBYnC7pACNNzlLXAQPDcxyBkV1Akw6IOB8DFbnm2tqEGbncvHn53U0EBKnYal25sNsT92EF8Dc68PQ2SvDGda-2FvBdR5UBu81pVgjqAVqOHxI26M0AiFGmwqgKkDIiCJWOX5KCYmZfR-2FO";
+        Assert.assertNotNull(repryLink);
+        User creator = new User();
+        creator.loginByURL(
+                INVITER_EMAIL,
+                INVITER_PEKAMA_PASSWORD,
+                URL_PEKAMA_LOGIN);
+        openUrlWithBaseAuth(repryLink);
+        checkText("You followed a link meant for one of your other accounts. Please sign in with that account to proceed.");
+        rootLogger.info("Test Passed");
+
+    }
+    @Test @Category({AllEmailsTests.class, AllImapTests.class})
+    public void checkThatGuestFollowerGetEmail_A_PostMessage() throws IOException, MessagingException {
         userNameSurname = INVITER_NAME_SURNAME;
         followerEmailOrTeamNameSurname = GUEST_EMAIL;
         rootLogger.info("Set email settings");
@@ -513,10 +541,12 @@ public class TestsMessages {
         MessagesIMAP emailTask1 = new MessagesIMAP();
         Assert.assertTrue(
                 emailTask1.validateEmailMessage(
-                        TEST_USER_EMAIL,
-                        TEST_USER_EMAIL_PASSWORD,
+                        INVITER_EMAIL,
+                        INVITER_EMAIL_PASSWORD,
                         "EMAIL_TO_GUEST_MESSAGE",
                         LOREM_IPSUM_SHORT,
+                        INVITER_NAME_SURNAME,
+                        GUEST_EMAIL,
                         new MessagesValidator.ValidationEmailMessage()
                 )
         );
@@ -530,12 +560,14 @@ public class TestsMessages {
                         GUEST_EMAIL_PASSWORD,
                         "EMAIL_TO_GUEST_MESSAGE",
                         LOREM_IPSUM_SHORT,
+                        INVITER_NAME_SURNAME,
+                        GUEST_EMAIL,
                         new MessagesValidator.ValidationEmailMessage()
                 )
         );
     }
 
-    @Test
+    @Test @Category({AllEmailsTests.class, AllImapTests.class})
     public void checkThatFollowerGetEmail() throws IOException, MessagingException {
         userNameSurname = INVITER_NAME_SURNAME;
         followerEmailOrTeamNameSurname = COLLABORATOR_NAME_SURNAME;
@@ -561,8 +593,8 @@ public class TestsMessages {
         rootLogger.info("Create thread");
         User creator = new User();
         creator.loginByURL(
-                TEST_USER_EMAIL,
-                TEST_USER_PEKAMA_PASSWORD,
+                INVITER_EMAIL,
+                INVITER_PEKAMA_PASSWORD,
                 URL_PEKAMA_LOGIN);
         openUrlWithBaseAuth(testProjectUrl);
         callModalNewConversation();
@@ -587,6 +619,8 @@ public class TestsMessages {
                         COLLABORATOR_EMAIL_PASSWORD,
                         "EMAIL_TO_FOLLOWER_MESSAGE",
                         LOREM_IPSUM_SHORT,
+                        INVITER_NAME_SURNAME,
+                        COLLABORATOR_NAME_SURNAME,
                         new MessagesValidator.ValidationEmailMessage()
                 )
         );

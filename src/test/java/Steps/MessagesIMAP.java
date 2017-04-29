@@ -21,6 +21,7 @@ import static Page.TestsCredentials.*;
 import static Steps.Messages.*;
 import static Steps.Messages.EMAIL_SUBJECT_YOU_INVITED_IN_COMMUNITY;
 import static Steps.MessagesValidator.*;
+import static Steps.MessagesValidator.ValidationEmailMessage.followerEmailOrTeamNameSurname;
 import static Steps.MessagesValidator.ValidationEmailMessage.replyLink;
 import static Steps.MessagesValidator.ValidationInviteInProject.projectBackLink;
 import static Utils.Utils.formatDateToString;
@@ -811,7 +812,9 @@ public class MessagesIMAP {
         Assert.assertTrue(validationResult==true);
         return true;
     }
-    public boolean validateEmailMessage(String email, String password, String keyword, String text, MessagesValidator validator) throws IOException, MessagingException {
+    public boolean validateEmailMessage(String email, String password, String keyword, String text, String userNameSurname, String followerEmailOrTeamNameSurname, MessagesValidator validator) throws IOException, MessagingException {
+        ValidationEmailMessage.userNameSurname = userNameSurname;
+        ValidationEmailMessage.followerEmailOrTeamNameSurname = followerEmailOrTeamNameSurname;
         String html;
         Boolean result;
         MessagesIMAP emailTask = new MessagesIMAP();
@@ -822,7 +825,7 @@ public class MessagesIMAP {
         Assert.assertNotNull(message);
         html = parseHtml(message);
         result = validator.validationEmail(html, text);
-//        replyLink = validator.validateLink(html, 0);
+        replyLink = validator.validateLink(html, 0);
         emailTask.imapSearchEmailDeleteAll(email, password);
         if (result==true){
         return true;

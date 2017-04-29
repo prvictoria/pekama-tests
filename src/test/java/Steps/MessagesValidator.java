@@ -415,13 +415,19 @@ public interface MessagesValidator extends StepsFactory {
 
         @Override
         public String validateLink(String html, Integer index) {
-            if (html!=null) {
-                this.html = html;
-                Elements links = parseHtmlHrefArray(html);
-                this.replyLink = getLink(links, index);
-                rootLogger.info(replyLink);
+            try {
+                if (html != null) {
+                    this.html = html;
+                    Elements links = parseHtmlHrefArray(html);
+                    this.replyLink = getLink(links, index);
+                    rootLogger.info(replyLink);
+                }
+                return replyLink;
             }
-            return replyLink;
+            catch (IndexOutOfBoundsException e){
+
+            }
+            return null;
         }
     }
 }

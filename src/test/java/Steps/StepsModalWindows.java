@@ -666,14 +666,15 @@ public class StepsModalWindows implements StepsFactory {
         waitForModalWindow(TITLE_MW_EVENT);
         MW_BTN_SAVE.shouldBe(disabled);
         rootLogger.info("Set date today");
-        MW_INPUT_DATE.click();
-        sleep(500);
-        MW.click();
         fillField(MW_EVENT_INPUT_INFO, LOREM_IPSUM_SHORT);
         selectItemInDropdown(
                 MW_EVENT_SELECT_TYPE,
                 MW_EVENT_INPUT_TYPE,
                 eventType);
+        setDueDateFromToday(0);
+//        MW_INPUT_DATE.click();
+//        sleep(500);
+//        MW.click();
         submitEnabledButton(MW_BTN_SAVE);
         MW.waitUntil(not(visible), 15000);
         return eventType;

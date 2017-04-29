@@ -432,6 +432,9 @@ public class TestsPekamaTemplates {
         String setName = null;
         String textMsg = LOREM_IPSUM_SHORT;
         openPageWithSpinner(URL_TEMPLATES_MSG_PATENT);
+        rootLogger.info("Clear all templates before test");
+        deleteTemplate();
+
         rootLogger.info("Check if user able to create set with custom DEFINING");
         setName = "MESSAGE_T_DEFINIG_";
         createMessageTemplateSet(

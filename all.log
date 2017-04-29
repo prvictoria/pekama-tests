@@ -1,0 +1,98 @@
+2017-04-29 20:27:35.509 [main] INFO   - Tests will executed on Staging server
+2017-04-29 20:27:35.513 [main] INFO   - Windows Local driver path is selected
+2017-04-29 20:27:35.513 [main] INFO   - Tests will performed in Firefox
+2017-04-29 20:27:35.530 [main] INFO   - Connects to the message store. Loop #: 1
+2017-04-29 20:27:37.680 [main] INFO   - Connect store present
+2017-04-29 20:27:37.681 [main] INFO   - Opens the inbox folder
+2017-04-29 20:27:37.956 [main] INFO   - performs search through the folderINBOX
+2017-04-29 20:27:38.150 [main] INFO   - performs search through the folderINBOX
+2017-04-29 20:27:38.332 [main] INFO   - Remove emails marked for deletion
+2017-04-29 20:27:38.515 [main] INFO   - Disconnect
+2017-04-29 20:27:38.697 [main] INFO   - Connects to the message store. Loop #: 1
+2017-04-29 20:27:59.709 [main] INFO   - Connects to the message store. Loop #: 2
+2017-04-29 20:28:20.720 [main] INFO   - Connects to the message store. Loop #: 3
+2017-04-29 20:28:21.820 [main] INFO   - Connect store present
+2017-04-29 20:28:21.821 [main] INFO   - Opens the inbox folder
+2017-04-29 20:28:22.018 [main] INFO   - performs search through the folderINBOX
+2017-04-29 20:28:22.211 [main] INFO   - performs search through the folderINBOX
+2017-04-29 20:28:23.073 [main] INFO   - Remove emails marked for deletion
+2017-04-29 20:28:23.258 [main] INFO   - Disconnect
+2017-04-29 20:28:23.443 [main] INFO   - Connects to the message store. Loop #: 1
+2017-04-29 20:28:25.113 [main] INFO   - Connect store present
+2017-04-29 20:28:25.113 [main] INFO   - Opens the inbox folder
+2017-04-29 20:28:25.306 [main] INFO   - performs search through the folderINBOX
+2017-04-29 20:28:25.485 [main] INFO   - performs search through the folderINBOX
+2017-04-29 20:28:26.132 [main] INFO   - Remove emails marked for deletion
+2017-04-29 20:28:26.300 [main] INFO   - Disconnect
+2017-04-29 20:28:33.196 [Time-limited test] INFO   - https://staging.pekama.com/accounts/login/ URL opened
+2017-04-29 20:28:33.208 [Time-limited test] INFO   - Check if cookie present
+2017-04-29 20:28:34.354 [Time-limited test] INFO   - cookie were submitted
+2017-04-29 20:28:34.360 [Time-limited test] INFO   - Zopim collapsed
+2017-04-29 20:28:34.389 [Time-limited test] INFO   - Input data
+2017-04-29 20:28:35.016 [Time-limited test] INFO   - This data was entered - testqweeco003@gmail.com
+2017-04-29 20:28:35.016 [Time-limited test] INFO   - testqweeco003@gmail.com - login selected
+2017-04-29 20:28:35.165 [Time-limited test] INFO   - Input data
+2017-04-29 20:28:35.759 [Time-limited test] INFO   - This data was entered - asui67we34
+2017-04-29 20:28:35.759 [Time-limited test] INFO   - Check if cookie present
+2017-04-29 20:28:36.814 [Time-limited test] INFO   - Zopim collapsed
+2017-04-29 20:28:42.428 [Time-limited test] INFO   - Create project
+2017-04-29 20:28:42.544 [Time-limited test] INFO   - Wait for 'New Project' modal window
+2017-04-29 20:28:43.178 [Time-limited test] INFO   - modal window 'New Project' was opened
+2017-04-29 20:28:43.178 [Time-limited test] INFO   - Select project type, actual: Trademark
+2017-04-29 20:28:43.178 [Time-limited test] INFO   - select - Trademark
+2017-04-29 20:28:43.310 [Time-limited test] INFO   - Input data
+2017-04-29 20:28:43.955 [Time-limited test] INFO   - This data was entered - Trademark
+2017-04-29 20:28:44.074 [Time-limited test] INFO   - selected - Trademark
+2017-04-29 20:28:44.074 [Time-limited test] INFO   - Select defining, actual: Pitcairn Islands
+2017-04-29 20:28:44.075 [Time-limited test] INFO   - select - Pitcairn Islands
+2017-04-29 20:28:44.219 [Time-limited test] INFO   - Input data
+2017-04-29 20:28:44.860 [Time-limited test] INFO   - This data was entered - Pitcairn Islands
+2017-04-29 20:28:45.046 [Time-limited test] INFO   - selected - Pitcairn Islands
+2017-04-29 20:28:45.046 [Time-limited test] INFO   - Fill title
+2017-04-29 20:28:45.076 [Time-limited test] INFO   - Input data
+2017-04-29 20:28:45.730 [Time-limited test] INFO   - This data was entered - DEFAULT_PROJECT_TFA1JBQNXB
+2017-04-29 20:28:48.146 [Time-limited test] INFO   - Created project: DEFAULT_PROJECT_TFA1JBQNXB
+2017-04-29 20:28:49.660 [Time-limited test] INFO   - opened URL is - https://staging.pekama.com/a/projects/31522/info
+2017-04-29 20:28:49.663 [Time-limited test] INFO   - Set email settings
+2017-04-29 20:28:51.496 [Time-limited test] INFO   - https://staging.pekama.com/a/settings/profile URL opened
+2017-04-29 20:28:51.566 [Time-limited test] INFO   - Select receive get emails Always radio
+2017-04-29 20:28:51.608 [Time-limited test] INFO   - Set get Attachment checkbox
+2017-04-29 20:28:51.645 [Time-limited test] INFO   - Set get copy own messages as emails checkbox
+2017-04-29 20:28:54.095 [Time-limited test] INFO   - https://staging.pekama.com/a/projects/31522/info URL opened
+2017-04-29 20:28:54.095 [Time-limited test] INFO   - Create thread
+2017-04-29 20:28:54.095 [Time-limited test] INFO   - Create new thread in Talk to your Team tab
+2017-04-29 20:28:54.555 [Time-limited test] INFO   - Create team chat thread
+2017-04-29 20:28:54.555 [Time-limited test] INFO   - Wait for 'New Conversation' modal window
+2017-04-29 20:28:55.174 [Time-limited test] INFO   - modal window 'New Conversation' was opened
+2017-04-29 20:28:55.213 [Time-limited test] INFO   - Input data
+2017-04-29 20:28:55.906 [Time-limited test] INFO   - This data was entered - EMAIL_TO_GUEST_MESSAGE
+2017-04-29 20:28:56.018 [Time-limited test] INFO   - Input data
+2017-04-29 20:28:56.737 [Time-limited test] INFO   - This data was entered - testqweeco005@gmail.com
+2017-04-29 20:29:02.011 [Time-limited test] INFO   - Post message
+2017-04-29 20:29:02.452 [Time-limited test] INFO   - Next text was entered: Lorem ipsum dolor sit amet
+2017-04-29 20:29:03.925 [Time-limited test] INFO   - Check Creator email
+2017-04-29 20:29:13.926 [Time-limited test] INFO   - Connects to the message store. Loop #: 1
+2017-04-29 20:29:15.192 [Time-limited test] INFO   - Connect store present
+2017-04-29 20:29:15.193 [Time-limited test] INFO   - Opens the inbox folder
+2017-04-29 20:29:15.847 [Time-limited test] INFO   - Email detected
+2017-04-29 20:29:16.250 [Time-limited test] INFO   - Email validation passed
+2017-04-29 20:29:16.251 [Time-limited test] INFO   - Connects to the message store. Loop #: 1
+2017-04-29 20:29:18.271 [Time-limited test] INFO   - Connect store present
+2017-04-29 20:29:18.271 [Time-limited test] INFO   - Opens the inbox folder
+2017-04-29 20:29:18.474 [Time-limited test] INFO   - performs search through the folderINBOX
+2017-04-29 20:29:19.230 [Time-limited test] INFO   - performs search through the folderINBOX
+2017-04-29 20:29:19.434 [Time-limited test] INFO   - Remove emails marked for deletion
+2017-04-29 20:29:19.645 [Time-limited test] INFO   - Disconnect
+2017-04-29 20:29:19.844 [Time-limited test] INFO   - Check guest email
+2017-04-29 20:29:29.845 [Time-limited test] INFO   - Connects to the message store. Loop #: 1
+2017-04-29 20:29:31.804 [Time-limited test] INFO   - Connect store present
+2017-04-29 20:29:31.805 [Time-limited test] INFO   - Opens the inbox folder
+2017-04-29 20:29:32.390 [Time-limited test] INFO   - Email detected
+2017-04-29 20:29:32.747 [Time-limited test] INFO   - Email validation passed
+2017-04-29 20:29:32.751 [Time-limited test] INFO   - Connects to the message store. Loop #: 1
+2017-04-29 20:29:34.543 [Time-limited test] INFO   - Connect store present
+2017-04-29 20:29:34.543 [Time-limited test] INFO   - Opens the inbox folder
+2017-04-29 20:29:34.734 [Time-limited test] INFO   - performs search through the folderINBOX
+2017-04-29 20:29:35.451 [Time-limited test] INFO   - performs search through the folderINBOX
+2017-04-29 20:29:35.645 [Time-limited test] INFO   - Remove emails marked for deletion
+2017-04-29 20:29:35.836 [Time-limited test] INFO   - Disconnect

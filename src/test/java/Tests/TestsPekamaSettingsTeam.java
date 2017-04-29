@@ -162,8 +162,8 @@ public class TestsPekamaSettingsTeam {
 
      @Test
     public void values_testA_GUI() {
-        rootLogger.info("Start test GUI and links");
-        SETTINGS_TEAM_TAB_VALUES.waitUntil(visible, 20000).click();
+         rootLogger.info("Start test GUI and links");
+         SETTINGS_TEAM_TAB_VALUES.waitUntil(visible, 20000).click();
          SETTINGS_VALUES_TAB_TRADEMARK.shouldHave(text("Trademark")).shouldBe(visible);
          sleep(2000);
          $(byXpath("//*[@href='/a/settings/team/values/patents']")).shouldHave(text("Patent")).shouldBe(visible);

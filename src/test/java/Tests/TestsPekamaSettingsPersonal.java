@@ -579,7 +579,7 @@ public class TestsPekamaSettingsPersonal {
         sleep(500);
         IMAP_TAB_BTN_DELETE.shouldNotBe(visible);
     }
-
+    @Ignore //TODO sim auth - blocked this test!
     @Test
     public void tabIMAP_B_GoggleAuthConnect() {
         openSettingsTabIMAP();
