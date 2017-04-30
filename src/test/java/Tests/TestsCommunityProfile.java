@@ -84,6 +84,8 @@ public class TestsCommunityProfile {
         log.info("Check redirect to wizard");
         PROFILE_BTN_BOOST_YOUR_SCORE.click();
         submitMwBoostProfile("start");
+        log.info("Check default selection is: "+MATTER_TYPE_PATENT);
+        log.info("Check default selection is: "+Countries.ALL.getValue());
         checkWizard1StepSelection(
                 MATTER_TYPE_PATENT,
                 Countries.ALL.getValue(),
@@ -130,8 +132,9 @@ public class TestsCommunityProfile {
         PROFILE_MEMBERS_COUNT.shouldBe(visible);
         sleep(3000);
         String actualMemberQty = PROFILE_MEMBERS_COUNT.getText();
-        String defaultMemberQty = "1 Members";
+        String defaultMemberQty = "1 Member";
         if (defaultMemberQty.equals(actualMemberQty)==false){
+            log.info("Clear team if members QTY != 1");
             deleteAllMembers(TEST_USER_NAME_SURNAME);
             openUrlWithBaseAuth(URL_COMMUNITY_PROFILE_TEAM);
             PROFILE_MEMBERS_COUNT.waitUntil(visible, 20000);

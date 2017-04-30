@@ -13,8 +13,8 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class CommunityProfile extends Page {
     //tabs
-    public static final SelenideElement PROFILE_TEAM_TAB = $(byXpath("//*[@href='/a/community/profile/team']"));
-    public static final SelenideElement PROFILE_PROFILE_TAB = $(byXpath("//*[@href='/a/community/profile/personal']"));
+    public static final SelenideElement PROFILE_TEAM_TAB = $(byXpath("//*[@href='/a/profile/team']"));
+    public static final SelenideElement PROFILE_PROFILE_TAB = $(byXpath("//*[@href='/a/profile/personal']"));
 
     //Team setting
     public static final SelenideElement PROFILE_BTN_BOOST_YOUR_SCORE = $(byXpath("//button[contains(.,'boost community score')]")); //disabled="disabled"

@@ -25,11 +25,11 @@ public class CommunityWizard extends Page {
 
 
 
-    public static final SelenideElement WIZARD_SELECT_CaseType = $(byXpath("//div[@class='panel-body']//div[@name='matterType']//span"));
+    public static final SelenideElement WIZARD_SELECT_CaseType = $(byXpath("//div[@class='profile-filters']//div[@class='filter-block'][1]//span"));
     public static final SelenideElement WIZARD_INPUT_CaseType = $(byXpath("//div[@class='panel-body']//div[@name='matterType']//input"));
-    public static final SelenideElement WIZARD_SELECT_Defining = $(byXpath("//div[@class='panel-body']//div[@name='defining']//span"));
+    public static final SelenideElement WIZARD_SELECT_Defining = $(byXpath("//div[@class='profile-filters']//div[@class='filter-block'][2]//span"));
     public static final SelenideElement WIZARD_INPUT_Defining = $(byXpath("//div[@class='panel-body']//div[@name='defining']//input"));
-    public static final SelenideElement WIZARD_SELECT_Service = $(byXpath("//div[@class='panel-body']//div[@name='expertiseType']//span"));
+    public static final SelenideElement WIZARD_SELECT_Service = $(byXpath("//div[@class='profile-filters']//div[@class='filter-block'][3]//span"));
     public static final SelenideElement WIZARD_INPUT_Service = $(byXpath("//div[@class='panel-body']//div[@name='expertiseType']//input"));
 
     //2nd step

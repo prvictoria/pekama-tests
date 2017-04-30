@@ -23,11 +23,11 @@ public class CommunityDashboard extends Page {
     public static final SelenideElement COMMUNITY_HEADER_TeamSettings = $(byXpath("//ul[@role='menu']//*[text()='Team settings']"));
     public static final SelenideElement COMMUNITY_HEADER_LogOut = $(byXpath("//ul[@role='menu']//*[@ng-click='logout()']"));
 
-    public static final SelenideElement COMMUNITY_TAB_Supplier = $(byXpath("//a[contains(@href, '/a/community/wizard')]"));
-    public static final SelenideElement COMMUNITY_TAB_Outgoing = $(byXpath("//a[contains(@href, '/a/community/outgoing')]"));
-    public static final SelenideElement COMMUNITY_TAB_Incoming = $(byXpath("//a[contains(@href, '/a/community/incoming')]"));
-    public static final SelenideElement COMMUNITY_TAB_Experts = $(byXpath("//a[contains(@href, '/a/community/experts')]"));
-    public static final SelenideElement COMMUNITY_TAB_Profile = $(byXpath("//a[contains(@href, '/a/community/profile')]"));
+    public static final SelenideElement COMMUNITY_TAB_Supplier = $(byXpath("//nav//*[starts-with(@href, '/a/wizard')]"));
+    public static final SelenideElement COMMUNITY_TAB_Outgoing = $(byXpath("//nav//*[@href='/a/outgoing']"));
+    public static final SelenideElement COMMUNITY_TAB_Incoming = $(byXpath("//nav//*[@href='/a/incoming']"));
+    public static final SelenideElement COMMUNITY_TAB_Experts = $(byXpath("//nav//*[@href='/a/experts']"));
+    public static final SelenideElement COMMUNITY_TAB_Profile = $(byXpath("//nav//*[@href='/a/profile']"));
 
     public static final SelenideElement COMMUNITY_TAB_TITLE = $(byXpath("//*[@class='panel-heading']//*[@class='title']"));
     public static final SelenideElement COMMUNITY_INNRER_BTN_SIGNUP = $(byXpath("//a[@type='button' and contains(.,'Sign up')]"));

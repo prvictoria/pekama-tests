@@ -1,4 +1,7 @@
 package Utils;
+import org.junit.Assert;
+import org.junit.Test;
+
 import java.net.InetAddress;
 /**
  * Created by Viachaslau Balashevich.
@@ -17,4 +20,22 @@ public class Ping {
             e.printStackTrace();
         }
     }
+    public static void pingPekamaServer(String host){
+        reachable = false;
+        try{
+            InetAddress address = InetAddress.getByName(host);
+            reachable = address.isReachable(5000);
+
+            System.out.println("Is host reachable? " + reachable);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    @Test
+    public void pingTest(){
+        pingPekamaServer("tut.by");
+        Assert.assertTrue(reachable);
+    }
+
+
 }
