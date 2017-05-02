@@ -3,10 +3,7 @@ package Tests;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
-import Steps.MessagesIMAP;
-import Steps.MessagesValidator;
-import Steps.StepsPekama;
-import Steps.User;
+import Steps.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
@@ -32,6 +29,7 @@ import static Steps.StepsModalWindows.*;
 import static Steps.StepsModalWindows.ModalConversationFollowerActions.*;
 import static Steps.StepsModalWindows.emailPlaceholders.*;
 import static Steps.StepsPekama.*;
+import static Steps.StepsPekamaProject.*;
 import static Tests.BeforeTestsSetUp.*;
 import static Utils.Utils.*;
 import static com.codeborne.selenide.Condition.*;
@@ -200,7 +198,9 @@ public class TestsMessages {
         );
         rootLogger.info("Verify Email parameters modal window - generic");
         callModalEmailParameters();
-        validateEmailParametersWindow(null, null);
+        validateEmailParametersWindowDefaults();
+        validateEmailParametersWindow("#subject# | #title# | #major-numbers#", threadTitle+" | "+testProjectName+" |" );
+        // TEAM THREAD IN ALL ZONE | DEFAULT_PROJECT_ZENQQ9CKT0 |
     }
     @Test
     public void checkEmailParametersModal_A_CustomEmailSubject(){
@@ -234,7 +234,7 @@ public class TestsMessages {
         callModalEmailParameters();
         writeEmailPlaceholder ("");
         selectEmailPlaceholder(SUBJECT);
-        validateEmailParametersWindow(null, null);
+        validateEmailParametersWindow("#subject#", null);
     }
     @Test
     public void checkEmailParametersModal_C_SubjectPlaceholder(){
@@ -251,7 +251,7 @@ public class TestsMessages {
         callModalEmailParameters();
         writeEmailPlaceholder ("");
         selectEmailPlaceholder(SUBJECT);
-        validateEmailParametersWindow("SUBJECT", "SUBJECT");
+        validateEmailParametersWindow("#subject#", "SUBJECT");
         submitEmailParametersWindow(true);
     }
     @Test
@@ -269,7 +269,7 @@ public class TestsMessages {
         callModalEmailParameters();
         writeEmailPlaceholder ("");
         selectEmailPlaceholder(TITLE);
-        validateEmailParametersWindow(testProjectName, testProjectName);
+        validateEmailParametersWindow("#title#", testProjectName);
         submitEmailParametersWindow(true);
     }
     @Test
@@ -285,10 +285,29 @@ public class TestsMessages {
                 true
         );
         callModalEmailParameters();
-        validateEmailParametersWindow(testProjectName, testProjectName);
+        validateEmailParametersWindow("#title#", testProjectName);
+        submitEmailParametersWindow(false);
+    }
+    @Test
+    public void checkEmailParametersModal_D_ProjectNumberPlaceholder(){
+        String subjectLineExample =  "Project "+parseProjectNumber();
+        callModalNewConversation();
+        submitNewConversationWindow(
+                null,
+                null,
+                null,
+                null,
+                null,
+                false,
+                true
+        );
+        callModalEmailParameters();
+        writeEmailPlaceholder ("");
+        selectEmailPlaceholder(PRJ_NUMBER);
+        validateEmailParametersWindow("#project-number#", subjectLineExample);
         submitEmailParametersWindow(true);
     }
-
+//EXTERNAL EM TESTS ==========================================================================
     @Test
     public void createProject_C1_ExternalConversationDefaults() {
         createExternalConversation();
@@ -489,7 +508,7 @@ public class TestsMessages {
                 true
         );
         String followerNameSurname = newFollower;
-        StepsPekama.validateFollowerTeamChat(followerNameSurname, 2, 1);
+        StepsPekamaProject.validateFollowerTeamChat(followerNameSurname, 2, 1);
     }
     @Test @Category({AllEmailsTests.class})
     public void inviteInTeamChatNewCollaborator_Action(){
@@ -507,7 +526,7 @@ public class TestsMessages {
                 true
         );
         String followerNameSurname = newFollower+" (inactive)";
-        StepsPekama.validateFollowerTeamChat(followerNameSurname, 2, 1);
+        StepsPekamaProject.validateFollowerTeamChat(followerNameSurname, 2, 0);
     }
     @Test @Category({AllEmailsTests.class, AllImapTests.class})
     public void inviteInTeamChatNewCollaborator_ValidationEmail(){

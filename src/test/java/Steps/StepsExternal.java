@@ -21,7 +21,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.stalenessOf;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
-public class StepsExternal implements StepsFactory{
+public class StepsExternal extends StepsFactory{
     static final Logger rootLogger = LogManager.getRootLogger();
     static String REDIRECT_LINK;
     public static String checkReportBackLink;

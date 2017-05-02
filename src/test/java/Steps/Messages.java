@@ -9,7 +9,7 @@ import static Page.Emails.EMAIL_INVITE_IN_PROJECT_TITLE;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
-public class Messages implements StepsFactory{
+public class Messages extends StepsFactory{
     static final Logger rootLogger = LogManager.getRootLogger();
     //Subject strings
     public static final String EMAIL_SUBJECT_ = "";

@@ -24,6 +24,7 @@ import static Page.UrlStrings.*;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static Steps.StepsHttpAuth.*;
+import static Steps.StepsPekamaProject.*;
 import static Tests.BeforeTestsSetUp.*;
 import static Tests.BeforeTestsSetUp.setBrowser;
 import static Utils.Utils.*;

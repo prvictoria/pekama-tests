@@ -23,7 +23,7 @@ import static Page.TestsCredentials.*;
 import static Page.TestsCredentials.Countries.*;
 import static Page.TestsCredentials.TrademarkEvents.*;
 import static Page.TestsStrings.*;
-import static Page.UrlConfig.MATTER_TYPE_TRADEMARK;
+import static Page.UrlConfig.*;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
 import static Page.Xero.*;
@@ -34,6 +34,7 @@ import static Steps.StepsCommunity.selectExpert;
 import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
+import static Steps.StepsPekamaProject.*;
 import static Tests.BeforeTestsSetUp.*;
 import static Utils.Utils.*;
 import static com.codeborne.selenide.Condition.*;
@@ -149,6 +150,7 @@ public class TestsPekamaProject {
     @Test
     public void createProject_B_editProjectName() throws AWTException {
         rootLogger.info("Rename Project by Owner");
+        getFullProjectTitle();
         waitForTextPresent(testProjectTitle);
         scrollUp();
         TAB_INFO_ProjectTitle.shouldHave(text(testProjectTitle));

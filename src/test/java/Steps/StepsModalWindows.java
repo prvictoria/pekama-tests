@@ -26,7 +26,7 @@ import static com.codeborne.selenide.Selenide.*;
 /**
  * Created by Viachaslau_Balashevi on 2/23/2017.
  */
-public class StepsModalWindows implements StepsFactory {
+public class StepsModalWindows extends StepsFactory {
     static final Logger rootLogger = LogManager.getRootLogger();
     public static boolean waitForModalWindow(String modalTitle) {
         rootLogger.info("Wait for '"+modalTitle+"' modal window");
@@ -125,6 +125,7 @@ public class StepsModalWindows implements StepsFactory {
             }
         }
         submitEnabledButton(MW_BTN_CREATE);
+        sleep(1000);
         if (submittedDataIsValid==true) {
             MW.waitUntil(not(visible), 30000);
         }
@@ -132,26 +133,27 @@ public class StepsModalWindows implements StepsFactory {
 
     //MODAL EMAIL PARAMETERS ======================================================
     public enum emailPlaceholders {SUBJECT, TITLE, MAJOR_NUMBERS, PRJ_NUMBER}
-    public static void selectEmailPlaceholder (Enum...enums){
+    public static void selectEmailPlaceholder (emailPlaceholders placeholders){
         waitForModalWindow("Email parameters");
-        if(enums!=null){
+        if(placeholders!=null){
             MW_EMAIL_PARAMETERS_SHOW.waitUntil(visible, 15000).click();
             MW_EMAIL_PARAMETERS_HIDE.shouldBe(visible);
-            if(enums[0]==SUBJECT){
-                MW_EMAIL_PARAMETERS_SUBJECT.shouldBe(visible).click();
-            }
-            if(enums[1]==TITLE){
-                MW_EMAIL_PARAMETERS_TITLE.shouldBe(visible).click();
-            }
-            if(enums[2]==MAJOR_NUMBERS){
-                MW_EMAIL_PARAMETERS_MAJOR_NUMBERS.shouldBe(visible).click();
-            }
-            if(enums[3]==PRJ_NUMBER){
-                MW_EMAIL_PARAMETERS_PRJ_NUMBER.shouldBe(visible).click();
+            switch(placeholders) {
+                case SUBJECT :
+                    MW_EMAIL_PARAMETERS_SUBJECT.shouldBe(visible).click();
+                    break;
+                case TITLE :
+                    MW_EMAIL_PARAMETERS_TITLE.shouldBe(visible).click();
+                    break;
+                case MAJOR_NUMBERS :
+                    MW_EMAIL_PARAMETERS_MAJOR_NUMBERS.shouldBe(visible).click();
+                    break;
+                case PRJ_NUMBER :
+                    MW_EMAIL_PARAMETERS_PRJ_NUMBER.shouldBe(visible).click();
+                    break;
             }
         }
     }
-
     public static void writeEmailPlaceholder (String placeholder){
         waitForModalWindow("Email parameters");
         if(placeholder!=null){
@@ -164,6 +166,8 @@ public class StepsModalWindows implements StepsFactory {
             MW_BTN_SAVE.shouldBe(enabled).click();
             MW_BTN_SAVE.waitUntil(disabled, 10000);
             sleep(4000);
+        }
+        else {
             MW_BTN_CLOSE.shouldBe(enabled).click();
             MW.waitUntil(not(visible), 10000);
         }
@@ -176,29 +180,32 @@ public class StepsModalWindows implements StepsFactory {
     }
     public static String getConversationPlaceholder(){
         waitForModalWindow("Email parameters");
-        String placeholder = MW_EMAIL_PARAMETERS_SUBJECT_LINE.shouldBe(visible).getText();
+        String placeholder = MW_EMAIL_PARAMETERS_SUBJECT_LINE.shouldBe(visible).getValue();
         rootLogger.info("Active placeholder(s) in email subject are: "+placeholder);
         return placeholder;
     }
     public static String getConversationPlaceholderPreview(){
         waitForModalWindow("Email parameters");
         String placeholder = MW_EMAIL_PARAMETERS_PREVIEW.shouldBe(visible).getValue();
-        rootLogger.info("Actual email subject will contain next text: ");
+        rootLogger.info("Actual email subject will contain next text: "+placeholder);
         return placeholder;
     }
-
+    public static boolean validateEmailParametersWindowDefaults(){
+        waitForModalWindow("Email parameters");
+        MW_BTN_SAVE.shouldBe(disabled);
+        checkText("Conversation Email address");
+        checkText("Use the following email address to directly send messages into conversation.");
+        checkText("Email Subject Line");
+        checkText("Control the email subject line here:");
+        checkText("The Email Subject line will look like this:");
+        return true;
+    }
     public static boolean validateEmailParametersWindow(String placeholder, String previewText){
         waitForModalWindow("Email parameters");
         String address = getConversationDirectEmailAddress();
         String actualPlaceholder = getConversationPlaceholder();
         String actualPreviewText = getConversationPlaceholderPreview();
-        MW_BTN_SAVE.shouldBe(disabled);
         if(address!=null){
-            checkText("Conversation Email address");
-            checkText("Use the following email address to directly send messages into conversation.");
-            checkText("Email Subject Line");
-            checkText("Control the email subject line here:");
-            checkText("The Email Subject line will look like this:");
             if(placeholder!=null){
                 placeholder.contains(actualPlaceholder);
             }

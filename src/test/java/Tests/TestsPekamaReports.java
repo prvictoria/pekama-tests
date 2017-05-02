@@ -26,6 +26,7 @@ import static Steps.StepsExternal.*;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static Steps.StepsHttpAuth.*;
+import static Steps.StepsPekamaReports.*;
 import static Tests.BeforeTestsSetUp.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;

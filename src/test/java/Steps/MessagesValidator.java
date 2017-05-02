@@ -12,7 +12,7 @@ import static Steps.MessagesIMAP.*;
 /**
  * Created by Viachaslau_Balashevi on 4/11/2017.
  */
-public interface MessagesValidator extends StepsFactory {
+public interface MessagesValidator {
     boolean validationEmail(String...strings);
     String validateLink(String html, Integer index);
     //}

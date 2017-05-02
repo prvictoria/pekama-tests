@@ -29,6 +29,7 @@ public class PekamaConversationProject extends Page {
 
 
    //INSIDE THREAD
+
    //TOP CONTROLS
     public static final SelenideElement CONVERSATION_LABEL_ACTIVE_TAB = $(byXpath( CONVERSATION_BLOCK+"//pkm-conversation/div/button"));
     public static final SelenideElement CONVERSATION_BTN_BACK = $(byLinkText("Back"));

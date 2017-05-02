@@ -29,7 +29,7 @@ import static org.openqa.selenium.remote.CapabilityType.LOGGING_PREFS;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
-public class StepsHttpAuth implements StepsFactory {
+public class StepsHttpAuth extends StepsFactory {
     static final Logger rootLogger = LogManager.getRootLogger();
     public void httpAuthStagingPekama() {
         //assumeTrue(isFirefox());

@@ -24,12 +24,13 @@ import static Steps.StepsCommunity.*;
 import static Steps.StepsHttpAuth.*;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
-import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
+import static Steps.StepsPekamaProject.*;
+import static Tests.BeforeTestsSetUp.*;
 import static Tests.BeforeTestsSetUp.setBrowser;
-import static Utils.Utils.randomString;
+import static Utils.Utils.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
+import static com.codeborne.selenide.WebDriverRunner.*;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestCommunityIntegrationRedirect {

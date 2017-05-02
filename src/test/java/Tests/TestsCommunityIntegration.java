@@ -14,9 +14,7 @@ import org.junit.runners.MethodSorters;
 import java.io.IOException;
 
 import static Page.CommunityDashboard.*;
-import static Page.CommunityOutgoing.BTN_CONFIRM_COMPLETION_NAME;
-import static Page.CommunityOutgoing.BTN_CONFIRM_INSTRUCTION_NAME;
-import static Page.CommunityOutgoing.BTN_WITHDRAW_NAME;
+import static Page.CommunityOutgoing.*;
 import static Page.PekamaDashboard.*;
 import static Page.PekamaProject.*;
 import static Page.UrlConfig.*;
@@ -25,13 +23,14 @@ import static Steps.StepsCommunity.*;
 import static Steps.StepsHttpAuth.*;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
-import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
+import static Steps.StepsPekamaProject.*;
+import static Tests.BeforeTestsSetUp.*;
 import static Tests.BeforeTestsSetUp.setBrowser;
-import static Utils.Utils.randomString;
+import static Utils.Utils.*;
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selectors.byXpath;
+import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
+import static com.codeborne.selenide.WebDriverRunner.*;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsCommunityIntegration {

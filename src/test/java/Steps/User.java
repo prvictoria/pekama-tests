@@ -29,7 +29,7 @@ import static com.codeborne.selenide.Selenide.sleep;
 /**
  * Created by Viachaslau_Balashevi on 3/29/2017.
  */
-public class User {
+public class User extends StepsFactory{
     static final Logger rootLogger = LogManager.getRootLogger();
     public String email;
     public String password;

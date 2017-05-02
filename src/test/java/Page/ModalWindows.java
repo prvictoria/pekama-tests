@@ -33,7 +33,7 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_BTN_OK = $(byXpath(mw+"//button[contains(.,'OK')]"));
     public static final SelenideElement MW_BTN_YES = $(byXpath(mw+"//button[contains(.,'Yes')]"));
     public static final SelenideElement MW_ICON_CLOSE = $(byXpath(mw+"//*[@aria-label='Close']"));
-    public static final SelenideElement MW_BTN_CLOSE = $(byXpath(mw+"//*[contains .,'Close' ]"));
+    public static final SelenideElement MW_BTN_CLOSE = $(byXpath(mw+"//*[text()='Close']"));
     public static final SelenideElement MW_BTN_CREATE = $(byXpath(mw+"//button[text()='Create']"));
 
     public static final SelenideElement MW_CHECKBOX_ALL_TEAMS = $(byXpath(mw+"//*[@ng-disabled='uiState.disableAllTeams']"));
