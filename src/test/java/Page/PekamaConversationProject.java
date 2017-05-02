@@ -32,7 +32,7 @@ public class PekamaConversationProject extends Page {
    //TOP CONTROLS
     public static final SelenideElement CONVERSATION_LABEL_ACTIVE_TAB = $(byXpath( CONVERSATION_BLOCK+"//pkm-conversation/div/button"));
     public static final SelenideElement CONVERSATION_BTN_BACK = $(byLinkText("Back"));
-    public static final SelenideElement CONVERSATION_BTN_Parameters = $(byXpath( CONVERSATION_BLOCK+"//i[@class='pkm-icon-envelope-big']"));
+    public static final SelenideElement CONVERSATION_BTN_EMAIL_PARAMETERS = $(byXpath( CONVERSATION_BLOCK+"//i[@class='pkm-icon-envelope-big']"));
     public static final SelenideElement CONVERSATION_Pin = $(byXpath( CONVERSATION_BLOCK+"//button[@class='btn btn-secondary btn-small ng-binding'][contains(.,'Pin')]"));
     public static final SelenideElement CONVERSATION_Unpin = $(byXpath( CONVERSATION_BLOCK+"//button[@class='btn btn-secondary btn-small ng-binding'][contains(.,'Unpin')]"));
    // public static final SelenideElement CONVERSATION_BTN_Back = $(byXpath( CONVERSATION_BLOCK+"//a[@class='btn btn-secondary btn-small'][contains(.,'Back')]"));

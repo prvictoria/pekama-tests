@@ -121,12 +121,20 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_EVENT_INPUT_DATE = MW_INPUT_DATE;
     public static final SelenideElement MW_EVENT_Template_DateOffset = $(byXpath(mw+"//input[@name='date_offset']"));
     public static final SelenideElement MW_EVENT_Template_DateOffsetUnit = $(byXpath(mw+"//select[@name='date_unit']"));
-//email param
-    public static final SelenideElement modalEmailparametersFieldEmailAddress = $(byXpath("//div/div[2]/div/div/input"));
-    public static final SelenideElement modalEmailparametersSubjectLine = $(byName("template"));
-    public static final SelenideElement modalEmailparametersSubjectLineTemplate = $(byXpath("//div[2]/div/form/input"));
-    public static final SelenideElement modalEmailparametersShow = $(byXpath("//ng-switch/span"));
-//deploy message msg template
+
+    //email parameters
+    public static final SelenideElement MW_EMAIL_PARAMETERS_DIRECT_EMAIL = $(byXpath(mw+"//p/following-sibling::input[@readonly='readonly']"));
+    public static final SelenideElement MW_EMAIL_PARAMETERS_SUBJECT_LINE = $(byName("template"));
+    public static final SelenideElement MW_EMAIL_PARAMETERS_PREVIEW = $(byXpath(mw+"//div[2]/div/form/input"));
+    public static final SelenideElement MW_EMAIL_PARAMETERS_SHOW = $(byXpath(mw+"//ng-switch/span[text()='show']"));
+    public static final SelenideElement MW_EMAIL_PARAMETERS_HIDE = $(byXpath(mw+"//ng-switch/span[text()='hide']"));
+    public static final SelenideElement MW_EMAIL_PARAMETERS_SUBJECT = $(byXpath(mw+"//ul[@class='choosable-list']/li[1]"));
+    public static final SelenideElement MW_EMAIL_PARAMETERS_TITLE = $(byXpath(mw+"//ul[@class='choosable-list']/li[2]"));
+    public static final SelenideElement MW_EMAIL_PARAMETERS_MAJOR_NUMBERS = $(byXpath(mw+"//ul[@class='choosable-list']/li[3]"));
+    public static final SelenideElement MW_EMAIL_PARAMETERS_PRJ_NUMBER = $(byXpath(mw+"//ul[@class='choosable-list']/li[4]"));
+
+
+    //deploy message msg template
     public static final SelenideElement MW_DEPLOY_MSG_TEMPLATE_SEARCH = $(byXpath(mw+"//div[@class='row'][1]//label/following-sibling::input"));
     public static final SelenideElement MW_DEPLOY_MSG_TEMPLATE_SELECT_DEFINING = $(byXpath(mw+"//div[@class='row'][2]//label/following-sibling::div//span"));
     public static final SelenideElement MW_DEPLOY_MSG_TEMPLATE_INPUT_DEFINING = $(byXpath(mw+"//div[@class='row'][2]//label/following-sibling::div//input[@type='search']"));

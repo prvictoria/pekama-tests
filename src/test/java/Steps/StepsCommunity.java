@@ -245,7 +245,10 @@ public class StepsCommunity implements StepsFactory{
         return searchQueryUrl;
     }
     public static String submitWizard1Step(String caseType){
-        searchExpertsQuery(caseType, TestsCredentials.Countries.PITCAIRN_ISLANDS.getValue(), COMMUNITY_SERVICE);
+        searchExpertsQuery(
+                caseType,
+                TestsCredentials.Countries.PITCAIRN_ISLANDS.getValue(),
+                COMMUNITY_SERVICE);
         //String searchQueryUrl = searchExpertsSubmit();
         return searchQueryUrl;
     }

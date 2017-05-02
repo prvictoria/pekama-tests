@@ -6,26 +6,19 @@ import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
-import org.junit.Test;
 
-import java.io.IOException;
+import java.util.Enumeration;
 
 import static Page.ModalWindows.*;
-import static Page.PekamaConversationProject.CONVERSATION_BTN_New;
-import static Page.PekamaConversationProject.CONVERSATION_BTN_TEMPLATE;
-import static Page.PekamaConversationProject.CONVERSATION_INPUT_TEXT_COLLAPSED;
+import static Page.PekamaConversationProject.*;
 import static Page.PekamaProject.*;
 import static Page.PekamaTeamSettings.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
-import static Page.UrlStrings.URL_SingUp;
-import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static Steps.StepsModalWindows.ModalConversationFollowerActions.*;
-import static Steps.StepsModalWindows.ModalConversationTeamActions.ADD_TEAM;
-import static Steps.StepsModalWindows.ModalConversationTeamActions.INVITE_TEAM;
+import static Steps.StepsModalWindows.ModalConversationTeamActions.*;
+import static Steps.StepsModalWindows.emailPlaceholders.*;
 import static Steps.StepsPekama.*;
-import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
-import static Tests.BeforeTestsSetUp.setBrowser;
 import static Utils.Utils.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
@@ -137,6 +130,87 @@ public class StepsModalWindows implements StepsFactory {
         }
     }
 
+    //MODAL EMAIL PARAMETERS ======================================================
+    public enum emailPlaceholders {SUBJECT, TITLE, MAJOR_NUMBERS, PRJ_NUMBER}
+    public static void selectEmailPlaceholder (Enum...enums){
+        waitForModalWindow("Email parameters");
+        if(enums!=null){
+            MW_EMAIL_PARAMETERS_SHOW.waitUntil(visible, 15000).click();
+            MW_EMAIL_PARAMETERS_HIDE.shouldBe(visible);
+            if(enums[0]==SUBJECT){
+                MW_EMAIL_PARAMETERS_SUBJECT.shouldBe(visible).click();
+            }
+            if(enums[1]==TITLE){
+                MW_EMAIL_PARAMETERS_TITLE.shouldBe(visible).click();
+            }
+            if(enums[2]==MAJOR_NUMBERS){
+                MW_EMAIL_PARAMETERS_MAJOR_NUMBERS.shouldBe(visible).click();
+            }
+            if(enums[3]==PRJ_NUMBER){
+                MW_EMAIL_PARAMETERS_PRJ_NUMBER.shouldBe(visible).click();
+            }
+        }
+    }
+
+    public static void writeEmailPlaceholder (String placeholder){
+        waitForModalWindow("Email parameters");
+        if(placeholder!=null){
+            fillField(MW_EMAIL_PARAMETERS_SUBJECT_LINE, placeholder);
+        }
+    }
+    public static void submitEmailParametersWindow(Boolean save){
+        waitForModalWindow("Email parameters");
+        if(save==true){
+            MW_BTN_SAVE.shouldBe(enabled).click();
+            MW_BTN_SAVE.waitUntil(disabled, 10000);
+            sleep(4000);
+            MW_BTN_CLOSE.shouldBe(enabled).click();
+            MW.waitUntil(not(visible), 10000);
+        }
+    }
+    public static String getConversationDirectEmailAddress(){
+        waitForModalWindow("Email parameters");
+        String address = MW_EMAIL_PARAMETERS_DIRECT_EMAIL.shouldBe(visible).getValue();
+        rootLogger.info("Direct email address is: "+address);
+        return address;
+    }
+    public static String getConversationPlaceholder(){
+        waitForModalWindow("Email parameters");
+        String placeholder = MW_EMAIL_PARAMETERS_SUBJECT_LINE.shouldBe(visible).getText();
+        rootLogger.info("Active placeholder(s) in email subject are: "+placeholder);
+        return placeholder;
+    }
+    public static String getConversationPlaceholderPreview(){
+        waitForModalWindow("Email parameters");
+        String placeholder = MW_EMAIL_PARAMETERS_PREVIEW.shouldBe(visible).getValue();
+        rootLogger.info("Actual email subject will contain next text: ");
+        return placeholder;
+    }
+
+    public static boolean validateEmailParametersWindow(String placeholder, String previewText){
+        waitForModalWindow("Email parameters");
+        String address = getConversationDirectEmailAddress();
+        String actualPlaceholder = getConversationPlaceholder();
+        String actualPreviewText = getConversationPlaceholderPreview();
+        MW_BTN_SAVE.shouldBe(disabled);
+        if(address!=null){
+            checkText("Conversation Email address");
+            checkText("Use the following email address to directly send messages into conversation.");
+            checkText("Email Subject Line");
+            checkText("Control the email subject line here:");
+            checkText("The Email Subject line will look like this:");
+            if(placeholder!=null){
+                placeholder.contains(actualPlaceholder);
+            }
+            if(previewText!=null){
+                previewText.contains(actualPreviewText);
+            }
+        return true;
+        }
+        else return false;
+    }
+
+    //MODAL ADD MEMBER ======================================================
     public static String submitAddMemberWindow(){
         rootLogger.info("Invite new member in team");
         String newMemberEmail = randomString(10)+"@member.com";
@@ -146,6 +220,8 @@ public class StepsModalWindows implements StepsFactory {
         MW.waitUntil(not(visible), 30000);
         return newMemberEmail;
     }
+
+    //MODAL BOOST PROFILE ======================================================
     public static String submitMwBoostProfile(String option){
         waitForModalWindow(TITLE_MW_BOOST_YOUR_PROFILE);
         if(option.equals("start")){
@@ -167,6 +243,7 @@ public class StepsModalWindows implements StepsFactory {
         escapeModalWindow();
         return null;
     }
+
     public static String submitMwInviteAttorney(Boolean invite, String email, String message){
         waitForModalWindow(TITLE_MW_INVITE_AN_ATTORNEY);
         if(invite==false){
@@ -193,6 +270,8 @@ public class StepsModalWindows implements StepsFactory {
         }
         return null;
     }
+
+    //MODAL NEW PROJECT ======================================================
     public static String submitMwNewProject(String projectCustomName) {
         String projectType = MATTER_TYPE_TRADEMARK;
         String projectDefining = TestsCredentials.Countries.PITCAIRN_ISLANDS.getValue();

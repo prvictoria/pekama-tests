@@ -57,13 +57,8 @@ public class TestsPekamaSignUp {
     public void selectAgreeCheckbox() {
         if(skipBefore==false) {
             clearBrowserCache();
-            rootLogger.info("Open URL - " + URL_SingUp);
-            String AUTH_URL = URL_SingUp;
-            openUrlWithBaseAuth(AUTH_URL);
-            $(signupNext).shouldBe(visible).shouldNotBe(disabled);
-            $(signupAgree).shouldBe(selected);
+            openUrlWithBaseAuth(URL_SingUp);
             submitCookie();
-            rootLogger.info("Opened - " + URL_SingUp);
         }
         else {rootLogger.info("Before was skipped");}
     }
@@ -247,7 +242,6 @@ public class TestsPekamaSignUp {
 
     @Test @Category(AllEmailsTests.class)
     public void sendSignUpEmail_A_Send() {
-
         ValidationSignUp.userEmail = User5.GMAIL_EMAIL.getValue();
         rootLogger.info("submitSignUp with valid user");
         User fakeUser = new User();

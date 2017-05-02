@@ -390,11 +390,9 @@ public class StepsPekama implements StepsFactory{
         rootLogger.info(args+" - row opened");
     }
 
-
     public static void selectOption(SelenideElement optionSelector,String optionName) {
         optionSelector.selectOption(new String[]{optionName});
     }
-
     public static void checkReceiveEmailOptions(Boolean receiveAlways, Boolean receiveOffline, Boolean noEmails, Boolean getAttachment, Boolean getCopyOwnMsg){
         if(receiveAlways==true) {
             rootLogger.info("Check receive get emails Always radio is selected");
@@ -1097,6 +1095,12 @@ public class StepsPekama implements StepsFactory{
         sleep(2000);
         CONVERSATION_LABEL_ACTIVE_TAB.shouldHave(text(CONVERSATION_CLIENT_TAB_NAME));
         return true;
+    }
+    public static void callModalEmailParameters(){
+        rootLogger.info("Open Email parameters modal window");
+        scrollUp();
+        CONVERSATION_BTN_EMAIL_PARAMETERS.waitUntil(visible, 15000).click();
+        sleep(500);
     }
     public static boolean sendExternalMsg(
             String emailFollowerTo,

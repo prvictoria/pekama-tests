@@ -16,6 +16,7 @@ import org.junit.runners.MethodSorters;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
+import java.util.Enumeration;
 
 import static Page.ModalWindows.*;
 import static Page.PekamaConversationProject.*;
@@ -24,12 +25,12 @@ import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
-import static Steps.MessagesValidator.ValidationEmailMessage.followerEmailOrTeamNameSurname;
-import static Steps.MessagesValidator.ValidationEmailMessage.userNameSurname;
+import static Steps.MessagesValidator.ValidationEmailMessage.*;
 import static Steps.MessagesValidator.ValidationInviteInProject.*;
 import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsModalWindows.ModalConversationFollowerActions.*;
+import static Steps.StepsModalWindows.emailPlaceholders.*;
 import static Steps.StepsPekama.*;
 import static Tests.BeforeTestsSetUp.*;
 import static Utils.Utils.*;
@@ -185,19 +186,109 @@ public class TestsMessages {
     }
     @Test
     public void createThreadInTeamChat_AllZone() {
-        String oldThreadTitle = "TEAM THREAD IN ALL ZONE";
+        String threadTitle = "TEAM THREAD IN ALL ZONE";
         rootLogger.info("Create thread in private zone");
         callModalNewConversation();
         submitNewConversationWindow(
                 null,
-                oldThreadTitle,
+                threadTitle,
                 null,
                 null,
                 null,
                 true,
                 true
         );
+        rootLogger.info("Verify Email parameters modal window - generic");
+        callModalEmailParameters();
+        validateEmailParametersWindow(null, null);
     }
+    @Test
+    public void checkEmailParametersModal_A_CustomEmailSubject(){
+        callModalNewConversation();
+        submitNewConversationWindow(
+                null,
+                null,
+                null,
+                null,
+                null,
+                false,
+                true
+        );
+        callModalEmailParameters();
+        writeEmailPlaceholder ("CUSTOM");
+        validateEmailParametersWindow("CUSTOM", "CUSTOM");
+    }
+
+    @Test
+    public void checkEmailParametersModal_B_SubjectNull(){
+        callModalNewConversation();
+        submitNewConversationWindow(
+                null,
+                null,
+                null,
+                null,
+                null,
+                false,
+                true
+        );
+        callModalEmailParameters();
+        writeEmailPlaceholder ("");
+        selectEmailPlaceholder(SUBJECT);
+        validateEmailParametersWindow(null, null);
+    }
+    @Test
+    public void checkEmailParametersModal_C_SubjectPlaceholder(){
+        callModalNewConversation();
+        submitNewConversationWindow(
+                null,
+                "SUBJECT",
+                null,
+                null,
+                null,
+                false,
+                true
+        );
+        callModalEmailParameters();
+        writeEmailPlaceholder ("");
+        selectEmailPlaceholder(SUBJECT);
+        validateEmailParametersWindow("SUBJECT", "SUBJECT");
+        submitEmailParametersWindow(true);
+    }
+    @Test
+    public void checkEmailParametersModal_D_ProjectTitlePlaceholder(){
+        callModalNewConversation();
+        submitNewConversationWindow(
+                null,
+                null,
+                null,
+                null,
+                null,
+                false,
+                true
+        );
+        callModalEmailParameters();
+        writeEmailPlaceholder ("");
+        selectEmailPlaceholder(TITLE);
+        validateEmailParametersWindow(testProjectName, testProjectName);
+        submitEmailParametersWindow(true);
+    }
+    @Test
+    public void checkEmailParametersModal_E_ProjectTitlePlaceholderDefault(){
+        callModalNewConversation();
+        submitNewConversationWindow(
+                null,
+                null,
+                null,
+                null,
+                null,
+                false,
+                true
+        );
+        callModalEmailParameters();
+        validateEmailParametersWindow(testProjectName, testProjectName);
+        submitEmailParametersWindow(true);
+    }
+
     @Test
     public void createProject_C1_ExternalConversationDefaults() {
         createExternalConversation();
@@ -436,6 +527,7 @@ public class TestsMessages {
 
     @Test @Category({AllEmailsTests.class, AllImapTests.class})
     public void checkThatUserGetCopyOwnMessages_A_PostMessage() throws IOException, MessagingException {
+        skipBefore = true;
         rootLogger.info("Set email settings");
         openSettingsTabEmails();
         selectReceiveEmailOptions(
@@ -463,6 +555,7 @@ public class TestsMessages {
     }
     @Test @Category({AllImapTests.class})
     public void checkThatUserGetCopyOwnMessages_B_CheckEmail() throws IOException, MessagingException {
+        skipBefore = true;
         rootLogger.info("Check Creator email");
         sleep(10000);
         MessagesIMAP emailTask = new MessagesIMAP();
@@ -481,6 +574,7 @@ public class TestsMessages {
     }
     @Test @Category({AllImapTests.class})
     public void checkThatUserGetCopyOwnMessages_C_CheckRedirectReplyLinkFollower() throws IOException, MessagingException {
+        skipBefore = true;
       //  repryLink = "https://u1528369.ct.sendgrid.net/wf/click?upn=nlPIBkCFx3ihDwn5X-2FQH25GimnAenIWRK2CNbjwb1wz4MhLyrPlDXqARqX-2FoYxFNbrjSdkTycqH9IUseFSWnM-2F3L2QDDFm6XOpyOMUSqms0-3D_FhKIrNJz0J-2FLui-2BhorTXHazj59U-2BmXqSH3Q93OorhOgeYov1Ufk9vFFXG5Ntep8eoNf46zw8iVivjaYI07Za3OlTl3RkPuH16WaCuXZo-2FdTBRfJTZhKbG8zpyau5YKjB3L3x1mhTWFfaA05p1O7I8EaImFM6KER0npwusk-2FxVocP3SA3-2FbPdMBYnC7pACNNzlLXAQPDcxyBkV1Akw6IOB8DFbnm2tqEGbncvHn53U0EBKnYal25sNsT92EF8Dc68PQ2SvDGda-2FvBdR5UBu81pVgjqAVqOHxI26M0AiFGmwqgKkDIiCJWOX5KCYmZfR-2FO";
         Assert.assertNotNull(repryLink);
         User follower = new User();
@@ -495,6 +589,7 @@ public class TestsMessages {
     }
     @Test @Category({AllImapTests.class})
     public void checkThatUserGetCopyOwnMessages_D_CheckRedirectReplyLinkCreator() throws IOException, MessagingException {
+        skipBefore = false;
         //repryLink = "https://u1528369.ct.sendgrid.net/wf/click?upn=nlPIBkCFx3ihDwn5X-2FQH25GimnAenIWRK2CNbjwb1wz4MhLyrPlDXqARqX-2FoYxFNbrjSdkTycqH9IUseFSWnM-2F3L2QDDFm6XOpyOMUSqms0-3D_FhKIrNJz0J-2FLui-2BhorTXHazj59U-2BmXqSH3Q93OorhOgeYov1Ufk9vFFXG5Ntep8eoNf46zw8iVivjaYI07Za3OlTl3RkPuH16WaCuXZo-2FdTBRfJTZhKbG8zpyau5YKjB3L3x1mhTWFfaA05p1O7I8EaImFM6KER0npwusk-2FxVocP3SA3-2FbPdMBYnC7pACNNzlLXAQPDcxyBkV1Akw6IOB8DFbnm2tqEGbncvHn53U0EBKnYal25sNsT92EF8Dc68PQ2SvDGda-2FvBdR5UBu81pVgjqAVqOHxI26M0AiFGmwqgKkDIiCJWOX5KCYmZfR-2FO";
         Assert.assertNotNull(repryLink);
         User creator = new User();

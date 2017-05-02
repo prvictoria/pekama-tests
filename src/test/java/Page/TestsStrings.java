@@ -93,7 +93,6 @@ public class TestsStrings {
     public static final String PLACEHOLDER_TeamChat = "Team chat is great for conversations between groups of people, where all the group members should see the conversation all the time.";
     public static final String PLACEHOLDER_ExternalEmails = "Client emails are great to send completely standard-looking emails to clients/3rd party, but allow your team to see the conversation.";
     public static final String placeholderNoCommunityCases = "No community cases.";
-    public static final String placeholder = "";
 
     public static final String ERROR_MSG_ = "";
     public static final String ERROR_DuplicatedFolder = "Folder with this Parent and Name already exists.";
