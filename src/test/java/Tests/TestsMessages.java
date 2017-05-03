@@ -57,32 +57,37 @@ public class TestsMessages {
     private static final String GUEST_EMAIL = User5.GMAIL_EMAIL.getValue();
     private static final String GUEST_EMAIL_PASSWORD = User5.GMAIL_PASSWORD.getValue();
 
+    private static String subjectLineExample = null;
     private static String testProjectName = null;
     private static String testProjectUrl = null;
     private static String repryLink = null;
     private static boolean skipBefore = false;
+    private static boolean debug = false;
     @Rule
     public Timeout tests = Timeout.seconds(600);
     @BeforeClass
     public static void beforeClass() throws IOException, MessagingException {
+//        skipBefore = true;
+//        debug =true;
         setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
-
-        MessagesIMAP emailTask = new MessagesIMAP();
-        emailTask.imapSearchEmailDeleteAll(
-                INVITER_EMAIL,
-                INVITER_EMAIL_PASSWORD);
-        emailTask.imapSearchEmailDeleteAll(
-                INVITED_EMAIL,
-                INVITED_EMAIL_PASSWORD);
-        emailTask.imapSearchEmailDeleteAll(
-                COLLABORATOR_EMAIL,
-                COLLABORATOR_EMAIL_PASSWORD);
+        if(debug==false) {
+            MessagesIMAP emailTask = new MessagesIMAP();
+            emailTask.imapSearchEmailDeleteAll(
+                    INVITER_EMAIL,
+                    INVITER_EMAIL_PASSWORD);
+            emailTask.imapSearchEmailDeleteAll(
+                    INVITED_EMAIL,
+                    INVITED_EMAIL_PASSWORD);
+            emailTask.imapSearchEmailDeleteAll(
+                    COLLABORATOR_EMAIL,
+                    COLLABORATOR_EMAIL_PASSWORD);
+        }
+        else {rootLogger.info("Debug mode");}
     }
     @Before
     public void before() {
-        //skipBefore = true;
         if (skipBefore==false) {
             clearBrowserCache();
             User creator = new User();
@@ -203,12 +208,13 @@ public class TestsMessages {
         // TEAM THREAD IN ALL ZONE | DEFAULT_PROJECT_ZENQQ9CKT0 |
     }
     @Test
-    public void checkEmailParametersModal_A_CustomEmailSubject(){
+    public void checkEmailParametersModal_A1_CustomEmailSubject(){
+        skipBefore = true;
         callModalNewConversation();
         submitNewConversationWindow(
+                ADD_FOLLOWER,
                 null,
-                null,
-                null,
+                COLLABORATOR_EMAIL,
                 null,
                 null,
                 false,
@@ -217,6 +223,28 @@ public class TestsMessages {
         callModalEmailParameters();
         writeEmailPlaceholder ("CUSTOM");
         validateEmailParametersWindow("CUSTOM", "CUSTOM");
+        submitEmailParametersWindow(true);
+
+        expandTextEditorInTeamChat();
+        postMessage(LOREM_IPSUM_SHORT);
+    }
+    @Test @Category({AllImapTests.class})
+    public void checkEmailParametersModal_A2_CheckEmailSubject() throws IOException, MessagingException {
+        skipBefore = false;
+        rootLogger.info("Check follower-collaborator email");
+        sleep(10000);
+        MessagesIMAP emailTask2 = new MessagesIMAP();
+        Assert.assertTrue(
+                emailTask2.validateEmailMessage(
+                        COLLABORATOR_EMAIL,
+                        COLLABORATOR_EMAIL_PASSWORD,
+                        "CUSTOM",
+                        LOREM_IPSUM_SHORT,
+                        INVITER_NAME_SURNAME,
+                        COLLABORATOR_NAME_SURNAME,
+                        new MessagesValidator.ValidationEmailMessage()
+                )
+        );
     }
 
     @Test
@@ -235,14 +263,16 @@ public class TestsMessages {
         writeEmailPlaceholder ("");
         selectEmailPlaceholder(SUBJECT);
         validateEmailParametersWindow("#subject#", null);
+        submitEmailParametersWindow(true);
     }
     @Test
-    public void checkEmailParametersModal_C_SubjectPlaceholder(){
+    public void checkEmailParametersModal_C1_SubjectPlaceholder(){
+        skipBefore = true;
         callModalNewConversation();
         submitNewConversationWindow(
-                null,
-                "SUBJECT",
-                null,
+                ADD_FOLLOWER,
+                "THREAD SUBJECT",
+                COLLABORATOR_EMAIL,
                 null,
                 null,
                 false,
@@ -251,16 +281,39 @@ public class TestsMessages {
         callModalEmailParameters();
         writeEmailPlaceholder ("");
         selectEmailPlaceholder(SUBJECT);
-        validateEmailParametersWindow("#subject#", "SUBJECT");
+        validateEmailParametersWindow("#subject#", "THREAD SUBJECT");
         submitEmailParametersWindow(true);
+
+        expandTextEditorInTeamChat();
+        postMessage(LOREM_IPSUM_SHORT);
+    }
+    @Test @Category({AllImapTests.class})
+    public void checkEmailParametersModal_C2_CheckEmailSubject() throws IOException, MessagingException {
+        skipBefore = false;
+        rootLogger.info("Check follower-collaborator email");
+        sleep(10000);
+        MessagesIMAP emailTask2 = new MessagesIMAP();
+        Assert.assertTrue(
+                emailTask2.validateEmailMessage(
+                        COLLABORATOR_EMAIL,
+                        COLLABORATOR_EMAIL_PASSWORD,
+                        "THREAD SUBJECT",
+                        LOREM_IPSUM_SHORT,
+                        INVITER_NAME_SURNAME,
+                        COLLABORATOR_NAME_SURNAME,
+                        new MessagesValidator.ValidationEmailMessage()
+                )
+        );
     }
     @Test
-    public void checkEmailParametersModal_D_ProjectTitlePlaceholder(){
+    public void checkEmailParametersModal_D1_ProjectTitlePlaceholder(){
+        skipBefore = true;
+        Assert.assertNotNull(testProjectName);
         callModalNewConversation();
         submitNewConversationWindow(
+                ADD_FOLLOWER,
                 null,
-                null,
-                null,
+                COLLABORATOR_EMAIL,
                 null,
                 null,
                 false,
@@ -271,6 +324,28 @@ public class TestsMessages {
         selectEmailPlaceholder(TITLE);
         validateEmailParametersWindow("#title#", testProjectName);
         submitEmailParametersWindow(true);
+
+        expandTextEditorInTeamChat();
+        postMessage(LOREM_IPSUM_SHORT);
+    }
+    @Test @Category({AllImapTests.class})
+    public void checkEmailParametersModal_D2_CheckEmailSubject() throws IOException, MessagingException {
+        skipBefore = false;
+        Assert.assertNotNull(testProjectName);
+        rootLogger.info("Check follower-collaborator email");
+        sleep(10000);
+        MessagesIMAP emailTask2 = new MessagesIMAP();
+        Assert.assertTrue(
+                emailTask2.validateEmailMessage(
+                        COLLABORATOR_EMAIL,
+                        COLLABORATOR_EMAIL_PASSWORD,
+                        testProjectName,
+                        LOREM_IPSUM_SHORT,
+                        INVITER_NAME_SURNAME,
+                        COLLABORATOR_NAME_SURNAME,
+                        new MessagesValidator.ValidationEmailMessage()
+                )
+        );
     }
     @Test
     public void checkEmailParametersModal_E_ProjectTitlePlaceholderDefault(){
@@ -289,13 +364,14 @@ public class TestsMessages {
         submitEmailParametersWindow(false);
     }
     @Test
-    public void checkEmailParametersModal_D_ProjectNumberPlaceholder(){
-        String subjectLineExample =  "Project "+parseProjectNumber();
+    public void checkEmailParametersModal_F1_ProjectNumberPlaceholder(){
+        skipBefore = true;
+        subjectLineExample =  "Project "+parseProjectNumber();
         callModalNewConversation();
         submitNewConversationWindow(
+                ADD_FOLLOWER,
                 null,
-                null,
-                null,
+                COLLABORATOR_EMAIL,
                 null,
                 null,
                 false,
@@ -306,6 +382,70 @@ public class TestsMessages {
         selectEmailPlaceholder(PRJ_NUMBER);
         validateEmailParametersWindow("#project-number#", subjectLineExample);
         submitEmailParametersWindow(true);
+
+        expandTextEditorInTeamChat();
+        postMessage(LOREM_IPSUM_SHORT);
+    }
+    @Test @Category({AllImapTests.class})
+    public void checkEmailParametersModal_F2_CheckEmailSubject() throws IOException, MessagingException {
+        skipBefore = false;
+        Assert.assertNotNull(subjectLineExample);
+        rootLogger.info("Check #project-number# subject");
+        sleep(10000);
+        MessagesIMAP emailTask2 = new MessagesIMAP();
+        Assert.assertTrue(
+                emailTask2.validateEmailMessage(
+                        COLLABORATOR_EMAIL,
+                        COLLABORATOR_EMAIL_PASSWORD,
+                        subjectLineExample,
+                        LOREM_IPSUM_SHORT,
+                        INVITER_NAME_SURNAME,
+                        COLLABORATOR_NAME_SURNAME,
+                        new MessagesValidator.ValidationEmailMessage()
+                )
+        );
+    }
+    @Test
+    public void checkEmailParametersModal_G1_MajorNumberPlaceholder(){
+        numberCreate("Reference Number", "ref/99-88-66-2017");
+        subjectLineExample =  "Reference Number"+": "+"ref/99-88-66-2017";
+        callModalNewConversation();
+        submitNewConversationWindow(
+                ADD_FOLLOWER,
+                null,
+                COLLABORATOR_EMAIL,
+                null,
+                null,
+                false,
+                true
+        );
+        callModalEmailParameters();
+        writeEmailPlaceholder ("");
+        selectEmailPlaceholder(MAJOR_NUMBERS);
+        validateEmailParametersWindow("#major-numbers#", subjectLineExample);
+        submitEmailParametersWindow(true);
+
+        expandTextEditorInTeamChat();
+        postMessage(LOREM_IPSUM_SHORT);
+    }
+    @Test @Category({AllImapTests.class})
+    public void checkEmailParametersModal_G2_CheckEmailSubject() throws IOException, MessagingException {
+        skipBefore = false;
+        Assert.assertNotNull(subjectLineExample);
+        rootLogger.info("Check #major-numbers# subject");
+        sleep(10000);
+        MessagesIMAP emailTask2 = new MessagesIMAP();
+        Assert.assertTrue(
+                emailTask2.validateEmailMessage(
+                        COLLABORATOR_EMAIL,
+                        COLLABORATOR_EMAIL_PASSWORD,
+                        subjectLineExample,
+                        LOREM_IPSUM_SHORT,
+                        INVITER_NAME_SURNAME,
+                        COLLABORATOR_NAME_SURNAME,
+                        new MessagesValidator.ValidationEmailMessage()
+                )
+        );
     }
 //EXTERNAL EM TESTS ==========================================================================
     @Test
@@ -475,7 +615,7 @@ public class TestsMessages {
         return;
     }
     @Ignore
-    @Test @Category({AllEmailsTests.class, AllImapTests.class})
+    @Test @Category({AllImapTests.class})
     public void inviteInTeamChatPekamaMemberAsGuestNewUser_ValidationEmail(){
         skipBefore = false;
         String login = COLLABORATOR_EMAIL;
@@ -528,7 +668,7 @@ public class TestsMessages {
         String followerNameSurname = newFollower+" (inactive)";
         StepsPekamaProject.validateFollowerTeamChat(followerNameSurname, 2, 0);
     }
-    @Test @Category({AllEmailsTests.class, AllImapTests.class})
+    @Test @Category({AllImapTests.class})
     public void inviteInTeamChatNewCollaborator_ValidationEmail(){
         skipBefore = false;
         rootLogger.info("Check invite email");

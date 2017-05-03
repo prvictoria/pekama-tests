@@ -420,7 +420,7 @@ public interface MessagesValidator {
                     this.html = html;
                     Elements links = parseHtmlHrefArray(html);
                     this.replyLink = getLink(links, index);
-                    rootLogger.info(replyLink);
+                    //rootLogger.info(replyLink);
                 }
                 return replyLink;
             }

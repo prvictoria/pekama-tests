@@ -63,6 +63,100 @@ public class StepsPekamaProject extends StepsPekama {
         }
         else return false;
     }
+// INFO TAB =====================================================================
+    public static String setProjectDefining(String defining){
+        if(defining!=null) {
+            selectItemInDropdown(
+                    TAB_INFO_SELECT_Defining,
+                    TAB_INFO_INPUT_Defining,
+                    defining);
+            sleep(1500);
+            checkText(defining);
+            return defining;
+        }
+        return null;
+    }
+    public static String setProjectType(String type){
+        if(type!=null) {
+            selectItemInDropdown(
+                    TAB_INFO_SELECT_Type,
+                    TAB_INFO_INPUT_Type,
+                    type);
+            sleep(1500);
+            checkText(type);
+            return type;
+        }
+        return null;
+    }
+    public static String setProjectSubType(String subType){
+        if(subType!=null) {
+            selectItemInDropdown(
+                    TAB_INFO_SELECT_SubType,
+                    TAB_INFO_INPUT_SubType,
+                    subType);
+            sleep(1500);
+            checkText(subType);
+            return subType;
+        }
+        return null;
+    }
+
+    // NUMBERS ===================================================================
+    public static void numberCreate(String numberType, String numberValue){
+        rootLogger.info("select number from list - ");
+        scrollDown();
+        selectItemInDropdown(TAB_INFO_NumberNewSelect, TAB_INFO_NumberNewField, numberType);
+        fillField(TAB_INFO_NumberReferenceField, numberValue);
+        TAB_INFO_NumberAdd.click();
+    }
+    public static void numberEditInFirstRow(String newNumberType, String newNumberValue){
+        rootLogger.info("Open inline form");
+        TAB_INFO_NumberRow01Edit.click();
+        TAB_INFO_Number_EDIT_REFERENCE_BTN_SAVE.waitUntil(visible, 10000).shouldBe(disabled);
+        selectItemInDropdown(TAB_INFO_Number_EDIT_REFERENCE_TYPE_SELECT, TAB_INFO_Number_EDIT_REFERENCE_TYPE_INPUT, newNumberType);
+        fillField(TAB_INFO_Number_EDIT_REFERENCE_VALUE_INPUT, newNumberValue);
+        submitEnabledButton(TAB_INFO_Number_EDIT_REFERENCE_BTN_SAVE);
+    }
+    public static void numberDelete(String numberType){
+        if(numberType==null){
+            rootLogger.info("Delete number");
+            TAB_INFO_NumberRow01Collapse.click();
+            TAB_INFO_NumberRow01Delete.click();
+            submitConfirmAction();
+            return;
+        }
+        else {
+
+        }
+    }
+    public static Boolean numberValidateFirstRow(String numberType, String numberValue){
+        if(numberType==null && numberValue==null){
+            NUMBERS_LIST.filter(visible).shouldHaveSize(1);
+            checkText(placeholderNoNumbers);
+            //$$(byText(placeholderNoNumbers)).filter(visible).shouldHaveSize(1);
+            // todo BUG #140183099 - https://www.pivotaltracker.com/n/projects/1239770/stories/140183099
+            return true;
+        }
+        if(numberType!=null) {
+            NUMBERS_LIST.filter(visible).shouldHaveSize(2);
+            TAB_INFO_NumberRow01Type.shouldHave(text(numberType));
+        }
+        if(numberValue!=null) {
+            NUMBERS_LIST.filter(visible).shouldHaveSize(2);
+            TAB_INFO_NumberRow01Number.shouldHave(text(numberValue));
+        }
+        return true;
+    }
+    public static Boolean numberValidateInlineForm(String numberType, String numberValue){
+        if(numberType!=null) {
+            checkText(numberType, 2);
+        }
+        if( numberValue!=null) {
+            checkText(numberValue, 1);
+        }
+        return true;
+    }
+// TASKS TAB =========================================================================
     public static String taskCreate(){
         taskAddNew();
         String taskName = taskNewModalSetName();
@@ -338,6 +432,7 @@ public class StepsPekamaProject extends StepsPekama {
             TEMPLATES_LIST.shouldHaveSize(listSize);}
         return listSize;
     }
+ // CONVERSATION ====================================================================
     public static boolean callModalNewConversation(){
         rootLogger.info("Create new thread in Talk to your Team tab");
         scrollUp();
@@ -456,7 +551,8 @@ public class StepsPekamaProject extends StepsPekama {
         if(followerNameSurname!=null && followerIndex!=null) {
             CONVERSATION_FOLLOWERS_LIST.filter(visible);
             SelenideElement FirstFollower = CONVERSATION_FOLLOWERS_LIST.get(followerIndex);
-            FirstFollower.waitUntil(visible, 10000).shouldHave(text(followerNameSurname));
+            rootLogger.info(FirstFollower.getText());
+            //FirstFollower.waitUntil(visible, 10000).shouldHave(text(followerNameSurname));
         }
         return true;
     }
@@ -543,42 +639,8 @@ public class StepsPekamaProject extends StepsPekama {
     public static boolean sendTeamChatMsg(){
         return true;
     }
-    public static String setProjectDefining(String defining){
-        if(defining!=null) {
-            selectItemInDropdown(
-                    TAB_INFO_SELECT_Defining,
-                    TAB_INFO_INPUT_Defining,
-                    defining);
-            sleep(1500);
-            checkText(defining);
-            return defining;
-        }
-        return null;
-    }
-    public static String setProjectType(String type){
-        if(type!=null) {
-            selectItemInDropdown(
-                    TAB_INFO_SELECT_Type,
-                    TAB_INFO_INPUT_Type,
-                    type);
-            sleep(1500);
-            checkText(type);
-            return type;
-        }
-        return null;
-    }
-    public static String setProjectSubType(String subType){
-        if(subType!=null) {
-            selectItemInDropdown(
-                    TAB_INFO_SELECT_SubType,
-                    TAB_INFO_INPUT_SubType,
-                    subType);
-            sleep(1500);
-            checkText(subType);
-            return subType;
-        }
-        return null;
-    }
+
+
     public static void switchToCommunity(){
         checkThatWindowsQtyIs(2);
         switchToCommunityWindow();
@@ -645,6 +707,7 @@ public class StepsPekamaProject extends StepsPekama {
         String projectNumber = fullTitle.substring(fullTitle.indexOf("(") + 1, fullTitle.indexOf(")"));
         return projectNumber;
     }
+
     //DEBUG ==============================================================
     @Ignore
     @Test

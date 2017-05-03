@@ -182,35 +182,18 @@ public class TestsPekamaProject {
     }
     @Test
     public void createProject_C_AddNumber() {
-        String codeType = "Equinox code";
-        String codeValue = "2000/17/55-asd";
-        rootLogger.info("select number from list - ");
-        scrollDown();
-        selectItemInDropdown(TAB_INFO_NumberNewSelect, TAB_INFO_NumberNewField, codeType);
-        fillField(TAB_INFO_NumberReferenceField, codeValue);
-        TAB_INFO_NumberAdd.click();
-        TAB_INFO_NumberRow01Type.shouldHave(text(codeType));
+        String numberType = "Equinox code";
+        String numberValue = "2000/17/55-asd";
+        numberCreate(numberType, numberValue);
+        numberValidateFirstRow(numberType, numberValue);
 
-        rootLogger.info("open inline form");
-        TAB_INFO_NumberRow01Edit.click();
-        TAB_INFO_Number_EDIT_REFERENCE_BTN_SAVE.waitUntil(visible, 10000).shouldBe(disabled);
-        rootLogger.info("edit number inline - ");
-        String newCodeValue = "8888-1111-lkjh";
-        String newCodeType = "Reference Number";
-        selectItemInDropdown(TAB_INFO_Number_EDIT_REFERENCE_TYPE_SELECT, TAB_INFO_Number_EDIT_REFERENCE_TYPE_INPUT, newCodeType);
-        fillField(TAB_INFO_Number_EDIT_REFERENCE_VALUE_INPUT, newCodeValue);
-        submitEnabledButton(TAB_INFO_Number_EDIT_REFERENCE_BTN_SAVE);
-        $$(byText(newCodeValue)).shouldHaveSize(1);
-        $$(byText(newCodeType)).shouldHaveSize(2);
-        $$(byText(codeValue)).shouldHaveSize(0);
-        $$(byText(codeType)).shouldHaveSize(0);
+        String newNumberType = "Reference Number";
+        String newNumberValue = "8888-1111-lkjh";
+        numberEditInFirstRow(newNumberType, newNumberValue);
+        numberValidateInlineForm(newNumberType, newNumberValue);
 
-        rootLogger.info("delete number");
-        TAB_INFO_NumberRow01Collapse.click();
-        TAB_INFO_NumberRow01Delete.click();
-        submitConfirmAction();
-        // $$(byText(placeholderNoNumbers)).filter(visible).shouldHaveSize(1);
-        // todo BUG #140183099 - https://www.pivotaltracker.com/n/projects/1239770/stories/140183099
+        numberDelete(null);
+        numberValidateFirstRow(null, null);
     }
     @Test
     public void createProject_D_addClassification() {

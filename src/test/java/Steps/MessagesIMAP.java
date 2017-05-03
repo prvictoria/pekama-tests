@@ -770,7 +770,7 @@ public class MessagesIMAP {
                 password,
                 EMAIL_SUBJECT_YOU_INVITED_IN_PROJECT(inviterNameSurname),
                 new ValidationInviteInProject());
-        return true;
+        return validationResult;
     }
     public boolean validateEmailInviteInCommunity(String login, String password, String name_surname, String customText){
         ValidationInviteCommunity.userEmail = login;

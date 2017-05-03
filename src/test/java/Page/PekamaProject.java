@@ -92,11 +92,12 @@ public class PekamaProject extends Page {
 
 
     public static final SelenideElement TAB_INFO_NumberAdd = $(byXpath("//button[contains(.,'Add')]"));
-    public static final SelenideElement TAB_INFO_NumberRow01Type = $(byXpath("//li[@class='like-tr ng-scope']/div/div[1]"));
-    public static final SelenideElement TAB_INFO_NumberRow01Number = $(byXpath("//li[@class='like-tr ng-scope']/div/div/span"));
+    public static final SelenideElement TAB_INFO_NumberRow01Type = $(byXpath("//pkm-reference-numbers//ul//li[1]/div/div[1]"));
+    public static final SelenideElement TAB_INFO_NumberRow01Number = $(byXpath("//pkm-reference-numbers//ul//li[1]/div//span"));
     public static final SelenideElement TAB_INFO_NumberRow01Edit = $(byXpath("//pkm-reference-numbers/ul/li[1]//i[@class='icon pkm-icon-edit']"));
     public static final SelenideElement TAB_INFO_NumberRow01Delete = $(byXpath("//pkm-reference-numbers/ul/li[1]//i[@class='pkm-icon-cancel icon']"));
     public static final SelenideElement TAB_INFO_NumberRow01Collapse = $(byXpath("//pkm-reference-numbers/ul/li[1]//i[@class='icon pkm-icon-up-open']"));
+    public static ElementsCollection NUMBERS_LIST = $$(byXpath("//pkm-reference-numbers//ul//li"));
     public static final SelenideElement TAB_INFO_NumberRow02Number = $(byXpath(""));
     public static final SelenideElement TAB_INFO_NumberRow02Edit = $(byXpath(""));
     public static final SelenideElement TAB_INFO_NumberRow02Type = $(byXpath(""));

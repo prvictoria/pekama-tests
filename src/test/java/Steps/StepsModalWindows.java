@@ -141,15 +141,19 @@ public class StepsModalWindows extends StepsFactory {
             switch(placeholders) {
                 case SUBJECT :
                     MW_EMAIL_PARAMETERS_SUBJECT.shouldBe(visible).click();
+                    sleep(500);
                     break;
                 case TITLE :
                     MW_EMAIL_PARAMETERS_TITLE.shouldBe(visible).click();
+                    sleep(500);
                     break;
                 case MAJOR_NUMBERS :
                     MW_EMAIL_PARAMETERS_MAJOR_NUMBERS.shouldBe(visible).click();
+                    sleep(500);
                     break;
                 case PRJ_NUMBER :
                     MW_EMAIL_PARAMETERS_PRJ_NUMBER.shouldBe(visible).click();
+                    sleep(500);
                     break;
             }
         }
@@ -166,10 +170,15 @@ public class StepsModalWindows extends StepsFactory {
             MW_BTN_SAVE.shouldBe(enabled).click();
             MW_BTN_SAVE.waitUntil(disabled, 10000);
             sleep(4000);
-        }
-        else {
             MW_BTN_CLOSE.shouldBe(enabled).click();
             MW.waitUntil(not(visible), 10000);
+            sleep(1500);
+        }
+        else {
+
+            MW_BTN_CLOSE.shouldBe(enabled).click();
+            MW.waitUntil(not(visible), 10000);
+            sleep(1500);
         }
     }
     public static String getConversationDirectEmailAddress(){
@@ -205,6 +214,8 @@ public class StepsModalWindows extends StepsFactory {
         String address = getConversationDirectEmailAddress();
         String actualPlaceholder = getConversationPlaceholder();
         String actualPreviewText = getConversationPlaceholderPreview();
+        Assert.assertNotNull(actualPlaceholder);
+        Assert.assertNotNull(actualPreviewText);
         if(address!=null){
             if(placeholder!=null){
                 placeholder.contains(actualPlaceholder);
