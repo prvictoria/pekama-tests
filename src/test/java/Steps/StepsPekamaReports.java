@@ -31,9 +31,12 @@ public class StepsPekamaReports extends StepsFactory {
         rootLogger.info("type"+thisMailingListName);
         REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_INPUT.sendKeys(thisMailingListName);
         rootLogger.info("click"+REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_SAVE);
-        REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_SAVE.click();
+        REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_SAVE
+                .waitUntil(visible, 10000)
+                .shouldBe(enabled)
+                .click();
         sleep(3000);
-        $$(byText(thisMailingListName));
+        //$$(byText(thisMailingListName));
         $(byLinkText(thisMailingListName)).waitUntil(visible, 10000);
         REPORTS_MAILING_SAVE_SEARCH_DROPDOWN_SAVE.pressEscape();
         sleep(500);

@@ -254,7 +254,7 @@ public class StepsPekamaProject extends StepsPekama {
         return selectedTemplate;
     }
     public static String taskSelectProjectTemplateFormDropDown(String templateProjectName){
-        sleep(1500);
+        sleep(2000);
         int size = DROPDOWN_PROJECT_TEMPLATES_LIST.size();
         if (size==0){
             Assert.fail("Dropdown not present");}
@@ -552,6 +552,7 @@ public class StepsPekamaProject extends StepsPekama {
             CONVERSATION_FOLLOWERS_LIST.filter(visible);
             SelenideElement FirstFollower = CONVERSATION_FOLLOWERS_LIST.get(followerIndex);
             rootLogger.info(FirstFollower.getText());
+            //TODO validation one value from array - follower place is dynamic
             //FirstFollower.waitUntil(visible, 10000).shouldHave(text(followerNameSurname));
         }
         return true;

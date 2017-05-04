@@ -1460,9 +1460,9 @@ public class TestsPekamaProject {
         PROJECT_TAB_CONTACTS.shouldBe(visible).click();
         checkText(OWNER);
         checkText(REQUESTER_FULL_TEAM_NAME);
-        checkText(ADMIN, 1);
-        checkText(INTRODUCER_NAME);
+        checkText(ADMIN);
         checkText(EXPERT_FULL_TEAM_NAME);
+        checkTextNotPresent(INTRODUCER_NAME); //Removed from case - Admin function
         rootLogger.info("Test passed");
     }
 }

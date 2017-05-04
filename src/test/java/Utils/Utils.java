@@ -5,10 +5,8 @@ import org.junit.Test;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Random;
+import java.util.*;
+
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
@@ -66,10 +64,27 @@ public class Utils {
 //    public static void enumSelection (enum a){
 //        a.getValue;
 //    }
+    public static Boolean matchedString(){
+        String[] alphabet = new String[]{"A", "B", "C"};
+
+        // Convert String Array to List
+        List<String> list = Arrays.asList(alphabet);
+
+        if(list.contains("A")) {
+            System.out.println("Hello A");
+        }
+        // Convert to stream and test it Java 1.8 is neded
+//        boolean result = Arrays.stream(alphabet).anyMatch("A"::equals);
+//        if (result) {
+//            System.out.println("Hello A");
+//        }
+        return true;
+    }
     @Ignore
     @Test
     public void test() throws ParseException {
-        System.out.println(randomString(10));
-        System.out.println(getDate(-100));
+        matchedString();
+//        System.out.println(randomString(10));
+//        System.out.println(getDate(-100));
     }
 }

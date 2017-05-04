@@ -10,6 +10,7 @@ import org.junit.experimental.categories.Category;
 import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 
 import static Page.Emails.*;
@@ -42,8 +43,8 @@ public class TestsPekamaResetPassword {
     static final Logger rootLogger = LogManager.getLogger(TestsPekamaResetPassword.class);
     public static String SELECT_HOST = ENVIRONMENT_PEKAMA;
     private static String NEW_PASSWORD = null;
-    private String GMAIL_LOGIN = User4.GMAIL_EMAIL.getValue();
-    private String GMAIL_PASSWORD = User4.GMAIL_PASSWORD.getValue();
+    private static final String GMAIL_LOGIN = User4.GMAIL_EMAIL.getValue();
+    private static final String GMAIL_PASSWORD = User4.GMAIL_PASSWORD.getValue();
     private SelenideElement EMAIL_SUBJECT = EMAIL_RESET_PASSWORD_SUBJECT;
     private String EMAIL_TITLE = EMAIL_RESET_PASSWORD_TITLE;
     private String EMAIL_TEXT = EMAIL_RESET_PASSWORD_TEXT;
@@ -56,10 +57,14 @@ public class TestsPekamaResetPassword {
     @Rule
     public Timeout tests = Timeout.seconds(600);
     @BeforeClass
-    public static void beforeClass() throws IOException {
+    public static void beforeClass() throws IOException, MessagingException {
         setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
+        MessagesIMAP emailTask = new MessagesIMAP();
+        emailTask.imapSearchEmailDeleteAll(
+                GMAIL_LOGIN,
+                GMAIL_PASSWORD);
     }
     @Ignore
     @Before

@@ -565,16 +565,11 @@ public class MessagesIMAP {
         return false;
     }
     public String searchEmailBySubjectAndValidate(String userName, String password, final String keyword, MessagesValidator validator, Integer index) {
-        Properties properties = setProperties (IMAP_HOST, IMAP_PORT);
-        Session session = Session.getDefaultInstance(properties);
-        try {
-            // connects to the message store
-            Store store = session.getStore("imap");
-            store.connect(userName, password);
 
-            // opens the inbox folder
-            Folder folderInbox = store.getFolder("INBOX");
-            folderInbox.open(Folder.READ_WRITE);
+        Properties properties = setProperties (IMAP_HOST, IMAP_PORT);
+        try {
+            Store store = store(properties, userName, password);
+            Folder folderInbox = folder (store);
             SearchTerm searchCondition = searchTermSubject(keyword);
 
             // performs search through the folder
@@ -599,8 +594,8 @@ public class MessagesIMAP {
                 }
             }
             // disconnect
-            folderInbox.close(true);
-            store.close();
+            clearFolder(folderInbox);
+            closeStore(store);
             return link;
         } catch (NoSuchProviderException ex) {
             System.out.println("No provider.");
