@@ -7,8 +7,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 
-import java.util.Enumeration;
-
 import static Page.ModalWindows.*;
 import static Page.PekamaConversationProject.*;
 import static Page.PekamaProject.*;
@@ -17,7 +15,6 @@ import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Steps.StepsModalWindows.ModalConversationFollowerActions.*;
 import static Steps.StepsModalWindows.ModalConversationTeamActions.*;
-import static Steps.StepsModalWindows.emailPlaceholders.*;
 import static Steps.StepsPekama.*;
 import static Utils.Utils.*;
 import static com.codeborne.selenide.Condition.*;
@@ -458,7 +455,7 @@ public class StepsModalWindows extends StepsFactory {
         TAB_INFO_ClassesAdd.waitUntil(visible, 20000).click();
         waitForModalWindow(mwClasses_Title);
         MW_BTN_OK.shouldBe(disabled);
-        mwClasses_SelectClassType.shouldHave(text(classType));
+        MW_Classes_ClassType.shouldHave(text(classType));
         fillField(mwClasses_FieldClass, classNumber);
         fillField(mwClasses_FieldDescription, classDescripton);
         submitEnabledButton(MW_BTN_OK);

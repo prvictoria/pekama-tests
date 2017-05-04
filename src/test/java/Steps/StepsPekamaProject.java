@@ -101,7 +101,7 @@ public class StepsPekamaProject extends StepsPekama {
         return null;
     }
 
-    // NUMBERS ===================================================================
+    // INFO TAB - NUMBERS ========================================================
     public static void numberCreate(String numberType, String numberValue){
         rootLogger.info("select number from list - ");
         scrollDown();
@@ -156,6 +156,74 @@ public class StepsPekamaProject extends StepsPekama {
         }
         return true;
     }
+    // INFO TAB - CLASSIFICATION ========================================================
+    public static void classificationCreate(String classType, String classNumber, String classDescription){
+        PROJECT_TAB_INFO.waitUntil(visible, 20000).click();
+        scrollDown();
+        TAB_INFO_ClassesAdd.waitUntil(visible, 20000).click();
+
+        waitForModalWindow(mwClasses_Title);
+        MW_BTN_OK.shouldBe(disabled);
+        MW_Classes_ClassType.shouldHave(text("Up-to-date"));
+        if(classType!=null) {
+            selectItemInDropdown(MW_Classes_ClassType_SELECT, MW_Classes_ClassType_INPUT, classType);
+        }
+        if(classNumber!=null) {
+            fillField(mwClasses_FieldClass, classNumber);
+        }
+        if(classDescription!=null) {
+            fillField(mwClasses_FieldDescription, classDescription);
+        }
+        if(classType!=null | classNumber!=null | classDescription!=null) {
+            rootLogger.info("Deploy new classification");
+            submitEnabledButton(MW_BTN_OK);
+            return;
+        }
+    }
+    public static void classificationEditFirstRow(String classType, String classNumber, String classDescription){
+        PROJECT_TAB_INFO.waitUntil(visible, 20000).click();
+        scrollDown();
+        TAB_INFO_ClassRow01Edit.waitUntil(visible, 10000).click();
+
+        rootLogger.info("Edit classification in modal window");
+        waitForModalWindow(mwClasses_Title);
+        MW_BTN_OK.shouldBe(disabled);
+        if(classType!=null) {
+            selectItemInDropdown(MW_Classes_ClassType_SELECT, MW_Classes_ClassType_INPUT, classType);
+        }
+        if(classNumber!=null) {
+            fillField(mwClasses_FieldClass, classNumber);
+        }
+        if(classDescription!=null) {
+            fillField(mwClasses_FieldDescription, classDescription);
+        }
+        if(classType!=null | classNumber!=null | classDescription!=null) {
+            submitEnabledButton(MW_BTN_OK);
+            return;
+        }
+    }
+    public static void classificationDelete(){
+        rootLogger.info("Delete classification");
+        TAB_INFO_ClassRow01delete.click();
+        submitConfirmAction();
+    }
+    public static Boolean classificationValidateClasses(String classType, String classDescription){
+        MW.shouldNotBe(visible);
+        if(classType==null && classDescription==null){
+            $$(byText(PLACEHOLDER_NO_CASES)).shouldHaveSize(1);
+            rootLogger.info("All calsses were deleted - "+ PLACEHOLDER_NO_CASES);
+            return true;
+        }
+        if (classType!=null) {
+            $$(byText(classType)).shouldHaveSize(1);
+        }
+        if (classDescription!=null) {
+            $$(byText(classDescription)).shouldHaveSize(1);
+        }
+
+        return true;
+    }
+
 // TASKS TAB =========================================================================
     public static String taskCreate(){
         taskAddNew();

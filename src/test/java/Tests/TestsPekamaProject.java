@@ -201,41 +201,43 @@ public class TestsPekamaProject {
         numberValidateFirstRow(null, null);
     }
     @Test
+    public void createProject_D1_ClassificationValidation() {
+        classificationCreate("Up-to-date", null, null);
+        checkText("This field is required.");
+        submitEnabledButton(MW_BTN_CANCEL);
+
+        classificationCreate(null, null, LOREM_IPSUM_SHORT);
+        checkText("This field is required.");
+        submitEnabledButton(MW_BTN_CANCEL);
+
+        classificationCreate(null, "ABCDEFG", null);
+        checkText("A valid integer is required.");
+        submitEnabledButton(MW_BTN_CANCEL);
+
+        classificationCreate(null, "46", null);
+        checkText("Ensure this value is less than or equal to 45.");
+        submitEnabledButton(MW_BTN_CANCEL);
+
+        classificationCreate(null, "0", null);
+        checkText("Ensure this value is greater than or equal to 1.");
+        submitEnabledButton(MW_BTN_CANCEL);
+    }
+    @Test
     public void createProject_D_addClassification() {
+
         String classNumber = "12";
-        String classDescripton = "old description";
-        scrollDown();
-        TAB_INFO_ClassesAdd.waitUntil(visible, 20000).click();
-        waitForModalWindow(mwClasses_Title);
-        MW_BTN_OK.shouldBe(disabled);
-        mwClasses_SelectClassType.shouldHave(text("Up-to-date"));
-        fillField(mwClasses_FieldClass, classNumber);
-        fillField(mwClasses_FieldDescription, classDescripton);
-        submitEnabledButton(MW_BTN_OK);
-        MW.shouldNotBe(visible);
-        $$(byText("Up-to-date")).shouldHaveSize(1);
-        $$(byText(classDescripton)).shouldHaveSize(1);
+        String classDescription = "old description";
+        classificationCreate(null, classNumber, classDescription);
+        classificationValidateClasses("Up-to-date", classDescription);
 
-        rootLogger.info("edit class in modal - ");
-        TAB_INFO_ClassRow01Edit.click();
-        waitForModalWindow(mwClasses_Title);
-        MW_BTN_OK.shouldBe(disabled);
-        mwClasses_SelectClassType.shouldHave(text("Up-to-date"));
-        selectItemInDropdown(mwClasses_SelectClassType, mwClasses_FieldClassType, "Official Data");
         String classNewNumber = "23";
-        fillField(mwClasses_FieldClass, classNewNumber);
         String classNewDescripton = "new description";
-        fillField(mwClasses_FieldDescription, classNewDescripton);
-        submitEnabledButton(MW_BTN_OK);
-        MW.shouldNotBe(visible);
-        $$(byText("Official Data")).shouldHaveSize(1);
-        $$(byText(classNewDescripton)).shouldHaveSize(1);
+        classificationEditFirstRow("Official Data", classNewNumber, classNewDescripton);
+        classificationValidateClasses("Official Data", classNewDescripton);
 
-        rootLogger.info("delete classification");
-        TAB_INFO_ClassRow01delete.click();
-        submitConfirmAction();
-        $$(byText(PLACEHOLDER_NO_CASES)).shouldHaveSize(1);
-        rootLogger.info("All calsses were deleted - "+ PLACEHOLDER_NO_CASES);
+        classificationDelete();
+        classificationValidateClasses(null, null);
+
     }
     @Test
     public void createProject_E_addCollaborator() {

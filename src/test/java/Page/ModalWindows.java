@@ -370,7 +370,9 @@ public class ModalWindows extends Page {
     public static final SelenideElement mwUpdateAssignee_Input = $(byXpath(mw+""));
     //New Class
     public static final String mwClasses_Title = "Classes & Goods";
-    public static final SelenideElement mwClasses_SelectClassType = $(byXpath(mw+"//label[contains(.,'Class Type')]/following-sibling::div//span[@class='ng-binding ng-scope']"));
+    public static final SelenideElement MW_Classes_ClassType = $(byXpath(mw+"//label[contains(.,'Class Type')]/following-sibling::div//span[@class='ng-binding ng-scope']"));
+    public static final SelenideElement MW_Classes_ClassType_SELECT = $(byXpath(mw+"//label[contains(.,'Class Type')]/following-sibling::div//span"));
+    public static final SelenideElement MW_Classes_ClassType_INPUT = $(byXpath(mw+"//label[contains(.,'Class Type')]/following-sibling::div//input[@type='search']"));
     public static final SelenideElement mwClasses_FieldClassType = $(byXpath(mw+"//input[@type='search']"));
     public static final SelenideElement mwClasses_FieldClass = $(byXpath(mw+"//input[@name='class_no']"));
     public static final SelenideElement mwClasses_FieldDescription = $(byXpath(mw+"//textarea[@name='description']"));
