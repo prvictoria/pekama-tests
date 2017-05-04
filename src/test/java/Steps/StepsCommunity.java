@@ -281,7 +281,7 @@ public class StepsCommunity extends StepsFactory{
         String a = "";
         return a;
     }
-    //draft rows
+    //Draft rows
     public static boolean checkCaseNameFirstRow(String caseType, String caseCountry) {
         String caseName = caseType+" in "+caseCountry;
         rootLogger.info(caseName);

@@ -146,7 +146,7 @@ public class TestsCommunityOutgoing {
     }
     @Test
     public void testF1_cancelCase() {
-        rootLogger.info("Create draft case");
+        rootLogger.info("Create Draft case");
         String caseName = createDraftCase(EXPERT_TEAM_NAME);
         COMMUNITY_TAB_Outgoing.click();
         sleep(3000);
@@ -156,7 +156,7 @@ public class TestsCommunityOutgoing {
     }
     @Test
     public void testF2_cancelCase() {
-        rootLogger.info("Create draft case");
+        rootLogger.info("Create Draft case");
         String caseName = createDraftCase(EXPERT_TEAM_NAME);
         COMMUNITY_TAB_Outgoing.click();
         sleep(3000);
@@ -167,7 +167,7 @@ public class TestsCommunityOutgoing {
     @Ignore //TODO obsolete flow - no link
     @Test
     public void testF3_cancelCaseCheckPekama() {
-        rootLogger.info("Create draft case");
+        rootLogger.info("Create Draft case");
         String caseName = createDraftCase(EXPERT_TEAM_NAME);
         COMMUNITY_TAB_Outgoing.click();
         sleep(3000);
@@ -201,7 +201,7 @@ public class TestsCommunityOutgoing {
     @Ignore //TODO obsolete flow - no link
     @Test
     public void testG1_deleteDraftCase() {
-        rootLogger.info("Create draft case");
+        rootLogger.info("Create Draft case");
         String caseName = createDraftCase(EXPERT_TEAM_NAME);
         COMMUNITY_TAB_Outgoing.click();
         sleep(3000);
@@ -234,7 +234,7 @@ public class TestsCommunityOutgoing {
     }
     @Ignore //TODO obsolete flow - no link
     public void testG2_deleteCancelledCase() {
-        rootLogger.info("Create draft case");
+        rootLogger.info("Create Draft case");
         String caseName = createDraftCase(EXPERT_TEAM_NAME);
         COMMUNITY_TAB_Outgoing.click();
         sleep(3000);

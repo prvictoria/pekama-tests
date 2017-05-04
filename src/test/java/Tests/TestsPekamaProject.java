@@ -11,6 +11,7 @@ import org.junit.experimental.categories.Category;
 import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
 
+import javax.mail.MessagingException;
 import java.awt.*;
 import java.io.IOException;
 
@@ -83,11 +84,15 @@ public class TestsPekamaProject {
     private static boolean skipBefore = false;
 
     @BeforeClass
-    public static void beforeClass() throws IOException {
+    public static void beforeClass() throws IOException, MessagingException {
         setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
         TEST_CASE_TYPE = MATTER_TYPE_TRADEMARK;
+        MessagesIMAP emailTask = new MessagesIMAP();
+        emailTask.imapSearchEmailDeleteAll(
+                User5.GMAIL_EMAIL.getValue(),
+                User5.GMAIL_PASSWORD.getValue());
     }
     @Before
     public void before() {
@@ -1356,7 +1361,7 @@ public class TestsPekamaProject {
                 .shouldBe(disabled);
         submitCookie();
         hideZopim();
-        rootLogger.info("Create draft case");
+        rootLogger.info("Create Draft case");
         WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.shouldBe(disabled);
         selectExpert(EXPERT_TEAM_NAME);
 

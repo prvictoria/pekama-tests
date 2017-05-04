@@ -363,7 +363,7 @@ public class TestsCommunityIncoming {
     }
     @Test
     public void testF1_cancelledCaseState() {
-        rootLogger.info("Create draft case");
+        rootLogger.info("Create Draft case");
         String caseName = createDraftCase(EXPERT_TEAM_NAME);
         COMMUNITY_TAB_Outgoing.click();
         rootLogger.info("Cancel case");
@@ -389,7 +389,7 @@ public class TestsCommunityIncoming {
     }
     @Test
     public void testF2_cancelledCaseState() {
-        rootLogger.info("Create draft case");
+        rootLogger.info("Create Draft case");
         String caseName = createDraftCase(EXPERT_TEAM_NAME);
         COMMUNITY_TAB_Outgoing.click();
         sleep(3000);

@@ -1,4 +1,4 @@
-package draft;
+package Draft;
 
 
 import com.codeborne.selenide.Condition;

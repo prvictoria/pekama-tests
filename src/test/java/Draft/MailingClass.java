@@ -1,12 +1,10 @@
-package draft;
+package Draft;
 
 /**
  * Created by Viachaslau_Balashevi on 3/8/2017.
  */
 import org.junit.Ignore;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;

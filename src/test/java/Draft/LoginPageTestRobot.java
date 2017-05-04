@@ -1,4 +1,4 @@
-package draft;
+package Draft;
 
 /**
  * Created by Viachaslau_Balashevi on 1/22/2017.

@@ -419,7 +419,7 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_COMMUNITY_BTN_NO = $(byXpath(mw+"//button[text()='No']"));
     //MW return to 1st wizard step
     public static final SelenideElement MW_COMMUNITY_RETURN_TO_WIZARD_TITLE = $(byText("Are you sure you want to initiate a new supplier request?"));
-    public static final SelenideElement MW_COMMUNITY_RETURN_TO_WIZARD_TEXT = $(byText("You can always access the draft of the current request from the \"Outgoing Cases\" tab."));
+    public static final SelenideElement MW_COMMUNITY_RETURN_TO_WIZARD_TEXT = $(byText("You can always access the Draft of the current request from the \"Outgoing Cases\" tab."));
     
     //MW cancel case
     public static final SelenideElement MW_CANCEL_CASE_TITLE = $(byText("Are you sure you want to cancel this case?"));

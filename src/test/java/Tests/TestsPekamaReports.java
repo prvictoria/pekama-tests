@@ -9,6 +9,7 @@ import org.junit.experimental.categories.Category;
 import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 
 import static Page.Emails.*;
@@ -47,10 +48,14 @@ public class TestsPekamaReports {
     private static boolean skipBefore = false;
 
     @BeforeClass
-    public static void beforeClass() throws IOException {
+    public static void beforeClass() throws IOException, MessagingException {
         setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
+        MessagesIMAP emailTask = new MessagesIMAP();
+        emailTask.imapSearchEmailDeleteAll(
+                GMAIL_LOGIN,
+                GMAIL_PASSWORD);
     }
     @Before
     public void login() {

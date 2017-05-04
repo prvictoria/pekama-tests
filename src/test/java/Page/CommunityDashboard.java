@@ -47,7 +47,7 @@ public class CommunityDashboard extends Page {
     public static final SelenideElement COMMUNITY_LABEL_Collaborator = $(byXpath("//span[contains(text(),'Existing Relationship')]"));
     public static final SelenideElement COMMUNITY_LABEL_ = $(byXpath("//span[contains(text(),'')]"));
     public static final String COMMUNITY_STATUS_ = "";
-    public static final String COMMUNITY_STATUS_DRAFT = "draft";
+    public static final String COMMUNITY_STATUS_DRAFT = "Draft";
     public static final String COMMUNITY_STATUS_SENT = "sent";
     public static final String COMMUNITY_STATUS_RECEIVED = "received";
     public static final String COMMUNITY_STATUS_CONFIRMED = "confirmed";

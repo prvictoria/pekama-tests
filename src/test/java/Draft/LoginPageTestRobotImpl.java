@@ -1,4 +1,4 @@
-package draft;
+package Draft;
 
 import org.junit.Assert;
 import org.junit.Ignore;

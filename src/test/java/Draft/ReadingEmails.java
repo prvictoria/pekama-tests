@@ -1,4 +1,4 @@
-package draft;
+package Draft;
 
 import java.io.File;
 import java.io.FileInputStream;
