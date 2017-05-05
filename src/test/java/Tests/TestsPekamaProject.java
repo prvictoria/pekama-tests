@@ -223,7 +223,7 @@ public class TestsPekamaProject {
         submitEnabledButton(MW_BTN_CANCEL);
     }
     @Test
-    public void createProject_D_addClassification() {
+    public void createProject_D2_ClassificationCrud() {
 
         String classNumber = "12";
         String classDescription = "old description";
