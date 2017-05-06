@@ -18,6 +18,10 @@
           <option name="url" value="https://github.com/allure-examples/allure-gradle-junit-example.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://github.com/codeborne/selenide.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
     <option name="cloneParentDir" value="D:\PRJ" />
