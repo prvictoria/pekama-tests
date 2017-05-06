@@ -11,6 +11,8 @@ import org.junit.runners.MethodSorters;
 import java.io.IOException;
 
 import static Page.ModalWindows.*;
+import static Page.PekamaSignUp.signupUpload;
+import static Page.PekamaSignUp.signupUploadInput;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.setEnvironment;
@@ -53,17 +55,24 @@ public class TestsPekamaSettingsPersonal {
                 URL_LogIn
         );
     }
-@Ignore //TODO UPLOAD
+
     @Test
-    public void checkGui() {
+    public void avatarUpload() throws IOException {
         openSettingsTabPersonalDetails();
-        rootLogger.info("Start test GUI and links");
-        PERSONAL_DETAILS_UPLOAD_AVATAR_BTN.shouldBe(visible).click();
-        PERSONAL_DETAILS_UPLOAD_AVATAR_INPUT.uploadFromClasspath("./src/test/java/UploadFiles/Jpeg01.jpg");
-        rootLogger.info("Personal settings GUI is consistent");
+            PERSONAL_DETAILS_DELETE_AVATAR.waitUntil(visible, 15000).shouldBe(disabled);
+            PERSONAL_DETAILS_UPLOAD_AVATAR_BTN.shouldBe(visible).click();
+            sleep(2000);
+            String scriptPath = absolutePath( "src/test/resources/upload_script.exe");
+            rootLogger.info(scriptPath);
+            Runtime.getRuntime().exec(scriptPath);
+            sleep(4000);
+            PERSONAL_DETAILS_DELETE_AVATAR.waitUntil(visible, 15000).shouldBe(enabled).click();
+            sleep(4000);
+            PERSONAL_DETAILS_DELETE_AVATAR.waitUntil(visible, 15000).shouldBe(disabled);
+            rootLogger.info("Test passed");
     }
     @Test
-    public void avatarUpload() {
+    public void checkGui() {
         openSettingsTabPersonalDetails();
         rootLogger.info("Start test GUI and links");
         PERSONAL_SETTINGS_BTN.waitUntil(visible, 20000).shouldBe(Condition.visible);

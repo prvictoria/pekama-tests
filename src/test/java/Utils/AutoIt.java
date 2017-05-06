@@ -4,31 +4,27 @@ package Utils;
  * https:www.linkedin.com/in/viachaslau
  */
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+
+
 
 public class AutoIt {
 
-    private static WebDriver driver = null;
+    static WebDriver driver;
+    String URL = "C:\\Users\\Harry\\Desktop\\samplehtml.html";
 
-    public static void main(String[] args) throws IOException, InterruptedException {
-
+    @Test
+    public void testUpload() throws InterruptedException, IOException
+    {
         driver = new FirefoxDriver();
-
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-
-        driver.get("http:toolsqa.wpengine.com/automation-practice-form");
-
-        driver.findElement(By.id("photo")).click();
-
-        Runtime.getRuntime().exec("src/test/lib/AutoItTest.exe"); //no executable file
-
-        Thread.sleep(5000);
-
-        driver.close();
-
+        driver.get(URL);
+        WebElement element = driver.findElement(By.name("file"));
+        element.click();
+        //Which calls the autoit exe file
+        Runtime.getRuntime().exec("D:\\PRJ\\gradle-migration\\src\\test\\resources\\upload_script.exe");
     }
-
 }

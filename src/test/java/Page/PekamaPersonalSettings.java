@@ -28,7 +28,7 @@ public class PekamaPersonalSettings extends Page {
     public static final SelenideElement PERSONAL_DETAILS_AVATAR = $(byXpath("//div[@class='row clearfix-row profile-avatar-section ng-scope']//img[@class='img-circle']"));
     public static final SelenideElement PERSONAL_DETAILS_DELETE_AVATAR = $(byXpath("//button[@class='link del']"));
     public static final SelenideElement PERSONAL_DETAILS_UPLOAD_AVATAR_BTN = $(byXpath("//button[@class='link photo']"));
-    public static final SelenideElement PERSONAL_DETAILS_UPLOAD_AVATAR_INPUT = $(byXpath("//input[@class='link photo']"));
+    public static final SelenideElement PERSONAL_DETAILS_UPLOAD_AVATAR_INPUT = $(byXpath("//button/preceding-sibling::input[@type='file'][1]"));
     public static final SelenideElement PERSONAL_DETAILS_INPUT_NAME = $(byName("first_name"));
     public static final SelenideElement PERSONAL_DETAILS_INPUT_SURNAME = $(byName("last_name"));
     public static final SelenideElement PERSONAL_DETAILS_INPUT_PHONE = $(byName("phone_number"));
