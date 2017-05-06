@@ -8,6 +8,7 @@ import org.junit.*;
 import org.junit.experimental.categories.Category;
 import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
+import org.openqa.selenium.By;
 
 import java.io.IOException;
 
@@ -24,8 +25,10 @@ import static Tests.BeforeTestsSetUp.*;
 import static com.codeborne.selenide.CollectionCondition.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.refresh;
+import static com.codeborne.selenide.Selenide.sleep;
 import static com.codeborne.selenide.WebDriverRunner.*;
 /**
  * Created by Viachaslau Balashevich.
@@ -37,7 +40,8 @@ public class TestsPekamaSignUp {
     static String login = null;
     static String password = null;
     public String EXIST_USER = User1.GMAIL_EMAIL.getValue();
-    private String NEW_USER = User5.GMAIL_EMAIL.getValue();
+    private static final String NEW_USER = User5.GMAIL_EMAIL.getValue();
+    private static final String FAKE_USER = "fake_user@email.com";
     String actualBackLink;
     SelenideElement EMAIL_SUBJECT = EMAIL_CONFIRM_REGISTRATION_SUBJECT;
     String EMAIL_TITLE = EMAIL_CONFIRM_REGISTRATION_TITLE;
@@ -241,7 +245,7 @@ public class TestsPekamaSignUp {
     }
 
     @Test @Category(AllEmailsTests.class)
-    public void sendSignUpEmail_A_Send() {
+    public void sendSignUpEmail_A1_Send() {
         ValidationSignUp.userEmail = User5.GMAIL_EMAIL.getValue();
         rootLogger.info("submitSignUp with valid user");
         User fakeUser = new User();
@@ -260,7 +264,7 @@ public class TestsPekamaSignUp {
         skipBefore = true;
     }
     @Test @Category(AllEmailsTests.class)
-    public void sendSignUpEmail_B_CheckEmail() {
+    public void sendSignUpEmail_A2_CheckEmail() {
         login = User5.GMAIL_EMAIL.getValue();
         password = User5.GMAIL_PASSWORD.getValue();
         MessagesIMAP validation = new MessagesIMAP();
@@ -270,6 +274,112 @@ public class TestsPekamaSignUp {
         skipBefore = false;
     }
 
+    @Test
+    public void sendSignUpEmail_D1_UploadAvatarJpg() {
+        skipBefore = false;
+        signupUpAvatar.waitUntil(exist, 10000).shouldHave(attribute("class", "hidden image-preview"));
+        uploadFile("image_jpeg_01.jpg", signupUploadInput);
+        signupUpAvatar.waitUntil(exist, 10000).shouldHave(attribute("class", "image-preview"));
+        rootLogger.info("Avatar uploaded");
+
+        rootLogger.info("Submit SignUp with valid but fake user");
+        rootLogger.info("BUG https://www.pivotaltracker.com/n/projects/1239770/stories/142325561");
+        User fakeUser = new User();
+        fakeUser.submitSignUp(
+                FAKE_USER,
+                VALID_SURNAME,
+                VALID_NAME,
+                VALID_COMPANY,
+                VALID_PASSWORD,
+                "1",
+                "4");
+        Assert.assertTrue(fakeUser.isSignUpSucceed);
+        $(byText("Confirm your Account")).shouldBe(visible).shouldBe(visible);
+    }
+    @Test
+    public void sendSignUpEmail_D2_UploadAvatarPng() {
+        skipBefore = false;
+        signupUpAvatar.waitUntil(exist, 10000).shouldHave(attribute("class", "hidden image-preview"));
+        uploadFile("image_png_01.png", signupUploadInput);
+        signupUpAvatar.waitUntil(exist, 10000).shouldHave(attribute("class", "image-preview"));
+        rootLogger.info("Avatar uploaded");
+
+        rootLogger.info("Submit SignUp with valid but fake user");
+        User fakeUser = new User();
+        fakeUser.submitSignUp(
+                FAKE_USER,
+                VALID_SURNAME,
+                VALID_NAME,
+                VALID_COMPANY,
+                VALID_PASSWORD,
+                "4",
+                "1");
+        Assert.assertTrue(fakeUser.isSignUpSucceed);
+        $(byText("Confirm your Account")).shouldBe(visible).shouldBe(visible);
+    }
+    @Test
+    public void sendSignUpEmail_D3_UploadAvatarIcon() {
+        skipBefore = false;
+        signupUpAvatar.waitUntil(exist, 10000).shouldHave(attribute("class", "hidden image-preview"));
+        uploadFile("image_icon_01.ico", signupUploadInput);
+        signupUpAvatar.waitUntil(exist, 10000).shouldHave(attribute("class", "image-preview"));
+        rootLogger.info("Avatar uploaded");
+
+        rootLogger.info("Submit SignUp with valid but fake user");
+        rootLogger.info("BUG https://www.pivotaltracker.com/n/projects/1239770/stories/142325561");
+        User fakeUser = new User();
+        fakeUser.submitSignUp(
+                FAKE_USER,
+                VALID_SURNAME,
+                VALID_NAME,
+                VALID_COMPANY,
+                VALID_PASSWORD,
+                "2",
+                "3");
+        Assert.assertTrue(fakeUser.isSignUpSucceed);
+        $(byText("Confirm your Account")).shouldBe(visible).shouldBe(visible);
+    }
+    @Test
+    public void sendSignUpEmail_D4_UploadAvatarSvg_Validation() {
+        skipBefore = false;
+        signupUpAvatar.waitUntil(exist, 10000).shouldHave(attribute("class", "hidden image-preview"));
+        uploadFile("image_svg_01.svg", signupUploadInput);
+        signupUpAvatar.waitUntil(exist, 10000).shouldHave(attribute("class", "image-preview"));
+        rootLogger.info("Avatar uploaded - but not displayed");
+
+        rootLogger.info("Submit SignUp with valid but fake user");
+        User fakeUser = new User();
+        fakeUser.submitSignUp(
+                FAKE_USER,
+                VALID_SURNAME,
+                VALID_NAME,
+                VALID_COMPANY,
+                VALID_PASSWORD,
+                "1",
+                "3");
+        Assert.assertFalse(fakeUser.isSignUpSucceed);
+        $(byText("Upload a valid image. The file you uploaded was either not an image or a corrupted image.")).shouldBe(visible);
+    }
+    @Test
+    public void sendSignUpEmail_D5_UploadAvatarPdf_Validation() {
+        skipBefore = false;
+        signupUpAvatar.waitUntil(exist, 10000).shouldHave(attribute("class", "hidden image-preview"));
+        uploadFile("PDF01.pdf", signupUploadInput);
+        signupUpAvatar.waitUntil(exist, 10000).shouldHave(attribute("class", "image-preview"));
+
+        rootLogger.info("Submit SignUp with valid but fake user");
+        User fakeUser = new User();
+        fakeUser.submitSignUp(
+                FAKE_USER,
+                VALID_SURNAME,
+                VALID_NAME,
+                VALID_COMPANY,
+                VALID_PASSWORD,
+                "3",
+                "1");
+        Assert.assertFalse(fakeUser.isSignUpSucceed);
+        $(byText("Upload a valid image. The file you uploaded was either not an image or a corrupted image.")).shouldBe(visible);
+    }
     @Test
     public void joinToTeam() {
         User fakeUser = new User();
@@ -281,7 +391,6 @@ public class TestsPekamaSignUp {
                 VALID_PASSWORD,
                 "2",
                 "2");
-
         Assert.assertTrue(fakeUser.isSignUpSucceed);
 
         rootLogger.info("Check join To Team page redirect");

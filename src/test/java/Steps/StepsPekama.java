@@ -7,6 +7,8 @@ import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.WebDriverException;
+
+import java.io.File;
 import java.util.Set;
 
 import static Page.CommunityDashboard.*;
@@ -678,4 +680,16 @@ public class StepsPekama extends StepsFactory{
         CONVERSATION_INPUT_TEXT_COLLAPSED.shouldBe(visible).click();
         sleep(4000);
     }
+    public static String absolutePath(String path) {
+        return new File(path).getAbsolutePath();
+    }
+    public static void uploadFile(String fileName, SelenideElement input){
+        String relativePath = "src/test/java/UploadFiles/"+fileName;
+        String absolutePath = absolutePath(relativePath);
+        rootLogger.info(absolutePath);
+        sleep(2000);
+        input.waitUntil(exist, 20000).sendKeys(absolutePath);
+        sleep(3000);
+    }
+
 }

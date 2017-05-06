@@ -22,8 +22,13 @@ public class PekamaPersonalSettings extends Page {
     public static final String personalSettingsTabIMAP = "//*[@id='imap']";
     public static final String personalSettingsTabTimeTracker = "//*[@id='timeTracker']";
 
+
    //tab fields find by NAME
-    public static final SelenideElement PERSONAL_DETAILS_TAB_TITLE = $(byXpath("//*[@data-target='#basic-info']")); //id
+    public static final SelenideElement PERSONAL_DETAILS_TAB_TITLE = $(byXpath("//*[@data-target='#basic-info']"));
+    public static final SelenideElement PERSONAL_DETAILS_AVATAR = $(byXpath("//div[@class='row clearfix-row profile-avatar-section ng-scope']//img[@class='img-circle']"));
+    public static final SelenideElement PERSONAL_DETAILS_DELETE_AVATAR = $(byXpath("//button[@class='link del']"));
+    public static final SelenideElement PERSONAL_DETAILS_UPLOAD_AVATAR_BTN = $(byXpath("//button[@class='link photo']"));
+    public static final SelenideElement PERSONAL_DETAILS_UPLOAD_AVATAR_INPUT = $(byXpath("//input[@class='link photo']"));
     public static final SelenideElement PERSONAL_DETAILS_INPUT_NAME = $(byName("first_name"));
     public static final SelenideElement PERSONAL_DETAILS_INPUT_SURNAME = $(byName("last_name"));
     public static final SelenideElement PERSONAL_DETAILS_INPUT_PHONE = $(byName("phone_number"));

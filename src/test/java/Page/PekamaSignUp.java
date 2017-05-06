@@ -34,7 +34,10 @@ public class PekamaSignUp extends Page {
     public static final SelenideElement signupSelectBusinessType = $(byId("id_user_info-company_type"));
     public static final SelenideElement signupSelectYourRole = $(byId("id_user_info-company_rel"));
 
+    public static final SelenideElement signupUpAvatar =  $(byXpath("//*[@id='avatar-preview-canvas']"));
+
     public static final SelenideElement signupUpload = $(byId("avatar-upload-link"));
+    public static final SelenideElement signupUploadInput =  $(byXpath("//*[@id='avatar-uploader']"));
     public static final SelenideElement signupAgree = $(byId("agree_to_tou"));
     public static final SelenideElement signupSubscribeNews = $(byName("user_info-receive_news"));
     public static final SelenideElement signupTerms = $(byXpath("//a[@href='/accounts/terms_of_use/']"));

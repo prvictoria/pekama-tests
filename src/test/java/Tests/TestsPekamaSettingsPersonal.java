@@ -53,9 +53,17 @@ public class TestsPekamaSettingsPersonal {
                 URL_LogIn
         );
     }
-
+@Ignore //TODO UPLOAD
     @Test
     public void checkGui() {
+        openSettingsTabPersonalDetails();
+        rootLogger.info("Start test GUI and links");
+        PERSONAL_DETAILS_UPLOAD_AVATAR_BTN.shouldBe(visible).click();
+        PERSONAL_DETAILS_UPLOAD_AVATAR_INPUT.uploadFromClasspath("./src/test/java/UploadFiles/Jpeg01.jpg");
+        rootLogger.info("Personal settings GUI is consistent");
+    }
+    @Test
+    public void avatarUpload() {
         openSettingsTabPersonalDetails();
         rootLogger.info("Start test GUI and links");
         PERSONAL_SETTINGS_BTN.waitUntil(visible, 20000).shouldBe(Condition.visible);
