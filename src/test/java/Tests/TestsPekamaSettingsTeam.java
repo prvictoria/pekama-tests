@@ -1,6 +1,7 @@
 package Tests;
 import Steps.MessagesIMAP;
 import Steps.StepsPekama;
+import Utils.Retry;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
@@ -13,6 +14,8 @@ import org.junit.runners.MethodSorters;
 import java.io.IOException;
 
 import static Page.ModalWindows.*;
+import static Page.PekamaPersonalSettings.PERSONAL_DETAILS_DELETE_AVATAR;
+import static Page.PekamaPersonalSettings.PERSONAL_DETAILS_UPLOAD_AVATAR_BTN;
 import static Page.PekamaTeamSettings.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
@@ -41,13 +44,13 @@ public class TestsPekamaSettingsTeam {
     private final String TEST_USER_LOGIN = User1.GMAIL_EMAIL.getValue();
     private final String TEST_USER_PASSWORD = User1.PEKAMA_PASSWORD.getValue();
     private final String TEST_USER_NAME_SURNAME = User1.NAME_SURNAME.getValue();
+    private final String TEST_USER_TEAM_NAME = User1.TEAM_NAME.getValue();
     private final String TEST_USER_FULL_TEAM_NAME = User1.FULL_TEAM_NAME.getValue();
     private final String TEST_USER_NAME = User1.NAME.getValue();
-
-    @Rule
-    public Timeout tests = Timeout.seconds(600);
     private static boolean skipBefore = false;
 
+    @Rule public Timeout tests = Timeout.seconds(300);
+    @Rule public Retry retry = new Retry(2);
     @BeforeClass
     public static void beforeClass() throws IOException {
         setEnvironment ();
@@ -87,26 +90,47 @@ public class TestsPekamaSettingsTeam {
         SETTINGS_TEAM_TAB_EVENT_TEMPLATES.waitUntil(visible, 15000).shouldHave(Condition.text("Event Templates"));
         SETTINGS_TEAM_TAB_DOCUMENT_TEMPLATES.waitUntil(visible, 15000).shouldHave(Condition.text("Document Templates"));
         SETTINGS_TEAM_TAB_STORAGE.waitUntil(visible, 15000).shouldHave(Condition.text("Storage"));
+
+        SETTINGS_TEAM_INFO_TEAM_NAME.shouldHave(text(TEST_USER_TEAM_NAME));
+        SETTINGS_TEAM_INFO_ACTUAL_TEAM.shouldHave(text(TEST_USER_FULL_TEAM_NAME));
+        SETTINGS_TEAM_INFO_REGISTRATION_DATE.getText();
         rootLogger.info("Texts and tabs present");
 
     }
-
+    @Test
+    public void logoUpload_jpeg() throws IOException {
+        try {
+            SETTINGS_TEAM_INFO_DELETE_LOGO.waitUntil(visible, 15000).shouldBe(disabled);
+            SETTINGS_TEAM_INFO_UPLOAD_LOGO.shouldBe(visible).click();
+            executeAutoItScript("upload_jpeg_ff.exe");
+        }
+        finally {
+            SETTINGS_TEAM_INFO_DELETE_LOGO.waitUntil(visible, 15000).shouldBe(enabled).click();
+            sleep(4000);
+            SETTINGS_TEAM_INFO_DELETE_LOGO.waitUntil(visible, 15000).shouldBe(disabled);
+            SETTINGS_TEAM_INFO_PLACEHOLDER.waitUntil(visible, 10000);
+            rootLogger.info("Test passed");
+        }
+    }
+    @Test
+    public void logoUpload_pdf_Validation() throws IOException {
+        SETTINGS_TEAM_INFO_UPLOAD_LOGO.shouldBe(visible).click();
+        executeAutoItScript("upload_pdf_ff.exe");
+        checkText("Upload a valid image. The file you uploaded was either not an image or a corrupted image.");
+        SETTINGS_TEAM_INFO_DELETE_LOGO.waitUntil(visible, 15000).shouldBe(disabled);
+        rootLogger.info("Test passed - error present");
+    }
     @Test
     public void members_testA_AddAndDelete() {
         String testEmail = "123@mail.com";
         rootLogger.info("Add member");
         SETTINGS_TEAM_TAB_MEMBERS.waitUntil(visible, 20000).click();
-        TAB_MEMBERS_BTN_ADD.shouldBe(visible).click();
-        waitForModalWindow("Members");
-        fillField(MW_MEMBERS_EMAIL, testEmail);
-        submitEnabledButton(MW_BTN_OK);
-        MW.shouldNot(visible);
+        addMember(testEmail, TAB_MEMBERS_BTN_ADD);
         checkMember(testEmail);
 
         rootLogger.info("Delete member");
         deleteMember(testEmail);
         rootLogger.info("Test passed");
-
     }
 
     @Test
@@ -160,7 +184,7 @@ public class TestsPekamaSettingsTeam {
         skipBefore = false;
     }
 
-     @Test
+    @Test
     public void values_testA_GUI() {
          rootLogger.info("Start test GUI and links");
          SETTINGS_TEAM_TAB_VALUES.waitUntil(visible, 20000).click();

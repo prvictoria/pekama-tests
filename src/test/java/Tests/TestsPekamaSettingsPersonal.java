@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.junit.*;
 import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.io.IOException;
 
@@ -57,19 +58,29 @@ public class TestsPekamaSettingsPersonal {
     }
 
     @Test
-    public void avatarUpload() throws IOException {
+    public void avatarUpload_jpeg() throws IOException {
         openSettingsTabPersonalDetails();
-            PERSONAL_DETAILS_DELETE_AVATAR.waitUntil(visible, 15000).shouldBe(disabled);
-            PERSONAL_DETAILS_UPLOAD_AVATAR_BTN.shouldBe(visible).click();
-            sleep(2000);
-            String scriptPath = absolutePath( "src/test/resources/upload_script.exe");
-            rootLogger.info(scriptPath);
-            Runtime.getRuntime().exec(scriptPath);
-            sleep(4000);
-            PERSONAL_DETAILS_DELETE_AVATAR.waitUntil(visible, 15000).shouldBe(enabled).click();
-            sleep(4000);
-            PERSONAL_DETAILS_DELETE_AVATAR.waitUntil(visible, 15000).shouldBe(disabled);
-            rootLogger.info("Test passed");
+            try {
+                PERSONAL_DETAILS_DELETE_AVATAR.waitUntil(visible, 15000).shouldBe(disabled);
+                PERSONAL_DETAILS_UPLOAD_AVATAR_BTN.shouldBe(visible).click();
+                executeAutoItScript("upload_jpeg_ff.exe");
+            }
+            finally {
+                PERSONAL_DETAILS_DELETE_AVATAR.waitUntil(visible, 15000).shouldBe(enabled).click();
+                sleep(4000);
+                PERSONAL_DETAILS_DELETE_AVATAR.waitUntil(visible, 15000).shouldBe(disabled);
+                rootLogger.info("Test passed");
+            }
+    }
+    @Test
+    public void avatarUpload_pdf_Validation() throws IOException {
+        openSettingsTabPersonalDetails();
+        PERSONAL_DETAILS_UPLOAD_AVATAR_BTN.shouldBe(visible).click();
+        executeAutoItScript("upload_pdf_ff.exe");
+        checkText("Upload a valid image. The file you uploaded was either not an image or a corrupted image.");
+        sleep(2000);
+        PERSONAL_DETAILS_DELETE_AVATAR.waitUntil(visible, 15000).shouldBe(disabled);
+        rootLogger.info("Test passed - error present");
     }
     @Test
     public void checkGui() {

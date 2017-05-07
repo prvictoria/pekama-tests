@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriverException;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Set;
 
 import static Page.CommunityDashboard.*;
@@ -691,9 +692,17 @@ public class StepsPekama extends StepsFactory{
         input.waitUntil(exist, 20000).sendKeys(absolutePath);
         sleep(3000);
     }
-        public static void addMember(String email, SelenideElement button){
+    public static void executeAutoItScript(String fileName) throws IOException {
+        String relativePath = "src/test/java/ScriptsAutoIt/"+fileName;
+        sleep(2000);
+        String scriptPath = absolutePath(relativePath);
+        rootLogger.info(scriptPath);
+        Runtime.getRuntime().exec(scriptPath);
+        sleep(4000);
+    }
+    public static void addMember(String email, SelenideElement button){
         button.shouldBe(visible).shouldBe(enabled).click();
         submitAddMemberWindow(email,  true);
-    };
+    }
 
 }

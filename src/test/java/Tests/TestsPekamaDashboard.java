@@ -58,8 +58,7 @@ public class TestsPekamaDashboard {
     private final static String USER_XERO_PASSWORD = User3.XERO_PASSWORD.getValue();
     private final String TEST_USER_FULL_TEAM_NAME = User3.FULL_TEAM_NAME.getValue();
 
-    @Rule
-    public Timeout tests = Timeout.seconds(300);
+    @Rule public Timeout tests = Timeout.seconds(300);
     @Rule public Retry retry = new Retry(2);
 
     @BeforeClass

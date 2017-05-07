@@ -17,7 +17,20 @@ public class PekamaTeamSettings extends Page {
     public static final SelenideElement SETTINGS_TEAM_TAB_EVENT_TEMPLATES = $(byLinkText("Event Templates"));
     public static final SelenideElement SETTINGS_TEAM_TAB_DOCUMENT_TEMPLATES = $(byLinkText("Document Templates"));
     public static final SelenideElement SETTINGS_TEAM_TAB_STORAGE = $(byLinkText("Storage"));
+    //TEAM INFO
+    private static final String PATH_TEAM_INFO = "//*[@class='row clearfix-row organization-avatar-section ng-scope']";
+    public static final SelenideElement SETTINGS_TEAM_INFO_PLACEHOLDER = $(byXpath(PATH_TEAM_INFO+"//*[@class='img']/img[@src='https://placehold.it/210x37']"));
+    public static final SelenideElement SETTINGS_TEAM_INFO_LOGO = $(byXpath(PATH_TEAM_INFO+""));
+    public static final SelenideElement SETTINGS_TEAM_INFO_DELETE_LOGO = $(byXpath(PATH_TEAM_INFO+"//*[@class='img']/button[2]"));
+    public static final SelenideElement SETTINGS_TEAM_INFO_UPLOAD_LOGO = $(byXpath(PATH_TEAM_INFO+"//*[@class='img']/button[1]"));
+    public static final SelenideElement SETTINGS_TEAM_INFO_TEAM_NAME = $(byXpath(PATH_TEAM_INFO+"//*[@class='user-info']/div[1]"));
+    public static final SelenideElement SETTINGS_TEAM_INFO_REGISTRATION_DATE = $(byXpath(PATH_TEAM_INFO+"//*[@class='user-info']/div[2]/span"));
+    public static final SelenideElement SETTINGS_TEAM_INFO_ACTUAL_TEAM = $(byXpath(PATH_TEAM_INFO+"//*[@class='switch-team']//span"));
+    public static final SelenideElement SETTINGS_TEAM_INFO_SELECT_TEAM = $(byXpath(PATH_TEAM_INFO+"//*[@class='switch-team']//span"));
+    public static final SelenideElement SETTINGS_TEAM_INFO_INPUT_TEAM = $(byXpath(PATH_TEAM_INFO+"//*[@class='switch-team']//input[@type='search']"));
 
+
+    //TAB PROFILE
     public static final SelenideElement TAB_PROFILE_TITLE = $(byName("title"));
     public static final SelenideElement TAB_PROFILE_CODE = $(byName("code"));
     public static final SelenideElement TAB_PROFILE_SELECT_ORG_TYPE = $(byXpath(""));
