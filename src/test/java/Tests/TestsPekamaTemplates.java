@@ -22,8 +22,12 @@ import static Page.UrlConfig.*;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
 import static Steps.StepsModalWindows.*;
+import static Steps.StepsModalWindows.modalDocumentTemplateOptions.ABORT_UPLOAD;
+import static Steps.StepsModalWindows.modalDocumentTemplateOptions.CANCEL;
+import static Steps.StepsModalWindows.modalDocumentTemplateOptions.SUBMIT;
 import static Steps.StepsPekama.*;
 import static Steps.StepsHttpAuth.*;
+import static Steps.StepsPekama.UploadFiles.*;
 import static Steps.StepsPekamaProject.*;
 import static Tests.BeforeTestsSetUp.*;
 import static Tests.BeforeTestsSetUp.setBrowser;
@@ -688,5 +692,39 @@ public class TestsPekamaTemplates {
             deleteTemplate();
         }
         rootLogger.info("Test passed");
+    }
+    @Test
+    public void templateDoc_A1_EmptyNameValidation() throws IOException {
+        openPageWithSpinner(URL_TEMPLATES_DOC);
+        submitEnabledButton(SETTINGS_VALUES_ADD);
+        submitModalDocTemplate(CANCEL, PDF, false);
+    }
+    @Test
+    public void templateDoc_A2_AbortUploadPdf() throws IOException {
+        openPageWithSpinner(URL_TEMPLATES_DOC);
+        submitEnabledButton(SETTINGS_VALUES_ADD);
+        submitModalDocTemplate(ABORT_UPLOAD, PDF, false);
+    }
+    @Test
+    public void templateDoc_A2_CreatePdf() throws IOException {
+        openPageWithSpinner(URL_TEMPLATES_DOC);
+        submitEnabledButton(SETTINGS_VALUES_ADD);
+        try {
+            submitModalDocTemplate(SUBMIT, PDF, false);
+        }
+        finally {
+            deleteTemplate();
+        }
+    }
+    @Test
+    public void templateDoc_A2_CreatePdfAutodeploy() throws IOException {
+        openPageWithSpinner(URL_TEMPLATES_DOC);
+        submitEnabledButton(SETTINGS_VALUES_ADD);
+        try {
+            submitModalDocTemplate(SUBMIT, PDF, true);
+        }
+        finally {
+            deleteTemplate();
+        }
     }
 }

@@ -1,38 +1,26 @@
 package Steps;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.sun.istack.internal.Nullable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
-import org.junit.Test;
 import org.openqa.selenium.WebDriverException;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Set;
 
-import static Page.CommunityDashboard.*;
 import static Page.ModalWindows.*;
 import static Page.PekamaConversationProject.*;
-import static Page.PekamaConversationProject.CONVERSATION_CLIENT_TAB_NAME;
-import static Page.PekamaDashboard.DROPDOWN_PROJECT_TEMPLATES_LIST;
 import static Page.PekamaLogin.*;
 import static Page.PekamaPersonalSettings.*;
-import static Page.PekamaProject.*;
 import static Page.PekamaReports.*;
-import static Page.PekamaSignUp.*;
-import static Page.PekamaSignUp.signupNext;
-import static Page.PekamaSignUp.signupPassword;
 import static Page.PekamaTeamSettings.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
-import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
-import static Steps.StepsCommunity.*;
 import static Steps.StepsHttpAuth.*;
 import static Steps.StepsModalWindows.*;
-import static Utils.Utils.getDate;
 import static Utils.Utils.randomString;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
@@ -692,6 +680,7 @@ public class StepsPekama extends StepsFactory{
         input.waitUntil(exist, 20000).sendKeys(absolutePath);
         sleep(3000);
     }
+    public enum UploadFiles {JPG, ICO, PNG, SVG, PDF,  WORD, EXCEL, ZIP, GOOGLE};
     public static void executeAutoItScript(String fileName) throws IOException {
         String relativePath = "src/test/java/ScriptsAutoIt/"+fileName;
         sleep(2000);
@@ -699,6 +688,57 @@ public class StepsPekama extends StepsFactory{
         rootLogger.info(scriptPath);
         Runtime.getRuntime().exec(scriptPath);
         sleep(4000);
+    }
+    public static String executeAutoItScript(UploadFiles fileType) throws IOException {
+        String[] scriptNames = {"upload_jpeg_ff.exe", "", "", "", "upload_pdf_ff.exe", "", "", "", "", ""};
+        String scriptName = null;
+        String[] fileNames = {"image_jpeg_01.jpg", "", "", "", "PDF01.pdf", "", "", "", "", ""};
+        String fileName = null;
+        switch(fileType) {
+            case JPG:
+                scriptName = scriptNames[0];
+                fileName = fileNames[0];
+                break;
+            case ICO:
+                scriptName = scriptNames[1];
+                fileName = fileNames[1];
+                break;
+            case PNG:
+                scriptName = scriptNames[2];
+                fileName = fileNames[2];
+                break;
+            case SVG:
+                scriptName = scriptNames[3];
+                fileName = fileNames[3];
+                break;
+            case PDF:
+                scriptName = scriptNames[4];
+                fileName = fileNames[4];
+                break;
+            case WORD:
+                scriptName = scriptNames[5];
+                fileName = fileNames[5];
+                break;
+            case EXCEL:
+                scriptName = scriptNames[6];
+                fileName = fileNames[6];
+                break;
+            case ZIP:
+                scriptName = scriptNames[7];
+                fileName = fileNames[7];
+                break;
+            case GOOGLE:
+                scriptName = scriptNames[8];
+                fileName = fileNames[8];
+                break;
+        }
+        String relativePath = "src/test/java/ScriptsAutoIt/"+ scriptName;
+        sleep(3000);
+        String scriptPath = absolutePath(relativePath);
+        rootLogger.info(scriptPath);
+        Runtime.getRuntime().exec(scriptPath);
+        sleep(8000);
+        return fileName;
     }
     public static void addMember(String email, SelenideElement button){
         button.shouldBe(visible).shouldBe(enabled).click();

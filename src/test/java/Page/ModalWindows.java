@@ -87,8 +87,7 @@ public class ModalWindows extends Page {
     public static final String MW_TASK_SET_TITLE = "Task Template Set";
 
     public static final String MW_EVENT_SET_TITLE = "Event Template Set";
-    public static final String MW_DOC_TEMPLATE_TITLE = "Documents Template";
-    public static final SelenideElement MW_SET_NAME = $(byXpath("//div[@class='modal-body']//input[@name]"));
+     public static final SelenideElement MW_SET_NAME = $(byXpath("//div[@class='modal-body']//input[@name]"));
     public static final SelenideElement MW_SET_MULTICHOICE_DEFINING = $(byXpath("//div[@class='modal-body']/div[3]//input"));
     public static final SelenideElement MW_SET_MULTICHOICE_TYPE = $(byXpath("//div[@class='modal-body']/div[4]//input"));
     public static final SelenideElement MW_SET_MULTICHOICE_EVENT = $(byXpath("//div[@class='modal-body']/div[5]//input"));
@@ -121,6 +120,20 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_EVENT_INPUT_DATE = MW_INPUT_DATE;
     public static final SelenideElement MW_EVENT_Template_DateOffset = $(byXpath(mw+"//input[@name='date_offset']"));
     public static final SelenideElement MW_EVENT_Template_DateOffsetUnit = $(byXpath(mw+"//select[@name='date_unit']"));
+    //MW DOC TEMPLATE =======================================================
+    public static final String MW_DOC_TEMPLATE_TITLE = "Documents Template";
+    public static final SelenideElement MW_DOC_TEMPLATE_UPLOAD = $(byXpath(mw+"//div[./i[@class='pkm-icon-upload icon']]"));
+    public static final SelenideElement MW_DOC_TEMPLATE_TITLE_FIELD = $(byXpath(mw+"//input[@name='title']"));
+    public static final SelenideElement MW_DOC_TEMPLATE_PROGRESS_BAR = $(byXpath(mw+"//div[@role='progressbar']"));
+    public static final SelenideElement MW_DOC_TEMPLATE_UPLOADED_FILE_NAME = $(byXpath(mw+"//div[@class='name-upload-file ng-binding']"));
+    public static final SelenideElement MW_DOC_TEMPLATE_ABORT_UPLOAD = $(byXpath(mw+"//*[@class='abort-upload']"));
+    public static final SelenideElement MW_DOC_TEMPLATE_AUTO_DEPLOY = $(byXpath(mw+"//label[contains(.,' Auto-deploy')]/input[@type='checkbox']"));
+    //TODO select relevant
+    public static final SelenideElement MW_DOC_TEMPLATE_AUTO_DEPLOY_ICON = $(byXpath(mw+"//label[contains(.,' Auto-deploy')]/i"));
+//    public static final SelenideElement MW_DOC_TEMPLATE_ = $(byXpath(mw+""));
+//    public static final SelenideElement MW_DOC_TEMPLATE_ = $(byXpath(mw+""));
+//    public static final SelenideElement MW_DOC_TEMPLATE_ = $(byXpath(mw+""));
+//    public static final SelenideElement MW_DOC_TEMPLATE_ = $(byXpath(mw+""));
 
     //email parameters
     public static final SelenideElement MW_EMAIL_PARAMETERS_DIRECT_EMAIL = $(byXpath(mw+"//p/following-sibling::input[@readonly='readonly']"));
@@ -211,8 +224,8 @@ public class ModalWindows extends Page {
     //MW new folder
     public static final SelenideElement MW_NEW_FOLDER_INPUT_NAME = $(byXpath(mw+"//input[@name='name']"));
     public static final SelenideElement modalMembersOkButton = $(byXpath("//div[2]/button"));
+
     //MW deploy doc templates
-    public static final SelenideElement MW_DeployDoc_Title = $("css=h3.modal-title");
     public static final SelenideElement MW_DEPLOY_DOC_INPUT_FILE_NAME = $(byXpath("//input[@name='name']"));
     public static final SelenideElement MW_DeployDoc_01TemplateWord = $(byXpath("//li/label[text()='New Word document']"));
     public static final SelenideElement MW_DeployDoc_02TemplateExcel = $(byXpath("//li/label[text()='New Excel sheet']"));

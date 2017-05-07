@@ -7,6 +7,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 
+import java.io.IOException;
+
 import static Page.ModalWindows.*;
 import static Page.PekamaConversationProject.*;
 import static Page.PekamaProject.*;
@@ -16,6 +18,7 @@ import static Page.UrlConfig.*;
 import static Steps.StepsModalWindows.ModalConversationFollowerActions.*;
 import static Steps.StepsModalWindows.ModalConversationTeamActions.*;
 import static Steps.StepsPekama.*;
+import static Steps.StepsPekama.UploadFiles.PDF;
 import static Utils.Utils.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
@@ -48,13 +51,12 @@ public class StepsModalWindows extends StepsFactory {
     }
     public static void submitConfirmAction(String modalTitle){
         sleep(500);
-        rootLogger.info("Wait for '"+modalTitle+"' modal window");
         MW.shouldBe(visible);
         MW.shouldHave(text(modalTitle));
         rootLogger.info("Confirm action modal '"+modalTitle+"' was opened");
         MW_BTN_YES.shouldBe(visible).click();
         sleep(500);
-        MW.shouldNotBe(visible);
+        //MW.shouldNotBe(visible);
     }
     public static void submitErrorWindow(String modalTitle, String textMessage){
         sleep(500);
@@ -750,6 +752,7 @@ public class StepsModalWindows extends StepsFactory {
         }
         return dueDateFromToday;
     }
+
     public static void clickPlusButtonNewEvent(){
         scrollUp();
         rootLogger.info("Deploy new event");
@@ -773,7 +776,51 @@ public class StepsModalWindows extends StepsFactory {
         MW.waitUntil(not(visible), 15000);
         return eventType;
     }
+    public enum modalDocumentTemplateOptions {SUBMIT, CANCEL, ABORT_UPLOAD}
+    public static String submitModalDocTemplate(modalDocumentTemplateOptions option, UploadFiles fileType, Boolean selectAoutodeploy) throws IOException {
+        String templateDocName = "";
+        String fileName = null;
+        waitForModalWindow(MW_DOC_TEMPLATE_TITLE);
+        MW_BTN_OK.shouldBe(disabled);
+        MW_DOC_TEMPLATE_TITLE_FIELD.shouldHave(value(""));
+        submitEnabledButton(MW_DOC_TEMPLATE_UPLOAD);
 
+        rootLogger.info("Check uploaded file name");
+        fileName = executeAutoItScript(fileType);
+        MW_DOC_TEMPLATE_UPLOADED_FILE_NAME.shouldHave(text("Uploading: "+fileName));
+        MW_DOC_TEMPLATE_PROGRESS_BAR.shouldHave(text("100%"));
+        MW_DOC_TEMPLATE_ABORT_UPLOAD.shouldBe(visible);
+        MW_DOC_TEMPLATE_TITLE_FIELD.shouldHave(value(fileName));
+
+        switch(option) {
+            case SUBMIT:
+                templateDocName = fileType+"_"+randomString(10);
+                fillField(MW_DOC_TEMPLATE_TITLE_FIELD, templateDocName);
+                MW_DOC_TEMPLATE_AUTO_DEPLOY.shouldNotBe(selected);
+                if(selectAoutodeploy==true) {
+                    MW_DOC_TEMPLATE_AUTO_DEPLOY_ICON.click();
+                }
+                submitEnabledButton(MW_BTN_OK);
+                MW.shouldNot(visible);
+                return templateDocName;
+            case CANCEL:
+                fillField(MW_DOC_TEMPLATE_TITLE_FIELD, templateDocName);
+                submitEnabledButton(MW_BTN_OK);
+                checkText(ERROR_MSG_BLANK_FIELD);
+                submitEnabledButton(MW_BTN_CANCEL);
+                MW.shouldNot(visible);
+                return null;
+            case ABORT_UPLOAD:
+                MW_DOC_TEMPLATE_ABORT_UPLOAD.click();
+                submitConfirmAction("Remove upload?");
+                MW_DOC_TEMPLATE_UPLOADED_FILE_NAME.shouldNot(exist);
+                MW_DOC_TEMPLATE_PROGRESS_BAR.shouldNot(exist);
+                MW_DOC_TEMPLATE_ABORT_UPLOAD.shouldNot(exist);
+                MW_BTN_OK.shouldBe(disabled);
+                return null;
+        }
+        return null;
+    }
     public static boolean checkDeployedEvent(String eventType, String eventInfo){
         scrollUp();
         $$(byText(eventType)).filter(visible).shouldHaveSize(1);
