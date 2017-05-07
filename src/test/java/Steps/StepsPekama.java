@@ -691,5 +691,9 @@ public class StepsPekama extends StepsFactory{
         input.waitUntil(exist, 20000).sendKeys(absolutePath);
         sleep(3000);
     }
+        public static void addMember(String email, SelenideElement button){
+        button.shouldBe(visible).shouldBe(enabled).click();
+        submitAddMemberWindow(email,  true);
+    };
 
 }

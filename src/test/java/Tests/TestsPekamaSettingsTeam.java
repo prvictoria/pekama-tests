@@ -2,6 +2,7 @@ package Tests;
 import Steps.MessagesIMAP;
 import Steps.StepsPekama;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
@@ -133,8 +134,7 @@ public class TestsPekamaSettingsTeam {
         String newMemberPassword = User5.GMAIL_PASSWORD.getValue();
         rootLogger.info("Add member");
         SETTINGS_TEAM_TAB_MEMBERS.waitUntil(visible, 20000).click();
-        TAB_MEMBERS_BTN_ADD.shouldBe(visible).click();
-        submitAddMemberWindow(newMemberEmail,  true);
+        addMember(newMemberEmail, TAB_MEMBERS_BTN_ADD);
         checkMember(newMemberEmail);
 
         rootLogger.info("Delete member");

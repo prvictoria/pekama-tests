@@ -3,20 +3,18 @@ package Tests;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
-import Page.TestsCredentials;
 import Page.TestsCredentials.User1;
-import Page.TestsCredentials.User3;
+import Page.TestsCredentials.*;
 import Steps.StepsPekama;
-import com.codeborne.selenide.Selenide;
+import Utils.*;
+import com.codeborne.selenide.*;
 import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.*;
 import org.junit.*;
 import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.io.IOException;
-import java.util.List;
 
 import static Page.ModalWindows.*;
 import static Page.PekamaDashboard.*;
@@ -36,16 +34,16 @@ import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
 import static Tests.BeforeTestsSetUp.setBrowser;
 import static Utils.Utils.*;
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Configuration.timeout;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
+import static com.codeborne.selenide.WebDriverRunner.*;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
-import static org.openqa.selenium.support.ui.ExpectedConditions.alertIsPresent;
+import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaDashboard {
     static final Logger rootLogger = LogManager.getRootLogger();
+
     private static String testProjectTitle = "new test project - "+ randomString(6);
     private static String testContactName = "name"+ randomString(10);
     private static String testContactSurname = "surname"+ randomString(10);
@@ -53,11 +51,17 @@ public class TestsPekamaDashboard {
     private static String TEST_PROJECT_TYPE = MATTER_TYPE_TRADEMARK;
     private final static String USER_EMAIL = User1.GMAIL_EMAIL.getValue();
     private final static String USER_PEKAMA_PASSWORD = User1.PEKAMA_PASSWORD.getValue();
+    private final static String USER_NAME = User1.NAME.getValue();
+    private final String TEST_USER_TEAM_NAME = User1.TEAM_NAME.getValue();
+    private static final String USER_NAME_SURNAME =  User1.NAME_SURNAME.getValue();
+
     private final static String USER_XERO_PASSWORD = User3.XERO_PASSWORD.getValue();
     private final String TEST_USER_FULL_TEAM_NAME = User3.FULL_TEAM_NAME.getValue();
-    private final String TEST_USER_TEAM_NAME = User1.TEAM_NAME.getValue();
+
     @Rule
     public Timeout tests = Timeout.seconds(300);
+    @Rule public Retry retry = new Retry(2);
+
     @BeforeClass
     public static void beforeClass() throws IOException {
         setEnvironment();
@@ -87,8 +91,8 @@ public class TestsPekamaDashboard {
 
         DASHBOARD_YourProfileTitle.shouldBe(visible);
         //DASHBOARD_TeamName.shouldHave(text(TEST_USER_TEAM_NAME));
-        DASHBOARD_Invite.shouldBe(visible);
-        DASHBOARD_BuyProjects.shouldBe(visible);
+        DASHBOARD_INVITE.shouldBe(visible);
+        DASHBOARD_BUY_MORE_BTN.shouldBe(visible);
 
         DASHBOARD_UpcomingTitle.shouldBe(visible);
         DASHBOARD_UpcomingMyDeadlines_RADIO.shouldHave(cssClass("active-calendar-filter"));
@@ -126,35 +130,7 @@ public class TestsPekamaDashboard {
 
         rootLogger.info("GUI Test passed");
     }
-    @Test
-    public void testB_BuyProject() {
-        DASHBOARD_BuyProjects.waitUntil(visible, 30000).click();
-        rootLogger.info("Check MW Buy Projects");
-        waitForModalWindow(MW_BUY_PROJECTS_TITLE);
-        MW_BUY_PROJECTS_BTN.shouldBe(visible);
-        MW_BUY_PROJECTS_InputQTY.shouldHave(value("5"));
-        MW_BUY_PROJECTS_TotalPrice.shouldHave(text("$245"));
-        MW_BUY_PROJECTS_Discount.shouldHave(text("Your Discount 0%"));
 
-        MW_BUY_PROJECTS_BTN.click();
-        MW_BUY_PROJECTS_BTN.shouldBe(disabled);
-        sleep(4000);
-        rootLogger.info("Qty selected passed");
-
-        switchTo().frame("stripe_checkout_app");
-        //switchTo().window("Stripe Checkout");
-        MW_CHECKOUT.shouldBe(visible);
-        MW_CHECKOUT_TITLE.shouldHave(text("5 MemoBoxes"));
-        MW_CHECKOUT_CardNumberField.sendKeys("4242424242424242");
-        MW_CHECKOUT_CardDate.sendKeys( "01 / 21");
-        MW_CHECKOUT_CardCVV.sendKeys( "123");
-        submitEnabledButton(MW_CHECKOUT_Submit);
-        MW_CHECKOUT.waitUntil(not(visible), 15000);
-        rootLogger.info("Checkout submitted");
-        switchTo().window(PAGE_TITLE_PEKAMA);
-        checkPageTitle(PAGE_TITLE_PEKAMA);
-        rootLogger.info("Test passed");
-    }
     @Test
     public void testC_RedirectGlobalSearch() {
         rootLogger.info("Check that submit search leads redirect to Project reports page");
@@ -340,7 +316,7 @@ public class TestsPekamaDashboard {
         checkText(ERROR_MSG_VALIDATION_LENGTH_255);
         rootLogger.info("Validation max length reference number - passed");
     }
-@Ignore //TODO BUG
+    @Ignore //TODO BUG
     @Test
     public void testF6_ModalNewProjectValidation() {
         DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 20000).click();
@@ -390,5 +366,109 @@ public class TestsPekamaDashboard {
         checkModalWindowNotPresent(70000);
         checkText(projectName);
         rootLogger.info("Valid TM number check - passed");
+    }
+    @Test
+    public void blockProfileAndTeam_BuyProject() {
+        DASHBOARD_BUY_MORE_BTN.waitUntil(visible, 30000).click();
+        rootLogger.info("Check MW Buy Projects");
+        waitForModalWindow(MW_BUY_PROJECTS_TITLE);
+        MW_BUY_PROJECTS_BTN.shouldBe(visible);
+        MW_BUY_PROJECTS_InputQTY.shouldHave(value("5"));
+        MW_BUY_PROJECTS_TotalPrice.shouldHave(text("$245"));
+        MW_BUY_PROJECTS_Discount.shouldHave(text("Your Discount 0%"));
+
+        MW_BUY_PROJECTS_BTN.click();
+        MW_BUY_PROJECTS_BTN.shouldBe(disabled);
+        sleep(4000);
+        rootLogger.info("Qty selected passed");
+
+        switchTo().frame("stripe_checkout_app");
+        //switchTo().window("Stripe Checkout");
+        MW_CHECKOUT.shouldBe(visible);
+        MW_CHECKOUT_TITLE.shouldHave(text("5 MemoBoxes"));
+        MW_CHECKOUT_CardNumberField.sendKeys("4242424242424242");
+        MW_CHECKOUT_CardDate.sendKeys( "01 / 21");
+        MW_CHECKOUT_CardCVV.sendKeys( "123");
+        submitEnabledButton(MW_CHECKOUT_Submit);
+        MW_CHECKOUT.waitUntil(not(visible), 15000);
+        rootLogger.info("Checkout submitted");
+        switchTo().window(PAGE_TITLE_PEKAMA);
+        checkPageTitle(PAGE_TITLE_PEKAMA);
+        rootLogger.info("Test passed");
+    }
+
+    @Test
+    public void blockProfileAndTeam_defaultData(){
+        String filename = "200x200_ring_TQ.png"; //Placeholder initials
+        checkText("Your Profile And Team");
+        String avatar = DASHBOARD_PROFILE_AVATAR.shouldBe(visible).getAttribute("src");
+        rootLogger.info(avatar);
+        Boolean avatarIsGeneric = avatar.contains(filename);
+        rootLogger.info(avatarIsGeneric);
+        Assert.assertTrue(avatarIsGeneric);
+
+        String hi = "Hi, "+USER_NAME+" Q.";
+        String testHi = DASHBOARD_PROFILE_HI.shouldBe(visible).getText();
+        Boolean userNameIsPresent = testHi.contains(USER_NAME);
+        Assert.assertTrue(userNameIsPresent);
+
+        DASHBOARD_PROFILE_SETTINGS_LINK.shouldBe(visible).shouldHave(text("Your Settings"));
+        DASHBOARD_PROFILE_ACTIVE_TEAM_NAME.shouldBe(visible).shouldHave(text(TEST_USER_TEAM_NAME));
+
+        String projectsAvailableQty = DASHBOARD_PROJECTS_QTY.getText();
+        rootLogger.info(projectsAvailableQty);
+
+        if(DASHBOARD_PROFILE_BOOST_BTN.isDisplayed()){
+            DASHBOARD_PROFILE_BOOST_BTN.hover();
+            checkText("Syncing Pekama to a Box account will allow you to edit documents online, manage version and enjoy many other features");        }
+        DASHBOARD_INVITE.shouldBe(visible).shouldBe(enabled);
+        DASHBOARD_PROFILE_MEMBERS_LINK.shouldBe(visible);
+        try {
+            Boolean membersQty = DASHBOARD_PROFILE_MEMBERS_QTY.getText().contains("1");
+            Assert.assertTrue(membersQty);
+            DASHBOARD_PROFILE_MEMBERS_LIST.shouldHaveSize(1);
+            DASHBOARD_PROFILE_MEMBER_ROW_LAST.shouldHave(text(USER_NAME_SURNAME));
+        }
+        finally {
+            refresh();
+            rootLogger.info("Delete all members");
+            DASHBOARD_PROFILE_MEMBERS_LINK.waitUntil(visible, 15000).click();
+            deleteLoopIconX();
+        }
+    }
+    @Test
+    public void blockProfileAndTeam_openYourSettings(){
+        rootLogger.info("Open personal settings via link");
+        DASHBOARD_PROFILE_SETTINGS_LINK.waitUntil(visible, 20000).click();
+        checkText("Edit Basic Information");
+    }
+
+    @Test
+    public void blockProfileAndTeam_addFakeMembers() {
+        Boolean membersQty = null;
+        try {
+            int i = 0;
+            while (i < 7) {
+                String member = randomString(10) + "@email.eu";
+                addMember(member, DASHBOARD_INVITE);
+                rootLogger.info(member);
+                i++;
+            }
+            DASHBOARD_PROFILE_MEMBERS_LINK.shouldBe(visible);
+            membersQty = DASHBOARD_PROFILE_MEMBERS_QTY.getText().contains(Integer.toString(i + 1));
+            rootLogger.info(DASHBOARD_PROFILE_MEMBERS_QTY.getText());
+            rootLogger.info("Members qty comparison is "+membersQty);
+            DASHBOARD_PROFILE_MEMBERS_LIST.shouldHaveSize(i+1);
+            if(i<5){
+                DASHBOARD_PROFILE_MEMBER_ROW_LAST.shouldHave(text(USER_NAME_SURNAME));
+            }
+        } finally {
+            refresh();
+            rootLogger.info("Delete all members");
+            DASHBOARD_PROFILE_MEMBERS_LINK.waitUntil(visible, 15000).click();
+            deleteLoopIconX();
+            Assert.assertTrue(membersQty);
+        }
+
     }
 }

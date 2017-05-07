@@ -66,7 +66,6 @@ public class TestsStrings {
 
     public static final String nameTeamConversation = "Thread in Talk to your team";
     public static final String nameExterlalConversation = "Thread in Talk to your client/3rd party";
-    public static final String name = "";
 
     public static final String TITLE_MW_TASK_TEMPLATE_SET = "Task Template Set";
     public static final String TITLE_MW_NEW_FOLDER = "Add new folder";

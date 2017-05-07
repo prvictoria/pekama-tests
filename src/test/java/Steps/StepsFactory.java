@@ -1,6 +1,7 @@
 package Steps;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.*;
 
 import static Page.PekamaLogin.*;
@@ -15,6 +16,10 @@ import static com.codeborne.selenide.Selenide.*;
  */
 public abstract class StepsFactory {
     static final Logger rootLogger = LogManager.getRootLogger();
+
+    //ABSTRACT METHODS
+//    public abstract void addMember(String email, SelenideElement button);
+
     @Deprecated
     public void  loginIntoPekamaByUrl(String PEKAMA_USER_EMAIL, String urlLogIn){
         openUrlWithBaseAuth(urlLogIn);
@@ -41,5 +46,7 @@ public abstract class StepsFactory {
         btnSignup.shouldBe(Condition.not(visible));
         rootLogger.info("Valid Credentials were submitted");
     }
+
+
 }
 

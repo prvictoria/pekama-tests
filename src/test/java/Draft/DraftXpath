@@ -45,3 +45,4 @@ xpath=//input[@type='checkbox' and @ng-change='selectionService.toggleAll(select
 //div[@class='project-content-body ng-scope']//div[starts-with(@class, 'alert')]
 
 //*[@class='inner']//button[contains(.,'Add') and ./i]
+//div[contains(@class,'user-photo')]/img

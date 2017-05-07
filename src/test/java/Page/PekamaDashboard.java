@@ -21,17 +21,31 @@ public class PekamaDashboard extends Page {
     public static final SelenideElement DASHBOARD_SelectProjectTemplatesTemplate01 = $(byXpath("//a[@ng-click='applyTemplate(template)'][1]"));
     public static final SelenideElement DASHBOARD_BTN_NEW_PROJECT = $(byXpath("//button[@type='button'][contains(.,'+ NEW')]"));
     public static final ElementsCollection DROPDOWN_PROJECT_TEMPLATES_LIST = $$(byXpath("//button[@type='button']/following-sibling::ul//a"));
+//DASHBOARD PROFILE =========================================================================
+    public static final String DASHBOARD_PROFILE = "//*[@class='dashboard-profile']";
+    public static final SelenideElement DASHBOARD_PROFILE_AVATAR = $(byXpath(DASHBOARD_PROFILE+"//div[contains(@class,'user-photo')]/img"));
+    public static final SelenideElement DASHBOARD_PROFILE_HI = $(byXpath(DASHBOARD_PROFILE+"//h4"));
+    public static final SelenideElement DASHBOARD_PROFILE_SETTINGS_LINK = $(byXpath(DASHBOARD_PROFILE+"//*[@href='/a/settings/profile']"));
+    public static final SelenideElement DASHBOARD_PROFILE_ACTIVE_TEAM_NAME = $(byXpath(DASHBOARD_PROFILE+"//div[text()='Your Teams']/following-sibling::*[@class='right']//span"));
+    public static final SelenideElement DASHBOARD_PROFILE_TEAM_SELECT = $(byXpath(DASHBOARD_PROFILE+"//div[text()='Your Teams']/following-sibling::*[@class='right']//span"));
+    public static final SelenideElement DASHBOARD_PROFILE_TEAM_INPUT = $(byXpath(DASHBOARD_PROFILE+"//div[text()='Your Teams']/following-sibling::*[@class='right']//input[@type='search']"));
+    public static final SelenideElement DASHBOARD_PROFILE_BOOST_BTN = $(byXpath(DASHBOARD_PROFILE+"//*[text()='boost my document management']"));
+
+//    public static final SelenideElement DASHBOARD_PROFILE_ = $(byXpath(DASHBOARD_PROFILE+""));
+
+    public static final SelenideElement DASHBOARD_PROFILE_MEMBERS_LINK = $(byXpath(DASHBOARD_PROFILE+"//*[@href='/a/settings/team/members']/span"));
+    public static final SelenideElement DASHBOARD_INVITE = $(byXpath(DASHBOARD_PROFILE+"//button[contains(.,'+ INVITE')]"));
+    public static final SelenideElement DASHBOARD_PROFILE_MEMBERS_QTY = $(byXpath(DASHBOARD_PROFILE+"//*[@href='/a/settings/team/members']/span"));
+    public static final ElementsCollection DASHBOARD_PROFILE_MEMBERS_LIST = $$(byXpath(DASHBOARD_PROFILE+"//*[@class='profile-members-list']/li"));
+    public static final SelenideElement DASHBOARD_PROFILE_MEMBER_ROW_INDEX = $(byXpath(DASHBOARD_PROFILE+"//*[@class='profile-members-list']/li[%s]"));
+    public static final SelenideElement DASHBOARD_PROFILE_MEMBER_ROW_FIRST = $(byXpath(DASHBOARD_PROFILE+"//*[@class='profile-members-list']/li[1]"));
+    public static final SelenideElement DASHBOARD_PROFILE_MEMBER_ROW_LAST = $(byXpath(DASHBOARD_PROFILE+"//*[@class='profile-members-list']/li[last()]"));
+    public static final SelenideElement DASHBOARD_PROFILE_MEMBER_ROW_NAMED = $(byXpath(DASHBOARD_PROFILE+""));
+
+    public static final SelenideElement DASHBOARD_PROJECTS_QTY = $(byXpath(DASHBOARD_PROFILE+"//div[text()='Project Memoboxes Left']/following-sibling::*[@class='right']//span"));
+    public static final SelenideElement DASHBOARD_BUY_MORE_BTN = $(byXpath(DASHBOARD_PROFILE+"//button[contains(.,'BUY MORE')]"));
 
 
-    public static final SelenideElement DASHBOARD_Invite = $(byXpath("//button[contains(.,'+ INVITE')]"));
-    public static final SelenideElement DASHBOARD_TeamMembersQTY = $(byXpath("//*[@ui-sref='settings.organization.members']"));
-    public static final SelenideElement DASHBOARD_AvailableProjectCount = $(byXpath("//a/span"));
-    public static final SelenideElement DASHBOARD_BuyProjects = $(byXpath("//button[contains(.,'BUY MORE')]"));
-    public static final SelenideElement DASHBOARD_UserAvatar = $(byXpath("???"));
-    public static final SelenideElement DASHBOARD_ProjectsLeft = $(byXpath("//section[@id='page']/div[2]/div/div/div/div[2]/pkm-dashboard-account/div/div[2]/div/div[2]/ul/li[2]/div"));
-    public static final SelenideElement DASHBOARD_YourProfileAndTeam = $(byXpath("//section[@id='page']/div[2]/div/div/div/div[2]/pkm-dashboard-account/div/div/div/div/h4"));
-    public static final SelenideElement DASHBOARD_YourTeams = $(byXpath("//section[@id='page']/div[2]/div/div/div/div[2]/pkm-dashboard-account/div/div[2]/div/div[2]/ul/li/div"));
-    public static final SelenideElement DASHBOARD_TeamName = $(byXpath("//section[@id='page']/div[2]/div/div/div/div[2]/pkm-dashboard-account/div/div[2]/div/div[2]/ul/li/div[2]/div/div/span/span[2]/span"));
 
     public static final SelenideElement DASHBOARD_NoProjects = $(byXpath("//pkm-dashboard-projects//div[starts-with(@class, 'alert alert-empty')]"));
 
