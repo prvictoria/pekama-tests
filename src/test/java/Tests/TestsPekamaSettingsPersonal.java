@@ -63,7 +63,7 @@ public class TestsPekamaSettingsPersonal {
             try {
                 PERSONAL_DETAILS_DELETE_AVATAR.waitUntil(visible, 15000).shouldBe(disabled);
                 PERSONAL_DETAILS_UPLOAD_AVATAR_BTN.shouldBe(visible).click();
-                executeAutoItScript("upload_jpeg_ff.exe");
+                executeAutoItScript(UploadFiles.JPG);
             }
             finally {
                 PERSONAL_DETAILS_DELETE_AVATAR.waitUntil(visible, 15000).shouldBe(enabled).click();
@@ -73,10 +73,25 @@ public class TestsPekamaSettingsPersonal {
             }
     }
     @Test
+    public void avatarUpload_png() throws IOException {
+        openSettingsTabPersonalDetails();
+        try {
+            PERSONAL_DETAILS_DELETE_AVATAR.waitUntil(visible, 15000).shouldBe(disabled);
+            PERSONAL_DETAILS_UPLOAD_AVATAR_BTN.shouldBe(visible).click();
+            executeAutoItScript(UploadFiles.PNG);
+        }
+        finally {
+            PERSONAL_DETAILS_DELETE_AVATAR.waitUntil(visible, 15000).shouldBe(enabled).click();
+            sleep(4000);
+            PERSONAL_DETAILS_DELETE_AVATAR.waitUntil(visible, 15000).shouldBe(disabled);
+            rootLogger.info("Test passed");
+        }
+    }
+    @Test
     public void avatarUpload_pdf_Validation() throws IOException {
         openSettingsTabPersonalDetails();
         PERSONAL_DETAILS_UPLOAD_AVATAR_BTN.shouldBe(visible).click();
-        executeAutoItScript("upload_pdf_ff.exe");
+        executeAutoItScript(UploadFiles.PDF);
         checkText("Upload a valid image. The file you uploaded was either not an image or a corrupted image.");
         sleep(2000);
         PERSONAL_DETAILS_DELETE_AVATAR.waitUntil(visible, 15000).shouldBe(disabled);

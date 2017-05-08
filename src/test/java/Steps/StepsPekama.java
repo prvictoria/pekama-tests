@@ -690,9 +690,9 @@ public class StepsPekama extends StepsFactory{
         sleep(4000);
     }
     public static String executeAutoItScript(UploadFiles fileType) throws IOException {
-        String[] scriptNames = {"upload_jpeg_ff.exe", "", "", "", "upload_pdf_ff.exe", "", "", "", "", ""};
+        String[] scriptNames = {"script_upload_jpeg_ff.exe", "script_upload_icon_ff.exe", "script_upload_png_ff.exe", "script_upload_svg_ff.exe", "script_upload_pdf_ff.exe", "script_upload_wordx_ff.exe", "script_upload_excelx_ff.exe", "script_upload_zip_ff.exe", "script_upload_googledoc_ff.exe"};
         String scriptName = null;
-        String[] fileNames = {"image_jpeg_01.jpg", "", "", "", "PDF01.pdf", "", "", "", "", ""};
+        String[] fileNames = {"jpeg.jpg", "icon.ico", "png.png", "svg.svg", "pdf.pdf", "word.docx", "excel.xl", "zip.zip", "googledoc.gdoc"};
         String fileName = null;
         switch(fileType) {
             case JPG:

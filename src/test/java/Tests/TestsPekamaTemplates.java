@@ -706,18 +706,34 @@ public class TestsPekamaTemplates {
         submitModalDocTemplate(ABORT_UPLOAD, PDF, false);
     }
     @Test
-    public void templateDoc_A2_CreatePdf() throws IOException {
+    public void templateDoc_A3_CreatePdf() throws IOException {
         openPageWithSpinner(URL_TEMPLATES_DOC);
-        submitEnabledButton(SETTINGS_VALUES_ADD);
         try {
+            submitEnabledButton(SETTINGS_VALUES_ADD);
+            submitModalDocTemplate(SUBMIT, JPG, false);
+            submitEnabledButton(SETTINGS_VALUES_ADD);
+            submitModalDocTemplate(SUBMIT, ICO, false);
+            submitEnabledButton(SETTINGS_VALUES_ADD);
+            submitModalDocTemplate(SUBMIT, PNG, false);
+            submitEnabledButton(SETTINGS_VALUES_ADD);
+            submitModalDocTemplate(SUBMIT, SVG, false);
+            submitEnabledButton(SETTINGS_VALUES_ADD);
             submitModalDocTemplate(SUBMIT, PDF, false);
+            submitEnabledButton(SETTINGS_VALUES_ADD);
+            submitModalDocTemplate(SUBMIT, WORD, false);
+            submitEnabledButton(SETTINGS_VALUES_ADD);
+            submitModalDocTemplate(SUBMIT, EXCEL, false);
+            submitEnabledButton(SETTINGS_VALUES_ADD);
+            submitModalDocTemplate(SUBMIT, ZIP, false);
+            submitEnabledButton(SETTINGS_VALUES_ADD);
+            submitModalDocTemplate(SUBMIT, GOOGLE, false);
         }
         finally {
             deleteTemplate();
         }
     }
     @Test
-    public void templateDoc_A2_CreatePdfAutodeploy() throws IOException {
+    public void templateDoc_A4_CreatePdfAutodeploy() throws IOException {
         openPageWithSpinner(URL_TEMPLATES_DOC);
         submitEnabledButton(SETTINGS_VALUES_ADD);
         try {
