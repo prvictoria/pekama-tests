@@ -10,11 +10,11 @@ import org.junit.*;
 import org.junit.experimental.categories.Category;
 import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
-
 import javax.mail.MessagingException;
 import java.awt.*;
 import java.io.IOException;
 
+import Steps.StepsFactory.*;
 import static Page.CommunityDashboard.*;
 import static Page.CommunityWizard.*;
 import static Page.ModalWindows.*;
@@ -848,8 +848,8 @@ public class TestsPekamaProject {
         createCharge(testSearchChargesType, EUR, price);
         createCharge(testSearchChargesType, USD, price);
         rootLogger.info("Start Xero flow");
-        projectAllCheckbox.click();
-        TAB_CHARGES_XERO.click();
+        projectAllCheckbox.shouldBe(visible).click();
+        TAB_CHARGES_XERO.shouldBe(visible).click();
 
         waitForModalWindow("ERRORS");
         checkText("Financials have different currency codes");

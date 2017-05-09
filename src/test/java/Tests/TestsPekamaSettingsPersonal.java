@@ -1,5 +1,6 @@
 package Tests;
 import Steps.StepsPekama;
+import Steps.User;
 import Utils.Utils;
 import com.codeborne.selenide.*;
 import org.apache.logging.log4j.LogManager;
@@ -49,12 +50,8 @@ public class TestsPekamaSettingsPersonal {
     @Before
     public void before() {
         clearBrowserCache();
-        StepsPekama loginIntoPekama = new StepsPekama();
-        loginIntoPekama.loginByURL(
-                TEST_USER_LOGIN,
-                TEST_USER_PASSWORD,
-                URL_LogIn
-        );
+        User user = new User();
+        user.loginByURL(TEST_USER_LOGIN, TEST_USER_PASSWORD, URL_LogIn);
     }
 
     @Test
@@ -500,7 +497,7 @@ public class TestsPekamaSettingsPersonal {
         $(byText("21211: The 'To' number 375123 is not a valid phone number.")).shouldBe(Condition.visible);
         rootLogger.info("Modal - Enable 2-Step Verification/ validate CORRECT number");
         MW_EnableVerificationTelField.clear();
-        MW_EnableVerificationTelField.sendKeys("291200656");
+        MW_EnableVerificationTelField.sendKeys("291234567");
         submitEnabledButton(MW_EnableVerificationNext);
         $(byText("We sent a confirmation code to your phone. Please enter it in the field below.")).shouldBe(Condition.visible);
 

@@ -1,6 +1,7 @@
 package Tests;
 
 import Steps.MessagesIMAP;
+import Steps.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.FixMethodOrder;
@@ -79,8 +80,8 @@ public class TestsCommunityIncoming {
     public void before() {
         if (skipBefore==false) {
             rootLogger.info("Open host");
-            StepsPekama loginIntoPekama = new StepsPekama();
-            loginIntoPekama.loginByURL(
+            User user = new User();
+            user.loginByURL(
                     REQUESTER_EMAIL,
                     REQUESTER_PEKAMA_PASSWORD,
                     URL_COMMUNITY_LOGIN);
@@ -120,11 +121,12 @@ public class TestsCommunityIncoming {
         caseName = createDraftCase(EXPERT_TEAM_NAME);
 
         rootLogger.info("Expert login");
-        StepsPekama loginIntoPekama = new StepsPekama();
-        loginIntoPekama.loginByURL(
+        User user = new User();
+        user.loginByURL(
                 EXPERT_EMAIL,
                 EXPERT_PEKAMA_PASSWORD,
                 URL_COMMUNITY_LOGIN);
+
         COMMUNITY_TAB_Incoming.waitUntil(visible, 15000).click();
         sleep(2000);
         checkCaseNameFirstRow(caseName);

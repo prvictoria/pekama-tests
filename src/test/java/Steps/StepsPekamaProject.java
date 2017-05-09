@@ -132,9 +132,8 @@ public class StepsPekamaProject extends StepsPekama {
     public static Boolean numberValidateFirstRow(String numberType, String numberValue){
         if(numberType==null && numberValue==null){
             NUMBERS_LIST.filter(visible).shouldHaveSize(1);
-            checkText(placeholderNoNumbers);
-            //$$(byText(placeholderNoNumbers)).filter(visible).shouldHaveSize(1);
-            // todo BUG #140183099 - https://www.pivotaltracker.com/n/projects/1239770/stories/140183099
+            rootLogger.info("BUG #140183099 - https://www.pivotaltracker.com/n/projects/1239770/stories/140183099 ");checkText(placeholderNoNumbers);
+            //TODO bug
             return true;
         }
         if(numberType!=null) {

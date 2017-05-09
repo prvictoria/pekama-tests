@@ -4,6 +4,7 @@ package Tests;
  * https://www.linkedin.com/in/viachaslau
  */
 import Steps.StepsPekama;
+import Steps.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
@@ -66,8 +67,8 @@ public class TestsPekamaIntegrationBox {
     public void before() {
         clearBrowserCache();
         if (skipBefore==false) {
-            StepsPekama loginIntoPekama = new StepsPekama();
-            loginIntoPekama.loginByURL(
+            User user = new User();
+            user.loginByURL(
                     OWNER_EMAIL,
                     OWNER_PASSWORD,
                     URL_Dashboard);
@@ -78,6 +79,7 @@ public class TestsPekamaIntegrationBox {
     public static void afterClass() {
        openUrlWithBaseAuth(URL_Logout);
        open(boxLogoutURL);
+       getWebDriver().quit();
     }
 
     @Test

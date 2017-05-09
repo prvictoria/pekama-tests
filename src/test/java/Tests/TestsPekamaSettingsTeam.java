@@ -1,6 +1,7 @@
 package Tests;
 import Steps.MessagesIMAP;
 import Steps.StepsPekama;
+import Steps.User;
 import Utils.Retry;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
@@ -62,8 +63,8 @@ public class TestsPekamaSettingsTeam {
         if (skipBefore==false){
             clearBrowserCache();
             rootLogger.info("Open host");
-            StepsPekama loginIntoPekama = new StepsPekama();
-            loginIntoPekama.loginByURL(
+            User user = new User();
+            user.loginByURL(
                     TEST_USER_LOGIN,
                     TEST_USER_PASSWORD,
                     URL_TeamSettings);
@@ -102,7 +103,7 @@ public class TestsPekamaSettingsTeam {
         try {
             SETTINGS_TEAM_INFO_DELETE_LOGO.waitUntil(visible, 15000).shouldBe(disabled);
             SETTINGS_TEAM_INFO_UPLOAD_LOGO.shouldBe(visible).click();
-            executeAutoItScript("upload_jpeg_ff.exe");
+            executeAutoItScript(UploadFiles.JPG);
         }
         finally {
             SETTINGS_TEAM_INFO_DELETE_LOGO.waitUntil(visible, 15000).shouldBe(enabled).click();
@@ -115,7 +116,7 @@ public class TestsPekamaSettingsTeam {
     @Test
     public void logoUpload_pdf_Validation() throws IOException {
         SETTINGS_TEAM_INFO_UPLOAD_LOGO.shouldBe(visible).click();
-        executeAutoItScript("upload_pdf_ff.exe");
+        executeAutoItScript(UploadFiles.PDF);
         checkText("Upload a valid image. The file you uploaded was either not an image or a corrupted image.");
         SETTINGS_TEAM_INFO_DELETE_LOGO.waitUntil(visible, 15000).shouldBe(disabled);
         rootLogger.info("Test passed - error present");

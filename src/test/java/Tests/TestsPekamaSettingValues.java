@@ -1,5 +1,6 @@
 package Tests;
 import Steps.StepsPekama;
+import Steps.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
@@ -47,8 +48,8 @@ public class TestsPekamaSettingValues {
     @Before
     public void before() {
         rootLogger.info("Open host");
-        StepsPekama loginIntoPekama = new StepsPekama();
-        loginIntoPekama.loginByURL(
+        User user = new User();
+        user.loginByURL(
                 TEST_USER_LOGIN,
                 TEST_USER_PASSWORD,
                 URL_VALUES);

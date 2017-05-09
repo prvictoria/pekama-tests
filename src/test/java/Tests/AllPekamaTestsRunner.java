@@ -7,7 +7,7 @@ import org.junit.runners.Suite;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
-@Categories.ExcludeCategory(AllEmailsTests.class) //Emails not stable
+//@Categories.ExcludeCategory(AllEmailsTests.class) //Emails not stable
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         MessagesIMAP.class,

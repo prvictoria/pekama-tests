@@ -43,7 +43,7 @@ public class User extends StepsFactory{
         this.email = email;
         this.password = password;
         openUrlWithBaseAuth(url);
-        submitCookie();
+        submitCookie(10);
         hideZopim();
         submitLoginCredentials(email, password);
     }

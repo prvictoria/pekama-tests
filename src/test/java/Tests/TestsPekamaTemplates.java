@@ -28,6 +28,7 @@ import static Steps.StepsModalWindows.modalDocumentTemplateOptions.SUBMIT;
 import static Steps.StepsPekama.*;
 import static Steps.StepsHttpAuth.*;
 import static Steps.StepsPekama.UploadFiles.*;
+import static Steps.StepsPekama.UploadFiles.ZIP;
 import static Steps.StepsPekamaProject.*;
 import static Tests.BeforeTestsSetUp.*;
 import static Tests.BeforeTestsSetUp.setBrowser;
@@ -64,17 +65,15 @@ public class TestsPekamaTemplates {
     }
     @Before
     public void login() {
+        clearBrowserCache();
         rootLogger.info("Open URL - " +URL_Dashboard);
-        openUrlWithBaseAuth(URL_Dashboard);
-        StepsPekama login = new StepsPekama();
-        login.submitLoginCredentials(TEST_USER_LOGIN);
-        rootLogger.info("Redirect after login to - "+URL_Dashboard);
-        sleep(1000);
+        User user = new User();
+        user.loginByURL(TEST_USER_LOGIN, TEST_USER_PASSWORD, URL_Dashboard);
     }
-    @After
-    public void logout(){
-        openUrlWithBaseAuth(URL_Logout);
-        clearBrowserCache();}
+//    @After
+//    public void logout(){
+//        openUrlWithBaseAuth(URL_Logout);
+//    }
     @Test
     public void templateProject_A_Validation() {
         String projectName;
@@ -706,7 +705,7 @@ public class TestsPekamaTemplates {
         submitModalDocTemplate(ABORT_UPLOAD, PDF, false);
     }
     @Test
-    public void templateDoc_A3_CreatePdf() throws IOException {
+    public void templateDoc_A3_CreateDifferent() throws IOException {
         openPageWithSpinner(URL_TEMPLATES_DOC);
         try {
             submitEnabledButton(SETTINGS_VALUES_ADD);

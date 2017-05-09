@@ -6,6 +6,7 @@ package Tests;
 import Page.TestsCredentials.User1;
 import Page.TestsCredentials.*;
 import Steps.StepsPekama;
+import Steps.User;
 import Utils.*;
 import com.codeborne.selenide.*;
 import org.apache.logging.log4j.LogManager;
@@ -70,15 +71,14 @@ public class TestsPekamaDashboard {
     }
     @Before
     public void before() {
-        StepsPekama loginIntoPekama = new StepsPekama();
-        loginIntoPekama.loginByURL(
+        User user = new User();
+        user.loginByURL(
                 USER_EMAIL,
                 USER_PEKAMA_PASSWORD,
                 URL_LogIn);
     }
     @AfterClass
     public static void afterClass() {
-        //open(URL_Logout);
         clearBrowserCache();
     }
 

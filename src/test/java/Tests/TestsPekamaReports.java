@@ -41,6 +41,8 @@ import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 public class TestsPekamaReports {
     static final Logger rootLogger = LogManager.getRootLogger();
     private static final String TEST_USER_LOGIN = User3.GMAIL_EMAIL.getValue();
+    private static final String TEST_USER_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
+
     private static final String GMAIL_LOGIN = TEST_USER_LOGIN;
     private static final String GMAIL_PASSWORD = User3.GMAIL_PASSWORD.getValue();
     @Rule
@@ -61,10 +63,8 @@ public class TestsPekamaReports {
     public void login() {
         if(skipBefore==false) {
             clearBrowserCache();
-            openUrlWithBaseAuth(URL_LogIn);
-            StepsPekama login = new StepsPekama();
-            login.submitLoginCredentials(TEST_USER_LOGIN);
-            sleep(3000);
+            User user = new User();
+            user.loginByURL(TEST_USER_LOGIN, TEST_USER_PASSWORD, URL_LogIn);
         }
         else {rootLogger.info("Before was skipped");}
     }

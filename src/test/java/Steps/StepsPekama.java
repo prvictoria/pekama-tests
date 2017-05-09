@@ -33,6 +33,7 @@ import static com.codeborne.selenide.WebDriverRunner.*;
 public class StepsPekama extends StepsFactory{
     static final Logger rootLogger = LogManager.getRootLogger();
 
+    @Deprecated
     public void  loginByURL(String PEKAMA_USER_EMAIL, String PEKAMA_USER_PASSWORD, String AUTH_URL){
         openUrlWithBaseAuth(AUTH_URL);
         fillField(loginField_Email,PEKAMA_USER_EMAIL);
@@ -45,6 +46,7 @@ public class StepsPekama extends StepsFactory{
         btnLogin.waitUntil(not(visible), 15000);
         rootLogger.info("Valid Credentials were submitted");
     }
+    @Deprecated
     public void  submitLoginCredentials(String PEKAMA_USER_EMAIL){
         hideZopim();
         submitCookie();
@@ -58,6 +60,7 @@ public class StepsPekama extends StepsFactory{
         rootLogger.info("Valid Credentials were submitted");
 
     }
+    @Deprecated
     public void  submitLoginCredentials(String PEKAMA_USER_EMAIL, String USER_PEKAMA_PASSWORD){
         submitCookie();
         hideZopim();
@@ -87,7 +90,7 @@ public class StepsPekama extends StepsFactory{
             i++;
             if($(byText("Got it!")).isDisplayed()){
                 $(byText("Got it!")).click();
-                rootLogger.info("cookie were submitted");
+                rootLogger.info("Cookie were submitted");
                 return;
                 }
         }
