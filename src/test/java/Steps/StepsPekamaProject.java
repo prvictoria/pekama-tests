@@ -7,6 +7,8 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 
+import java.io.IOException;
+
 import static Page.CommunityDashboard.*;
 import static Page.ModalWindows.*;
 import static Page.PekamaConversationProject.*;
@@ -29,7 +31,51 @@ import static com.codeborne.selenide.Selenide.*;
 public class StepsPekamaProject extends StepsPekama {
     static final Logger rootLogger = LogManager.getRootLogger();
 
-
+    //in root in Project
+    public static void deleteAllFiles(){
+        rootLogger.info("Delete all files");
+        projectAllCheckbox.click();
+        LINK_DELETE.click();
+        submitConfirmAction();
+        checkText(PLACEHOLDER_NoFiles);
+        rootLogger.info(PLACEHOLDER_NoFiles);
+    }
+    public static String uploadFileInRoot(UploadFiles fileType) throws IOException {
+        callUploadFilesModal();
+        String fileName = submitModalUploadFiles(fileType);
+        checkText(fileName);
+        rootLogger.info(fileName+" - file present");
+        return fileName;
+    }
+    public static String createFileInRoot(SelenideElement fileType, String fileName) {
+        callNewDocModal();
+        submitModalDeployFileTemplate(fileType, fileName);
+        checkText(fileName);
+        rootLogger.info(fileName+" - file present");
+        return fileName;
+    }
+    public static String createFolderInRoot(String folderName) {
+        callNewFolderModal();
+        submitModalCreateFolder(folderName);
+        checkText(folderName);
+        rootLogger.info(folderName+" - folder present");
+        return folderName;
+    }
+    public static void callNewDocModal(){
+        clickElement(PROJECT_TAB_DOCS);
+        clickElement(TAB_DOCS_BTN_ADD);
+        clickElement(TAB_DOC_NEW_DOCUMENT);
+    }
+    public static void callNewFolderModal(){
+        clickElement(PROJECT_TAB_DOCS);
+        clickElement(TAB_DOCS_BTN_ADD);
+        clickElement(TAB_DOC_ADD_FOLDER);
+    }
+    public static void callUploadFilesModal(){
+        clickElement(PROJECT_TAB_DOCS);
+        clickElement(TAB_DOCS_BTN_ADD);
+        clickElement(TAB_DOC_UPLOAD);
+    }
     public static void fileMenuMakeAction(String actionName, String... args) {
         String menu = String.format(TAB_DOCS_FILES_MENU_OPEN, args);
         $(byXpath(menu)).shouldBe(visible);

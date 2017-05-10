@@ -18,6 +18,7 @@ import static Page.UrlConfig.*;
 import static Steps.StepsModalWindows.ModalConversationFollowerActions.*;
 import static Steps.StepsModalWindows.ModalConversationTeamActions.*;
 import static Steps.StepsPekama.*;
+import static Steps.StepsPekamaProject.callNewDocModal;
 import static Utils.Utils.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
@@ -27,6 +28,9 @@ import static com.codeborne.selenide.Selenide.*;
  */
 public class StepsModalWindows extends StepsFactory {
     static final Logger rootLogger = LogManager.getRootLogger();
+    public static String fileName = null;
+
+
     public static boolean waitForModalWindow(String modalTitle) {
         rootLogger.info("Wait for '"+modalTitle+"' modal window");
         MW.waitUntil(visible, 20000).shouldBe(visible);
@@ -406,32 +410,28 @@ public class StepsModalWindows extends StepsFactory {
         sleep(1000);
     }
 
-    //in root in Project
-    public static void createFileInRoot(SelenideElement fileType, String fileName) {
-        PROJECT_TAB_DOCS.waitUntil(visible, 15000).click();
-        TAB_DOCS_BTN_ADD.waitUntil(enabled, 15000).click();
-        TAB_DOC_NEW_DOCUMENT.shouldBe(Condition.visible).click();
-        submitModalDeployFileTemplate(fileType, fileName);
-
-    }
-    public static void submitModalDeployFileTemplate(SelenideElement fileType, String fileName) {
+    public static String submitModalDeployFileTemplate(SelenideElement fileType, String fileName) {
         waitForModalWindow(TITLE_MW_ADD_DOCUMENT);
         MW_DEPLOY_DOC_BTN_CREATE.shouldBe(disabled);
         fileType.shouldBe(Condition.visible).click();
         fillField(MW_DEPLOY_DOC_INPUT_FILE_NAME, fileName);
         submitEnabledButton(MW_DEPLOY_DOC_BTN_CREATE);
         MW.shouldNotBe(Condition.visible);
-        $(byText(fileName)).shouldBe(Condition.visible);
-        rootLogger.info(fileName+" - file present");
+        return fileName;
     }
-    public static void modalWindowCreateFolder(String folderName) {
+    public static String submitModalCreateFolder(String folderName) {
         waitForModalWindow(TITLE_MW_NEW_FOLDER);
         MW_BTN_SAVE.shouldBe(disabled);
         fillField(MW_NEW_FOLDER_INPUT_NAME, folderName);
         submitEnabledButton(MW_BTN_SAVE);
         MW.shouldNotBe(Condition.visible);
-        $(byText(folderName)).shouldBe(Condition.visible);
-        rootLogger.info(folderName+" - Folder present");
+        return folderName;
+    }
+    public static String submitModalUploadFiles(UploadFiles fileType) throws IOException {
+        waitForModalWindow("Files upload");
+        MW_DOC_TEMPLATE_UPLOAD.shouldBe(visible).click();
+        fileName = executeAutoItScript(fileType);
+        return fileName;
     }
     public static String createNumber() {
         String codeType = "Equinox code";
@@ -466,15 +466,7 @@ public class StepsModalWindows extends StepsFactory {
         rootLogger.info(classDescripton+" - Class was created");
         return classType;
     }
-    public static String createFolderInRoot(String folderName) {
-        PROJECT_TAB_DOCS.waitUntil(visible, 15000).click();
-        TAB_DOCS_BTN_ADD.waitUntil(enabled, 15000).click();
-        rootLogger.info("Add folder");
-        TAB_DOC_ADD_FOLDER.shouldBe(Condition.visible).click();
-        modalWindowCreateFolder(folderName);
-        rootLogger.info(folderName+" - Folder present");
-        return folderName;
-    }
+
     public static String createTask(String taskName) {
         PROJECT_TAB_TASKS.waitUntil(visible, 15000).click();
         TAB_TASKS_ADD.waitUntil(enabled, 15000).click();
@@ -776,9 +768,9 @@ public class StepsModalWindows extends StepsFactory {
         return eventType;
     }
     public enum modalDocumentTemplateOptions {SUBMIT, CANCEL, ABORT_UPLOAD}
-    public static String submitModalDocTemplate(modalDocumentTemplateOptions option, UploadFiles fileType, Boolean selectAoutodeploy) throws IOException {
+    public static String submitModalDocTemplate(modalDocumentTemplateOptions option, UploadFiles fileType, Boolean selectAutodeploy) throws IOException {
         String templateDocName = "";
-        String fileName = null;
+        fileName = null;
         waitForModalWindow(MW_DOC_TEMPLATE_TITLE);
         MW_BTN_OK.shouldBe(disabled);
         MW_DOC_TEMPLATE_TITLE_FIELD.shouldHave(value(""));
@@ -796,7 +788,7 @@ public class StepsModalWindows extends StepsFactory {
                 templateDocName = fileType+"_"+randomString(10);
                 fillField(MW_DOC_TEMPLATE_TITLE_FIELD, templateDocName);
                 MW_DOC_TEMPLATE_AUTO_DEPLOY.shouldNotBe(selected);
-                if(selectAoutodeploy==true) {
+                if(selectAutodeploy ==true) {
                     MW_DOC_TEMPLATE_AUTO_DEPLOY_ICON.click();
                 }
                 submitEnabledButton(MW_BTN_OK);

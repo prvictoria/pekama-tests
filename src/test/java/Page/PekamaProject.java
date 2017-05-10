@@ -32,7 +32,7 @@ public class PekamaProject extends Page {
     public static final SelenideElement projectPlusNewContact = $(byLinkText("New Contact"));
     public static final SelenideElement projectAllCheckbox = $("i.pkm-icon-checkbox");
     public static final SelenideElement projectAllCheckboxFiles = $(byXpath("//div[@class='checkbox-holder fancy main-checkbox pull-left']//input"));
-
+//TIMELINE ============================================================
     public static final SelenideElement TIMELINE__Line = $(".slider-selection");
     public static final SelenideElement TIMELINE_DeleteEvent = $(byXpath("//*[@id='timeline']//a[@class='delete ng-scope']"));
     public static final SelenideElement TIMELINE_EditEvent = $(byXpath("//*[@id='timeline']//a[@class='edit ng-scope']"));
@@ -190,6 +190,7 @@ public class PekamaProject extends Page {
     //TAB DOCS
     public static final SelenideElement TAB_DOCS_BTN_ADD = $(byId("file-controls"));
     public static final SelenideElement TAB_DOC_ADD_FOLDER = $(byLinkText("Add Folder"));
+    public static final SelenideElement TAB_DOC_UPLOAD = $(byLinkText("Upload"));
     public static final SelenideElement TAB_DOC_NEW_DOCUMENT = $(byLinkText("New document"));
     public static final SelenideElement LINK_DELETE = $(byLinkText("Delete"));
     public static final SelenideElement TAB_DOCS = $(byXpath(""));

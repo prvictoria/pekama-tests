@@ -47,6 +47,7 @@ public class TestsPekamaSettingValues {
     }
     @Before
     public void before() {
+        clearBrowserCache();
         rootLogger.info("Open host");
         User user = new User();
         user.loginByURL(
@@ -54,11 +55,10 @@ public class TestsPekamaSettingValues {
                 TEST_USER_PASSWORD,
                 URL_VALUES);
     }
-    @After
-    public void after() {
-        openUrlWithBaseAuth(URL_Logout);
-        clearBrowserCache();
-    }
+//    @After
+//    public void after() {
+//        openUrlWithBaseAuth(URL_Logout);
+//    }
 
     @Test
     public void statusCRUD(){

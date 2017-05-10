@@ -278,7 +278,7 @@ public class TestsPekamaSignUp {
     public void sendSignUpEmail_D1_UploadAvatarJpg() {
         skipBefore = false;
         signupUpAvatar.waitUntil(exist, 10000).shouldHave(attribute("class", "hidden image-preview"));
-        uploadFile("image_jpeg_01.jpg", signupUploadInput);
+        uploadFile("jpeg.jpg", signupUploadInput);
         signupUpAvatar.waitUntil(exist, 10000).shouldHave(attribute("class", "image-preview"));
         rootLogger.info("Avatar uploaded");
 
@@ -300,7 +300,7 @@ public class TestsPekamaSignUp {
     public void sendSignUpEmail_D2_UploadAvatarPng() {
         skipBefore = false;
         signupUpAvatar.waitUntil(exist, 10000).shouldHave(attribute("class", "hidden image-preview"));
-        uploadFile("image_png_01.png", signupUploadInput);
+        uploadFile("png.png", signupUploadInput);
         signupUpAvatar.waitUntil(exist, 10000).shouldHave(attribute("class", "image-preview"));
         rootLogger.info("Avatar uploaded");
 
@@ -321,7 +321,7 @@ public class TestsPekamaSignUp {
     public void sendSignUpEmail_D3_UploadAvatarIcon() {
         skipBefore = false;
         signupUpAvatar.waitUntil(exist, 10000).shouldHave(attribute("class", "hidden image-preview"));
-        uploadFile("image_icon_01.ico", signupUploadInput);
+        uploadFile("icon.ico", signupUploadInput);
         signupUpAvatar.waitUntil(exist, 10000).shouldHave(attribute("class", "image-preview"));
         rootLogger.info("Avatar uploaded");
 
@@ -343,7 +343,7 @@ public class TestsPekamaSignUp {
     public void sendSignUpEmail_D4_UploadAvatarSvg_Validation() {
         skipBefore = false;
         signupUpAvatar.waitUntil(exist, 10000).shouldHave(attribute("class", "hidden image-preview"));
-        uploadFile("image_svg_01.svg", signupUploadInput);
+        uploadFile("svg.svg", signupUploadInput);
         signupUpAvatar.waitUntil(exist, 10000).shouldHave(attribute("class", "image-preview"));
         rootLogger.info("Avatar uploaded - but not displayed");
 
@@ -364,7 +364,7 @@ public class TestsPekamaSignUp {
     public void sendSignUpEmail_D5_UploadAvatarPdf_Validation() {
         skipBefore = false;
         signupUpAvatar.waitUntil(exist, 10000).shouldHave(attribute("class", "hidden image-preview"));
-        uploadFile("PDF01.pdf", signupUploadInput);
+        uploadFile("pdf.pdf", signupUploadInput);
         signupUpAvatar.waitUntil(exist, 10000).shouldHave(attribute("class", "image-preview"));
 
         rootLogger.info("Submit SignUp with valid but fake user");

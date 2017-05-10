@@ -3,6 +3,7 @@ import Page.TestsCredentials;
 import Steps.MessagesIMAP;
 import Steps.User;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.ex.SoftAssertionError;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,7 +15,6 @@ import javax.mail.MessagingException;
 import java.awt.*;
 import java.io.IOException;
 
-import Steps.StepsFactory.*;
 import static Page.CommunityDashboard.*;
 import static Page.CommunityWizard.*;
 import static Page.ModalWindows.*;
@@ -404,32 +404,13 @@ public class TestsPekamaProject {
     @Test
     public void createProject_G1_addWordDocument() {
         String newDoc = "new word document";
-        PROJECT_TAB_DOCS.click();
-        TAB_DOCS_BTN_ADD.click();
-        TAB_DOC_NEW_DOCUMENT.shouldBe(Condition.visible).click();
-        waitForModalWindow(TITLE_MW_ADD_DOCUMENT);
-        MW_DeployDoc_01TemplateWord.shouldBe(Condition.visible).click();
-        fillField(MW_DEPLOY_DOC_INPUT_FILE_NAME, newDoc);
-        MW_DEPLOY_DOC_BTN_CREATE.click();
-        MW.shouldNotBe(Condition.visible);
-        $(byText(newDoc)).shouldBe(Condition.visible);
-        rootLogger.info(newDoc+" - file present");
-
+        createFileInRoot(MW_DeployDoc_01TemplateWord, newDoc);
         rootLogger.info("edit file");
         fileMenuMakeAction(TAB_DOCS_FILES_MENU_RENAME, newDoc);
         fillField(TAB_DOCS_FILE_INPUT_NAME_IN_ROW, "New Excel sheet");
         TAB_DOCS_FILE_SAVE_IN_ROW.click();
         $(byText("New Excel sheet")).shouldBe(Condition.visible);
-
-        rootLogger.info("delete file");
-        projectAllCheckbox.click();
-        LINK_DELETE.click();
-        submitConfirmAction();
-
-        $(byText(PLACEHOLDER_NoFiles)).shouldBe(Condition.visible);
-        $$(byText(PLACEHOLDER_NoFiles)).filter(visible).shouldHaveSize(1);
-      //  $(byText("No files found.Upload your first file. ")).shouldBe(Condition.visible);
-        rootLogger.info(PLACEHOLDER_NoFiles);
+        deleteAllFiles();
         rootLogger.info("Test passed");
     }
     @Test
@@ -458,17 +439,7 @@ public class TestsPekamaProject {
     @Test
     public void createProject_H1_addFolder() {
         String newFolder = "new folder";
-        PROJECT_TAB_DOCS.click();
-        TAB_DOCS_BTN_ADD.click();
-        rootLogger.info("Add folder");
-        TAB_DOC_ADD_FOLDER.shouldBe(Condition.visible).click();
-        modalWindowCreateFolder(newFolder);
-
-        rootLogger.info("edit folder");
-        fileMenuMakeAction(TAB_DOCS_FILES_MENU_RENAME, newFolder);
-        fillField(TAB_DOCS_FILE_INPUT_NAME_IN_ROW, "renamed folder");
-        TAB_DOCS_FILE_SAVE_IN_ROW.click();
-        $(byText("renamed folder")).shouldBe(Condition.visible);
+        createFolderInRoot(newFolder);
 
         rootLogger.info("delete folder");
         projectAllCheckbox.click();
@@ -485,7 +456,7 @@ public class TestsPekamaProject {
         TAB_DOCS_BTN_ADD.click();
         TAB_DOC_ADD_FOLDER.shouldBe(Condition.visible).click();
         rootLogger.info("Add folder");
-        modalWindowCreateFolder(newFolder1);
+        submitModalCreateFolder(newFolder1);
 
         rootLogger.info("Add same folder");
         TAB_DOCS_BTN_ADD.click();
@@ -528,15 +499,15 @@ public class TestsPekamaProject {
         TAB_DOCS_BTN_ADD.click();
         TAB_DOC_ADD_FOLDER.shouldBe(Condition.visible).click();
         rootLogger.info("Add folder");
-        modalWindowCreateFolder(newFolder1);
+        submitModalCreateFolder(newFolder1);
         clickFolderRow(newFolder1);
         rootLogger.info("Add sub-folder");
         fileMenuMakeAction(TAB_DOCS_FILES_MENU_ADD_SUBFOLDER, newFolder1);
-        modalWindowCreateFolder(newFolder2);
+        submitModalCreateFolder(newFolder2);
         clickFolderRow(newFolder2);
         rootLogger.info("Add sub-sub-folder");
         fileMenuMakeAction(TAB_DOCS_FILES_MENU_ADD_SUBFOLDER, newFolder2);
-        modalWindowCreateFolder(newFolder3);
+        submitModalCreateFolder(newFolder3);
         clickFolderRow(newFolder3);
        // rootLogger.info("Add doc sub-sub-folder");
 

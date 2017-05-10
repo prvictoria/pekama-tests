@@ -78,7 +78,7 @@ public class TestsPekamaSettingsPersonal {
             executeAutoItScript(UploadFiles.PNG);
         }
         finally {
-            PERSONAL_DETAILS_DELETE_AVATAR.waitUntil(visible, 15000).shouldBe(enabled).click();
+            PERSONAL_DETAILS_DELETE_AVATAR.waitUntil(visible, 15000).click();
             sleep(4000);
             PERSONAL_DETAILS_DELETE_AVATAR.waitUntil(visible, 15000).shouldBe(disabled);
             rootLogger.info("Test passed");
@@ -90,8 +90,6 @@ public class TestsPekamaSettingsPersonal {
         PERSONAL_DETAILS_UPLOAD_AVATAR_BTN.shouldBe(visible).click();
         executeAutoItScript(UploadFiles.PDF);
         checkText("Upload a valid image. The file you uploaded was either not an image or a corrupted image.");
-        sleep(2000);
-        PERSONAL_DETAILS_DELETE_AVATAR.waitUntil(visible, 15000).shouldBe(disabled);
         rootLogger.info("Test passed - error present");
     }
     @Test

@@ -44,6 +44,7 @@ public class User extends StepsFactory{
         this.password = password;
         openUrlWithBaseAuth(url);
         submitCookie(10);
+        sleep(2000);
         hideZopim();
         submitLoginCredentials(email, password);
     }

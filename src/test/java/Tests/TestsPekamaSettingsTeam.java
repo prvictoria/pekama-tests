@@ -118,7 +118,6 @@ public class TestsPekamaSettingsTeam {
         SETTINGS_TEAM_INFO_UPLOAD_LOGO.shouldBe(visible).click();
         executeAutoItScript(UploadFiles.PDF);
         checkText("Upload a valid image. The file you uploaded was either not an image or a corrupted image.");
-        SETTINGS_TEAM_INFO_DELETE_LOGO.waitUntil(visible, 15000).shouldBe(disabled);
         rootLogger.info("Test passed - error present");
     }
     @Test

@@ -1,4 +1,5 @@
 package Tests;
+import Page.ModalWindows;
 import Page.TestsCredentials;
 import Page.TestsCredentials.*;
 import Steps.*;
@@ -12,23 +13,21 @@ import java.io.IOException;
 import static Page.ModalWindows.*;
 import static Page.PekamaConversationProject.*;
 import static Page.PekamaDashboard.*;
-import static Page.PekamaPersonalSettings.TEXT_EDITOR;
+import static Page.PekamaPersonalSettings.*;
 import static Page.PekamaProject.*;
-import static Page.PekamaReports.REPORTS_BTN_NEW_PROJECT_TEMPLATE;
+import static Page.PekamaReports.*;
 import static Page.PekamaTeamSettings.*;
 import static Page.TestsCredentials.Countries.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
+import static Steps.StepsFactory.clickElement;
 import static Steps.StepsModalWindows.*;
-import static Steps.StepsModalWindows.modalDocumentTemplateOptions.ABORT_UPLOAD;
-import static Steps.StepsModalWindows.modalDocumentTemplateOptions.CANCEL;
-import static Steps.StepsModalWindows.modalDocumentTemplateOptions.SUBMIT;
+import static Steps.StepsModalWindows.modalDocumentTemplateOptions.*;
 import static Steps.StepsPekama.*;
 import static Steps.StepsHttpAuth.*;
 import static Steps.StepsPekama.UploadFiles.*;
-import static Steps.StepsPekama.UploadFiles.ZIP;
 import static Steps.StepsPekamaProject.*;
 import static Tests.BeforeTestsSetUp.*;
 import static Tests.BeforeTestsSetUp.setBrowser;
@@ -728,17 +727,44 @@ public class TestsPekamaTemplates {
             submitModalDocTemplate(SUBMIT, GOOGLE, false);
         }
         finally {
+            refresh();
             deleteTemplate();
         }
     }
     @Test
     public void templateDoc_A4_CreatePdfAutodeploy() throws IOException {
-        openPageWithSpinner(URL_TEMPLATES_DOC);
-        submitEnabledButton(SETTINGS_VALUES_ADD);
-        try {
-            submitModalDocTemplate(SUBMIT, PDF, true);
+        try{
+            templateName = null;
+            openPageWithSpinner(URL_TEMPLATES_DOC_TRADEMARK);
+            submitEnabledButton(SETTINGS_VALUES_ADD);
+            templateName = submitModalDocTemplate(SUBMIT, PDF, true);
+            openUrlWithBaseAuth(URL_PEKAMA_DASHBOARD);
+            submitEnabledButton(DASHBOARD_BTN_NEW_PROJECT);
+            submitMwNewProject("Doc auto-deploy test");
+            clickElement(PROJECT_TAB_DOCS);
+            checkText(StepsModalWindows.fileName);
         }
         finally {
+            openPageWithSpinner(URL_TEMPLATES_DOC_TRADEMARK);
+            deleteTemplate();
+        }
+    }
+    @Ignore //TODO manual deploy
+    @Test
+    public void templateDoc_A5_CreatePdfManualdeploy() throws IOException {
+        try{
+            templateName = null;
+            openPageWithSpinner(URL_TEMPLATES_DOC_TRADEMARK);
+            submitEnabledButton(SETTINGS_VALUES_ADD);
+            templateName = submitModalDocTemplate(SUBMIT, PDF, true);
+            openUrlWithBaseAuth(URL_PEKAMA_DASHBOARD);
+            submitEnabledButton(DASHBOARD_BTN_NEW_PROJECT);
+            submitMwNewProject("Doc auto-deploy test");
+            clickElement(PROJECT_TAB_DOCS);
+            checkText(StepsModalWindows.fileName);
+        }
+        finally {
+            openPageWithSpinner(URL_TEMPLATES_DOC_TRADEMARK);
             deleteTemplate();
         }
     }

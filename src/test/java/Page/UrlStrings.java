@@ -47,6 +47,7 @@ public class UrlStrings {
     public static final String URL_TEMPLATES_EVENT_TRADEMARK = ENVIRONMENT_PEKAMA +"/a/settings/team/templates/events/trademarks";
     public static final String URL_TEMPLATES_EVENT_PATENT = ENVIRONMENT_PEKAMA +"/a/settings/team/templates/events/patents";
     public static final String URL_TEMPLATES_DOC = ENVIRONMENT_PEKAMA +"/a/settings/team/templates/documents";
+    public static final String URL_TEMPLATES_DOC_TRADEMARK = ENVIRONMENT_PEKAMA +"/a/settings/team/templates/documents/trademarks";
     public static final String URL_TEMPLATES_STORAGE = ENVIRONMENT_PEKAMA +"/a/settings/team/templates/storage";
 
     public static final String URL_COMMUNITY_PATH = ENVIRONMENT_COMMUNITY;
