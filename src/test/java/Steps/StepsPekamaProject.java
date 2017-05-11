@@ -40,9 +40,16 @@ public class StepsPekamaProject extends StepsPekama {
         checkText(PLACEHOLDER_NoFiles);
         rootLogger.info(PLACEHOLDER_NoFiles);
     }
-    public static String uploadFileInRoot(UploadFiles fileType) throws IOException {
+    public static String uploadFileInRoot(UploadFiles fileType, boolean allTeamsIsSelected, Boolean submitModal) {
         callUploadFilesModal();
-        String fileName = submitModalUploadFiles(fileType);
+        String fileName = null;
+        try {
+            fileName = uploadModalUploadFiles(fileType);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        selectAllTeams(allTeamsIsSelected);
+        submitModalUploadFiles(submitModal);
         checkText(fileName);
         rootLogger.info(fileName+" - file present");
         return fileName;
@@ -50,6 +57,13 @@ public class StepsPekamaProject extends StepsPekama {
     public static String createFileInRoot(SelenideElement fileType, String fileName) {
         callNewDocModal();
         submitModalDeployFileTemplate(fileType, fileName);
+        checkText(fileName);
+        rootLogger.info(fileName+" - file present");
+        return fileName;
+    }
+    public static String createFileInRoot(String templateName, String fileName) {
+        callNewDocModal();
+        submitModalDeployFileTemplate(templateName, fileName);
         checkText(fileName);
         rootLogger.info(fileName+" - file present");
         return fileName;
@@ -496,55 +510,7 @@ public class StepsPekamaProject extends StepsPekama {
         MW.waitUntil(not(visible), 15000);
     }
 
-    public static boolean setAutoDeploy(boolean selectAutoCheckbox){
-        if(selectAutoCheckbox==true){
-            templateRow.waitUntil(visible, 15000).click();
-            TEMPLATES_AUTO_DEPLOY.shouldNotBe(selected).setSelected(true);
-            TEMPLATES_AUTO_DEPLOY.shouldBe(selected);
-            return selectAutoCheckbox;
-        }
-        if(selectAutoCheckbox==false){
-            templateRow.waitUntil(visible, 15000).click();
-            TEMPLATES_AUTO_DEPLOY.shouldBe(selected).setSelected(false);
-            TEMPLATES_AUTO_DEPLOY.shouldNotBe(selected);
-            return selectAutoCheckbox;
-        }
-        return false;
-    }
-    public static Integer checkTemplatesFilters(
-            String defining,
-            String type,
-            String event,
-            Integer listSize){
-        rootLogger.info("Check template filters");
-        refresh();
-        SETTINGS_DELETE_X.waitUntil(visible, 15000);
-        if(defining!=null) {
-            rootLogger.info("Select DEFINING filter");
-            selectItemInDropdown(
-                    TEMPLATES_FILTER_SELECT_DEFINING,
-                    TEMPLATES_FILTER_INPUT_DEFINING,
-                    defining);
-        }
-        if(type!=null) {
-            rootLogger.info("Select TYPE filter");
-            selectItemInDropdown(
-                    TEMPLATES_FILTER_SELECT_TYPE,
-                    TEMPLATES_FILTER_INPUT_TYPE,
-                    type);
-        }
-        if(event!=null) {
-            rootLogger.info("Select EVENT filter");
-            selectItemInDropdown(
-                    TEMPLATES_FILTER_SELECT_EVENT,
-                    TEMPLATES_FILTER_INPUT_EVENT,
-                    event);
-        }
-        if(listSize!=null) {
-            rootLogger.info("Check templates list size");
-            TEMPLATES_LIST.shouldHaveSize(listSize);}
-        return listSize;
-    }
+
  // CONVERSATION ====================================================================
     public static boolean callModalNewConversation(){
         rootLogger.info("Create new thread in Talk to your Team tab");

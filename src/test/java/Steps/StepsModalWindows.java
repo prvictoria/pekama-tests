@@ -18,8 +18,8 @@ import static Page.UrlConfig.*;
 import static Steps.StepsModalWindows.ModalConversationFollowerActions.*;
 import static Steps.StepsModalWindows.ModalConversationTeamActions.*;
 import static Steps.StepsPekama.*;
-import static Steps.StepsPekamaProject.callNewDocModal;
 import static Utils.Utils.*;
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
@@ -30,7 +30,17 @@ public class StepsModalWindows extends StepsFactory {
     static final Logger rootLogger = LogManager.getRootLogger();
     public static String fileName = null;
 
-
+    public static Boolean selectAllTeams(boolean allTeamsIsSelected){
+        if (allTeamsIsSelected==true){
+            MW_ALL_TEAMS_CHECKBOX.setSelected(true);
+            MW_ALL_TEAMS_CHECKBOX.shouldBe(selected);
+        return true;
+        }
+        else {
+            MW_ALL_TEAMS_CHECKBOX.shouldNotBe(selected);
+            return false;
+        }
+    }
     public static boolean waitForModalWindow(String modalTitle) {
         rootLogger.info("Wait for '"+modalTitle+"' modal window");
         MW.waitUntil(visible, 20000).shouldBe(visible);
@@ -412,11 +422,35 @@ public class StepsModalWindows extends StepsFactory {
 
     public static String submitModalDeployFileTemplate(SelenideElement fileType, String fileName) {
         waitForModalWindow(TITLE_MW_ADD_DOCUMENT);
-        MW_DEPLOY_DOC_BTN_CREATE.shouldBe(disabled);
-        fileType.shouldBe(Condition.visible).click();
-        fillField(MW_DEPLOY_DOC_INPUT_FILE_NAME, fileName);
-        submitEnabledButton(MW_DEPLOY_DOC_BTN_CREATE);
-        MW.shouldNotBe(Condition.visible);
+        MW_DEPLOY_DOC_CREATE.shouldBe(disabled);
+        fileType.shouldBe(visible).click();
+
+        if(fileName!=null){
+            fillField(MW_DEPLOY_DOC_INPUT_FILE_NAME, fileName);
+        }
+        submitEnabledButton(MW_DEPLOY_DOC_CREATE);
+        if(fileType!=null) {
+            MW.shouldNotBe(Condition.visible);
+        }
+        return fileName;
+    }
+    public static String submitModalDeployFileTemplate(String templateName, String fileName) {
+        waitForModalWindow(TITLE_MW_ADD_DOCUMENT);
+        MW_DEPLOY_DOC_CREATE.shouldBe(disabled);
+        if(templateName!=null){
+            MW_DEPLOY_DOC_TEMPLATES_LIST.shouldHave(sizeGreaterThan(2));
+        }
+        MW_DEPLOY_DOC_TEMPLATE_NAME(templateName).shouldBe(visible).click();
+        if(fileName==null){
+            fileName = MW_DEPLOY_DOC_INPUT_FILE_NAME.getValue();
+        }
+        if(fileName!=null){
+            fillField(MW_DEPLOY_DOC_INPUT_FILE_NAME, fileName);
+        }
+        submitEnabledButton(MW_DEPLOY_DOC_CREATE);
+        if(templateName!=null) {
+            MW.shouldNotBe(Condition.visible);
+        }
         return fileName;
     }
     public static String submitModalCreateFolder(String folderName) {
@@ -427,59 +461,29 @@ public class StepsModalWindows extends StepsFactory {
         MW.shouldNotBe(Condition.visible);
         return folderName;
     }
-    public static String submitModalUploadFiles(UploadFiles fileType) throws IOException {
+    public static String uploadModalUploadFiles(UploadFiles fileType) throws IOException {
         waitForModalWindow("Files upload");
-        MW_DOC_TEMPLATE_UPLOAD.shouldBe(visible).click();
-        fileName = executeAutoItScript(fileType);
+        MW_UPLOAD_FILES_CANCEL.shouldBe(visible);
+        MW_UPLOAD_FILES_UPLOAD.shouldNotBe(visible);
+        MW_UPLOAD_FILES_CHOOSE.shouldBe(visible).click();
+        String fileName = executeAutoItScript(fileType);
+        MW_UPLOAD_FILES_LIST.shouldHaveSize(1);
+        MW_UPLOAD_FILES_FIRST_FILE.shouldHave(text(fileName));
         return fileName;
     }
-    public static String createNumber() {
-        String codeType = "Equinox code";
-        String codeValue = "2000/17/55-asd";
-        rootLogger.info("Create "+codeType+"with value - "+codeValue);
-        PROJECT_TAB_INFO.waitUntil(visible, 15000).click();
-        scrollDown();
-        selectItemInDropdown(TAB_INFO_NumberNewSelect, TAB_INFO_NumberNewField, codeType);
-        fillField(TAB_INFO_NumberReferenceField, codeValue);
-        submitEnabledButton(TAB_INFO_NumberAdd);
-        TAB_INFO_NumberRow01Type.shouldHave(text(codeType));
-        rootLogger.info(codeType+" - Number was created");
-        return codeValue;
-    }
-    public static String createClassification() {
-        //default
-        String classNumber = "12";
-        String classDescripton = "Class description";
-        String classType = "Up-to-date";
-        PROJECT_TAB_INFO.waitUntil(visible, 15000).click();
-        scrollDown();
-        TAB_INFO_ClassesAdd.waitUntil(visible, 20000).click();
-        waitForModalWindow(mwClasses_Title);
-        MW_BTN_OK.shouldBe(disabled);
-        MW_Classes_ClassType.shouldHave(text(classType));
-        fillField(mwClasses_FieldClass, classNumber);
-        fillField(mwClasses_FieldDescription, classDescripton);
-        submitEnabledButton(MW_BTN_OK);
-        MW.shouldNotBe(visible);
-        $$(byText(classType)).shouldHaveSize(1);
-        $$(byText(classDescripton)).shouldHaveSize(1);
-        rootLogger.info(classDescripton+" - Class was created");
-        return classType;
+    public static Boolean submitModalUploadFiles(Boolean submitModal){
+        if (submitModal ==true){
+            submitEnabledButton(MW_UPLOAD_FILES_UPLOAD);
+            return true;
+        }
+        else {
+            submitEnabledButton(MW_UPLOAD_FILES_CANCEL);
+            MW.shouldNot(visible);
+            return false;
+        }
     }
 
-    public static String createTask(String taskName) {
-        PROJECT_TAB_TASKS.waitUntil(visible, 15000).click();
-        TAB_TASKS_ADD.waitUntil(enabled, 15000).click();
-        TAB_TASKS_NEW_TASK.shouldBe(visible).click();
-        waitForModalWindow(TITLE_MW_NEW_TASK);
-        MW_BTN_OK.shouldBe(disabled);
-        fillField(MW_TASK_NAME, taskName);
-        submitEnabledButton(MW_BTN_OK);
-        MW.shouldNotBe(visible);
-        $$(byText(taskName)).shouldHaveSize(1);
-        rootLogger.info(taskName+" - Task created");
-        return taskName;
-    }
+
     public static String eventDeploy(String eventTypeName) {
         scrollUp();
         rootLogger.info("Deploy new event");

@@ -3,7 +3,6 @@ package Tests;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
-import Steps.StepsPekama;
 import Steps.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -95,7 +94,7 @@ public class TestsPekamaIntegrationBox {
         rootLogger.info(pekamaProjectUrl);
         PROJECT_TAB_DOCS.click();
         createFolderInRoot(FolderNameBeforeConnect);
-        createFileInRoot(MW_DeployDoc_02TemplateExcel, FileNameBeforeConnect);
+        createFileInRoot(MW_DEPLOY_DOC_02TemplateExcel, FileNameBeforeConnect);
         rootLogger.info("Test passed");
     }
 
@@ -169,7 +168,7 @@ public class TestsPekamaIntegrationBox {
         openUrlWithBaseAuth(pekamaProjectUrl);
         createFolderInRoot(FolderNameAfterConnect);
         checkText(FolderNameAfterConnect);
-        createFileInRoot(MW_DeployDoc_02TemplateExcel, FileNameAfterConnect);
+        createFileInRoot(MW_DEPLOY_DOC_02TemplateExcel, FileNameAfterConnect);
         checkText(FileNameAfterConnect);
         rootLogger.info("Files after connect created");
         rootLogger.info("Test passed");

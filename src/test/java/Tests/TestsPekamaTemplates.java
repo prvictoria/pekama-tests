@@ -29,6 +29,8 @@ import static Steps.StepsPekama.*;
 import static Steps.StepsHttpAuth.*;
 import static Steps.StepsPekama.UploadFiles.*;
 import static Steps.StepsPekamaProject.*;
+import static Steps.StepsPekamaSettings.checkTemplatesFilters;
+import static Steps.StepsPekamaSettings.setAutoDeploy;
 import static Tests.BeforeTestsSetUp.*;
 import static Tests.BeforeTestsSetUp.setBrowser;
 import static Utils.Utils.*;
@@ -749,18 +751,18 @@ public class TestsPekamaTemplates {
             deleteTemplate();
         }
     }
-    @Ignore //TODO manual deploy
+
     @Test
     public void templateDoc_A5_CreatePdfManualdeploy() throws IOException {
         try{
             templateName = null;
             openPageWithSpinner(URL_TEMPLATES_DOC_TRADEMARK);
             submitEnabledButton(SETTINGS_VALUES_ADD);
-            templateName = submitModalDocTemplate(SUBMIT, PDF, true);
+            templateName = submitModalDocTemplate(SUBMIT, PDF, false);
             openUrlWithBaseAuth(URL_PEKAMA_DASHBOARD);
             submitEnabledButton(DASHBOARD_BTN_NEW_PROJECT);
             submitMwNewProject("Doc auto-deploy test");
-            clickElement(PROJECT_TAB_DOCS);
+            String fileNameAuto = createFileInRoot(templateName, null);
             checkText(StepsModalWindows.fileName);
         }
         finally {

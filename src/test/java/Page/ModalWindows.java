@@ -221,25 +221,38 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_Project_Title = $(byXpath(mw+"//input[@name='title']"));
     public static final SelenideElement MW_Project_Reference = $(byXpath(mw+"//input[@name='number']"));
 
+    //MW upload files
+    public static final SelenideElement MW_UPLOAD_FILES_CHOOSE = MW_DOC_TEMPLATE_UPLOAD;
+    public static final SelenideElement MW_UPLOAD_FILES_CANCEL = $(byXpath(mw+"//button[contains(.,'Cancel')]"));
+    public static final SelenideElement MW_UPLOAD_FILES_UPLOAD = $(byXpath(mw+"//button[contains(.,'Upload')]"));
+    public static final ElementsCollection MW_UPLOAD_FILES_LIST = $$(byXpath(mw+"//ol/li"));
+    public static SelenideElement MW_UPLOAD_FILES_FIRST_FILE = MW_UPLOAD_FILES_LIST.get(0);
     //MW new folder
     public static final SelenideElement MW_NEW_FOLDER_INPUT_NAME = $(byXpath(mw+"//input[@name='name']"));
-    public static final SelenideElement modalMembersOkButton = $(byXpath("//div[2]/button"));
+    public static final SelenideElement modalMembersOkButton = $(byXpath(mw+"//div[2]/button"));
 
     //MW deploy doc templates
-    public static final SelenideElement MW_DEPLOY_DOC_INPUT_FILE_NAME = $(byXpath("//input[@name='name']"));
-    public static final SelenideElement MW_DeployDoc_01TemplateWord = $(byXpath("//li/label[text()='New Word document']"));
-    public static final SelenideElement MW_DeployDoc_02TemplateExcel = $(byXpath("//li/label[text()='New Excel sheet']"));
-    public static final SelenideElement MW_DeployDoc_03TemplateCustom = $(byXpath("//li[3]/label"));
-    public static final SelenideElement MW_DeployDoc_FilterName = $(byXpath(""));
-    public static final SelenideElement MW_DeployDoc_SelectDefining = $(byXpath(""));
-    public static final SelenideElement MW_DeployDoc_SelectType = $(byXpath(""));
-    public static final SelenideElement MW_DeployDoc_SelectEvent = $(byXpath(""));
-    public static final SelenideElement MW_DEPLOY_DOC_BTN_CREATE = $(byXpath("//button[contains(.,'Create')]"));
-    public static final SelenideElement MW_DeployDoc_ButtonCancel = $(byXpath("//button[contains(.,'Cancel')]"));
+    public static final SelenideElement MW_DEPLOY_DOC_INPUT_FILE_NAME = $(byXpath(mw+"//input[@name='name']"));
+    public static final SelenideElement MW_DEPLOY_DOC_01TemplateWord = $(byXpath(mw+"//li/label[text()='New Word document']"));
+    public static final SelenideElement MW_DEPLOY_DOC_02TemplateExcel = $(byXpath(mw+"//li/label[text()='New Excel sheet']"));
+
+    public static final ElementsCollection MW_DEPLOY_DOC_TEMPLATES_LIST = $$(byXpath(mw+"//div[@class='nano-content']/ul/li"));
+    public static final SelenideElement MW_DEPLOY_DOC_TEMPLATE_NAME(String templateName){
+        String path =  String.format("//label[./i and text()='%s']", templateName);
+        SelenideElement template = $(byXpath(mw+path));
+        return template;
+    }
+    public static final SelenideElement MW_DEPLOY_DOC_TemplateCustom = $(byXpath(mw+""));
+    public static final SelenideElement MW_DEPLOY_DOC_FilterName = $(byXpath(mw+""));
+    public static final SelenideElement MW_DEPLOY_DOC_SelectDefining = $(byXpath(mw+""));
+    public static final SelenideElement MW_DEPLOY_DOC_SelectType = $(byXpath(mw+""));
+    public static final SelenideElement MW_DEPLOY_DOC_SelectEvent = $(byXpath(mw+""));
+    public static final SelenideElement MW_DEPLOY_DOC_CREATE = $(byXpath(mw+"//button[contains(.,'Create')]"));
+    public static final SelenideElement MW_DEPLOY_DOC_CANCEL = $(byXpath(mw+"//button[contains(.,'Cancel')]"));
     //MW DEPLOY TASK
 
-    public static final SelenideElement MW_DeployTask_SelectEvent = $(byXpath("//div[@id='task-template-picker']/div/div/div/span/span"));
-    public static final SelenideElement MW_DeployTask_InputEvent = $(byXpath("//input[@placeholder='Select an event...']"));
+    public static final SelenideElement MW_DeployTask_SelectEvent = $(byXpath(mw+"//div[@id='task-template-picker']/div/div/div/span/span"));
+    public static final SelenideElement MW_DeployTask_InputEvent = $(byXpath(mw+"//input[@placeholder='Select an event...']"));
     public static final SelenideElement MW_DeployTask_01Template = $(byXpath("//div[@id='task-template-picker']/div[2]/div/div/label/span"));
     public static final SelenideElement MW_DeployTask_Apply = $(byXpath("//button[contains(.,'Apply')]"));
     public static final SelenideElement MW_DeployTask_Cancel = $(byXpath(""));

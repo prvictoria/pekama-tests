@@ -3,7 +3,6 @@ import Page.TestsCredentials;
 import Steps.MessagesIMAP;
 import Steps.User;
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.ex.SoftAssertionError;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -116,7 +115,7 @@ public class TestsPekamaProject {
         else {rootLogger.info("Before was skipped");}
     }
     @Test
-    public void createProject_A_CheckDefaultStateAndDelete() {
+    public void tabInfo_A_CheckDefaultStateAndDelete() {
         scrollUp();
         $$(byText(testProjectTitle)).filter(visible).shouldHaveSize(1);
         $$(byText(PLACEHOLDER_NO_CASES)).filter(visible).shouldHaveSize(1);
@@ -153,7 +152,7 @@ public class TestsPekamaProject {
         rootLogger.info("Test passed");
     }
     @Test
-    public void createProject_B_editProjectName() throws AWTException {
+    public void tabInfo_B_editProjectName() throws AWTException {
         rootLogger.info("Rename Project by Owner");
         getFullProjectTitle();
         waitForTextPresent(testProjectTitle);
@@ -186,7 +185,7 @@ public class TestsPekamaProject {
         rootLogger.info("Test passed");
     }
     @Test
-    public void createProject_C_AddNumber() {
+    public void tabInfo_C_AddNumber() {
         String numberType = "Equinox code";
         String numberValue = "2000/17/55-asd";
         numberCreate(numberType, numberValue);
@@ -402,9 +401,9 @@ public class TestsPekamaProject {
 
     }
     @Test
-    public void createProject_G1_addWordDocument() {
+    public void tabDoc_A1_addWordDocument() {
         String newDoc = "new word document";
-        createFileInRoot(MW_DeployDoc_01TemplateWord, newDoc);
+        createFileInRoot(MW_DEPLOY_DOC_01TemplateWord, newDoc);
         rootLogger.info("edit file");
         fileMenuMakeAction(TAB_DOCS_FILES_MENU_RENAME, newDoc);
         fillField(TAB_DOCS_FILE_INPUT_NAME_IN_ROW, "New Excel sheet");
@@ -414,12 +413,12 @@ public class TestsPekamaProject {
         rootLogger.info("Test passed");
     }
     @Test
-    public void createProject_G2_addExcelDocument() {
+    public void tabDoc_A2_addExcelDocument() {
         String newExcel = "new excel spreadsheet";
         PROJECT_TAB_DOCS.click();
         TAB_DOCS_BTN_ADD.click();
         TAB_DOC_NEW_DOCUMENT.shouldBe(Condition.visible).click();
-        submitModalDeployFileTemplate(MW_DeployDoc_02TemplateExcel, newExcel);
+        submitModalDeployFileTemplate(MW_DEPLOY_DOC_02TemplateExcel, newExcel);
 
         rootLogger.info("edit file");
         fileMenuMakeAction(TAB_DOCS_FILES_MENU_RENAME, newExcel);
@@ -437,7 +436,7 @@ public class TestsPekamaProject {
         rootLogger.info("Test passed");
     }
     @Test
-    public void createProject_H1_addFolder() {
+    public void tabDoc_B1_addFolder() {
         String newFolder = "new folder";
         createFolderInRoot(newFolder);
 
@@ -449,20 +448,16 @@ public class TestsPekamaProject {
         rootLogger.info("Test passed");
     }
     @Test
-    public void createProject_H2_validationDuplicateFolder() {
+    public void tabDoc_B2_validationDuplicateFolder() {
         String newFolder1 = "folder1";
         String newFolder2 = "folder2";
-        PROJECT_TAB_DOCS.click();
-        TAB_DOCS_BTN_ADD.click();
-        TAB_DOC_ADD_FOLDER.shouldBe(Condition.visible).click();
-        rootLogger.info("Add folder");
-        submitModalCreateFolder(newFolder1);
+        createFolderInRoot(newFolder1);
 
         rootLogger.info("Add same folder");
-        TAB_DOCS_BTN_ADD.click();
-        TAB_DOC_ADD_FOLDER.shouldBe(Condition.visible).click();
+        callNewFolderModal();
         waitForModalWindow(TITLE_MW_NEW_FOLDER);
         MW_BTN_SAVE.shouldBe(disabled);
+
         fillField(MW_NEW_FOLDER_INPUT_NAME, newFolder1);
         submitEnabledButton(MW_BTN_SAVE);
         $$(byText(ERROR_DuplicatedFolder)).shouldHaveSize(1);
@@ -489,7 +484,7 @@ public class TestsPekamaProject {
 
     }
     @Test
-    public void createProject_H3_addSubFoldersTree() {
+    public void tabDoc_B3_addSubFoldersTree() {
         String newFolder1 = "folder1";
         String newFolder2 = "folder2";
         String newFolder3 = "folder3";
@@ -514,7 +509,7 @@ public class TestsPekamaProject {
         rootLogger.info("Delete file via inline control");
         TAB_DOCS_BTN_ADD.click();
         TAB_DOC_NEW_DOCUMENT.shouldBe(Condition.visible).click();
-        submitModalDeployFileTemplate(MW_DeployDoc_02TemplateExcel, newExcel);
+        submitModalDeployFileTemplate(MW_DEPLOY_DOC_02TemplateExcel, newExcel);
         clickFileRow(newExcel);
         TAB_DOCS_FILE_DELETE.shouldBe(visible).click();
         submitConfirmAction();
@@ -523,7 +518,16 @@ public class TestsPekamaProject {
 
     }
     @Test
-    public void createProject_L1_autoDeployEvent() {
+    public void tabDoc_С1_uploadFileInDifferentZones() {
+        String fileName = uploadFileInRoot(UploadFiles.PDF, true, true);
+        Assert.assertNotNull(fileName);
+
+        fileName = uploadFileInRoot(UploadFiles.GOOGLE, false, true);
+        Assert.assertNotNull(fileName);
+        rootLogger.info("Test passed");
+    }
+    @Test
+    public void event_CRUD_autoDeployedEvent() {
         scrollUp();
         rootLogger.info("Check timeline state");
         BTN_HIDE_TIMELINE.shouldBe(visible);
@@ -551,7 +555,7 @@ public class TestsPekamaProject {
 
     }
     @Test
-    public void createProject_L2_deployNewEvent() {
+    public void eventPlusBtn_deployNewEvent() {
         scrollUp();
         rootLogger.info("Deploy new event");
         BTN_HIDE_TIMELINE.shouldBe(visible);
@@ -571,7 +575,7 @@ public class TestsPekamaProject {
 //        checkTextNotPresent(MARK_CREATED.getValue());
     }
     @Test
-    public void createProject_L3_lessImportantEvent() {
+    public void eventCheck_lessImportantEvent() {
         scrollUp();
         rootLogger.info("Check DISPLAY less important event ");
         TIMELINE_CheckboxLessImportant.setSelected(true);
@@ -609,7 +613,7 @@ public class TestsPekamaProject {
         rootLogger.info("Test passed");
     }
     @Test
-    public void createProject_N_selectValues() {
+    public void tabInfo_N_selectValues() {
         scrollUp();
         TAB_INFO_PROJECT_TYPE.shouldHave(text(CaseType.TRADEMARK.getValue()));
         setProjectDefining(NETHERLANDS_ANTILES.getValue());
@@ -640,7 +644,7 @@ public class TestsPekamaProject {
         rootLogger.info("Test passed");
     }
     @Test
-    public void createProject_S_cloneProject() {
+    public void tabInfo_S_cloneProject() {
         String currentURL = url();
         scrollUp();
         PROJECT_BTN_CLONE.click();
@@ -655,69 +659,7 @@ public class TestsPekamaProject {
         TAB_FAMILY_1ST_ROW_TITLE.should(matchText(familyText));
         rootLogger.info("Test passed");
     }
-    @Ignore
-    @Test //todo - need to fix index update speed
-    public void createProject_W_search() {
-        String testEventType = TrademarkEvents.CASE_SUSPENDED.getValue();
-        String testSearchFileName = "FILE-"+randomString(10);
-        String testSearchFolderName = "FOLDER-"+randomString(10);
-        String testSearchTaskName = "TASK-"+randomString(10);
-        String testSearchChargesType = CHARGES_TYPE_ASSOCIATE;
 
-        String codeValue = createNumber();
-        String classType = createClassification();
-        rootLogger.info("Create Event");
-        eventDeploy(testEventType);
-        rootLogger.info("Create Doc");
-        createFileInRoot(MW_DeployDoc_01TemplateWord, testSearchFileName);
-        rootLogger.info("Create Folder");
-        createFolderInRoot(testSearchFolderName);
-        rootLogger.info("Create Task");
-        createTask(testSearchTaskName);
-        rootLogger.info("Create Charge");
-        createCharge(testSearchChargesType, EUR, "5000");
-
-        sleep(5000);
-        PROJECT_TAB_SEARCH.waitUntil(visible, 15000).click();
-        checkText(PLACEHOLDER_NO_DATA);
-        
-        rootLogger.info("Search: "+testEventType);
-        fillField(TAB_SEARCH_INPUT, testEventType);
-        TAB_SEARCH_BTN.click();
-        checkText(testEventType, 2); //result + timeline
-
-//        rootLogger.info("Search: "+testSearchFileName);
-//        fillField(TAB_SEARCH_INPUT, testSearchFileName);
-//        TAB_SEARCH_BTN.click();
-//        checkText(testSearchFileName);
-
-//        rootLogger.info("Search: "+testSearchFolderName);
-//        fillField(TAB_SEARCH_INPUT, testSearchFolderName);
-//        TAB_SEARCH_BTN.click();
-//        checkText(testSearchFolderName);
-
-        rootLogger.info("Search: "+testSearchTaskName);
-        fillField(TAB_SEARCH_INPUT, testSearchTaskName);
-        TAB_SEARCH_BTN.click();
-        checkText(testSearchTaskName);
-
-//        rootLogger.info("Search: "+testSearchChargesType);
-//        fillField(TAB_SEARCH_INPUT, testSearchChargesType);
-//        TAB_SEARCH_BTN.click();
-//        checkText(testSearchChargesType);
-
-        rootLogger.info("Search: "+codeValue);
-        fillField(TAB_SEARCH_INPUT, codeValue);
-        TAB_SEARCH_BTN.click();
-        checkText(PLACEHOLDER_NO_DATA);
-
-        rootLogger.info("Search: "+classType);
-        fillField(TAB_SEARCH_INPUT, classType);
-        TAB_SEARCH_BTN.click();
-        checkText(PLACEHOLDER_NO_DATA);
-
-        rootLogger.info("Test passed");
-    }
     @Test
     public void createProject_ChargesXero_A_SendBill()  throws SoftAssertionError {
         String xeroLogin = TEST_USER_EMAIL;
@@ -972,7 +914,7 @@ public class TestsPekamaProject {
 
     }
     @Test
-    public void createProject_Task_CRUD() {
+    public void tabTasks_CRUD() {
         String taskName = "new task";
         PROJECT_TAB_TASKS.click();
         $$(byText(PLACEHOLDER_EMPTY_LIST)).shouldHaveSize(1);
@@ -992,7 +934,7 @@ public class TestsPekamaProject {
         submitConfirmAction();
     }
     @Test
-    public void createProject_Task_Importance() {
+    public void tabTasks_All_Importances() {
         rootLogger.info("Check default task order - due date acceding");
         String taskName;
         taskName = taskCreate(
@@ -1056,7 +998,7 @@ public class TestsPekamaProject {
         rootLogger.info("Test passed");
     }
     @Test
-    public void createProject_Task_Status_in_All_Tasks() {
+    public void tabTasks_All_Statuses() {
         rootLogger.info("Select all tasks");
         rootLogger.info("Check default task order - due date acceding");
         PROJECT_TAB_TASKS.waitUntil(visible, 15000).click();
@@ -1136,7 +1078,7 @@ public class TestsPekamaProject {
         rootLogger.info("Test passed");
     }
     @Test
-    public void createProject_TasksActiveAndAllFilters() {
+    public void tabTasks_Filters_TasksActiveAndAllFilters() {
         String taskName;
         PROJECT_TAB_TASKS.waitUntil(visible, 15000).click();
         TASKS_ROWS.shouldHaveSize(0);
@@ -1195,7 +1137,7 @@ public class TestsPekamaProject {
         rootLogger.info("Test passed");
     }
     @Test
-    public void createProject_TasksAcceptFlow() {
+    public void tabTasks_TasksAcceptFlow() {
         String taskAction = null;
         String taskStatus = null;
         String taskName = taskCreate();
@@ -1238,7 +1180,7 @@ public class TestsPekamaProject {
         rootLogger.info("Test passed");
     }
     @Test
-    public void createProject_TasksRejectFlow() {
+    public void tabTasks_TasksRejectFlow() {
         String taskAction;
         String taskStatus;
         String taskName = taskCreate();
@@ -1293,11 +1235,11 @@ public class TestsPekamaProject {
     }
     @Ignore
     @Test  //todo
-    public void createProject_TasksSorting() {
+    public void tabTasks_TasksSorting() {
 
     }
     @Test
-    public void checkRedirectToCommunityWizard() {
+    public void tabInfo_checkRedirectToCommunityWizard() {
         if (testProjectTitle ==null || testProjectURL==null){
             Assert.fail("Project not created for precondition");
         }
@@ -1315,7 +1257,7 @@ public class TestsPekamaProject {
         rootLogger.info("Test passed");
     }
     @Test
-    public void createDraftCommunityCaseFormPekama() {
+    public void tabInfo_createDraftCommunityCaseFormPekama() {
         if (testProjectTitle ==null || testProjectURL==null){
             Assert.fail("Project not created for precondition");
         }
@@ -1380,7 +1322,7 @@ public class TestsPekamaProject {
         rootLogger.info("Test passed");
     }
     @Test
-    public void createCaseAndCheckPekamaState() {
+    public void tabInfo_createCaseAndCheckPekamaState() {
         if (testProjectTitle ==null || testProjectURL==null){
             Assert.fail("Project not created for precondition");
         }
