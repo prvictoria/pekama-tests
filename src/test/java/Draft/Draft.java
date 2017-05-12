@@ -1,5 +1,6 @@
 package Draft;
 
+import autoitx4java.AutoItX;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.openqa.selenium.*;
@@ -87,4 +88,7 @@ public class Draft {
         }
         return handled;
     }
+
 }
+
+

@@ -89,14 +89,19 @@ public class StepsPekama extends StepsFactory{
             sleep(1000);
             i++;
             if($(byText("Got it!")).isDisplayed()){
+                sleep(2000);
                 $(byText("Got it!")).click();
+                $(byText("Got it!")).waitUntil(not(visible), 10000);
                 rootLogger.info("Cookie were submitted");
                 return;
                 }
         }
         if($(byText("Got it!")).isDisplayed()) {
+            sleep(2000);
             $(byText("Got it!")).click();
-            rootLogger.info("cookie were submitted");
+            $(byText("Got it!")).waitUntil(not(visible), 10000);
+            rootLogger.info("Cookie were submitted");
+            sleep(1000);
             return;
         }
     }
@@ -114,6 +119,7 @@ public class StepsPekama extends StepsFactory{
     }
     public static boolean hideZopim(){
         try{executeJavaScript("$zopim.livechat.hideAll()");
+        sleep(500);
             rootLogger.info("Zopim collapsed");
             return true;
         }
@@ -156,7 +162,7 @@ public class StepsPekama extends StepsFactory{
     }
 
     public static void selectItemInDropdown(SelenideElement uiSelectName, SelenideElement uiSelectInput, String inputValue) {
-        rootLogger.info("select - "+inputValue);
+        //rootLogger.info("select - "+inputValue);
         uiSelectName.waitUntil(visible, 20000).click();
         fillField(uiSelectInput, inputValue);
         CSS_SelectHighlighted.waitUntil(visible, 15000).click();

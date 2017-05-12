@@ -762,7 +762,7 @@ public class TestsPekamaTemplates {
             openUrlWithBaseAuth(URL_PEKAMA_DASHBOARD);
             submitEnabledButton(DASHBOARD_BTN_NEW_PROJECT);
             submitMwNewProject("Doc auto-deploy test");
-            String fileNameAuto = createFileInRoot(templateName, null);
+            createFileInRoot(templateName, null);
             checkText(StepsModalWindows.fileName);
         }
         finally {

@@ -1,7 +1,6 @@
 package Steps;
 
 import com.codeborne.selenide.SelenideElement;
-import org.apache.logging.log4j.*;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -15,7 +14,6 @@ import static Page.PekamaConversationProject.*;
 import static Page.PekamaDashboard.*;
 import static Page.PekamaProject.*;
 
-import static Page.PekamaTeamSettings.*;
 import static Page.TestsStrings.*;
 import static Page.UrlStrings.*;
 import static Steps.StepsCommunity.*;
@@ -29,7 +27,6 @@ import static com.codeborne.selenide.Selenide.*;
  * Created by VatslauX on 02-May-17.
  */
 public class StepsPekamaProject extends StepsPekama {
-    static final Logger rootLogger = LogManager.getRootLogger();
 
     //in root in Project
     public static void deleteAllFiles(){
@@ -439,14 +436,14 @@ public class StepsPekamaProject extends StepsPekama {
         return false;
     }
 
-    private static String taskNewModalSetName(){
+    public static String taskNewModalSetName(){
         String taskName = "TASK_" + randomString(10);
         waitForModalWindow(TITLE_MW_NEW_TASK);
         MW_BTN_OK.shouldBe(disabled);
         fillField(MW_TASK_NAME, taskName);
         return taskName;
     }
-    private static String taskModalDeployTemplate(String eventType, String templateSetName){
+    public static String taskModalDeployTemplate(String eventType, String templateSetName){
         waitForModalWindow("Task Templates");
         MW_DeployTask_Apply.shouldBe(disabled);
         selectItemInDropdown(
@@ -459,53 +456,48 @@ public class StepsPekamaProject extends StepsPekama {
         MW.waitUntil(not(visible), 15000);
         return templateSetName;
     }
-    private static String taskNewModalSetName(String taskName){
-        waitForModalWindow(TITLE_MW_NEW_TASK);
+
+    public static String taskNewModalSetName(String taskTitle){
         MW_BTN_OK.shouldBe(disabled);
-        fillField(MW_TASK_NAME, taskName);
-        return taskName;
+        fillField(MW_TASK_NAME, taskTitle);
+        return taskTitle;
     }
-    private static void taskNewModalSetDueDateFromToday(int dueDateFromToday){
-        waitForModalWindow(TITLE_MW_NEW_TASK);
+    public static String taskNewModalSetDueDateFromToday(int dueDateFromToday){
         fillField(MW_TASK_INPUT_DUE_DATE, getDate(dueDateFromToday));
+        String date = MW_TASK_INPUT_DUE_DATE.getValue();
         sleep(500);
         MW.click();
-
+        return date;
     }
-    private static void taskNewModalSelectAssignor(String assignor){
-        waitForModalWindow(TITLE_MW_NEW_TASK);
+    public static void taskNewModalSelectAssignor(String assignor){
         selectItemInDropdown(
                 MW_TASK_SELECT_ASSIGNOR,
                 MW_TASK_INPUT_ASSIGNOR,
                 assignor
         );
     }
-    private static void taskNewModalSelectAssignee(String assignee){
-        waitForModalWindow(TITLE_MW_NEW_TASK);
+    public static void taskNewModalSelectAssignee(String assignee){
         selectItemInDropdown(
                 MW_TASK_SELECT_ASSIGNEE,
                 MW_TASK_INPUT_ASSIGNEE,
                 assignee
         );
     }
-    private static void taskNewModalSelectImportance(String importance){
-        waitForModalWindow(TITLE_MW_NEW_TASK);
+    public static void taskNewModalSelectImportance(String importance){
         selectItemInDropdown(
                 MW_TASK_SELECT_IMPORTANCE,
                 MW_TASK_INPUT_IMPORTANCE,
                 importance
         );
     }
-    private static void taskNewModalSelectStatus(String status){
-        waitForModalWindow(TITLE_MW_NEW_TASK);
+    public static void taskNewModalSelectStatus(String status){
         selectItemInDropdown(
-                MW_TASK_INPUT_STATUS,
                 MW_TASK_SELECT_STATUS,
+                MW_TASK_INPUT_STATUS,
                 status
         );
     }
-    private static void taskNewModalSubmit(){
-        waitForModalWindow(TITLE_MW_NEW_TASK);
+    public static void taskNewModalSubmit(){
         submitEnabledButton(MW_BTN_OK);
         MW.waitUntil(not(visible), 15000);
     }

@@ -1,6 +1,7 @@
 package Tests;
 import Page.TestsCredentials;
 import Steps.MessagesIMAP;
+import Steps.ObjectTask;
 import Steps.User;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ex.SoftAssertionError;
@@ -97,9 +98,9 @@ public class TestsPekamaProject {
     public void before() {
         if (skipBefore==false) {
             clearBrowserCache();
-            openUrlWithBaseAuth(URL_LogIn);
             User requester = new User();
-            requester.submitLoginCredentials(REQUESTER_EMAIL, REQUESTER_PEKAMA_PASSWORD);
+            requester.loginByURL(
+                    REQUESTER_EMAIL, REQUESTER_PEKAMA_PASSWORD, URL_LogIn);
             DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 30000).click();
             testProjectTitle = submitMwNewProject(
                     "INNER_VALIDATION",
@@ -1233,10 +1234,12 @@ public class TestsPekamaProject {
         );
         rootLogger.info("Test passed");
     }
-    @Ignore
+    //@Ignore
     @Test  //todo
     public void tabTasks_TasksSorting() {
-
+        ObjectTask objectTask = new ObjectTask();
+        objectTask.create("new task", null, null, null, null, null);
+        rootLogger.info("Test passed");
     }
     @Test
     public void tabInfo_checkRedirectToCommunityWizard() {
