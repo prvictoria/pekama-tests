@@ -559,6 +559,12 @@ public class StepsPekama extends StepsFactory{
             EMAILS_TAB_GET_COPY_OWN_EMAILS.shouldNotBe(checked);
         }
     }
+    public static String createMemberInTeamSettings(String email){
+        openUrlWithBaseAuth(URL_Members);
+        sleep(3000);
+        addMember(email, TAB_MEMBERS_BTN_ADD);
+        return email;
+    }
     public static boolean checkMember(String email) {
         String row = String.format(BTN_DELETE_MEMBER, email);
         $(byXpath(row)).shouldBe(visible);
@@ -751,9 +757,10 @@ public class StepsPekama extends StepsFactory{
         sleep(8000);
         return fileName;
     }
-    public static void addMember(String email, SelenideElement button){
+    public static String addMember(String email, SelenideElement button){
         button.shouldBe(visible).shouldBe(enabled).click();
         submitAddMemberWindow(email,  true);
+        return email;
     }
 
 }

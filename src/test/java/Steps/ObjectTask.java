@@ -3,9 +3,11 @@ package Steps;
 import org.apache.logging.log4j.*;
 
 import static Page.ModalWindows.*;
+import static Page.PekamaProject.*;
 import static Page.TestsStrings.*;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekamaProject.*;
+import static com.codeborne.selenide.Condition.*;
 
 /**
  * Created by VatslauX on 12-May-17.
@@ -19,8 +21,8 @@ public class ObjectTask {
     public String taskAssignor = null;
     public String taskAssignee = null;
     public String taskImportance = null;
-    public String taskMessage = null;
-    public String[] taskMessages = null;
+    public String taskComment = null;
+    public String[] taskComments = null;
     public String[] tasksStatusesActive = null;
     public String[] tasksStatusesPassive = null;
     public String[] tasksAll = null;
@@ -31,7 +33,8 @@ public class ObjectTask {
 
     //Objects
     public ObjectTask create(
-            String taskTitle, String taskStatus, Integer dueDateFromToday, String taskImportance,
+            String taskTitle, String taskStatus,
+            Integer dueDateFromToday, String taskImportance,
             String taskAssignor, String taskAssignee){
         this.taskTitle = taskTitle;
         this.taskStatus = taskStatus;
@@ -92,4 +95,52 @@ public class ObjectTask {
     return this;
     }
 
+    public void edit(String taskTitle,
+                     Integer dueDateFromToday, String taskImportance,
+                     String taskAssignor, String taskAssignee){
+        this.taskTitle = taskTitle;
+        this.taskDueDate = taskDueDate;
+        this.taskImportance = taskImportance;
+        this.taskAssignor = taskAssignor;
+        this.taskAssignee = taskAssignee;
+        PROJECT_TASK_CARD_BTN_SAVE.shouldBe(disabled);
+        if(taskTitle!=null){
+            fillField(PROJECT_TASK_CARD_TITLE, taskTitle);
+        }
+        if(dueDateFromToday!=null){
+            this.taskDueDate = taskNewModalSetDueDateFromToday(dueDateFromToday);
+        }
+        if(taskImportance!=null){
+            selectItemInDropdown(
+                    PROJECT_TASK_CARD_SELECT_IMPORTANCE,
+                    PROJECT_TASK_CARD_INPUT_IMPORTANCE,
+                    taskImportance);
+        }
+        if(taskAssignor!=null){
+            selectItemInDropdown(
+                    PROJECT_TASK_CARD_SELECT_ASSIGNOR,
+                    PROJECT_TASK_CARD_INPUT_ASSIGNOR,
+                    taskAssignor);
+        }
+        if(taskAssignee!=null){
+            selectItemInDropdown(
+                    PROJECT_TASK_CARD_SELECT_ASSIGNEE,
+                    PROJECT_TASK_CARD_INPUT_ASSIGNEE,
+                    taskAssignee);
+        }
+        if(taskTitle!=null){
+            submitEnabledButton(PROJECT_TASK_CARD_BTN_SAVE);
+        }
+    }
+
+    public void getTaskData(){
+
+    }
+    public Boolean checkTaskData(){
+        return true;
+    }
+    public void delete(){
+
+
+    }
 }

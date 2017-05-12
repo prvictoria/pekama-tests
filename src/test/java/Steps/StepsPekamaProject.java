@@ -281,6 +281,33 @@ public class StepsPekamaProject extends StepsPekama {
     }
 
 // TASKS TAB =========================================================================
+    public void openTask(int rowNumber){
+        TASKS_ROWS.get(rowNumber).click();
+    }
+    public static Boolean selectTaskOrderAndCheck(String taskOrder,  Boolean orderIsAscending){
+        TAB_TASKS_ACTUAL_ORDER.shouldBe(visible).click();
+        if(taskOrder.equals(TASKS_ORDER_DUE_DATE))
+            TASKS_ORDER_BTN_DUE_DATE.shouldBe(visible).click();
+        if(taskOrder.equals(TASKS_ORDER_LAST_CREATED))
+            TASKS_ORDER_BTN_LAST_CREATED.shouldBe(visible).click();
+        if(taskOrder.equals(TASKS_ORDER_LAST_MODIFIED))
+            TASKS_ORDER_BTN_LAST_MODIFIED.shouldBe(visible).click();
+        if(taskOrder.equals(TASKS_ORDER_TITLE))
+            TASKS_ORDER_BTN_TITLE.shouldBe(visible).click();
+        if(taskOrder.equals(TASKS_ORDER_ASSIGNEE))
+            TASKS_ORDER_BTN_ASSIGNEE.shouldBe(visible).click();
+
+        if(orderIsAscending==true){
+            TAB_TASKS_ORDER_ASCENDING.shouldBe(visible);
+        }
+        else {
+            TAB_TASKS_ORDER_DESCENDING.shouldBe(visible);
+        }
+
+        String ActualTaskOrder = TAB_TASKS_ACTUAL_ORDER.getText();
+        Assert.assertEquals(taskOrder, ActualTaskOrder);
+        return true;
+    }
     public static String taskCreate(){
         taskAddNew();
         String taskName = taskNewModalSetName();

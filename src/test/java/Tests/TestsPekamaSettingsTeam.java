@@ -123,13 +123,18 @@ public class TestsPekamaSettingsTeam {
     @Test
     public void members_testA_AddAndDelete() {
         String testEmail = "123@mail.com";
-        rootLogger.info("Add member");
-        SETTINGS_TEAM_TAB_MEMBERS.waitUntil(visible, 20000).click();
-        addMember(testEmail, TAB_MEMBERS_BTN_ADD);
-        checkMember(testEmail);
+        try {
+            rootLogger.info("Add member");
+            SETTINGS_TEAM_TAB_MEMBERS.waitUntil(visible, 20000).click();
+            addMember(testEmail, TAB_MEMBERS_BTN_ADD);
+            checkMember(testEmail);
+        }
+        finally {
+            rootLogger.info("Delete member");
+            deleteMember(testEmail);
+        }
 
-        rootLogger.info("Delete member");
-        deleteMember(testEmail);
+
         rootLogger.info("Test passed");
     }
 

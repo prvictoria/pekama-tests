@@ -226,11 +226,20 @@ public class PekamaProject extends Page {
     public static final String TASKS_ORDER_DUE_DATE = "Due date";
     public static final String TASKS_ORDER_LAST_CREATED = "Last created";
     public static final String TASKS_ORDER_LAST_MODIFIED = "Last modified";
-    public static final String TASKS_ORDER_TIRLE = "Title";
+    public static final String TASKS_ORDER_TITLE = "Title";
     public static final String TASKS_ORDER_ASSIGNEE = "Assignee";
+
+    public static final SelenideElement TASKS_ORDER_BTN_DUE_DATE = $(byXpath(CONTROLS_ROW+"//a[@class='sortable ng-binding dropdown-toggle']/following-sibling::ul//a[text()='Due date']"));
+    public static final SelenideElement TASKS_ORDER_BTN_LAST_CREATED = $(byXpath(CONTROLS_ROW+"//a[@class='sortable ng-binding dropdown-toggle']/following-sibling::ul//a[text()='Last created']"));
+    public static final SelenideElement TASKS_ORDER_BTN_LAST_MODIFIED = $(byXpath(CONTROLS_ROW+"//a[@class='sortable ng-binding dropdown-toggle']/following-sibling::ul//a[text()='Last modified']"));
+    public static final SelenideElement TASKS_ORDER_BTN_TITLE = $(byXpath(CONTROLS_ROW+"//a[@class='sortable ng-binding dropdown-toggle']/following-sibling::ul//a[text()='Title']"));
+    public static final SelenideElement TASKS_ORDER_BTN_ASSIGNEE = $(byXpath(CONTROLS_ROW+"//a[@class='sortable ng-binding dropdown-toggle']/following-sibling::ul//a[text()='Assignee']"));
+
     public static final SelenideElement TAB_TASKS_ACTIVE = $(byXpath(CONTROLS_ROW+"//button[contains(.,'Active')]"));
     public static final SelenideElement TAB_TASKS_ALL = $(byXpath(CONTROLS_ROW+"//button[contains(.,'All')]"));
-    public static SelenideElement TAB_TASKS_ACTUAL_ORDER = $(byXpath(CONTROLS_ROW+"//a[contains(.,'"+TASKS_ORDER+"')]"));        //order value
+    public static SelenideElement TAB_TASKS_ACTUAL_ORDER = $(byXpath(CONTROLS_ROW+"//a[@class='sortable ng-binding dropdown-toggle']"));        //order value
+    public static SelenideElement TAB_TASKS_ORDER_DESCENDING = $(byXpath(CONTROLS_ROW+"//div[@class='dropdown sort desc']"));
+    public static SelenideElement TAB_TASKS_ORDER_ASCENDING = $(byXpath(CONTROLS_ROW+"//div[@class='dropdown sort']"));
     public static final SelenideElement TAB_TASKS_ADD = $(byXpath(CONTROLS_ROW+"//button[contains(.,'add')]"));
     public static final SelenideElement TAB_TASKS_NEW_TASK = $(byLinkText("Create task"));
     public static final SelenideElement TAB_TASKS_DEPLOY_TASK = $(byLinkText("Deploy template"));
@@ -247,6 +256,7 @@ public class PekamaProject extends Page {
     public static final SelenideElement TASKS_NAME_IN_FIRST_ROW = $(byXpath(TASKS_LIST+TASKS_ROW+"[1]"+"//*[@class='text']//a[@href]"));
     public static final SelenideElement TASKS_PRIORITY_IN_FIRST_ROW = $(byXpath(TASKS_LIST+TASKS_ROW+"[1]"+"//*[@class='text']//span"));
 
+    public static final ElementsCollection TAB_TASKS_TITLES_LIST = $$(byXpath(TASKS_LIST+"//div[@class='text']//a[@href]"));
 
     public static final String TASKS_BTN_STATUS_ACTION = "//pkm-task-change-status//button";
     public static final String TASKS_BTN_STATUS_ACTION_ACCEPT = "//pkm-task-change-status//button[1]";
@@ -284,6 +294,25 @@ public class PekamaProject extends Page {
     public static final String PROJECT_TASK_DROPDOWN_STATUS_APPROVED = "Approved";
     public static final String PROJECT_TASK_DROPDOWN_STATUS_REJECTED = "Rejected";
     public static final String PROJECT_TASK_DROPDOWN_STATUS_CANCELLED = "Cancelled";
+    public static final SelenideElement  PROJECT_TASK_CARD_BACK = $(byXpath("//button[./i and text()='Back to all tasks']"));
+    public static final String  PROJECT_TASK_CARD = "//div[@class='list-item preview-active tasks']";
+    public static final SelenideElement  PROJECT_TASK_CARD_TITLE = $(byXpath(PROJECT_TASK_CARD+"//input[@name='title']"));
+    public static final SelenideElement  PROJECT_TASK_CARD_SELECT_ASSIGNOR = $(byXpath(PROJECT_TASK_CARD+""));
+    public static final SelenideElement  PROJECT_TASK_CARD_INPUT_ASSIGNOR = $(byXpath(PROJECT_TASK_CARD+""));
+    public static final SelenideElement  PROJECT_TASK_CARD_SELECT_ASSIGNEE = $(byXpath(PROJECT_TASK_CARD+""));
+    public static final SelenideElement  PROJECT_TASK_CARD_INPUT_ASSIGNEE = $(byXpath(PROJECT_TASK_CARD+""));
+    public static final SelenideElement  PROJECT_TASK_CARD_SELECT_IMPORTANCE = $(byXpath(PROJECT_TASK_CARD+""));
+    public static final SelenideElement  PROJECT_TASK_CARD_INPUT_IMPORTANCE = $(byXpath(PROJECT_TASK_CARD+""));
+    public static final SelenideElement  PROJECT_TASK_CARD_DATE = $(byXpath(PROJECT_TASK_CARD+""));
+    public static final SelenideElement  PROJECT_TASK_CARD_COMMENT = $(byXpath(PROJECT_TASK_CARD+""));
+    public static final SelenideElement  PROJECT_TASK_CARD_TEXT = $(byXpath(PROJECT_TASK_CARD+""));
+    public static final SelenideElement  PROJECT_TASK_CARD_BTN_SAVE = $(byXpath(PROJECT_TASK_CARD+"//button[contains(.,'Save')]"));
+    public static final SelenideElement  PROJECT_TASK_CARD_BTN_SEND = $(byXpath(PROJECT_TASK_CARD+""));
+    public static final SelenideElement  PROJECT_TASK_CARD_BTN_DEL_COMMENT = $(byXpath(PROJECT_TASK_CARD+""));
+    public static final SelenideElement  PROJECT_TASK_CARD_BTN_DEL_TASK = $(byXpath(PROJECT_TASK_CARD+""));
+
+
+
 
     //TAB CHARGES
     public static SelenideElement TAB_CHARGES_ACTUAL_ORDER = $(byXpath(CONTROLS_ROW+"//a[contains(.,'"+TASKS_ORDER+"')]"));        //order value

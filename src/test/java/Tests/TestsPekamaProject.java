@@ -4,6 +4,7 @@ import Steps.MessagesIMAP;
 import Steps.ObjectTask;
 import Steps.User;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.ex.SoftAssertionError;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -1234,11 +1235,149 @@ public class TestsPekamaProject {
         );
         rootLogger.info("Test passed");
     }
-    //@Ignore
-    @Test  //todo
-    public void tabTasks_TasksSorting() {
-        ObjectTask objectTask = new ObjectTask();
-        objectTask.create("new task", null, null, null, null, null);
+
+    @Test
+    public void tabTasks_TasksSorting_ByDueDate() {
+        ObjectTask objectTask1 = new ObjectTask();
+        objectTask1.create("Task1-date+1", null, 10, null, null, null);
+        ObjectTask objectTask2 = new ObjectTask();
+        objectTask2.create("Task2-date+0", null, 0, null, null, null);
+        ObjectTask objectTask3 = new ObjectTask();
+        objectTask3.create("Task1-date-1", null, -10, null, null, null);
+        String taskOrder = TAB_TASKS_ACTUAL_ORDER.getText();
+        Assert.assertEquals(TASKS_ORDER_DUE_DATE, taskOrder);
+        TAB_TASKS_ORDER_ASCENDING.shouldBe(visible);
+
+        TASKS_ROWS.shouldHaveSize(3);
+        SelenideElement taskRow1Title = TAB_TASKS_TITLES_LIST.get(0);
+        SelenideElement taskRow2Title = TAB_TASKS_TITLES_LIST.get(1);
+        SelenideElement taskRow3Title = TAB_TASKS_TITLES_LIST.get(2);
+
+        selectTaskOrderAndCheck(TASKS_ORDER_DUE_DATE,  false);
+        taskRow1Title.shouldHave(text((objectTask1.taskTitle)));
+        taskRow2Title.shouldHave(text((objectTask2.taskTitle)));
+        taskRow3Title.shouldHave(text((objectTask3.taskTitle)));
+
+        selectTaskOrderAndCheck(TASKS_ORDER_DUE_DATE,  true);
+        taskRow1Title.shouldHave(text((objectTask3.taskTitle)));
+        taskRow2Title.shouldHave(text((objectTask2.taskTitle)));
+        taskRow3Title.shouldHave(text((objectTask1.taskTitle)));
+
+        rootLogger.info("Test passed");
+    }
+    @Test
+    public void tabTasks_TasksSorting_ByTitle() {
+        ObjectTask objectTask3 = new ObjectTask();
+        objectTask3.create("Task3-createdFist", null, null, null, null, null);
+        ObjectTask objectTask2 = new ObjectTask();
+        objectTask2.create("Task2-createdSecond", null, null, null, null, null);
+        ObjectTask objectTask1 = new ObjectTask();
+        objectTask1.create("Task1-createdLast", null, null, null, null, null);
+
+        TASKS_ROWS.shouldHaveSize(3);
+        SelenideElement taskRow1Title = TAB_TASKS_TITLES_LIST.get(0);
+        SelenideElement taskRow2Title = TAB_TASKS_TITLES_LIST.get(1);
+        SelenideElement taskRow3Title = TAB_TASKS_TITLES_LIST.get(2);
+
+        selectTaskOrderAndCheck(TASKS_ORDER_TITLE,  true);
+        taskRow1Title.shouldHave(text((objectTask1.taskTitle)));
+        taskRow2Title.shouldHave(text((objectTask2.taskTitle)));
+        taskRow3Title.shouldHave(text((objectTask3.taskTitle)));
+
+        selectTaskOrderAndCheck(TASKS_ORDER_TITLE,  false);
+        taskRow1Title.shouldHave(text((objectTask3.taskTitle)));
+        taskRow2Title.shouldHave(text((objectTask2.taskTitle)));
+        taskRow3Title.shouldHave(text((objectTask1.taskTitle)));
+
+        rootLogger.info("Test passed");
+    }
+    @Test
+    public void tabTasks_TasksSorting_ByCreation() {
+        ObjectTask objectTask3 = new ObjectTask();
+        objectTask3.create("createdFist", null, null, null, null, null);
+        ObjectTask objectTask2 = new ObjectTask();
+        objectTask2.create("createdSecond", null, null, null, null, null);
+        ObjectTask objectTask1 = new ObjectTask();
+        objectTask1.create("createdLast", null, null, null, null, null);
+
+        TASKS_ROWS.shouldHaveSize(3);
+        SelenideElement taskRow1Title = TAB_TASKS_TITLES_LIST.get(0);
+        SelenideElement taskRow2Title = TAB_TASKS_TITLES_LIST.get(1);
+        SelenideElement taskRow3Title = TAB_TASKS_TITLES_LIST.get(2);
+
+        selectTaskOrderAndCheck(TASKS_ORDER_LAST_CREATED,  false);
+        taskRow1Title.shouldHave(text((objectTask1.taskTitle)));
+        taskRow2Title.shouldHave(text((objectTask2.taskTitle)));
+        taskRow3Title.shouldHave(text((objectTask3.taskTitle)));
+
+        selectTaskOrderAndCheck(TASKS_ORDER_LAST_CREATED,  true);
+        taskRow1Title.shouldHave(text((objectTask3.taskTitle)));
+        taskRow2Title.shouldHave(text((objectTask2.taskTitle)));
+        taskRow3Title.shouldHave(text((objectTask1.taskTitle)));
+
+        rootLogger.info("Test passed");
+    }
+    @Test
+    public void tabTasks_TasksSorting_ByEdition() {
+
+        ObjectTask objectTask1 = new ObjectTask();
+        objectTask1.create("createdFist", null, null, null, null, null);
+        ObjectTask objectTask2 = new ObjectTask();
+        objectTask2.create("createdSecond", null, null, null, null, null);
+        ObjectTask objectTask3 = new ObjectTask();
+        objectTask3.create("createdLast", null, null, null, null, null);
+
+        TASKS_ROWS.shouldHaveSize(3);
+        SelenideElement taskRow1Title = TAB_TASKS_TITLES_LIST.get(0);
+        SelenideElement taskRow2Title = TAB_TASKS_TITLES_LIST.get(1);
+        SelenideElement taskRow3Title = TAB_TASKS_TITLES_LIST.get(2);
+
+        selectTaskOrderAndCheck(TASKS_ORDER_LAST_MODIFIED,  false);
+        taskRow1Title.shouldHave(text((objectTask3.taskTitle)));
+        taskRow2Title.shouldHave(text((objectTask2.taskTitle)));
+        taskRow3Title.shouldHave(text((objectTask1.taskTitle)));
+
+        selectTaskOrderAndCheck(TASKS_ORDER_LAST_MODIFIED,  true);
+        taskRow1Title.shouldHave(text((objectTask1.taskTitle)));
+        taskRow2Title.shouldHave(text((objectTask2.taskTitle)));
+        taskRow3Title.shouldHave(text((objectTask3.taskTitle)));
+        rootLogger.info("Test passed");
+    }
+    //TODO bug
+    @Test
+    public void tabTasks_TasksSorting_ByAssigneeName() {
+        String member1 = createMemberInTeamSettings("abcd@memeber.email");
+        String member2 = createMemberInTeamSettings("kfgt@memeber.email");
+        String member3 = createMemberInTeamSettings("zysx@memeber.email");
+
+        try {
+            openUrlWithBaseAuth(testProjectURL);
+            ObjectTask objectTask1 = new ObjectTask();
+            objectTask1.create("createdFist", null, null, null, null, member3);
+            ObjectTask objectTask2 = new ObjectTask();
+            objectTask2.create("createdSecond", null, null, null, null, member2);
+            ObjectTask objectTask3 = new ObjectTask();
+            objectTask3.create("createdLast", null, null, null, null, member1);
+
+            TASKS_ROWS.shouldHaveSize(3);
+            SelenideElement taskRow1Title = TAB_TASKS_TITLES_LIST.get(0);
+            SelenideElement taskRow2Title = TAB_TASKS_TITLES_LIST.get(1);
+            SelenideElement taskRow3Title = TAB_TASKS_TITLES_LIST.get(2);
+
+            selectTaskOrderAndCheck(TASKS_ORDER_ASSIGNEE,  true);
+            taskRow1Title.shouldHave(text((objectTask1.taskTitle)));
+            taskRow2Title.shouldHave(text((objectTask2.taskTitle)));
+            taskRow3Title.shouldHave(text((objectTask3.taskTitle)));
+
+            selectTaskOrderAndCheck(TASKS_ORDER_ASSIGNEE,  false);
+            taskRow1Title.shouldHave(text((objectTask3.taskTitle)));
+            taskRow2Title.shouldHave(text((objectTask2.taskTitle)));
+            taskRow3Title.shouldHave(text((objectTask1.taskTitle)));
+
+        }
+        finally {
+            deleteAllMembers();
+        }
         rootLogger.info("Test passed");
     }
     @Test
