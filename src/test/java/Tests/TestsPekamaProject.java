@@ -31,6 +31,7 @@ import static Page.UrlStrings.*;
 import static Page.Xero.*;
 import static Steps.Messages.*;
 import static Steps.MessagesValidator.ValidationInviteInProject.projectBackLink;
+import static Steps.ObjectTask.checkTaskData;
 import static Steps.StepsCommunity.checkCaseNameFirstRow;
 import static Steps.StepsCommunity.selectExpert;
 import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
@@ -919,7 +920,8 @@ public class TestsPekamaProject {
     public void tabTasks_CRUD() {
         String taskName = "new task";
         PROJECT_TAB_TASKS.click();
-        $$(byText(PLACEHOLDER_EMPTY_LIST)).shouldHaveSize(1);
+        //$$(byText(PLACEHOLDER_EMPTY_LIST)).shouldHaveSize(1);
+        checkText(PLACEHOLDER_EMPTY_LIST);
         TAB_TASKS_ADD.click();
         TAB_TASKS_NEW_TASK.shouldBe(visible).click();
 
@@ -930,10 +932,7 @@ public class TestsPekamaProject {
         MW.shouldNotBe(visible);
         $$(byText(taskName)).shouldHaveSize(1);
 
-        rootLogger.info("delete task");
-        projectAllCheckbox.click();
-        TAB_TASKS_BTN_DELETE.click();
-        submitConfirmAction();
+        deleteAllTasks();
     }
     @Test
     public void tabTasks_All_Importances() {
@@ -1380,6 +1379,31 @@ public class TestsPekamaProject {
         }
         rootLogger.info("Test passed");
     }
+    @Test
+    public void tabTasks_EditCard() {
+        ObjectTask task = new ObjectTask();
+        task.create("task", null, null, null, null, null);
+        openTask(1);
+        PROJECT_TASK_CARD_BTN_SAVE.shouldBe(disabled);
+        PROJECT_TASK_CARD_BTN_SEND.shouldBe(disabled);
+        ObjectTask taskDefault = new ObjectTask();
+        taskDefault.getTaskCardData();
+        task.editTaskCard("edited", 20, TASK_IMPORTANCE_DEADLINE, null, null);
+        checkTaskData(taskDefault, task); //TODO values for comparison
+        submitEnabledButton(PROJECT_TASK_CARD_BACK);
+        deleteAllTasks();
+    }
+    @Test
+    public void tabTasks_PostComment() {
+        ObjectTask task = new ObjectTask();
+        task.create("task", null, null, null, null, null);
+        openTask(1);
+        checkText("No messages posted yet");
+        postComment(LOREM_IPSUM_SHORT);
+        checkTextNotPresent("No messages posted yet");
+        deleteTaskCard();
+    }
+
     @Test
     public void tabInfo_checkRedirectToCommunityWizard() {
         if (testProjectTitle ==null || testProjectURL==null){

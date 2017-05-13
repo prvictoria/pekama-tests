@@ -7,6 +7,7 @@ import static Page.PekamaProject.*;
 import static Page.TestsStrings.*;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekamaProject.*;
+import static Utils.Utils.getDate;
 import static com.codeborne.selenide.Condition.*;
 
 /**
@@ -95,7 +96,7 @@ public class ObjectTask {
     return this;
     }
 
-    public void edit(String taskTitle,
+    public void editTaskCard(String taskTitle,
                      Integer dueDateFromToday, String taskImportance,
                      String taskAssignor, String taskAssignee){
         this.taskTitle = taskTitle;
@@ -108,7 +109,7 @@ public class ObjectTask {
             fillField(PROJECT_TASK_CARD_TITLE, taskTitle);
         }
         if(dueDateFromToday!=null){
-            this.taskDueDate = taskNewModalSetDueDateFromToday(dueDateFromToday);
+            this.taskDueDate = fillField(PROJECT_TASK_CARD_DATE, getDate(dueDateFromToday));
         }
         if(taskImportance!=null){
             selectItemInDropdown(
@@ -133,14 +134,36 @@ public class ObjectTask {
         }
     }
 
-    public void getTaskData(){
-
+    public void getTaskCardData(){
+        this.taskTitle = PROJECT_TASK_CARD_TITLE.getValue();
+        this.taskDueDate = PROJECT_TASK_CARD_DATE.getValue();
+        this.taskImportance = PROJECT_TASK_CARD_SELECT_IMPORTANCE.getText();
+        this.taskAssignor = PROJECT_TASK_CARD_SELECT_ASSIGNOR.getText();
+        this.taskAssignee = PROJECT_TASK_CARD_SELECT_ASSIGNEE.getText();
+        rootLogger.info("============================");
+        rootLogger.info("Task fields: ");
+        rootLogger.info("Title: "+this.taskTitle);
+        rootLogger.info("DueDate: "+this.taskDueDate);
+        rootLogger.info("Importance: "+this.taskImportance);
+        rootLogger.info("Assignor: "+this.taskAssignor);
+        rootLogger.info("Assignee: "+this.taskAssignee);
+        rootLogger.info("============================");
     }
-    public Boolean checkTaskData(){
+    public static Boolean checkTaskData(ObjectTask taskActual, ObjectTask taskExpected){
+        if(taskActual.taskTitle.equalsIgnoreCase(taskExpected.taskTitle) &&
+           taskActual.taskDueDate.equalsIgnoreCase(taskActual.taskDueDate) &&
+           taskActual.taskImportance.equalsIgnoreCase(taskActual.taskImportance) &&
+           taskActual.taskAssignor.equalsIgnoreCase(taskActual.taskAssignor) &&
+           taskActual.taskAssignee.equalsIgnoreCase(taskActual.taskAssignee))
+            {
         return true;
+        }
+        else  return false;
+    }
+    public String addComment(String text){
+        return text;
     }
     public void delete(){
-
 
     }
 }

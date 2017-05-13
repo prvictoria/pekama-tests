@@ -281,8 +281,25 @@ public class StepsPekamaProject extends StepsPekama {
     }
 
 // TASKS TAB =========================================================================
-    public void openTask(int rowNumber){
-        TASKS_ROWS.get(rowNumber).click();
+    public static void deleteAllTasks(){
+        rootLogger.info("Delete All tasks");
+        projectAllCheckbox.shouldBe(visible).click();
+        TAB_TASKS_BTN_DELETE.shouldBe(visible).click();
+        submitConfirmAction();
+        checkText(PLACEHOLDER_EMPTY_LIST);
+    }
+    public static void deleteTaskCard(){
+        submitEnabledButton(PROJECT_TASK_CARD_BTN_DEL_TASK);
+        submitConfirmAction();
+    }
+    public static void openTask(int rowNumber){
+        TASKS_ROW_CLICKABLE(rowNumber).click();
+    }
+    public static String postComment(String text){
+        fillField(PROJECT_TASK_CARD_TEXT_FIELD, text);
+        submitEnabledButton(PROJECT_TASK_CARD_BTN_SEND);
+        checkText(text);
+        return text;
     }
     public static Boolean selectTaskOrderAndCheck(String taskOrder,  Boolean orderIsAscending){
         TAB_TASKS_ACTUAL_ORDER.shouldBe(visible).click();

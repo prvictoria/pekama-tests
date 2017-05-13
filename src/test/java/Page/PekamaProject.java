@@ -253,6 +253,11 @@ public class PekamaProject extends Page {
     public static final String TASKS_LIST = "//*[@class='items-list with-caret ng-scope tasks']";
     public static final String TASKS_ROW = "/div";
     public static final ElementsCollection TASKS_ROWS = $$(byXpath(TASKS_LIST+TASKS_ROW));
+    public static final ElementsCollection TASKS_ROWS_CLICKABLE = $$(byXpath(TASKS_LIST+TASKS_ROW+"/div[@href]"));
+    public static final SelenideElement TASKS_ROW_CLICKABLE(Integer rowNumber) {
+       SelenideElement row = $(byXpath(TASKS_LIST+TASKS_ROW+"["+rowNumber+"]"+"//*[@class='text']//a[@href]"));
+       return row;
+    }
     public static final SelenideElement TASKS_NAME_IN_FIRST_ROW = $(byXpath(TASKS_LIST+TASKS_ROW+"[1]"+"//*[@class='text']//a[@href]"));
     public static final SelenideElement TASKS_PRIORITY_IN_FIRST_ROW = $(byXpath(TASKS_LIST+TASKS_ROW+"[1]"+"//*[@class='text']//span"));
 
@@ -295,21 +300,22 @@ public class PekamaProject extends Page {
     public static final String PROJECT_TASK_DROPDOWN_STATUS_REJECTED = "Rejected";
     public static final String PROJECT_TASK_DROPDOWN_STATUS_CANCELLED = "Cancelled";
     public static final SelenideElement  PROJECT_TASK_CARD_BACK = $(byXpath("//button[./i and text()='Back to all tasks']"));
+    public static final SelenideElement  PROJECT_TASK_CARD_CLOSE = $(byXpath(""));
     public static final String  PROJECT_TASK_CARD = "//div[@class='list-item preview-active tasks']";
     public static final SelenideElement  PROJECT_TASK_CARD_TITLE = $(byXpath(PROJECT_TASK_CARD+"//input[@name='title']"));
-    public static final SelenideElement  PROJECT_TASK_CARD_SELECT_ASSIGNOR = $(byXpath(PROJECT_TASK_CARD+""));
-    public static final SelenideElement  PROJECT_TASK_CARD_INPUT_ASSIGNOR = $(byXpath(PROJECT_TASK_CARD+""));
-    public static final SelenideElement  PROJECT_TASK_CARD_SELECT_ASSIGNEE = $(byXpath(PROJECT_TASK_CARD+""));
-    public static final SelenideElement  PROJECT_TASK_CARD_INPUT_ASSIGNEE = $(byXpath(PROJECT_TASK_CARD+""));
-    public static final SelenideElement  PROJECT_TASK_CARD_SELECT_IMPORTANCE = $(byXpath(PROJECT_TASK_CARD+""));
-    public static final SelenideElement  PROJECT_TASK_CARD_INPUT_IMPORTANCE = $(byXpath(PROJECT_TASK_CARD+""));
-    public static final SelenideElement  PROJECT_TASK_CARD_DATE = $(byXpath(PROJECT_TASK_CARD+""));
+    public static final SelenideElement  PROJECT_TASK_CARD_SELECT_ASSIGNOR = $(byXpath(PROJECT_TASK_CARD+"//label[text()='Assignor']/following-sibling::div//span[2]"));
+    public static final SelenideElement  PROJECT_TASK_CARD_INPUT_ASSIGNOR = $(byXpath(PROJECT_TASK_CARD+"//label[text()='Assignor']/following-sibling::div//input[@type='search']"));
+    public static final SelenideElement  PROJECT_TASK_CARD_SELECT_ASSIGNEE = $(byXpath(PROJECT_TASK_CARD+"//label[text()='Assignee']/following-sibling::div//span[2]"));
+    public static final SelenideElement  PROJECT_TASK_CARD_INPUT_ASSIGNEE = $(byXpath(PROJECT_TASK_CARD+"//label[text()='Assignee']/following-sibling::div//input[@type='search']"));
+    public static final SelenideElement  PROJECT_TASK_CARD_SELECT_IMPORTANCE = $(byXpath(PROJECT_TASK_CARD+"//label[text()='Importance:']/following-sibling::pkm-values-dropdown//span[2]"));
+    public static final SelenideElement  PROJECT_TASK_CARD_INPUT_IMPORTANCE = $(byXpath(PROJECT_TASK_CARD+"//label[text()='Importance:']/following-sibling::pkm-values-dropdown//input[@type='search']"));
+    public static final SelenideElement  PROJECT_TASK_CARD_DATE = $(byXpath(PROJECT_TASK_CARD+"//div[@name='due_date']/input"));
     public static final SelenideElement  PROJECT_TASK_CARD_COMMENT = $(byXpath(PROJECT_TASK_CARD+""));
-    public static final SelenideElement  PROJECT_TASK_CARD_TEXT = $(byXpath(PROJECT_TASK_CARD+""));
+    public static final SelenideElement  PROJECT_TASK_CARD_TEXT_FIELD = $(byXpath(PROJECT_TASK_CARD+"//textarea"));
     public static final SelenideElement  PROJECT_TASK_CARD_BTN_SAVE = $(byXpath(PROJECT_TASK_CARD+"//button[contains(.,'Save')]"));
-    public static final SelenideElement  PROJECT_TASK_CARD_BTN_SEND = $(byXpath(PROJECT_TASK_CARD+""));
+    public static final SelenideElement  PROJECT_TASK_CARD_BTN_SEND = $(byXpath(PROJECT_TASK_CARD+"//button[text()='Send']"));
     public static final SelenideElement  PROJECT_TASK_CARD_BTN_DEL_COMMENT = $(byXpath(PROJECT_TASK_CARD+""));
-    public static final SelenideElement  PROJECT_TASK_CARD_BTN_DEL_TASK = $(byXpath(PROJECT_TASK_CARD+""));
+    public static final SelenideElement  PROJECT_TASK_CARD_BTN_DEL_TASK = $(byXpath(PROJECT_TASK_CARD+"//button[./i][contains(.,'Delete')]"));
 
 
 

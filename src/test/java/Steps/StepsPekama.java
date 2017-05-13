@@ -139,7 +139,7 @@ public class StepsPekama extends StepsFactory{
         $(byText(errorMsg)).shouldBe(Condition.visible);
         rootLogger.info("Validation present - "+errorMsg);
     }
-    public static void fillField(SelenideElement fieldName, String enteredValue) {
+    public static String fillField(SelenideElement fieldName, String enteredValue) {
         fieldName.waitUntil(visible, 30000);
         rootLogger.info("Input data");
         fieldName.clear();
@@ -147,6 +147,7 @@ public class StepsPekama extends StepsFactory{
         fieldName.shouldHave(Condition.value(enteredValue));
         sleep(500);
         rootLogger.info("This data was entered - "+enteredValue);
+        return fieldName.getValue();
    }
     public static void checkInputValue(SelenideElement selector, String enteredValue) {
         selector.shouldBe(visible);
@@ -199,6 +200,7 @@ public class StepsPekama extends StepsFactory{
     public static boolean checkText(String textString, int size) {
         $(byText(textString)).waitUntil(exist, 20000);
         $$(byText(textString)).filter(visible).shouldHaveSize(size);
+        rootLogger.info("Text is displayed on page");
         return true;
     }
     public static boolean checkValue(String textString, int size) {
@@ -210,6 +212,7 @@ public class StepsPekama extends StepsFactory{
         if(textString!=null){
             $(byText(textString)).waitUntil(exist, 20000);
             $$(byText(textString)).filter(visible).shouldHaveSize(1);
+            rootLogger.info("Text is displayed on page");
         }
         return true;
     }
