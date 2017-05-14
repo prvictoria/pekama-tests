@@ -16,17 +16,13 @@ import java.io.IOException;
 import static Page.Emails.*;
 import static Page.ModalWindows.*;
 import static Page.PekamaReports.*;
-import static Page.TestsCredentials.*;
 import static Page.TestsCredentials.Countries.*;
 import static Page.TestsCredentials.Countries.PITCAIRN_ISLANDS;
 import static Page.TestsStrings.*;
-import static Page.UrlConfig.MATTER_TYPE_PATENT;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
-import static Steps.Messages.DEFAULT_CASE_NAME;
 import static Steps.MessagesValidator.ValidationReport.*;
 import static Steps.ObjectContact.enterPoint.*;
-import static Steps.StepsExternal.*;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static Steps.StepsHttpAuth.*;
@@ -107,7 +103,7 @@ public class TestsPekamaReports {
         rootLogger.info("Open ProjectValues reports, opened URL - " + URL_ReportsProjects);
         openPageWithSpinner(URL_ReportsProjects);
 
-        rootLogger.info("Open Dropdown and create new mailing list");
+        rootLogger.info("Open Dropdown and createPerson new mailing list");
         mailingListCreateNew(thisMailingListName);
         rootLogger.info("Send report");
         mailingListSendReport(thisMailingListName);
@@ -134,7 +130,7 @@ public class TestsPekamaReports {
         String thisMailingListName = "Tasks Test Mailing List";
         rootLogger.info("Open Tasks reports, opened URL - " + URL_ReportsTasks);
         openPageWithSpinner(URL_ReportsTasks);
-        rootLogger.info("Open Dropdown and create new mailing list");
+        rootLogger.info("Open Dropdown and createPerson new mailing list");
         mailingListCreateNew(thisMailingListName);
         mailingListSendReport(thisMailingListName);
         skipBefore = true;
@@ -162,7 +158,7 @@ public class TestsPekamaReports {
         rootLogger.info("Open Event reports, opened URL - " + URL_ReportsEvents);
         openPageWithSpinner(URL_ReportsEvents);
 
-        rootLogger.info("Open Dropdown and create new mailing list");
+        rootLogger.info("Open Dropdown and createPerson new mailing list");
         mailingListCreateNew(thisMailingListName);
         rootLogger.info("Send report");
         mailingListSendReport(thisMailingListName);
@@ -190,7 +186,7 @@ public class TestsPekamaReports {
         rootLogger.info("Open Charges reports, opened URL - " + URL_ReportsCharges);
         openPageWithSpinner(URL_ReportsCharges);
 
-        rootLogger.info("Open Dropdown and create new mailing list");
+        rootLogger.info("Open Dropdown and createPerson new mailing list");
         mailingListCreateNew(thisMailingListName);
         rootLogger.info("Send report");
         mailingListSendReport(thisMailingListName);
@@ -219,7 +215,7 @@ public class TestsPekamaReports {
         rootLogger.info("Open Contacts reports, opened URL - "+URL_ReportsContacts);
         openPageWithSpinner(URL_ReportsContacts);
 
-        rootLogger.info("Open Dropdown and create new mailing list");
+        rootLogger.info("Open Dropdown and createPerson new mailing list");
         mailingListCreateNew(thisMailingListName);
         rootLogger.info("Send report");
         mailingListSendReport(thisMailingListName);
@@ -247,7 +243,7 @@ public class TestsPekamaReports {
         rootLogger.info("Open ProjectValues reports, opened URL - "+URL_ReportsProjects);
         openPageWithSpinner(URL_ReportsContacts);
 
-        rootLogger.info("Open Dropdown and create new mailing list");
+        rootLogger.info("Open Dropdown and createPerson new mailing list");
         mailingListCreateNew(thisMailingListName);
         rootLogger.info("Send report");
         mailingListSendReport(thisMailingListName);
@@ -330,7 +326,7 @@ public class TestsPekamaReports {
     @Test
     public void contacts_a_validation_modal_person(){
         ObjectContact contact = new ObjectContact();
-        contact.create(REPORT, "Person", null,
+        contact.createPerson(REPORT, null,
                 null, null,
                 null, null, null, null,
                 null, null, null,
@@ -342,10 +338,9 @@ public class TestsPekamaReports {
     @Test
     public void contacts_a_validation_modal_company(){
         ObjectContact contact = new ObjectContact();
-        contact.create(REPORT, "Company", null,
+        contact.createCompany(REPORT,  null,
                 null, null,
                 null, null, null, null,
-                null, null, null,
                 null, null, null);
         checkText("This field is required when contact type is 'Company'.");
         submitEnabledButton(MW_BTN_CANCEL);
@@ -355,7 +350,7 @@ public class TestsPekamaReports {
     public void contacts_a_validation_modal_max_length(){
         String string = randomString(256);
         ObjectContact contact = new ObjectContact();
-        contact.create(REPORT, "Person", string,
+        contact.createPerson(REPORT, string,
                 string, string,
                 null, string, string, string,
                 string, string, string,
@@ -387,7 +382,7 @@ public class TestsPekamaReports {
         REPORTS_SORT_BY_NAME.waitUntil(visible, 30000);
 
         ObjectContact contact1 = new ObjectContact();
-        contact1.create(REPORT, null, null,
+        contact1.createPerson(REPORT,  null,
                 nameContactName+"Z", nameContactSurname+"Z",
                 null, ContactEmail1, null, null,
                 null, null, null,
@@ -402,7 +397,7 @@ public class TestsPekamaReports {
 
         rootLogger.info("Create 2nd contact");
         ObjectContact contact2 = new ObjectContact();
-        contact2.create(REPORT, null, null,
+        contact2.createPerson(REPORT, null,
                 nameContactName+"A", nameContactSurname+"A",
                 null, ContactEmail2, null, null,
                 null, null, null,

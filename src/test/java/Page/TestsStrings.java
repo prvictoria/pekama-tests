@@ -85,7 +85,7 @@ public class TestsStrings {
     public static final String PLACEHOLDER_EMPTY_LIST = "Empty list.";
     public static final String PLACEHOLDER_NO_CASES = "No community cases.";
 
-    public static final String placeholderNoNumbers = "No numbers yet. Use the form below to create one.";
+    public static final String placeholderNoNumbers = "No numbers yet. Use the form below to createPerson one.";
     public static final String placeholderNoProjects = "No projects yet. Create your first project";
     public static final String PLACEHOLDER_NO_DATA = "No data available.";
     public static final String PLACEHOLDER_PicOne = "Pick one...";

@@ -40,6 +40,7 @@ public class ObjectContact {
     public String contactRelation = null;
 
     public enum contactType {PERSON, COMPANY}
+    public enum enterPoint {PROJECT, REPORT}
     public void fillForm(
             String contactType,
             String contactLegalEntity,
@@ -131,22 +132,20 @@ public class ObjectContact {
         }
 
     }
-    public enum enterPoint {PROJECT, REPORT}
-    public void create(enterPoint enterPoint,
-                       String contactType,
-                       String contactLegalEntity,
-                       String contactFirstName,
-                       String contactLastName,
-                       String contactCompany,
-                       String contactEmail,
-                       String contactPhone,
-                       String contactFax,
-                       String contactMobile,
-                       String contactStreetAddress,
-                       String contactPostalCode,
-                       String contactCity,
-                       String contactRegion,
-                       String contactCountry
+    public void createPerson(enterPoint enterPoint,
+                             String contactLegalEntity,
+                             String contactFirstName,
+                             String contactLastName,
+                             String contactCompany,
+                             String contactEmail,
+                             String contactPhone,
+                             String contactFax,
+                             String contactMobile,
+                             String contactStreetAddress,
+                             String contactPostalCode,
+                             String contactCity,
+                             String contactRegion,
+                             String contactCountry
                      ){
         rootLogger.info("Create new contact");
         if(enterPoint==PROJECT){
@@ -164,11 +163,55 @@ public class ObjectContact {
             }
             submitEnabledButton(REPORTS_BTN_AddContact);
         }
-        fillForm( contactType,
+        fillForm( "Person",
                 contactLegalEntity,
                 contactFirstName,
                 contactLastName,
                 contactCompany,
+                contactEmail,
+                contactPhone,
+                contactFax,
+                contactMobile,
+                contactStreetAddress,
+                contactPostalCode,
+                contactCity,
+                contactRegion,
+                contactCountry);
+        submitEnabledButton(MW_BTN_OK);
+    }
+    public void createCompany(enterPoint enterPoint,
+                       String contactLegalEntity,
+                       String contactEmail,
+                       String contactPhone,
+                       String contactFax,
+                       String contactMobile,
+                       String contactStreetAddress,
+                       String contactPostalCode,
+                       String contactCity,
+                       String contactRegion,
+                       String contactCountry
+    ){
+        rootLogger.info("Create new contact");
+        if(enterPoint==PROJECT){
+            if(contactFirstName!=null) {
+                callNewContactModal(contactFirstName);
+            }
+            else {
+                Assert.fail("First name is mandatory");
+            }
+        }
+        if(enterPoint==REPORT){
+            String url = getActualUrl();
+            if(url.equals(URL_ReportsContacts)==false){
+                openPageWithSpinner(URL_ReportsContacts);
+            }
+            submitEnabledButton(REPORTS_BTN_AddContact);
+        }
+        fillForm( "Company",
+                contactLegalEntity,
+                null,
+                null,
+                null,
                 contactEmail,
                 contactPhone,
                 contactFax,

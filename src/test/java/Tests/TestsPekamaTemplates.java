@@ -285,7 +285,7 @@ public class TestsPekamaTemplates {
     @Test
     public void templateTask_D1_CreateTemplateSetParametrized (){
         openPageWithSpinner(URL_TEMPLATES_TASKS_PATENT);
-        rootLogger.info("Check if user able to create set with custom DEFINING");
+        rootLogger.info("Check if user able to createPerson set with custom DEFINING");
         setName = "SET_TASKS_WITH_DEFINING_";
         createTaskTemplateSet(
                 setName,
@@ -294,7 +294,7 @@ public class TestsPekamaTemplates {
                null);
         templateRow.shouldHave(text(setName));
 
-        rootLogger.info("Check if user able to create set with custom TYPE");
+        rootLogger.info("Check if user able to createPerson set with custom TYPE");
         setName = "SET_TASKS_WITH_TYPE_";
         createTaskTemplateSet(
                 setName,
@@ -303,7 +303,7 @@ public class TestsPekamaTemplates {
                 null);
         templateRow.shouldHave(text(setName));
 
-        rootLogger.info("Check if user able to create set with custom EVENT");
+        rootLogger.info("Check if user able to createPerson set with custom EVENT");
         setName = "SET_TASKS_WITH_EVENT";
         createTaskTemplateSet(
                 setName,
@@ -312,7 +312,7 @@ public class TestsPekamaTemplates {
                 event[0]);
         templateRow.shouldHave(text(setName));
 
-        rootLogger.info("Check if user able to create set with custom All fields");
+        rootLogger.info("Check if user able to createPerson set with custom All fields");
         setName = "SET_TASKS_ALL_CUSTOM_";
         createTaskTemplateSet(
                 setName,
@@ -440,7 +440,7 @@ public class TestsPekamaTemplates {
         rootLogger.info("Clear all templates before test");
         deleteTemplate();
 
-        rootLogger.info("Check if user able to create set with custom DEFINING");
+        rootLogger.info("Check if user able to createPerson set with custom DEFINING");
         setName = "MESSAGE_T_DEFINIG_";
         createMessageTemplateSet(
                 setName,
@@ -450,7 +450,7 @@ public class TestsPekamaTemplates {
                 textMsg);
         templateRow.shouldHave(text(setName));
 
-        rootLogger.info("Check if user able to create set with custom TYPE");
+        rootLogger.info("Check if user able to createPerson set with custom TYPE");
         setName = "MESSAGE_T_TYPE_";
         createMessageTemplateSet(
                 setName,
@@ -460,7 +460,7 @@ public class TestsPekamaTemplates {
                 textMsg);
         templateRow.shouldHave(text(setName));
 
-        rootLogger.info("Check if user able to create set with custom EVENT");
+        rootLogger.info("Check if user able to createPerson set with custom EVENT");
         setName = "MESSAGE_T_EVENT_";
         createMessageTemplateSet(
                 setName,
@@ -470,7 +470,7 @@ public class TestsPekamaTemplates {
                 textMsg);
         templateRow.shouldHave(text(setName));
 
-        rootLogger.info("Check if user able to create set with custom All fields");
+        rootLogger.info("Check if user able to createPerson set with custom All fields");
         setName = "MESSAGE_T_ALL_CUSTOM_";
         createMessageTemplateSet(
                 setName,
@@ -621,7 +621,7 @@ public class TestsPekamaTemplates {
     @Test
     public void templateEvent_D1_CreateTemplateSetParametrized (){
         openPageWithSpinner(URL_TEMPLATES_EVENT_PATENT);
-        rootLogger.info("Check if user able to create set with custom DEFINING");
+        rootLogger.info("Check if user able to createPerson set with custom DEFINING");
         setName = "SET_EVENTS_WITH_DEFINING_";
         createEventTemplateSet(
                 setName,
@@ -630,7 +630,7 @@ public class TestsPekamaTemplates {
                 null);
         templateRow.shouldHave(text(setName));
 
-        rootLogger.info("Check if user able to create set with custom TYPE");
+        rootLogger.info("Check if user able to createPerson set with custom TYPE");
         setName = "SET_EVENTS_WITH_TYPE_";
         createEventTemplateSet(
                 setName,
@@ -639,7 +639,7 @@ public class TestsPekamaTemplates {
                 null);
         templateRow.shouldHave(text(setName));
 
-        rootLogger.info("Check if user able to create set with custom EVENT");
+        rootLogger.info("Check if user able to createPerson set with custom EVENT");
         setName = "SET_EVENTS_WITH_EVENT";
         createEventTemplateSet(
                 setName,
@@ -648,7 +648,7 @@ public class TestsPekamaTemplates {
                 event[0]);
         templateRow.shouldHave(text(setName));
 
-        rootLogger.info("Check if user able to create set with custom All fields");
+        rootLogger.info("Check if user able to createPerson set with custom All fields");
         setName = "SET_EVENTS_ALL_CUSTOM_";
         createEventTemplateSet(
                 setName,

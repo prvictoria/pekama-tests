@@ -328,7 +328,7 @@ public class TestsPekamaProject {
         // $$(byText(PLACEHOLDER_NO_DATA)).filter(visible).shouldHaveSize(1);
         //todo BUG #140196199 https://www.pivotaltracker.com/n/projects/1239770/stories/140196199
         ObjectContact contact = new ObjectContact();
-        contact.create(PROJECT, null, null,
+        contact.createPerson(PROJECT, null, null,
                 testContactName, testContactSurname,
                 null, null, null, null,
                 null, null, null,

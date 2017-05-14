@@ -282,7 +282,7 @@ public class StepsPekamaProject extends StepsPekama {
 // CONTACTS TAB ======================================================================
     public static void callNewContactModal(String testContactName){
         PROJECT_TAB_CONTACTS.waitUntil(visible, 15000).click();
-        rootLogger.info("Select create new");
+        rootLogger.info("Select createPerson new");
         projectTabContacts_AddSelectContact.shouldBe(visible).click();
         fillField(projectTabContacts_AddContactInput, testContactName);
         projectTabContacts_CREATE_NEW_CONTACT.shouldBe(visible).click();
