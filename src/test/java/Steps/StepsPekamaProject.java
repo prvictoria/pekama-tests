@@ -279,7 +279,14 @@ public class StepsPekamaProject extends StepsPekama {
 
         return true;
     }
-
+// CONTACTS TAB ======================================================================
+    public static void callNewContactModal(String testContactName){
+        PROJECT_TAB_CONTACTS.waitUntil(visible, 15000).click();
+        rootLogger.info("Select create new");
+        projectTabContacts_AddSelectContact.shouldBe(visible).click();
+        fillField(projectTabContacts_AddContactInput, testContactName);
+        projectTabContacts_CREATE_NEW_CONTACT.shouldBe(visible).click();
+    }
 // TASKS TAB =========================================================================
     public static void deleteAllTasks(){
         rootLogger.info("Delete All tasks");

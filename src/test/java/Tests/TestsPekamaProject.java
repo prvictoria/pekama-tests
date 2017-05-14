@@ -1,6 +1,7 @@
 package Tests;
 import Page.TestsCredentials;
 import Steps.MessagesIMAP;
+import Steps.ObjectContact;
 import Steps.ObjectTask;
 import Steps.User;
 import com.codeborne.selenide.Condition;
@@ -31,6 +32,7 @@ import static Page.UrlStrings.*;
 import static Page.Xero.*;
 import static Steps.Messages.*;
 import static Steps.MessagesValidator.ValidationInviteInProject.projectBackLink;
+import static Steps.ObjectContact.enterPoint.*;
 import static Steps.ObjectTask.checkTaskData;
 import static Steps.StepsCommunity.checkCaseNameFirstRow;
 import static Steps.StepsCommunity.selectExpert;
@@ -203,7 +205,7 @@ public class TestsPekamaProject {
         numberValidateFirstRow(null, null);
     }
     @Test
-    public void createProject_D1_ClassificationValidation() {
+    public void tabInfo_D1_ClassificationValidation() {
         classificationCreate("Up-to-date", null, null);
         checkText("This field is required.");
         submitEnabledButton(MW_BTN_CANCEL);
@@ -225,7 +227,7 @@ public class TestsPekamaProject {
         submitEnabledButton(MW_BTN_CANCEL);
     }
     @Test
-    public void createProject_D2_ClassificationCrud() {
+    public void tabInfo_D2_ClassificationCrud() {
 
         String classNumber = "12";
         String classDescription = "old description";
@@ -242,7 +244,7 @@ public class TestsPekamaProject {
 
     }
     @Test
-    public void createProject_E_addCollaborator() {
+    public void tabContacts_E_addCollaborator() {
         rootLogger.info("Add Pekama member - by default - as Collaborator");
         PROJECT_TAB_CONTACTS.click();
         projectTabContacts_AddCollaborator.click();
@@ -292,7 +294,7 @@ public class TestsPekamaProject {
         $$(byText(VIEWER)).shouldHaveSize(0);
     }
     @Test @Category(AllEmailsTests.class)
-    public void createProject_E_inviteCollaborator_Action() {
+    public void tabContacts_E_inviteCollaborator_Action() {
         rootLogger.info("Invite new team to Pekama project");
         PROJECT_TAB_CONTACTS.click();
         projectTabContacts_AddCollaborator.click();
@@ -307,7 +309,7 @@ public class TestsPekamaProject {
         skipBefore = true;
     }
     @Test
-    public void createProject_E_inviteCollaborator_ValidationEmail() {
+    public void tabContacts_E_inviteCollaborator_ValidationEmail() {
         rootLogger.info("Check report email");
         String login = User5.GMAIL_EMAIL.getValue();
         String password = User5.GMAIL_PASSWORD.getValue();
@@ -322,25 +324,23 @@ public class TestsPekamaProject {
         skipBefore = false;
     }
     @Test
-    public void createProject_F1_addNewContact_Person() {
-        PROJECT_TAB_CONTACTS.click();
+    public void tabContacts_F1_addNewContact_Person() {
         // $$(byText(PLACEHOLDER_NO_DATA)).filter(visible).shouldHaveSize(1);
         //todo BUG #140196199 https://www.pivotaltracker.com/n/projects/1239770/stories/140196199
-        rootLogger.info("Select create new");
-        projectTabContacts_AddSelectContact.click();
-        fillField(projectTabContacts_AddContactInput, testContactName);
-        projectTabContacts_CREATE_NEW_CONTACT.click();
-        rootLogger.info("Create new contact");
-        waitForModalWindow("Contact");
-        checkInputValue(MW_Contact_NAME, testContactName);
-        fillField(MW_Contact_SURNAME, testContactSurname);
-        checkInputValue(MW_Contact_SURNAME, testContactSurname);
-        submitEnabledButton(MW_BTN_OK);
-        MW.shouldNotBe(visible);
+        ObjectContact contact = new ObjectContact();
+        contact.create(PROJECT, null, null,
+                testContactName, testContactSurname,
+                null, null, null, null,
+                null, null, null,
+                null, null, null);
+
+        rootLogger.info("Check the contact is selected");
         $$(byText(testContactName+" "+testContactSurname)).filter(visible).shouldHaveSize(1);
+
         rootLogger.info("Select relation");
         selectItemInDropdown(projectTabContacts_AddSelectRelation, projectTabContacts_AddRelationInput, ContactRelation.ATTORNEY.getValue());
-        rootLogger.info("Add contact to ProjectValues");
+
+        rootLogger.info("Add contact to project");
         projectTabContacts_AddContactButton.click();
         projectTabContacts_ContactName.shouldHave(Condition.exactText(testContactName+" "+testContactSurname));
         projectTabContacts_ContactRelation.shouldHave(Condition.exactText((ContactRelation.ATTORNEY.getValue())));
@@ -352,7 +352,7 @@ public class TestsPekamaProject {
         //todo BUG #140196199 https://www.pivotaltracker.com/n/projects/1239770/stories/140196199
     }
     @Test
-    public void createProject_F2_addExistedContact() {
+    public void tabContacts_F2_addExistedContact() {
         PROJECT_TAB_CONTACTS.click();
         // $$(byText(PLACEHOLDER_NO_DATA)).filter(visible).shouldHaveSize(1);
         //todo BUG #140196199 https://www.pivotaltracker.com/n/projects/1239770/stories/140196199

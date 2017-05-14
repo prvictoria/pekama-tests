@@ -5,12 +5,14 @@ import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 
 import static Page.ModalWindows.*;
-import static Page.PekamaReports.REPORTS_BTN_AddContact;
+import static Page.PekamaReports.*;
 import static Page.TestsStrings.*;
 import static Page.UrlStrings.*;
 import static Steps.ObjectContact.enterPoint.*;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
+import static Steps.StepsPekama.fillField;
+import static Steps.StepsPekamaProject.callNewContactModal;
 
 /**
  * Created by VatslauX on 14-May-17.
@@ -37,6 +39,7 @@ public class ObjectContact {
     public String contactProject = null;
     public String contactRelation = null;
 
+    public enum contactType {PERSON, COMPANY}
     public void fillForm(
             String contactType,
             String contactLegalEntity,
@@ -71,17 +74,17 @@ public class ObjectContact {
         waitForModalWindow(TITLE_MW_CONTACT);
         if(contactType!=null){
             if(contactType.equals("Person")){
-
+                MW_Contact_Select_CONTACT_TYPE.setValue("Person");
             }
             if(contactType.equals("Company")){
-
+                MW_Contact_Select_CONTACT_TYPE.setValue("Company");
             }
             else {
                 Assert.fail("Invalid contact type");
             }
         }
         if(contactLegalEntity!=null){
-
+            fillField(MW_Contact_Entity,  contactLegalEntity);
         }
         if(contactFirstName!=null){
             fillField(MW_Contact_NAME, contactFirstName);
@@ -90,31 +93,35 @@ public class ObjectContact {
             fillField(MW_Contact_SURNAME, contactLastName);
         }
         if(contactCompany!=null){
-
+            selectItemInDropdown(
+                    MW_Contact_Select_COMPANY,
+                    MW_Contact_Input_COMPANY,
+                    contactCompany
+            );
         }
         if(contactEmail!=null){
             fillField(MW_Contact_EMAIL, contactEmail);
         }
         if(contactPhone!=null){
-
+            fillField(MW_Contact_PHONE, contactPhone);
         }
         if(contactFax!=null){
-
+            fillField(MW_Contact_FAX, contactFax);
         }
         if(contactMobile!=null){
-
+            fillField(MW_Contact_MOBILE, contactMobile);
         }
         if(contactStreetAddress!=null){
-
+            fillField(MW_Contact_STREET, contactStreetAddress);
         }
         if(contactPostalCode!=null){
-
+            fillField(MW_Contact_ZIP, contactPostalCode);
         }
         if(contactCity!=null){
-
+            fillField(MW_Contact_CITY, contactCity);
         }
         if(contactRegion!=null){
-
+            fillField(MW_Contact_REGION, contactRegion);
         }
         if(contactCountry!=null){
             selectItemInDropdown(
@@ -141,8 +148,14 @@ public class ObjectContact {
                        String contactRegion,
                        String contactCountry
                      ){
+        rootLogger.info("Create new contact");
         if(enterPoint==PROJECT){
-
+            if(contactFirstName!=null) {
+                callNewContactModal(contactFirstName);
+            }
+            else {
+                Assert.fail("First name is mandatory");
+            }
         }
         if(enterPoint==REPORT){
             String url = getActualUrl();
