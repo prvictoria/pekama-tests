@@ -1,6 +1,7 @@
 package Tests;
 import Page.TestsCredentials.*;
 import Steps.*;
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,13 +17,15 @@ import static Page.Emails.*;
 import static Page.ModalWindows.*;
 import static Page.PekamaReports.*;
 import static Page.TestsCredentials.*;
+import static Page.TestsCredentials.Countries.*;
 import static Page.TestsCredentials.Countries.PITCAIRN_ISLANDS;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.MATTER_TYPE_PATENT;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
 import static Steps.Messages.DEFAULT_CASE_NAME;
-import static Steps.MessagesValidator.ValidationReport.unsubscribeLink;
+import static Steps.MessagesValidator.ValidationReport.*;
+import static Steps.ObjectContact.enterPoint.*;
 import static Steps.StepsExternal.*;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
@@ -70,13 +73,10 @@ public class TestsPekamaReports {
     }
 
     @Test //1-st test in stack
-    public void deleteAllMailingLists(){
+    public void reports_delete_mailing_lists(){
         String thisMailingListName;
 
         openPageWithSpinner(URL_ReportsProjects);
-        thisMailingListName = "Contacts Test unsubscribe link";
-        mailingListDetectAndDelete(thisMailingListName);
-
         thisMailingListName = "Projects Test Mailing List";
         mailingListDetectAndDelete(thisMailingListName);
 
@@ -95,10 +95,13 @@ public class TestsPekamaReports {
         openPageWithSpinner(URL_ReportsContacts);
         thisMailingListName = "Contacts Test Mailing List";
         mailingListDetectAndDelete(thisMailingListName);
+
+        thisMailingListName = "Contacts Test unsubscribe link";
+        mailingListDetectAndDelete(thisMailingListName);
     }
 
     @Test @Category(AllEmailsTests.class)
-    public void sendProjectReport_A_SendReport() {
+    public void projects_send_report_A_SendReport() {
         String thisMailingListName = "Projects Test Mailing List";
         rootLogger.info("Open ProjectValues reports, opened URL - " + URL_ReportsProjects);
         openPageWithSpinner(URL_ReportsProjects);
@@ -110,7 +113,7 @@ public class TestsPekamaReports {
         skipBefore =true;
     }
     @Test @Category({AllEmailsTests.class, AllImapTests.class})
-    public void sendProjectReport_B_CheckEmail() {
+    public void projects_send_report_B_CheckEmail() {
         String thisMailingListName = "Projects Test Mailing List";
         //if (thisMailingListName==null){Assert.fail("Case not created");}
         rootLogger.info("Check report email");
@@ -126,7 +129,7 @@ public class TestsPekamaReports {
     }
 
     @Test @Category(AllEmailsTests.class)
-    public void sendTasksReport_A_Send() {
+    public void tasks_send_report_A_Send() {
         String thisMailingListName = "Tasks Test Mailing List";
         rootLogger.info("Open Tasks reports, opened URL - " + URL_ReportsTasks);
         openPageWithSpinner(URL_ReportsTasks);
@@ -136,7 +139,7 @@ public class TestsPekamaReports {
         skipBefore = true;
     }
     @Test @Category({AllEmailsTests.class, AllImapTests.class})
-    public void sendTasksReport_B_CheckEmail() {
+    public void tasks_send_report_B_CheckEmail() {
         String thisMailingListName = "Tasks Test Mailing List";
 
         //if (thisMailingListName==null){Assert.fail("Case not created");}
@@ -153,7 +156,7 @@ public class TestsPekamaReports {
     }
 
     @Test @Category(AllEmailsTests.class)
-    public void sendEventsReport_A_SendReport() {
+    public void events_send_report_A_SendReport() {
         String thisMailingListName = "Events Test Mailing List";
         rootLogger.info("Open Event reports, opened URL - " + URL_ReportsEvents);
         openPageWithSpinner(URL_ReportsEvents);
@@ -165,7 +168,7 @@ public class TestsPekamaReports {
         skipBefore = true;
     }
     @Test @Category({AllEmailsTests.class, AllImapTests.class})
-    public void sendEventsReport_B_CheckEmail() {
+    public void events_send_report_B_CheckEmail() {
         String thisMailingListName = "Events Test Mailing List";
         //if (thisMailingListName==null){Assert.fail("Case not created");}
         rootLogger.info("Check report email");
@@ -181,7 +184,7 @@ public class TestsPekamaReports {
     }
 
     @Test @Category(AllEmailsTests.class)
-    public void sendChargesReport_A_SendReport() {
+    public void charges_send_report_A_SendReport() {
         String thisMailingListName = "Charges Test Mailing List";
         rootLogger.info("Open Charges reports, opened URL - " + URL_ReportsCharges);
         openPageWithSpinner(URL_ReportsCharges);
@@ -193,7 +196,7 @@ public class TestsPekamaReports {
         skipBefore = true;
     }
     @Test @Category({AllEmailsTests.class, AllImapTests.class})
-    public void sendChargesReport_B_CheckEmail() {
+    public void charges_send_report_B_CheckEmail() {
         String thisMailingListName = "Charges Test Mailing List";
         rootLogger.info("Check email - report");
         //if (thisMailingListName==null){Assert.fail("Case not created");}
@@ -210,7 +213,7 @@ public class TestsPekamaReports {
     }
 
     @Test @Category(AllEmailsTests.class)
-    public void sendContactsReport_A_SendReport() {
+    public void contacts_send_report_A_SendReport() {
         String thisMailingListName = "Contacts Test Mailing List";
         rootLogger.info("Open Contacts reports, opened URL - "+URL_ReportsContacts);
         openPageWithSpinner(URL_ReportsContacts);
@@ -222,7 +225,7 @@ public class TestsPekamaReports {
         skipBefore = true;
     }
     @Test @Category({AllEmailsTests.class, AllImapTests.class})
-    public void sendContactsReport_B_CheckEmail() {
+    public void contacts_send_report_B_CheckEmail() {
         String thisMailingListName = "Contacts Test Mailing List";
         //if (thisMailingListName==null){Assert.fail("Case not created");}
         rootLogger.info("Check report email");
@@ -238,7 +241,7 @@ public class TestsPekamaReports {
     }
 
     @Test @Category({AllEmailsTests.class, AllImapTests.class})
-    public void unsubscribeLink() {
+    public void contacts_report_unsubscribe() {
         String thisMailingListName = "Contacts Test unsubscribe link";
         rootLogger.info("Open ProjectValues reports, opened URL - "+URL_ReportsProjects);
         openPageWithSpinner(URL_ReportsContacts);
@@ -281,51 +284,50 @@ public class TestsPekamaReports {
         rootLogger.info("Test passed");
     }
     @Test
-    public void objectProjectDeleteAll(){
+    public void projects_sort_test(){
+        String projectName = null;
         openPageWithSpinner(URL_ReportsProjects);
         rootLogger.info("Create project");
         submitEnabledButton(REPORTS_BTN_NEW_PROJECT);
-        String projectName = submitMwNewProject();
+        projectName = submitMwNewProject();
         openPageWithSpinner(URL_ReportsProjects);
         REPORTS_SORT_BY_NONE.waitUntil(visible, 15000).click();
         REPORTS_SORT_BY_LAST_CREATED.shouldBe(visible).click();
         String actualTitle = REPORTS_LIST_PROJECT_TILE_ROW1.getText();
-        rootLogger.info("Actual title in row: "+actualTitle);
+        rootLogger.info("Actual title in row: " + actualTitle);
         REPORTS_LIST_PROJECT_TILE_ROW1.shouldHave(matchText(projectName));
+    }
 
-        rootLogger.info("Delete all projects");
-        REPORTS_AllCheckbox.setSelected(true);
-        sleep(1000);
-        REPORTS_DELETE.click();
-        sleep(2000);
-        submitConfirmAction();
-        sleep(4000);
-        checkText("Projects", 2);
-        waitForSpinnerNotPresent();
-        refresh();
-        REPORTS_LIST_PROJECT_TILE_ROW1.shouldNotHave(matchText(projectName));
+    @Test
+    public void projects_delete_all(){
+        deleteAllProjects();
         rootLogger.info("Test passed");
     }
     @Test
-    public void objectContact_B_Delete(){
-        openPageWithSpinner(URL_ReportsContacts);
-        rootLogger.info("Check default sort by name");
-        REPORTS_SORT_BY_NAME.waitUntil(visible, 30000);
-
-        if (REPORTS_BTN_ContactNewProject.isDisplayed()==false){
-            sleep(5000);}
-        while (REPORTS_BTN_ContactNewProject.isDisplayed()==true) {
-            REPORTS_AllCheckbox.waitUntil(visible, 20000).click();
-            REPORTS_DELETE.waitUntil(visible, 20000).click();
-            submitConfirmAction();
-            sleep(4000);
-        }
+    public void tasks_delete_all(){
+        deleteAllTasks();
+        rootLogger.info("Test passed");
+    }
+    @Test
+    public void events_delete_all(){
+        deleteAllEvents();
+        rootLogger.info("Test passed");
+    }
+    @Test
+    public void charges_delete_all(){
+        deleteAllCharges();
+        $$(byText(PLACEHOLDER_NO_DATA)).shouldHave(CollectionCondition.sizeGreaterThanOrEqual(1));
+        rootLogger.info("Test passed");
+    }
+    @Test
+    public void contacts_b_delete_all(){
+        deleteAllContacts();
         REPORTS_BTN_ContactNewProject.shouldNotBe(visible);
         rootLogger.info("All contacts were deleted");
     }
 
     @Test
-    public void objectContact_A_Merge(){
+    public void contacts_a_merge(){
         String ContactEmail1 = "email01@new.test";
         String ContactEmail2 = "email02@new.test";
         String Contact1NameSurname = nameContactName+"Z"+" "+nameContactSurname+"Z";
@@ -333,46 +335,38 @@ public class TestsPekamaReports {
 
         rootLogger.info("Create 1st contact");
         openPageWithSpinner(URL_ReportsContacts);
-        submitEnabledButton(REPORTS_BTN_AddContact);
-        waitForModalWindow(TITLE_MW_CONTACT);
-        fillField(MW_Contact_NAME, nameContactName+"Z");
-        fillField(MW_Contact_SURNAME, nameContactSurname+"Z");
-        fillField(MW_Contact_EMAIL, ContactEmail1);
-        selectItemInDropdown(
-                MW_Contact_SelectCountry,
-                MW_Contact_InputCountry,
-                Countries.PITCAIRN_ISLANDS.getValue());
-        MW_Contact_SelectCountryName.shouldHave(text(Countries.PITCAIRN_ISLANDS.getValue()));
-        submitEnabledButton(MW_BTN_OK);
-        MW.shouldNotBe(visible);
+
+        rootLogger.info("Check default sort by name");
+        REPORTS_SORT_BY_NAME.waitUntil(visible, 30000);
+
+        ObjectContact contact1 = new ObjectContact();
+        contact1.create(REPORT, null, null,
+                nameContactName+"Z", nameContactSurname+"Z",
+                null, ContactEmail1, null, null,
+                null, null, null,
+                null, null, PITCAIRN_ISLANDS.getValue());
         rootLogger.info("Check 1-st contact row");
         reportsCheckContactRow(
                 1,
                 nameContactName+"Z",
                 nameContactSurname+"Z",
                 ContactEmail1,
-                Countries.PITCAIRN_ISLANDS.getValue());
+                PITCAIRN_ISLANDS.getValue());
 
         rootLogger.info("Create 2nd contact");
-        submitEnabledButton(REPORTS_BTN_AddContact);
-        waitForModalWindow(TITLE_MW_CONTACT);
-        fillField(MW_Contact_NAME, nameContactName+"A");
-        fillField(MW_Contact_SURNAME, nameContactSurname+"A");
-        fillField(MW_Contact_EMAIL, ContactEmail2);
-        selectItemInDropdown(
-                MW_Contact_SelectCountry,
-                MW_Contact_InputCountry,
-                Countries.NETHERLANDS_ANTILES.getValue());
-        MW_Contact_SelectCountryName.shouldHave(text(Countries.NETHERLANDS_ANTILES.getValue()));
-        submitEnabledButton(MW_BTN_OK);
-        MW.shouldNotBe(visible);
+        ObjectContact contact2 = new ObjectContact();
+        contact2.create(REPORT, null, null,
+                nameContactName+"A", nameContactSurname+"A",
+                null, ContactEmail2, null, null,
+                null, null, null,
+                null, null, NETHERLANDS_ANTILES.getValue());
         rootLogger.info("Check 1-st contact row - default sort by name - ascending");
         reportsCheckContactRow(
                 1,
                 nameContactName+"A",
                 nameContactSurname+"A",
                 ContactEmail2,
-                Countries.NETHERLANDS_ANTILES.getValue());
+                NETHERLANDS_ANTILES.getValue());
 
         REPORTS_AllCheckbox.click();
         rootLogger.info("Merge contacts, base - 1-st");
@@ -392,6 +386,6 @@ public class TestsPekamaReports {
                 nameContactName+"Z",
                 nameContactSurname+"Z",
                 ContactEmail1,
-                Countries.PITCAIRN_ISLANDS.getValue());
+                PITCAIRN_ISLANDS.getValue());
  }
 }

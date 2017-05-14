@@ -11,10 +11,10 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         MessagesIMAP.class,
-        //TestsPekamaDashboard.class,
-        //TestsPekamaLanding.class,
-        //TestsPekamaLogin.class,
-        //TestsPekamaResetPassword.class, //not important for now
+        TestsPekamaDashboard.class,
+        TestsPekamaLanding.class,
+        TestsPekamaLogin.class,
+        TestsPekamaResetPassword.class, //not important for now
         TestsPekamaSignUp.class,
         TestsPekamaSettingsPersonal.class,
         TestsPekamaProject.class,

@@ -110,6 +110,7 @@ public class StepsModalWindows extends StepsFactory {
             if(selectFollowerAction==ADD_FOLLOWER){
                 checkText(newFollower);
                 //Only 1-st button in list
+                sleep(2000);
                 MW_CONVERSATION_BTN_FOLLOWER_LIST.shouldHaveSize(1);
                 MW_CONVERSATION_BTN_ADD_FOLLOWER.shouldBe(visible).click();
             }

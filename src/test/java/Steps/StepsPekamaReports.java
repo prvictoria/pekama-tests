@@ -1,10 +1,14 @@
 package Steps;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.*;
+import org.junit.Assert;
 
 import static Page.ModalWindows.*;
 import static Page.PekamaReports.*;
+import static Page.TestsStrings.PLACEHOLDER_NO_DATA;
+import static Page.UrlStrings.*;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static com.codeborne.selenide.Condition.*;
@@ -139,5 +143,92 @@ public class StepsPekamaReports extends StepsFactory {
             sleep(2000);
         }
         rootLogger.info("Reports not present");
+    }
+    public static void deleteAllProjects(){
+        rootLogger.info("Delete all Projects");
+        openPageWithSpinner(URL_ReportsProjects);
+        if($(byText(PLACEHOLDER_NO_DATA)).isDisplayed()){
+            rootLogger.info("No charges in reports");
+            return;
+        }
+        else {
+            REPORTS_AllCheckbox.setSelected(true);
+            sleep(2000);
+            String selectedColor = REPORTS_AllCheckbox.getCssValue("color");
+            Assert.assertTrue(selectedColor.equals("rgb(42, 164, 245)"));
+            REPORTS_DELETE.waitUntil(visible, 15000).click();
+            submitConfirmAction();
+            sleep(4000);
+        }
+    }
+    public static void deleteAllTasks(){
+        rootLogger.info("Delete all Tasks");
+        openPageWithSpinner(URL_ReportsTasks);
+        if($(byText(PLACEHOLDER_NO_DATA)).isDisplayed()){
+            rootLogger.info("No charges in reports");
+            return;
+        }
+        else {
+            REPORTS_AllCheckbox.setSelected(true);
+            sleep(2000);
+            String selectedColor = REPORTS_AllCheckbox.getCssValue("color");
+            Assert.assertTrue(selectedColor.equals("rgb(42, 164, 245)"));
+            REPORTS_DELETE.waitUntil(visible, 15000).click();
+            submitConfirmAction();
+            sleep(4000);
+        }
+    }
+    public static void deleteAllEvents(){
+        rootLogger.info("Delete all Events");
+        openPageWithSpinner(URL_ReportsEvents);
+        if($(byText(PLACEHOLDER_NO_DATA)).isDisplayed()){
+            rootLogger.info("No charges in reports");
+            return;
+        }
+        else {
+            REPORTS_AllCheckbox.setSelected(true);
+            sleep(2000);
+            String selectedColor = REPORTS_AllCheckbox.getCssValue("color");
+            Assert.assertTrue(selectedColor.equals("rgb(42, 164, 245)"));
+            REPORTS_EVENTS_DELETE.waitUntil(visible, 15000).click();
+            submitConfirmAction();
+            sleep(4000);
+        }
+    }
+    public static void deleteAllCharges(){
+        rootLogger.info("Delete all Charges");
+        openPageWithSpinner(URL_ReportsCharges);
+        if($(byText(PLACEHOLDER_NO_DATA)).isDisplayed()){
+            rootLogger.info("No charges in reports");
+            return;
+        }
+        else {
+            REPORTS_AllCheckbox.setSelected(true);
+            sleep(2000);
+            String selectedColor = REPORTS_AllCheckbox.getCssValue("color");
+            Assert.assertTrue(selectedColor.equals("rgb(42, 164, 245)"));
+            REPORTS_DELETE.waitUntil(visible, 15000).click();
+            submitConfirmAction();
+            sleep(4000);
+        }
+    }
+    public static void deleteAllContacts(){
+        rootLogger.info("Delete all Contacts");
+        openPageWithSpinner(URL_ReportsContacts);
+        REPORTS_AllCheckbox.waitUntil(visible, 20000).click();
+        REPORTS_DELETE.waitUntil(visible, 20000).click();
+        submitConfirmAction();
+        sleep(4000);
+    }
+    public static boolean reportsCheckContactRow(int rowCount, String name, String surname, String email, String country) {
+        String count = Integer.toString (rowCount);
+        String row = String.format(REPORTS_ContactRowByCount, count);
+        SelenideElement contactName = $(byXpath(row+REPORTS_ContactNameSurname));
+        SelenideElement contactEmail = $(byXpath(row+REPORTS_ContactEmail));
+        SelenideElement contactCountry = $(byXpath(row+REPORTS_ContactCountry));
+        contactName.shouldHave(text(name+" "+surname));
+        contactEmail.shouldHave(text(email));
+        contactCountry.shouldHave(text(country));
+        return  true;
     }
 }

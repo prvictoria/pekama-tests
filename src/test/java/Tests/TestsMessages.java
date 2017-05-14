@@ -407,6 +407,7 @@ public class TestsMessages {
     }
     @Test
     public void checkEmailParametersModal_G1_MajorNumberPlaceholder(){
+        skipBefore = true;
         numberCreate("Reference Number", "ref/99-88-66-2017");
         subjectLineExample =  "Reference Number"+": "+"ref/99-88-66-2017";
         callModalNewConversation();

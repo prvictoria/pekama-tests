@@ -234,23 +234,13 @@ public class StepsPekama extends StepsFactory{
     }
 
 
-    public static void openPageWithSpinner(String reportPage){
-        openUrlWithBaseAuth(reportPage);
+    public static void openPageWithSpinner(String url){
+        openUrlWithBaseAuth(url);
         sleep(3000);
         waitForSpinnerNotPresent();
-        rootLogger.info(reportPage+" - is opened");
+        rootLogger.info(url +" - is opened");
     };
-    public static boolean reportsCheckContactRow(int rowCount, String name, String surname, String email, String country) {
-        String count = Integer.toString (rowCount);
-        String row = String.format(REPORTS_ContactRowByCount, count);
-        SelenideElement contactName = $(byXpath(row+REPORTS_ContactNameSurname));
-        SelenideElement contactEmail = $(byXpath(row+REPORTS_ContactEmail));
-        SelenideElement contactCountry = $(byXpath(row+REPORTS_ContactCountry));
-        contactName.shouldHave(text(name+" "+surname));
-        contactEmail.shouldHave(text(email));
-        contactCountry.shouldHave(text(country));
-        return  true;
-    }
+
     public static SelenideElement valueGetRowByName(String valueName) {
         String row = String.format(settingsValueRow, valueName);
         SelenideElement valueRow = $(byXpath(row));

@@ -19,6 +19,7 @@ public class PekamaReports extends Page {
     public static final SelenideElement REPORTS_PAGE_TITLE_PANEL = $(byXpath("//div[@class='content-col']//div[@class='panel-heading']//h4"));
     public static final SelenideElement REPORTS_AllCheckbox = $(byXpath("//li[@class='items-header clearfix clearfix']//input[@type='checkbox']/following-sibling::i"));
     public static final SelenideElement REPORTS_DELETE = $(byXpath("//button[@class='btn-link'][contains(.,'Delete')]"));
+    public static final SelenideElement REPORTS_EVENTS_DELETE = $(byXpath("//*[@href][contains(.,'Delete')]"));
     public static final SelenideElement REPORTS_MERGE = $(byXpath("//button[@class='btn-link'][contains(.,'Merge')]"));
     public static final SelenideElement REPORTS_NoData = $(byXpath("//div/div[2][@class='alert alert-empty ng-binding ng-scope']"));
     public static final SelenideElement REPORTS_Spinner = $(byXpath("//i[@class='pkm-icon-spinner icon-spin']"));
