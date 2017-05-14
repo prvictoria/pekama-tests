@@ -32,6 +32,7 @@ import static Steps.StepsPekama.*;
 import static Steps.StepsHttpAuth.*;
 import static Steps.StepsPekamaReports.*;
 import static Tests.BeforeTestsSetUp.*;
+import static Utils.Utils.randomString;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
@@ -327,7 +328,53 @@ public class TestsPekamaReports {
     }
 
     @Test
-    public void contacts_a_merge(){
+    public void contacts_a_validation_modal_person(){
+        ObjectContact contact = new ObjectContact();
+        contact.create(REPORT, "Person", null,
+                null, null,
+                null, null, null, null,
+                null, null, null,
+                null, null, null);
+        checkText("This field is required when contact type is 'Person'.", 2);
+        submitEnabledButton(MW_BTN_CANCEL);
+        rootLogger.info("Validation test Passed");
+    }
+    @Test
+    public void contacts_a_validation_modal_company(){
+        ObjectContact contact = new ObjectContact();
+        contact.create(REPORT, "Company", null,
+                null, null,
+                null, null, null, null,
+                null, null, null,
+                null, null, null);
+        checkText("This field is required when contact type is 'Company'.");
+        submitEnabledButton(MW_BTN_CANCEL);
+        rootLogger.info("Validation test Passed");
+    }
+    @Test
+    public void contacts_a_validation_modal_max_length(){
+        String string = randomString(256);
+        ObjectContact contact = new ObjectContact();
+        contact.create(REPORT, "Person", string,
+                string, string,
+                null, string, string, string,
+                string, string, string,
+                string, string, null);
+        checkText("Ensure this field has no more than 255 characters.", 4);
+        checkText("Ensure this field has no more than 100 characters.", 2);
+        checkText("Ensure this field has no more than 254 characters.");
+        checkText("Enter a valid email address.");
+        checkText("Ensure this field has no more than 20 characters.", 4);
+        submitEnabledButton(MW_BTN_CANCEL);
+        rootLogger.info("Validation test Passed");
+    }
+    @Ignore //TODO
+    @Test
+    public void contacts_a_validation_form(){
+
+    }
+    @Test
+    public void contacts_z_merge(){
         String ContactEmail1 = "email01@new.test";
         String ContactEmail2 = "email02@new.test";
         String Contact1NameSurname = nameContactName+"Z"+" "+nameContactSurname+"Z";
@@ -387,5 +434,5 @@ public class TestsPekamaReports {
                 nameContactSurname+"Z",
                 ContactEmail1,
                 PITCAIRN_ISLANDS.getValue());
- }
+    }
 }

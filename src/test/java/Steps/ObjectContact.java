@@ -74,12 +74,12 @@ public class ObjectContact {
         waitForModalWindow(TITLE_MW_CONTACT);
         if(contactType!=null){
             if(contactType.equals("Person")){
-                MW_Contact_Select_CONTACT_TYPE.setValue("Person");
+                MW_Contact_Select_CONTACT_TYPE.selectOptionByValue("Person");
             }
             if(contactType.equals("Company")){
-                MW_Contact_Select_CONTACT_TYPE.setValue("Company");
+                MW_Contact_Select_CONTACT_TYPE.selectOptionByValue("Company");
             }
-            else {
+            if (contactType.equals("Person")==false && contactType.equals("Company")==false) {
                 Assert.fail("Invalid contact type");
             }
         }
@@ -180,10 +180,13 @@ public class ObjectContact {
                 contactCountry);
         submitEnabledButton(MW_BTN_OK);
     }
+    public void edit(){
+
+    }
     public Boolean validateError(){
         return true;
     }
-    public Boolean validateContact(){
+    public Boolean validateContact(ObjectContact contact){
         return true;
     }
 }
