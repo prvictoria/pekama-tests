@@ -370,7 +370,7 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_Contact_REGION = $(byXpath(mw+"//input[@name='region']"));
     public static final SelenideElement MW_Contact_SelectCountry = $(byXpath("//div[@name='country']/div/span"));
     public static final SelenideElement MW_Contact_SelectCountryName = $(byXpath("//div[@name='country']/div/span/span/span"));
-    public static final SelenideElement MW_Contact_InputCountry = $(byXpath("//div[@name='country']/input"));
+    public static final SelenideElement MW_Contact_InputCountry = $(byXpath("//div[@name='country']/input[@type='search']"));
     //MW Merge Contact
     public static final SelenideElement MW_MergeContact_ = $(byXpath(""));
     public static final SelenideElement MW_MergeContact_Select = $(byXpath("//div[@class='modal-body']//span[text()='Pick one...']"));

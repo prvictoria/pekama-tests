@@ -152,9 +152,9 @@ public class StepsPekamaReports extends StepsFactory {
             return;
         }
         else {
-            REPORTS_AllCheckbox.setSelected(true);
+            REPORTS_ALL_CHECKBOX.setSelected(true);
             sleep(2000);
-            String selectedColor = REPORTS_AllCheckbox.getCssValue("color");
+            String selectedColor = REPORTS_ALL_CHECKBOX.getCssValue("color");
             Assert.assertTrue(selectedColor.equals("rgb(42, 164, 245)"));
             REPORTS_DELETE.waitUntil(visible, 15000).click();
             submitConfirmAction();
@@ -169,9 +169,9 @@ public class StepsPekamaReports extends StepsFactory {
             return;
         }
         else {
-            REPORTS_AllCheckbox.setSelected(true);
+            REPORTS_ALL_CHECKBOX.setSelected(true);
             sleep(2000);
-            String selectedColor = REPORTS_AllCheckbox.getCssValue("color");
+            String selectedColor = REPORTS_ALL_CHECKBOX.getCssValue("color");
             Assert.assertTrue(selectedColor.equals("rgb(42, 164, 245)"));
             REPORTS_DELETE.waitUntil(visible, 15000).click();
             submitConfirmAction();
@@ -186,9 +186,9 @@ public class StepsPekamaReports extends StepsFactory {
             return;
         }
         else {
-            REPORTS_AllCheckbox.setSelected(true);
+            REPORTS_ALL_CHECKBOX.setSelected(true);
             sleep(2000);
-            String selectedColor = REPORTS_AllCheckbox.getCssValue("color");
+            String selectedColor = REPORTS_ALL_CHECKBOX.getCssValue("color");
             Assert.assertTrue(selectedColor.equals("rgb(42, 164, 245)"));
             REPORTS_EVENTS_DELETE.waitUntil(visible, 15000).click();
             submitConfirmAction();
@@ -203,9 +203,9 @@ public class StepsPekamaReports extends StepsFactory {
             return;
         }
         else {
-            REPORTS_AllCheckbox.setSelected(true);
+            REPORTS_ALL_CHECKBOX.setSelected(true);
             sleep(2000);
-            String selectedColor = REPORTS_AllCheckbox.getCssValue("color");
+            String selectedColor = REPORTS_ALL_CHECKBOX.getCssValue("color");
             Assert.assertTrue(selectedColor.equals("rgb(42, 164, 245)"));
             REPORTS_DELETE.waitUntil(visible, 15000).click();
             submitConfirmAction();
@@ -215,20 +215,61 @@ public class StepsPekamaReports extends StepsFactory {
     public static void deleteAllContacts(){
         rootLogger.info("Delete all Contacts");
         openPageWithSpinner(URL_ReportsContacts);
-        REPORTS_AllCheckbox.waitUntil(visible, 20000).click();
+        REPORTS_ALL_CHECKBOX.waitUntil(visible, 20000).click();
         REPORTS_DELETE.waitUntil(visible, 20000).click();
         submitConfirmAction();
         sleep(4000);
     }
-    public static boolean reportsCheckContactRow(int rowCount, String name, String surname, String email, String country) {
-        String count = Integer.toString (rowCount);
-        String row = String.format(REPORTS_ContactRowByCount, count);
-        SelenideElement contactName = $(byXpath(row+REPORTS_ContactNameSurname));
-        SelenideElement contactEmail = $(byXpath(row+REPORTS_ContactEmail));
-        SelenideElement contactCountry = $(byXpath(row+REPORTS_ContactCountry));
+    public static boolean reportsCheckContactRow(Integer rowCount, String name, String surname, String email, String country) {
+        String row = REPORTS_CONTACT_ROW_BY_INDEX(rowCount);
+        SelenideElement contactName = $(byXpath(row+ REPORTS_CONTACT_ROW_NAME));
+        SelenideElement contactEmail = $(byXpath(row+ REPORTS_CONTACT_ROW_EMAIL));
+        SelenideElement contactCountry = $(byXpath(row+ REPORTS_CONTACT_ROW_COUNTRY));
         contactName.shouldHave(text(name+" "+surname));
         contactEmail.shouldHave(text(email));
         contactCountry.shouldHave(text(country));
         return  true;
+    }
+    public static SelenideElement elementInContactRow(Integer rowCount, final String path){
+        if(rowCount>10){Assert.fail("Only 10 rows on the page");}
+        String rowBtn = REPORTS_CONTACT_ROW_BY_INDEX(rowCount)+path;
+        SelenideElement btn = $(byXpath(rowBtn));
+        return btn;
+    }
+    public static void clickContactNewProject(Integer rowCount){
+        submitEnabledButton(elementInContactRow(rowCount, REPORTS_CONTACTS_NEW_PROJECT_BTN));
+    }
+    public static void clickContactNewProject(String contactName){
+        String rowBtn = REPORTS_CONTACT_ROW_BY_NAME(contactName)+REPORTS_CONTACTS_NEW_PROJECT_BTN;
+        SelenideElement btn = $(byXpath(rowBtn));
+        submitEnabledButton(btn);
+    }
+    public static void clickContactEdit(Integer rowCount){
+        submitEnabledButton(elementInContactRow(rowCount, REPORTS_CONTACTS_EDIT_BTN));
+    }
+    public static void clickContactEdit(String contactName){
+        String rowBtn = REPORTS_CONTACT_ROW_BY_NAME(contactName)+REPORTS_CONTACTS_EDIT_BTN;
+        SelenideElement btn = $(byXpath(rowBtn));
+        submitEnabledButton(btn);
+    }
+    public static void clickContactDelete(Integer rowCount){
+        submitEnabledButton(elementInContactRow(rowCount, REPORTS_CONTACTS_DELETE_BTN));
+        submitConfirmAction();
+        sleep(500);
+    }
+    public static void clickContactDelete(String contactName){
+        String rowBtn = REPORTS_CONTACT_ROW_BY_NAME(contactName)+REPORTS_CONTACTS_DELETE_BTN;
+        SelenideElement btn = $(byXpath(rowBtn));
+        submitEnabledButton(btn);
+        submitConfirmAction();
+        sleep(500);
+    }
+    public static void saveContactForm(Integer rowCount){
+        submitEnabledButton(elementInContactRow(rowCount, REPORTS_CONTACT_FORM_SAVE));
+    }
+    public static void saveContactForm(String contactName){
+        String rowBtn = REPORTS_CONTACT_ROW_BY_NAME(contactName)+REPORTS_CONTACT_FORM_SAVE;
+        SelenideElement btn = $(byXpath(rowBtn));
+        submitEnabledButton(btn);
     }
 }

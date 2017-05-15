@@ -122,9 +122,9 @@ public class TestsPekamaDashboard {
 
         DASHBOARD_TasksTitle.shouldBe(visible);
         DASHBOARD_TasksToDo.shouldBe(visible);
-        checkText("No tasks yet. You can createPerson new tasks from projects");
+//        checkText("No tasks yet. You can createPerson new tasks from projects");
         DASHBOARD_TasksDoing.shouldBe(visible).click();
-        checkText("No tasks yet. You can createPerson new tasks from projects");
+//        checkText("No tasks yet. You can createPerson new tasks from projects");
         sleep(500);
 
         rootLogger.info("GUI Test passed");

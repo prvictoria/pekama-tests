@@ -5,9 +5,11 @@ package Page;
  */
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
 
+import static Steps.StepsPekamaReports.elementInContactRow;
 import static com.codeborne.selenide.Selectors.byLinkText;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
@@ -17,7 +19,7 @@ import static com.codeborne.selenide.Selenide.$$;
 public class PekamaReports extends Page {
 
     public static final SelenideElement REPORTS_PAGE_TITLE_PANEL = $(byXpath("//div[@class='content-col']//div[@class='panel-heading']//h4"));
-    public static final SelenideElement REPORTS_AllCheckbox = $(byXpath("//li[@class='items-header clearfix clearfix']//input[@type='checkbox']/following-sibling::i"));
+    public static final SelenideElement REPORTS_ALL_CHECKBOX = $(byXpath("//li[@class='items-header clearfix clearfix']//input[@type='checkbox']/following-sibling::i"));
     public static final SelenideElement REPORTS_DELETE = $(byXpath("//button[@class='btn-link'][contains(.,'Delete')]"));
     public static final SelenideElement REPORTS_EVENTS_DELETE = $(byXpath("//*[@href][contains(.,'Delete')]"));
     public static final SelenideElement REPORTS_MERGE = $(byXpath("//button[@class='btn-link'][contains(.,'Merge')]"));
@@ -30,7 +32,7 @@ public class PekamaReports extends Page {
     public static final ElementsCollection REPORTS_PROJECT_TEMPLATES_LIST = $$(byXpath("//button[@type='button'][contains(.,'New')]/following-sibling::ul//a"));
     public static final SelenideElement REPORTS_BTN_Import = $(byXpath("//button[@type='button'][contains(.,'Import')]"));
     public static final SelenideElement REPORTS_BTN_AddContact = $(byXpath("//button[@type='button'][contains(.,'Add contact')]"));
-//list view
+    //list view
     public static final SelenideElement REPORTS_SORT_BY_NONE = $(byLinkText("None"));
     public static final SelenideElement REPORTS_SORT_BY_NAME = $(byLinkText("Name"));
     public static final SelenideElement REPORTS_SORT_BY_PROJECT_TYPE = $(byLinkText("Project Type"));
@@ -41,15 +43,15 @@ public class PekamaReports extends Page {
     public static final SelenideElement REPORTS_SORT_BY_LAST_TYPE = $(byLinkText("Type"));
     public static final SelenideElement REPORTS_SORT_BY_LAST_SUB_TYPE = $(byLinkText("Sub Type"));
 
-    //detailes view
-    public static final String REPORTS_ListRow = "//ng-include[@src='reportParams.listTemplate']/li";
+    //report view
+    public static final String REPORTS_LIST_ROWS_PATH = "//ng-include[@src='reportParams.listTemplate']/li";
+    public static final ElementsCollection REPORTS_LIST_ROWS = $$(byXpath("//ng-include[@src='reportParams.listTemplate']/li"));
+
     public static final String REPORTS_ListRow01 = "//ng-include[@src='reportParams.listTemplate']/li[1]";
     public static SelenideElement REPORTS_LIST_PROJECT_TILE_ROW1 = $(byXpath(REPORTS_ListRow01+"//h4"));
     public static SelenideElement REPORTS_LIST_PROJECT_SELECT_ROW1 = $(byXpath(REPORTS_ListRow01+"//input[@type='checkbox']/following-sibling::i"));
 
-    public static final SelenideElement REPORTS_Contacts = $(byXpath(""));
-    public static final SelenideElement REPORTS_1RowNameSurname = $("div.conact-page-name.ng-binding");
-    public static final SelenideElement REPORTS_1RowCountry = $(byXpath(".//*[@class='contact-page-country ng-binding'][contains(.,'Ireland')]"));
+
     public static final SelenideElement REPORTS_FiltersFreeText = $(byXpath("//pkm-filtering//input"));
 
 //search sidebar - all controls
@@ -84,20 +86,114 @@ public class PekamaReports extends Page {
 
     public static final SelenideElement REPORTS_ = $(byXpath(""));
 //Specific pages
-    
-    public static String REPORTS_ContactRowByCount = "//ng-include[@src='reportParams.listTemplate']/li[%s]";
-    public static final String REPORTS_ContactRowName = "";
-    public static final String REPORTS_ContactRowSurname = "";
-    public static final String REPORTS_ContactNameSurname = "//*[@class='name ng-binding']";
-    public static final String REPORTS_ContactEmail = "//span[@ng-if='contact.email']";
-    public static final String REPORTS_ContactCountry = "//span[@ng-if='contact.country']";
-    public static final String REPORTS_ContactLinkedCompany = "//span[@ng-if='contact.company']";
-    public static final String REPORTS_ContactProjects = "//span[@ng-switch='contact.number_of_projects']";
-    public static final String REPORTS_ContactCharges = "//span[@ng-switch='!contact.total_charges']";
-    public static final String REPORTS_ContactCheckbox = "//input[@type='checkbox']";
-    public static final String REPORTS_ContactNewProject = "//button[contains(.,'+ New Project')]";
-    public static final SelenideElement REPORTS_BTN_ContactNewProject = $(byXpath(REPORTS_ContactNewProject));
 
-    public static final String REPORTS_ContactEdit = "//div[@class='contact-page-invite-edit']/i[1]";
-    public static final String REPORTS_ContactDelete = "//div[@class='contact-page-invite-edit']/i[2]";
+    //CONTACTS
+    public static final SelenideElement REPORTS_Contacts = $(byXpath(""));
+    public static final SelenideElement REPORTS_1RowNameSurname = $("div.conact-page-name.ng-binding");
+    public static final SelenideElement REPORTS_1RowCountry = $(byXpath(".//*[@class='contact-page-country ng-binding'][contains(.,'Ireland')]"));
+    public static String REPORTS_CONTACT_ROW_BY_INDEX(Integer rowCount) {
+        String count = Integer.toString(rowCount);
+        String row = String.format("//ng-include[@src='reportParams.listTemplate']/li[%s]", count);
+        return row;
+    }
+    public static String REPORTS_CONTACT_ROW_BY_NAME(String contactName) {
+        String row = String.format("//ng-include[@src='reportParams.listTemplate']/li[.//span[contains(.,'%s')]]", contactName);
+        return row;
+    }
+
+    public static final String REPORTS_CONTACT_ROW_SELECT = "//input[@type='checkbox']";
+    public static final String REPORTS_CONTACT_ROW_NAME = "//*[@class='name ng-binding']";
+    public static final String REPORTS_CONTACT_ROW_EMAIL = "//span[@ng-if='contact.email']";
+    public static final String REPORTS_CONTACT_ROW_COUNTRY = "//span[@ng-if='contact.country']";
+    public static final String REPORTS_CONTACT_ROW_COMPANY = "//span[@ng-if='contact.company']";
+    public static final String REPORTS_CONTACT_ROW_PROJECT_QTY = "//span[@ng-switch='contact.number_of_projects']";
+    public static final String REPORTS_CONTACT_ROW_CHARGES_TOTAL = "//span[@ng-switch='!contact.total_charges']";
+
+    public static final String REPORTS_CONTACTS_EDIT_BTN = "//button[./i[@class='pkm-icon-edit']]";
+    public static final String REPORTS_CONTACTS_DELETE_BTN = "//button[./i[@class='pkm-icon-delete']]";
+    public static final String REPORTS_CONTACTS_NEW_PROJECT_BTN = "//button[text()='+ New Project']";
+    public static final String REPORTS_CONTACT_FORM_SAVE = "//button[text()='Save']";
+
+    public static final SelenideElement REPORTS_CONTACT_CONTACT_TYPE(Integer rowCount) {
+        final String REPORTS_CONTACT_CONTACT_TYPE = "//select";
+        SelenideElement field = elementInContactRow(rowCount, REPORTS_CONTACT_CONTACT_TYPE);
+        return field;
+    }
+    public static final SelenideElement REPORTS_CONTACT_FORM_LEGAL_ENTITY(Integer rowCount) {
+        final String REPORTS_CONTACT_FORM_LEGAL_ENTITY = "//input[@name='legal_entity_name']";
+        SelenideElement field = elementInContactRow(rowCount, REPORTS_CONTACT_FORM_LEGAL_ENTITY);
+        return field;
+    }
+    public static final SelenideElement REPORTS_CONTACT_FORM_FIRST_NAME(Integer rowCount) {
+        final String REPORTS_CONTACT_FORM_FIRST_NAME = "//input[@name='first_name']";
+        SelenideElement field = elementInContactRow(rowCount, REPORTS_CONTACT_FORM_FIRST_NAME);
+        return field;
+    }
+    public static final SelenideElement REPORTS_CONTACT_FORM_LAST_NAME(Integer rowCount) {
+        final String REPORTS_CONTACT_FORM_LAST_NAME = "//input[@name='last_name']";
+        SelenideElement field = elementInContactRow(rowCount, REPORTS_CONTACT_FORM_LAST_NAME);
+        return field;
+    }
+    public static final SelenideElement REPORTS_CONTACT_FORM_SELECT_COMPANY(Integer rowCount) {
+        final String REPORTS_CONTACT_FORM_SELECT_COMPANY = "//label[text()='Company']/following-sibling::div//span[2]";
+        SelenideElement field = elementInContactRow(rowCount, REPORTS_CONTACT_FORM_SELECT_COMPANY);
+        return field;
+    }
+    public static final SelenideElement REPORTS_CONTACT_FORM_INPUT_COMPANY(Integer rowCount) {
+        final String REPORTS_CONTACT_FORM_INPUT_COMPANY = "//label[text()='Company']/following-sibling::div//input[@type='search']";
+        SelenideElement field = elementInContactRow(rowCount, REPORTS_CONTACT_FORM_INPUT_COMPANY);
+        return field;
+    }
+    public static final SelenideElement REPORTS_CONTACT_FORM_EMAIL(Integer rowCount) {
+        final String REPORTS_CONTACT_FORM_EMAIL = "//input[@name='email']";
+        SelenideElement field = elementInContactRow(rowCount, REPORTS_CONTACT_FORM_EMAIL);
+        return field;
+    }
+    public static final SelenideElement REPORTS_CONTACT_FORM_PHONE(Integer rowCount) {
+        final String REPORTS_CONTACT_FORM_PHONE = "//input[@name='phone_number']";
+        SelenideElement field = elementInContactRow(rowCount, REPORTS_CONTACT_FORM_PHONE);
+        return field;
+    }
+    public static final SelenideElement REPORTS_CONTACT_FORM_FAX(Integer rowCount) {
+        final String REPORTS_CONTACT_FORM_FAX = "//input[@name='fax_number']";
+        SelenideElement field = elementInContactRow(rowCount, REPORTS_CONTACT_FORM_FAX);
+        return field;
+    }
+    public static final SelenideElement REPORTS_CONTACT_FORM_MOBILE(Integer rowCount) {
+        final String REPORTS_CONTACT_FORM_MOBILE = "//input[@name='cellphone_number']";
+        SelenideElement field = elementInContactRow(rowCount, REPORTS_CONTACT_FORM_MOBILE);
+        return field;
+    }
+    public static final SelenideElement REPORTS_CONTACT_FORM_ADDRESS(Integer rowCount) {
+        final String REPORTS_CONTACT_FORM_ADDRESS = "//input[@name='street_address']";
+        SelenideElement field = elementInContactRow(rowCount, REPORTS_CONTACT_FORM_ADDRESS);
+        return field;
+    }
+    public static final SelenideElement REPORTS_CONTACT_FORM_ZIP(Integer rowCount) {
+        final String REPORTS_CONTACT_FORM_ZIP = "//input[@name='postal_code']";
+        SelenideElement field = elementInContactRow(rowCount, REPORTS_CONTACT_FORM_ZIP);
+        return field;
+    }
+    public static final SelenideElement REPORTS_CONTACT_FORM_CITY(Integer rowCount) {
+        final String REPORTS_CONTACT_FORM_CITY = "//input[@name='city']";
+        SelenideElement field = elementInContactRow(rowCount, REPORTS_CONTACT_FORM_CITY);
+        return field;
+    }
+    public static final SelenideElement REPORTS_CONTACT_FORM_REGION(Integer rowCount) {
+        final String REPORTS_CONTACT_FORM_REGION = "//input[@name='region']";
+        SelenideElement field = elementInContactRow(rowCount, REPORTS_CONTACT_FORM_REGION);
+        return field;
+    }
+    public static final SelenideElement REPORTS_CONTACT_FORM_SELECT_COUNTRY(Integer rowCount) {
+        final String REPORTS_CONTACT_FORM_SELECT_COUNTRY = "//div[@name='country']/div/span";
+        SelenideElement field = elementInContactRow(rowCount, REPORTS_CONTACT_FORM_SELECT_COUNTRY);
+        return field;
+    }
+    public static final SelenideElement REPORTS_CONTACT_FORM_INPUT_COUNTRY(Integer rowCount) {
+        final String REPORTS_CONTACT_FORM_INPUT_COUNTRY = "//div[@name='country']/input[@type='search']";
+        SelenideElement field = elementInContactRow(rowCount, REPORTS_CONTACT_FORM_INPUT_COUNTRY);
+        return field;
+    }
+
+
 }

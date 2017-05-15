@@ -11,8 +11,8 @@ import static Page.UrlStrings.*;
 import static Steps.ObjectContact.enterPoint.*;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
-import static Steps.StepsPekama.fillField;
-import static Steps.StepsPekamaProject.callNewContactModal;
+import static Steps.StepsPekamaProject.*;
+import static Steps.StepsPekamaReports.saveContactForm;
 
 /**
  * Created by VatslauX on 14-May-17.
@@ -41,7 +41,7 @@ public class ObjectContact {
 
     public enum contactType {PERSON, COMPANY}
     public enum enterPoint {PROJECT, REPORT}
-    public void fillForm(
+    public void fillModalForm(
             String contactType,
             String contactLegalEntity,
             String contactFirstName,
@@ -163,7 +163,7 @@ public class ObjectContact {
             }
             submitEnabledButton(REPORTS_BTN_AddContact);
         }
-        fillForm( "Person",
+        fillModalForm( "Person",
                 contactLegalEntity,
                 contactFirstName,
                 contactLastName,
@@ -207,7 +207,7 @@ public class ObjectContact {
             }
             submitEnabledButton(REPORTS_BTN_AddContact);
         }
-        fillForm( "Company",
+        fillModalForm( "Company",
                 contactLegalEntity,
                 null,
                 null,
@@ -223,7 +223,96 @@ public class ObjectContact {
                 contactCountry);
         submitEnabledButton(MW_BTN_OK);
     }
-    public void edit(){
+    public void editForm(Integer rowCount,
+                         String contactType,
+                         String contactLegalEntity,
+                         String contactFirstName,
+                         String contactLastName,
+                         String contactCompany,
+                         String contactEmail,
+                         String contactPhone,
+                         String contactFax,
+                         String contactMobile,
+                         String contactStreetAddress,
+                         String contactPostalCode,
+                         String contactCity,
+                         String contactRegion,
+                         String contactCountry){
+        this.contactType = contactType;
+        this.contactLegalEntity = contactLegalEntity;
+        this.contactFirstName = contactFirstName;
+        this.contactLastName = contactLastName;
+        this.contactCompany = contactCompany;
+        this.contactEmail = contactEmail;
+        this.contactPhone = contactPhone;
+        this.contactFax = contactFax;
+        this.contactMobile = contactMobile;
+        this.contactStreetAddress = contactStreetAddress;
+        this.contactPostalCode = contactPostalCode;
+        this.contactCity = contactCity;
+        this.contactRegion = contactRegion;
+        this.contactCountry = contactCountry;
+
+        if(contactType!=null){
+            if(contactType.equals("Person")){
+                REPORTS_CONTACT_CONTACT_TYPE(rowCount).selectOptionByValue("Person");
+            }
+            if(contactType.equals("Company")){
+                REPORTS_CONTACT_CONTACT_TYPE(rowCount).selectOptionByValue("Company");
+            }
+            if (contactType.equals("Person")==false && contactType.equals("Company")==false) {
+                Assert.fail("Invalid contact type");
+            }
+        }
+        if(contactLegalEntity!=null){
+            fillField(REPORTS_CONTACT_FORM_LEGAL_ENTITY(rowCount),  contactLegalEntity);
+        }
+        if(contactFirstName!=null){
+            fillField(REPORTS_CONTACT_FORM_FIRST_NAME(rowCount), contactFirstName);
+        }
+        if(contactLastName!=null){
+            fillField(REPORTS_CONTACT_FORM_LAST_NAME(rowCount), contactLastName);
+        }
+        if(contactCompany!=null){
+            selectItemInDropdown(
+                    REPORTS_CONTACT_FORM_SELECT_COMPANY(rowCount),
+                    REPORTS_CONTACT_FORM_INPUT_COMPANY(rowCount),
+                    contactCompany
+            );
+        }
+        if(contactEmail!=null){
+            fillField(REPORTS_CONTACT_FORM_EMAIL(rowCount) , contactEmail);
+        }
+        if(contactPhone!=null){
+            fillField(REPORTS_CONTACT_FORM_PHONE(rowCount), contactPhone);
+        }
+        if(contactFax!=null){
+            fillField(REPORTS_CONTACT_FORM_FAX(rowCount) , contactFax);
+        }
+        if(contactMobile!=null){
+            fillField(REPORTS_CONTACT_FORM_MOBILE(rowCount), contactMobile);
+        }
+        if(contactStreetAddress!=null){
+            fillField(REPORTS_CONTACT_FORM_ADDRESS(rowCount), contactStreetAddress);
+        }
+        if(contactPostalCode!=null){
+            fillField(REPORTS_CONTACT_FORM_ZIP(rowCount) , contactPostalCode);
+        }
+        if(contactCity!=null){
+            fillField(REPORTS_CONTACT_FORM_CITY(rowCount) , contactCity);
+        }
+        if(contactRegion!=null){
+            fillField(REPORTS_CONTACT_FORM_REGION(rowCount), contactRegion);
+        }
+        if(contactCountry!=null){
+            selectItemInDropdown(
+                    REPORTS_CONTACT_FORM_SELECT_COUNTRY(rowCount),
+                    REPORTS_CONTACT_FORM_INPUT_COUNTRY(rowCount),
+                    contactCountry);
+        }
+        saveContactForm(rowCount);
+    }
+    public void getData(){
 
     }
     public Boolean validateError(){
@@ -232,4 +321,5 @@ public class ObjectContact {
     public Boolean validateContact(ObjectContact contact){
         return true;
     }
+
 }

@@ -187,7 +187,7 @@ public class TestsPekamaSettingsPersonal {
         submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
         sleep(500);
         PERSONAL_DETAILS_INPUT_NAME.shouldHave(Condition.value(""));
-        $(byText(ERROR_MSG_BLANK_NAME)).shouldBe(Condition.visible);
+        checkText(ERROR_MSG_BLANK_NAME);
         rootLogger.info("Validation present - "+ERROR_MSG_BLANK_NAME);
     }
     @Test
@@ -200,7 +200,7 @@ public class TestsPekamaSettingsPersonal {
         PERSONAL_DETAILS_INPUT_NAME.sendKeys(RANDOM_101_LETTER);
         submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
         sleep(500);
-        $(byText(ERROR_MSG_VALIDATION_LENGTH_100)).shouldBe(Condition.visible);
+        checkText(ERROR_MSG_VALIDATION_LENGTH_100);
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_100);
     }
     @Test
@@ -214,8 +214,8 @@ public class TestsPekamaSettingsPersonal {
         sleep(500);
         PERSONAL_DETAILS_INPUT_SURNAME.shouldHave(Condition.value(""));
         PERSONAL_DETAILS_INPUT_NAME.shouldHave(Condition.value(""));
-        $(byText(ERROR_MSG_BLANK_NAME)).shouldBe(Condition.visible);
-        $(byText(ERROR_MSG_BLANK_SURNAME)).shouldBe(Condition.visible);
+        checkText(ERROR_MSG_BLANK_NAME);
+        checkText(ERROR_MSG_BLANK_SURNAME);
         rootLogger.info("Validation present - "+ERROR_MSG_BLANK_SURNAME);
     }
     @Test
@@ -228,7 +228,7 @@ public class TestsPekamaSettingsPersonal {
         PERSONAL_DETAILS_INPUT_SURNAME.clear();
         submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
         PERSONAL_DETAILS_INPUT_SURNAME.shouldHave(Condition.value(""));
-        $(byText(ERROR_MSG_BLANK_SURNAME)).shouldBe(Condition.visible);
+        checkText(ERROR_MSG_BLANK_SURNAME);
         rootLogger.info("Validation present - "+ERROR_MSG_BLANK_SURNAME);
     }
     @Test
@@ -240,7 +240,7 @@ public class TestsPekamaSettingsPersonal {
         PERSONAL_DETAILS_INPUT_SURNAME.clear();
         PERSONAL_DETAILS_INPUT_SURNAME.sendKeys(RANDOM_101_LETTER);
         submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
-        $(byText(ERROR_MSG_VALIDATION_LENGTH_100)).shouldBe(Condition.visible);
+        checkText(ERROR_MSG_VALIDATION_LENGTH_100);
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_100);
     }
     @Test
@@ -252,7 +252,7 @@ public class TestsPekamaSettingsPersonal {
         PERSONAL_DETAILS_INPUT_PHONE.clear();
         PERSONAL_DETAILS_INPUT_PHONE.sendKeys(RANDOM_101_LETTER);
         submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
-        $(byText(ERROR_MSG_VALIDATION_LENGTH_20)).shouldBe(Condition.visible);
+        checkText(ERROR_MSG_VALIDATION_LENGTH_20);
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_20);
     }
     @Test
@@ -264,7 +264,7 @@ public class TestsPekamaSettingsPersonal {
         PERSONAL_DETAILS_INPUT_FAX.clear();
         PERSONAL_DETAILS_INPUT_FAX.sendKeys(RANDOM_21_LETTER);
         submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
-        $(byText(ERROR_MSG_VALIDATION_LENGTH_20)).shouldBe(Condition.visible);
+        checkText(ERROR_MSG_VALIDATION_LENGTH_20);
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_20);
     }
     @Test
@@ -276,7 +276,7 @@ public class TestsPekamaSettingsPersonal {
         PERSONAL_DETAILS_INPUT_MOBILE.clear();
         PERSONAL_DETAILS_INPUT_MOBILE.sendKeys(RANDOM_21_LETTER);
         submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
-        $(byText(ERROR_MSG_VALIDATION_LENGTH_20)).shouldBe(Condition.visible);
+        checkText(ERROR_MSG_VALIDATION_LENGTH_20);
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_20);
     }
     @Test
@@ -288,7 +288,7 @@ public class TestsPekamaSettingsPersonal {
         PERSONAL_DETAILS_INPUT_LEGAL_ENTITY.clear();
         PERSONAL_DETAILS_INPUT_LEGAL_ENTITY.sendKeys(RANDOM_256_LETTER);
         submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
-        $(byText(ERROR_MSG_VALIDATION_LENGTH_255)).shouldBe(Condition.visible);
+        checkText(ERROR_MSG_VALIDATION_LENGTH_255);
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_255);
     }
     @Test
@@ -300,7 +300,7 @@ public class TestsPekamaSettingsPersonal {
         PERSONAL_DETAILS_INPUT_STREET.clear();
         PERSONAL_DETAILS_INPUT_STREET.sendKeys(RANDOM_256_LETTER);
         submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
-        $(byText(ERROR_MSG_VALIDATION_LENGTH_255)).shouldBe(Condition.visible);
+        checkText(ERROR_MSG_VALIDATION_LENGTH_255);
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_255);
     }
     @Test
@@ -312,7 +312,7 @@ public class TestsPekamaSettingsPersonal {
         PERSONAL_DETAILS_INPUT_ZIP.clear();
         PERSONAL_DETAILS_INPUT_ZIP.sendKeys(RANDOM_21_LETTER);
         submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
-        $(byText(ERROR_MSG_VALIDATION_LENGTH_20)).shouldBe(Condition.visible);
+        checkText(ERROR_MSG_VALIDATION_LENGTH_20);
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_20);
     }
     @Test
@@ -324,7 +324,7 @@ public class TestsPekamaSettingsPersonal {
         PERSONAL_DETAILS_INPUT_CITY.clear();
         PERSONAL_DETAILS_INPUT_CITY.sendKeys(RANDOM_256_LETTER);
         submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
-        $(byText(ERROR_MSG_VALIDATION_LENGTH_255)).shouldBe(Condition.visible);
+        checkText(ERROR_MSG_VALIDATION_LENGTH_255);
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_255);
     }
     @Test
@@ -336,7 +336,7 @@ public class TestsPekamaSettingsPersonal {
         PERSONAL_DETAILS_INPUT_REGION.clear();
         PERSONAL_DETAILS_INPUT_REGION.sendKeys(RANDOM_256_LETTER);
         submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
-        $(byText(ERROR_MSG_VALIDATION_LENGTH_255)).shouldBe(Condition.visible);
+        checkText(ERROR_MSG_VALIDATION_LENGTH_255);
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_255);
     }
     @Test

@@ -141,7 +141,7 @@ public class StepsPekama extends StepsFactory{
     }
     public static String fillField(SelenideElement fieldName, String enteredValue) {
         fieldName.waitUntil(visible, 30000);
-        rootLogger.info("Input data");
+        //rootLogger.info("Input data");
         fieldName.clear();
         fieldName.shouldHave(Condition.value("")).val(enteredValue);
         fieldName.shouldHave(Condition.value(enteredValue));
@@ -200,7 +200,7 @@ public class StepsPekama extends StepsFactory{
     public static boolean checkText(String textString, int size) {
         $(byText(textString)).waitUntil(exist, 20000);
         $$(byText(textString)).filter(visible).shouldHaveSize(size);
-        rootLogger.info("Text is displayed on page");
+        rootLogger.info("This text displayed: "+textString);
         return true;
     }
     public static boolean checkValue(String textString, int size) {
@@ -212,7 +212,7 @@ public class StepsPekama extends StepsFactory{
         if(textString!=null){
             $(byText(textString)).waitUntil(exist, 20000);
             $$(byText(textString)).filter(visible).shouldHaveSize(1);
-            rootLogger.info("Text is displayed on page");
+            rootLogger.info("This text displayed: "+textString);
         }
         return true;
     }

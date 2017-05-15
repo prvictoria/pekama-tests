@@ -2,6 +2,7 @@ package Tests;
 import Page.TestsCredentials.*;
 import Steps.*;
 import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -319,7 +320,7 @@ public class TestsPekamaReports {
     @Test
     public void contacts_b_delete_all(){
         deleteAllContacts();
-        REPORTS_BTN_ContactNewProject.shouldNotBe(visible);
+        $$(byText(PLACEHOLDER_NO_DATA)).shouldHave(CollectionCondition.sizeGreaterThanOrEqual(1));
         rootLogger.info("All contacts were deleted");
     }
 
@@ -328,8 +329,9 @@ public class TestsPekamaReports {
         ObjectContact contact = new ObjectContact();
         contact.createPerson(REPORT, null,
                 null, null,
-                null, null, null, null,
-                null, null, null,
+                null, null,
+                null, null,null,
+                null, null,
                 null, null, null);
         checkText("This field is required when contact type is 'Person'.", 2);
         submitEnabledButton(MW_BTN_CANCEL);
@@ -363,10 +365,55 @@ public class TestsPekamaReports {
         submitEnabledButton(MW_BTN_CANCEL);
         rootLogger.info("Validation test Passed");
     }
-    @Ignore //TODO
     @Test
-    public void contacts_a_validation_form(){
-
+    public void contacts_a_validation_form_person(){
+        ObjectContact contact = new ObjectContact();
+        contact.createCompany(REPORT, "Company1",
+                null, null,
+                null, null,null,
+                null, null,
+                null, null);
+        clickContactEdit(1);
+        String string = randomString(256);
+        contact.editForm(1, "Person", string, string, string, null, string, string, string, string, string, string, string, string, null);
+        checkText("Ensure this field has no more than 255 characters.", 4);
+        checkText("Ensure this field has no more than 100 characters.", 2);
+        checkText("Ensure this field has no more than 254 characters.");
+        checkText("Enter a valid email address.");
+        checkText("Ensure this field has no more than 20 characters.", 4);
+        rootLogger.info("Validation test Passed");
+    }
+    @Test
+    public void contacts_a_validation_form_company(){
+        ObjectContact contact = new ObjectContact();
+        contact.createPerson(REPORT, null, "Name", "Surname", null,
+                null, null,
+                null, null,null,
+                null, null,
+                null, null);
+        clickContactEdit(1);
+        String string = randomString(256);
+        contact.editForm(1, "Company",  string, null, null, null, string, string, string, string, string, string, string, string, null);
+        checkText("Ensure this field has no more than 255 characters.", 4);
+        checkText("Ensure this field has no more than 254 characters.");
+        checkText("Enter a valid email address.");
+        checkText("Ensure this field has no more than 20 characters.", 4);
+        rootLogger.info("Validation test Passed");
+    }
+    @Test
+    public void contacts_a_edit_form_person(){
+        ObjectContact contact = new ObjectContact();
+        contact.createCompany(REPORT, "Company1",
+                null, null,
+                null, null,null,
+                null, null,
+                null, null);
+        int listSize = REPORTS_LIST_ROWS.size();
+        clickContactEdit(1);
+        contact.editForm(1, "Person", "Private", "Name", "Surname", null, "123456@email.com", "8017-12-45-34", "8029-78-89-79", "01-4565645645654", "Street", "zip", "London", "Center", "United Kingdom");
+        clickContactDelete(1);
+        REPORTS_LIST_ROWS.shouldHaveSize(listSize-1);
+        rootLogger.info("Contact CRUD test Passed");
     }
     @Test
     public void contacts_z_merge(){
@@ -410,7 +457,7 @@ public class TestsPekamaReports {
                 ContactEmail2,
                 NETHERLANDS_ANTILES.getValue());
 
-        REPORTS_AllCheckbox.click();
+        REPORTS_ALL_CHECKBOX.click();
         rootLogger.info("Merge contacts, base - 1-st");
         REPORTS_MERGE.shouldBe(visible).click();
         waitForModalWindow("Merge Contacts");
