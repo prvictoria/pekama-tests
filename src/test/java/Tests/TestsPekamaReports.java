@@ -23,6 +23,7 @@ import static Page.TestsStrings.*;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
 import static Steps.MessagesValidator.ValidationReport.*;
+import static Steps.ObjectContact.contactType.COMPANY;
 import static Steps.ObjectContact.contactType.PERSON;
 import static Steps.ObjectContact.enterPoint.*;
 import static Steps.StepsModalWindows.*;
@@ -485,6 +486,24 @@ public class TestsPekamaReports {
                 null, null);
         refresh();
         reportsCheckContactRow(PERSON, 2, person, null, null,null);
+        rootLogger.info("Contact add company link");
+    }
+    @Test
+    public void contacts_create_project(){
+        deleteAllContacts();
+
+        ObjectContact company = new ObjectContact();
+        company.createCompany(REPORT, "Company",
+                null, null,
+                null, null,null,
+                null, null,
+                null, null);
+        clickContactNewProject(1);
+        submitMwNewProject("from contacts report");
+        String projectUrl = getActualUrl();
+
+        openPageWithSpinner(URL_ReportsContacts);
+        reportsCheckContactRow(COMPANY, 1, company, "1 project", null,1);
         rootLogger.info("Contact add company link");
     }
     @Test

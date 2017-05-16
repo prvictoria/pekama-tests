@@ -240,7 +240,7 @@ public class StepsPekamaReports extends StepsFactory {
         SelenideElement contactCountry = elementInContactRow(rowCount, REPORTS_CONTACT_ROW_COUNTRY);
         SelenideElement contactCompany = elementInContactRow(rowCount, REPORTS_CONTACT_ROW_COMPANY);
         SelenideElement contactProjects = elementInContactRow(rowCount, REPORTS_CONTACT_ROW_PROJECTS);
-        SelenideElement contactCharges = elementInContactRow(rowCount, REPORTS_CONTACT_ROW_PROJECTS);
+        SelenideElement contactCharges = elementInContactRow(rowCount, REPORTS_CONTACT_ROW_CHARGES_TOTAL);
         ElementsCollection contactRelations = $$(byXpath(REPORTS_CONTACT_ROW_BY_INDEX(rowCount)+REPORTS_CONTACT_ROW_RELATIONS));
         if(rowCount<10) {
             if (contactType==PERSON) {
@@ -266,7 +266,7 @@ public class StepsPekamaReports extends StepsFactory {
                     contactProjects.shouldHave(text(projects));
                 }
                 if (charges==null) {
-                    contactCharges.shouldHave(text("no projects"));
+                    contactCharges.shouldHave(text("no charges"));
                 }
                 if (charges!=null) {
                     contactCharges.shouldHave(text(charges));
@@ -323,5 +323,11 @@ public class StepsPekamaReports extends StepsFactory {
     }
     public static void selectContactRow(String contactName){
         submitEnabledButton($(byXpath(REPORTS_CONTACT_ROW_BY_NAME(contactName)+REPORTS_CONTACT_ROW_SELECT)));
+    }
+    public static void clickContactRowProjectLink(Integer rowCount){
+        submitEnabledButton(elementInContactRow(rowCount, REPORTS_CONTACT_ROW_PROJECTS));
+    }
+    public static void clickContactRowChargesLink(Integer rowCount){
+        submitEnabledButton(elementInContactRow(rowCount, REPORTS_CONTACT_ROW_PROJECTS));
     }
 }
