@@ -30,8 +30,8 @@ public class PekamaReports extends Page {
     public static final SelenideElement REPORTS_BTN_NEW_PROJECT = $(byXpath("//button[@type='button'][contains(.,'New')]"));
     public static final SelenideElement REPORTS_BTN_NEW_PROJECT_TEMPLATE = $(byXpath("//button[@type='button'][contains(.,'New')]/following-sibling::button"));
     public static final ElementsCollection REPORTS_PROJECT_TEMPLATES_LIST = $$(byXpath("//button[@type='button'][contains(.,'New')]/following-sibling::ul//a"));
-    public static final SelenideElement REPORTS_BTN_Import = $(byXpath("//button[@type='button'][contains(.,'Import')]"));
-    public static final SelenideElement REPORTS_BTN_AddContact = $(byXpath("//button[@type='button'][contains(.,'Add contact')]"));
+    public static final SelenideElement REPORTS_BTN_IMPORT = $(byXpath("//button[@type='button'][contains(.,'Import')]"));
+    public static final SelenideElement REPORTS_BTN_ADD_CONTACT = $(byXpath("//button[@type='button'][contains(.,'Add contact')]"));
     //list view
     public static final SelenideElement REPORTS_SORT_BY_NONE = $(byLinkText("None"));
     public static final SelenideElement REPORTS_SORT_BY_NAME = $(byLinkText("Name"));

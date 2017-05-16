@@ -405,7 +405,7 @@ public class TestsPekamaTemplates {
 
         }
         finally {
-            //deleteTemplate();
+            deleteTemplate();
         }
         rootLogger.info("Test passed");
     }
@@ -567,8 +567,8 @@ public class TestsPekamaTemplates {
             checkDeployedEvent(eventType, LOREM_IPSUM_SHORT);
             }
         finally {
-//            openPageWithSpinner(URL_TEMPLATES_EVENT_TRADEMARK);
-//            deleteTemplate();
+            openPageWithSpinner(URL_TEMPLATES_EVENT_TRADEMARK);
+            deleteTemplate();
         }
         rootLogger.info("Test passed");
     }

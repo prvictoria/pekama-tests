@@ -2,7 +2,6 @@ package Tests;
 import Page.TestsCredentials.*;
 import Steps.*;
 import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -320,10 +319,16 @@ public class TestsPekamaReports {
         rootLogger.info("Test passed");
     }
     @Test
-    public void contacts_b_delete_all(){
+    public void contacts_check_gui_and_delete_all(){
         deleteAllContacts();
         $$(byText(PLACEHOLDER_NO_DATA)).shouldHave(CollectionCondition.sizeGreaterThanOrEqual(1));
         rootLogger.info("All contacts were deleted");
+
+        REPORTS_BTN_List.shouldBe(visible).shouldBe(enabled).shouldHave(attribute("class", "btn btn-gray btn-active"));
+        REPORTS_BTN_Report.shouldBe(visible).shouldBe(enabled).shouldHave(attribute("class", "btn btn-gray"));
+        REPORTS_BTN_IMPORT.shouldBe(visible).shouldBe(enabled);
+        REPORTS_BTN_ADD_CONTACT.shouldBe(visible).shouldBe(enabled);
+        rootLogger.info("Test passed");
     }
 
     @Test

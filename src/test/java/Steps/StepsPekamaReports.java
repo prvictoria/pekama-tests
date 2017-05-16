@@ -147,6 +147,15 @@ public class StepsPekamaReports extends StepsFactory {
         }
         rootLogger.info("Reports not present");
     }
+    public static void clickDeleteAndConfirm(){
+        sleep(2000);
+        if(REPORTS_DELETE.isDisplayed()) {
+            REPORTS_DELETE.click();
+            submitConfirmAction();
+            sleep(2000);
+            waitForSpinnerNotPresent();
+        }
+    }
     public static void deleteAllProjects(){
         rootLogger.info("Delete all Projects");
         openPageWithSpinner(URL_ReportsProjects);
@@ -216,12 +225,10 @@ public class StepsPekamaReports extends StepsFactory {
         }
     }
     public static void deleteAllContacts(){
-        rootLogger.info("Delete all Contacts");
-        openPageWithSpinner(URL_ReportsContacts);
-        REPORTS_ALL_CHECKBOX.waitUntil(visible, 20000).click();
-        REPORTS_DELETE.waitUntil(visible, 20000).click();
-        submitConfirmAction();
-        sleep(4000);
+            rootLogger.info("Delete all Contacts");
+            openPageWithSpinner(URL_ReportsContacts);
+            REPORTS_ALL_CHECKBOX.waitUntil(visible, 20000).click();
+            clickDeleteAndConfirm();
     }
     public static boolean reportsCheckContactRow(Integer rowCount, String name, String surname, String email, String country) {
         String row = REPORTS_CONTACT_ROW_BY_INDEX(rowCount);

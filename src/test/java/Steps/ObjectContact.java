@@ -164,7 +164,7 @@ public class ObjectContact {
             if(url.equals(URL_ReportsContacts)==false){
                 openPageWithSpinner(URL_ReportsContacts);
             }
-            submitEnabledButton(REPORTS_BTN_AddContact);
+            submitEnabledButton(REPORTS_BTN_ADD_CONTACT);
         }
         fillModalForm( "Person",
                 contactLegalEntity,
@@ -208,7 +208,7 @@ public class ObjectContact {
             if(url.equals(URL_ReportsContacts)==false){
                 openPageWithSpinner(URL_ReportsContacts);
             }
-            submitEnabledButton(REPORTS_BTN_AddContact);
+            submitEnabledButton(REPORTS_BTN_ADD_CONTACT);
         }
         fillModalForm( "Company",
                 contactLegalEntity,
