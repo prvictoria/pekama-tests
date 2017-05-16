@@ -358,7 +358,7 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_Contact_NAME = $(byXpath(mw+"//input[@name='first_name']"));
     public static final SelenideElement MW_Contact_SURNAME = $(byXpath(mw+"//input[@name='last_name']"));
     public static final SelenideElement MW_Contact_Select_CONTACT_TYPE = $(byXpath(mw+"//select"));
-    public static final SelenideElement MW_Contact_Select_COMPANY = $(byXpath(mw+"//label[text()='Company']/following-sibling::div//span[2]"));
+    public static final SelenideElement MW_Contact_Select_COMPANY = $(byXpath(mw+"//label[text()='Company']/following-sibling::div//span"));
     public static final SelenideElement MW_Contact_Input_COMPANY = $(byXpath(mw+"//label[text()='Company']/following-sibling::div//input[@type='search']"));
     public static final SelenideElement MW_Contact_EMAIL = $(byXpath(mw+"//input[@name='email']"));
     public static final SelenideElement MW_Contact_PHONE = $(byXpath(mw+"//input[@name='phone_number']"));

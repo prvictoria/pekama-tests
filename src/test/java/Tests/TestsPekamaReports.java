@@ -467,18 +467,39 @@ public class TestsPekamaReports {
         rootLogger.info("Contact add company link");
     }
     @Test
+    public void contacts_a_select_company_in_modal_person(){
+        deleteAllContacts();
+
+        ObjectContact company = new ObjectContact();
+        company.createCompany(REPORT, "Company",
+                null, null,
+                null, null,null,
+                null, null,
+                null, null);
+        ObjectContact person = new ObjectContact();
+        person.createPerson(REPORT, null,
+                "Name", "Surname", company.contactLegalEntity,
+                null, null,
+                null, null,null,
+                null, null,
+                null, null);
+        refresh();
+        reportsCheckContactRow(PERSON, 2, person, null, null,null);
+        rootLogger.info("Contact add company link");
+    }
+    @Test
     public void contacts_z_merge(){
         String ContactEmail1 = "email01@new.test";
         String ContactEmail2 = "email02@new.test";
         String Contact1NameSurname = nameContactName+"Z"+" "+nameContactSurname+"Z";
         String Contact2NameSurname = nameContactName+"A"+" "+nameContactSurname+"A";
 
-        rootLogger.info("Create 1st contact");
-        openPageWithSpinner(URL_ReportsContacts);
+        deleteAllContacts();
 
         rootLogger.info("Check default sort by name");
         REPORTS_SORT_BY_NAME.waitUntil(visible, 30000);
 
+        rootLogger.info("Create 1st contact");
         ObjectContact contact1 = new ObjectContact();
         contact1.createPerson(REPORT,  null,
                 nameContactName+"Z", nameContactSurname+"Z",
