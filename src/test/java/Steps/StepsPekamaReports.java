@@ -1,14 +1,17 @@
 package Steps;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.*;
 import org.junit.Assert;
 
 import static Page.ModalWindows.*;
 import static Page.PekamaReports.*;
-import static Page.TestsStrings.PLACEHOLDER_NO_DATA;
+import static Page.TestsStrings.*;
 import static Page.UrlStrings.*;
+import static Steps.ObjectContact.*;
+import static Steps.ObjectContact.contactType.*;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static com.codeborne.selenide.Condition.*;
@@ -222,12 +225,57 @@ public class StepsPekamaReports extends StepsFactory {
     }
     public static boolean reportsCheckContactRow(Integer rowCount, String name, String surname, String email, String country) {
         String row = REPORTS_CONTACT_ROW_BY_INDEX(rowCount);
-        SelenideElement contactName = $(byXpath(row+ REPORTS_CONTACT_ROW_NAME));
-        SelenideElement contactEmail = $(byXpath(row+ REPORTS_CONTACT_ROW_EMAIL));
-        SelenideElement contactCountry = $(byXpath(row+ REPORTS_CONTACT_ROW_COUNTRY));
+        SelenideElement contactName = $(byXpath(row+REPORTS_CONTACT_ROW_NAME));
+        SelenideElement contactEmail = $(byXpath(row+REPORTS_CONTACT_ROW_EMAIL));
+        SelenideElement contactCountry = $(byXpath(row+REPORTS_CONTACT_ROW_COUNTRY));
         contactName.shouldHave(text(name+" "+surname));
         contactEmail.shouldHave(text(email));
         contactCountry.shouldHave(text(country));
+        return  true;
+    }
+    public static boolean reportsCheckContactRow(contactType contactType, Integer rowCount, ObjectContact contact,  String projects, String charges,  Integer relationCount) {
+        rootLogger.info("Check contact row #"+rowCount);
+        SelenideElement contactName = elementInContactRow(rowCount, REPORTS_CONTACT_ROW_NAME);
+        SelenideElement contactEmail = elementInContactRow(rowCount, REPORTS_CONTACT_ROW_EMAIL);
+        SelenideElement contactCountry = elementInContactRow(rowCount, REPORTS_CONTACT_ROW_COUNTRY);
+        SelenideElement contactCompany = elementInContactRow(rowCount, REPORTS_CONTACT_ROW_COMPANY);
+        SelenideElement contactProjects = elementInContactRow(rowCount, REPORTS_CONTACT_ROW_PROJECTS);
+        SelenideElement contactCharges = elementInContactRow(rowCount, REPORTS_CONTACT_ROW_PROJECTS);
+        ElementsCollection contactRelations = $$(byXpath(REPORTS_CONTACT_ROW_BY_INDEX(rowCount)+REPORTS_CONTACT_ROW_RELATIONS));
+        if(rowCount<10) {
+            if (contactType==PERSON) {
+                contactName.shouldHave(text(contact.contactFullName));
+                if (contact.contactCompany != null) {
+                    contactCompany.shouldHave(text(contact.contactCompany));
+                }
+            }
+            if(contactType==COMPANY){
+                contactName.shouldHave(text(contact.contactLegalEntity));
+            }
+            if (contactType==PERSON || contactType==COMPANY){
+                if (contact.contactEmail != null) {
+                    contactEmail.shouldHave(text(contact.contactEmail));
+                }
+                if (contact.contactCountry != null) {
+                    contactCountry.shouldHave(text(contact.contactCountry));
+                }
+                if (projects==null) {
+                    contactProjects.shouldHave(text("no projects"));
+                }
+                if (projects!=null) {
+                    contactProjects.shouldHave(text(projects));
+                }
+                if (charges==null) {
+                    contactCharges.shouldHave(text("no projects"));
+                }
+                if (charges!=null) {
+                    contactCharges.shouldHave(text(charges));
+                }
+                if (relationCount != null) {
+                    contactRelations.shouldHaveSize(relationCount);
+                }
+            }
+        }
         return  true;
     }
     public static SelenideElement elementInContactRow(Integer rowCount, final String path){
@@ -268,8 +316,12 @@ public class StepsPekamaReports extends StepsFactory {
         submitEnabledButton(elementInContactRow(rowCount, REPORTS_CONTACT_FORM_SAVE));
     }
     public static void saveContactForm(String contactName){
-        String rowBtn = REPORTS_CONTACT_ROW_BY_NAME(contactName)+REPORTS_CONTACT_FORM_SAVE;
-        SelenideElement btn = $(byXpath(rowBtn));
-        submitEnabledButton(btn);
+        submitEnabledButton($(byXpath(REPORTS_CONTACT_ROW_BY_NAME(contactName)+REPORTS_CONTACT_FORM_SAVE)));
+    }
+    public static void selectContactRow(Integer rowCount){
+        submitEnabledButton(elementInContactRow(rowCount, REPORTS_CONTACT_ROW_SELECT));
+    }
+    public static void selectContactRow(String contactName){
+        submitEnabledButton($(byXpath(REPORTS_CONTACT_ROW_BY_NAME(contactName)+REPORTS_CONTACT_ROW_SELECT)));
     }
 }

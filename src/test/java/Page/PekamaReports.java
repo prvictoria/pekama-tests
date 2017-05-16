@@ -106,8 +106,10 @@ public class PekamaReports extends Page {
     public static final String REPORTS_CONTACT_ROW_EMAIL = "//span[@ng-if='contact.email']";
     public static final String REPORTS_CONTACT_ROW_COUNTRY = "//span[@ng-if='contact.country']";
     public static final String REPORTS_CONTACT_ROW_COMPANY = "//span[@ng-if='contact.company']";
-    public static final String REPORTS_CONTACT_ROW_PROJECT_QTY = "//span[@ng-switch='contact.number_of_projects']";
-    public static final String REPORTS_CONTACT_ROW_CHARGES_TOTAL = "//span[@ng-switch='!contact.total_charges']";
+    public static final String REPORTS_CONTACT_ROW_PROJECTS = "//span[@ng-switch='contact.number_of_projects']/*";
+    public static final String REPORTS_CONTACT_ROW_CHARGES_TOTAL = "//span[@ng-switch='!contact.total_charges']/*";
+    public static final String REPORTS_CONTACT_ROW_RELATIONS = "//*[@class='name ng-binding']/following-sibling::*";
+
 
     public static final String REPORTS_CONTACTS_EDIT_BTN = "//button[./i[@class='pkm-icon-edit']]";
     public static final String REPORTS_CONTACTS_DELETE_BTN = "//button[./i[@class='pkm-icon-delete']]";
@@ -135,7 +137,7 @@ public class PekamaReports extends Page {
         return field;
     }
     public static final SelenideElement REPORTS_CONTACT_FORM_SELECT_COMPANY(Integer rowCount) {
-        final String REPORTS_CONTACT_FORM_SELECT_COMPANY = "//label[text()='Company']/following-sibling::div//span[2]";
+        final String REPORTS_CONTACT_FORM_SELECT_COMPANY = "//label[text()='Company']/following-sibling::div//span";
         SelenideElement field = elementInContactRow(rowCount, REPORTS_CONTACT_FORM_SELECT_COMPANY);
         return field;
     }

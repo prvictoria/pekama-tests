@@ -35,8 +35,10 @@ public class ObjectContact {
     public String contactCity = null;
     public String contactRegion = null;
     public String contactCountry = null;
+    public String contactFullName = contactFirstName+" "+contactLastName;
     public String[] contactProjects = null;
     public String contactProject = null;
+    public String[] contactRelations = null;
     public String contactRelation = null;
 
     public enum contactType {PERSON, COMPANY}
@@ -71,6 +73,7 @@ public class ObjectContact {
         this.contactCity = contactCity;
         this.contactRegion = contactRegion;
         this.contactCountry = contactCountry;
+        this.contactFullName = contactFirstName+" "+contactLastName;
 
         waitForModalWindow(TITLE_MW_CONTACT);
         if(contactType!=null){
@@ -252,6 +255,7 @@ public class ObjectContact {
         this.contactCity = contactCity;
         this.contactRegion = contactRegion;
         this.contactCountry = contactCountry;
+        this.contactFullName = contactFirstName+" "+contactLastName;
 
         if(contactType!=null){
             if(contactType.equals("Person")){

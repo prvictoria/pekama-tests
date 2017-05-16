@@ -23,6 +23,7 @@ import static Page.TestsStrings.*;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
 import static Steps.MessagesValidator.ValidationReport.*;
+import static Steps.ObjectContact.contactType.PERSON;
 import static Steps.ObjectContact.enterPoint.*;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
@@ -401,6 +402,32 @@ public class TestsPekamaReports {
         rootLogger.info("Validation test Passed");
     }
     @Test
+    public void contacts_a_validation_form_person_separate_fields(){
+        ObjectContact contact = new ObjectContact();
+        contact.createPerson(REPORT, null, "Name", "Surname", null,
+                null, null,
+                null, null,null,
+                null, null,
+                null, null);
+        clickContactEdit(1);
+        String string = randomString(256);
+        contact.editForm(1, null,  "", string, string, null, "", "", "", "", "", "", "", "", null);
+        checkText("Ensure this field has no more than 100 characters.", 2);
+
+        refresh();
+        clickContactEdit(1);
+        contact.editForm(1, null,  "", "", "", null, "", string, string, string, "", string, "", "", null);
+        checkText("Ensure this field has no more than 20 characters.", 4);
+
+        refresh();
+        clickContactEdit(1);
+        contact.editForm(1, null,  "", "", "", null, string, "", "", "", "", "", string, string, null);
+        checkText("Ensure this field has no more than 255 characters.", 2);
+        checkText("Ensure this field has no more than 254 characters.");
+        checkText("Enter a valid email address.");
+        rootLogger.info("Validation test Passed");
+    }
+    @Test
     public void contacts_a_edit_form_person(){
         ObjectContact contact = new ObjectContact();
         contact.createCompany(REPORT, "Company1",
@@ -414,6 +441,30 @@ public class TestsPekamaReports {
         clickContactDelete(1);
         REPORTS_LIST_ROWS.shouldHaveSize(listSize-1);
         rootLogger.info("Contact CRUD test Passed");
+    }
+    @Test
+    public void contacts_a_select_company_in_form_person(){
+        deleteAllContacts();
+
+        ObjectContact company = new ObjectContact();
+        company.createCompany(REPORT, "Company",
+                null, null,
+                null, null,null,
+                null, null,
+                null, null);
+        ObjectContact person = new ObjectContact();
+        person.createPerson(REPORT, null,
+                "Name", "Surname", null,
+                null, null,
+                null, null,null,
+                null, null,
+                null, null);
+        clickContactEdit(2);
+        person.editForm(2, "Person", null, "Name", "Surname", company.contactLegalEntity, null, null, null, null, null, null, null, null, null);
+
+        refresh();
+        reportsCheckContactRow(PERSON, 2, person, null, null,null);
+        rootLogger.info("Contact add company link");
     }
     @Test
     public void contacts_z_merge(){
