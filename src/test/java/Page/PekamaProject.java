@@ -329,13 +329,20 @@ public class PekamaProject extends Page {
     public static final SelenideElement TAB_CHARGES_BTN_DELETE = TAB_CONTROL_DELETE;
     public static final SelenideElement TAB_CHARGES_XERO = $(byXpath("//button[@ng-click='bulkToXero()']"));
 
-    public static final SelenideElement TAB_CHARGES01From = $(byXpath("//div[@class='items-list with-caret ng-scope finances']/div[1]//span[@class='name ng-binding']"));
-    public static final SelenideElement TAB_CHARGES01Type = $(byXpath("//div[@class='items-list with-caret ng-scope finances']/div[1]//span[@class='task-title ng-binding']"));
-    public static final SelenideElement TAB_CHARGES01Total = $(byXpath("//div[@class='items-list with-caret ng-scope finances']/div[1]//span[@class='price ng-binding']"));
-    public static final SelenideElement TAB_CHARGES01Date = $(byXpath("//div[@class='items-list with-caret ng-scope finances']/div[1]//span[@class='date ng-binding']"));
-    public static final SelenideElement TAB_CHARGES01To = $(byXpath(""));
-    public static final SelenideElement TAB_CHARGES01AllZone = $(byXpath("//div[@class='items-list with-caret ng-scope finances']/div[1]//div[@class='organizations-list ng-isolate-scope']//span"));
-    public static final SelenideElement TAB_CHARGES01OneTeamZone = $(byXpath(".//*[@id='page']/div[2]/ui-view/div/section[2]/ui-view/div[2]/div/div/ui-view/div[3]/div/div/ng-include/div[2]/ul/li/a"));
+    public static final ElementsCollection TAB_CHARGES_LIST = $$(byXpath("//div[@class='items-list with-caret ng-scope finances']/div"));
+    public static String TAB_CHARGES_ROW_BY_INDEX(Integer rowCount) {
+        String count = Integer.toString(rowCount);
+        String row = String.format("//div[@class='items-list with-caret ng-scope finances']/div[%s]", count);
+        return row;
+    }
+    public static final String TAB_CHARGES_ROW_SELECT = "//input";
+    public static final String TAB_CHARGES_ROW_TEAM = "//*[@object='object']//span";
+    public static final String TAB_CHARGES_ROW_TEAMS = "//*[@object='object']//li[%s]/a";
+    public static final String TAB_CHARGES_ROW_FROM_TO = "//*[@class='link-task']//span[1]";
+    public static final String TAB_CHARGES_ROW_TYPE = "//*[@class='link-task']//span[2]";
+    public static final String TAB_CHARGES_ROW_PRICE = "//*[@class='link-task']//span[3]";
+    public static final String TAB_CHARGES_ROW_DATE = "//*[@class='link-task']//span[4]";
+
 
         //TAB FAMILY
     public static final SelenideElement TAB_FAMILY = $(byXpath(""));

@@ -90,7 +90,7 @@ public class PekamaReports extends Page {
     //CONTACTS
     public static final SelenideElement REPORTS_Contacts = $(byXpath(""));
     public static final SelenideElement REPORTS_1RowNameSurname = $("div.conact-page-name.ng-binding");
-    public static final SelenideElement REPORTS_1RowCountry = $(byXpath(".//*[@class='contact-page-country ng-binding'][contains(.,'Ireland')]"));
+    public static final SelenideElement REPORTS_1RowCountry = $(byXpath("//*[@class='contact-page-country ng-binding'][contains(.,'Ireland')]"));
     public static String REPORTS_CONTACT_ROW_BY_INDEX(Integer rowCount) {
         String count = Integer.toString(rowCount);
         String row = String.format("//ng-include[@src='reportParams.listTemplate']/li[%s]", count);

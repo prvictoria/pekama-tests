@@ -14,6 +14,7 @@ import static Page.PekamaConversationProject.*;
 import static Page.PekamaDashboard.*;
 import static Page.PekamaProject.*;
 
+import static Page.PekamaReports.REPORTS_CONTACT_ROW_BY_INDEX;
 import static Page.TestsStrings.*;
 import static Page.UrlStrings.*;
 import static Steps.StepsCommunity.*;
@@ -87,6 +88,7 @@ public class StepsPekamaProject extends StepsPekama {
         clickElement(TAB_DOCS_BTN_ADD);
         clickElement(TAB_DOC_UPLOAD);
     }
+
     public static void fileMenuMakeAction(String actionName, String... args) {
         String menu = String.format(TAB_DOCS_FILES_MENU_OPEN, args);
         $(byXpath(menu)).shouldBe(visible);
@@ -552,7 +554,37 @@ public class StepsPekamaProject extends StepsPekama {
         submitEnabledButton(MW_BTN_OK);
         MW.waitUntil(not(visible), 15000);
     }
-
+//TAB CHARGES
+    public static void callChargesModal(){
+        clickElement(PROJECT_TAB_CHARGES);
+        clickElement(TAB_CHARGES_ADD);
+        waitForModalWindow(TITLE_MW_CHARGE);
+    }
+    public static void callXeroModal(){
+        clickElement(PROJECT_TAB_CHARGES);
+        clickElement(projectAllCheckbox);
+        clickElement(TAB_CHARGES_XERO);
+        sleep(3000);
+    }
+    public static void deleteAllCharges(){
+        clickElement(PROJECT_TAB_CHARGES);
+        clickElement(projectAllCheckbox);
+        clickElement(TAB_CHARGES_BTN_DELETE);
+        submitConfirmAction();
+        checkText(PLACEHOLDER_EMPTY_LIST);
+    }
+    public static SelenideElement elementInChargesRow(Integer rowCount, final String path){
+        if(rowCount>10){Assert.fail("Only 10 rows on the page");}
+        String rowBtn = TAB_CHARGES_ROW_BY_INDEX(rowCount)+path;
+        SelenideElement btn = $(byXpath(rowBtn));
+        return btn;
+    }
+    public static void selectChargesRow(Integer rowCount){
+        submitEnabledButton(elementInChargesRow(rowCount, TAB_CHARGES_ROW_SELECT));
+    }
+    public static void clickChargesRow(Integer rowCount){
+        submitEnabledButton(elementInChargesRow(rowCount, TAB_CHARGES_ROW_FROM_TO));
+    }
 
  // CONVERSATION ====================================================================
     public static boolean callModalNewConversation(){

@@ -1,9 +1,6 @@
 package Tests;
 import Page.TestsCredentials;
-import Steps.MessagesIMAP;
-import Steps.ObjectContact;
-import Steps.ObjectTask;
-import Steps.User;
+import Steps.*;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.ex.SoftAssertionError;
@@ -664,7 +661,7 @@ public class TestsPekamaProject {
     }
 
     @Test
-    public void createProject_ChargesXero_A_SendBill()  throws SoftAssertionError {
+    public void tabCharges_Xero_A_SendBill()  throws SoftAssertionError {
         String xeroLogin = TEST_USER_EMAIL;
         String xeroPassword = TEST_USER_XERO_PASSWORD;
         String price = "5000";
@@ -673,10 +670,7 @@ public class TestsPekamaProject {
         createCharge(testSearchChargesType, EUR, price);
         rootLogger.info("Start Xero flow");
 
-        projectAllCheckbox.click();
-        TAB_CHARGES_XERO.click();
-        sleep(3000);
-
+        callXeroModal();
         if ($(byText("Invoice created")).isDisplayed() == false) {
               rootLogger.info("Modal window not displayed");
             try {
@@ -755,7 +749,7 @@ public class TestsPekamaProject {
         rootLogger.info("Test passed");
     }
     @Test
-    public void createProject_ChargesXero_B_ValidationNotSameCurrency(){
+    public void tabCharges_Xero_B_ValidationNotSameCurrency(){
 //        String xeroLogin = TEST_USER_EMAIL;
 //        String xeroPassword = TEST_USER_XERO_PASSWORD;
         String price = "5000";
@@ -764,8 +758,7 @@ public class TestsPekamaProject {
         createCharge(testSearchChargesType, EUR, price);
         createCharge(testSearchChargesType, USD, price);
         rootLogger.info("Start Xero flow");
-        projectAllCheckbox.shouldBe(visible).click();
-        TAB_CHARGES_XERO.shouldBe(visible).click();
+        callXeroModal();
 
         waitForModalWindow("ERRORS");
         checkText("Financials have different currency codes");
@@ -773,7 +766,7 @@ public class TestsPekamaProject {
         MW.shouldNotBe(visible);
     }
     @Test
-    public void createProject_ChargesXero_B_ValidationNotAllowedCurrency(){
+    public void tabCharges_Xero_B_ValidationNotAllowedCurrency(){
 //        String xeroLogin = TEST_USER_EMAIL;
 //        String xeroPassword = TEST_USER_XERO_PASSWORD;
         String price = "5000";
@@ -782,8 +775,7 @@ public class TestsPekamaProject {
         createCharge(testSearchChargesType, USD, price);
         createCharge(testSearchChargesType, USD, price);
         rootLogger.info("Start Xero flow");
-        projectAllCheckbox.click();
-        TAB_CHARGES_XERO.click();
+        callXeroModal();
 
         waitForModalWindow("ERRORS");
         checkText("Organisation is not subscribed to currency USD");
@@ -791,7 +783,7 @@ public class TestsPekamaProject {
         MW.shouldNotBe(visible);
     }
     @Test//(timeout=240000)
-    public void createProject_ChargesXero_C_MergeCharges(){
+    public void tabCharges_Xero_C_MergeCharges(){
         String xeroLogin = TEST_USER_EMAIL;
         String xeroPassword = TEST_USER_XERO_PASSWORD;
         String price1 = "7777";
@@ -803,9 +795,7 @@ public class TestsPekamaProject {
         createCharge(testSearchChargesType, EUR, price2);
 
         rootLogger.info("Start Xero flow");
-        projectAllCheckbox.click();
-        TAB_CHARGES_XERO.waitUntil(visible, 20000).click();
-        sleep(3000);
+        callXeroModal();
         if ($(byText("Invoice created")).isDisplayed()) {
             rootLogger.info("Modal window displayed");
             waitForModalWindow("Invoice created");
@@ -850,15 +840,13 @@ public class TestsPekamaProject {
        }
     }
     @Test
-    public void createProject_ChargesModalWindowValidation() {
+    public void tabCharges_ModalWindowValidation() {
         String bigDecimal = "12345678901234567890";
         String floatString1 = "1.2345678901234567890";
         String floatString2 = "123456789012345678.90";
-        PROJECT_TAB_CHARGES.waitUntil(visible, 15000).click();
 
+        callChargesModal();
         rootLogger.info("Validation empty field");
-        TAB_CHARGES_ADD.waitUntil(enabled, 15000).click();
-        waitForModalWindow(TITLE_MW_CHARGE);
         MW_CHARGES_SELECT_FROM.shouldHave(text(TEST_USER_FULL_TEAM_NAME));
         fillField(MW_CHARGES_INPUT_ITEM, LOREM_IPSUM_SHORT);
         submitEnabledButton(MW_BTN_OK);
@@ -867,9 +855,7 @@ public class TestsPekamaProject {
         MW.waitUntil(not(visible),20000);
 
         rootLogger.info("Validation max value HOUR, MIN, RATE");
-        sleep(2000);
-        submitEnabledButton(TAB_CHARGES_ADD);
-        waitForModalWindow(TITLE_MW_CHARGE);
+        callChargesModal();
         selectItemInDropdown(MW_CHARGES_SELECT_TYPE, MW_CHARGES_INPUT_TYPE, CHARGES_TYPE_ASSOCIATE);
         selectItemInDropdown(MW_CHARGES_SELECT_CURRENCY, MW_CHARGES_INPUT_CURRENCY, GBP);
         fillField(MW_CHARGES_INPUT_HOUR, bigDecimal);
@@ -882,8 +868,7 @@ public class TestsPekamaProject {
         MW.waitUntil(not(visible),20000);
 
         rootLogger.info("Validation max value - QTY, PRICE, VAT, DISCOUNT");
-        TAB_CHARGES_ADD.waitUntil(enabled, 15000).click();
-        waitForModalWindow(TITLE_MW_CHARGE);
+        callChargesModal();
         selectItemInDropdown(MW_CHARGES_SELECT_TYPE, MW_CHARGES_INPUT_TYPE, CHARGES_TYPE_ASSOCIATE);
         selectItemInDropdown(MW_CHARGES_SELECT_CURRENCY, MW_CHARGES_INPUT_CURRENCY, GBP);
         fillField(MW_CHARGES_INPUT_QTY, bigDecimal);
@@ -898,8 +883,7 @@ public class TestsPekamaProject {
         MW.waitUntil(not(visible),20000);
 
         rootLogger.info("Validation float - PRICE should be decimal");
-        TAB_CHARGES_ADD.waitUntil(enabled, 15000).click();
-        waitForModalWindow(TITLE_MW_CHARGE);
+        callChargesModal();
         selectItemInDropdown(MW_CHARGES_SELECT_TYPE, MW_CHARGES_INPUT_TYPE, CHARGES_TYPE_ASSOCIATE);
         selectItemInDropdown(MW_CHARGES_SELECT_CURRENCY, MW_CHARGES_INPUT_CURRENCY, GBP);
         MW_CHARGES_INPUT_PRICE.clear();
@@ -916,6 +900,15 @@ public class TestsPekamaProject {
         rootLogger.info("Test passed");
 
     }
+    //TODO
+    @Test
+    public void tabCharges_delete_all(){
+        ObjectCharges invoice = new ObjectCharges();
+        invoice.create(CHARGES_TYPE_ASSOCIATE, null, 100);
+        invoice.checkInvoiceRow(1, invoice);
+        deleteAllCharges();
+    }
+
     @Test
     public void tabTasks_CRUD() {
         String taskName = "new task";
@@ -1342,7 +1335,7 @@ public class TestsPekamaProject {
         taskRow3Title.shouldHave(text((objectTask3.taskTitle)));
         rootLogger.info("Test passed");
     }
-    //TODO bug
+    //TODO sort by first_name
     @Test
     public void tabTasks_TasksSorting_ByAssigneeName() {
         String member1 = createMemberInTeamSettings("abcd@memeber.email");

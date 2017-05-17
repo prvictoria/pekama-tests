@@ -18,6 +18,7 @@ import static Page.UrlConfig.*;
 import static Steps.StepsModalWindows.ModalConversationFollowerActions.*;
 import static Steps.StepsModalWindows.ModalConversationTeamActions.*;
 import static Steps.StepsPekama.*;
+import static Steps.StepsPekamaProject.callChargesModal;
 import static Utils.Utils.*;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.*;
@@ -530,10 +531,7 @@ public class StepsModalWindows extends StepsFactory {
         return eventType;
     }
     public static String createCharge(String chargeType, String currency, String price) {
-        PROJECT_TAB_CHARGES.waitUntil(visible, 15000).click();
-        TAB_CHARGES_ADD.waitUntil(enabled, 15000).click();
-        rootLogger.info("Create charge");
-        waitForModalWindow(TITLE_MW_CHARGE);
+        callChargesModal();
         selectItemInDropdown(MW_CHARGES_SELECT_TYPE, MW_CHARGES_INPUT_TYPE, chargeType);
         selectItemInDropdown(MW_CHARGES_SELECT_CURRENCY, MW_CHARGES_INPUT_CURRENCY, currency);
         fillField(MW_CHARGES_INPUT_PRICE, price);
