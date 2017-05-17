@@ -405,7 +405,7 @@ public class TestsPekamaTemplates {
 
         }
         finally {
-            deleteTemplate();
+            //deleteTemplate();
         }
         rootLogger.info("Test passed");
     }
@@ -437,8 +437,8 @@ public class TestsPekamaTemplates {
         String setName = null;
         String textMsg = LOREM_IPSUM_SHORT;
         openPageWithSpinner(URL_TEMPLATES_MSG_PATENT);
-        rootLogger.info("Clear all templates before test");
-        deleteTemplate();
+//        rootLogger.info("Clear all templates before test");
+//        deleteTemplate();
 
         rootLogger.info("Check if user able to createPerson set with custom DEFINING");
         setName = "MESSAGE_T_DEFINIG_";

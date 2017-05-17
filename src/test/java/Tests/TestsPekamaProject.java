@@ -615,9 +615,12 @@ public class TestsPekamaProject {
     @Test
     public void tabInfo_N_selectValues() {
         scrollUp();
-        TAB_INFO_PROJECT_TYPE.shouldHave(text(CaseType.TRADEMARK.getValue()));
+        TAB_INFO_PROJECT_TYPE.shouldHave(text(TEST_CASE_TYPE));
+        sleep(1000);
         setProjectDefining(NETHERLANDS_ANTILES.getValue());
+        sleep(1000);
         setProjectType(TrademarkTypes.BASIC.getValue());
+        sleep(2000);
         setProjectSubType("Certification Mark");
         rootLogger.info("Test passed");
     }
