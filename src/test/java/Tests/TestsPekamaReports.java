@@ -101,6 +101,7 @@ public class TestsPekamaReports {
 
     @Test @Category(AllEmailsTests.class)
     public void projects_send_report_A_SendReport() {
+        skipBefore =true;
         String thisMailingListName = "Projects Test Mailing List";
         rootLogger.info("Open ProjectValues reports, opened URL - " + URL_ReportsProjects);
         openPageWithSpinner(URL_ReportsProjects);
@@ -109,7 +110,6 @@ public class TestsPekamaReports {
         mailingListCreateNew(thisMailingListName);
         rootLogger.info("Send report");
         mailingListSendReport(thisMailingListName);
-        skipBefore =true;
     }
     @Test @Category({AllEmailsTests.class, AllImapTests.class})
     public void projects_send_report_B_CheckEmail() {
@@ -374,6 +374,7 @@ public class TestsPekamaReports {
     }
     @Test
     public void contacts_a_validation_form_person(){
+        deleteAllContacts();
         ObjectContact contact = new ObjectContact();
         contact.createCompany(REPORT, "Company1",
                 null, null,
@@ -392,6 +393,7 @@ public class TestsPekamaReports {
     }
     @Test
     public void contacts_a_validation_form_company(){
+        deleteAllContacts();
         ObjectContact contact = new ObjectContact();
         contact.createPerson(REPORT, null, "Name", "Surname", null,
                 null, null,
@@ -409,6 +411,7 @@ public class TestsPekamaReports {
     }
     @Test
     public void contacts_a_validation_form_person_separate_fields(){
+        deleteAllContacts();
         ObjectContact contact = new ObjectContact();
         contact.createPerson(REPORT, null, "Name", "Surname", null,
                 null, null,
@@ -417,17 +420,17 @@ public class TestsPekamaReports {
                 null, null);
         clickContactEdit(1);
         String string = randomString(256);
-        contact.editForm(1, null,  "", string, string, null, "", "", "", "", "", "", "", "", null);
+        contact.editForm(1, "Person",  "", string, string, null, "", "", "", "", "", "", "", "", null);
         checkText("Ensure this field has no more than 100 characters.", 2);
 
         refresh();
         clickContactEdit(1);
-        contact.editForm(1, null,  "", "", "", null, "", string, string, string, "", string, "", "", null);
+        contact.editForm(1, "Person",  "", "", "", null, "", string, string, string, "", string, "", "", null);
         checkText("Ensure this field has no more than 20 characters.", 4);
 
         refresh();
         clickContactEdit(1);
-        contact.editForm(1, null,  "", "", "", null, string, "", "", "", "", "", string, string, null);
+        contact.editForm(1, "Person",  "", "", "", null, string, "", "", "", "", "", string, string, null);
         checkText("Ensure this field has no more than 255 characters.", 2);
         checkText("Ensure this field has no more than 254 characters.");
         checkText("Enter a valid email address.");
@@ -435,6 +438,7 @@ public class TestsPekamaReports {
     }
     @Test
     public void contacts_a_edit_form_person(){
+        deleteAllContacts();
         ObjectContact contact = new ObjectContact();
         contact.createCompany(REPORT, "Company1",
                 null, null,
