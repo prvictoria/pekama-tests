@@ -33,6 +33,8 @@ public class PekamaSignUp extends Page {
     public static final SelenideElement signupPassword = $(byId("inputPassword"));
     public static final SelenideElement signupSelectBusinessType = $(byId("id_user_info-company_type"));
     public static final SelenideElement signupSelectYourRole = $(byId("id_user_info-company_rel"));
+    public static final SelenideElement signupPhone = $(byId("inputPhone"));
+    public static final SelenideElement signupSelectCountry = $(byId("id_user_info-company_country"));
 
     public static final SelenideElement signupUpAvatar =  $(byXpath("//*[@id='avatar-preview-canvas']"));
 

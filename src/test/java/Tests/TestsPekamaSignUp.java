@@ -8,13 +8,13 @@ import org.junit.*;
 import org.junit.experimental.categories.Category;
 import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
-import org.openqa.selenium.By;
 
 import java.io.IOException;
 
 import static Page.Emails.*;
 import static Page.PekamaSignUp.*;
 import static Page.TestsCredentials.*;
+import static Page.TestsCredentials.Countries.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
@@ -25,10 +25,8 @@ import static Tests.BeforeTestsSetUp.*;
 import static com.codeborne.selenide.CollectionCondition.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.refresh;
-import static com.codeborne.selenide.Selenide.sleep;
 import static com.codeborne.selenide.WebDriverRunner.*;
 /**
  * Created by Viachaslau Balashevich.
@@ -69,48 +67,44 @@ public class TestsPekamaSignUp {
 
     @Test
     public void allFieldsEmpty() {
-    //check default form state
+        rootLogger.info("Check default form state");
         signupEmail.shouldBe(visible).shouldHave(value(""));
         signupName.shouldBe(visible).shouldHave(value(""));
         signupSurname.shouldBe(visible).shouldHave(value(""));
         signupCompany.shouldBe(visible).shouldHave(value(""));
         signupPassword.shouldBe(visible).shouldHave(value(""));
+        signupSelectBusinessType.shouldBe(visible).shouldHave(value(""));
+        signupSelectYourRole.shouldBe(visible).shouldHave(value(""));
+        signupPhone.shouldBe(visible).shouldHave(value(""));
+        signupSelectCountry.shouldBe(visible).shouldHave(value(""));
+
         signupUpload.shouldBe(visible).shouldHave(value(""));
-        // signupSubscribeNews.shouldBe(visible).shouldBe(selected);
         signupAgree.shouldBe(selected);
         signupTerms.shouldBe(visible);
         signupNext.shouldBe(visible).shouldBe(enabled).click();
-        checkText(ERROR_MSG_REQUIRED_FIELD, 7);
+        checkText(ERROR_MSG_REQUIRED_FIELD, 9);
         rootLogger.info("Test if all fields are blank - passed");
     }
     @Test
     public void onlyEmailSubmitted() {
         User fakeUser = new User();
         fakeUser.submitSignUp(
-                VALID_EMAIL,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null);
+                VALID_EMAIL, null, null,
+                null,null,null,
+                null, null, null);
         Assert.assertFalse(fakeUser.isSignUpSucceed);
-        checkText(ERROR_MSG_REQUIRED_FIELD, 6);
+        checkText(ERROR_MSG_REQUIRED_FIELD, 8);
         rootLogger.info("Tests if 1 fields is blank - passed");
     }
     @Test
     public void onlyNameSubmitted() {
         User fakeUser = new User();
         fakeUser.submitSignUp(
-                null,
-                null,
-                VALID_NAME,
-                null,
-                null,
-                null,
-                null);
+                null,VALID_NAME,  null,
+                null,null,null,
+                null, null, null);
         Assert.assertFalse(fakeUser.isSignUpSucceed);
-        checkText(ERROR_MSG_REQUIRED_FIELD, 6);
+        checkText(ERROR_MSG_REQUIRED_FIELD, 8);
         rootLogger.info("Tests if 1 fields is blank - passed");
     }
     @Test
@@ -123,9 +117,9 @@ public class TestsPekamaSignUp {
                 VALID_SURNAME,
                 null,
                 null,
-                null);
+                null, null, null);
         Assert.assertFalse(fakeUser.isSignUpSucceed);
-        checkText(ERROR_MSG_REQUIRED_FIELD, 6);
+        checkText(ERROR_MSG_REQUIRED_FIELD, 8);
         rootLogger.info("Tests if 1 fields is blank - passed");
     }
     @Test
@@ -138,9 +132,9 @@ public class TestsPekamaSignUp {
                 null,
                 VALID_COMPANY,
                 null,
-                null);
+                null, null, null);
         Assert.assertFalse(fakeUser.isSignUpSucceed);
-        checkText(ERROR_MSG_REQUIRED_FIELD, 6);
+        checkText(ERROR_MSG_REQUIRED_FIELD, 8);
         rootLogger.info("Tests if 1 fields is blank - passed");
     }
     @Test
@@ -153,9 +147,9 @@ public class TestsPekamaSignUp {
                 null,
                 null,
                 null,
-                null);
+                null, null, null);
         Assert.assertFalse(fakeUser.isSignUpSucceed);
-        checkText(ERROR_MSG_REQUIRED_FIELD, 6);
+        checkText(ERROR_MSG_REQUIRED_FIELD, 8);
         rootLogger.info("Tests if 1 fields is blank - passed");
     }
     @Test
@@ -168,10 +162,10 @@ public class TestsPekamaSignUp {
                 VALID_COMPANY,
                 VALID_PASSWORD,
                 null,
-                "3");
+                "3", null, null);
         Assert.assertFalse(fakeUser.isSignUpSucceed);
-        checkText(ERROR_MSG_REQUIRED_FIELD, 1);
-        rootLogger.info("Tests if 1 fields is blank - passed");
+        checkText(ERROR_MSG_REQUIRED_FIELD, 3);
+        rootLogger.info("Tests if 3 fields is blank - passed");
     }
     @Test
     public void notSubmittedYourRole() {
@@ -183,10 +177,10 @@ public class TestsPekamaSignUp {
                 VALID_COMPANY,
                 VALID_PASSWORD,
                 "3",
-                null);
+                null, null, null);
         Assert.assertFalse(fakeUser.isSignUpSucceed);
-        checkText(ERROR_MSG_REQUIRED_FIELD, 1);
-        rootLogger.info("Tests if 1 fields is blank - passed");
+        checkText(ERROR_MSG_REQUIRED_FIELD, 3);
+        rootLogger.info("Tests if 3 fields is blank - passed");
     }
     @Test
     public void validationEmailField() {
@@ -195,15 +189,13 @@ public class TestsPekamaSignUp {
             User userFacke = new User();
             userFacke.submitSignUp(
                     arrayInvalidEmails[arrayLength],
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null);
+                    null, null,
+                    null, null,
+                    null,   null,
+                    null, null);
             Assert.assertFalse(userFacke.isSignUpSucceed);
                 checkText(ERROR_MSG_INVALID_EMAIL, 1);
-                checkText(ERROR_MSG_REQUIRED_FIELD, 6);
+                checkText(ERROR_MSG_REQUIRED_FIELD, 8);
                 refresh();
             }
         rootLogger.info("Email validation LOOP - Passed");
@@ -213,13 +205,11 @@ public class TestsPekamaSignUp {
         for (int arrayLength = 0; arrayLength < arrayInvalidPasswords.length; arrayLength++) {
             User fakeUser = new User();
             fakeUser.submitSignUp(
-                    VALID_EMAIL,
-                    VALID_SURNAME,
-                    VALID_NAME,
-                    VALID_COMPANY,
+                    VALID_EMAIL,                    VALID_SURNAME,
+                    VALID_NAME,                    VALID_COMPANY,
                     arrayInvalidPasswords[arrayLength],
-                    "6",
-                    "5");
+                    "6",    "5",
+                    VALID_PHONE , "1");
             Assert.assertFalse(fakeUser.isSignUpSucceed);
             signupError.filter(visible).shouldHave(sizeGreaterThanOrEqual(1));
             refresh();
@@ -231,16 +221,13 @@ public class TestsPekamaSignUp {
         User fakeUser = new User();
         fakeUser.submitSignUp(
                 EXIST_USER,
-                VALID_SURNAME,
-                VALID_NAME,
-                VALID_COMPANY,
-                VALID_PASSWORD,
-                "4",
-                "4");
+                VALID_SURNAME, VALID_NAME,
+                VALID_COMPANY, VALID_PASSWORD,
+                "4", "4",
+                VALID_PHONE, "1");
         Assert.assertFalse(fakeUser.isSignUpSucceed);
             signupErrorEmail.shouldHaveSize(1);
             checkText(ERROR_MSG_EMAIL_IS_USED);
-           // $(byText(ERROR_MSG_EMAIL_IS_USED)).shouldBe(visible);
             rootLogger.info(ERROR_MSG_EMAIL_IS_USED);
     }
 
@@ -256,7 +243,8 @@ public class TestsPekamaSignUp {
                 VALID_COMPANY,
                 VALID_PASSWORD,
                 "1",
-                "1");
+                "1",
+                VALID_PHONE, "1");
         Assert.assertTrue(fakeUser.isSignUpSucceed);
         $(byText("Confirm your Account")).shouldBe(visible);
         $(byText("You were sent an email message with the account activation link. Please check your inbox.")).shouldBe(visible);
@@ -292,7 +280,8 @@ public class TestsPekamaSignUp {
                 VALID_COMPANY,
                 VALID_PASSWORD,
                 "1",
-                "4");
+                "4",
+                VALID_PHONE, "1");
         Assert.assertTrue(fakeUser.isSignUpSucceed);
         $(byText("Confirm your Account")).shouldBe(visible).shouldBe(visible);
     }
@@ -313,7 +302,8 @@ public class TestsPekamaSignUp {
                 VALID_COMPANY,
                 VALID_PASSWORD,
                 "4",
-                "1");
+                "1",
+                VALID_PHONE, "1");
         Assert.assertTrue(fakeUser.isSignUpSucceed);
         $(byText("Confirm your Account")).shouldBe(visible).shouldBe(visible);
     }
@@ -335,7 +325,8 @@ public class TestsPekamaSignUp {
                 VALID_COMPANY,
                 VALID_PASSWORD,
                 "2",
-                "3");
+                "3",
+                VALID_PHONE, "1");
         Assert.assertTrue(fakeUser.isSignUpSucceed);
         $(byText("Confirm your Account")).shouldBe(visible).shouldBe(visible);
     }
@@ -356,7 +347,8 @@ public class TestsPekamaSignUp {
                 VALID_COMPANY,
                 VALID_PASSWORD,
                 "1",
-                "3");
+                "3",
+                VALID_PHONE, "1");
         Assert.assertFalse(fakeUser.isSignUpSucceed);
         $(byText("Upload a valid image. The file you uploaded was either not an image or a corrupted image.")).shouldBe(visible);
     }
@@ -376,7 +368,8 @@ public class TestsPekamaSignUp {
                 VALID_COMPANY,
                 VALID_PASSWORD,
                 "3",
-                "1");
+                "1",
+                VALID_PHONE, "1");
         Assert.assertFalse(fakeUser.isSignUpSucceed);
         $(byText("Upload a valid image. The file you uploaded was either not an image or a corrupted image.")).shouldBe(visible);
     }
@@ -390,7 +383,8 @@ public class TestsPekamaSignUp {
                 VALID_COMPANY,
                 VALID_PASSWORD,
                 "2",
-                "2");
+                "2",
+                VALID_PHONE, "1");
         Assert.assertTrue(fakeUser.isSignUpSucceed);
 
         rootLogger.info("Check join To Team page redirect");

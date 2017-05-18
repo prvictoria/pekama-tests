@@ -391,6 +391,7 @@ public class TestsCredentials {
     public static final String VALID_NAME = "NAME";
     public static final String VALID_SURNAME = "SURNAME";
     public static final String VALID_COMPANY = "COMPANY";
+    public static final String VALID_PHONE = "9999999999";
 
      public static final String ROW1 = "[1]";
      public static final String ROW2 = "[2]";
