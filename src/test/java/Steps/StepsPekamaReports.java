@@ -226,9 +226,11 @@ public class StepsPekamaReports extends StepsFactory {
     }
     public static void deleteAllContacts(){
             rootLogger.info("Delete all Contacts");
+        if(getActualUrl().equals(URL_ReportsContacts)==false){
             openPageWithSpinner(URL_ReportsContacts);
-            REPORTS_ALL_CHECKBOX.waitUntil(visible, 20000).click();
-            clickDeleteAndConfirm();
+        }
+        REPORTS_ALL_CHECKBOX.waitUntil(visible, 20000).click();
+        clickDeleteAndConfirm();
     }
     public static boolean reportsCheckContactRow(Integer rowCount, String name, String surname, String email, String country) {
         String row = REPORTS_CONTACT_ROW_BY_INDEX(rowCount);
@@ -336,5 +338,12 @@ public class StepsPekamaReports extends StepsFactory {
     }
     public static void clickContactRowChargesLink(Integer rowCount){
         submitEnabledButton(elementInContactRow(rowCount, REPORTS_CONTACT_ROW_PROJECTS));
+    }
+    public static void callImportContactModal(){
+        if(getActualUrl().equals(URL_ReportsContacts)==false){
+            openPageWithSpinner(URL_ReportsContacts);
+        }
+        submitEnabledButton(REPORTS_BTN_IMPORT);
+        waitForModalWindow("Choose CSV file");
     }
 }

@@ -516,7 +516,7 @@ public class TestsPekamaReports {
         rootLogger.info("Contact add company link");
     }
     @Test
-    public void contacts_z_merge(){
+    public void contacts_z_merge() throws IOException {
         String ContactEmail1 = "email01@new.test";
         String ContactEmail2 = "email02@new.test";
         String Contact1NameSurname = nameContactName+"Z"+" "+nameContactSurname+"Z";
@@ -576,5 +576,35 @@ public class TestsPekamaReports {
                 nameContactSurname+"Z",
                 ContactEmail1,
                 PITCAIRN_ISLANDS.getValue());
+
+    }
+    @Test
+    public void contacts_y_import_ContactsMaxValue() {
+        deleteAllContacts();
+        callImportContactModal();
+        submitImportContactsModal("ContactsMaxValue.csv", null);
+        sleep(3000);
+        refresh();
+        REPORTS_LIST_ROWS.shouldHaveSize(1);
+
+    }
+    @Test
+    public void contacts_y_import_ContactsMinValue() {
+        deleteAllContacts();
+        callImportContactModal();
+        submitImportContactsModal("ContactsMinValue.csv", null);
+        sleep(3000);
+        refresh();
+        REPORTS_LIST_ROWS.shouldHaveSize(1);
+    }
+    @Test
+    public void contacts_y_import_ContactsValidationNotCsv() {
+        callImportContactModal();
+        submitImportContactsModal("png.png", "file: Not a valid CSV file");
+    }
+    @Test
+    public void contacts_y_import_ContactsValidationNameSurname() {
+        callImportContactModal();
+        submitImportContactsModal("ContactsValidationNameSurname.csv", "file: Multiple headers: SAZipCode. ");
     }
 }

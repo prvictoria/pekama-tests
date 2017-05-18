@@ -822,5 +822,27 @@ public class StepsModalWindows extends StepsFactory {
         $$(byText(eventInfo)).filter(visible).shouldHaveSize(1);
         return true;
     }
+    public static void submitImportContactsModal(String fileName, String error) {
+        if(fileName==null){
+            Assert.fail("File for upload not defined");
+        }
+        MW_IMPORT_CONTACTS_UPLOAD_BTN.shouldBe(visible).shouldBe(enabled);
+        MW_BTN_CANCEL.shouldBe(visible).shouldBe(enabled);
+        MW_IMPORT_CONTACTS_UPLOAD_BTN.click();
+        uploadFiles(fileName);
+        if(fileName!=null && error==null){
+            MW.shouldNotBe(visible);
+        }
+        if(fileName!=null && error!=null){
+            MW_IMPORT_CONTACTS_UPLOAD_BTN.waitUntil(not(visible), 15000);
+            MW_IMPORT_CONTACTS_ERROR.shouldBe(visible).shouldHave(text(error));
+            MW_IMPORT_CONTACTS_ABORT_UPLOAD.shouldBe(visible).click();
+            submitConfirmAction("Remove upload?");
+            MW_IMPORT_CONTACTS_ERROR.shouldNotBe(visible);
+            MW_IMPORT_CONTACTS_UPLOAD_BTN.shouldBe(visible).shouldBe(enabled);
+            submitEnabledButton(MW_BTN_CANCEL);
+            MW.shouldNotBe(visible);
+        }
+    }
 
 }

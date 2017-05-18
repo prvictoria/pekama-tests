@@ -35,7 +35,9 @@ dependencies {
     testCompile group: 'org.jsoup', name: 'jsoup', version: '1.8.3'
 
     // https://mvnrepository.com/artifact/de.openkeyword/autoit
-    compile group: 'de.openkeyword', name: 'autoit', version: '0.1.0'
+    testCompile group: 'de.openkeyword', name: 'autoit', version: '0.1.0'
 
+    // https://mvnrepository.com/artifact/com.hynnet/jacob
+    testCompile group: 'com.hynnet', name: 'jacob', version: '1.18'
 
 }

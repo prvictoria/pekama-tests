@@ -14,7 +14,6 @@ import static Page.ModalWindows.*;
 import static Page.PekamaConversationProject.*;
 import static Page.PekamaLogin.*;
 import static Page.PekamaPersonalSettings.*;
-import static Page.PekamaReports.*;
 import static Page.PekamaTeamSettings.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
@@ -691,13 +690,20 @@ public class StepsPekama extends StepsFactory{
         sleep(3000);
     }
     public enum UploadFiles {JPG, ICO, PNG, SVG, PDF,  WORD, EXCEL, ZIP, GOOGLE};
-    public static void executeAutoItScript(String fileName) throws IOException {
-        String relativePath = "src/test/java/ScriptsAutoIt/"+fileName;
+    public static void executeAutoItScript(String scriptName) throws IOException {
+        String relativePath = "src/test/java/ScriptsAutoIt/"+ scriptName;
         sleep(2000);
         String scriptPath = absolutePath(relativePath);
         rootLogger.info(scriptPath);
         Runtime.getRuntime().exec(scriptPath);
         sleep(4000);
+    }
+    public static void uploadFiles(String fileName){
+        try {
+            Runtime.getRuntime().exec("src/test/java/ScriptsAutoIt/script_runtime.exe"+" "+fileName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     public static String executeAutoItScript(UploadFiles fileType) throws IOException {
         String[] scriptNames = {"script_upload_jpeg_ff.exe", "script_upload_icon_ff.exe", "script_upload_png_ff.exe", "script_upload_svg_ff.exe", "script_upload_pdf_ff.exe", "script_upload_wordx_ff.exe", "script_upload_excelx_ff.exe", "script_upload_zip_ff.exe", "script_upload_googledoc_ff.exe"};

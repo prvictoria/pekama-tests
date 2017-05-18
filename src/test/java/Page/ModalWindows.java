@@ -35,6 +35,7 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_ICON_CLOSE = $(byXpath(mw+"//*[@aria-label='Close']"));
     public static final SelenideElement MW_BTN_CLOSE = $(byXpath(mw+"//*[text()='Close']"));
     public static final SelenideElement MW_BTN_CREATE = $(byXpath(mw+"//button[text()='Create']"));
+    public static final SelenideElement MW_BTN_UPLOAD = $(byXpath(mw+"//div[./i[@class='pkm-icon-upload icon']]"));
 
     public static final SelenideElement MW_CHECKBOX_ALL_TEAMS = $(byXpath(mw+"//*[@ng-disabled='uiState.disableAllTeams']"));
 
@@ -122,7 +123,7 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_EVENT_Template_DateOffsetUnit = $(byXpath(mw+"//select[@name='date_unit']"));
     //MW DOC TEMPLATE =======================================================
     public static final String MW_DOC_TEMPLATE_TITLE = "Documents Template";
-    public static final SelenideElement MW_DOC_TEMPLATE_UPLOAD = $(byXpath(mw+"//div[./i[@class='pkm-icon-upload icon']]"));
+    public static final SelenideElement MW_DOC_TEMPLATE_UPLOAD = MW_BTN_UPLOAD;
     public static final SelenideElement MW_DOC_TEMPLATE_TITLE_FIELD = $(byXpath(mw+"//input[@name='title']"));
     public static final SelenideElement MW_DOC_TEMPLATE_PROGRESS_BAR = $(byXpath(mw+"//div[@role='progressbar']"));
     public static final SelenideElement MW_DOC_TEMPLATE_UPLOADED_FILE_NAME = $(byXpath(mw+"//div[@class='name-upload-file ng-binding']"));
@@ -222,7 +223,7 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_Project_Reference = $(byXpath(mw+"//input[@name='number']"));
 
     //MW upload files
-    public static final SelenideElement MW_UPLOAD_FILES_CHOOSE = MW_DOC_TEMPLATE_UPLOAD;
+    public static final SelenideElement MW_UPLOAD_FILES_CHOOSE = MW_BTN_UPLOAD;
     public static final SelenideElement MW_UPLOAD_FILES_CANCEL = $(byXpath(mw+"//button[contains(.,'Cancel')]"));
     public static final SelenideElement MW_UPLOAD_FILES_UPLOAD = $(byXpath(mw+"//button[contains(.,'Upload')]"));
     public static final ElementsCollection MW_UPLOAD_FILES_LIST = $$(byXpath(mw+"//ol/li"));
@@ -490,4 +491,8 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_TOUR_BTN_BACK = $(byId("prevButton"));
     public static final SelenideElement MW_TOUR_BTN_FINISH = $(byId("finishButton"));
 
+    //IMPORT CONTACTS MODAL
+    public static final SelenideElement MW_IMPORT_CONTACTS_UPLOAD_BTN = MW_BTN_UPLOAD;
+    public static final SelenideElement MW_IMPORT_CONTACTS_ERROR = $(byXpath(mw+"//*[@class='upload-bar-new-doc']//*[@role='alert']"));
+    public static final SelenideElement MW_IMPORT_CONTACTS_ABORT_UPLOAD = $(byXpath(mw+"//a[@class='abort-upload'][./i]"));
 }
