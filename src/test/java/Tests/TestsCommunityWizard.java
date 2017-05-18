@@ -133,7 +133,7 @@ public class TestsCommunityWizard {
         submitMwInviteAttorney(true, null, null);
         acceptMwConfirmAction(
                 MW_CONFIRM_INVITE_ATTOTNEY_TITLE,
-                MW_CONFIRM_INVITE_ATTOTNEY_TEXT,
+                MW_CONFIRM_INVITE_ATTORNEY_TEXT,
                 MW_COMMUNITY_CONFIRM_SUBMIT);
         rootLogger.info("Check no email validation");
         checkText(ERROR_MSG_BLANK_FIELD);
@@ -147,7 +147,7 @@ public class TestsCommunityWizard {
         submitMwInviteAttorney(true, null, null);
         dismissMwConfirmAction(
                 MW_CONFIRM_INVITE_ATTOTNEY_TITLE,
-                MW_CONFIRM_INVITE_ATTOTNEY_TEXT,
+                MW_CONFIRM_INVITE_ATTORNEY_TEXT,
                 MW_COMMUNITY_CONFIRM_DISMISS);
         waitForModalWindow(TITLE_MW_INVITE_AN_ATTORNEY);
         rootLogger.info("Test passed");
@@ -204,7 +204,7 @@ public class TestsCommunityWizard {
         submitMwInviteAttorney(true, INVITED_EMAIL, null);
         acceptMwConfirmAction(
                 MW_CONFIRM_INVITE_ATTOTNEY_TITLE,
-                MW_CONFIRM_INVITE_ATTOTNEY_TEXT,
+                MW_CONFIRM_INVITE_ATTORNEY_TEXT,
                 MW_COMMUNITY_CONFIRM_SUBMIT);
         rootLogger.info("Test passed");
         skipBefore = true;
