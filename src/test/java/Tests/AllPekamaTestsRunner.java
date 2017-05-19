@@ -6,7 +6,7 @@ import org.junit.runners.Suite;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
-//@Categories.ExcludeCategory(AllEmailsTests.class) //Emails not stable
+
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         MessagesIMAP.class,
@@ -23,7 +23,11 @@ import org.junit.runners.Suite;
         TestsPekamaSettingValues.class,
         TestsPekamaTemplates.class,
         TestsPekamaReports.class,
-        TestsPekamaReportsFiltersCharges.class//last suite
+        //TestsPekamaReportsFiltersProjects.class,
+        //TestsPekamaReportsFiltersTasks.class,
+        //TestsPekamaReportsFiltersEvents.class,
+        TestsPekamaReportsFiltersCharges.class,
+        //TestsPekamaReportsFiltersContacts.class
 })
 public class AllPekamaTestsRunner extends AllTestsRunner {
 
