@@ -82,7 +82,7 @@ public class Utils {
 //        }
         return true;
     }
-    public static String convertStringWithDecimal(String price, String format){
+    public static String parseDecimalString(String price, String format){
         //System.out.println("string liters of petrol putting in preferences is "+ price);
         Float litersOfPetrol=Float.parseFloat(price);
         DecimalFormat df = new DecimalFormat(format);
@@ -91,11 +91,16 @@ public class Utils {
         //System.out.println("String formatted to: "+ price);
         return price;
     }
-
+    public static BigDecimal parseBigDecimalString(String price) {
+        BigDecimal money = new BigDecimal(price.replaceAll(",", ""));
+        System.out.println(money);
+        return money;
+    }
     @Ignore
     @Test
     public void test() throws ParseException {
-        convertStringWithDecimal("999", ".00");
+        parseBigDecimalString("100,111,111.00");
+//        parseDecimalString("999", ".00");
 //        matchedString();
 //        System.out.println(randomString(10));
 //        System.out.println(getDate(-100));

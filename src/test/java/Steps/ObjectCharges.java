@@ -1,7 +1,6 @@
 package Steps;
 
 import org.apache.logging.log4j.*;
-import org.junit.Assert;
 
 import static Page.ModalWindows.*;
 import static Page.PekamaProject.*;
@@ -240,7 +239,7 @@ public class ObjectCharges {
             }
             if(charges.invoiceTotal!=null){
                 REPORTS_CHARGES_TOTAL(rowCount).
-                        shouldHave(text(convertStringWithDecimal(charges.invoiceTotal, "")));
+                        shouldHave(text(parseDecimalString(charges.invoiceTotal, "")));
             }
             if(charges.invoiceCurrency!=null){
                 REPORTS_CHARGES_TOTAL(rowCount).shouldHave(text(charges.invoiceCurrency));
