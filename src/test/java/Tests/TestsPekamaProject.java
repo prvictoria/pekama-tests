@@ -290,7 +290,7 @@ public class TestsPekamaProject {
         $$(byText(COLLABORATOR)).shouldHaveSize(0);
         $$(byText(VIEWER)).shouldHaveSize(0);
     }
-    @Test @Category(AllEmailsTests.class)
+    @Test
     public void tabContacts_E_inviteCollaborator_Action() {
         rootLogger.info("Invite new team to Pekama project");
         PROJECT_TAB_CONTACTS.click();
@@ -903,12 +903,21 @@ public class TestsPekamaProject {
         rootLogger.info("Test passed");
 
     }
-    //TODO
     @Test
     public void tabCharges_delete_all(){
-        ObjectCharges invoice = new ObjectCharges();
-        invoice.create(CHARGES_TYPE_ASSOCIATE, null, 100);
-        invoice.checkInvoiceRow(1, invoice);
+        ObjectCharges invoice1 = new ObjectCharges();
+        invoice1.create(CHARGES_TYPE_EXPENSES, GBP, 10);
+        ObjectCharges invoice2 = new ObjectCharges();
+        invoice2.create(CHARGES_TYPE_ASSOCIATE, ILS, 999);
+        ObjectCharges invoice3 = new ObjectCharges();
+        invoice3.create(CHARGES_TYPE_FEES, USD, 100);
+        ObjectCharges invoice4 = new ObjectCharges();
+        invoice4.create(CHARGES_TYPE_SERVICE, EUR, 1);
+        ObjectCharges check = new ObjectCharges();
+        check.checkInvoiceRow(1, invoice1);
+        check.checkInvoiceRow(2, invoice2);
+        check.checkInvoiceRow(3, invoice3);
+        check.checkInvoiceRow(4, invoice4);
         deleteAllCharges();
     }
 

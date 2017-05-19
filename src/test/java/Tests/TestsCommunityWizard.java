@@ -152,7 +152,7 @@ public class TestsCommunityWizard {
         waitForModalWindow(TITLE_MW_INVITE_AN_ATTORNEY);
         rootLogger.info("Test passed");
     }
-    @Test @Category(AllEmailsTests.class)
+    @Test
     public void boostYourProfileInviteTeam_withCustomText_A2_WriteCustomText() {
         submitWizard1Step(CASE_TYPE);
         submitEnabledButton(PROFILE_BTN_BOOST_YOUR_PROFILE);
@@ -162,7 +162,7 @@ public class TestsCommunityWizard {
         rootLogger.info("Test passed");
         skipBefore = true;
     }
-    @Test @Category(AllEmailsTests.class)
+    @Test
     public void boostYourProfileInviteTeam_withCustomText_A_CheckEmail() {
         rootLogger.info("Check invitation email");
         String login = INVITED_EMAIL;
@@ -179,7 +179,7 @@ public class TestsCommunityWizard {
         rootLogger.info("Test passed");
         skipBefore = true;
     }
-    @Test @Category(AllEmailsTests.class)
+    @Test
     public void boostYourProfileInviteTeam_withCustomText_B_CheckCongratulationEmail() {
         rootLogger.info("Check congratulation for invitation email");
         String login = REQUESTER_EMAIL;
@@ -194,7 +194,7 @@ public class TestsCommunityWizard {
         rootLogger.info("Test passed");
         skipBefore = false;
     }
-    @Test @Category(AllEmailsTests.class)
+    @Test
     public void boostYourProfileInviteTeam_withDefaultText_A() {
         submitWizard1Step(CASE_TYPE);
         submitEnabledButton(PROFILE_BTN_BOOST_YOUR_PROFILE);
@@ -209,7 +209,7 @@ public class TestsCommunityWizard {
         rootLogger.info("Test passed");
         skipBefore = true;
     }
-    @Test @Category(AllEmailsTests.class)
+    @Test
     public void boostYourProfileInviteTeam_withDefaultText_A_CheckEmail() {
         rootLogger.info("Check invitation email");
         String login = INVITED_EMAIL;
@@ -226,7 +226,7 @@ public class TestsCommunityWizard {
         rootLogger.info("Test passed");
         skipBefore = true;
     }
-    @Test @Category(AllEmailsTests.class)
+    @Test
     public void boostYourProfileInviteTeam_withDefaultText_B_CheckCongratulationEmail() {
         rootLogger.info("Check congratulation email");
         String login = REQUESTER_EMAIL;
@@ -410,7 +410,7 @@ public class TestsCommunityWizard {
         rootLogger.info("Test passed");
     }
 
-    @Test @Category(AllEmailsTests.class)
+    @Test
     public void createCaseInstructWithDetails_A() throws MessagingException {
         String status = COMMUNITY_STATUS_SENT;
         String caseName = "SENT_CASE_"+randomString(10);
@@ -432,7 +432,7 @@ public class TestsCommunityWizard {
         rootLogger.info("Test passed");
         skipBefore = true;
     }
-    @Test @Category(AllEmailsTests.class)
+    @Test
     public void createCaseInstructWithDetails_B_CheckEmail() {
         rootLogger.info("Check congratulation for case creation email");
         login = REQUESTER_EMAIL;

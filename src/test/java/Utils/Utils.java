@@ -2,7 +2,9 @@ package Utils;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -80,10 +82,21 @@ public class Utils {
 //        }
         return true;
     }
+    public static String convertStringWithDecimal(String price, String format){
+        //System.out.println("string liters of petrol putting in preferences is "+ price);
+        Float litersOfPetrol=Float.parseFloat(price);
+        DecimalFormat df = new DecimalFormat(format);
+        df.setMaximumFractionDigits(2);
+        price = df.format(litersOfPetrol);
+        //System.out.println("String formatted to: "+ price);
+        return price;
+    }
+
     @Ignore
     @Test
     public void test() throws ParseException {
-        matchedString();
+        convertStringWithDecimal("999", ".00");
+//        matchedString();
 //        System.out.println(randomString(10));
 //        System.out.println(getDate(-100));
     }

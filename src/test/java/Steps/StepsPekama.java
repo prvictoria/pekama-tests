@@ -147,7 +147,17 @@ public class StepsPekama extends StepsFactory{
         sleep(500);
         rootLogger.info("This data was entered - "+enteredValue);
         return fieldName.getValue();
-   }
+    }
+    public static String fillField(SelenideElement fieldName, String enteredValue, String logInfo) {
+        fieldName.waitUntil(visible, 30000);
+        rootLogger.info(logInfo);
+        fieldName.clear();
+        fieldName.shouldHave(Condition.value("")).val(enteredValue);
+        fieldName.shouldHave(Condition.value(enteredValue));
+        sleep(500);
+        rootLogger.info("This data was entered - "+enteredValue);
+        return fieldName.getValue();
+    }
     public static void checkInputValue(SelenideElement selector, String enteredValue) {
         selector.shouldBe(visible);
         selector.shouldHave(Condition.value(enteredValue));

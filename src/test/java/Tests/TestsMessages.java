@@ -548,7 +548,7 @@ public class TestsMessages {
         inviteGuestInTeam(false, newFollower);
     }
     @Ignore
-    @Test @Category({AllEmailsTests.class})
+    @Test 
     public void inviteInTeamChatPekamaMemberAsGuestRegisteredUser_Invite(){
         skipBefore = true;
         try {
@@ -573,7 +573,7 @@ public class TestsMessages {
         return;
     }
     @Ignore
-    @Test @Category({AllEmailsTests.class, AllImapTests.class})
+    @Test 
     public void inviteInTeamChatPekamaMemberAsGuestRegisteredUser_ValidationEmail(){
         skipBefore = false;
         String login = INVITED_EMAIL;
@@ -591,7 +591,7 @@ public class TestsMessages {
         return;
     }
     @Ignore
-    @Test @Category({AllEmailsTests.class})
+    @Test 
     public void inviteInTeamChatPekamaMemberAsGuestNewUser_Invite(){
         skipBefore = true;
         try {
@@ -651,7 +651,7 @@ public class TestsMessages {
         String followerNameSurname = newFollower;
         StepsPekamaProject.validateFollowerTeamChat(followerNameSurname, 2, 1);
     }
-    @Test @Category({AllEmailsTests.class})
+    @Test 
     public void inviteInTeamChatNewCollaborator_Action(){
         skipBefore = true;
         rootLogger.info("Create thread in private zone");
@@ -685,7 +685,7 @@ public class TestsMessages {
         return;
     }
 
-    @Test @Category({AllEmailsTests.class, AllImapTests.class})
+    @Test 
     public void checkThatUserGetCopyOwnMessages_A_PostMessage() throws IOException, MessagingException {
         skipBefore = true;
         rootLogger.info("Set email settings");
@@ -762,7 +762,7 @@ public class TestsMessages {
         rootLogger.info("Test Passed");
 
     }
-    @Test @Category({AllEmailsTests.class, AllImapTests.class})
+    @Test 
     public void checkThatGuestFollowerGetEmail_A_PostMessage() throws IOException, MessagingException {
         userNameSurname = INVITER_NAME_SURNAME;
         followerEmailOrTeamNameSurname = GUEST_EMAIL;
@@ -822,7 +822,7 @@ public class TestsMessages {
         );
     }
 
-    @Test @Category({AllEmailsTests.class, AllImapTests.class})
+    @Test 
     public void checkThatFollowerGetEmail() throws IOException, MessagingException {
         userNameSurname = INVITER_NAME_SURNAME;
         followerEmailOrTeamNameSurname = COLLABORATOR_NAME_SURNAME;

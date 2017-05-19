@@ -7,6 +7,9 @@ import org.apache.logging.log4j.*;
 import org.junit.Assert;
 
 import static Page.ModalWindows.*;
+import static Page.PekamaProject.TAB_TASKS_ACTUAL_ORDER;
+import static Page.PekamaProject.TAB_TASKS_ORDER_ASCENDING;
+import static Page.PekamaProject.TAB_TASKS_ORDER_DESCENDING;
 import static Page.PekamaReports.*;
 import static Page.TestsStrings.*;
 import static Page.UrlStrings.*;
@@ -233,7 +236,7 @@ public class StepsPekamaReports extends StepsFactory {
         clickDeleteAndConfirm();
     }
     public static boolean reportsCheckContactRow(Integer rowCount, String name, String surname, String email, String country) {
-        String row = REPORTS_CONTACT_ROW_BY_INDEX(rowCount);
+        String row = REPORTS_ROW_BY_INDEX_LIST(rowCount);
         SelenideElement contactName = $(byXpath(row+REPORTS_CONTACT_ROW_NAME));
         SelenideElement contactEmail = $(byXpath(row+REPORTS_CONTACT_ROW_EMAIL));
         SelenideElement contactCountry = $(byXpath(row+REPORTS_CONTACT_ROW_COUNTRY));
@@ -242,15 +245,15 @@ public class StepsPekamaReports extends StepsFactory {
         contactCountry.shouldHave(text(country));
         return  true;
     }
-    public static boolean reportsCheckContactRow(contactType contactType, Integer rowCount, ObjectContact contact,  String projects, String charges,  Integer relationCount) {
+    public static Boolean reportsCheckContactRow(contactType contactType, Integer rowCount, ObjectContact contact,  String projects, String charges,  Integer relationCount) {
         rootLogger.info("Check contact row #"+rowCount);
-        SelenideElement contactName = elementInContactRow(rowCount, REPORTS_CONTACT_ROW_NAME);
-        SelenideElement contactEmail = elementInContactRow(rowCount, REPORTS_CONTACT_ROW_EMAIL);
-        SelenideElement contactCountry = elementInContactRow(rowCount, REPORTS_CONTACT_ROW_COUNTRY);
-        SelenideElement contactCompany = elementInContactRow(rowCount, REPORTS_CONTACT_ROW_COMPANY);
-        SelenideElement contactProjects = elementInContactRow(rowCount, REPORTS_CONTACT_ROW_PROJECTS);
-        SelenideElement contactCharges = elementInContactRow(rowCount, REPORTS_CONTACT_ROW_CHARGES_TOTAL);
-        ElementsCollection contactRelations = $$(byXpath(REPORTS_CONTACT_ROW_BY_INDEX(rowCount)+REPORTS_CONTACT_ROW_RELATIONS));
+        SelenideElement contactName = elementInRowListReport(rowCount, REPORTS_CONTACT_ROW_NAME);
+        SelenideElement contactEmail = elementInRowListReport(rowCount, REPORTS_CONTACT_ROW_EMAIL);
+        SelenideElement contactCountry = elementInRowListReport(rowCount, REPORTS_CONTACT_ROW_COUNTRY);
+        SelenideElement contactCompany = elementInRowListReport(rowCount, REPORTS_CONTACT_ROW_COMPANY);
+        SelenideElement contactProjects = elementInRowListReport(rowCount, REPORTS_CONTACT_ROW_PROJECTS);
+        SelenideElement contactCharges = elementInRowListReport(rowCount, REPORTS_CONTACT_ROW_CHARGES_TOTAL);
+        ElementsCollection contactRelations = $$(byXpath(REPORTS_ROW_BY_INDEX_LIST(rowCount)+REPORTS_CONTACT_ROW_RELATIONS));
         if(rowCount<10) {
             if (contactType==PERSON) {
                 contactName.shouldHave(text(contact.contactFullName));
@@ -287,14 +290,14 @@ public class StepsPekamaReports extends StepsFactory {
         }
         return  true;
     }
-    public static SelenideElement elementInContactRow(Integer rowCount, final String path){
+    public static SelenideElement elementInRowListReport(Integer rowCount, final String path){
         if(rowCount>10){Assert.fail("Only 10 rows on the page");}
-        String rowBtn = REPORTS_CONTACT_ROW_BY_INDEX(rowCount)+path;
+        String rowBtn = REPORTS_ROW_BY_INDEX_LIST(rowCount)+path;
         SelenideElement btn = $(byXpath(rowBtn));
         return btn;
     }
     public static void clickContactNewProject(Integer rowCount){
-        submitEnabledButton(elementInContactRow(rowCount, REPORTS_CONTACTS_NEW_PROJECT_BTN));
+        submitEnabledButton(elementInRowListReport(rowCount, REPORTS_CONTACTS_NEW_PROJECT_BTN));
     }
     public static void clickContactNewProject(String contactName){
         String rowBtn = REPORTS_CONTACT_ROW_BY_NAME(contactName)+REPORTS_CONTACTS_NEW_PROJECT_BTN;
@@ -302,7 +305,7 @@ public class StepsPekamaReports extends StepsFactory {
         submitEnabledButton(btn);
     }
     public static void clickContactEdit(Integer rowCount){
-        submitEnabledButton(elementInContactRow(rowCount, REPORTS_CONTACTS_EDIT_BTN));
+        submitEnabledButton(elementInRowListReport(rowCount, REPORTS_CONTACTS_EDIT_BTN));
     }
     public static void clickContactEdit(String contactName){
         String rowBtn = REPORTS_CONTACT_ROW_BY_NAME(contactName)+REPORTS_CONTACTS_EDIT_BTN;
@@ -310,7 +313,7 @@ public class StepsPekamaReports extends StepsFactory {
         submitEnabledButton(btn);
     }
     public static void clickContactDelete(Integer rowCount){
-        submitEnabledButton(elementInContactRow(rowCount, REPORTS_CONTACTS_DELETE_BTN));
+        submitEnabledButton(elementInRowListReport(rowCount, REPORTS_CONTACTS_DELETE_BTN));
         submitConfirmAction();
         sleep(500);
     }
@@ -322,22 +325,22 @@ public class StepsPekamaReports extends StepsFactory {
         sleep(500);
     }
     public static void saveContactForm(Integer rowCount){
-        submitEnabledButton(elementInContactRow(rowCount, REPORTS_CONTACT_FORM_SAVE));
+        submitEnabledButton(elementInRowListReport(rowCount, REPORTS_CONTACT_FORM_SAVE));
     }
     public static void saveContactForm(String contactName){
         submitEnabledButton($(byXpath(REPORTS_CONTACT_ROW_BY_NAME(contactName)+REPORTS_CONTACT_FORM_SAVE)));
     }
-    public static void selectContactRow(Integer rowCount){
-        submitEnabledButton(elementInContactRow(rowCount, REPORTS_CONTACT_ROW_SELECT));
+    public static void selectRowListReport(Integer rowCount){
+        submitEnabledButton(elementInRowListReport(rowCount, REPORTS_CONTACT_ROW_SELECT));
     }
     public static void selectContactRow(String contactName){
         submitEnabledButton($(byXpath(REPORTS_CONTACT_ROW_BY_NAME(contactName)+REPORTS_CONTACT_ROW_SELECT)));
     }
     public static void clickContactRowProjectLink(Integer rowCount){
-        submitEnabledButton(elementInContactRow(rowCount, REPORTS_CONTACT_ROW_PROJECTS));
+        submitEnabledButton(elementInRowListReport(rowCount, REPORTS_CONTACT_ROW_PROJECTS));
     }
     public static void clickContactRowChargesLink(Integer rowCount){
-        submitEnabledButton(elementInContactRow(rowCount, REPORTS_CONTACT_ROW_PROJECTS));
+        submitEnabledButton(elementInRowListReport(rowCount, REPORTS_CONTACT_ROW_PROJECTS));
     }
     public static void callImportContactModal(){
         if(getActualUrl().equals(URL_ReportsContacts)==false){
@@ -345,5 +348,19 @@ public class StepsPekamaReports extends StepsFactory {
         }
         submitEnabledButton(REPORTS_BTN_IMPORT);
         waitForModalWindow("Choose CSV file");
+    }
+    public static void selectSortOrder(String order, Boolean orderIsAscending){
+        if (order!=null){
+            clickElement(REPORTS_SORT_ORDER_TYPE);
+            clickElement(REPORTS_SELECT_SORT_ORDER(order));
+            String ActualTaskOrder = REPORTS_SORT_ORDER_TYPE.getText();
+            Assert.assertEquals(order, ActualTaskOrder);
+        }
+        if(orderIsAscending==true){
+            REPORTS_SORT_ORDER_ASCENDING.shouldBe(visible);
+        }
+        else {
+            REPORTS_SORT_ORDER_DESCENDING.shouldBe(visible);
+        }
     }
 }

@@ -1,6 +1,5 @@
 package Tests;
 import Steps.MessagesIMAP;
-import org.junit.experimental.categories.Categories;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 /**
@@ -23,7 +22,8 @@ import org.junit.runners.Suite;
         TestsPekamaSettingsTeam.class,
         TestsPekamaSettingValues.class,
         TestsPekamaTemplates.class,
-        TestsPekamaReports.class //last suite
+        TestsPekamaReports.class,
+        TestsPekamaReportsFiltersCharges.class//last suite
 })
 public class AllPekamaTestsRunner extends AllTestsRunner {
 

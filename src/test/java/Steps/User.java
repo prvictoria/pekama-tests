@@ -4,13 +4,13 @@ import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Enumeration;
+
 import static Page.PekamaLogin.*;
 import static Page.PekamaResetPassword.*;
 import static Page.PekamaSignUp.*;
-import static Page.PekamaSignUp.signupNext;
-import static Page.PekamaSignUp.signupPassword;
-import static Page.TestsCredentials.VALID_PASSWORD;
-import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
+import static Page.TestsCredentials.*;
+import static Steps.StepsHttpAuth.*;
 import static Steps.StepsPekama.*;
 import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
 import static Utils.Utils.randomString;
@@ -36,6 +36,10 @@ public class User extends StepsFactory{
     public Boolean isSignUpSucceed;
     public Boolean isLoginSucceed;
 
+    //Todo ENUM as param
+    public void create(Enumeration enumeration){
+
+    }
     public void loginByURL(String email, String password, String url){
         this.email = email;
         this.password = password;
@@ -44,6 +48,7 @@ public class User extends StepsFactory{
         hideZopim();
         submitLoginCredentials(email, password);
     }
+
     public void submitLoginCredentials(String email, String password){
         this.email = email;
         this.password = password;

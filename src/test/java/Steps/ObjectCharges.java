@@ -1,11 +1,11 @@
 package Steps;
 
-import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.*;
 import org.junit.Assert;
 
 import static Page.ModalWindows.*;
 import static Page.PekamaProject.*;
+import static Page.PekamaReports.*;
 import static Page.TestsStrings.*;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekamaProject.*;
@@ -108,38 +108,53 @@ public class ObjectCharges {
         if(invoiceCurrency==null){
             this.invoiceCurrency = MW_CHARGES_SELECT_CURRENCY.getText();
         }
+        rootLogger.info("============================");
+        rootLogger.info("Invoice fields: ");
+        rootLogger.info("From: "+this.invoiceFrom);
+        rootLogger.info("To: "+this.invoiceTo);
+        rootLogger.info("By: "+this.invoiceBy);
+        rootLogger.info("Status: "+this.invoiceStatus);
+        rootLogger.info("Type: "+this.invoiceType);
+        rootLogger.info("Due Date: "+this.invoiceDueDate);
+        rootLogger.info("Description: "+this.invoiceItem);
+        rootLogger.info("Currency: "+this.invoiceCurrency);
+        rootLogger.info("============================");
     }
     public String setPrice(Integer invoiceQty, Integer hour, Integer min,
                            Integer rate, Integer price, Integer vat, Integer disc){
+        rootLogger.info("============================");
+        rootLogger.info("Invoice fields: ");
         if(invoiceQty!=null){
             this.invoiceQty = new Integer(hour).toString();
-            fillField(MW_CHARGES_INPUT_QTY, this.invoiceQty);
+            fillField(MW_CHARGES_INPUT_QTY, this.invoiceQty, "Qty: "+this.invoiceQty);
         }
         if(hour!=null){
             this.invoiceTimeHours = new Integer(hour).toString();
-            fillField(MW_CHARGES_INPUT_HOUR, this.invoiceTimeHours);
+            fillField(MW_CHARGES_INPUT_HOUR, this.invoiceTimeHours, "Time Hours: "+this.invoiceTimeHours);
         }
         if(min!=null){
             this.invoiceTimeMin = new Integer(min).toString();
-            fillField(MW_CHARGES_INPUT_MIN, this.invoiceTimeMin);
+            fillField(MW_CHARGES_INPUT_MIN, this.invoiceTimeMin, "Time Min: "+this.invoiceTimeMin);
         }
         if(rate!=null){
             this.invoiceRate = new Integer(rate).toString();
-            fillField(MW_CHARGES_INPUT_RATE, this.invoiceRate);
+            fillField(MW_CHARGES_INPUT_RATE, this.invoiceRate, "Rate per hour: "+this.invoiceRate);
         }
         if(price!=null){
             this.invoicePrice =  new Integer(price).toString();
-            fillField(MW_CHARGES_INPUT_PRICE, this.invoicePrice);
+            fillField(MW_CHARGES_INPUT_PRICE, this.invoicePrice, "Price: "+this.invoicePrice);
         }
         if(vat!=null){
             this.invoiceVat = new Integer(vat).toString();
-            fillField(MW_CHARGES_INPUT_VAT, this.invoiceVat);
+            fillField(MW_CHARGES_INPUT_VAT, this.invoiceVat, "Vat: "+this.invoiceVat);
         }
         if(disc!=null){
             this.invoiceDiscount = new Integer(disc).toString();
-            fillField(MW_CHARGES_INPUT_DISCOUNT, this.invoiceDiscount);
+            fillField(MW_CHARGES_INPUT_DISCOUNT, this.invoiceDiscount, "Discount: "+this.invoiceDiscount);
         }
         this.invoiceTotal = MW_CHARGES_TOTAL.getValue();
+        rootLogger.info("Total: "+this.invoiceTotal);
+        rootLogger.info("============================");
         return  this.invoiceTotal;
     }
     public void fillFormInline(){
@@ -158,8 +173,19 @@ public class ObjectCharges {
                 null, invoicePrice, null, null);
         submitEnabledButton(MW_BTN_OK);
     }
+    public void create(String invoiceFrom, String invoiceStatus, String invoiceType, Integer dateFormToday, String description, String invoiceCurrency, Integer invoicePrice){
+        callChargesModal();
+        MW_BTN_OK.shouldBe(disabled);
 
-    public Boolean checkInvoiceRow(Integer rowCount, ObjectCharges charges){
+        setInvoiceInfo(invoiceFrom,  null,  null,
+                invoiceStatus, invoiceType, dateFormToday,
+                description, invoiceCurrency);
+        setTeamZone(false, null);
+        setPrice(null, null, null,
+                null, invoicePrice, null, null);
+        submitEnabledButton(MW_BTN_OK);
+    }
+    public static Boolean checkInvoiceRow(Integer rowCount, ObjectCharges charges){
         if(rowCount==null){
             TAB_CHARGES_LIST.shouldHaveSize(0);
             checkText(PLACEHOLDER_EMPTY_LIST);
@@ -177,18 +203,64 @@ public class ObjectCharges {
             if(charges.invoiceType!=null){
                 elementInChargesRow(rowCount, TAB_CHARGES_ROW_TYPE).shouldHave(text(charges.invoiceType));
             }
-            //TODO pacing if invoice more 999
+            //TODO pacing string if invoice more 999
             if(charges.invoiceTotal!=null){
-                elementInChargesRow(rowCount, TAB_CHARGES_ROW_PRICE).shouldHave(text(invoiceTotal));
+                elementInChargesRow(rowCount, TAB_CHARGES_ROW_PRICE).shouldHave(text(charges.invoiceTotal));
             }
             if(charges.invoiceCurrency!=null){
-                elementInChargesRow(rowCount, TAB_CHARGES_ROW_PRICE).shouldHave(text(invoiceCurrency));
+                elementInChargesRow(rowCount, TAB_CHARGES_ROW_PRICE).shouldHave(text(charges.invoiceCurrency));
             }
             if(charges.invoiceDueDate!=null){
-                elementInChargesRow(rowCount, TAB_CHARGES_ROW_DATE).shouldHave(text(invoiceDueDate));
+                elementInChargesRow(rowCount, TAB_CHARGES_ROW_DATE).shouldHave(text(charges.invoiceDueDate));
             }
        }
-
         return true;
+    }
+    public static Boolean checkInvoiceRowReports(Integer rowCount, ObjectCharges charges){
+        if(charges==null){
+            rootLogger.info("No invoice to validate");
+            return false;
+        }
+        if(rowCount==null){
+            TAB_CHARGES_LIST.shouldHaveSize(0);
+            checkText(PLACEHOLDER_NO_DATA);
+        }
+        if(rowCount!=null && charges!=null){
+            if(charges.invoiceItem!=null){
+                REPORTS_CHARGES_DESCRIPTION(rowCount).shouldHave(text(charges.invoiceItem));
+            }
+            if(charges.invoiceFrom!=null){
+                REPORTS_CHARGES_FROM(rowCount).shouldHave(text(charges.invoiceFrom));
+            }
+            if(charges.invoiceTo!=null && charges.invoiceTo.equals("Select billed contact...")==false){
+                REPORTS_CHARGES_TO(rowCount).shouldHave(text(charges.invoiceTo));
+            }
+            if(charges.invoiceType!=null){
+                REPORTS_CHARGES_TYPE(rowCount).shouldHave(text(charges.invoiceType));
+            }
+            if(charges.invoiceTotal!=null){
+                REPORTS_CHARGES_TOTAL(rowCount).
+                        shouldHave(text(convertStringWithDecimal(charges.invoiceTotal, "")));
+            }
+            if(charges.invoiceCurrency!=null){
+                REPORTS_CHARGES_TOTAL(rowCount).shouldHave(text(charges.invoiceCurrency));
+            }
+            if(charges.invoiceDueDate!=null){
+                REPORTS_CHARGES_DATE(rowCount).shouldHave(text(charges.invoiceDueDate));
+            }
+            if(charges.invoiceStatus!=null){
+                if(charges.invoiceStatus.equals("Not Billed"))
+                {REPORTS_CHARGES_STATUS(rowCount).shouldHave(text(CHARGES_STATUS_NOT_BILLED));}
+                if(charges.invoiceStatus.equals("Billed"))
+                {REPORTS_CHARGES_STATUS(rowCount).shouldHave(text(CHARGES_STATUS_BILLED));}
+                if(charges.invoiceStatus.equals("Billed & Paid"))
+                {REPORTS_CHARGES_STATUS(rowCount).shouldHave(text(CHARGES_STATUS_BILLED_AND_PAID));}
+            }
+        }
+        rootLogger.info("Row validation Passed");
+        return true;
+    }
+    private void logValues(ObjectCharges charges){
+
     }
 }

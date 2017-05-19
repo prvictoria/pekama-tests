@@ -231,7 +231,7 @@ public class TestsPekamaSignUp {
             rootLogger.info(ERROR_MSG_EMAIL_IS_USED);
     }
 
-    @Test @Category(AllEmailsTests.class)
+    @Test
     public void sendSignUpEmail_A1_Send() {
         ValidationSignUp.userEmail = User5.GMAIL_EMAIL.getValue();
         rootLogger.info("submitSignUp with valid user");
@@ -251,7 +251,7 @@ public class TestsPekamaSignUp {
         rootLogger.info("Check email invite from pekama");
         skipBefore = true;
     }
-    @Test @Category(AllEmailsTests.class)
+    @Test
     public void sendSignUpEmail_A2_CheckEmail() {
         login = User5.GMAIL_EMAIL.getValue();
         password = User5.GMAIL_PASSWORD.getValue();

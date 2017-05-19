@@ -94,7 +94,7 @@ public class TestsPekamaResetPassword {
        RESET_PAGE_ERROR.shouldHaveSize(1);
        $(byText(ERROR_MSG_INVALID_EMAIL)).shouldBe(visible);
     }
-    @Test @Category(AllEmailsTests.class)
+    @Test
     public void resetPassword_A() {
         REDIRECT_LINK = null;
         rootLogger.info("Open URL - " + URL_ResetPassword);
@@ -122,7 +122,6 @@ public class TestsPekamaResetPassword {
         Assert.assertTrue(REDIRECT_LINK!=null);
         rootLogger.info("Test passed");
     }
-    @Category(AllEmailsTests.class)
     @Test
     public void resetPassword_B() {
         if (REDIRECT_LINK != null) {
@@ -139,7 +138,6 @@ public class TestsPekamaResetPassword {
             }
         else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
     }
-    @Category(AllEmailsTests.class)
     @Test
     public void resetPassword_C() {
         if (REDIRECT_LINK != null) {
@@ -153,7 +151,7 @@ public class TestsPekamaResetPassword {
         }
         else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
     }
-    @Category(AllEmailsTests.class)
+
     @Test
     public void resetPassword_D() {
         if (REDIRECT_LINK != null) {
@@ -169,7 +167,7 @@ public class TestsPekamaResetPassword {
         }
         else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
     }
-    @Category(AllEmailsTests.class)
+
     @Test
     public void resetPassword_E() {
         if (REDIRECT_LINK != null) {
@@ -187,7 +185,7 @@ public class TestsPekamaResetPassword {
         }
         else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
     }
-    @Category(AllEmailsTests.class)
+
     @Test
     public void resetPassword_F() {
         if (REDIRECT_LINK != null) {
@@ -210,7 +208,7 @@ public class TestsPekamaResetPassword {
         }
         else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
     }
-    @Category(AllEmailsTests.class)
+
     @Test
     public void resetPassword_G() {
         if (REDIRECT_LINK != null) {
@@ -229,7 +227,7 @@ public class TestsPekamaResetPassword {
         }
         else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
     }
-    @Category(AllEmailsTests.class)
+
     @Test
     public void resetPassword_H() {
         if (REDIRECT_LINK != null) {
@@ -247,7 +245,7 @@ public class TestsPekamaResetPassword {
         }
         else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
     }
-    @Category(AllEmailsTests.class)
+
     @Test
     public void resetPassword_I() {
         if (REDIRECT_LINK != null) {
@@ -265,7 +263,7 @@ public class TestsPekamaResetPassword {
         }
         else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
     }
-    @Category(AllEmailsTests.class)
+
     @Test
     public void resetPassword_P() {
         if (REDIRECT_LINK != null) {
@@ -284,7 +282,7 @@ public class TestsPekamaResetPassword {
         }
         else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
     }
-    @Category(AllEmailsTests.class)
+
     @Test
     public void resetPassword_Q() {
         if (NEW_PASSWORD != null) {
@@ -304,7 +302,7 @@ public class TestsPekamaResetPassword {
         }
         else Assert.fail("password - "+NEW_PASSWORD);
     }
-    @Category(AllEmailsTests.class)
+
     @Test
     public void resetPassword_S() {
         if (REDIRECT_LINK != null) {
@@ -320,7 +318,7 @@ public class TestsPekamaResetPassword {
         else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
 
     }
-    @Category(AllEmailsTests.class)
+
     @Test
     public void resetPassword_Z() {
         if (NEW_PASSWORD != null) {

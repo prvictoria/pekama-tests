@@ -14,7 +14,6 @@ import static Page.PekamaConversationProject.*;
 import static Page.PekamaDashboard.*;
 import static Page.PekamaProject.*;
 
-import static Page.PekamaReports.REPORTS_CONTACT_ROW_BY_INDEX;
 import static Page.TestsStrings.*;
 import static Page.UrlStrings.*;
 import static Steps.StepsCommunity.*;

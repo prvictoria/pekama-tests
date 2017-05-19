@@ -22,6 +22,7 @@ import static Page.TestsStrings.*;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
 import static Steps.MessagesValidator.ValidationReport.*;
+import static Steps.ObjectCharges.checkInvoiceRowReports;
 import static Steps.ObjectContact.contactType.COMPANY;
 import static Steps.ObjectContact.contactType.PERSON;
 import static Steps.ObjectContact.enterPoint.*;
@@ -42,14 +43,18 @@ import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaReports {
     static final Logger rootLogger = LogManager.getRootLogger();
-    private static final String TEST_USER_LOGIN = User3.GMAIL_EMAIL.getValue();
-    private static final String TEST_USER_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
-
+    private static final String TEST_USER_LOGIN = User1.GMAIL_EMAIL.getValue();
+    private static final String TEST_USER_PASSWORD = User1.PEKAMA_PASSWORD.getValue();
     private static final String GMAIL_LOGIN = TEST_USER_LOGIN;
-    private static final String GMAIL_PASSWORD = User3.GMAIL_PASSWORD.getValue();
+    private static final String GMAIL_PASSWORD = User1.GMAIL_PASSWORD.getValue();
+    private static final String USER_TEAM_NAME = User1.TEAM_NAME.getValue();
+    
+    private static String projectName;
+    private static boolean skipBefore = false;    
+    
     @Rule
     public Timeout tests = Timeout.seconds(600);
-    private static boolean skipBefore = false;
+
 
     @BeforeClass
     public static void beforeClass() throws IOException, MessagingException {
@@ -99,7 +104,7 @@ public class TestsPekamaReports {
         mailingListDetectAndDelete(thisMailingListName);
     }
 
-    @Test @Category(AllEmailsTests.class)
+    @Test 
     public void projects_send_report_A_SendReport() {
         skipBefore =true;
         String thisMailingListName = "Projects Test Mailing List";
@@ -111,7 +116,7 @@ public class TestsPekamaReports {
         rootLogger.info("Send report");
         mailingListSendReport(thisMailingListName);
     }
-    @Test @Category({AllEmailsTests.class, AllImapTests.class})
+    @Test 
     public void projects_send_report_B_CheckEmail() {
         String thisMailingListName = "Projects Test Mailing List";
         //if (thisMailingListName==null){Assert.fail("Case not created");}
@@ -127,7 +132,7 @@ public class TestsPekamaReports {
         skipBefore = false;
     }
 
-    @Test @Category(AllEmailsTests.class)
+    @Test 
     public void tasks_send_report_A_Send() {
         String thisMailingListName = "Tasks Test Mailing List";
         rootLogger.info("Open Tasks reports, opened URL - " + URL_ReportsTasks);
@@ -137,7 +142,7 @@ public class TestsPekamaReports {
         mailingListSendReport(thisMailingListName);
         skipBefore = true;
     }
-    @Test @Category({AllEmailsTests.class, AllImapTests.class})
+    @Test 
     public void tasks_send_report_B_CheckEmail() {
         String thisMailingListName = "Tasks Test Mailing List";
 
@@ -154,7 +159,7 @@ public class TestsPekamaReports {
         skipBefore = false;
     }
 
-    @Test @Category(AllEmailsTests.class)
+    @Test 
     public void events_send_report_A_SendReport() {
         String thisMailingListName = "Events Test Mailing List";
         rootLogger.info("Open Event reports, opened URL - " + URL_ReportsEvents);
@@ -166,7 +171,7 @@ public class TestsPekamaReports {
         mailingListSendReport(thisMailingListName);
         skipBefore = true;
     }
-    @Test @Category({AllEmailsTests.class, AllImapTests.class})
+    @Test 
     public void events_send_report_B_CheckEmail() {
         String thisMailingListName = "Events Test Mailing List";
         //if (thisMailingListName==null){Assert.fail("Case not created");}
@@ -182,7 +187,7 @@ public class TestsPekamaReports {
         skipBefore = false;
     }
 
-    @Test @Category(AllEmailsTests.class)
+    @Test 
     public void charges_send_report_A_SendReport() {
         String thisMailingListName = "Charges Test Mailing List";
         rootLogger.info("Open Charges reports, opened URL - " + URL_ReportsCharges);
@@ -194,7 +199,7 @@ public class TestsPekamaReports {
         mailingListSendReport(thisMailingListName);
         skipBefore = true;
     }
-    @Test @Category({AllEmailsTests.class, AllImapTests.class})
+    @Test 
     public void charges_send_report_B_CheckEmail() {
         String thisMailingListName = "Charges Test Mailing List";
         rootLogger.info("Check email - report");
@@ -210,8 +215,8 @@ public class TestsPekamaReports {
         rootLogger.info("Test passed");
         skipBefore = false;
     }
-
-    @Test @Category(AllEmailsTests.class)
+   
+    @Test 
     public void contacts_send_report_A_SendReport() {
         String thisMailingListName = "Contacts Test Mailing List";
         rootLogger.info("Open Contacts reports, opened URL - "+URL_ReportsContacts);
@@ -223,7 +228,7 @@ public class TestsPekamaReports {
         mailingListSendReport(thisMailingListName);
         skipBefore = true;
     }
-    @Test @Category({AllEmailsTests.class, AllImapTests.class})
+    @Test 
     public void contacts_send_report_B_CheckEmail() {
         String thisMailingListName = "Contacts Test Mailing List";
         //if (thisMailingListName==null){Assert.fail("Case not created");}
@@ -239,7 +244,7 @@ public class TestsPekamaReports {
         skipBefore = false;
     }
 
-    @Test @Category({AllEmailsTests.class, AllImapTests.class})
+    @Test 
     public void contacts_report_unsubscribe() {
         String thisMailingListName = "Contacts Test unsubscribe link";
         rootLogger.info("Open ProjectValues reports, opened URL - "+URL_ReportsProjects);

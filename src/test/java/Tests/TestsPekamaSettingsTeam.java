@@ -157,7 +157,7 @@ public class TestsPekamaSettingsTeam {
         deleteMemberInactive(newMemberEmail);
         rootLogger.info("Test passed");
     }
-    @Test @Category(AllEmailsTests.class)
+    @Test 
     public void testC_inviteNewMember_A_Invite() {
         String newMemberEmail = User5.GMAIL_EMAIL.getValue();
         String newMemberPassword = User5.GMAIL_PASSWORD.getValue();
@@ -170,7 +170,7 @@ public class TestsPekamaSettingsTeam {
         deleteMember(newMemberEmail);
         skipBefore = true;
     }
-    @Test @Category({AllEmailsTests.class, AllImapTests.class})
+    @Test 
     public void testC_inviteNewMember_B_CheckEmail() {
         rootLogger.info("Check invite email");
         String login = User5.GMAIL_EMAIL.getValue();
