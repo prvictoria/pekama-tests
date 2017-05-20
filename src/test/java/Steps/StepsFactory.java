@@ -25,8 +25,9 @@ public abstract class StepsFactory {
     static final Logger rootLogger = LogManager.getRootLogger();
 
     //Selenide steps
-    public static void clickElement(SelenideElement element){
+    public static void clickSelector(SelenideElement element){
         element.waitUntil(exist, 15000).waitUntil(visible, 10000).click();
     }
+
 }
 

@@ -74,19 +74,19 @@ public class StepsPekamaProject extends StepsPekama {
         return folderName;
     }
     public static void callNewDocModal(){
-        clickElement(PROJECT_TAB_DOCS);
-        clickElement(TAB_DOCS_BTN_ADD);
-        clickElement(TAB_DOC_NEW_DOCUMENT);
+        clickSelector(PROJECT_TAB_DOCS);
+        clickSelector(TAB_DOCS_BTN_ADD);
+        clickSelector(TAB_DOC_NEW_DOCUMENT);
     }
     public static void callNewFolderModal(){
-        clickElement(PROJECT_TAB_DOCS);
-        clickElement(TAB_DOCS_BTN_ADD);
-        clickElement(TAB_DOC_ADD_FOLDER);
+        clickSelector(PROJECT_TAB_DOCS);
+        clickSelector(TAB_DOCS_BTN_ADD);
+        clickSelector(TAB_DOC_ADD_FOLDER);
     }
     public static void callUploadFilesModal(){
-        clickElement(PROJECT_TAB_DOCS);
-        clickElement(TAB_DOCS_BTN_ADD);
-        clickElement(TAB_DOC_UPLOAD);
+        clickSelector(PROJECT_TAB_DOCS);
+        clickSelector(TAB_DOCS_BTN_ADD);
+        clickSelector(TAB_DOC_UPLOAD);
     }
 
     public static void fileMenuMakeAction(String actionName, String... args) {
@@ -293,7 +293,7 @@ public class StepsPekamaProject extends StepsPekama {
         if(contact==null || relation==null){
             Assert.fail("Nothing to select");
         }
-        clickElement(PROJECT_TAB_CONTACTS);
+        clickSelector(PROJECT_TAB_CONTACTS);
         if(contact.contactType.equals("Company")){
             selectItemInDropdown(projectTabContacts_AddSelectContact, projectTabContacts_AddContactInput, contact.contactLegalEntity);
         }
@@ -326,6 +326,20 @@ public class StepsPekamaProject extends StepsPekama {
         submitEnabledButton(PROJECT_TASK_CARD_BTN_SEND);
         checkText(text);
         return text;
+    }
+    public static void selectSortOrderInProject(String order, Boolean orderIsAscending){
+        if (order!=null){
+            clickSelector(SORT_ORDER_TYPE);
+            clickSelector(SELECT_SORT_ORDER(order));
+            String ActualTaskOrder = SORT_ORDER_TYPE.getText();
+            Assert.assertEquals(order, ActualTaskOrder);
+        }
+        if(orderIsAscending==true){
+            SORT_ORDER_ASCENDING.shouldBe(visible);
+        }
+        else {
+            SORT_ORDER_DESCENDING.shouldBe(visible);
+        }
     }
     public static Boolean selectTaskOrderAndCheck(String taskOrder,  Boolean orderIsAscending){
         TAB_TASKS_ACTUAL_ORDER.shouldBe(visible).click();
@@ -573,22 +587,22 @@ public class StepsPekamaProject extends StepsPekama {
     }
 //TAB CHARGES
     public static void callChargesModal(){
-        clickElement(PROJECT_TAB_CHARGES);
-        clickElement(TAB_CHARGES_ADD);
+        clickSelector(PROJECT_TAB_CHARGES);
+        clickSelector(TAB_CHARGES_ADD);
         waitForModalWindow(TITLE_MW_CHARGE);
     }
     public static void callXeroModal(){
-        clickElement(PROJECT_TAB_CHARGES);
-        clickElement(projectAllCheckbox);
-        clickElement(TAB_CHARGES_XERO);
+        clickSelector(PROJECT_TAB_CHARGES);
+        clickSelector(projectAllCheckbox);
+        clickSelector(TAB_CHARGES_XERO);
         sleep(3000);
     }
     public static void deleteAllCharges(){
-        clickElement(PROJECT_TAB_CHARGES);
+        clickSelector(PROJECT_TAB_CHARGES);
         sleep(1500);
         if($(byText(PLACEHOLDER_EMPTY_LIST)).isDisplayed()==false){
-            clickElement(projectAllCheckbox);
-            clickElement(TAB_CHARGES_BTN_DELETE);
+            clickSelector(projectAllCheckbox);
+            clickSelector(TAB_CHARGES_BTN_DELETE);
             submitConfirmAction();
             checkText(PLACEHOLDER_EMPTY_LIST);
         }

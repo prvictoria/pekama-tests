@@ -1,5 +1,4 @@
 package Tests;
-import Page.ModalWindows;
 import Page.TestsCredentials;
 import Page.TestsCredentials.*;
 import Steps.*;
@@ -22,7 +21,7 @@ import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
-import static Steps.StepsFactory.clickElement;
+import static Steps.StepsFactory.clickSelector;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsModalWindows.modalDocumentTemplateOptions.*;
 import static Steps.StepsPekama.*;
@@ -743,7 +742,7 @@ public class TestsPekamaTemplates {
             openUrlWithBaseAuth(URL_PEKAMA_DASHBOARD);
             submitEnabledButton(DASHBOARD_BTN_NEW_PROJECT);
             submitMwNewProject("Doc auto-deploy test");
-            clickElement(PROJECT_TAB_DOCS);
+            clickSelector(PROJECT_TAB_DOCS);
             checkText(StepsModalWindows.fileName);
         }
         finally {

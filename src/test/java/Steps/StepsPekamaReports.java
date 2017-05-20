@@ -348,8 +348,8 @@ public class StepsPekamaReports extends StepsFactory {
     }
     public static void selectSortOrder(String order, Boolean orderIsAscending){
         if (order!=null){
-            clickElement(REPORTS_SORT_ORDER_TYPE);
-            clickElement(REPORTS_SELECT_SORT_ORDER(order));
+            clickSelector(REPORTS_SORT_ORDER_TYPE);
+            clickSelector(REPORTS_SELECT_SORT_ORDER(order));
             String ActualTaskOrder = REPORTS_SORT_ORDER_TYPE.getText();
             Assert.assertEquals(order, ActualTaskOrder);
         }

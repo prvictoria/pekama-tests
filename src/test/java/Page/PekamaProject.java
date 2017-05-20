@@ -66,7 +66,16 @@ public class PekamaProject extends Page {
     public static final SelenideElement PROJECT_TAB_CHARGES = $(byXpath("//i[@class='icon pkm-icon-finances-square']"));
     public static final SelenideElement PROJECT_TAB_FAMILY = $(byXpath("//i[@class='icon pkm-icon-family-square']"));
     public static final SelenideElement PROJECT_TAB_SEARCH = $(byXpath("//i[@class='icon pkm-icon-search-square']"));
+//SORT ORDER SELECTION
+public static final SelenideElement SORT_ORDER_TYPE = $(byXpath("//a[@class='sortable ng-binding dropdown-toggle']"));
+    public static final SelenideElement SELECT_SORT_ORDER(String order){
+        SelenideElement select = $(byXpath("//a[@class='sortable ng-binding dropdown-toggle']/following-sibling::ul//a[text()='"+order+"']"));
+        return select;
+    }
+    public static final SelenideElement SORT_ORDER_DESCENDING = $(byXpath("//div[@class='dropdown sort desc']"));
+    public static final SelenideElement SORT_ORDER_ASCENDING = $(byXpath("//div[@class='dropdown sort']"));
 
+    //TAB INFO
     public static final SelenideElement TAB_INFO_ProjectTitle = $(byXpath("//pkm-editable-title//h4"));
     public static final SelenideElement TAB_INFO_TitleEditButton = $(byXpath("//*[@class='info-section project-details ng-scope']//button[contains(.,'Edit')]"));
     public static final SelenideElement TAB_INFO_TitleInput = $(byXpath("//input[@name='title']"));
@@ -211,7 +220,7 @@ public class PekamaProject extends Page {
     public static String TAB_DOCS_FILES_MENU_DOWNLOAD_ZIP = TAB_DOCS_FILES_MENU+"//a[contains(.,'Download ZIP')]";
     public static String TAB_DOCS_FILES_MENU_ADD_SUBFOLDER = TAB_DOCS_FILES_MENU+"//a[contains(.,'Add Sub Folder')]";
 
-    //SIMPLE IN RWO CONTRLOS
+    //SIMPLE IN ROW CONTRLOS
         public static final SelenideElement TAB_DOCS_FILE_INPUT_NAME_IN_ROW = $(byXpath("//pkm-simple-files-editable-title//input[@name='name']"));
     public static final SelenideElement TAB_DOCS_FILE_SAVE_IN_ROW = $(byXpath("//pkm-simple-files-editable-title//a[contains(.,'Save')]"));
 

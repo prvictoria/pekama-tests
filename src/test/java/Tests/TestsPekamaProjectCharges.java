@@ -1,9 +1,6 @@
 package Tests;
 
-import Steps.ObjectCharges;
-import Steps.ObjectContact;
-import Steps.StepsPekamaProject;
-import Steps.User;
+import Steps.*;
 import com.codeborne.selenide.ex.SoftAssertionError;
 import org.apache.logging.log4j.*;
 import org.junit.*;
@@ -14,7 +11,11 @@ import javax.mail.MessagingException;
 import java.io.IOException;
 
 
+import static Page.PekamaProject.*;
 import static Page.PekamaTeamSettings.*;
+import static Steps.ObjectCharges.checkInvoiceRow;
+import static Steps.StepsFactory.*;
+import static Steps.StepsFactory.clickSelector;
 import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
@@ -25,7 +26,6 @@ import static com.codeborne.selenide.WebDriverRunner.*;
 import static Page.Xero.*;
 import static Page.ModalWindows.*;
 import static Page.PekamaDashboard.*;
-import static Page.PekamaReports.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsCredentials.ContactRelation.*;
 import static Page.TestsStrings.*;
@@ -51,6 +51,10 @@ public class TestsPekamaProjectCharges {
     private static ObjectContact contact1 = new ObjectContact();
     private static ObjectContact contact2 = new ObjectContact();
     private static ObjectContact contact3 = new ObjectContact();
+    private static ObjectCharges invoice1Sort = new ObjectCharges();
+    private static ObjectCharges invoice2Sort = new ObjectCharges();
+    private static ObjectCharges invoice3Sort = new ObjectCharges();
+
     private static String projectName;
     private static String projectUrl;
     private static boolean skipBefore = false;
@@ -126,38 +130,133 @@ public class TestsPekamaProjectCharges {
         ObjectCharges invoice4 = new ObjectCharges();
         invoice4.create(CHARGES_TYPE_SERVICE, EUR, 1);
         ObjectCharges check = new ObjectCharges();
-        check.checkInvoiceRow(1, invoice1);
-        check.checkInvoiceRow(2, invoice2);
-        check.checkInvoiceRow(3, invoice3);
-        check.checkInvoiceRow(4, invoice4);
+        checkInvoiceRow(1, invoice1);
+        checkInvoiceRow(2, invoice2);
+        checkInvoiceRow(3, invoice3);
+        checkInvoiceRow(4, invoice4);
         StepsPekamaProject.deleteAllCharges();
         checkText(PLACEHOLDER_EMPTY_LIST);
     }
     //TODO
     @Test
-    public void tabCharges_B_delete_all(){
+    public void tabCharges_B_sort_by_date(){
         StepsPekamaProject.deleteAllCharges();
-        ObjectCharges invoice1 = new ObjectCharges();
-        invoice1.create(OWNER_TEAM_NAME, contact1.contactLegalEntity,
+
+        invoice1Sort.create(OWNER_TEAM_NAME, contact1.contactLegalEntity,
                 null, "Billed",
                 CHARGES_TYPE_EXPENSES, 10,
                 "abc", GBP, 1);
-        ObjectCharges invoice2 = new ObjectCharges();
-        invoice2.create(OWNER_TEAM_NAME, null,
+        invoice2Sort.create(OWNER_TEAM_NAME, null,
                 "A-member", "Not Billed",
                 CHARGES_TYPE_ASSOCIATE, 0,
                 "def",ILS, 999);
-        ObjectCharges invoice3 = new ObjectCharges();
-        invoice3.create(OWNER_TEAM_NAME, contact3.contactNameSurname,
+        invoice3Sort.create(OWNER_TEAM_NAME, contact3.contactNameSurname,
                 "B-member", "Billed & Paid",
                 CHARGES_TYPE_FEES, -10,
                 "xyz",USD, 100);
-        ObjectCharges check = new ObjectCharges();
-        check.checkInvoiceRow(1, invoice1);
-        check.checkInvoiceRow(2, invoice2);
-        check.checkInvoiceRow(3, invoice3);
 
+        rootLogger.info("Validate sort order and rows by: "+"Date");
+        selectSortOrderInProject(null, false);
+        checkInvoiceRow(1, invoice3Sort);
+        checkInvoiceRow(2, invoice2Sort);
+        checkInvoiceRow(3, invoice1Sort);
+        selectSortOrderInProject("Date", true);
+        checkInvoiceRow(1, invoice1Sort);
+        checkInvoiceRow(2, invoice2Sort);
+        checkInvoiceRow(3, invoice3Sort);
     }
+    @Test
+    public void tabCharges_B_sort_by_last_created(){
+        clickSelector(PROJECT_TAB_CHARGES);
+        rootLogger.info("Validate sort order and rows by: "+"Last created");
+        selectSortOrderInProject("Last created", false);
+        checkInvoiceRow(1, invoice3Sort);
+        checkInvoiceRow(2, invoice2Sort);
+        checkInvoiceRow(3, invoice1Sort);
+        selectSortOrderInProject("Last created", true);
+        checkInvoiceRow(1, invoice1Sort);
+        checkInvoiceRow(2, invoice2Sort);
+        checkInvoiceRow(3, invoice3Sort);
+    }
+    @Test
+    public void tabCharges_B_sort_by_last_modified(){
+        clickSelector(PROJECT_TAB_CHARGES);
+        rootLogger.info("Validate sort order and rows by: "+"Last modified");
+        selectSortOrderInProject("Last modified", false);
+        checkInvoiceRow(1, invoice3Sort);
+        checkInvoiceRow(2, invoice2Sort);
+        checkInvoiceRow(3, invoice1Sort);
+        selectSortOrderInProject("Last modified", true);
+        checkInvoiceRow(1, invoice1Sort);
+        checkInvoiceRow(2, invoice2Sort);
+        checkInvoiceRow(3, invoice3Sort);
+    }
+    @Test
+    public void tabCharges_B_sort_by_amount(){
+        clickSelector(PROJECT_TAB_CHARGES);
+        rootLogger.info("Validate sort order and rows by: "+"Amount");
+        selectSortOrderInProject("Amount", false);
+        checkInvoiceRow(1, invoice1Sort);
+        checkInvoiceRow(2, invoice3Sort);
+        checkInvoiceRow(3, invoice2Sort);
+        selectSortOrderInProject("Amount", true);
+        checkInvoiceRow(1, invoice2Sort);
+        checkInvoiceRow(2, invoice3Sort);
+        checkInvoiceRow(3, invoice1Sort);
+    }
+    @Test
+    public void tabCharges_B_sort_by_from(){
+        clickSelector(PROJECT_TAB_CHARGES);
+        rootLogger.info("Validate sort order and rows by: "+"From");
+        selectSortOrderInProject("From", true);
+        checkInvoiceRow(1, invoice1Sort);
+        checkInvoiceRow(2, invoice2Sort);
+        checkInvoiceRow(3, invoice3Sort);
+        selectSortOrderInProject("From", false);
+        checkInvoiceRow(1, invoice3Sort);
+        checkInvoiceRow(2, invoice2Sort);
+        checkInvoiceRow(3, invoice1Sort);
+    }
+    @Test
+    public void tabCharges_B_sort_by_to(){
+        clickSelector(PROJECT_TAB_CHARGES);
+        rootLogger.info("Validate sort order and rows by: "+"To");
+        selectSortOrderInProject("To", true);
+        checkInvoiceRow(1, invoice1Sort);
+        checkInvoiceRow(2, invoice2Sort);
+        checkInvoiceRow(3, invoice3Sort);
+        selectSortOrderInProject("To", false);
+        checkInvoiceRow(1, invoice2Sort);
+        checkInvoiceRow(2, invoice3Sort);
+        checkInvoiceRow(3, invoice1Sort);
+    }
+    @Test
+    public void tabCharges_B_sort_by_type(){
+        clickSelector(PROJECT_TAB_CHARGES);
+        rootLogger.info("Validate sort order and rows by: "+"Type");
+        selectSortOrderInProject("Type", true);
+        checkInvoiceRow(1, invoice1Sort);
+        checkInvoiceRow(2, invoice2Sort);
+        checkInvoiceRow(3, invoice3Sort);
+        selectSortOrderInProject("Type", false);
+        checkInvoiceRow(1, invoice3Sort);
+        checkInvoiceRow(2, invoice2Sort);
+        checkInvoiceRow(3, invoice1Sort);
+    }
+    @Test
+    public void tabCharges_B_sort_by_status(){
+        clickSelector(PROJECT_TAB_CHARGES);
+        rootLogger.info("Validate sort order and rows by: "+"Status");
+        selectSortOrderInProject("Status", true);
+        checkInvoiceRow(1, invoice3Sort);
+        checkInvoiceRow(2, invoice2Sort);
+        checkInvoiceRow(3, invoice1Sort);
+        selectSortOrderInProject("Status", false);
+        checkInvoiceRow(1, invoice1Sort);
+        checkInvoiceRow(2, invoice2Sort);
+        checkInvoiceRow(3, invoice3Sort);
+    }
+
     @Test
     public void tabCharges_modal_validation_empty() {
         String bigDecimal = "12345678901234567890";
