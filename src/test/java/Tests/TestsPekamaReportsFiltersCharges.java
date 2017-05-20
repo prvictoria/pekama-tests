@@ -15,6 +15,7 @@ import java.io.IOException;
 import static Page.ModalWindows.*;
 import static Page.PekamaDashboard.*;
 import static Page.PekamaReports.*;
+import static Page.PekamaTeamSettings.TAB_MEMBERS_BTN_ADD;
 import static Page.TestsCredentials.*;
 import static Page.TestsCredentials.ContactRelation.*;
 import static Page.TestsStrings.*;
@@ -22,6 +23,7 @@ import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
 import static Steps.ObjectCharges.checkInvoiceRowReports;
 import static Steps.ObjectContact.enterPoint.*;
+import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static Steps.StepsModalWindows.submitMwNewProject;
 import static Steps.StepsPekama.*;
 import static Steps.StepsPekama.openPageWithSpinner;
@@ -62,44 +64,61 @@ public class TestsPekamaReportsFiltersCharges {
             clearBrowserCache();
             User user = new User();
             user.loginByURL(OWNER_LOGIN, OWNER_PASSWORD, URL_LogIn);
-        }
-        else {rootLogger.info("Before suite was skipped");
-        }
-        addMember("A-member@email.com", DASHBOARD_INVITE);
-        addMember("B-member@office.eu", DASHBOARD_INVITE);
-        deleteAllCharges();
-        deleteAllContacts();
-        contact1.createCompany(REPORT, "Company",
-                null, null,
-                null, null,null,
-                null, null,
-                null, null);
-        contact1.createCompany(REPORT, "Law firm",
-                null, null,
-                null, null,null,
-                null, null,
-                null, null);
-        openPageWithSpinner(URL_ReportsProjects);
-        rootLogger.info("Create project and charges");
-        submitEnabledButton(REPORTS_BTN_NEW_PROJECT);
+
+        rootLogger.info("Create project");
+        submitEnabledButton(DASHBOARD_BTN_NEW_PROJECT);
         projectName = submitMwNewProject();
         projectUrl = getActualUrl();
+
+        deleteAllMembers();
+        addMember("A-member@email.com", TAB_MEMBERS_BTN_ADD);
+        addMember("B-member@office.eu", TAB_MEMBERS_BTN_ADD);
+
+        deleteAllContacts();
+        rootLogger.info("Create contacts in reports");
+        contact1.createCompany(REPORT, "ip lawyers ltd",
+                null, null,
+                null, null,null,
+                null, null,
+                null, null);
+        contact2.createCompany(REPORT, "Law firm",
+                null, null,
+                null, null,null,
+                null, null,
+                null, null);
+        contact3.createPerson(REPORT, null,
+                "Name", "Surname", null,
+                null, null,
+                null, null,null,
+                null, null,
+                null, null);
+        deleteAllCharges();
+
+        openPageWithSpinner(URL_ReportsProjects);
+        rootLogger.info("Add contacts to project");
+        openUrlWithBaseAuth(projectUrl);
         selectAndAddContact(contact1, DOMESTIC_REPRESENTATIVE.getValue());
         selectAndAddContact(contact2, OWNER_COMPANY.getValue());
         selectAndAddContact(contact3, INVESTOR.getValue());
-        invoice1.create(OWNER_TEAM_NAME, contact1.contactLegalEntity,
-                null, "Billed",
-                CHARGES_TYPE_EXPENSES, 1,
-                "abc", GBP, 1);
-        invoice2.create(OWNER_TEAM_NAME, "Not Billed",
-                contact2.contactLegalEntity, "A-member",
-                CHARGES_TYPE_ASSOCIATE, 0,
-                "def",ILS, 999);
-        invoice3.create(OWNER_TEAM_NAME, "Billed & Paid",
-                null, "B-member",
-                CHARGES_TYPE_FEES, -1,
-                "xyz",USD, 100);
+
+            rootLogger.info("Create charges in project");
+            invoice1.create(OWNER_TEAM_NAME, contact1.contactLegalEntity,
+                    null, "Billed",
+                    CHARGES_TYPE_EXPENSES, 10,
+                    "abc", GBP, 1);
+            invoice2.create(OWNER_TEAM_NAME, null,
+                    "A-member", "Not Billed",
+                    CHARGES_TYPE_ASSOCIATE, 0,
+                    "def",ILS, 999);
+            invoice3.create(OWNER_TEAM_NAME, contact3.contactNameSurname,
+                    "B-member", "Billed & Paid",
+                    CHARGES_TYPE_FEES, -10,
+                    "xyz",USD, 100);
+
         getWebDriver().quit();
+        }
+        else {rootLogger.info("Before suite was skipped");
+        }
     }
     @Before
     public void login() {
@@ -172,12 +191,12 @@ public class TestsPekamaReportsFiltersCharges {
         rootLogger.info("Validate sort order and rows by: "+"To");
         selectSortOrder("To", true);
         checkInvoiceRowReports(1, invoice1);
-        checkInvoiceRowReports(2, invoice2);
-        checkInvoiceRowReports(3, invoice3);
+        checkInvoiceRowReports(2, invoice3);
+        checkInvoiceRowReports(3, invoice2);
         selectSortOrder("To", false);
-        checkInvoiceRowReports(1, invoice1);
-        checkInvoiceRowReports(2, invoice2);
-        checkInvoiceRowReports(3, invoice3);
+        checkInvoiceRowReports(1, invoice2);
+        checkInvoiceRowReports(2, invoice3);
+        checkInvoiceRowReports(3, invoice1);
     }
     @Test
     public void charges_sort_type (){
