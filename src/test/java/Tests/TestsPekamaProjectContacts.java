@@ -87,8 +87,7 @@ public class TestsPekamaProjectContacts{
     }
     @Test
     public void tabContacts_F1_addNewContact_Person() {
-        skipBefore = true;
-        // $$(byText(PLACEHOLDER_NO_DATA)).filter(visible).shouldHaveSize(1);
+         // $$(byText(PLACEHOLDER_NO_DATA)).filter(visible).shouldHaveSize(1);
         //todo BUG #140196199 https://www.pivotaltracker.com/n/projects/1239770/stories/140196199
 
         contact.createPerson(PROJECT, null,
@@ -116,13 +115,8 @@ public class TestsPekamaProjectContacts{
     }
     @Test
     public void tabContacts_F2_addExistedContact() {
-        skipBefore = false;
-        // $$(byText(PLACEHOLDER_NO_DATA)).filter(visible).shouldHaveSize(1);
-        //todo BUG #140196199 https://www.pivotaltracker.com/n/projects/1239770/stories/140196199
-        openUrlWithBaseAuth(projectUrl);
         rootLogger.info("Select existed contact");
         selectAndAddContact(contact, ContactRelation.DOMESTIC_REPRESENTATIVE.getValue());
-
 
         rootLogger.info("Edit fields contact inline");
         projectTabContacts_ContactEdit.click();
@@ -162,6 +156,5 @@ public class TestsPekamaProjectContacts{
         checkInputValue(projectTabContacts_FormPostal, "newZip");
         checkInputValue(projectTabContacts_FormCity, "newCity");
         checkInputValue(projectTabContacts_FormRegion, "newRegion");
-
     }
 }

@@ -15,19 +15,28 @@ import org.junit.runners.Suite;
         TestsPekamaLogin.class,
         TestsPekamaResetPassword.class, //not important for now
         TestsPekamaSignUp.class,
+
         TestsPekamaSettingsPersonal.class,
-        TestsPekamaProject.class,
-        TestsMessages.class,
-        TestsPekamaIntegrationBox.class,
         TestsPekamaSettingsTeam.class,
         TestsPekamaSettingValues.class,
+
+        TestsMessages.class,
+        TestsPekamaIntegrationBox.class,
+        TestsPekamaProject.class,
+        TestsPekamaProjectInfo.class,
+        TestsPekamaProjectContacts.class,
+        TestsPekamaProjectDocs.class,
+        TestsPekamaProjectTasks.class,
+        TestsPekamaProjectCharges.class,
+
         TestsPekamaTemplates.class,
+
         TestsPekamaReports.class,
-        //TestsPekamaReportsFiltersProjects.class,
-        //TestsPekamaReportsFiltersTasks.class,
-        //TestsPekamaReportsFiltersEvents.class,
+        TestsPekamaReportsFiltersProjects.class,
+        TestsPekamaReportsFiltersTasks.class,
+        TestsPekamaReportsFiltersEvents.class,
         TestsPekamaReportsFiltersCharges.class,
-        //TestsPekamaReportsFiltersContacts.class
+        TestsPekamaReportsFiltersContacts.class
 })
 public class AllPekamaTestsRunner extends AllTestsRunner {
 

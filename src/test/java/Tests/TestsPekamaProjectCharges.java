@@ -84,7 +84,7 @@ public class TestsPekamaProjectCharges {
                 null, null,
                 null, null);
         openPageWithSpinner(URL_ReportsProjects);
-        rootLogger.info("Create project and charges");
+        rootLogger.info("Create project");
         submitEnabledButton(REPORTS_BTN_NEW_PROJECT);
         projectName = submitMwNewProject();
         projectUrl = getActualUrl();
@@ -117,6 +117,7 @@ public class TestsPekamaProjectCharges {
         StepsPekamaProject.deleteAllCharges();
         checkText(PLACEHOLDER_EMPTY_LIST);
     }
+    //TODO
     @Test
     public void tabCharges_B_delete_all(){
         ObjectCharges invoice1 = new ObjectCharges();
@@ -138,7 +139,7 @@ public class TestsPekamaProjectCharges {
         check.checkInvoiceRow(1, invoice1);
         check.checkInvoiceRow(2, invoice2);
         check.checkInvoiceRow(3, invoice3);
-        StepsPekamaProject.deleteAllCharges();
+        //StepsPekamaProject.deleteAllCharges();
         checkText(PLACEHOLDER_EMPTY_LIST);
     }
     @Test
