@@ -585,6 +585,7 @@ public class StepsPekamaProject extends StepsPekama {
     }
     public static void deleteAllCharges(){
         clickElement(PROJECT_TAB_CHARGES);
+        sleep(1500);
         if($(byText(PLACEHOLDER_EMPTY_LIST)).isDisplayed()==false){
             clickElement(projectAllCheckbox);
             clickElement(TAB_CHARGES_BTN_DELETE);

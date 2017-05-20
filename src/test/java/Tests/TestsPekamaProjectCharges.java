@@ -14,7 +14,7 @@ import javax.mail.MessagingException;
 import java.io.IOException;
 
 
-import static Page.PekamaTeamSettings.TAB_MEMBERS_BTN_ADD;
+import static Page.PekamaTeamSettings.*;
 import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
@@ -37,8 +37,6 @@ import static Steps.StepsPekama.*;
 import static Steps.StepsPekamaProject.*;
 import static Steps.StepsPekamaReports.*;
 import static Tests.BeforeTestsSetUp.*;
-
-
 /**
  * Created by VatslauX on 20-May-17.
  */
@@ -142,17 +140,17 @@ public class TestsPekamaProjectCharges {
         ObjectCharges invoice1 = new ObjectCharges();
         invoice1.create(OWNER_TEAM_NAME, contact1.contactLegalEntity,
                 null, "Billed",
-                CHARGES_TYPE_EXPENSES, 1,
+                CHARGES_TYPE_EXPENSES, 10,
                 "abc", GBP, 1);
         ObjectCharges invoice2 = new ObjectCharges();
-        invoice2.create(OWNER_TEAM_NAME, "Not Billed",
-                contact2.contactLegalEntity, "A-member",
+        invoice2.create(OWNER_TEAM_NAME, null,
+                "A-member", "Not Billed",
                 CHARGES_TYPE_ASSOCIATE, 0,
                 "def",ILS, 999);
         ObjectCharges invoice3 = new ObjectCharges();
-        invoice3.create(OWNER_TEAM_NAME, "Billed & Paid",
-                null, "B-member",
-                CHARGES_TYPE_FEES, -1,
+        invoice3.create(OWNER_TEAM_NAME, contact3.contactNameSurname,
+                "B-member", "Billed & Paid",
+                CHARGES_TYPE_FEES, -10,
                 "xyz",USD, 100);
         ObjectCharges check = new ObjectCharges();
         check.checkInvoiceRow(1, invoice1);
@@ -161,21 +159,20 @@ public class TestsPekamaProjectCharges {
 
     }
     @Test
-    public void tabCharges_ModalWindowValidation() {
-        StepsPekamaProject.deleteAllCharges();
-
+    public void tabCharges_modal_validation_empty() {
         String bigDecimal = "12345678901234567890";
         String floatString1 = "1.2345678901234567890";
         String floatString2 = "123456789012345678.90";
-
+        StepsPekamaProject.deleteAllCharges();
         callChargesModal();
+
         rootLogger.info("Validation empty field");
         MW_CHARGES_SELECT_FROM.shouldHave(text(OWNER_FULL_TEAM_NAME));
         fillField(MW_CHARGES_INPUT_ITEM, LOREM_IPSUM_SHORT);
         submitEnabledButton(MW_BTN_OK);
         checkText(ERROR_MSG_REQUIRED_FIELD, 2);
         MW_BTN_CANCEL.click();
-        MW.waitUntil(not(visible),20000);
+        MW.waitUntil(not(visible), 20000);
 
         rootLogger.info("Validation max value HOUR, MIN, RATE");
         callChargesModal();
@@ -188,7 +185,15 @@ public class TestsPekamaProjectCharges {
         checkText("Ensure that there are no more than 18 digits in total.", 2);
         checkText("Ensure this value is less than or equal to 2147483647.", 2);
         MW_BTN_CANCEL.click();
-        MW.waitUntil(not(visible),20000);
+        MW.waitUntil(not(visible), 20000);
+    }
+    @Test
+    public void tabCharges_modal_validation_max_value() {
+        String bigDecimal = "12345678901234567890";
+        String floatString1 = "1.2345678901234567890";
+        String floatString2 = "123456789012345678.90";
+        StepsPekamaProject.deleteAllCharges();
+        callChargesModal();
 
         rootLogger.info("Validation max value - QTY, PRICE, VAT, DISCOUNT");
         callChargesModal();
@@ -199,12 +204,20 @@ public class TestsPekamaProjectCharges {
         fillField(MW_CHARGES_INPUT_VAT, bigDecimal);
         fillField(MW_CHARGES_INPUT_DISCOUNT, bigDecimal);
         submitEnabledButton(MW_BTN_OK);
-        checkText("Ensure this value is less than or equal to 2147483647." );
-        checkText("Ensure that there are no more than 18 digits in total.", 2 );
+        checkText("Ensure this value is less than or equal to 2147483647.");
+        checkText("Ensure that there are no more than 18 digits in total.", 2);
         checkText("Ensure that there are no more than 7 digits in total.");
         MW_BTN_CANCEL.click();
-        MW.waitUntil(not(visible),20000);
+        MW.waitUntil(not(visible), 20000);
+    }
+    @Test
+    public void tabCharges_modal_validation_float() {
+        String bigDecimal = "12345678901234567890";
+        String floatString1 = "1.2345678901234567890";
+        String floatString2 = "123456789012345678.90";
+        StepsPekamaProject.deleteAllCharges();
 
+        callChargesModal();
         rootLogger.info("Validation float - PRICE should be decimal");
         callChargesModal();
         selectItemInDropdown(MW_CHARGES_SELECT_TYPE, MW_CHARGES_INPUT_TYPE, CHARGES_TYPE_ASSOCIATE);

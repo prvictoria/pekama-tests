@@ -88,9 +88,9 @@ public class ObjectCharges {
             this.invoiceTo = invoiceTo;
             selectItemInDropdown(MW_CHARGES_SELECT_TO, MW_CHARGES_INPUT_TO, this.invoiceTo);
         }
-        if(invoiceTo==null){
-            this.invoiceTo = MW_CHARGES_SELECT_TO.getText();
-        }
+//        if(invoiceTo==null){
+//            this.invoiceTo = MW_CHARGES_SELECT_TO.getText();
+//        }
 
         if(invoiceBy!=null){
             this.invoiceBy = invoiceBy;
@@ -290,9 +290,6 @@ public class ObjectCharges {
             }
             if(charges.invoiceFrom  !=  null){
                 elementInChargesRow(rowCount, TAB_CHARGES_ROW_FROM_TO).shouldHave(text(charges.invoiceFrom));
-            }
-            if(charges.invoiceBy  !=  null){
-                elementInChargesRow(rowCount, TAB_CHARGES_ROW_FROM_TO).shouldHave(text(charges.invoiceBy));
             }
             if(charges.invoiceTo!= null && charges.invoiceTo.equals("Select billed contact...")==false){
                 elementInChargesRow(rowCount, TAB_CHARGES_ROW_FROM_TO).shouldHave(text(charges.invoiceTo));
