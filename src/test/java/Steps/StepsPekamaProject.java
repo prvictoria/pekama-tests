@@ -14,6 +14,7 @@ import static Page.PekamaConversationProject.*;
 import static Page.PekamaDashboard.*;
 import static Page.PekamaProject.*;
 
+import static Page.PekamaProjectCharges.*;
 import static Page.TestsStrings.*;
 import static Page.UrlStrings.*;
 import static Steps.StepsCommunity.*;
@@ -287,6 +288,23 @@ public class StepsPekamaProject extends StepsPekama {
         projectTabContacts_AddSelectContact.shouldBe(visible).click();
         fillField(projectTabContacts_AddContactInput, testContactName);
         projectTabContacts_CREATE_NEW_CONTACT.shouldBe(visible).click();
+    }
+    public static void selectAndAddContact(ObjectContact contact, String relation){
+        if(contact==null || relation==null){
+            Assert.fail("Nothing to select");
+        }
+        clickElement(PROJECT_TAB_CONTACTS);
+        if(contact.contactType.equals("Company")){
+            selectItemInDropdown(projectTabContacts_AddSelectContact, projectTabContacts_AddContactInput, contact.contactLegalEntity);
+        }
+        if(contact.contactType.equals("Person")){
+            selectItemInDropdown(projectTabContacts_AddSelectContact, projectTabContacts_AddContactInput, contact.contactNameSurname);
+        }
+        if(relation!=null){
+            contact.contactRelation = relation;
+            selectItemInDropdown(projectTabContacts_AddSelectRelation, projectTabContacts_AddRelationInput, relation);
+        }
+        submitEnabledButton(projectTabContacts_AddContactButton);
     }
 // TASKS TAB =========================================================================
     public static void deleteAllTasks(){

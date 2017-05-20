@@ -3,11 +3,9 @@ import Page.TestsCredentials;
 import Steps.*;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.ex.SoftAssertionError;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
-import org.junit.experimental.categories.Category;
 import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
 import javax.mail.MessagingException;
@@ -26,10 +24,8 @@ import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
-import static Page.Xero.*;
 import static Steps.Messages.*;
 import static Steps.MessagesValidator.ValidationInviteInProject.projectBackLink;
-import static Steps.ObjectContact.enterPoint.*;
 import static Steps.ObjectTask.checkTaskData;
 import static Steps.StepsCommunity.checkCaseNameFirstRow;
 import static Steps.StepsCommunity.selectExpert;
@@ -54,7 +50,7 @@ public class TestsPekamaProject {
     private static String testProjectTitle = "new test project - "+ randomString(6);
     private static String testContactName = "name"+ randomString(10);
     private static String testContactSurname = "surname"+ randomString(10);
-    private static String testProjectURL;
+    private static String projectUrl;
     private final static String TEST_USER_EMAIL = User3.GMAIL_EMAIL.getValue();
     private final static String TEST_USER_NAME_SURNAME = User3.NAME_SURNAME.getValue();
     private final static String TEST_USER_PEKAMA_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
@@ -80,44 +76,51 @@ public class TestsPekamaProject {
     private final static String EXPERT_FULL_TEAM_NAME = TestsCredentials.User2.FULL_TEAM_NAME.getValue();
     private static final String EXPERT_NAME_SURNAME = TestsCredentials.User2.NAME_SURNAME.getValue();
     private final static String INTRODUCER_NAME = "Rand, Kaldor & Zane LLP (RKNZ)";
+    private static ObjectContact contact = new ObjectContact();
     @Rule
     public Timeout tests = Timeout.seconds(600);
     private static boolean skipBefore = false;
-
+    private static boolean nextIsImapTest = false;
     @BeforeClass
     public static void beforeClass() throws IOException, MessagingException {
         setEnvironment ();
         setBrowser();
-        holdBrowserAfterTest();
-        TEST_CASE_TYPE = MATTER_TYPE_TRADEMARK;
-        MessagesIMAP emailTask = new MessagesIMAP();
-        emailTask.imapSearchEmailDeleteAll(
-                User5.GMAIL_EMAIL.getValue(),
-                User5.GMAIL_PASSWORD.getValue());
+        if(nextIsImapTest==false) {
+            holdBrowserAfterTest();
+            TEST_CASE_TYPE = MATTER_TYPE_TRADEMARK;
+            MessagesIMAP emailTask = new MessagesIMAP();
+            emailTask.imapSearchEmailDeleteAll(
+                    User5.GMAIL_EMAIL.getValue(),
+                    User5.GMAIL_PASSWORD.getValue());
+        }
+        else {rootLogger.info("Before suite was skipped");}
     }
     @Before
     public void before() {
-        if (skipBefore==false) {
+        if(nextIsImapTest==false) {
             clearBrowserCache();
             User requester = new User();
             requester.loginByURL(
                     REQUESTER_EMAIL, REQUESTER_PEKAMA_PASSWORD, URL_LogIn);
-            DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 30000).click();
-            testProjectTitle = submitMwNewProject(
-                    "INNER_VALIDATION",
-                    TEST_CASE_TYPE,
-                    PITCAIRN_ISLANDS.getValue(),
-                    null,
-                    null);
-            testProjectURL = getActualUrl();
-            rootLogger.info("Project url: " + testProjectURL);
-            rootLogger.info("ProjectValues '" + testProjectTitle + "' created");
-            waitForTextPresent(testProjectTitle);
+            if (skipBefore == false) {
+                DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 30000).click();
+                testProjectTitle = submitMwNewProject(
+                        "INNER_VALIDATION",
+                        TEST_CASE_TYPE,
+                        PITCAIRN_ISLANDS.getValue(),
+                        null,
+                        null);
+                projectUrl = getActualUrl();
+                rootLogger.info("Project url: " + projectUrl);
+                rootLogger.info("ProjectValues '" + testProjectTitle + "' created");
+                waitForTextPresent(testProjectTitle);
+            }
         }
         else {rootLogger.info("Before was skipped");}
     }
     @Test
     public void tabInfo_A_CheckDefaultStateAndDelete() {
+        nextIsImapTest = false;
         scrollUp();
         $$(byText(testProjectTitle)).filter(visible).shouldHaveSize(1);
         $$(byText(PLACEHOLDER_NO_CASES)).filter(visible).shouldHaveSize(1);
@@ -144,7 +147,7 @@ public class TestsPekamaProject {
         rootLogger.info("Project deleted by Owner");
 
         rootLogger.info("Check if user opens project link");
-        openUrlWithBaseAuth(testProjectURL);
+        openUrlWithBaseAuth(projectUrl);
         sleep(3000);
         $(byXpath("//*[@class='alert alert-danger not-found-message']"))
                 .shouldHave(text("This project was deleted by its owner. "));
@@ -155,6 +158,7 @@ public class TestsPekamaProject {
     }
     @Test
     public void tabInfo_B_editProjectName() throws AWTException {
+        nextIsImapTest = false;
         rootLogger.info("Rename Project by Owner");
         getFullProjectTitle();
         waitForTextPresent(testProjectTitle);
@@ -188,6 +192,7 @@ public class TestsPekamaProject {
     }
     @Test
     public void tabInfo_C_AddNumber() {
+        nextIsImapTest = false;
         String numberType = "Equinox code";
         String numberValue = "2000/17/55-asd";
         numberCreate(numberType, numberValue);
@@ -203,6 +208,7 @@ public class TestsPekamaProject {
     }
     @Test
     public void tabInfo_D1_ClassificationValidation() {
+        nextIsImapTest = false;
         classificationCreate("Up-to-date", null, null);
         checkText("This field is required.");
         submitEnabledButton(MW_BTN_CANCEL);
@@ -225,7 +231,7 @@ public class TestsPekamaProject {
     }
     @Test
     public void tabInfo_D2_ClassificationCrud() {
-
+        nextIsImapTest = false;
         String classNumber = "12";
         String classDescription = "old description";
         classificationCreate(null, classNumber, classDescription);
@@ -242,6 +248,7 @@ public class TestsPekamaProject {
     }
     @Test
     public void tabContacts_E_addCollaborator() {
+        nextIsImapTest = false;
         rootLogger.info("Add Pekama member - by default - as Collaborator");
         PROJECT_TAB_CONTACTS.click();
         projectTabContacts_AddCollaborator.click();
@@ -292,6 +299,7 @@ public class TestsPekamaProject {
     }
     @Test
     public void tabContacts_E_inviteCollaborator_Action() {
+        nextIsImapTest = true;
         rootLogger.info("Invite new team to Pekama project");
         PROJECT_TAB_CONTACTS.click();
         projectTabContacts_AddCollaborator.click();
@@ -303,10 +311,10 @@ public class TestsPekamaProject {
         MW.shouldNotBe(visible);
         $$(byText(OWNER)).shouldHaveSize(1);
         $$(byText(COLLABORATOR)).shouldHaveSize(1);
-        skipBefore = true;
     }
     @Test
     public void tabContacts_E_inviteCollaborator_ValidationEmail() {
+        nextIsImapTest = false;
         rootLogger.info("Check report email");
         String login = User5.GMAIL_EMAIL.getValue();
         String password = User5.GMAIL_PASSWORD.getValue();
@@ -318,90 +326,11 @@ public class TestsPekamaProject {
         Assert.assertNotNull(projectBackLink);
         rootLogger.info("Link invite to project is: "+projectBackLink);
         rootLogger.info("Test passed");
-        skipBefore = false;
     }
-    @Test
-    public void tabContacts_F1_addNewContact_Person() {
-        // $$(byText(PLACEHOLDER_NO_DATA)).filter(visible).shouldHaveSize(1);
-        //todo BUG #140196199 https://www.pivotaltracker.com/n/projects/1239770/stories/140196199
-        ObjectContact contact = new ObjectContact();
-        contact.createPerson(PROJECT, null,
-                testContactName, testContactSurname,
-                null, null, null, null,
-                null, null, null,
-                null, null, null);
 
-        rootLogger.info("Check the contact is selected");
-        $$(byText(testContactName+" "+testContactSurname)).filter(visible).shouldHaveSize(1);
-
-        rootLogger.info("Select relation");
-        selectItemInDropdown(projectTabContacts_AddSelectRelation, projectTabContacts_AddRelationInput, ContactRelation.ATTORNEY.getValue());
-
-        rootLogger.info("Add contact to project");
-        projectTabContacts_AddContactButton.click();
-        projectTabContacts_ContactName.shouldHave(Condition.exactText(testContactName+" "+testContactSurname));
-        projectTabContacts_ContactRelation.shouldHave(Condition.exactText((ContactRelation.ATTORNEY.getValue())));
-
-        rootLogger.info("delete contact relation");
-        projectTabContacts_ContactDelete.click();
-        submitConfirmAction();
-        // $$(byText(PLACEHOLDER_NO_DATA)).filter(visible).shouldHaveSize(1);
-        //todo BUG #140196199 https://www.pivotaltracker.com/n/projects/1239770/stories/140196199
-    }
-    @Test
-    public void tabContacts_F2_addExistedContact() {
-        PROJECT_TAB_CONTACTS.click();
-        // $$(byText(PLACEHOLDER_NO_DATA)).filter(visible).shouldHaveSize(1);
-        //todo BUG #140196199 https://www.pivotaltracker.com/n/projects/1239770/stories/140196199
-        rootLogger.info("Select existed contact");
-        selectItemInDropdown(projectTabContacts_AddSelectContact, projectTabContacts_AddContactInput, testContactName);
-        rootLogger.info("Select relation");
-        selectItemInDropdown(projectTabContacts_AddSelectRelation, projectTabContacts_AddRelationInput, ContactRelation.DOMESTIC_REPRESENTATIVE.getValue());
-        projectTabContacts_AddContactButton.click();
-        projectTabContacts_ContactName.shouldHave(Condition.exactText(testContactName+" "+testContactSurname));
-        projectTabContacts_ContactRelation.shouldHave(Condition.exactText((ContactRelation.DOMESTIC_REPRESENTATIVE.getValue())));
-        rootLogger.info("Edit fields contact inline");
-        projectTabContacts_ContactEdit.click();
-        projectTabContacts_FormRelationSelect.selectOption(ContactRelation.CLIENT_COMPANY.getValue());
-        fillField(projectTabContacts_FormOwnership, "99");
-        fillField(projectTabContacts_FormEntity, "newEntity");
-        fillField(projectTabContacts_FormFirstName, "NEWperson");
-        fillField(projectTabContacts_FormLastName, "NEWman03");
-        fillField(projectTabContacts_FormEmail, "NEWcontact_01_mail@mail.com");
-        fillField(projectTabContacts_FormPhone, "newPhone");
-        fillField(projectTabContacts_FormFax, "newFax");
-        fillField(projectTabContacts_FormMobile, "newMobile");
-        fillField(projectTabContacts_FormStreet, "newStreet");
-        fillField(projectTabContacts_FormPostal, "newZip");
-        fillField(projectTabContacts_FormCity, "newCity");
-        fillField(projectTabContacts_FormRegion, "newRegion");
-        selectItemInDropdown(projectTabContacts_FormCountrySelect, projectTabContacts_FormCountryInput, nameCountryIreland);
-        submitEnabledButton(genericButtonSave);
-        sleep(500);
-        refresh();
-
-        rootLogger.info("Check saved values");
-        projectTabContacts_ContactEdit.shouldBe(visible).click();
-        projectTabContacts_FormCountrySelect.shouldHave(Condition.text(nameCountryIreland));
-        projectTabContacts_FormRelationSelect.shouldHave(Condition.text(ContactRelation.CLIENT_COMPANY.getValue()));
-        String savedOption = projectTabContacts_FormRelationSelect.getSelectedText();
-        Assert.assertEquals(ContactRelation.CLIENT_COMPANY.getValue(), savedOption);
-        checkInputValue(projectTabContacts_FormOwnership, "99");
-        checkInputValue(projectTabContacts_FormEntity, "newEntity");
-        checkInputValue(projectTabContacts_FormFirstName, "NEWperson");
-        checkInputValue(projectTabContacts_FormLastName, "NEWman03");
-        checkInputValue(projectTabContacts_FormEmail, "NEWcontact_01_mail@mail.com");
-        checkInputValue(projectTabContacts_FormPhone, "newPhone");
-        checkInputValue(projectTabContacts_FormFax, "newFax");
-        checkInputValue(projectTabContacts_FormMobile, "newMobile");
-        checkInputValue(projectTabContacts_FormStreet, "newStreet");
-        checkInputValue(projectTabContacts_FormPostal, "newZip");
-        checkInputValue(projectTabContacts_FormCity, "newCity");
-        checkInputValue(projectTabContacts_FormRegion, "newRegion");
-
-    }
     @Test
     public void tabDoc_A1_addWordDocument() {
+        nextIsImapTest = false;
         String newDoc = "new word document";
         createFileInRoot(MW_DEPLOY_DOC_01TemplateWord, newDoc);
         rootLogger.info("edit file");
@@ -414,6 +343,7 @@ public class TestsPekamaProject {
     }
     @Test
     public void tabDoc_A2_addExcelDocument() {
+        nextIsImapTest = false;
         String newExcel = "new excel spreadsheet";
         PROJECT_TAB_DOCS.click();
         TAB_DOCS_BTN_ADD.click();
@@ -586,32 +516,7 @@ public class TestsPekamaProject {
         checkTextNotPresent(MARK_CREATED.getValue());
         rootLogger.info("Test passed");
     }
-    @Test
-    public void createProject_M_addChargePositive() {
-        PROJECT_TAB_CHARGES.click();
-        checkText(PLACEHOLDER_EMPTY_LIST);
-        TAB_CHARGES_ADD.click();
-        rootLogger.info("Create charge");
-        waitForModalWindow(TITLE_MW_CHARGE);
-        MW_CHARGES_SELECT_FROM.shouldHave(text(TEST_USER_FULL_TEAM_NAME));
-        selectItemInDropdown(MW_CHARGES_SELECT_TYPE, MW_CHARGES_INPUT_TYPE, CHARGES_TYPE_ASSOCIATE);
-        selectItemInDropdown(MW_CHARGES_SELECT_CURRENCY, MW_CHARGES_INPUT_CURRENCY, GBP);
-        fillField(MW_CHARGES_INPUT_PRICE, "1000");
-        submitEnabledButton(MW_BTN_OK);
-        MW.shouldNot(visible);
-        checkTextNotPresent(PLACEHOLDER_EMPTY_LIST);
-        checkText(TEST_USER_FULL_TEAM_NAME+" ->");
-        checkText(CHARGES_TYPE_ASSOCIATE);
-        checkText(getCurrentDate());
-        checkText("1,000.00 GBP");
 
-        rootLogger.info("Delete charge");
-        projectAllCheckbox.click();
-        TAB_CHARGES_BTN_DELETE.click();
-        submitConfirmAction();
-        checkText(PLACEHOLDER_EMPTY_LIST);
-        rootLogger.info("Test passed");
-    }
     @Test
     public void tabInfo_N_selectValues() {
         scrollUp();
@@ -663,263 +568,9 @@ public class TestsPekamaProject {
         rootLogger.info("Test passed");
     }
 
-    @Test
-    public void tabCharges_Xero_A_SendBill()  throws SoftAssertionError {
-        String xeroLogin = TEST_USER_EMAIL;
-        String xeroPassword = TEST_USER_XERO_PASSWORD;
-        String price = "5000";
-        rootLogger.info("Create Charge");
-        String testSearchChargesType = CHARGES_TYPE_ASSOCIATE;
-        createCharge(testSearchChargesType, EUR, price);
-        rootLogger.info("Start Xero flow");
 
-        callXeroModal();
-        if ($(byText("Invoice created")).isDisplayed() == false) {
-              rootLogger.info("Modal window not displayed");
-            try {
-                switchTo().window(PAGE_TITLE_XERO_LOGIN);
-                String url = getActualUrl();
-                rootLogger.info(url);
-                if (checkPageTitle(PAGE_TITLE_XERO_LOGIN)==false){
-                    Assert.fail("Xero window NOT found");}
-                fillField(extXeroEmail, xeroLogin);
-                fillField(extXeroPassword, xeroPassword);
-                submitEnabledButton(extXeroLogin);
-                rootLogger.info("Xero login window submitted");
 
-                switchTo().window(PAGE_TITLE_XERO_AUTH);
-                url = getActualUrl();
-                rootLogger.info(url);
-                if (checkPageTitle(PAGE_TITLE_XERO_AUTH)==false){
-                    Assert.fail("Window Xero Authorise window not found");}
-                submitEnabledButton(extXeroAccept);
-                rootLogger.info("Xero auth window submitted");
-                sleep(5000);
 
-                switchTo().window(PAGE_TITLE_PEKAMA);
-                url = getActualUrl();
-                rootLogger.info(url);
-                if (checkPageTitle(PAGE_TITLE_PEKAMA)==false){
-                    Assert.fail("Return to Pekama failed");}
-                sleep(2000);
-            }
-                catch (SoftAssertionError e) {
-                   rootLogger.info("Return to Pekama failed");
-            }
-        }
-
-        if ($(byText("Invoice created")).isDisplayed()) {
-              rootLogger.info("Modal window displayed");
-              waitForModalWindow("Invoice created");
-              submitEnabledButton(MW_BTN_YES);
-              MW.waitUntil(not(visible), 10000);
-              sleep(5000);
-            checkThatWindowsQtyIs(2);
-            for(String winHandle : getWebDriver().getWindowHandles()){
-                  rootLogger.info(winHandle);
-                  switchTo().window(winHandle);
-                  getActualUrl();
-              }
-
-              if (checkPageTitle(PAGE_TITLE_XERO_LOGIN)==true){
-                  try {
-                      getActualUrl();
-                      fillField(extXeroEmail, xeroLogin);
-                      fillField(extXeroPassword, xeroPassword);
-                      submitEnabledButton(extXeroLogin);
-                      sleep(5000);
-                      rootLogger.info("Xero login window submitted");
-                  } catch (SoftAssertionError e) {
-                      if (checkPageTitle(PAGE_TITLE_XERO_LOGIN) == false) {
-                          rootLogger.info("Xero window NOT found");
-                      }
-                  }
-              }
-              if (checkPageTitle(PAGE_TITLE_XERO_BILLING) == true){
-                  try {
-                      getActualUrl();
-                      sleep(3000);
-                  } catch (SoftAssertionError e) {
-                      if (checkPageTitle(PAGE_TITLE_XERO_BILLING) == false) {
-                          rootLogger.info("Window Xero Authorise not found - goto label");
-                      }
-                  }
-              }
-        }
-        sleep(3000);
-        checkText("5,000.00", 2);
-        close();
-        rootLogger.info("Test passed");
-    }
-    @Test
-    public void tabCharges_Xero_B_ValidationNotSameCurrency(){
-//        String xeroLogin = TEST_USER_EMAIL;
-//        String xeroPassword = TEST_USER_XERO_PASSWORD;
-        String price = "5000";
-        rootLogger.info("Create Charge");
-        String testSearchChargesType = CHARGES_TYPE_ASSOCIATE;
-        createCharge(testSearchChargesType, EUR, price);
-        createCharge(testSearchChargesType, USD, price);
-        rootLogger.info("Start Xero flow");
-        callXeroModal();
-
-        waitForModalWindow("ERRORS");
-        checkText("Financials have different currency codes");
-        submitEnabledButton(MW_BTN_OK);
-        MW.shouldNotBe(visible);
-    }
-    @Test
-    public void tabCharges_Xero_B_ValidationNotAllowedCurrency(){
-//        String xeroLogin = TEST_USER_EMAIL;
-//        String xeroPassword = TEST_USER_XERO_PASSWORD;
-        String price = "5000";
-        rootLogger.info("Create Charge");
-        String testSearchChargesType = CHARGES_TYPE_ASSOCIATE;
-        createCharge(testSearchChargesType, USD, price);
-        createCharge(testSearchChargesType, USD, price);
-        rootLogger.info("Start Xero flow");
-        callXeroModal();
-
-        waitForModalWindow("ERRORS");
-        checkText("Organisation is not subscribed to currency USD");
-        submitEnabledButton(MW_BTN_OK);
-        MW.shouldNotBe(visible);
-    }
-    @Test//(timeout=240000)
-    public void tabCharges_Xero_C_MergeCharges(){
-        String xeroLogin = TEST_USER_EMAIL;
-        String xeroPassword = TEST_USER_XERO_PASSWORD;
-        String price1 = "7777";
-        String price2 = "1111";
-        String testSearchChargesType = CHARGES_TYPE_ASSOCIATE;
-
-        rootLogger.info("Create 2 Charges");
-        createCharge(testSearchChargesType, EUR, price1);
-        createCharge(testSearchChargesType, EUR, price2);
-
-        rootLogger.info("Start Xero flow");
-        callXeroModal();
-        if ($(byText("Invoice created")).isDisplayed()) {
-            rootLogger.info("Modal window displayed");
-            waitForModalWindow("Invoice created");
-            submitEnabledButton(MW_BTN_YES);
-            MW.shouldNotBe(visible);}
-            sleep(2000);
-        try {
-            switchTo().window(PAGE_TITLE_XERO_LOGIN);
-            String url = getActualUrl();
-            rootLogger.info(url);
-
-            fillField(extXeroEmail, xeroLogin);
-            fillField(extXeroPassword, xeroPassword);
-            submitEnabledButton(extXeroLogin);
-            rootLogger.info("Xero login window submitted");}
-        catch (SoftAssertionError e) {
-            if (checkPageTitle(PAGE_TITLE_XERO_LOGIN) == false) {
-                rootLogger.info("Xero window NOT found");
-            }
-        }
-        sleep(6000);
-        try {
-            switchTo().window(PAGE_TITLE_XERO_BILLING);
-            sleep(6000);
-            String url = getActualUrl();
-            rootLogger.info(url);
-            }
-        catch (SoftAssertionError e) {
-            if (checkPageTitle(PAGE_TITLE_XERO_BILLING) == false) {
-                rootLogger.info("Window Xero Authorise not found");
-            }
-
-        }
-        finally {
-            sleep(3000);
-            checkText("7,777.00", 2);
-            checkText("1,111.00", 2);
-            extXeroBillTotal.shouldHave(value("8,888.00"));
-            checkValue("8,888.00", 2);
-            close();
-            rootLogger.info("Test passed");
-       }
-    }
-    @Test
-    public void tabCharges_ModalWindowValidation() {
-        String bigDecimal = "12345678901234567890";
-        String floatString1 = "1.2345678901234567890";
-        String floatString2 = "123456789012345678.90";
-
-        callChargesModal();
-        rootLogger.info("Validation empty field");
-        MW_CHARGES_SELECT_FROM.shouldHave(text(TEST_USER_FULL_TEAM_NAME));
-        fillField(MW_CHARGES_INPUT_ITEM, LOREM_IPSUM_SHORT);
-        submitEnabledButton(MW_BTN_OK);
-        checkText(ERROR_MSG_REQUIRED_FIELD, 2);
-        MW_BTN_CANCEL.click();
-        MW.waitUntil(not(visible),20000);
-
-        rootLogger.info("Validation max value HOUR, MIN, RATE");
-        callChargesModal();
-        selectItemInDropdown(MW_CHARGES_SELECT_TYPE, MW_CHARGES_INPUT_TYPE, CHARGES_TYPE_ASSOCIATE);
-        selectItemInDropdown(MW_CHARGES_SELECT_CURRENCY, MW_CHARGES_INPUT_CURRENCY, GBP);
-        fillField(MW_CHARGES_INPUT_HOUR, bigDecimal);
-        fillField(MW_CHARGES_INPUT_MIN, bigDecimal);
-        fillField(MW_CHARGES_INPUT_RATE, bigDecimal);
-        submitEnabledButton(MW_BTN_OK);
-        checkText("Ensure that there are no more than 18 digits in total.", 2);
-        checkText("Ensure this value is less than or equal to 2147483647.", 2);
-        MW_BTN_CANCEL.click();
-        MW.waitUntil(not(visible),20000);
-
-        rootLogger.info("Validation max value - QTY, PRICE, VAT, DISCOUNT");
-        callChargesModal();
-        selectItemInDropdown(MW_CHARGES_SELECT_TYPE, MW_CHARGES_INPUT_TYPE, CHARGES_TYPE_ASSOCIATE);
-        selectItemInDropdown(MW_CHARGES_SELECT_CURRENCY, MW_CHARGES_INPUT_CURRENCY, GBP);
-        fillField(MW_CHARGES_INPUT_QTY, bigDecimal);
-        fillField(MW_CHARGES_INPUT_PRICE, bigDecimal);
-        fillField(MW_CHARGES_INPUT_VAT, bigDecimal);
-        fillField(MW_CHARGES_INPUT_DISCOUNT, bigDecimal);
-        submitEnabledButton(MW_BTN_OK);
-        checkText("Ensure this value is less than or equal to 2147483647." );
-        checkText("Ensure that there are no more than 18 digits in total.", 2 );
-        checkText("Ensure that there are no more than 7 digits in total.");
-        MW_BTN_CANCEL.click();
-        MW.waitUntil(not(visible),20000);
-
-        rootLogger.info("Validation float - PRICE should be decimal");
-        callChargesModal();
-        selectItemInDropdown(MW_CHARGES_SELECT_TYPE, MW_CHARGES_INPUT_TYPE, CHARGES_TYPE_ASSOCIATE);
-        selectItemInDropdown(MW_CHARGES_SELECT_CURRENCY, MW_CHARGES_INPUT_CURRENCY, GBP);
-        MW_CHARGES_INPUT_PRICE.clear();
-        MW_CHARGES_INPUT_PRICE.setValue(floatString1);
-        submitEnabledButton(MW_BTN_OK);
-        checkText("Ensure that there are no more than 4 decimal places." );
-
-        MW_CHARGES_INPUT_PRICE.clear();
-        MW_CHARGES_INPUT_PRICE.setValue(floatString2);
-        submitEnabledButton(MW_BTN_OK);
-        checkText("Ensure that there are no more than 14 digits before the decimal point." );
-        MW_BTN_CANCEL.click();
-        MW.waitUntil(not(visible),20000);
-        rootLogger.info("Test passed");
-
-    }
-    @Test
-    public void tabCharges_delete_all(){
-        ObjectCharges invoice1 = new ObjectCharges();
-        invoice1.create(CHARGES_TYPE_EXPENSES, GBP, 10);
-        ObjectCharges invoice2 = new ObjectCharges();
-        invoice2.create(CHARGES_TYPE_ASSOCIATE, ILS, 999);
-        ObjectCharges invoice3 = new ObjectCharges();
-        invoice3.create(CHARGES_TYPE_FEES, USD, 100);
-        ObjectCharges invoice4 = new ObjectCharges();
-        invoice4.create(CHARGES_TYPE_SERVICE, EUR, 1);
-        ObjectCharges check = new ObjectCharges();
-        check.checkInvoiceRow(1, invoice1);
-        check.checkInvoiceRow(2, invoice2);
-        check.checkInvoiceRow(3, invoice3);
-        check.checkInvoiceRow(4, invoice4);
-        deleteAllCharges();
-    }
 
     @Test
     public void tabTasks_CRUD() {
@@ -1355,7 +1006,7 @@ public class TestsPekamaProject {
         String member3 = createMemberInTeamSettings("zysx@memeber.email");
 
         try {
-            openUrlWithBaseAuth(testProjectURL);
+            openUrlWithBaseAuth(projectUrl);
             ObjectTask objectTask1 = new ObjectTask();
             objectTask1.create("createdFist", null, null, null, null, member3);
             ObjectTask objectTask2 = new ObjectTask();
@@ -1411,7 +1062,7 @@ public class TestsPekamaProject {
 
     @Test
     public void tabInfo_checkRedirectToCommunityWizard() {
-        if (testProjectTitle ==null || testProjectURL==null){
+        if (testProjectTitle ==null || projectUrl ==null){
             Assert.fail("Project not created for precondition");
         }
         checkText("No community cases.");
@@ -1429,7 +1080,7 @@ public class TestsPekamaProject {
     }
     @Test
     public void tabInfo_createDraftCommunityCaseFormPekama() {
-        if (testProjectTitle ==null || testProjectURL==null){
+        if (testProjectTitle ==null || projectUrl ==null){
             Assert.fail("Project not created for precondition");
         }
         checkText("No community cases.");
@@ -1464,7 +1115,7 @@ public class TestsPekamaProject {
         }
         String actualUrl = getActualUrl();
         Assert.assertEquals
-                ("Opened url not same to the project url", testProjectURL, actualUrl);
+                ("Opened url not same to the project url", projectUrl, actualUrl);
         refresh();
         TAB_INFO_COMMUNITY_BTN_START_NEW.waitUntil(visible, 20000).shouldBe(visible);
 
@@ -1494,7 +1145,7 @@ public class TestsPekamaProject {
     }
     @Test
     public void tabInfo_createCaseAndCheckPekamaState() {
-        if (testProjectTitle ==null || testProjectURL==null){
+        if (testProjectTitle ==null || projectUrl ==null){
             Assert.fail("Project not created for precondition");
         }
         checkText("No community cases.");

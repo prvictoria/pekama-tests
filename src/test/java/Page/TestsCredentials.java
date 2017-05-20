@@ -180,7 +180,8 @@ public class TestsCredentials {
         public String getValue() {
             return value;
         }
-    } //Reset password flow, login with Auth2 flow
+    }
+    //Reset password flow, login with Auth2 flow
     //No need accounts on server
     public enum User7 {
         GMAIL_EMAIL("");
@@ -192,7 +193,8 @@ public class TestsCredentials {
         public String getValue() {
             return value;
         }
-    } //User flow
+    }
+    //Pekama owner
     public enum User8 {
     GMAIL_EMAIL("");
 
@@ -203,7 +205,8 @@ public class TestsCredentials {
         public String getValue() {
             return value;
         }
-    } //Invite flow
+    }
+    //Pekama collaborator
     public enum User9 {
         GMAIL_EMAIL("");
 
@@ -214,8 +217,19 @@ public class TestsCredentials {
         public String getValue() {
             return value;
         }
-    } //Guest flow
+    }
+    //Pekama collaborator
+    public enum User10 {
+        GMAIL_EMAIL("");
 
+        private String value;
+        User10(String value) {
+            this.value = value;
+        }
+        public String getValue() {
+            return value;
+        }
+    }
     public enum Countries {
         AFGHANISTAN("Afghanistan"),
         AMERICAN_SAMOA("American Samoa"),
@@ -281,7 +295,7 @@ public class TestsCredentials {
         INVESTOR("Investor"),
         CLIENT_COMPANY("Client (Company)"),
         OWNER_PERSON("Owner (Person)"),
-        REGIXTERED_OWNER("Registered Owner"),
+        REGISTERED_OWNER("Registered Owner"),
         CONTACT_PERSON("Contact Person"),
         OPPONENT_REPRESENTATIVE("opponent representative"),
         OWNER_COMPANY("Owner (Company)"),

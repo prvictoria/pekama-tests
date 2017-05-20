@@ -7,9 +7,6 @@ import org.apache.logging.log4j.*;
 import org.junit.Assert;
 
 import static Page.ModalWindows.*;
-import static Page.PekamaProject.TAB_TASKS_ACTUAL_ORDER;
-import static Page.PekamaProject.TAB_TASKS_ORDER_ASCENDING;
-import static Page.PekamaProject.TAB_TASKS_ORDER_DESCENDING;
 import static Page.PekamaReports.*;
 import static Page.TestsStrings.*;
 import static Page.UrlStrings.*;
@@ -256,7 +253,7 @@ public class StepsPekamaReports extends StepsFactory {
         ElementsCollection contactRelations = $$(byXpath(REPORTS_ROW_BY_INDEX_LIST(rowCount)+REPORTS_CONTACT_ROW_RELATIONS));
         if(rowCount<10) {
             if (contactType==PERSON) {
-                contactName.shouldHave(text(contact.contactFullName));
+                contactName.shouldHave(text(contact.contactNameSurname));
                 if (contact.contactCompany != null) {
                     contactCompany.shouldHave(text(contact.contactCompany));
                 }

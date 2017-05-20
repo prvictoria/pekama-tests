@@ -115,6 +115,11 @@ public class PekamaReports extends Page {
         SelenideElement element = elementInRowListReport(rowCount, FROM);
         return element;
     }
+    public static final SelenideElement REPORTS_CHARGES_BY(Integer rowCount) {
+        final String FROM = "//ul/li[1]/span";
+        SelenideElement element = elementInRowListReport(rowCount, FROM);
+        return element;
+    }
     public static final SelenideElement REPORTS_CHARGES_TO(Integer rowCount) {
         final String FROM = "//ul/li[2]";
         SelenideElement element = elementInRowListReport(rowCount, FROM);
