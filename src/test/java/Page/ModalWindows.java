@@ -288,7 +288,7 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_CHARGES_ = $(byXpath(mw+""));
     public static final SelenideElement MW_CHARGES_SELECT_FROM = $(byXpath(mw+"//label[contains(.,'From:')]/following-sibling::div//span[@class='ng-binding ng-scope']"));
     public static final SelenideElement MW_CHARGES_INPUT_FROM = $(byXpath(mw+"//label[contains(.,'From:')]/following-sibling::div//input[@type='search']"));
-    public static final SelenideElement MW_CHARGES_SELECT_TO = $(byXpath(mw+"//label[contains(.,'To:')]/following-sibling::div//span[@class='ng-binding ng-scope']"));
+    public static final SelenideElement MW_CHARGES_SELECT_TO = $(byXpath(mw+"//label[contains(.,'To:')]/following-sibling::div//span[2]"));
     public static final SelenideElement MW_CHARGES_INPUT_TO = $(byXpath(mw+"//label[contains(.,'To:')]/following-sibling::div//input[@type='search']"));
     public static final SelenideElement MW_CHARGES_SELECT_BY = $(byXpath(mw+"//label[contains(.,'By:')]/following-sibling::div//span[@class='ng-binding ng-scope']"));
     public static final SelenideElement MW_CHARGES_INPUT_BY = $(byXpath(mw+"//label[contains(.,'By:')]/following-sibling::div//input[@type='search']"));

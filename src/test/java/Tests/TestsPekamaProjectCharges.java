@@ -14,6 +14,8 @@ import javax.mail.MessagingException;
 import java.io.IOException;
 
 
+import static Page.PekamaTeamSettings.TAB_MEMBERS_BTN_ADD;
+import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
@@ -66,41 +68,57 @@ public class TestsPekamaProjectCharges {
             clearBrowserCache();
             User user = new User();
             user.loginByURL(OWNER_LOGIN_EMAIL, OWNER_PASSWORD, URL_LogIn);
-        }
-        else {rootLogger.info("Before suite was skipped");
-        }
-        addMember("A-member@email.com", DASHBOARD_INVITE);
-        addMember("B-member@office.eu", DASHBOARD_INVITE);
-        StepsPekamaProject.deleteAllCharges();
+
+        rootLogger.info("Create project");
+        submitEnabledButton(DASHBOARD_BTN_NEW_PROJECT);
+        projectName = submitMwNewProject();
+        projectUrl = getActualUrl();
+
+        deleteAllMembers();
+        addMember("A-member@email.com", TAB_MEMBERS_BTN_ADD);
+        addMember("B-member@office.eu", TAB_MEMBERS_BTN_ADD);
+
         deleteAllContacts();
-        contact1.createCompany(REPORT, "Company",
+        rootLogger.info("Create contacts in reports");
+        contact1.createCompany(REPORT, "ip lawyers ltd",
                 null, null,
                 null, null,null,
                 null, null,
                 null, null);
-        contact1.createCompany(REPORT, "Law firm",
+        contact2.createCompany(REPORT, "Law firm",
+                null, null,
+                null, null,null,
+                null, null,
+                null, null);
+        contact3.createPerson(REPORT, null,
+                "Name", "Surname", null,
                 null, null,
                 null, null,null,
                 null, null,
                 null, null);
         openPageWithSpinner(URL_ReportsProjects);
-        rootLogger.info("Create project");
-        submitEnabledButton(REPORTS_BTN_NEW_PROJECT);
-        projectName = submitMwNewProject();
-        projectUrl = getActualUrl();
+
+        rootLogger.info("Add contacts to project");
+        openUrlWithBaseAuth(projectUrl);
         selectAndAddContact(contact1, DOMESTIC_REPRESENTATIVE.getValue());
         selectAndAddContact(contact2, OWNER_COMPANY.getValue());
         selectAndAddContact(contact3, INVESTOR.getValue());
         getWebDriver().quit();
+        }
+        else {rootLogger.info("Before suite was skipped");
+        }
     }
     @Before
     public void login() {
+        //projectUrl = "https://staging.pekama.com/a/projects/32769/charges";
         User user = new User();
         user.loginByURL(OWNER_LOGIN_EMAIL, OWNER_PASSWORD, projectUrl);
     }
 
     @Test
     public void tabCharges_A_delete_all(){
+        StepsPekamaProject.deleteAllCharges();
+        checkText(PLACEHOLDER_EMPTY_LIST);
         ObjectCharges invoice1 = new ObjectCharges();
         invoice1.create(CHARGES_TYPE_EXPENSES, GBP, 10);
         ObjectCharges invoice2 = new ObjectCharges();
@@ -120,6 +138,7 @@ public class TestsPekamaProjectCharges {
     //TODO
     @Test
     public void tabCharges_B_delete_all(){
+        StepsPekamaProject.deleteAllCharges();
         ObjectCharges invoice1 = new ObjectCharges();
         invoice1.create(OWNER_TEAM_NAME, contact1.contactLegalEntity,
                 null, "Billed",
@@ -139,11 +158,12 @@ public class TestsPekamaProjectCharges {
         check.checkInvoiceRow(1, invoice1);
         check.checkInvoiceRow(2, invoice2);
         check.checkInvoiceRow(3, invoice3);
-        //StepsPekamaProject.deleteAllCharges();
-        checkText(PLACEHOLDER_EMPTY_LIST);
+
     }
     @Test
     public void tabCharges_ModalWindowValidation() {
+        StepsPekamaProject.deleteAllCharges();
+
         String bigDecimal = "12345678901234567890";
         String floatString1 = "1.2345678901234567890";
         String floatString2 = "123456789012345678.90";
@@ -204,6 +224,9 @@ public class TestsPekamaProjectCharges {
     }
     @Test
     public void tabCharges_Xero_A_SendBill()  throws SoftAssertionError {
+        StepsPekamaProject.deleteAllCharges();
+        checkText(PLACEHOLDER_EMPTY_LIST);
+
         String xeroLogin = OWNER_LOGIN_EMAIL;
         String xeroPassword = OWNER_XERO_PASSWORD;
         String price = "5000";
@@ -292,6 +315,8 @@ public class TestsPekamaProjectCharges {
     }
     @Test
     public void tabCharges_Xero_B_ValidationNotSameCurrency(){
+        StepsPekamaProject.deleteAllCharges();
+        checkText(PLACEHOLDER_EMPTY_LIST);
 //        String xeroLogin = OWNER_LOGIN_EMAIL;
 //        String xeroPassword = OWNER_XERO_PASSWORD;
         String price = "5000";
@@ -309,6 +334,8 @@ public class TestsPekamaProjectCharges {
     }
     @Test
     public void tabCharges_Xero_B_ValidationNotAllowedCurrency(){
+        StepsPekamaProject.deleteAllCharges();
+        checkText(PLACEHOLDER_EMPTY_LIST);
 //        String xeroLogin = OWNER_LOGIN_EMAIL;
 //        String xeroPassword = OWNER_XERO_PASSWORD;
         String price = "5000";
@@ -326,6 +353,9 @@ public class TestsPekamaProjectCharges {
     }
     @Test//(timeout=240000)
     public void tabCharges_Xero_C_MergeCharges(){
+        StepsPekamaProject.deleteAllCharges();
+        checkText(PLACEHOLDER_EMPTY_LIST);
+
         String xeroLogin = OWNER_LOGIN_EMAIL;
         String xeroPassword = OWNER_XERO_PASSWORD;
         String price1 = "7777";

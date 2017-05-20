@@ -585,10 +585,12 @@ public class StepsPekamaProject extends StepsPekama {
     }
     public static void deleteAllCharges(){
         clickElement(PROJECT_TAB_CHARGES);
-        clickElement(projectAllCheckbox);
-        clickElement(TAB_CHARGES_BTN_DELETE);
-        submitConfirmAction();
-        checkText(PLACEHOLDER_EMPTY_LIST);
+        if($(byText(PLACEHOLDER_EMPTY_LIST)).isDisplayed()==false){
+            clickElement(projectAllCheckbox);
+            clickElement(TAB_CHARGES_BTN_DELETE);
+            submitConfirmAction();
+            checkText(PLACEHOLDER_EMPTY_LIST);
+        }
     }
     public static SelenideElement elementInChargesRow(Integer rowCount, final String path){
         if(rowCount>10){Assert.fail("Only 10 rows on the page");}
