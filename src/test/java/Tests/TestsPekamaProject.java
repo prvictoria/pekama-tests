@@ -119,33 +119,15 @@ public class TestsPekamaProject {
         else {rootLogger.info("Before was skipped");}
     }
     @Test
-    public void tabInfo_A_CheckDefaultStateAndDelete() {
+    public void project_delete_as_owner(){
         nextIsImapTest = false;
         scrollUp();
-        $$(byText(testProjectTitle)).filter(visible).shouldHaveSize(1);
-        $$(byText(PLACEHOLDER_NO_CASES)).filter(visible).shouldHaveSize(1);
-        // $$(byText(placeholderNoNumbers)).filter(visible).shouldHaveSize(1);
-        // todo BUG #140183099 - https://www.pivotaltracker.com/n/projects/1239770/stories/140183099
-        $$(byText(PLACEHOLDER_NO_DATA)).filter(visible).shouldHaveSize(1);
-        $$(byText(PLACEHOLDER_TeamChat)).shouldHaveSize(1);
-
-        projectButtonPlus.click();
-        projectPlusNewEvent.shouldBe(visible);
-        projectPlusNewConversation.shouldBe(visible);
-        projectPlusNewTask.shouldBe(visible);
-        projectPlusNewDocument.shouldBe(visible);
-        projectPlusNewFinancial.shouldBe(visible);
-        projectPlusNewNumber.shouldBe(visible);
-        projectPlusNewContact.shouldBe(visible);
-        rootLogger.info("GUI - test passed");
-        projectButtonPlus.pressEscape();
-        PROJECT_BTN_DELETE.click();
+        clickSelector(PROJECT_BTN_DELETE);
         submitConfirmAction();
         sleep(4000);
         String url = url();
         Assert.assertEquals(URL_Dashboard, url);
         rootLogger.info("Project deleted by Owner");
-
         rootLogger.info("Check if user opens project link");
         openUrlWithBaseAuth(projectUrl);
         sleep(3000);
@@ -154,42 +136,8 @@ public class TestsPekamaProject {
 
         String notFoundUrl = url();
         Assert.assertEquals(URL_NotFound, notFoundUrl);
-        rootLogger.info("Test passed");
     }
-    @Test
-    public void tabInfo_B_editProjectName() throws AWTException {
-        nextIsImapTest = false;
-        rootLogger.info("Rename Project by Owner");
-        getFullProjectTitle();
-        waitForTextPresent(testProjectTitle);
-        scrollUp();
-        TAB_INFO_ProjectTitle.shouldHave(text(testProjectTitle));
-        TAB_INFO_ProjectTitle.click();
-        String newProjectName = "New project name after edition "+ randomString(6);
-        fillField(TAB_INFO_TitleInput, newProjectName);
-        TAB_INFO_TitleSave.click();
-        sleep(1000);
-        refresh();
-        rootLogger.info("Rename Project by Owner - test passed");
-        waitForTextPresent(newProjectName);
-        scrollUp();
-        TAB_INFO_ProjectTitle.shouldHave(text(newProjectName));
-        TAB_INFO_TitleEditButton.click();
-        fillField(TAB_INFO_TitleInput, testProjectTitle);
-        TAB_INFO_TitleSave.click();
-        sleep(1000);
-        refresh();
-        TAB_INFO_ProjectTitle.shouldHave(text(testProjectTitle));
 
-        rootLogger.info("Validation max length Project name");
-        newProjectName = randomString(1025);
-        TAB_INFO_TitleEditButton.click();
-        fillField(TAB_INFO_TitleInput, newProjectName);
-        TAB_INFO_TitleSave.click();
-        sleep(1000);
-        checkText(ERROR_MSG_VALIDATION_LENGTH_1024);
-        rootLogger.info("Test passed");
-    }
     @Test
     public void tabInfo_C_AddNumber() {
         nextIsImapTest = false;

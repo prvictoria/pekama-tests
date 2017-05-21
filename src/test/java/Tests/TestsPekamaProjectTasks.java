@@ -46,14 +46,7 @@ public class TestsPekamaProjectTasks {
     private static final String OWNER_LOGIN_EMAIL = User3.GMAIL_EMAIL.getValue();
     private static final String OWNER_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
     private static final String OWNER_TEAM_NAME = User3.TEAM_NAME.getValue();
-    private static final String OWNER_XERO_PASSWORD = User3.XERO_PASSWORD.getValue();
     private final static String OWNER_FULL_TEAM_NAME = User3.FULL_TEAM_NAME.getValue();
-    private static ObjectContact contact1 = new ObjectContact();
-    private static ObjectContact contact2 = new ObjectContact();
-    private static ObjectContact contact3 = new ObjectContact();
-    private static ObjectCharges invoice1Sort = new ObjectCharges();
-    private static ObjectCharges invoice2Sort = new ObjectCharges();
-    private static ObjectCharges invoice3Sort = new ObjectCharges();
 
     private static String projectName;
     private static String projectUrl;
