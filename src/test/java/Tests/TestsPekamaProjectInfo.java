@@ -12,6 +12,7 @@ import javax.mail.MessagingException;
 import java.awt.*;
 import java.io.IOException;
 
+import static Page.TestsCredentials.Countries.NETHERLANDS_ANTILES;
 import static Utils.Utils.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
@@ -50,6 +51,7 @@ public class TestsPekamaProjectInfo {
     private static final String OWNER_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
     private static final String OWNER_TEAM_NAME = User3.TEAM_NAME.getValue();
     private final static String OWNER_FULL_TEAM_NAME = User3.FULL_TEAM_NAME.getValue();
+    private static String TEST_CASE_TYPE = null;
 
     private static String projectName;
     private static String projectUrl;
@@ -62,6 +64,7 @@ public class TestsPekamaProjectInfo {
         setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
+        TEST_CASE_TYPE = MATTER_TYPE_TRADEMARK;
         if(skipBefore==false) {
             clearBrowserCache();
             User user = new User();
@@ -137,13 +140,100 @@ public class TestsPekamaProjectInfo {
         refresh();
         TAB_INFO_ProjectTitle.shouldHave(text(projectName));
 
+
+    }
+    @Test
+    public void tabInfo_B_editProjectName_validation_nax(){
         rootLogger.info("Validation max length Project name");
-        newProjectName = randomString(1025);
+        String newProjectName = randomString(1025);
         TAB_INFO_TitleEditButton.click();
         fillField(TAB_INFO_TitleInput, newProjectName);
         TAB_INFO_TitleSave.click();
-        sleep(1000);
         checkText(ERROR_MSG_VALIDATION_LENGTH_1024);
+        rootLogger.info("Test passed");
+    }
+    @Test
+    public void tabInfo_B_editProjectName_validation_empty(){
+        rootLogger.info("Validation null length Project name");
+        String newProjectName = "";
+        TAB_INFO_TitleEditButton.click();
+        fillField(TAB_INFO_TitleInput, newProjectName);
+        TAB_INFO_TitleSave.click();
+        checkText(ERROR_MSG_BLANK_FIELD);
+        rootLogger.info("Test passed");
+    }
+    
+    @Ignore //todo
+    @Test
+    public void tabInfo_C0_AddNumber_validation() {
+
+    }
+    @Test
+    public void tabInfo_C1_AddNumber() {
+        nextIsImapTest = false;
+        String numberType = "Equinox code";
+        String numberValue = "2000/17/55-asd";
+        numberCreate(numberType, numberValue);
+        numberValidateFirstRow(numberType, numberValue);
+
+        String newNumberType = "Reference Number";
+        String newNumberValue = "8888-1111-lkjh";
+        numberEditInFirstRow(newNumberType, newNumberValue);
+        numberValidateInlineForm(newNumberType, newNumberValue);
+
+        numberDelete(null);
+        numberValidateFirstRow(null, null);
+    }
+    @Test
+    public void tabInfo_D1_ClassificationValidation() {
+        nextIsImapTest = false;
+        classificationCreate("Up-to-date", null, null);
+        checkText("This field is required.");
+        submitEnabledButton(MW_BTN_CANCEL);
+
+        classificationCreate(null, null, LOREM_IPSUM_SHORT);
+        checkText("This field is required.");
+        submitEnabledButton(MW_BTN_CANCEL);
+
+        classificationCreate(null, "ABCDEFG", null);
+        checkText("A valid integer is required.");
+        submitEnabledButton(MW_BTN_CANCEL);
+
+        classificationCreate(null, "46", null);
+        checkText("Ensure this value is less than or equal to 45.");
+        submitEnabledButton(MW_BTN_CANCEL);
+
+        classificationCreate(null, "0", null);
+        checkText("Ensure this value is greater than or equal to 1.");
+        submitEnabledButton(MW_BTN_CANCEL);
+    }
+    @Test
+    public void tabInfo_D2_ClassificationCrud() {
+        nextIsImapTest = false;
+        String classNumber = "12";
+        String classDescription = "old description";
+        classificationCreate(null, classNumber, classDescription);
+        classificationValidateClasses("Up-to-date", classDescription);
+
+        String classNewNumber = "23";
+        String classNewDescripton = "new description";
+        classificationEditFirstRow("Official Data", classNewNumber, classNewDescripton);
+        classificationValidateClasses("Official Data", classNewDescripton);
+
+        classificationDelete();
+        classificationValidateClasses(null, null);
+
+    }
+    @Test
+    public void tabInfo_N_selectValues() {
+        scrollUp();
+        TAB_INFO_PROJECT_TYPE.shouldHave(text(TEST_CASE_TYPE));
+        sleep(1000);
+        setProjectDefining(NETHERLANDS_ANTILES.getValue());
+        sleep(1000);
+        setProjectType(TrademarkTypes.BASIC.getValue());
+        sleep(2000);
+        setProjectSubType("Certification Mark");
         rootLogger.info("Test passed");
     }
 }

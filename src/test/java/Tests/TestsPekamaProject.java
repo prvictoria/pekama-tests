@@ -29,6 +29,7 @@ import static Steps.MessagesValidator.ValidationInviteInProject.projectBackLink;
 import static Steps.ObjectTask.checkTaskData;
 import static Steps.StepsCommunity.checkCaseNameFirstRow;
 import static Steps.StepsCommunity.selectExpert;
+import static Steps.StepsFactory.clickSelector;
 import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
@@ -138,62 +139,7 @@ public class TestsPekamaProject {
         Assert.assertEquals(URL_NotFound, notFoundUrl);
     }
 
-    @Test
-    public void tabInfo_C_AddNumber() {
-        nextIsImapTest = false;
-        String numberType = "Equinox code";
-        String numberValue = "2000/17/55-asd";
-        numberCreate(numberType, numberValue);
-        numberValidateFirstRow(numberType, numberValue);
 
-        String newNumberType = "Reference Number";
-        String newNumberValue = "8888-1111-lkjh";
-        numberEditInFirstRow(newNumberType, newNumberValue);
-        numberValidateInlineForm(newNumberType, newNumberValue);
-
-        numberDelete(null);
-        numberValidateFirstRow(null, null);
-    }
-    @Test
-    public void tabInfo_D1_ClassificationValidation() {
-        nextIsImapTest = false;
-        classificationCreate("Up-to-date", null, null);
-        checkText("This field is required.");
-        submitEnabledButton(MW_BTN_CANCEL);
-
-        classificationCreate(null, null, LOREM_IPSUM_SHORT);
-        checkText("This field is required.");
-        submitEnabledButton(MW_BTN_CANCEL);
-
-        classificationCreate(null, "ABCDEFG", null);
-        checkText("A valid integer is required.");
-        submitEnabledButton(MW_BTN_CANCEL);
-
-        classificationCreate(null, "46", null);
-        checkText("Ensure this value is less than or equal to 45.");
-        submitEnabledButton(MW_BTN_CANCEL);
-
-        classificationCreate(null, "0", null);
-        checkText("Ensure this value is greater than or equal to 1.");
-        submitEnabledButton(MW_BTN_CANCEL);
-    }
-    @Test
-    public void tabInfo_D2_ClassificationCrud() {
-        nextIsImapTest = false;
-        String classNumber = "12";
-        String classDescription = "old description";
-        classificationCreate(null, classNumber, classDescription);
-        classificationValidateClasses("Up-to-date", classDescription);
-
-        String classNewNumber = "23";
-        String classNewDescripton = "new description";
-        classificationEditFirstRow("Official Data", classNewNumber, classNewDescripton);
-        classificationValidateClasses("Official Data", classNewDescripton);
-
-        classificationDelete();
-        classificationValidateClasses(null, null);
-
-    }
     @Test
     public void tabContacts_E_addCollaborator() {
         nextIsImapTest = false;
@@ -465,18 +411,7 @@ public class TestsPekamaProject {
         rootLogger.info("Test passed");
     }
 
-    @Test
-    public void tabInfo_N_selectValues() {
-        scrollUp();
-        TAB_INFO_PROJECT_TYPE.shouldHave(text(TEST_CASE_TYPE));
-        sleep(1000);
-        setProjectDefining(NETHERLANDS_ANTILES.getValue());
-        sleep(1000);
-        setProjectType(TrademarkTypes.BASIC.getValue());
-        sleep(2000);
-        setProjectSubType("Certification Mark");
-        rootLogger.info("Test passed");
-    }
+
     @Test
     public void createProject_O_addFamilyProject() {
         PROJECT_TAB_FAMILY.click();
