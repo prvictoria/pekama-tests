@@ -346,18 +346,42 @@ public class StepsPekamaReports extends StepsFactory {
         submitEnabledButton(REPORTS_BTN_IMPORT);
         waitForModalWindow("Choose CSV file");
     }
-    public static void selectSortOrder(String order, Boolean orderIsAscending){
-        if (order!=null){
+    public static Boolean checkActualSortOrderInReports(String order, Boolean orderIsAscending){
+        if(order == null|| orderIsAscending == null){
+            Assert.fail("Null in parameters not valid");
+        }
+        if(order!=null) {
+            String ActualTaskOrder = REPORTS_SORT_ORDER_TYPE.getText();
+            Assert.assertEquals(order, ActualTaskOrder);
+            if (orderIsAscending != null) {
+                if (orderIsAscending == true) {
+                    REPORTS_SORT_ORDER_ASCENDING.shouldBe(visible);
+                    return true;
+                } else {
+                    REPORTS_SORT_ORDER_DESCENDING.shouldBe(visible);
+                    return true;
+                }
+            }
+            return true;
+        }
+        else return false;
+    }
+    public static Boolean selectSortOrderAndCheck(String order, Boolean orderIsAscending){
+        if (order != null) {
             clickSelector(REPORTS_SORT_ORDER_TYPE);
             clickSelector(REPORTS_SELECT_SORT_ORDER(order));
             String ActualTaskOrder = REPORTS_SORT_ORDER_TYPE.getText();
             Assert.assertEquals(order, ActualTaskOrder);
+            if (orderIsAscending != null) {
+                if (orderIsAscending == true) {
+                    REPORTS_SORT_ORDER_ASCENDING.shouldBe(visible);
+                    return true;
+                } else {
+                    REPORTS_SORT_ORDER_DESCENDING.shouldBe(visible);
+                    return true;
+                }
+            }
         }
-        if(orderIsAscending==true){
-            REPORTS_SORT_ORDER_ASCENDING.shouldBe(visible);
-        }
-        else {
-            REPORTS_SORT_ORDER_DESCENDING.shouldBe(visible);
-        }
+        return false;
     }
 }

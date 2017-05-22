@@ -67,7 +67,6 @@ public class TestsPekamaProjectCharges {
         setBrowser();
         holdBrowserAfterTest();
         if(skipBefore==false) {
-            clearBrowserCache();
             User user = new User();
             user.loginByURL(OWNER_LOGIN_EMAIL, OWNER_PASSWORD, URL_LogIn);
 
@@ -112,34 +111,13 @@ public class TestsPekamaProjectCharges {
     }
     @Before
     public void login() {
-        //projectUrl = "https://staging.pekama.com/a/projects/32769/charges";
+        clearBrowserCache();
         User user = new User();
         user.loginByURL(OWNER_LOGIN_EMAIL, OWNER_PASSWORD, projectUrl);
     }
 
     @Test
-    public void tabCharges_A_delete_all(){
-        StepsPekamaProject.deleteAllCharges();
-        checkText(PLACEHOLDER_EMPTY_LIST);
-        ObjectCharges invoice1 = new ObjectCharges();
-        invoice1.create(CHARGES_TYPE_EXPENSES, GBP, 10);
-        ObjectCharges invoice2 = new ObjectCharges();
-        invoice2.create(CHARGES_TYPE_ASSOCIATE, ILS, 999);
-        ObjectCharges invoice3 = new ObjectCharges();
-        invoice3.create(CHARGES_TYPE_FEES, USD, 100);
-        ObjectCharges invoice4 = new ObjectCharges();
-        invoice4.create(CHARGES_TYPE_SERVICE, EUR, 1);
-        ObjectCharges check = new ObjectCharges();
-        checkInvoiceRow(1, invoice1);
-        checkInvoiceRow(2, invoice2);
-        checkInvoiceRow(3, invoice3);
-        checkInvoiceRow(4, invoice4);
-        StepsPekamaProject.deleteAllCharges();
-        checkText(PLACEHOLDER_EMPTY_LIST);
-    }
-    //TODO
-    @Test
-    public void tabCharges_B_sort_by_date(){
+    public void tabCharges_B1_sort_by_date(){
         StepsPekamaProject.deleteAllCharges();
 
         invoice1Sort.create(OWNER_TEAM_NAME, contact1.contactLegalEntity,
@@ -166,7 +144,7 @@ public class TestsPekamaProjectCharges {
         checkInvoiceRow(3, invoice3Sort);
     }
     @Test
-    public void tabCharges_B_sort_by_last_created(){
+    public void tabCharges_B2_sort_by_last_created(){
         clickSelector(PROJECT_TAB_CHARGES);
         rootLogger.info("Validate sort order and rows by: "+"Last created");
         selectSortOrderInProject("Last created", false);
@@ -179,7 +157,7 @@ public class TestsPekamaProjectCharges {
         checkInvoiceRow(3, invoice3Sort);
     }
     @Test
-    public void tabCharges_B_sort_by_last_modified(){
+    public void tabCharges_B3_sort_by_last_modified(){
         clickSelector(PROJECT_TAB_CHARGES);
         rootLogger.info("Validate sort order and rows by: "+"Last modified");
         selectSortOrderInProject("Last modified", false);
@@ -192,7 +170,7 @@ public class TestsPekamaProjectCharges {
         checkInvoiceRow(3, invoice3Sort);
     }
     @Test
-    public void tabCharges_B_sort_by_amount(){
+    public void tabCharges_B4_sort_by_amount(){
         clickSelector(PROJECT_TAB_CHARGES);
         rootLogger.info("Validate sort order and rows by: "+"Amount");
         selectSortOrderInProject("Amount", false);
@@ -205,7 +183,7 @@ public class TestsPekamaProjectCharges {
         checkInvoiceRow(3, invoice1Sort);
     }
     @Test
-    public void tabCharges_B_sort_by_from(){
+    public void tabCharges_B5_sort_by_from(){
         clickSelector(PROJECT_TAB_CHARGES);
         rootLogger.info("Validate sort order and rows by: "+"From");
         selectSortOrderInProject("From", true);
@@ -218,7 +196,7 @@ public class TestsPekamaProjectCharges {
         checkInvoiceRow(3, invoice1Sort);
     }
     @Test
-    public void tabCharges_B_sort_by_to(){
+    public void tabCharges_B6_sort_by_to(){
         clickSelector(PROJECT_TAB_CHARGES);
         rootLogger.info("Validate sort order and rows by: "+"To");
         selectSortOrderInProject("To", true);
@@ -231,7 +209,7 @@ public class TestsPekamaProjectCharges {
         checkInvoiceRow(3, invoice1Sort);
     }
     @Test
-    public void tabCharges_B_sort_by_type(){
+    public void tabCharges_B7_sort_by_type(){
         clickSelector(PROJECT_TAB_CHARGES);
         rootLogger.info("Validate sort order and rows by: "+"Type");
         selectSortOrderInProject("Type", true);
@@ -244,7 +222,7 @@ public class TestsPekamaProjectCharges {
         checkInvoiceRow(3, invoice1Sort);
     }
     @Test
-    public void tabCharges_B_sort_by_status(){
+    public void tabCharges_B8_sort_by_status(){
         clickSelector(PROJECT_TAB_CHARGES);
         rootLogger.info("Validate sort order and rows by: "+"Status");
         selectSortOrderInProject("Status", true);
@@ -337,7 +315,6 @@ public class TestsPekamaProjectCharges {
     @Test
     public void tabCharges_Xero_A_SendBill()  throws SoftAssertionError {
         StepsPekamaProject.deleteAllCharges();
-        checkText(PLACEHOLDER_EMPTY_LIST);
 
         String xeroLogin = OWNER_LOGIN_EMAIL;
         String xeroPassword = OWNER_XERO_PASSWORD;
@@ -428,9 +405,7 @@ public class TestsPekamaProjectCharges {
     @Test
     public void tabCharges_Xero_B_ValidationNotSameCurrency(){
         StepsPekamaProject.deleteAllCharges();
-        checkText(PLACEHOLDER_EMPTY_LIST);
-//        String xeroLogin = OWNER_LOGIN_EMAIL;
-//        String xeroPassword = OWNER_XERO_PASSWORD;
+
         String price = "5000";
         rootLogger.info("Create Charge");
         String testSearchChargesType = CHARGES_TYPE_ASSOCIATE;
@@ -448,8 +423,7 @@ public class TestsPekamaProjectCharges {
     public void tabCharges_Xero_B_ValidationNotAllowedCurrency(){
         StepsPekamaProject.deleteAllCharges();
         checkText(PLACEHOLDER_EMPTY_LIST);
-//        String xeroLogin = OWNER_LOGIN_EMAIL;
-//        String xeroPassword = OWNER_XERO_PASSWORD;
+
         String price = "5000";
         rootLogger.info("Create Charge");
         String testSearchChargesType = CHARGES_TYPE_ASSOCIATE;
@@ -522,5 +496,25 @@ public class TestsPekamaProjectCharges {
             close();
             rootLogger.info("Test passed");
         }
+    }
+    @Test
+    public void tabCharges_Z_delete_all(){
+        StepsPekamaProject.deleteAllCharges();
+        checkText(PLACEHOLDER_EMPTY_LIST);
+        ObjectCharges invoice1 = new ObjectCharges();
+        invoice1.create(CHARGES_TYPE_EXPENSES, GBP, 10);
+        ObjectCharges invoice2 = new ObjectCharges();
+        invoice2.create(CHARGES_TYPE_ASSOCIATE, ILS, 999);
+        ObjectCharges invoice3 = new ObjectCharges();
+        invoice3.create(CHARGES_TYPE_FEES, USD, 100);
+        ObjectCharges invoice4 = new ObjectCharges();
+        invoice4.create(CHARGES_TYPE_SERVICE, EUR, 1);
+        ObjectCharges check = new ObjectCharges();
+        checkInvoiceRow(1, invoice1);
+        checkInvoiceRow(2, invoice2);
+        checkInvoiceRow(3, invoice3);
+        checkInvoiceRow(4, invoice4);
+        StepsPekamaProject.deleteAllCharges();
+        checkText(PLACEHOLDER_EMPTY_LIST);
     }
 }

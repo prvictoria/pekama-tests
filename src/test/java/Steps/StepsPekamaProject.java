@@ -191,7 +191,8 @@ public class StepsPekamaProject extends StepsPekama {
     public static Boolean numberValidateFirstRow(String numberType, String numberValue){
         if(numberType==null && numberValue==null){
             NUMBERS_LIST.filter(visible).shouldHaveSize(1);
-            rootLogger.info("BUG #140183099 - https://www.pivotaltracker.com/n/projects/1239770/stories/140183099 ");checkText(placeholderNoNumbers);
+            rootLogger.info("BUG #140183099 - https://www.pivotaltracker.com/n/projects/1239770/stories/140183099 ");
+            checkText(placeholderNoNumbers);
             //TODO bug
             return true;
         }
@@ -308,11 +309,15 @@ public class StepsPekamaProject extends StepsPekama {
     }
 // TASKS TAB =========================================================================
     public static void deleteAllTasks(){
-        rootLogger.info("Delete All tasks");
-        projectAllCheckbox.shouldBe(visible).click();
-        TAB_TASKS_BTN_DELETE.shouldBe(visible).click();
-        submitConfirmAction();
-        checkText(PLACEHOLDER_EMPTY_LIST);
+        sleep(2000);
+        if($(byText(PLACEHOLDER_EMPTY_LIST)).isDisplayed()!=false) {
+            rootLogger.info("Delete All tasks");
+            projectAllCheckbox.shouldBe(visible).click();
+            TAB_TASKS_BTN_DELETE.shouldBe(visible).click();
+            submitConfirmAction();
+            checkText(PLACEHOLDER_EMPTY_LIST);
+        }
+        else return;
     }
     public static void deleteTaskCard(){
         submitEnabledButton(PROJECT_TASK_CARD_BTN_DEL_TASK);

@@ -326,10 +326,11 @@ public class ObjectContact {
     public void getData(){
 
     }
-    public Boolean validateError(){
+    public static final Boolean validateError(){
         return true;
     }
-    public Boolean validateContact(ObjectContact contact){
+    public static final Boolean validateContactRowInReports(ObjectContact contact){
+
         return true;
     }
 

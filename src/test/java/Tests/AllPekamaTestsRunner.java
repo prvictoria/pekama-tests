@@ -25,16 +25,16 @@ import org.junit.runners.Suite;
         TestsPekamaProject.class,
         TestsPekamaProjectInfo.class,
         TestsPekamaProjectContacts.class,
-        TestsPekamaProjectDocs.class,
+        //TestsPekamaProjectDocs.class,
         TestsPekamaProjectTasks.class,
         TestsPekamaProjectCharges.class,
 
         TestsPekamaTemplates.class,
 
         TestsPekamaReports.class,
-        TestsPekamaReportsFiltersProjects.class,
-        TestsPekamaReportsFiltersTasks.class,
-        TestsPekamaReportsFiltersEvents.class,
+        //TestsPekamaReportsFiltersProjects.class,
+        //TestsPekamaReportsFiltersTasks.class,
+        //TestsPekamaReportsFiltersEvents.class,
         TestsPekamaReportsFiltersCharges.class,
         TestsPekamaReportsFiltersContacts.class
 })

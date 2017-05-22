@@ -66,7 +66,6 @@ public class TestsPekamaProjectContacts{
         setBrowser();
         holdBrowserAfterTest();
         if(skipBefore==false) {
-            clearBrowserCache();
             User user = new User();
             user.loginByURL(OWNER_LOGIN_EMAIL, OWNER_PASSWORD, URL_LogIn);
         }
@@ -82,12 +81,13 @@ public class TestsPekamaProjectContacts{
     }
     @Before
     public void login() {
+        clearBrowserCache();
         User user = new User();
         user.loginByURL(OWNER_LOGIN_EMAIL, OWNER_PASSWORD, projectUrl);
     }
     @Test
     public void tabContacts_F1_addNewContact_Person() {
-         // $$(byText(PLACEHOLDER_NO_DATA)).filter(visible).shouldHaveSize(1);
+        //checkText(PLACEHOLDER_NO_DATA);
         //todo BUG #140196199 https://www.pivotaltracker.com/n/projects/1239770/stories/140196199
 
         contact.createPerson(PROJECT, null,
@@ -110,8 +110,6 @@ public class TestsPekamaProjectContacts{
         rootLogger.info("delete contact relation");
         projectTabContacts_ContactDelete.click();
         submitConfirmAction();
-        // $$(byText(PLACEHOLDER_NO_DATA)).filter(visible).shouldHaveSize(1);
-        //todo BUG #140196199 https://www.pivotaltracker.com/n/projects/1239770/stories/140196199
     }
     @Test
     public void tabContacts_F2_addExistedContact() {

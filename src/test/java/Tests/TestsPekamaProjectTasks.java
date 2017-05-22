@@ -60,7 +60,6 @@ public class TestsPekamaProjectTasks {
         setBrowser();
         holdBrowserAfterTest();
         if(skipBefore==false) {
-            clearBrowserCache();
             User user = new User();
             user.loginByURL(OWNER_LOGIN_EMAIL, OWNER_PASSWORD, URL_LogIn);
 
@@ -80,30 +79,16 @@ public class TestsPekamaProjectTasks {
     }
     @Before
     public void login() {
+        clearBrowserCache();
         User user = new User();
         user.loginByURL(OWNER_LOGIN_EMAIL, OWNER_PASSWORD, projectUrl);
         clickSelector(PROJECT_TAB_TASKS);
     }
-    @Test
-    public void tabTasks_CRUD() {
-        String taskName = "new task";
-        PROJECT_TAB_TASKS.click();
-        //$$(byText(PLACEHOLDER_EMPTY_LIST)).shouldHaveSize(1);
-        checkText(PLACEHOLDER_EMPTY_LIST);
-        TAB_TASKS_ADD.click();
-        TAB_TASKS_NEW_TASK.shouldBe(visible).click();
 
-        waitForModalWindow(TITLE_MW_NEW_TASK);
-        MW_BTN_OK.shouldBe(disabled);
-        fillField(MW_TASK_NAME, taskName);
-        submitEnabledButton(MW_BTN_OK);
-        MW.shouldNotBe(visible);
-        $$(byText(taskName)).shouldHaveSize(1);
-
-        StepsPekamaProject.deleteAllTasks();
-    }
     @Test
     public void tabTasks_All_Importances() {
+        StepsPekamaProject.deleteAllTasks();
+
         rootLogger.info("Check default task order - due date acceding");
         String taskName;
         taskName = taskCreate(
@@ -168,6 +153,8 @@ public class TestsPekamaProjectTasks {
     }
     @Test
     public void tabTasks_All_Statuses() {
+        StepsPekamaProject.deleteAllTasks();
+
         rootLogger.info("Select all tasks");
         rootLogger.info("Check default task order - due date acceding");
         PROJECT_TAB_TASKS.waitUntil(visible, 15000).click();
@@ -405,6 +392,8 @@ public class TestsPekamaProjectTasks {
 
     @Test
     public void tabTasks_TasksSorting_ByDueDate() {
+        StepsPekamaProject.deleteAllTasks();
+
         ObjectTask objectTask1 = new ObjectTask();
         objectTask1.create("Task1-date+1", null, 10, null, null, null);
         ObjectTask objectTask2 = new ObjectTask();
@@ -434,6 +423,8 @@ public class TestsPekamaProjectTasks {
     }
     @Test
     public void tabTasks_TasksSorting_ByTitle() {
+        StepsPekamaProject.deleteAllTasks();
+
         ObjectTask objectTask3 = new ObjectTask();
         objectTask3.create("Task3-createdFist", null, null, null, null, null);
         ObjectTask objectTask2 = new ObjectTask();
@@ -460,6 +451,8 @@ public class TestsPekamaProjectTasks {
     }
     @Test
     public void tabTasks_TasksSorting_ByCreation() {
+        StepsPekamaProject.deleteAllTasks();
+
         ObjectTask objectTask3 = new ObjectTask();
         objectTask3.create("createdFist", null, null, null, null, null);
         ObjectTask objectTask2 = new ObjectTask();
@@ -486,6 +479,7 @@ public class TestsPekamaProjectTasks {
     }
     @Test
     public void tabTasks_TasksSorting_ByEdition() {
+        StepsPekamaProject.deleteAllTasks();
 
         ObjectTask objectTask1 = new ObjectTask();
         objectTask1.create("createdFist", null, null, null, null, null);
@@ -517,8 +511,8 @@ public class TestsPekamaProjectTasks {
         String member2 = createMemberInTeamSettings("kfgt@memeber.email");
         String member3 = createMemberInTeamSettings("zysx@memeber.email");
 
+        StepsPekamaProject.deleteAllTasks();
         try {
-            openUrlWithBaseAuth(projectUrl);
             ObjectTask objectTask1 = new ObjectTask();
             objectTask1.create("createdFist", null, null, null, null, member3);
             ObjectTask objectTask2 = new ObjectTask();
@@ -569,6 +563,6 @@ public class TestsPekamaProjectTasks {
         checkText("No messages posted yet");
         postComment(LOREM_IPSUM_SHORT);
         checkTextNotPresent("No messages posted yet");
-        StepsPekamaProject.deleteTaskCard();
+        deleteTaskCard();
     }
 }

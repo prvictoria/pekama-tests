@@ -1,6 +1,5 @@
 package Tests;
 
-import Page.TestsCredentials;
 import Steps.ObjectCharges;
 import Steps.ObjectContact;
 import Steps.User;
@@ -14,7 +13,6 @@ import java.io.IOException;
 
 import static Page.ModalWindows.*;
 import static Page.PekamaDashboard.*;
-import static Page.PekamaReports.*;
 import static Page.PekamaTeamSettings.TAB_MEMBERS_BTN_ADD;
 import static Page.TestsCredentials.*;
 import static Page.TestsCredentials.ContactRelation.*;
@@ -61,7 +59,6 @@ public class TestsPekamaReportsFiltersCharges {
         setBrowser();
         holdBrowserAfterTest();
         if(skipBefore==false) {
-            clearBrowserCache();
             User user = new User();
             user.loginByURL(OWNER_LOGIN, OWNER_PASSWORD, URL_LogIn);
 
@@ -114,7 +111,6 @@ public class TestsPekamaReportsFiltersCharges {
                     "B-member", "Billed & Paid",
                     CHARGES_TYPE_FEES, -10,
                     "xyz",USD, 100);
-
         getWebDriver().quit();
         }
         else {rootLogger.info("Before suite was skipped");
@@ -122,17 +118,18 @@ public class TestsPekamaReportsFiltersCharges {
     }
     @Before
     public void login() {
+        clearBrowserCache();
         User user = new User();
         user.loginByURL(OWNER_LOGIN, OWNER_PASSWORD, URL_ReportsCharges);
     }
     @Test
     public void charges_sort_last_created (){
         rootLogger.info("Validate sort order and rows by: "+"Last created");
-        selectSortOrder(null, false);
+        selectSortOrderAndCheck(null, false);
         checkInvoiceRowReports(1, invoice3);
         checkInvoiceRowReports(2, invoice2);
         checkInvoiceRowReports(3, invoice1);
-        selectSortOrder("Last created", true);
+        selectSortOrderAndCheck("Last created", true);
         checkInvoiceRowReports(1, invoice1);
         checkInvoiceRowReports(2, invoice2);
         checkInvoiceRowReports(3, invoice3);
@@ -140,11 +137,11 @@ public class TestsPekamaReportsFiltersCharges {
     @Test
     public void charges_sort_last_modified (){
         rootLogger.info("Validate sort order and rows by: "+"Last modified");
-        selectSortOrder("Last modified", false);
+        selectSortOrderAndCheck("Last modified", false);
         checkInvoiceRowReports(1, invoice3);
         checkInvoiceRowReports(2, invoice2);
         checkInvoiceRowReports(3, invoice1);
-        selectSortOrder("Last modified", true);
+        selectSortOrderAndCheck("Last modified", true);
         checkInvoiceRowReports(1, invoice1);
         checkInvoiceRowReports(2, invoice2);
         checkInvoiceRowReports(3, invoice3);
@@ -153,11 +150,11 @@ public class TestsPekamaReportsFiltersCharges {
     @Test
     public void charges_sort_date (){
         rootLogger.info("Validate sort order and rows by: "+"Date");
-        selectSortOrder("Date", true);
+        selectSortOrderAndCheck("Date", true);
         checkInvoiceRowReports(1, invoice3);
         checkInvoiceRowReports(2, invoice2);
         checkInvoiceRowReports(3, invoice1);
-        selectSortOrder("Date", false);
+        selectSortOrderAndCheck("Date", false);
         checkInvoiceRowReports(1, invoice1);
         checkInvoiceRowReports(2, invoice2);
         checkInvoiceRowReports(3, invoice3);
@@ -165,11 +162,11 @@ public class TestsPekamaReportsFiltersCharges {
     @Test
     public void charges_sort_amount (){
         rootLogger.info("Validate sort order and rows by: "+"Amount");
-        selectSortOrder("Amount", true);
+        selectSortOrderAndCheck("Amount", true);
         checkInvoiceRowReports(1, invoice1);
         checkInvoiceRowReports(2, invoice3);
         checkInvoiceRowReports(3, invoice2);
-        selectSortOrder("Amount", false);
+        selectSortOrderAndCheck("Amount", false);
         checkInvoiceRowReports(1, invoice2);
         checkInvoiceRowReports(2, invoice3);
         checkInvoiceRowReports(3, invoice1);
@@ -177,11 +174,11 @@ public class TestsPekamaReportsFiltersCharges {
     @Test
     public void charges_sort_from (){
         rootLogger.info("Validate sort order and rows by: "+"From");
-        selectSortOrder("From", true);
+        selectSortOrderAndCheck("From", true);
         checkInvoiceRowReports(1, invoice1);
         checkInvoiceRowReports(2, invoice2);
         checkInvoiceRowReports(3, invoice3);
-        selectSortOrder("From", false);
+        selectSortOrderAndCheck("From", false);
         checkInvoiceRowReports(1, invoice1);
         checkInvoiceRowReports(2, invoice2);
         checkInvoiceRowReports(3, invoice3);
@@ -189,11 +186,11 @@ public class TestsPekamaReportsFiltersCharges {
     @Test
     public void charges_sort_to (){
         rootLogger.info("Validate sort order and rows by: "+"To");
-        selectSortOrder("To", true);
+        selectSortOrderAndCheck("To", true);
         checkInvoiceRowReports(1, invoice1);
         checkInvoiceRowReports(2, invoice3);
         checkInvoiceRowReports(3, invoice2);
-        selectSortOrder("To", false);
+        selectSortOrderAndCheck("To", false);
         checkInvoiceRowReports(1, invoice2);
         checkInvoiceRowReports(2, invoice3);
         checkInvoiceRowReports(3, invoice1);
@@ -201,11 +198,11 @@ public class TestsPekamaReportsFiltersCharges {
     @Test
     public void charges_sort_type (){
         rootLogger.info("Validate sort order and rows: "+"Type");
-        selectSortOrder("Type", true);
+        selectSortOrderAndCheck("Type", true);
         checkInvoiceRowReports(1, invoice1);
         checkInvoiceRowReports(2, invoice2);
         checkInvoiceRowReports(3, invoice3);
-        selectSortOrder("Type", false);
+        selectSortOrderAndCheck("Type", false);
         checkInvoiceRowReports(1, invoice3);
         checkInvoiceRowReports(2, invoice2);
         checkInvoiceRowReports(3, invoice1);
@@ -213,11 +210,11 @@ public class TestsPekamaReportsFiltersCharges {
     @Test
     public void charges_sort_status (){
         rootLogger.info("Validate sort order and rows: "+"Status");
-        selectSortOrder("Status", true);
+        selectSortOrderAndCheck("Status", true);
         checkInvoiceRowReports(1, invoice1);
         checkInvoiceRowReports(2, invoice3);
         checkInvoiceRowReports(3, invoice2);
-        selectSortOrder("Status", false);
+        selectSortOrderAndCheck("Status", false);
         checkInvoiceRowReports(1, invoice2);
         checkInvoiceRowReports(2, invoice3);
         checkInvoiceRowReports(3, invoice1);

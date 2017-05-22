@@ -196,7 +196,28 @@ public class TestsCredentials {
     }
     //Pekama owner
     public enum User8 {
-    GMAIL_EMAIL("");
+        GMAIL_EMAIL("testqweeco008@gmail.com"),
+        GMAIL_PASSWORD("123456789qasw1"),
+        PEKAMA_PASSWORD("asui67we34Aw!"),
+        LINKEDIN_PASSWORD("123456789qasw"),
+        BOX_PASSWORD("32qew8127a12a"),
+        NAME("Test008"),
+        SURNAME("Quality08"),
+        NAME_SURNAME("Test008 Quality08"),
+        PHONE("205-780-5656"),
+        FAX("(205) 254-2294"),
+        MOBILE("205- 324-8712"),
+        LEGAL_ENTITY("Arlington House"),
+        STREET("331 Cotton Avenue, Southwest"),
+        ZIP("35211"),
+        CITY("Birmingham"),
+        REGION("Alabama"),
+        COUNTRY("United States"),
+        TEAM_NAME("QweecoTeam08"),
+        TEAM_CODE("QT08"),
+        FULL_TEAM_NAME("QweecoTeam08 (QT08)"),
+        COMMUNITY_CASE_TYPE("Patent"),
+        COMMUNITY_CASE_COUNTRY("Pitcairn Islands");
 
     private String value;
         User8(String value) {
@@ -386,8 +407,6 @@ public class TestsCredentials {
     }
 
     public static final String GENERIC_PEKAMA_PASSWORD = "asui67we34";
-    public static final String GENERIC_GMAIL_PASSWORD = "123456789qasw1";
-    public static final String GENERIC_GMAIL_LOGIN = "123456789@gmail.com";
     public static final String GMAIL_PASSWORD = "123456789qasw1";
 
     public static final String teamTest01 = "Qweeco01 (QT01)";
