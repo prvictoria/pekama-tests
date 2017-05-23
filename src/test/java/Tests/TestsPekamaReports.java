@@ -6,7 +6,6 @@ import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
-import org.junit.experimental.categories.Category;
 import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
 
@@ -22,7 +21,6 @@ import static Page.TestsStrings.*;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
 import static Steps.MessagesValidator.ValidationReport.*;
-import static Steps.ObjectCharges.checkInvoiceRowReports;
 import static Steps.ObjectContact.contactType.COMPANY;
 import static Steps.ObjectContact.contactType.PERSON;
 import static Steps.ObjectContact.enterPoint.*;
@@ -521,11 +519,11 @@ public class TestsPekamaReports {
         rootLogger.info("Contact add company link");
     }
     @Test
-    public void contacts_z_merge() throws IOException {
-        String ContactEmail1 = "email01@new.test";
-        String ContactEmail2 = "email02@new.test";
-        String Contact1NameSurname = nameContactName+"Z"+" "+nameContactSurname+"Z";
-        String Contact2NameSurname = nameContactName+"A"+" "+nameContactSurname+"A";
+    public void contacts_merge_positive() throws IOException {
+        ObjectContact contactPerson1 = new ObjectContact();
+        contactPerson1.setValues("Person", null, "NameZ", "SurnameZ", "email01@new.test");
+        ObjectContact contactPerson2 = new ObjectContact();
+        contactPerson2.setValues("Person", null, "NameA", "SurnameA", "email02@new.test");
 
         deleteAllContacts();
 
@@ -533,54 +531,73 @@ public class TestsPekamaReports {
         REPORTS_SORT_BY_NAME.waitUntil(visible, 30000);
 
         rootLogger.info("Create 1st contact");
-        ObjectContact contact1 = new ObjectContact();
-        contact1.createPerson(REPORT,  null,
-                nameContactName+"Z", nameContactSurname+"Z",
-                null, ContactEmail1, null, null,
+        contactPerson1.createPerson(REPORT,  null,
+                contactPerson1.contactFirstName, contactPerson1.contactLastName,
+                null, contactPerson1.contactEmail, null, null,
                 null, null, null,
                 null, null, PITCAIRN_ISLANDS.getValue());
         rootLogger.info("Check 1-st contact row");
         reportsCheckContactRow(
                 1,
-                nameContactName+"Z",
-                nameContactSurname+"Z",
-                ContactEmail1,
+                contactPerson1.contactFirstName,
+                contactPerson1.contactLastName,
+                contactPerson1.contactEmail,
                 PITCAIRN_ISLANDS.getValue());
 
         rootLogger.info("Create 2nd contact");
-        ObjectContact contact2 = new ObjectContact();
-        contact2.createPerson(REPORT, null,
-                nameContactName+"A", nameContactSurname+"A",
-                null, ContactEmail2, null, null,
+        contactPerson2.createPerson(REPORT, null,
+                contactPerson2.contactFirstName, contactPerson2.contactLastName,
+                null, contactPerson2.contactEmail, null, null,
                 null, null, null,
                 null, null, NETHERLANDS_ANTILES.getValue());
         rootLogger.info("Check 1-st contact row - default sort by name - ascending");
         reportsCheckContactRow(
                 1,
-                nameContactName+"A",
-                nameContactSurname+"A",
-                ContactEmail2,
+                contactPerson2.contactFirstName,
+                contactPerson2.contactLastName,
+                contactPerson2.contactEmail,
                 NETHERLANDS_ANTILES.getValue());
 
-        REPORTS_ALL_CHECKBOX.click();
-        rootLogger.info("Merge contacts, base - 1-st");
-        REPORTS_MERGE.shouldBe(visible).click();
-        waitForModalWindow("Merge Contacts");
-        MW_BTN_OK.shouldBe(disabled);
-        selectItemInDropdown(
-                MW_MergeContact_Select,
-                MW_MergeContact_Input,
-                Contact1NameSurname);
-        submitEnabledButton(MW_BTN_OK);
-        MW.shouldNotBe(visible);
-
+        mergeContactsAll(contactPerson1);
+        refresh();
         rootLogger.info("Check merge result if 1-st contact present");
         reportsCheckContactRow(
                 1,
-                nameContactName+"Z",
-                nameContactSurname+"Z",
-                ContactEmail1,
+                contactPerson1.contactFirstName,
+                contactPerson1.contactLastName,
+                contactPerson1.contactEmail,
                 PITCAIRN_ISLANDS.getValue());
+
+    }
+    @Test
+    public void contacts_merge_validation() throws IOException {
+        ObjectContact contactPerson = new ObjectContact();
+        contactPerson.setValues("Person", null, "NameZ", "SurnameZ", "email01@new.test");
+        ObjectContact contactCompany = new ObjectContact();
+        contactCompany.setValues("Company", "Firm", null, null, "email02@new.test");
+
+        deleteAllContacts();
+
+        rootLogger.info("Check default sort by name");
+        REPORTS_SORT_BY_NAME.waitUntil(visible, 30000);
+
+        rootLogger.info("Create person contact");
+        contactPerson.createPerson(REPORT,  null,
+                contactPerson.contactFirstName, contactPerson.contactLastName,
+                null, contactPerson.contactEmail, null, null,
+                null, null, null,
+                null, null, PITCAIRN_ISLANDS.getValue());
+
+        rootLogger.info("Create company contact");
+        contactCompany.createCompany(REPORT, contactCompany.contactLegalEntity,
+               null, null,
+                null, contactCompany.contactEmail, null, null,
+                null, null, NETHERLANDS_ANTILES.getValue());
+        rootLogger.info("Check 1-st contact row - default sort by name - ascending");
+
+        mergeContactsAll(contactPerson);
+        checkText("Contacts have different types");
+
 
     }
     @Test

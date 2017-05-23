@@ -44,11 +44,12 @@ public class ObjectContact {
     public enum contactType {PERSON, COMPANY}
     public enum enterPoint {PROJECT, REPORT}
 
-    public void setValues(String contactType, String contactLegalEntity, String contactFirstName, String contactLastName){
+    public void setValues(String contactType, String contactLegalEntity, String contactFirstName, String contactLastName, String contactEmail){
         this.contactType = contactType;
         this.contactLegalEntity = contactLegalEntity;
         this.contactFirstName = contactFirstName;
         this.contactLastName = contactLastName;
+        this.contactEmail = contactEmail;
     }
     public void fillModalForm(
             String contactType,

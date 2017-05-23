@@ -384,4 +384,27 @@ public class StepsPekamaReports extends StepsFactory {
         }
         return false;
     }
+    public static void mergeContactsSelected(){
+
+    }
+    public static void mergeContactsAll(ObjectContact contact){
+        clickSelector(REPORTS_ALL_CHECKBOX);
+        clickSelector(REPORTS_MERGE);
+        rootLogger.info("Merge all contacts");
+        waitForModalWindow("Merge Contacts");
+        MW_BTN_OK.shouldBe(disabled);
+        if(contact.contactType.equals("Company")) {
+            selectItemInDropdown(
+                    MW_MergeContact_Select,
+                    MW_MergeContact_Input,
+                    contact.contactLegalEntity);
+        }
+        if(contact.contactType.equals("Person")) {
+            selectItemInDropdown(
+                    MW_MergeContact_Select,
+                    MW_MergeContact_Input,
+                    contact.contactFirstName);
+        }
+        submitEnabledButton(MW_BTN_OK);
+    }
 }

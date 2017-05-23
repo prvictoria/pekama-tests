@@ -498,7 +498,7 @@ public class TestsPekamaProjectTasks {
         taskRow3Title.shouldHave(text((objectTask3.taskTitle)));
         rootLogger.info("Test passed");
     }
-    //TODO sort by first_name
+    //TODO sort by first_name  BUG https://www.pivotaltracker.com/n/projects/1239770/stories/145955409
     @Test
     public void tabTasks_TasksSorting_ByAssigneeName() {
         member2 = User1.NAME_SURNAME.getValue();
