@@ -519,7 +519,7 @@ public class TestsPekamaReports {
         rootLogger.info("Contact add company link");
     }
     @Test
-    public void contacts_merge_positive() throws IOException {
+    public void contacts_merge_positive() {
         ObjectContact contactPerson1 = new ObjectContact();
         contactPerson1.setValues("Person", null, "NameZ", "SurnameZ", "email01@new.test");
         ObjectContact contactPerson2 = new ObjectContact();
@@ -570,16 +570,13 @@ public class TestsPekamaReports {
 
     }
     @Test
-    public void contacts_merge_validation() throws IOException {
+    public void contacts_merge_validation_person_and_company() {
         ObjectContact contactPerson = new ObjectContact();
         contactPerson.setValues("Person", null, "NameZ", "SurnameZ", "email01@new.test");
         ObjectContact contactCompany = new ObjectContact();
         contactCompany.setValues("Company", "Firm", null, null, "email02@new.test");
 
         deleteAllContacts();
-
-        rootLogger.info("Check default sort by name");
-        REPORTS_SORT_BY_NAME.waitUntil(visible, 30000);
 
         rootLogger.info("Create person contact");
         contactPerson.createPerson(REPORT,  null,
@@ -593,13 +590,46 @@ public class TestsPekamaReports {
                null, null,
                 null, contactCompany.contactEmail, null, null,
                 null, null, NETHERLANDS_ANTILES.getValue());
-        rootLogger.info("Check 1-st contact row - default sort by name - ascending");
-
         mergeContactsAll(contactPerson);
         checkText("Contacts have different types");
-
-
     }
+    @Test
+    public void contacts_merge_validation_one_person_has_company() {
+        ObjectContact contactCompany = new ObjectContact();
+        contactCompany.setValues("Company", "Z-Firm", null, null, "email02@new.test");
+        ObjectContact contactPerson = new ObjectContact();
+        contactPerson.setValues("Person", null, "NameZ", "SurnameZ", "email01@new.test");
+        ObjectContact contactAffiliated = new ObjectContact();
+        contactAffiliated.setValues("Person", contactCompany.contactLegalEntity, "NameA", "SurnameA", "worker@new.test");
+
+        deleteAllContacts();
+        rootLogger.info("Create company contact");
+        contactCompany.createCompany(REPORT, contactCompany.contactLegalEntity,
+                null, null,
+                null, contactCompany.contactEmail,
+                null, null,
+                null, null, NETHERLANDS_ANTILES.getValue());
+        rootLogger.info("Create person contact");
+        contactPerson.createPerson(REPORT,  null,
+                contactPerson.contactFirstName, contactPerson.contactLastName,
+                null, contactPerson.contactEmail,
+                null, null,
+                null, null, null,
+                null, null, PITCAIRN_ISLANDS.getValue());
+        rootLogger.info("Create person-affiliated contact");
+        contactAffiliated.createPerson(REPORT,  null,
+                contactAffiliated.contactFirstName, contactAffiliated.contactLastName,
+                contactCompany.contactLegalEntity, contactAffiliated.contactEmail,
+                null, null,
+                null, null, null,
+                null, null, PITCAIRN_ISLANDS.getValue());
+        selectContactRow(contactPerson.contactFirstName);
+        selectContactRow(contactAffiliated.contactFirstName);
+
+        mergeContactsSelected(contactPerson);
+        checkText("Contacts have different \"Company\" values");
+    }
+
     @Test
     public void contacts_y_import_ContactsMaxValue() {
         deleteAllContacts();

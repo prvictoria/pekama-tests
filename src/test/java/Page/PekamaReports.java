@@ -154,7 +154,7 @@ public class PekamaReports extends Page {
         return row;
     }
 
-    public static final String REPORTS_CONTACT_ROW_SELECT = "//input[@type='checkbox']";
+    public static final String REPORTS_CONTACT_ROW_SELECT = "//label[./input[@type='checkbox']]";
     public static final String REPORTS_CONTACT_ROW_NAME = "//*[@class='name ng-binding']";
     public static final String REPORTS_CONTACT_ROW_EMAIL = "//span[@ng-if='contact.email']";
     public static final String REPORTS_CONTACT_ROW_COUNTRY = "//span[@ng-if='contact.country']";
