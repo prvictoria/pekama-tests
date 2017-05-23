@@ -562,8 +562,10 @@ public class StepsPekama extends StepsFactory{
         }
     }
     public static String createMemberInTeamSettings(String email){
-        openUrlWithBaseAuth(URL_Members);
-        sleep(3000);
+        if(getActualUrl().equals(URL_Members)==false){
+            openUrlWithBaseAuth(URL_Members);
+            sleep(3000);
+        }
         addMember(email, TAB_MEMBERS_BTN_ADD);
         return email;
     }

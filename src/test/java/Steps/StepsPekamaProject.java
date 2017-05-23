@@ -309,7 +309,8 @@ public class StepsPekamaProject extends StepsPekama {
     }
 // TASKS TAB =========================================================================
     public static void deleteAllTasks(){
-        sleep(2000);
+        clickSelector(PROJECT_TAB_TASKS);
+        sleep(3000);
         if($(byText(PLACEHOLDER_EMPTY_LIST)).isDisplayed()){return;}
             rootLogger.info("Delete All tasks");
             clickSelector(projectAllCheckbox);

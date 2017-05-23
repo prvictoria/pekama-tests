@@ -47,6 +47,9 @@ public class TestsPekamaProjectTasks {
     private static final String OWNER_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
     private static final String OWNER_TEAM_NAME = User3.TEAM_NAME.getValue();
     private final static String OWNER_FULL_TEAM_NAME = User3.FULL_TEAM_NAME.getValue();
+    private static String member1 = null;
+    private static String member2 = null;
+    private static String member3 = null;
 
     private static String projectName;
     private static String projectUrl;
@@ -69,8 +72,9 @@ public class TestsPekamaProjectTasks {
             projectUrl = getActualUrl();
 
             deleteAllMembers();
-            addMember("A-member@email.com", TAB_MEMBERS_BTN_ADD);
-            addMember("B-member@office.eu", TAB_MEMBERS_BTN_ADD);
+            member1 = createMemberInTeamSettings("fake-member@email.com");
+            member2 = createMemberInTeamSettings(User1.GMAIL_EMAIL.getValue());
+            member3 = createMemberInTeamSettings(User2.GMAIL_EMAIL.getValue());
 
             getWebDriver().quit();
         }
@@ -82,13 +86,11 @@ public class TestsPekamaProjectTasks {
         clearBrowserCache();
         User user = new User();
         user.loginByURL(OWNER_LOGIN_EMAIL, OWNER_PASSWORD, projectUrl);
-        clickSelector(PROJECT_TAB_TASKS);
+        StepsPekamaProject.deleteAllTasks();
     }
 
     @Test
     public void tabTasks_All_Importances() {
-        StepsPekamaProject.deleteAllTasks();
-
         rootLogger.info("Check default task order - due date acceding");
         String taskName;
         taskName = taskCreate(
@@ -153,8 +155,6 @@ public class TestsPekamaProjectTasks {
     }
     @Test
     public void tabTasks_All_Statuses() {
-        StepsPekamaProject.deleteAllTasks();
-
         rootLogger.info("Select all tasks");
         rootLogger.info("Check default task order - due date acceding");
         PROJECT_TAB_TASKS.waitUntil(visible, 15000).click();
@@ -392,8 +392,6 @@ public class TestsPekamaProjectTasks {
 
     @Test
     public void tabTasks_TasksSorting_ByDueDate() {
-        StepsPekamaProject.deleteAllTasks();
-
         ObjectTask objectTask1 = new ObjectTask();
         objectTask1.create("Task1-date+1", null, 10, null, null, null);
         ObjectTask objectTask2 = new ObjectTask();
@@ -451,8 +449,6 @@ public class TestsPekamaProjectTasks {
     }
     @Test
     public void tabTasks_TasksSorting_ByCreation() {
-        StepsPekamaProject.deleteAllTasks();
-
         ObjectTask objectTask3 = new ObjectTask();
         objectTask3.create("createdFist", null, null, null, null, null);
         ObjectTask objectTask2 = new ObjectTask();
@@ -479,8 +475,6 @@ public class TestsPekamaProjectTasks {
     }
     @Test
     public void tabTasks_TasksSorting_ByEdition() {
-        StepsPekamaProject.deleteAllTasks();
-
         ObjectTask objectTask1 = new ObjectTask();
         objectTask1.create("createdFist", null, null, null, null, null);
         ObjectTask objectTask2 = new ObjectTask();
@@ -507,12 +501,9 @@ public class TestsPekamaProjectTasks {
     //TODO sort by first_name
     @Test
     public void tabTasks_TasksSorting_ByAssigneeName() {
-        String member1 = createMemberInTeamSettings("abcd@memeber.email");
-        String member2 = createMemberInTeamSettings("kfgt@memeber.email");
-        String member3 = createMemberInTeamSettings("zysx@memeber.email");
+        member2 = User1.NAME_SURNAME.getValue();
+        member3 = User2.NAME_SURNAME.getValue();
 
-        StepsPekamaProject.deleteAllTasks();
-        try {
             ObjectTask objectTask1 = new ObjectTask();
             objectTask1.create("createdFist", null, null, null, null, member3);
             ObjectTask objectTask2 = new ObjectTask();
@@ -534,11 +525,6 @@ public class TestsPekamaProjectTasks {
             taskRow1Title.shouldHave(text((objectTask3.taskTitle)));
             taskRow2Title.shouldHave(text((objectTask2.taskTitle)));
             taskRow3Title.shouldHave(text((objectTask1.taskTitle)));
-
-        }
-        finally {
-            deleteAllMembers();
-        }
         rootLogger.info("Test passed");
     }
     @Test
