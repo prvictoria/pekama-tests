@@ -310,14 +310,13 @@ public class StepsPekamaProject extends StepsPekama {
 // TASKS TAB =========================================================================
     public static void deleteAllTasks(){
         sleep(2000);
-        if($(byText(PLACEHOLDER_EMPTY_LIST)).isDisplayed()!=false) {
+        if($(byText(PLACEHOLDER_EMPTY_LIST)).isDisplayed()){return;}
             rootLogger.info("Delete All tasks");
-            projectAllCheckbox.shouldBe(visible).click();
-            TAB_TASKS_BTN_DELETE.shouldBe(visible).click();
-            submitConfirmAction();
-            checkText(PLACEHOLDER_EMPTY_LIST);
-        }
-        else return;
+            clickSelector(projectAllCheckbox);
+            if($(byText(PLACEHOLDER_EMPTY_LIST)).isDisplayed()){return;}
+                clickSelector(TAB_TASKS_BTN_DELETE);
+                submitConfirmAction();
+                checkText(PLACEHOLDER_EMPTY_LIST);
     }
     public static void deleteTaskCard(){
         submitEnabledButton(PROJECT_TASK_CARD_BTN_DEL_TASK);
