@@ -37,7 +37,7 @@ public class ObjectCharges {
     public Boolean invoiceZoneAll = false;
     public String[] invoiceZoneTeams = null;
 
-    enum FormEnterPoint {PROJECT, CONTACTS}
+    enum chargesEnterPoint {PROJECT, CONTACTS}
     public void setValues(String invoiceFrom, String invoiceTo, String invoiceBy, String invoiceStatus, String invoiceType, String invoiceDueDate, Integer invoiceDateFormToday , String invoiceItem, String invoiceCurrency, String invoiceQty, String invoiceTimeHours, String invoiceTimeMin, String invoiceRate, String invoicePrice, String invoiceVat, String invoiceDiscount, String invoiceTotal, Boolean invoiceZoneAll){
         this.invoiceFrom = invoiceFrom;
         this.invoiceTo = invoiceTo;

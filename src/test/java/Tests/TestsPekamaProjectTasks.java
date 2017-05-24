@@ -86,6 +86,7 @@ public class TestsPekamaProjectTasks {
         clearBrowserCache();
         User user = new User();
         user.loginByURL(OWNER_LOGIN_EMAIL, OWNER_PASSWORD, projectUrl);
+        checkText(projectName);
         StepsPekamaProject.deleteAllTasks();
     }
 
@@ -539,7 +540,6 @@ public class TestsPekamaProjectTasks {
         task.editTaskCard("edited", 20, TASK_IMPORTANCE_DEADLINE, null, null);
         checkTaskData(taskDefault, task); //TODO values for comparison
         submitEnabledButton(PROJECT_TASK_CARD_BACK);
-        StepsPekamaProject.deleteAllTasks();
     }
     @Test
     public void tabTasks_PostComment() {

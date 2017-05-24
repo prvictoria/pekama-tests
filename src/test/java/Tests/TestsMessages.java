@@ -83,6 +83,10 @@ public class TestsMessages {
             emailTask.imapSearchEmailDeleteAll(
                     COLLABORATOR_EMAIL,
                     COLLABORATOR_EMAIL_PASSWORD);
+            User user = new User();
+            user.loginByURL(INVITER_EMAIL, INVITER_PEKAMA_PASSWORD, URL_LogIn);
+            deleteAllMembers();
+            getWebDriver().quit();
         }
         else {rootLogger.info("Debug mode");}
     }

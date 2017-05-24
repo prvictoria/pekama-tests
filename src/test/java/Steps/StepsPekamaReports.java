@@ -156,19 +156,24 @@ public class StepsPekamaReports extends StepsFactory {
             waitForSpinnerNotPresent();
         }
     }
+
     public static void deleteAllProjects(){
         rootLogger.info("Delete all Projects");
-        openPageWithSpinner(URL_ReportsProjects);
+        openUrlIfActualNotEquals(URL_ReportsProjects);
         if($(byText(PLACEHOLDER_NO_DATA)).isDisplayed()){
-            rootLogger.info("No charges in reports");
+            rootLogger.info("No reports");
             return;
-        }
+            }
         else {
             REPORTS_ALL_CHECKBOX.setSelected(true);
             sleep(2000);
             String selectedColor = REPORTS_ALL_CHECKBOX.getCssValue("color");
             Assert.assertTrue(selectedColor.equals("rgb(42, 164, 245)"));
-            REPORTS_DELETE.waitUntil(visible, 15000).click();
+                if($(byText(PLACEHOLDER_NO_DATA)).isDisplayed()){
+                    rootLogger.info("No reports");
+                    return;
+                }
+            clickSelector(REPORTS_DELETE);
             submitConfirmAction();
             sleep(4000);
         }
@@ -209,7 +214,7 @@ public class StepsPekamaReports extends StepsFactory {
     }
     public static void deleteAllCharges(){
         rootLogger.info("Delete all Charges");
-        openPageWithSpinner(URL_ReportsCharges);
+        openUrlIfActualNotEquals(URL_ReportsCharges);
         if($(byText(PLACEHOLDER_NO_DATA)).isDisplayed()){
             rootLogger.info("No charges in reports");
             return;
@@ -219,6 +224,10 @@ public class StepsPekamaReports extends StepsFactory {
             sleep(2000);
             String selectedColor = REPORTS_ALL_CHECKBOX.getCssValue("color");
             Assert.assertTrue(selectedColor.equals("rgb(42, 164, 245)"));
+            if($(byText(PLACEHOLDER_NO_DATA)).isDisplayed()){
+                rootLogger.info("No reports");
+                return;
+            }
             REPORTS_DELETE.waitUntil(visible, 15000).click();
             submitConfirmAction();
             sleep(4000);
@@ -226,9 +235,7 @@ public class StepsPekamaReports extends StepsFactory {
     }
     public static void deleteAllContacts(){
             rootLogger.info("Delete all Contacts");
-        if(getActualUrl().equals(URL_ReportsContacts)==false){
-            openPageWithSpinner(URL_ReportsContacts);
-        }
+        openUrlIfActualNotEquals(URL_ReportsContacts);
         REPORTS_ALL_CHECKBOX.waitUntil(visible, 20000).click();
         clickDeleteAndConfirm();
     }

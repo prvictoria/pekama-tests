@@ -54,6 +54,7 @@ public class TestsPekamaSignUp {
         setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
+        deleteAllMembers();
     }
     @Before
     public void selectAgreeCheckbox() {

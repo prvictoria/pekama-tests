@@ -38,9 +38,9 @@ import static com.codeborne.selenide.WebDriverRunner.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaReportsFiltersCharges {
     static final Logger rootLogger = LogManager.getRootLogger();
-    private static final String OWNER_LOGIN = User1.GMAIL_EMAIL.getValue();
-    private static final String OWNER_PASSWORD = User1.PEKAMA_PASSWORD.getValue();
-    private static final String OWNER_TEAM_NAME = User1.TEAM_NAME.getValue();
+    private static final String OWNER_LOGIN = User8.GMAIL_EMAIL.getValue();
+    private static final String OWNER_PASSWORD = User8.PEKAMA_PASSWORD.getValue();
+    private static final String OWNER_TEAM_NAME = User8.TEAM_NAME.getValue();
     private static ObjectCharges invoice1 = new ObjectCharges();
     private static ObjectCharges invoice2 = new ObjectCharges();
     private static ObjectCharges invoice3 = new ObjectCharges();

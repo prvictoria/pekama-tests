@@ -567,7 +567,6 @@ public class TestsPekamaReports {
                 contactPerson1.contactLastName,
                 contactPerson1.contactEmail,
                 PITCAIRN_ISLANDS.getValue());
-
     }
     @Test
     public void contacts_merge_validation_person_and_company() {

@@ -602,46 +602,20 @@ public class StepsPekama extends StepsFactory{
     public static void deleteAllMembers(String testTeamNameSurname) {
         openUrlWithBaseAuth(URL_Members);
         checkText(testTeamNameSurname);
-        if ($$(byXpath(ICON_DELETE_MEMBER)).size()!=0){
-            do {
-                $(byXpath(ICON_DELETE_MEMBER)).shouldBe(visible);
-                $(byXpath(ICON_DELETE_MEMBER)).click();
-                submitConfirmAction();
-                sleep(2000);
-            }
-            while ($$(byXpath(ICON_DELETE_MEMBER)).size()!=0);
-            rootLogger.info("All - members were deleted");
-        }
+        deleteLoopIconX();
     }
     public static void deleteAllMembers() {
-        openUrlWithBaseAuth(URL_Members);
-        sleep(3000);
-        if ($$(byXpath(ICON_DELETE_MEMBER)).size()!=0){
-            do {
-                $(byXpath(ICON_DELETE_MEMBER)).shouldBe(visible);
-                $(byXpath(ICON_DELETE_MEMBER)).click();
-                submitConfirmAction();
-                sleep(2000);
-            }
-            while ($$(byXpath(ICON_DELETE_MEMBER)).size()!=0);
-            rootLogger.info("All - members were deleted");
+        if(getActualUrl().equals(URL_Members)==false){
+            openUrlWithBaseAuth(URL_Members);
         }
+        deleteLoopIconX();
     }
     public static void deleteLoopIconX(String testTeamNameSurname) {
         checkText(testTeamNameSurname);
-        if ($$(byXpath(ICON_DELETE_MEMBER)).size()!=0){
-            do {
-                $(byXpath(ICON_DELETE_MEMBER)).shouldBe(visible);
-                $(byXpath(ICON_DELETE_MEMBER)).click();
-                submitConfirmAction();
-                sleep(2000);
-            }
-            while ($$(byXpath(ICON_DELETE_MEMBER)).size()!=0);
-            rootLogger.info("All - members were deleted");
-        }
+        deleteLoopIconX();
     }
     public static void deleteLoopIconX() {
-        sleep(2000);
+        sleep(3000);
         if ($$(byXpath(ICON_DELETE_MEMBER)).size()!=0){
             do {
                 $(byXpath(ICON_DELETE_MEMBER)).shouldBe(visible);
@@ -772,6 +746,12 @@ public class StepsPekama extends StepsFactory{
         button.shouldBe(visible).shouldBe(enabled).click();
         submitAddMemberWindow(email,  true);
         return email;
+    }
+    public static void openUrlIfActualNotEquals(String url){
+        if(getActualUrl().equals(url)==false){
+            openPageWithSpinner(url);
+        }
+        else return;
     }
 
 }
