@@ -209,7 +209,8 @@ public class ModalWindows extends Page {
     public static final SelenideElement MW_CURRENCY_INPUT_CODE = $(byXpath(mw+"//input[@name='code']"));
     //NEW
     //New project
-    public static final SelenideElement MW_ProjectFinishButton = $(byXpath(mw+"//button[@type='submit'][contains(.,'FINISH')]"));
+    public static final SelenideElement MW_ProjectFinishButton = $(byXpath(mw+"//button[@type='submit'][contains(.,'FINISH')]")); //i class="pkm-icon-spinner icon-spin
+    public static final SelenideElement MW_ProjectFinishButtonWithSpinner = $(byXpath(mw+"//button[contains(.,'FINISH') and ./i]"));
     public static final SelenideElement MW_Project_SelectType = $(byXpath(mw+"//div[@name='matter_type']/div/span//span[1]"));
     public static final SelenideElement MW_Project_InputType = $(byXpath(mw+"//div[@name='matter_type']/input[1]"));
     public static final SelenideElement MW_Project_SelectDefining = $(byXpath(mw+"//div[@name='defining']/div/span//span[1]"));

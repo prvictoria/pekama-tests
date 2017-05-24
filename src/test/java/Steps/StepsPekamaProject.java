@@ -15,6 +15,7 @@ import static Page.PekamaDashboard.*;
 import static Page.PekamaProject.*;
 
 import static Page.PekamaProjectCharges.*;
+import static Page.TestsCredentials.Countries.NETHERLANDS_ANTILES;
 import static Page.TestsStrings.*;
 import static Page.UrlStrings.*;
 import static Steps.StepsCommunity.*;
@@ -129,7 +130,7 @@ public class StepsPekamaProject extends StepsPekama {
                     TAB_INFO_SELECT_Defining,
                     TAB_INFO_INPUT_Defining,
                     defining);
-            sleep(1500);
+            sleep(500);
             checkText(defining);
             return defining;
         }
@@ -141,7 +142,7 @@ public class StepsPekamaProject extends StepsPekama {
                     TAB_INFO_SELECT_Type,
                     TAB_INFO_INPUT_Type,
                     type);
-            sleep(1500);
+            sleep(500);
             checkText(type);
             return type;
         }
@@ -153,7 +154,7 @@ public class StepsPekamaProject extends StepsPekama {
                     TAB_INFO_SELECT_SubType,
                     TAB_INFO_INPUT_SubType,
                     subType);
-            sleep(1500);
+            sleep(500);
             checkText(subType);
             return subType;
         }

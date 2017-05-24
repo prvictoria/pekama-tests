@@ -84,12 +84,12 @@ public static final SelenideElement SORT_ORDER_TYPE = $(byXpath("//a[@class='sor
 
     public static final String TAB_INFO_VALUES = "//*[@class='details-list clearfix']";
     public static final SelenideElement TAB_INFO_PROJECT_TYPE = $(byXpath(TAB_INFO_VALUES+"//strong[contains(.,'Project type')]/following-sibling::span"));
-    public static final SelenideElement TAB_INFO_SELECT_Defining = $(byXpath(TAB_INFO_VALUES+"//strong[text()='Country']/following-sibling::pkm-values-dropdown"));
-    public static final SelenideElement TAB_INFO_INPUT_Defining = $(byXpath(TAB_INFO_VALUES+"//strong[text()='Country']/following-sibling::pkm-values-dropdown//input[@type='search']"));
-    public static final SelenideElement TAB_INFO_SELECT_Type = $(byXpath(TAB_INFO_VALUES+"//strong[text()='Type']/following-sibling::pkm-values-dropdown"));
-    public static final SelenideElement TAB_INFO_INPUT_Type = $(byXpath(TAB_INFO_VALUES+"//strong[text()='Type']/following-sibling::pkm-values-dropdown//input[@type='search']"));
-    public static final SelenideElement TAB_INFO_SELECT_SubType = $(byXpath(TAB_INFO_VALUES+"//strong[text()='Sub Type ']/following-sibling::pkm-values-dropdown"));
-    public static final SelenideElement TAB_INFO_INPUT_SubType = $(byXpath(TAB_INFO_VALUES+"//strong[text()='Sub Type ']/following-sibling::pkm-values-dropdown//input[@type='search']"));
+    public static final SelenideElement TAB_INFO_SELECT_Defining = $(byXpath(TAB_INFO_VALUES+"//*[@name='form']//div[1]//pkm-values-dropdown//span"));
+    public static final SelenideElement TAB_INFO_INPUT_Defining = $(byXpath(TAB_INFO_VALUES+"//*[@name='form']//div[1]//pkm-values-dropdown//input[@type='search']"));
+    public static final SelenideElement TAB_INFO_SELECT_Type = $(byXpath(TAB_INFO_VALUES+"//*[@name='form']//div[2]//pkm-values-dropdown//span"));
+    public static final SelenideElement TAB_INFO_INPUT_Type = $(byXpath(TAB_INFO_VALUES+"//*[@name='form']//div[2]//pkm-values-dropdown//input[@type='search']"));
+    public static final SelenideElement TAB_INFO_SELECT_SubType = $(byXpath(TAB_INFO_VALUES+"//*[@name='form']//div[3]//pkm-values-dropdown//span"));
+    public static final SelenideElement TAB_INFO_INPUT_SubType = $(byXpath(TAB_INFO_VALUES+"//*[@name='form']//div[3]//pkm-values-dropdown//input[@type='search']"));
 
 
     public static final SelenideElement TAB_INFO_Notes = $(byXpath(""));

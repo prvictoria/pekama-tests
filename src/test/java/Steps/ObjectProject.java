@@ -3,9 +3,14 @@ package Steps;
 import org.apache.logging.log4j.*;
 
 import static Page.PekamaDashboard.DASHBOARD_BTN_NEW_PROJECT;
+import static Page.PekamaProject.PROJECT_FULL_NAME;
 import static Page.PekamaReports.REPORTS_BTN_NEW_PROJECT;
 import static Page.UrlStrings.*;
-import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
+import static Steps.StepsPekamaProject.setProjectDefining;
+import static Steps.StepsPekamaProject.setProjectSubType;
+import static Steps.StepsPekamaProject.setProjectType;
+import static com.codeborne.selenide.Condition.not;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.sleep;
 
 import static Page.ModalWindows.*;
@@ -38,61 +43,78 @@ public class ObjectProject {
     public String projectReference = null;
     public String projectTmNumber = null;
     public String projectUrl = null;
+    public String[] contactNames = null;
 
-    enum projectEnterPoint {DASHBOARD, REPORTS, CONTACTS, FAMILY, CLONE}
+    public enum projectEnterPoint {DASHBOARD, REPORTS, CONTACTS, FAMILY, CLONE}
     public void setValues(
             String projectName, String projectMatterType,
-            String projectDefining, String projectReference){
+            String projectDefining, String projectReference, String[] contactNames){
+        this.projectName = projectName;
+        this.projectMatterType = projectMatterType;
+        this.projectDefining = projectDefining;
+        this.projectReference = projectReference;
+        this.contactNames = contactNames;
     }
     private void fillModalForm(ObjectProject project){
         this.projectName = project.projectName+"_"+randomString(10);
-        this.projectNumber = project.projectNumber;
-        this.projectFullName = project.projectFullName;
         this.projectMatterType = project.projectMatterType;
         this.projectDefining = project.projectDefining;
-        this.projectType = project.projectType;
-        this.projectSubType = project.projectSubType;
-        this.projectStatus = project.projectStatus;
-        this.projectNotes = project.projectNotes;
         this.projectReference = project.projectReference+"_"+randomString(10);
         this.projectTmNumber = project.projectTmNumber;
-        this.projectUrl = project.projectUrl;
 
         waitForModalWindow(TILE_MW_PROJECT);
-        if(projectType!=null) {
+        if(project.projectMatterType!=null) {
             rootLogger.info("Select project type, actual: " + projectType);
             selectItemInDropdown(
                     MW_Project_SelectType, MW_Project_InputType, this.projectMatterType);
         }
-        if(projectDefining!=null) {
-            rootLogger.info("Select defining, actual: " + projectDefining);
+        if(project.projectDefining!=null) {
+            rootLogger.info("Select defining, actual: " +   this.projectDefining);
             selectItemInDropdown(
-                    MW_Project_SelectDefining, MW_Project_InputDefining,  this.projectNumber);
+                    MW_Project_SelectDefining, MW_Project_InputDefining, this.projectDefining);
         }
         if(project.projectName!=null) {
             fillField(MW_Project_Title, this.projectName, "Title is:"+this.projectName);
         }
         if(project.projectReference!=null) {
-            rootLogger.info("Fill ref number");
-            fillField(MW_Project_Reference,  this.projectReference);
+            fillField(MW_Project_Reference,  this.projectReference, "REF number is: "+this.projectReference);
         }
-        if(project.projectTmNumber!=null && (projectType.equals(MATTER_TYPE_TRADEMARK) || projectType.equals(MATTER_TYPE_PATENT))) {
+        if(project.projectTmNumber!=null && (
+                projectType.equals(MATTER_TYPE_TRADEMARK) || projectType.equals(MATTER_TYPE_PATENT))) {
             rootLogger.info("Fill TM number");
             fillField(MW_Project_TMNumber, this.projectTmNumber);
             sleep(1000);
             MW_Project_TMNumber.pressTab();
             sleep(1000);
         }
-
-
+    return;
     }
     private void submitModal(){
-        sleep(2000);
         submitEnabledButton(MW_ProjectFinishButton);
-        sleep(3000);
+        MW_ProjectFinishButtonWithSpinner.waitUntil(not(visible), 70000);
+        sleep(2000);
     }
     private void getProjectValues(){
+        sleep(2000);
         this.projectUrl = getActualUrl();
+        this.projectFullName = PROJECT_FULL_NAME.getText();
+    }
+    public void setProjectValues(String defining, String type, String subType){
+        if(defining!=null) {
+            sleep(1000);
+            this.projectDefining = defining;
+            setProjectDefining(defining);
+        }
+        if(type!=null) {
+            sleep(2000);
+            this.projectType = type;
+            setProjectType(type);
+        }
+        if(subType!=null){
+            sleep(3000);
+            this.projectSubType = subType;
+            setProjectSubType(subType);
+        }
     }
     public void create(projectEnterPoint enterPoint, ObjectProject project){
         switch (enterPoint){
@@ -122,8 +144,11 @@ public class ObjectProject {
             fillModalForm(project);
             submitModal();
         }
-        getProjectValues();
-
+        sleep(2000);
+        if(MW.isDisplayed()==false){
+            getProjectValues();
+        }
+        return;
     }
 
 

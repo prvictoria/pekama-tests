@@ -1,7 +1,6 @@
 package Page;
 import org.junit.Test;
 
-import static Page.TestsCredentials.User1.GMAIL_EMAIL;
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
@@ -263,12 +262,27 @@ public class TestsCredentials {
         TRADEMARK_MADRID_PROTOCOL("International Application (Madrid Protocol)"),
         TRADEMARK_CMT("European Union (CTM)"),
         TRADEMARK_CONSUMER_TRADEMARK("Consumer Trademark Defining"),
-        USA("United States"),
+        USA("United States of America"),
         ALL("All countries"),
         GENERIC("");
 
         private String value;
         Countries(String value) {
+            this.value = value;
+        }
+        public String getValue() {
+            return value;
+        }
+    }
+    public enum MatterType {
+        PATENT("Patent"),
+        CRM("Client Relation (CRM)"),
+        TRADEMARK("Trademark"),
+        COPYRIGHT("Copyright"),
+        GENERAL("General");
+
+        private String value;
+        MatterType(String value) {
             this.value = value;
         }
         public String getValue() {

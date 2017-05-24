@@ -160,7 +160,7 @@ public class StepsPekamaReports extends StepsFactory {
     public static void deleteAllProjects(){
         rootLogger.info("Delete all Projects");
         openUrlIfActualNotEquals(URL_ReportsProjects);
-        if($(byText(PLACEHOLDER_NO_DATA)).isDisplayed()){
+        if(REPORTS_LIST_ROWS.size()==0){
             rootLogger.info("No reports");
             return;
             }
@@ -169,7 +169,7 @@ public class StepsPekamaReports extends StepsFactory {
             sleep(2000);
             String selectedColor = REPORTS_ALL_CHECKBOX.getCssValue("color");
             Assert.assertTrue(selectedColor.equals("rgb(42, 164, 245)"));
-                if($(byText(PLACEHOLDER_NO_DATA)).isDisplayed()){
+                if(REPORTS_LIST_ROWS.size()==0){
                     rootLogger.info("No reports");
                     return;
                 }

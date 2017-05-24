@@ -229,11 +229,11 @@ public class TestsPekamaProjectInfo {
         scrollUp();
         TAB_INFO_PROJECT_TYPE.shouldHave(text(TEST_CASE_TYPE));
         sleep(1000);
-        setProjectDefining(NETHERLANDS_ANTILES.getValue());
-        sleep(1000);
-        setProjectType(TrademarkTypes.BASIC.getValue());
-        sleep(2000);
-        setProjectSubType("Certification Mark");
+        ObjectProject project = new ObjectProject();
+        project.setProjectValues(
+                NETHERLANDS_ANTILES.getValue(),
+                TrademarkTypes.BASIC.getValue(),
+                "Certification Mark");
         rootLogger.info("Test passed");
     }
 }
