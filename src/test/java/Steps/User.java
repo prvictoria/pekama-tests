@@ -3,6 +3,7 @@ package Steps;
 import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.Test;
 
 import java.util.Enumeration;
 
@@ -36,10 +37,6 @@ public class User extends StepsFactory{
     public Boolean isSignUpSucceed;
     public Boolean isLoginSucceed;
 
-    //Todo ENUM as param
-    public void create(Enumeration enumeration){
-
-    }
     public void loginByURL(String email, String password, String url){
         this.email = email;
         this.password = password;
@@ -154,4 +151,6 @@ public class User extends StepsFactory{
         this.password = newPassword;
         return newPassword;
     }
+
+
 }
