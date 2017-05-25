@@ -25,7 +25,7 @@ import static org.junit.Assert.assertEquals;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
-public class StepsCommunity extends StepsFactory{
+public class StepsCommunity extends Steps {
     static final Logger rootLogger = LogManager.getRootLogger();
     public static String searchQueryUrl;
 

@@ -27,7 +27,7 @@ import static com.codeborne.selenide.Selenide.*;
 /**
  * Created by Viachaslau_Balashevi on 2/23/2017.
  */
-public class StepsModalWindows extends StepsFactory {
+public class StepsModalWindows {
     static final Logger rootLogger = LogManager.getRootLogger();
     public static String fileName = null;
 

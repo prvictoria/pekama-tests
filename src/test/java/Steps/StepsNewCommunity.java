@@ -3,7 +3,7 @@ package Steps;
 /**
  * Created by VatslauX on 05-May-17.
  */
-public class StepsNewCommunity extends StepsFactory {
+public class StepsNewCommunity extends Steps {
 
     public static class Header{
         public static void headerClickPekama(){}

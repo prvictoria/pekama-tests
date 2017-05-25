@@ -25,14 +25,14 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
-public abstract class StepsFactory {
+public abstract class Steps {
     static final Logger rootLogger = LogManager.getRootLogger();
 
     //Selenide steps
     public static void clickSelector(SelenideElement element){
         element.waitUntil(exist, 15000).waitUntil(visible, 10000).click();
     }
-    public static Boolean  checkTextInSelector(SelenideElement element, String text){
+    public static Boolean checkTextInSelector(SelenideElement element, String text){
         element.waitUntil(exist, 10000)
                .waitUntil(visible, 15000)
                .shouldHave(text(text));

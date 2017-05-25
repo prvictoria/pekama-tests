@@ -21,7 +21,7 @@ import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
-import static Steps.StepsFactory.clickSelector;
+import static Steps.Steps.clickSelector;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsModalWindows.modalDocumentTemplateOptions.*;
 import static Steps.StepsPekama.*;

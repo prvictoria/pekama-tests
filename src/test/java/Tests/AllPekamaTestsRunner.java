@@ -32,7 +32,7 @@ import org.junit.runners.Suite;
         TestsPekamaTemplates.class,
 
         TestsPekamaReports.class,
-        //TestsPekamaReportsFiltersProjects.class,
+        TestsPekamaReportsFiltersProjects.class,
         //TestsPekamaReportsFiltersTasks.class,
         //TestsPekamaReportsFiltersEvents.class,
         TestsPekamaReportsFiltersCharges.class,

@@ -27,7 +27,7 @@ import static com.codeborne.selenide.Selenide.sleep;
 /**
  * Created by VatslauX on 02-May-17.
  */
-public class StepsPekamaReports extends StepsFactory {
+public class StepsPekamaReports extends Steps {
     static final Logger rootLogger = LogManager.getRootLogger();
     public static String mailingListCreateNew(String thisMailingListName){
         rootLogger.info("Create new mailing list");
@@ -167,13 +167,13 @@ public class StepsPekamaReports extends StepsFactory {
         else {
             REPORTS_ALL_CHECKBOX.setSelected(true);
             sleep(2000);
-            checkColourInSelector(REPORTS_ALL_CHECKBOX, "42, 164, 245");
+            Steps.checkColourInSelector(REPORTS_ALL_CHECKBOX, "42, 164, 245");
             if(REPORTS_LIST_ROWS.size()==0){
                 rootLogger.info("No objects");
                 return;
             }
             clickDeleteAndConfirm();
-            checkTextInSelector(REPORTS_PLACEHOLDER_NO_DATA, PLACEHOLDER_NO_DATA);
+            Steps.checkTextInSelector(REPORTS_PLACEHOLDER_NO_DATA, PLACEHOLDER_NO_DATA);
         }
     }
     public static void deleteAllProjects(){
@@ -197,7 +197,7 @@ public class StepsPekamaReports extends StepsFactory {
         deleteAllObjectOnReportPage(URL_ReportsContacts);
     }
 
-    public static boolean reportsCheckContactRow(Integer rowCount, String name, String surname, String email, String country) {
+    public static boolean checkReportsContactRow(Integer rowCount, String name, String surname, String email, String country) {
         String row = REPORTS_ROW_BY_INDEX_LIST(rowCount);
         SelenideElement contactName = $(byXpath(row+REPORTS_CONTACT_ROW_NAME));
         SelenideElement contactEmail = $(byXpath(row+REPORTS_CONTACT_ROW_EMAIL));
@@ -207,7 +207,7 @@ public class StepsPekamaReports extends StepsFactory {
         contactCountry.shouldHave(text(country));
         return  true;
     }
-    public static Boolean reportsCheckContactRow(contactType contactType, Integer rowCount, ObjectContact contact,  String projects, String charges,  Integer relationCount) {
+    public static Boolean checkReportsContactRow(contactType contactType, Integer rowCount, ObjectContact contact, String projects, String charges, Integer relationCount) {
         rootLogger.info("Check contact row #"+rowCount);
         SelenideElement contactName = elementInRowListReport(rowCount, REPORTS_CONTACT_ROW_NAME);
         SelenideElement contactEmail = elementInRowListReport(rowCount, REPORTS_CONTACT_ROW_EMAIL);
@@ -312,8 +312,8 @@ public class StepsPekamaReports extends StepsFactory {
         waitForModalWindow("Choose CSV file");
     }
     public static Boolean checkActualSortOrderInReports(String order, Boolean orderIsAscending){
-        if(order == null|| orderIsAscending == null){
-            Assert.fail("Null in parameters not valid");
+        if(order == null && orderIsAscending == null){
+            Assert.fail("All Null parameters not valid");
         }
         if(order!=null) {
             String ActualTaskOrder = REPORTS_SORT_ORDER_TYPE.getText();
@@ -333,7 +333,7 @@ public class StepsPekamaReports extends StepsFactory {
     }
     public static Boolean selectSortOrderAndCheck(String order, Boolean orderIsAscending){
         if (order != null) {
-            clickSelector(REPORTS_SORT_ORDER_TYPE);
+            Steps.clickSelector(REPORTS_SORT_ORDER_TYPE);
             clickSelector(REPORTS_SELECT_SORT_ORDER(order));
             String ActualTaskOrder = REPORTS_SORT_ORDER_TYPE.getText();
             Assert.assertEquals(order, ActualTaskOrder);

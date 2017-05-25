@@ -1,16 +1,24 @@
 package Steps;
 
-import org.apache.logging.log4j.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import static Page.ModalWindows.*;
 import static Page.PekamaProjectCharges.*;
 import static Page.PekamaReports.*;
 import static Page.PekamaReportsCharges.*;
 import static Page.TestsStrings.*;
-import static Steps.StepsModalWindows.*;
+import static Steps.StepsModalWindows.selectAllTeams;
+import static Steps.StepsPekama.fillField;
+import static Steps.StepsPekama.selectItemInDropdown;
+import static Steps.StepsPekama.submitEnabledButton;
+import static Steps.StepsPekamaProject.callChargesModal;
+import static Utils.Utils.parseDecimalString;
+import static com.codeborne.selenide.Condition.*;
+import static Steps.Steps.*;
 import static Steps.StepsPekamaProject.*;
 import static Utils.Utils.*;
-import static com.codeborne.selenide.Condition.*;
+
 
 /**
  * Created by VatslauX on 16-May-17.
@@ -311,14 +319,14 @@ public class ObjectCharges {
        }
         return true;
     }
-    public static Boolean checkInvoiceRowReports(Integer rowCount, ObjectCharges charges){
+    public static Boolean checkReportsInvoiceRow(Integer rowCount, ObjectCharges charges){
         if(charges==null){
             rootLogger.info("No invoice to validate");
             return false;
         }
         if(rowCount==null){
             TAB_CHARGES_LIST.shouldHaveSize(0);
-            checkText(PLACEHOLDER_NO_DATA);
+            checkTextInSelector(REPORTS_PLACEHOLDER_NO_DATA, PLACEHOLDER_NO_DATA);
         }
         if(rowCount!=null && charges!=null){
             if(charges.invoiceItem!=null){

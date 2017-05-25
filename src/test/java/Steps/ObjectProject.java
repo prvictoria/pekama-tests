@@ -1,15 +1,19 @@
 package Steps;
 
+import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.*;
 
 import static Page.PekamaDashboard.DASHBOARD_BTN_NEW_PROJECT;
 import static Page.PekamaProject.PROJECT_FULL_NAME;
+import static Page.PekamaProjectCharges.TAB_CHARGES_LIST;
 import static Page.PekamaReports.REPORTS_BTN_NEW_PROJECT;
+import static Page.PekamaReportsProjects.*;
 import static Page.UrlStrings.*;
 import static Steps.StepsPekamaProject.setProjectDefining;
 import static Steps.StepsPekamaProject.setProjectSubType;
 import static Steps.StepsPekamaProject.setProjectType;
 import static com.codeborne.selenide.Condition.not;
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.sleep;
 
@@ -99,7 +103,7 @@ public class ObjectProject {
         this.projectUrl = getActualUrl();
         this.projectFullName = PROJECT_FULL_NAME.getText();
     }
-    public void setProjectValues(String defining, String type, String subType){
+    public void selectProjectValues(String defining, String type, String subType){
         if(defining!=null) {
             sleep(1000);
             this.projectDefining = defining;
@@ -150,6 +154,39 @@ public class ObjectProject {
         }
         return;
     }
-
-
+    public static Boolean checkReportsProjectRow(Integer rowCount, ObjectProject project){
+        if(project==null){
+        rootLogger.info("No project row to validate");
+        return false;
+        }
+        if(rowCount==null){
+            REPORTS_LIST_ROWS.shouldHaveSize(0);
+            checkTextInSelector(REPORTS_PLACEHOLDER_NO_DATA, PLACEHOLDER_NO_DATA);
+            return true;
+        }
+        if(rowCount!=null && project!=null){
+            if(project.projectName!=null){
+                checkTextInSelector(REPORTS_PROJECT_TITLE(rowCount), project.projectName);
+            }
+            if(project.projectMatterType!=null){
+                checkTextInSelector(REPORTS_PROJECT_MATTER_TYPE(rowCount), project.projectMatterType);
+            }
+            if(project.projectDefining!=null){
+                checkTextInSelector(REPORTS_PROJECT_DEFINING(rowCount), project.projectDefining);
+            }
+            if(project.projectType!=null){
+                checkTextInSelector(REPORTS_PROJECT_TYPE(rowCount), project.projectType);
+            }
+            if(project.projectSubType!=null){
+                checkTextInSelector(REPORTS_PROJECT_SUBTYPE(rowCount), project.projectSubType);
+            }
+            if(project.projectStatus!=null){
+                checkTextInSelector(REPORTS_PROJECT_STATUS(rowCount), project.projectStatus);
+            }
+            rootLogger.info("Row validation Passed");
+            return true;
+        }
+        rootLogger.info("Row validation Failed");
+        return false;
+    }
 }

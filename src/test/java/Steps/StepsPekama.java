@@ -29,7 +29,7 @@ import static com.codeborne.selenide.WebDriverRunner.*;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
-public class StepsPekama extends StepsFactory{
+public class StepsPekama extends Steps {
     static final Logger rootLogger = LogManager.getRootLogger();
 
     @Deprecated

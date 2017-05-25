@@ -476,7 +476,7 @@ public class TestsPekamaReports {
         person.editForm(2, "Person", null, "Name", "Surname", company.contactLegalEntity, null, null, null, null, null, null, null, null, null);
 
         refresh();
-        reportsCheckContactRow(PERSON, 2, person, null, null,null);
+        checkReportsContactRow(PERSON, 2, person, null, null,null);
         rootLogger.info("Contact add company link");
     }
     @Test
@@ -497,7 +497,7 @@ public class TestsPekamaReports {
                 null, null,
                 null, null);
         refresh();
-        reportsCheckContactRow(PERSON, 2, person, null, null,null);
+        checkReportsContactRow(PERSON, 2, person, null, null,null);
         rootLogger.info("Contact add company link");
     }
     @Test
@@ -515,7 +515,7 @@ public class TestsPekamaReports {
         String projectUrl = getActualUrl();
 
         openPageWithSpinner(URL_ReportsContacts);
-        reportsCheckContactRow(COMPANY, 1, company, "1 project", null,1);
+        checkReportsContactRow(COMPANY, 1, company, "1 project", null,1);
         rootLogger.info("Contact add company link");
     }
     @Test
@@ -537,7 +537,7 @@ public class TestsPekamaReports {
                 null, null, null,
                 null, null, PITCAIRN_ISLANDS.getValue());
         rootLogger.info("Check 1-st contact row");
-        reportsCheckContactRow(
+        checkReportsContactRow(
                 1,
                 contactPerson1.contactFirstName,
                 contactPerson1.contactLastName,
@@ -551,7 +551,7 @@ public class TestsPekamaReports {
                 null, null, null,
                 null, null, NETHERLANDS_ANTILES.getValue());
         rootLogger.info("Check 1-st contact row - default sort by name - ascending");
-        reportsCheckContactRow(
+        checkReportsContactRow(
                 1,
                 contactPerson2.contactFirstName,
                 contactPerson2.contactLastName,
@@ -561,7 +561,7 @@ public class TestsPekamaReports {
         mergeContactsAll(contactPerson1);
         refresh();
         rootLogger.info("Check merge result if 1-st contact present");
-        reportsCheckContactRow(
+        checkReportsContactRow(
                 1,
                 contactPerson1.contactFirstName,
                 contactPerson1.contactLastName,

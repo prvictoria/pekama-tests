@@ -3,9 +3,6 @@ package Steps;
 import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.Test;
-
-import java.util.Enumeration;
 
 import static Page.PekamaLogin.*;
 import static Page.PekamaResetPassword.*;
@@ -23,7 +20,7 @@ import static com.codeborne.selenide.Selenide.sleep;
 /**
  * Created by Viachaslau_Balashevi on 3/29/2017.
  */
-public class User extends StepsFactory{
+public class User extends Steps {
     static final Logger rootLogger = LogManager.getRootLogger();
     public String email;
     public String password;

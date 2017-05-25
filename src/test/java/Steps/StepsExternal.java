@@ -1,5 +1,4 @@
 package Steps;
-import Page.TestsCredentials;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,12 +15,12 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.*;
 import static org.openqa.selenium.support.ui.ExpectedConditions.alertIsPresent;
-import static org.openqa.selenium.support.ui.ExpectedConditions.stalenessOf;
+
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
-public class StepsExternal extends StepsFactory{
+public class StepsExternal extends Steps {
     static final Logger rootLogger = LogManager.getRootLogger();
     static String REDIRECT_LINK;
     public static String checkReportBackLink;
