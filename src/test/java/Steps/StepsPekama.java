@@ -225,6 +225,7 @@ public class StepsPekama extends StepsFactory{
         }
         return true;
     }
+
     public static boolean checkValue(String textString) {
         $(byValue(textString)).waitUntil(exist, 20000);
         $$(byValue(textString)).filter(visible).shouldHaveSize(1);

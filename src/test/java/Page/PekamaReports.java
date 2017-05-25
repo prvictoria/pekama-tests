@@ -22,7 +22,7 @@ public class PekamaReports extends Page {
     public static final SelenideElement REPORTS_DELETE = $(byXpath("//button[@class='btn-link'][contains(.,'Delete')]"));
     public static final SelenideElement REPORTS_EVENTS_DELETE = $(byXpath("//*[@href][contains(.,'Delete')]"));
     public static final SelenideElement REPORTS_MERGE = $(byXpath("//button[@class='btn-link'][contains(.,'Merge')]"));
-    public static final SelenideElement REPORTS_NoData = $(byXpath("//div/div[2][@class='alert alert-empty ng-binding ng-scope']"));
+    public static final SelenideElement REPORTS_PLACEHOLDER_NO_DATA = $(byXpath("//div/div[2][@class='alert alert-empty ng-binding ng-scope']"));
     public static final SelenideElement REPORTS_Spinner = $(byXpath("//i[@class='pkm-icon-spinner icon-spin']"));
     public static final SelenideElement REPORTS_BTN_List = $(byXpath("//button[contains(.,'List')]"));
     public static final SelenideElement REPORTS_BTN_Report = $(byXpath("//button[contains(.,'Report')]"));

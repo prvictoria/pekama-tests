@@ -10,7 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static Page.PekamaLogin.*;
+import static Page.PekamaReports.REPORTS_PLACEHOLDER_NO_DATA;
 import static Page.TestsCredentials.*;
+import static Page.TestsStrings.PLACEHOLDER_NO_DATA;
 import static Steps.StepsHttpAuth.*;
 import static Steps.StepsPekama.*;
 import static com.codeborne.selenide.Condition.*;
@@ -28,6 +30,12 @@ public abstract class StepsFactory {
     public static void clickSelector(SelenideElement element){
         element.waitUntil(exist, 15000).waitUntil(visible, 10000).click();
     }
+    public static void  checkTextInSelector(SelenideElement element, String text){
+        element.waitUntil(exist, 10000)
+               .waitUntil(visible, 15000)
+               .shouldHave(text(text));
+    }
 
+    
 }
 

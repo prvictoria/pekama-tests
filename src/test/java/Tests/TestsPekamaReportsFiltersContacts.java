@@ -52,7 +52,7 @@ public class TestsPekamaReportsFiltersContacts {
         holdBrowserAfterTest();
         if(skipBefore==false) {
             User user = new User();
-            user.loginByURL(OWNER_LOGIN, OWNER_PASSWORD, URL_ReportsContacts);
+            user.loginByURL(OWNER_LOGIN, OWNER_PASSWORD, URL_PEKAMA_LOGIN);
 
             deleteAllContacts();
             rootLogger.info("Create contacts in reports");
@@ -92,7 +92,7 @@ public class TestsPekamaReportsFiltersContacts {
     }
     @Before
     public void login() {
-        clearBrowserCache();
+        //clearBrowserCache();
         User user = new User();
         user.loginByURL(OWNER_LOGIN, OWNER_PASSWORD, URL_ReportsContacts);
     }

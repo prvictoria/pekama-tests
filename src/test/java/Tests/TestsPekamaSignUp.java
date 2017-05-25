@@ -54,12 +54,10 @@ public class TestsPekamaSignUp {
         setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
-        deleteAllMembers();
     }
     @Before
     public void selectAgreeCheckbox() {
         if(skipBefore==false) {
-            clearBrowserCache();
             openUrlWithBaseAuth(URL_SingUp);
             submitCookie();
         }

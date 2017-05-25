@@ -60,7 +60,7 @@ public class TestsPekamaReportsFiltersCharges {
         holdBrowserAfterTest();
         if(skipBefore==false) {
             User user = new User();
-            user.loginByURL(OWNER_LOGIN, OWNER_PASSWORD, URL_LogIn);
+            user.loginByURL(OWNER_LOGIN, OWNER_PASSWORD, URL_PEKAMA_LOGIN);
 
         rootLogger.info("Create project");
         submitEnabledButton(DASHBOARD_BTN_NEW_PROJECT);
@@ -118,7 +118,7 @@ public class TestsPekamaReportsFiltersCharges {
     }
     @Before
     public void login() {
-        clearBrowserCache();
+        //clearBrowserCache();
         User user = new User();
         user.loginByURL(OWNER_LOGIN, OWNER_PASSWORD, URL_ReportsCharges);
     }

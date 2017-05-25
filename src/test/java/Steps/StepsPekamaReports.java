@@ -156,89 +156,50 @@ public class StepsPekamaReports extends StepsFactory {
             waitForSpinnerNotPresent();
         }
     }
-
-    public static void deleteAllProjects(){
-        rootLogger.info("Delete all Projects");
-        openUrlIfActualNotEquals(URL_ReportsProjects);
+    public static void deleteAllObjectOnReportPage(String pageUrl){
+        rootLogger.info("Delete all objects on: "+pageUrl);
+        openUrlIfActualNotEquals(pageUrl);
         if(REPORTS_LIST_ROWS.size()==0){
-            rootLogger.info("No reports");
+            rootLogger.info("No objects");
             return;
-            }
+        }
         else {
             REPORTS_ALL_CHECKBOX.setSelected(true);
             sleep(2000);
             String selectedColor = REPORTS_ALL_CHECKBOX.getCssValue("color");
             Assert.assertTrue(selectedColor.equals("rgb(42, 164, 245)"));
-                if(REPORTS_LIST_ROWS.size()==0){
-                    rootLogger.info("No reports");
-                    return;
-                }
-            clickSelector(REPORTS_DELETE);
-            submitConfirmAction();
-            sleep(4000);
+            if(REPORTS_LIST_ROWS.size()==0){
+                rootLogger.info("No objects");
+                return;
+            }
+            clickDeleteAndConfirm();
+            REPORTS_PLACEHOLDER_NO_DATA
+                    .waitUntil(exist, 10000)
+                    .waitUntil(visible, 15000)
+                    .shouldHave(text(PLACEHOLDER_NO_DATA));
         }
+    }
+    public static void deleteAllProjects(){
+        rootLogger.info("Delete all Tasks");
+        deleteAllObjectOnReportPage(URL_ReportsProjects);
     }
     public static void deleteAllTasks(){
         rootLogger.info("Delete all Tasks");
-        openPageWithSpinner(URL_ReportsTasks);
-        if($(byText(PLACEHOLDER_NO_DATA)).isDisplayed()){
-            rootLogger.info("No charges in reports");
-            return;
-        }
-        else {
-            REPORTS_ALL_CHECKBOX.setSelected(true);
-            sleep(2000);
-            String selectedColor = REPORTS_ALL_CHECKBOX.getCssValue("color");
-            Assert.assertTrue(selectedColor.equals("rgb(42, 164, 245)"));
-            REPORTS_DELETE.waitUntil(visible, 15000).click();
-            submitConfirmAction();
-            sleep(4000);
-        }
+        deleteAllObjectOnReportPage(URL_ReportsTasks);
     }
     public static void deleteAllEvents(){
         rootLogger.info("Delete all Events");
-        openPageWithSpinner(URL_ReportsEvents);
-        if($(byText(PLACEHOLDER_NO_DATA)).isDisplayed()){
-            rootLogger.info("No charges in reports");
-            return;
-        }
-        else {
-            REPORTS_ALL_CHECKBOX.setSelected(true);
-            sleep(2000);
-            String selectedColor = REPORTS_ALL_CHECKBOX.getCssValue("color");
-            Assert.assertTrue(selectedColor.equals("rgb(42, 164, 245)"));
-            REPORTS_EVENTS_DELETE.waitUntil(visible, 15000).click();
-            submitConfirmAction();
-            sleep(4000);
-        }
+        deleteAllObjectOnReportPage(URL_ReportsEvents);
     }
     public static void deleteAllCharges(){
         rootLogger.info("Delete all Charges");
-        openUrlIfActualNotEquals(URL_ReportsCharges);
-        if($(byText(PLACEHOLDER_NO_DATA)).isDisplayed()){
-            rootLogger.info("No charges in reports");
-            return;
-        }
-        else {
-            REPORTS_ALL_CHECKBOX.setSelected(true);
-            sleep(2000);
-            String selectedColor = REPORTS_ALL_CHECKBOX.getCssValue("color");
-            Assert.assertTrue(selectedColor.equals("rgb(42, 164, 245)"));
-            if($(byText(PLACEHOLDER_NO_DATA)).isDisplayed()){
-                rootLogger.info("No reports");
-                return;
-            }
-            REPORTS_DELETE.waitUntil(visible, 15000).click();
-            submitConfirmAction();
-            sleep(4000);
-        }
+        deleteAllObjectOnReportPage(URL_ReportsCharges);
     }
     public static void deleteAllContacts(){
-            rootLogger.info("Delete all Contacts");
-        openUrlIfActualNotEquals(URL_ReportsContacts);
-        REPORTS_ALL_CHECKBOX.waitUntil(visible, 20000).click();
-        clickDeleteAndConfirm();
+        rootLogger.info("Delete all Contacts");
+        deleteAllObjectOnReportPage(URL_ReportsContacts);
     }
+
     public static boolean reportsCheckContactRow(Integer rowCount, String name, String surname, String email, String country) {
         String row = REPORTS_ROW_BY_INDEX_LIST(rowCount);
         SelenideElement contactName = $(byXpath(row+REPORTS_CONTACT_ROW_NAME));

@@ -86,7 +86,7 @@ public class TestsPekamaDashboard {
     public void testA_Gui() {
         DASHBOARD_ProjectsTitle.waitUntil(visible, 20000).shouldBe(visible);
         DASHBOARD_BTN_NEW_PROJECT.shouldBe(visible);
-        checkText("No projects yet. Create your first project");
+//        checkText("No projects yet. Create your first project");
 
         DASHBOARD_YourProfileTitle.shouldBe(visible);
         //DASHBOARD_TeamName.shouldHave(text(TEST_USER_TEAM_NAME));
