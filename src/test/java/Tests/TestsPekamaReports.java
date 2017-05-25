@@ -327,8 +327,8 @@ public class TestsPekamaReports {
         $$(byText(PLACEHOLDER_NO_DATA)).shouldHave(CollectionCondition.sizeGreaterThanOrEqual(1));
         rootLogger.info("All contacts were deleted");
 
-        REPORTS_BTN_List.shouldBe(visible).shouldBe(enabled).shouldHave(attribute("class", "btn btn-gray btn-active"));
-        REPORTS_BTN_Report.shouldBe(visible).shouldBe(enabled).shouldHave(attribute("class", "btn btn-gray"));
+        REPORTS_BTN_LIST.shouldBe(visible).shouldBe(enabled).shouldHave(attribute("class", "btn btn-gray btn-active"));
+        REPORTS_BTN_REPORT.shouldBe(visible).shouldBe(enabled).shouldHave(attribute("class", "btn btn-gray"));
         REPORTS_BTN_IMPORT.shouldBe(visible).shouldBe(enabled);
         REPORTS_BTN_ADD_CONTACT.shouldBe(visible).shouldBe(enabled);
         rootLogger.info("Test passed");

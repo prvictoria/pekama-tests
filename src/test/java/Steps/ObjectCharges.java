@@ -5,6 +5,7 @@ import org.apache.logging.log4j.*;
 import static Page.ModalWindows.*;
 import static Page.PekamaProjectCharges.*;
 import static Page.PekamaReports.*;
+import static Page.PekamaReportsCharges.*;
 import static Page.TestsStrings.*;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekamaProject.*;

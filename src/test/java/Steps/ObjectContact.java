@@ -6,6 +6,7 @@ import org.junit.Assert;
 
 import static Page.ModalWindows.*;
 import static Page.PekamaReports.*;
+import static Page.PekamaReportsContacts.*;
 import static Page.TestsStrings.*;
 import static Page.UrlStrings.*;
 import static Steps.ObjectContact.enterPoint.*;
