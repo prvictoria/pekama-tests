@@ -9,7 +9,7 @@ import java.util.Enumeration;
 /**
  * Created by VatslauX on 25-May-17.
  */
-public class BuildUser {
+public class BuildUser implements Builder{
     static final Logger rootLogger = LogManager.getRootLogger();
     public String email;
     public String password;
@@ -40,6 +40,11 @@ public class BuildUser {
     public static Builder newBuilder() {
         return new Builder();
     }
+
+//    @Override
+//    public T build() {
+//        return null;
+//    }
 
 
     public static final class Builder {
@@ -119,8 +124,11 @@ public class BuildUser {
     }
     @Test
     public void test(){
-    new Builder().businessType("").build();
-     System.out.println(this);
+        BuildUser user = newBuilder().businessType("11212121").build();
+        System.out.println(user.businessType);
+
+//        new Builder().businessType("1234567890").build();
+//    System.out.println(this.businessType);
 
     }
 }
