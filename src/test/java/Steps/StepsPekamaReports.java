@@ -166,17 +166,13 @@ public class StepsPekamaReports extends StepsFactory {
         else {
             REPORTS_ALL_CHECKBOX.setSelected(true);
             sleep(2000);
-            String selectedColor = REPORTS_ALL_CHECKBOX.getCssValue("color");
-            Assert.assertTrue(selectedColor.equals("rgb(42, 164, 245)"));
+            checkColourInSelector(REPORTS_ALL_CHECKBOX, "42, 164, 245");
             if(REPORTS_LIST_ROWS.size()==0){
                 rootLogger.info("No objects");
                 return;
             }
             clickDeleteAndConfirm();
-            REPORTS_PLACEHOLDER_NO_DATA
-                    .waitUntil(exist, 10000)
-                    .waitUntil(visible, 15000)
-                    .shouldHave(text(PLACEHOLDER_NO_DATA));
+            checkTextInSelector(REPORTS_PLACEHOLDER_NO_DATA, PLACEHOLDER_NO_DATA);
         }
     }
     public static void deleteAllProjects(){

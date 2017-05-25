@@ -84,7 +84,6 @@ public class TestsPekamaReportsFiltersContacts {
                     null, null,null,
                     null, null,
                     null, null);
-
             getWebDriver().quit();
         }
         else {rootLogger.info("Before suite was skipped");
