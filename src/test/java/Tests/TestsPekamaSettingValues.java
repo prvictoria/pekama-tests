@@ -1,6 +1,5 @@
 package Tests;
-import Steps.StepsPekama;
-import Steps.User;
+import Steps.ObjectUser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
@@ -14,9 +13,7 @@ import static Page.PekamaTeamSettings.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
-import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
-import static Steps.StepsHttpAuth.*;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static Tests.BeforeTestsSetUp.*;
@@ -49,7 +46,7 @@ public class TestsPekamaSettingValues {
     public void before() {
         clearBrowserCache();
         rootLogger.info("Open host");
-        User user = new User();
+        ObjectUser user = new ObjectUser();
         user.loginByURL(
                 TEST_USER_LOGIN,
                 TEST_USER_PASSWORD,

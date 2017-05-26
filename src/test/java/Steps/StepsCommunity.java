@@ -580,7 +580,7 @@ public class StepsCommunity extends Steps {
         String urlAfterLogout = url();
         rootLogger.info(urlAfterLogout);
         assertEquals(ENVIRONMENT_COMMUNITY +"/", urlAfterLogout);
-        rootLogger.info("User is logged out and redirected to Landing");
+        rootLogger.info("ObjectUser is logged out and redirected to Landing");
         return true;
     }
     public static void checkOutgoingDetailedCaseView(String caseName, String caseStatus){

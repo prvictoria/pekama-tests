@@ -1,11 +1,10 @@
 package Tests;
 import Steps.MessagesIMAP;
-import Steps.User;
+import Steps.ObjectUser;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
-import org.junit.experimental.categories.Category;
 import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
 
@@ -14,7 +13,6 @@ import java.io.IOException;
 import static Page.Emails.*;
 import static Page.PekamaSignUp.*;
 import static Page.TestsCredentials.*;
-import static Page.TestsCredentials.Countries.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
@@ -27,7 +25,7 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.refresh;
-import static com.codeborne.selenide.WebDriverRunner.*;
+
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
@@ -86,7 +84,7 @@ public class TestsPekamaSignUp {
     }
     @Test
     public void onlyEmailSubmitted() {
-        User fakeUser = new User();
+        ObjectUser fakeUser = new ObjectUser();
         fakeUser.submitSignUp(
                 VALID_EMAIL, null, null,
                 null,null,null,
@@ -97,7 +95,7 @@ public class TestsPekamaSignUp {
     }
     @Test
     public void onlyNameSubmitted() {
-        User fakeUser = new User();
+        ObjectUser fakeUser = new ObjectUser();
         fakeUser.submitSignUp(
                 null,VALID_NAME,  null,
                 null,null,null,
@@ -108,7 +106,7 @@ public class TestsPekamaSignUp {
     }
     @Test
     public void onlySurnameSubmitted() {
-        User fakeUser = new User();
+        ObjectUser fakeUser = new ObjectUser();
         fakeUser.submitSignUp(
                 null,
                 null,
@@ -123,7 +121,7 @@ public class TestsPekamaSignUp {
     }
     @Test
     public void onlyCompanySubmitted() {
-        User fakeUser = new User();
+        ObjectUser fakeUser = new ObjectUser();
         fakeUser.submitSignUp(
                 null,
                 null,
@@ -138,7 +136,7 @@ public class TestsPekamaSignUp {
     }
     @Test
     public void onlyPasswordSubmitted() {
-        User fakeUser = new User();
+        ObjectUser fakeUser = new ObjectUser();
         fakeUser.submitSignUp(
                 null,
                 VALID_PASSWORD,
@@ -153,7 +151,7 @@ public class TestsPekamaSignUp {
     }
     @Test
     public void notSubmittedBusinessType() {
-        User fakeUser = new User();
+        ObjectUser fakeUser = new ObjectUser();
         fakeUser.submitSignUp(
                 VALID_EMAIL,
                 VALID_SURNAME,
@@ -168,7 +166,7 @@ public class TestsPekamaSignUp {
     }
     @Test
     public void notSubmittedYourRole() {
-        User fakeUser = new User();
+        ObjectUser fakeUser = new ObjectUser();
         fakeUser.submitSignUp(
                 VALID_EMAIL,
                 VALID_SURNAME,
@@ -185,7 +183,7 @@ public class TestsPekamaSignUp {
     public void validationEmailField() {
 
         for (int arrayLength = 0; arrayLength < arrayInvalidEmails.length; arrayLength++) {
-            User userFacke = new User();
+            ObjectUser userFacke = new ObjectUser();
             userFacke.submitSignUp(
                     arrayInvalidEmails[arrayLength],
                     null, null,
@@ -202,7 +200,7 @@ public class TestsPekamaSignUp {
     @Test
     public void validationPassword() {
         for (int arrayLength = 0; arrayLength < arrayInvalidPasswords.length; arrayLength++) {
-            User fakeUser = new User();
+            ObjectUser fakeUser = new ObjectUser();
             fakeUser.submitSignUp(
                     VALID_EMAIL,                    VALID_SURNAME,
                     VALID_NAME,                    VALID_COMPANY,
@@ -217,7 +215,7 @@ public class TestsPekamaSignUp {
     }
     @Test
     public void userExist() {
-        User fakeUser = new User();
+        ObjectUser fakeUser = new ObjectUser();
         fakeUser.submitSignUp(
                 EXIST_USER,
                 VALID_SURNAME, VALID_NAME,
@@ -234,7 +232,7 @@ public class TestsPekamaSignUp {
     public void sendSignUpEmail_A1_Send() {
         ValidationSignUp.userEmail = User5.GMAIL_EMAIL.getValue();
         rootLogger.info("submitSignUp with valid user");
-        User fakeUser = new User();
+        ObjectUser fakeUser = new ObjectUser();
         fakeUser.submitSignUp(
                 NEW_USER,
                 VALID_SURNAME,
@@ -271,7 +269,7 @@ public class TestsPekamaSignUp {
 
         rootLogger.info("Submit SignUp with valid but fake user");
         rootLogger.info("BUG https://www.pivotaltracker.com/n/projects/1239770/stories/142325561");
-        User fakeUser = new User();
+        ObjectUser fakeUser = new ObjectUser();
         fakeUser.submitSignUp(
                 FAKE_USER,
                 VALID_SURNAME,
@@ -293,7 +291,7 @@ public class TestsPekamaSignUp {
         rootLogger.info("Avatar uploaded");
 
         rootLogger.info("Submit SignUp with valid but fake user");
-        User fakeUser = new User();
+        ObjectUser fakeUser = new ObjectUser();
         fakeUser.submitSignUp(
                 FAKE_USER,
                 VALID_SURNAME,
@@ -316,7 +314,7 @@ public class TestsPekamaSignUp {
 
         rootLogger.info("Submit SignUp with valid but fake user");
         rootLogger.info("BUG https://www.pivotaltracker.com/n/projects/1239770/stories/142325561");
-        User fakeUser = new User();
+        ObjectUser fakeUser = new ObjectUser();
         fakeUser.submitSignUp(
                 FAKE_USER,
                 VALID_SURNAME,
@@ -338,7 +336,7 @@ public class TestsPekamaSignUp {
         rootLogger.info("Avatar uploaded - but not displayed");
 
         rootLogger.info("Submit SignUp with valid but fake user");
-        User fakeUser = new User();
+        ObjectUser fakeUser = new ObjectUser();
         fakeUser.submitSignUp(
                 FAKE_USER,
                 VALID_SURNAME,
@@ -359,7 +357,7 @@ public class TestsPekamaSignUp {
         signupUpAvatar.waitUntil(exist, 10000).shouldHave(attribute("class", "image-preview"));
 
         rootLogger.info("Submit SignUp with valid but fake user");
-        User fakeUser = new User();
+        ObjectUser fakeUser = new ObjectUser();
         fakeUser.submitSignUp(
                 FAKE_USER,
                 VALID_SURNAME,
@@ -374,7 +372,7 @@ public class TestsPekamaSignUp {
     }
     @Test
     public void joinToTeam() {
-        User fakeUser = new User();
+        ObjectUser fakeUser = new ObjectUser();
         fakeUser.submitSignUp(
                 VALID_EMAIL,
                 VALID_SURNAME,

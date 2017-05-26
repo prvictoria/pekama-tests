@@ -126,7 +126,7 @@ public class StepsExternal extends Steps {
         }
         sleep(3000);
         if (INBOX_BTN_TRASH.is(visible) == true){
-            rootLogger.info("User is logged in and inbox is opened");
+            rootLogger.info("ObjectUser is logged in and inbox is opened");
             return;
         }
         sleep(3000);
@@ -140,7 +140,7 @@ public class StepsExternal extends Steps {
         }
         sleep(3000);
         if (INBOX_BTN_TRASH.is(visible) == true){
-            rootLogger.info("User is logged in and inbox is opened");
+            rootLogger.info("ObjectUser is logged in and inbox is opened");
             return;
         }
         else {

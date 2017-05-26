@@ -3,7 +3,7 @@
  * https://www.linkedin.com/in/viachaslau
  */
 package Tests;
-import Steps.User;
+import Steps.ObjectUser;
 import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,12 +13,10 @@ import org.junit.rules.Timeout;
 import java.io.IOException;
 
 import static Page.CommunityDashboard.*;
-import static Page.CommunityLanding.LANDING_SIGNUP;
 import static Page.CommunityWizard.*;
 import static Page.ModalWindows.*;
 import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
-import static Page.PekamaLogin.*;
 import static Page.TestsCredentials.*;
 import static Steps.StepsCommunity.*;
 import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
@@ -79,7 +77,7 @@ public class TestsCommunityDashboard {
         sleep(1500);
         String urlBeforeLogin = getActualUrl();
         COMMUNITY_HEADER_LOGIN.shouldBe(Condition.visible).click();
-        User user = new User();
+        ObjectUser user = new ObjectUser();
         user.submitLoginCredentials(email, password);
 
         sleep(2000);
@@ -91,7 +89,7 @@ public class TestsCommunityDashboard {
         String urlAfterLogin = getActualUrl();
         rootLogger.info(urlAfterLogin);
         assertEquals(urlBeforeLogin, urlAfterLogin);
-        rootLogger.info("User redirected back to Wizard");
+        rootLogger.info("ObjectUser redirected back to Wizard");
         Assert.assertTrue(logoutCommunity());
         rootLogger.info("Test Passed");
     }
@@ -105,14 +103,14 @@ public class TestsCommunityDashboard {
 
         COMMUNITY_INNRER_BTN_SIGNUP.shouldBe(Condition.visible);
         COMMUNITY_INNRER_BTN_LOGIN.shouldBe(Condition.visible).click();
-        User user = new User();
+        ObjectUser user = new ObjectUser();
         user.submitLoginCredentials(email, password);
 
         sleep(3000);
         String urlAfterLogin = url();
         rootLogger.info(urlAfterLogin);
         assertEquals(urlBeforeLogin, urlAfterLogin);
-        rootLogger.info("User redirected back to Wizard");
+        rootLogger.info("ObjectUser redirected back to Wizard");
 
         WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.waitUntil(visible, 10000).shouldBe(disabled);
         rootLogger.info("All elements in STEP#1 displayed for authorized user");
@@ -128,14 +126,14 @@ public class TestsCommunityDashboard {
         COMMUNITY_INNRER_BTN_SIGNUP.shouldBe(Condition.visible);
         COMMUNITY_INNRER_BTN_LOGIN.shouldBe(Condition.visible).click();
         rootLogger.info("All elements in Outgoing Tab displayed for Guest user");
-        User user = new User();
+        ObjectUser user = new ObjectUser();
         user.submitLoginCredentials(email, password);
 
         sleep(3000);
         String urlAfterLogin = url();
         rootLogger.info(urlAfterLogin);
         assertEquals(URL_COMMUNITY_OUTGOING, urlAfterLogin);
-        rootLogger.info("User redirected back to Incoming");
+        rootLogger.info("ObjectUser redirected back to Incoming");
 
         Assert.assertTrue(logoutCommunity());
         rootLogger.info("Test Passed");
@@ -148,14 +146,14 @@ public class TestsCommunityDashboard {
         COMMUNITY_INNRER_BTN_SIGNUP.shouldBe(Condition.visible);
         COMMUNITY_INNRER_BTN_LOGIN.shouldBe(Condition.visible).click();
         rootLogger.info("All elements in Incoming Tab displayed for Guest user");
-        User user = new User();
+        ObjectUser user = new ObjectUser();
         user.submitLoginCredentials(email, password);
 
         sleep(3000);
         String urlAfterLogin = url();
         rootLogger.info(urlAfterLogin);
         assertEquals(URL_COMMUNITY_INCOMING, urlAfterLogin);
-        rootLogger.info("User redirected back to Incoming");
+        rootLogger.info("ObjectUser redirected back to Incoming");
         Assert.assertTrue(logoutCommunity());
         rootLogger.info("Test Passed");
     }
@@ -168,14 +166,14 @@ public class TestsCommunityDashboard {
         COMMUNITY_INNRER_BTN_SIGNUP.shouldBe(Condition.visible);
         COMMUNITY_INNRER_BTN_LOGIN.shouldBe(Condition.visible).click();
         rootLogger.info("All elements in Profile Tab displayed for Guest user");
-        User user = new User();
+        ObjectUser user = new ObjectUser();
         user.submitLoginCredentials(email, password);
 
         sleep(3000);
         String urlAfterLogin = url();
         rootLogger.info(urlAfterLogin);
         assertEquals(URL_COMMUNITY_PROFILE_TEAM, urlAfterLogin);
-        rootLogger.info("User redirected back to Incoming");
+        rootLogger.info("ObjectUser redirected back to Incoming");
         Assert.assertTrue(logoutCommunity());
         rootLogger.info("Test Passed");
     }

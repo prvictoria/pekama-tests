@@ -97,7 +97,7 @@ public class TestsPekamaProject {
     public void before() {
         if(nextIsImapTest==false) {
             clearBrowserCache();
-            User requester = new User();
+            ObjectUser requester = new ObjectUser();
             requester.loginByURL(
                     REQUESTER_EMAIL, REQUESTER_PEKAMA_PASSWORD, URL_LogIn);
             if (skipBefore == false) {

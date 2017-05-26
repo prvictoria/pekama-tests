@@ -1,22 +1,17 @@
 package Tests;
 import Steps.MessagesIMAP;
-import Steps.StepsPekama;
-import Steps.User;
+import Steps.ObjectUser;
 import Utils.Retry;
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
-import org.junit.experimental.categories.Category;
 import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
 
 import java.io.IOException;
 
 import static Page.ModalWindows.*;
-import static Page.PekamaPersonalSettings.PERSONAL_DETAILS_DELETE_AVATAR;
-import static Page.PekamaPersonalSettings.PERSONAL_DETAILS_UPLOAD_AVATAR_BTN;
 import static Page.PekamaTeamSettings.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
@@ -63,7 +58,7 @@ public class TestsPekamaSettingsTeam {
         if (skipBefore==false){
             clearBrowserCache();
             rootLogger.info("Open host");
-            User user = new User();
+            ObjectUser user = new ObjectUser();
             user.loginByURL(
                     TEST_USER_LOGIN,
                     TEST_USER_PASSWORD,

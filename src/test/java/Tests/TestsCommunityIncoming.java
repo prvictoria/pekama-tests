@@ -1,11 +1,10 @@
 package Tests;
 
 import Steps.MessagesIMAP;
-import Steps.User;
+import Steps.ObjectUser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.FixMethodOrder;
-import Page.TestsCredentials;
 import Steps.StepsPekama;
 import org.junit.*;
 import org.junit.rules.Timeout;
@@ -30,7 +29,6 @@ import static Steps.StepsModalWindows.submitErrorWindow;
 import static Steps.StepsPekama.*;
 import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
 import static Tests.BeforeTestsSetUp.setBrowser;
-import static Utils.Utils.randomString;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
@@ -80,7 +78,7 @@ public class TestsCommunityIncoming {
     public void before() {
         if (skipBefore==false) {
             rootLogger.info("Open host");
-            User user = new User();
+            ObjectUser user = new ObjectUser();
             user.loginByURL(
                     REQUESTER_EMAIL,
                     REQUESTER_PEKAMA_PASSWORD,
@@ -121,7 +119,7 @@ public class TestsCommunityIncoming {
         caseName = createDraftCase(EXPERT_TEAM_NAME);
 
         rootLogger.info("Expert login");
-        User user = new User();
+        ObjectUser user = new ObjectUser();
         user.loginByURL(
                 EXPERT_EMAIL,
                 EXPERT_PEKAMA_PASSWORD,

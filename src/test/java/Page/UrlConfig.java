@@ -79,7 +79,7 @@ public class UrlConfig {
 //    //Users config
 //    public static String USER_EMAIL;
 //    public static String EMAIL_PASSWORD;
-//    public enum User {
+//    public enum ObjectUser {
 //
 //        GMAIL_EMAIL(USER_EMAIL),
 //        GMAIL_PASSWORD(EMAIL_PASSWORD),
@@ -97,7 +97,7 @@ public class UrlConfig {
 //
 //
 //        private String value;
-//        User(String gmailLogin) {
+//        ObjectUser(String gmailLogin) {
 //            this.value = gmailLogin;
 //        }
 //        public String value() {
@@ -106,7 +106,7 @@ public class UrlConfig {
 //    }
 //    @Test
 //    public void sometest(){
-//        System.out.print(User.GMAIL_EMAIL.value);
+//        System.out.print(ObjectUser.GMAIL_EMAIL.value);
 //    }
 
     //users and passwords

@@ -1,7 +1,7 @@
 package Tests;
 
 import Steps.ObjectContact;
-import Steps.User;
+import Steps.ObjectUser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
@@ -50,7 +50,7 @@ public class TestsPekamaReportsFiltersContacts {
         setBrowser();
         holdBrowserAfterTest();
         if(skipBefore==false) {
-            User user = new User();
+            ObjectUser user = new ObjectUser();
             user.loginByURL(OWNER_LOGIN, OWNER_PASSWORD, URL_PEKAMA_LOGIN);
 
             deleteAllContacts();
@@ -91,7 +91,7 @@ public class TestsPekamaReportsFiltersContacts {
     @Before
     public void login() {
         //clearBrowserCache();
-        User user = new User();
+        ObjectUser user = new ObjectUser();
         user.loginByURL(OWNER_LOGIN, OWNER_PASSWORD, URL_ReportsContacts);
     }
     @Test

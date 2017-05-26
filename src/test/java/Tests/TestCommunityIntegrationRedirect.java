@@ -4,7 +4,7 @@ import Page.TestsCredentials;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
-import Steps.User;
+import Steps.ObjectUser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
@@ -68,7 +68,7 @@ public class TestCommunityIntegrationRedirect {
     }
     @Test
     public void redirectFormPekamaToCommunity_A1_RequesterDraft() {
-        User requester = new User();
+        ObjectUser requester = new ObjectUser();
         requester.submitLoginCredentials(REQUESTER_EMAIL, REQUESTER_PEKAMA_PASSWORD);
         DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 30000).click();
         testProjectTitle = submitMwNewProject();
@@ -94,7 +94,7 @@ public class TestCommunityIntegrationRedirect {
 //        testProjectURL = "https://staging.pekama.com/a/projects/30551/info";
 //        testProjectTitle = "DEFAULT_PROJECT_SUV77RO3Q0";
 //        caseName = "INTEGRATION_CASE_KW3QPAGWUG";
-        User requester = new User();
+        ObjectUser requester = new ObjectUser();
         requester.submitLoginCredentials(EXPERT_EMAIL, EXPERT_PEKAMA_PASSWORD);
 
         rootLogger.info("Check that if supplier clicks on case (with any status) it leads to redirect to the Community (Incoming cases) with relevant case in detailed view");
@@ -110,7 +110,7 @@ public class TestCommunityIntegrationRedirect {
 
     @Test
     public void redirectFormPekamaToCommunity_B1_RequesterCancelled() throws AWTException {
-        User requester = new User();
+        ObjectUser requester = new ObjectUser();
         requester.submitLoginCredentials(REQUESTER_EMAIL, REQUESTER_PEKAMA_PASSWORD);
         DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 30000).click();
         testProjectTitle = submitMwNewProject();
@@ -140,7 +140,7 @@ public class TestCommunityIntegrationRedirect {
 //        testProjectURL = "https://staging.pekama.com/a/projects/30563/info";
 //        testProjectTitle = "DEFAULT_PROJECT_8I6L92BGF2";
 //        caseName = "INTEGRATION_CASE_7SBHS1FQJ0";
-        User requester = new User();
+        ObjectUser requester = new ObjectUser();
         requester.submitLoginCredentials(EXPERT_EMAIL, EXPERT_PEKAMA_PASSWORD);
 
         rootLogger.info("Check that if supplier clicks on case (with any status) it leads to redirect to the Community (Incoming cases) with relevant case in detailed view");
@@ -156,7 +156,7 @@ public class TestCommunityIntegrationRedirect {
 
     @Test
     public void redirectFormPekamaToCommunity_C1_RequesterSent() {
-        User requester = new User();
+        ObjectUser requester = new ObjectUser();
         requester.submitLoginCredentials(REQUESTER_EMAIL, REQUESTER_PEKAMA_PASSWORD);
         DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 30000).click();
         testProjectTitle = submitMwNewProject();
@@ -184,7 +184,7 @@ public class TestCommunityIntegrationRedirect {
 //        testProjectURL = "https://staging.pekama.com/a/projects/30551/info";
 //        testProjectTitle = "DEFAULT_PROJECT_SUV77RO3Q0";
 //        caseName = "INTEGRATION_CASE_KW3QPAGWUG";
-        User requester = new User();
+        ObjectUser requester = new ObjectUser();
         requester.submitLoginCredentials(EXPERT_EMAIL, EXPERT_PEKAMA_PASSWORD);
 
         rootLogger.info("Check that if supplier clicks on case (with any status) it leads to redirect to the Community (Incoming cases) with relevant case in detailed view");
@@ -199,7 +199,7 @@ public class TestCommunityIntegrationRedirect {
     }
     @Test
     public void redirectFormPekamaToCommunity_C3_SupplierConfirmed() {
-        User requester = new User();
+        ObjectUser requester = new ObjectUser();
         requester.submitLoginCredentials(EXPERT_EMAIL, EXPERT_PEKAMA_PASSWORD);
 
         rootLogger.info("Check that if supplier clicks on case (with any status) it leads to redirect to the Community (Incoming cases) with relevant case in detailed view");
@@ -216,7 +216,7 @@ public class TestCommunityIntegrationRedirect {
     }
     @Test
     public void redirectFormPekamaToCommunity_C4_RequesterConfirmed() {
-        User requester = new User();
+        ObjectUser requester = new ObjectUser();
         requester.submitLoginCredentials(REQUESTER_EMAIL, REQUESTER_PEKAMA_PASSWORD);
 
         openUrlWithBaseAuth(testProjectURL);
@@ -232,7 +232,7 @@ public class TestCommunityIntegrationRedirect {
 
     @Test
     public void redirectFormPekamaToCommunity_C5_SupplierCompleted() {
-        User requester = new User();
+        ObjectUser requester = new ObjectUser();
         requester.submitLoginCredentials(EXPERT_EMAIL, EXPERT_PEKAMA_PASSWORD);
 
         rootLogger.info("Check that if supplier clicks on case (with any status) it leads to redirect to the Community (Incoming cases) with relevant case in detailed view");
@@ -250,7 +250,7 @@ public class TestCommunityIntegrationRedirect {
     }
     @Test
     public void redirectFormPekamaToCommunity_C6_RequesterCompleted() {
-        User requester = new User();
+        ObjectUser requester = new ObjectUser();
         requester.submitLoginCredentials(REQUESTER_EMAIL, REQUESTER_PEKAMA_PASSWORD);
 
         openUrlWithBaseAuth(testProjectURL);
@@ -265,7 +265,7 @@ public class TestCommunityIntegrationRedirect {
     }
     @Test
     public void redirectFormPekamaToCommunity_D1_RequesterWithdrawn() {
-        User requester = new User();
+        ObjectUser requester = new ObjectUser();
         requester.submitLoginCredentials(REQUESTER_EMAIL, REQUESTER_PEKAMA_PASSWORD);
         DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 30000).click();
         testProjectTitle = submitMwNewProject();
@@ -291,7 +291,7 @@ public class TestCommunityIntegrationRedirect {
     }
     @Test
     public void redirectFormPekamaToCommunity_D2_SupplierWithdrawn() {
-        User requester = new User();
+        ObjectUser requester = new ObjectUser();
         requester.submitLoginCredentials(EXPERT_EMAIL, EXPERT_PEKAMA_PASSWORD);
 
         rootLogger.info("Check that if supplier clicks on case (with any status) it leads to redirect to the Community (Incoming cases) with relevant case in detailed view");

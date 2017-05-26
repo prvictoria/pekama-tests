@@ -56,7 +56,7 @@ public class TestsPekamaProjectInfo {
         holdBrowserAfterTest();
         TEST_CASE_TYPE = MATTER_TYPE_TRADEMARK;
         if(skipBefore==false) {
-            User user = new User();
+            ObjectUser user = new ObjectUser();
             user.loginByURL(OWNER_LOGIN_EMAIL, OWNER_PASSWORD, URL_LogIn);
 
             rootLogger.info("Create project");
@@ -68,15 +68,15 @@ public class TestsPekamaProjectInfo {
 //            addMember("A-member@email.com", TAB_MEMBERS_BTN_ADD);
 //            addMember("B-member@office.eu", TAB_MEMBERS_BTN_ADD);
 
-//            getWebDriver().quit();
+           getWebDriver().quit();
         }
         else {rootLogger.info("Before suite was skipped");
         }
     }
     @Before
     public void login() {
-        clearBrowserCache();
-        User user = new User();
+        //clearBrowserCache();
+        ObjectUser user = new ObjectUser();
         user.loginByURL(OWNER_LOGIN_EMAIL, OWNER_PASSWORD, projectUrl);
         clickSelector(PROJECT_TAB_INFO);
     }

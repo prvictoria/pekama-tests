@@ -1,7 +1,7 @@
 package Tests;
 
 import Steps.ObjectProject;
-import Steps.User;
+import Steps.ObjectUser;
 import org.apache.logging.log4j.*;
 import org.junit.*;
 import org.junit.rules.Timeout;
@@ -36,7 +36,7 @@ public class TestsPekamaReportsFiltersProjects {
     private static ObjectProject project2 = new ObjectProject();
     private static ObjectProject project3 = new ObjectProject();
     private static ObjectProject project4 = new ObjectProject();
-    private static User user = new User();
+    private static ObjectUser user = new ObjectUser();
 
 
     private static boolean skipBefore = false;

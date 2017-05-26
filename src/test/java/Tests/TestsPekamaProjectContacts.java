@@ -1,12 +1,9 @@
 package Tests;
 
 
-import Steps.ObjectCharges;
 import Steps.ObjectContact;
-import Steps.StepsPekamaProject;
-import Steps.User;
+import Steps.ObjectUser;
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.ex.SoftAssertionError;
 import org.apache.logging.log4j.*;
 import org.junit.*;
 import org.junit.rules.Timeout;
@@ -16,9 +13,7 @@ import javax.mail.MessagingException;
 import java.io.IOException;
 
 
-import static Page.PekamaProject.PROJECT_TAB_CHARGES;
 import static Page.PekamaProject.*;
-import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static Utils.Utils.randomString;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
@@ -26,12 +21,9 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.*;
 
-import static Page.Xero.*;
 import static Page.ModalWindows.*;
-import static Page.PekamaDashboard.*;
 import static Page.PekamaReports.*;
 import static Page.TestsCredentials.*;
-import static Page.TestsCredentials.ContactRelation.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
@@ -66,7 +58,7 @@ public class TestsPekamaProjectContacts{
         setBrowser();
         holdBrowserAfterTest();
         if(skipBefore==false) {
-            User user = new User();
+            ObjectUser user = new ObjectUser();
             user.loginByURL(OWNER_LOGIN_EMAIL, OWNER_PASSWORD, URL_LogIn);
         }
         else {rootLogger.info("Before suite was skipped");
@@ -82,7 +74,7 @@ public class TestsPekamaProjectContacts{
     @Before
     public void login() {
         clearBrowserCache();
-        User user = new User();
+        ObjectUser user = new ObjectUser();
         user.loginByURL(OWNER_LOGIN_EMAIL, OWNER_PASSWORD, projectUrl);
     }
     @Test

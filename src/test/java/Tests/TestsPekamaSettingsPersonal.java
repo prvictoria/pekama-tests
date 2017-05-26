@@ -1,6 +1,5 @@
 package Tests;
-import Steps.StepsPekama;
-import Steps.User;
+import Steps.ObjectUser;
 import Utils.Utils;
 import com.codeborne.selenide.*;
 import org.apache.logging.log4j.LogManager;
@@ -8,13 +7,10 @@ import org.apache.logging.log4j.Logger;
 import org.junit.*;
 import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.io.IOException;
 
 import static Page.ModalWindows.*;
-import static Page.PekamaSignUp.signupUpload;
-import static Page.PekamaSignUp.signupUploadInput;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.setEnvironment;
@@ -50,7 +46,7 @@ public class TestsPekamaSettingsPersonal {
     @Before
     public void before() {
         clearBrowserCache();
-        User user = new User();
+        ObjectUser user = new ObjectUser();
         user.loginByURL(TEST_USER_LOGIN, TEST_USER_PASSWORD, URL_LogIn);
     }
 
@@ -109,7 +105,7 @@ public class TestsPekamaSettingsPersonal {
     @Test
     public void tabPersonalDetails_Y_SaveUserData() {
         openSettingsTabPersonalDetails();
-        rootLogger.info("Enter and Save User Data");
+        rootLogger.info("Enter and Save ObjectUser Data");
         $(byText("First name:")).waitUntil(Condition.visible, 10000);
         PERSONAL_DETAILS_INPUT_NAME.clear();
         PERSONAL_DETAILS_INPUT_NAME.sendKeys(User3.NAME.getValue());
@@ -173,7 +169,7 @@ public class TestsPekamaSettingsPersonal {
         PERSONAL_DETAILS_INPUT_REGION.shouldHave(Condition.value(User3.REGION.getValue()));
         $(byText("Country:")).shouldBe(Condition.visible);
         PERSONAL_DETAILS_SAVE_BTN.shouldBe(Condition.disabled);
-        rootLogger.info("User default data present");
+        rootLogger.info("ObjectUser default data present");
     }
     @Test
     public void tabPersonalDetails_Name_A() {
@@ -359,7 +355,7 @@ public class TestsPekamaSettingsPersonal {
         submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
         refresh(); sleep(2000);
        PERSONAL_DETAILS_COUNTRY_SELECT.shouldHave(text("United States"));
-        rootLogger.info("User country - "+User3.COUNTRY.getValue()+" - was selected");
+        rootLogger.info("ObjectUser country - "+User3.COUNTRY.getValue()+" - was selected");
     }
 
     @Test

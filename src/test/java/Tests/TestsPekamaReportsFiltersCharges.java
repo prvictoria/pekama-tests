@@ -2,7 +2,7 @@ package Tests;
 
 import Steps.ObjectCharges;
 import Steps.ObjectContact;
-import Steps.User;
+import Steps.ObjectUser;
 import org.apache.logging.log4j.*;
 import org.junit.*;
 import org.junit.rules.Timeout;
@@ -59,7 +59,7 @@ public class TestsPekamaReportsFiltersCharges {
         setBrowser();
         holdBrowserAfterTest();
         if(skipBefore==false) {
-            User user = new User();
+            ObjectUser user = new ObjectUser();
             user.loginByURL(OWNER_LOGIN, OWNER_PASSWORD, URL_PEKAMA_LOGIN);
 
         rootLogger.info("Create project");
@@ -119,7 +119,7 @@ public class TestsPekamaReportsFiltersCharges {
     @Before
     public void login() {
         //clearBrowserCache();
-        User user = new User();
+        ObjectUser user = new ObjectUser();
         user.loginByURL(OWNER_LOGIN, OWNER_PASSWORD, URL_ReportsCharges);
     }
     @Test

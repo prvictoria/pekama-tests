@@ -3,7 +3,7 @@ package Tests;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
-import Steps.User;
+import Steps.ObjectUser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
@@ -66,7 +66,7 @@ public class TestsPekamaIntegrationBox {
     public void before() {
         clearBrowserCache();
         if (skipBefore==false) {
-            User user = new User();
+            ObjectUser user = new ObjectUser();
             user.loginByURL(
                     OWNER_EMAIL,
                     OWNER_PASSWORD,

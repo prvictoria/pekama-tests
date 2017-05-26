@@ -13,7 +13,6 @@ import org.junit.runners.MethodSorters;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
-import java.util.Enumeration;
 
 import static Page.ModalWindows.*;
 import static Page.PekamaConversationProject.*;
@@ -83,7 +82,7 @@ public class TestsMessages {
             emailTask.imapSearchEmailDeleteAll(
                     COLLABORATOR_EMAIL,
                     COLLABORATOR_EMAIL_PASSWORD);
-            User user = new User();
+            ObjectUser user = new ObjectUser();
             user.loginByURL(INVITER_EMAIL, INVITER_PEKAMA_PASSWORD, URL_LogIn);
             deleteAllMembers();
             getWebDriver().quit();
@@ -94,7 +93,7 @@ public class TestsMessages {
     public void before() {
         if (skipBefore==false) {
             clearBrowserCache();
-            User creator = new User();
+            ObjectUser creator = new ObjectUser();
             creator.loginByURL(
                     INVITER_EMAIL,
                     INVITER_PEKAMA_PASSWORD,
@@ -741,7 +740,7 @@ public class TestsMessages {
         skipBefore = true;
       //  repryLink = "https://u1528369.ct.sendgrid.net/wf/click?upn=nlPIBkCFx3ihDwn5X-2FQH25GimnAenIWRK2CNbjwb1wz4MhLyrPlDXqARqX-2FoYxFNbrjSdkTycqH9IUseFSWnM-2F3L2QDDFm6XOpyOMUSqms0-3D_FhKIrNJz0J-2FLui-2BhorTXHazj59U-2BmXqSH3Q93OorhOgeYov1Ufk9vFFXG5Ntep8eoNf46zw8iVivjaYI07Za3OlTl3RkPuH16WaCuXZo-2FdTBRfJTZhKbG8zpyau5YKjB3L3x1mhTWFfaA05p1O7I8EaImFM6KER0npwusk-2FxVocP3SA3-2FbPdMBYnC7pACNNzlLXAQPDcxyBkV1Akw6IOB8DFbnm2tqEGbncvHn53U0EBKnYal25sNsT92EF8Dc68PQ2SvDGda-2FvBdR5UBu81pVgjqAVqOHxI26M0AiFGmwqgKkDIiCJWOX5KCYmZfR-2FO";
         Assert.assertNotNull(repryLink);
-        User follower = new User();
+        ObjectUser follower = new ObjectUser();
         follower.loginByURL(
                 COLLABORATOR_EMAIL,
                 COLLABORATOR_PEKAMA_PASSWORD,
@@ -756,7 +755,7 @@ public class TestsMessages {
         skipBefore = false;
         //repryLink = "https://u1528369.ct.sendgrid.net/wf/click?upn=nlPIBkCFx3ihDwn5X-2FQH25GimnAenIWRK2CNbjwb1wz4MhLyrPlDXqARqX-2FoYxFNbrjSdkTycqH9IUseFSWnM-2F3L2QDDFm6XOpyOMUSqms0-3D_FhKIrNJz0J-2FLui-2BhorTXHazj59U-2BmXqSH3Q93OorhOgeYov1Ufk9vFFXG5Ntep8eoNf46zw8iVivjaYI07Za3OlTl3RkPuH16WaCuXZo-2FdTBRfJTZhKbG8zpyau5YKjB3L3x1mhTWFfaA05p1O7I8EaImFM6KER0npwusk-2FxVocP3SA3-2FbPdMBYnC7pACNNzlLXAQPDcxyBkV1Akw6IOB8DFbnm2tqEGbncvHn53U0EBKnYal25sNsT92EF8Dc68PQ2SvDGda-2FvBdR5UBu81pVgjqAVqOHxI26M0AiFGmwqgKkDIiCJWOX5KCYmZfR-2FO";
         Assert.assertNotNull(repryLink);
-        User creator = new User();
+        ObjectUser creator = new ObjectUser();
         creator.loginByURL(
                 INVITER_EMAIL,
                 INVITER_PEKAMA_PASSWORD,
@@ -834,7 +833,7 @@ public class TestsMessages {
         openUrlWithBaseAuth(URL_PEKAMA_LOGOUT);
 
         rootLogger.info("Set FOLLOWER email settings");
-        User follower = new User();
+        ObjectUser follower = new ObjectUser();
         follower.loginByURL(
                 COLLABORATOR_EMAIL,
                 COLLABORATOR_PEKAMA_PASSWORD,
@@ -850,7 +849,7 @@ public class TestsMessages {
         openUrlWithBaseAuth(URL_PEKAMA_LOGOUT);
 
         rootLogger.info("Create thread");
-        User creator = new User();
+        ObjectUser creator = new ObjectUser();
         creator.loginByURL(
                 INVITER_EMAIL,
                 INVITER_PEKAMA_PASSWORD,

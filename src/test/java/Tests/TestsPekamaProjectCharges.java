@@ -66,7 +66,7 @@ public class TestsPekamaProjectCharges {
         setBrowser();
         holdBrowserAfterTest();
         if(skipBefore==false) {
-            User user = new User();
+            ObjectUser user = new ObjectUser();
             user.loginByURL(OWNER_LOGIN_EMAIL, OWNER_PASSWORD, URL_LogIn);
 
         rootLogger.info("Create project");
@@ -111,7 +111,7 @@ public class TestsPekamaProjectCharges {
     @Before
     public void login() {
         clearBrowserCache();
-        User user = new User();
+        ObjectUser user = new ObjectUser();
         user.loginByURL(OWNER_LOGIN_EMAIL, OWNER_PASSWORD, projectUrl);
     }
 

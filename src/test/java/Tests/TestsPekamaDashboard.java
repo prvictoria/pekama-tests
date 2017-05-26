@@ -5,8 +5,7 @@ package Tests;
  */
 import Page.TestsCredentials.User1;
 import Page.TestsCredentials.*;
-import Steps.StepsPekama;
-import Steps.User;
+import Steps.ObjectUser;
 import Utils.*;
 import com.codeborne.selenide.*;
 import org.apache.logging.log4j.LogManager;
@@ -24,7 +23,6 @@ import static Page.PekamaLanding.*;
 import static Page.PekamaPersonalSettings.*;
 import static Page.PekamaReports.*;
 import static Page.PekamaTeamSettings.*;
-import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlConfig.setEnvironment;
@@ -71,7 +69,7 @@ public class TestsPekamaDashboard {
     }
     @Before
     public void before() {
-        User user = new User();
+        ObjectUser user = new ObjectUser();
         user.loginByURL(
                 USER_EMAIL,
                 USER_PEKAMA_PASSWORD,

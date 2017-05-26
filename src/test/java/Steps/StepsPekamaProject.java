@@ -415,20 +415,20 @@ public class StepsPekamaProject extends StepsPekama {
             TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.shouldNot(exist);
             TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW_REJECT.shouldNot(exist);
             TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW_ACCEPT.shouldNot(exist);
-            rootLogger.info("User not able to do any action");
+            rootLogger.info("ObjectUser not able to do any action");
             return true;
         }
         if(status.equals(TASK_STATUS_COMPLETED))
         {
             taskAction = TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW_ACCEPT.shouldHave(text("accept")).getText();
-            rootLogger.info("User able to - "+taskAction+" task");
+            rootLogger.info("ObjectUser able to - "+taskAction+" task");
             taskAction = TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW_REJECT.shouldHave(text("reject")).getText();
-            rootLogger.info("User able to - "+taskAction+" task");
+            rootLogger.info("ObjectUser able to - "+taskAction+" task");
             return true;
         }
         else {
             taskAction = TASKS_BTN_STATUS_ACTION_IN_FIRST_ROW.shouldHave(text(action)).getText();
-            rootLogger.info("User able to - " + taskAction + " task");
+            rootLogger.info("ObjectUser able to - " + taskAction + " task");
             return true;
         }
     }

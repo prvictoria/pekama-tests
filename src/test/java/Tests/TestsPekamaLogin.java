@@ -1,5 +1,5 @@
 package Tests;
-import Steps.User;
+import Steps.ObjectUser;
 import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,7 +15,6 @@ import static Page.TestsCredentials.*;
 import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static Steps.StepsPekama.checkText;
 import static Steps.StepsPekama.fillField;
-import static Steps.StepsPekama.submitEnabledButton;
 import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
 import static Tests.BeforeTestsSetUp.setBrowser;
 import static com.codeborne.selenide.Condition.empty;
@@ -57,7 +56,7 @@ public class TestsPekamaLogin {
     }
     @Test
     public void invalidPassword() {
-        User invalid = new User();
+        ObjectUser invalid = new ObjectUser();
         invalid.submitLoginCredentials(
                 "testqweeco001@gmail.com",
                 "12345");
@@ -67,7 +66,7 @@ public class TestsPekamaLogin {
     }
     @Test
     public void invalidLogin() {
-        User invalid = new User();
+        ObjectUser invalid = new ObjectUser();
         invalid.submitLoginCredentials(
                 "1a2a3a12aa31231@gmail.com",
                 "asui67we34");
@@ -77,7 +76,7 @@ public class TestsPekamaLogin {
     }
     @Test
     public void invalidLoginAndPassword() {
-        User invalid = new User();
+        ObjectUser invalid = new ObjectUser();
         invalid.submitLoginCredentials(
                 "teastaaaqweeco001@gmail.com",
                 "asui2132367we34");
@@ -92,7 +91,7 @@ public class TestsPekamaLogin {
         loginField_Password.getAttribute("required");
         assertTrue(loginField_Password.getAttribute("required"), true);
 
-        User invalid = new User();
+        ObjectUser invalid = new ObjectUser();
         invalid.submitLoginCredentials(
                 null,
                 "asui2132367we34");
@@ -125,7 +124,7 @@ public class TestsPekamaLogin {
     }
     @Test
     public void validCredentials() {
-        User invalid = new User();
+        ObjectUser invalid = new ObjectUser();
         invalid.submitLoginCredentials(
                 User1.GMAIL_EMAIL.getValue(),
                 User1.PEKAMA_PASSWORD.getValue());
