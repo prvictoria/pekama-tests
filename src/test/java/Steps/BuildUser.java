@@ -23,29 +23,33 @@ public class BuildUser implements Builder{
     public Boolean isSignUpSucceed;
     public Boolean isLoginSucceed;
 
-    private BuildUser(Builder builder) {
-        email = builder.email;
-        password = builder.password;
-        name = builder.name;
-        surname = builder.surname;
-        company = builder.company;
-        businessType = builder.businessType;
-        role = builder.role;
-        phone = builder.phone;
-        country = builder.country;
-        isSignUpSucceed = builder.isSignUpSucceed;
-        isLoginSucceed = builder.isLoginSucceed;
+    private BuildUser(  String email,
+             String password,
+             String name,
+             String surname,
+             String company,
+             String businessType,
+             String role,
+             String phone,
+             String country,
+             Boolean isSignUpSucceed,
+             Boolean isLoginSucceed) {
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.surname = surname;
+        this.company = company;
+        this.businessType = businessType;
+        this.role = role;
+        this.phone = phone;
+        this.country = country;
+        this.isSignUpSucceed = isSignUpSucceed;
+        this.isLoginSucceed = isLoginSucceed;
     }
 
     public static Builder newBuilder() {
         return new Builder();
     }
-
-//    @Override
-//    public T build() {
-//        return null;
-//    }
-
 
     public static final class Builder {
         private String email;
@@ -59,9 +63,6 @@ public class BuildUser implements Builder{
         private String country;
         private Boolean isSignUpSucceed;
         private Boolean isLoginSucceed;
-
-        private Builder() {
-        }
 
         public Builder email(String email) {
             this.email = email;
@@ -119,16 +120,19 @@ public class BuildUser implements Builder{
         }
 
         public BuildUser build() {
-            return new BuildUser(this);
+            return new BuildUser(
+                    email,
+                    password,
+                    name,
+                    surname,
+                    company,
+                    businessType,
+                    role,
+                    phone,
+                    country,
+                    isSignUpSucceed,
+                    isLoginSucceed);
         }
     }
-    @Test
-    public void test(){
-        BuildUser user = newBuilder().businessType("11212121").build();
-        System.out.println(user.businessType);
 
-//        new Builder().businessType("1234567890").build();
-//    System.out.println(this.businessType);
-
-    }
 }
