@@ -67,7 +67,7 @@ public class TestsPekamaTemplates {
     public void login() {
         clearBrowserCache();
         rootLogger.info("Open URL - " +URL_Dashboard);
-        ObjectUser user = new ObjectUser();
+        ObjectUser user = ObjectUser.newBuilder().build();
         user.loginByURL(TEST_USER_LOGIN, TEST_USER_PASSWORD, URL_Dashboard);
     }
 //    @After

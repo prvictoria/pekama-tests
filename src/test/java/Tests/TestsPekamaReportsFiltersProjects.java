@@ -29,14 +29,14 @@ import static com.codeborne.selenide.WebDriverRunner.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaReportsFiltersProjects {
     static final Logger rootLogger = LogManager.getRootLogger();
-    private static final String OWNER_LOGIN = User8.GMAIL_EMAIL.getValue();
-    private static final String OWNER_PASSWORD = User8.PEKAMA_PASSWORD.getValue();
+    private static final String OWNER_LOGIN_EMAIL = User8.GMAIL_EMAIL.getValue();
+    private static final String OWNER_PASSWORD_PEKAMA = User8.PEKAMA_PASSWORD.getValue();
     private static final String OWNER_TEAM_NAME = User8.TEAM_NAME.getValue();
     private static ObjectProject project1 = new ObjectProject();
     private static ObjectProject project2 = new ObjectProject();
     private static ObjectProject project3 = new ObjectProject();
     private static ObjectProject project4 = new ObjectProject();
-    private static ObjectUser user = new ObjectUser();
+    private static ObjectUser owner = ObjectUser.newBuilder().email(OWNER_LOGIN_EMAIL).passwordPekama(OWNER_PASSWORD_PEKAMA).build();
 
 
     private static boolean skipBefore = false;
@@ -50,7 +50,7 @@ public class TestsPekamaReportsFiltersProjects {
         holdBrowserAfterTest();
 
         if(skipBefore==false) {
-            user.loginByURL(OWNER_LOGIN, OWNER_PASSWORD, URL_ReportsProjects);
+            owner.loginByURL(owner.email, owner.passwordPekama, URL_ReportsProjects);
 
             deleteAllProjects();
             project1.setValues("SortPrj1", PATENT.getValue(),
@@ -78,13 +78,13 @@ public class TestsPekamaReportsFiltersProjects {
     @Before
     public void login() {
         //clearBrowserCache();
-        user.loginByURL(OWNER_LOGIN, OWNER_PASSWORD, URL_ReportsProjects);
+        owner.loginByURL(owner.email, owner.passwordPekama, URL_ReportsProjects);
     }
     @AfterClass
     public static void clear(){
-        user.loginByURL(OWNER_LOGIN, OWNER_PASSWORD, URL_ReportsProjects);
+        owner.loginByURL(owner.email, owner.passwordPekama, URL_ReportsProjects);
         deleteAllProjects();
-        //getWebDriver().quit();
+        getWebDriver().quit();
     }
     @Test
     public void project_sort_by_none_default_and_name(){

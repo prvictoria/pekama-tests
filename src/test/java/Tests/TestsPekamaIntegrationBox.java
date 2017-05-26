@@ -66,7 +66,7 @@ public class TestsPekamaIntegrationBox {
     public void before() {
         clearBrowserCache();
         if (skipBefore==false) {
-            ObjectUser user = new ObjectUser();
+            ObjectUser user = ObjectUser.newBuilder().build();
             user.loginByURL(
                     OWNER_EMAIL,
                     OWNER_PASSWORD,

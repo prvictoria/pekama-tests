@@ -38,7 +38,7 @@ import static Tests.BeforeTestsSetUp.*;
 public class TestsPekamaProjectContacts{
     static final Logger rootLogger = LogManager.getRootLogger();
     private static final String OWNER_LOGIN_EMAIL = User3.GMAIL_EMAIL.getValue();
-    private static final String OWNER_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
+    private static final String OWNER_PASSWORD_PEKAMA = User3.PEKAMA_PASSWORD.getValue();
     private static final String OWNER_TEAM_NAME = User3.TEAM_NAME.getValue();
     private static final String OWNER_XERO_PASSWORD = User3.XERO_PASSWORD.getValue();
     private final static String OWNER_FULL_TEAM_NAME = User3.FULL_TEAM_NAME.getValue();
@@ -48,6 +48,7 @@ public class TestsPekamaProjectContacts{
     private static String projectName;
     private static String projectUrl;
     private static boolean skipBefore = false;
+    private static ObjectUser owner = ObjectUser.newBuilder().email(OWNER_LOGIN_EMAIL).passwordPekama(OWNER_PASSWORD_PEKAMA).build();
 
     @Rule
     public Timeout tests = Timeout.seconds(600);
@@ -58,8 +59,7 @@ public class TestsPekamaProjectContacts{
         setBrowser();
         holdBrowserAfterTest();
         if(skipBefore==false) {
-            ObjectUser user = new ObjectUser();
-            user.loginByURL(OWNER_LOGIN_EMAIL, OWNER_PASSWORD, URL_LogIn);
+          owner.loginByURL(owner.email, owner.passwordPekama, URL_PEKAMA_LOGIN);
         }
         else {rootLogger.info("Before suite was skipped");
         }
@@ -73,9 +73,8 @@ public class TestsPekamaProjectContacts{
     }
     @Before
     public void login() {
-        clearBrowserCache();
-        ObjectUser user = new ObjectUser();
-        user.loginByURL(OWNER_LOGIN_EMAIL, OWNER_PASSWORD, projectUrl);
+        //clearBrowserCache();
+        owner.loginByURL(owner.email, owner.passwordPekama, projectUrl);
     }
     @Test
     public void tabContacts_F1_addNewContact_Person() {

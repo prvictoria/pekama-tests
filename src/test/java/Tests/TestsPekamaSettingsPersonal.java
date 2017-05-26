@@ -46,7 +46,7 @@ public class TestsPekamaSettingsPersonal {
     @Before
     public void before() {
         clearBrowserCache();
-        ObjectUser user = new ObjectUser();
+        ObjectUser user = ObjectUser.newBuilder().build();
         user.loginByURL(TEST_USER_LOGIN, TEST_USER_PASSWORD, URL_LogIn);
     }
 
@@ -372,7 +372,7 @@ public class TestsPekamaSettingsPersonal {
         rootLogger.info("State by default - PASSED");
 
         String validPassword = Utils.randomString(8)+VALID_PASSWORD;
-        rootLogger.info("Validation empty fields New password & Confirm Password");
+        rootLogger.info("Validation empty fields New passwordPekama & Confirm Password");
         SECURITY_TAB_CURRENT_PASSWORD.waitUntil(Condition.visible, 10000).sendKeys(validPassword);
         submitEnabledButton(SECURITY_SAVE_BTN);
         SECURITY_SAVE_BTN.shouldBe(Condition.disabled);
@@ -383,7 +383,7 @@ public class TestsPekamaSettingsPersonal {
     @Test
     public void tabSecurity_PasswordValidations_B() {
         String validPassword = Utils.randomString(8)+VALID_PASSWORD;
-        rootLogger.info("Validation empty fields Current password & Confirm Password");
+        rootLogger.info("Validation empty fields Current passwordPekama & Confirm Password");
         openSettingsTabSecurity();
         SECURITY_TAB_NEW_PASSWORD.waitUntil(Condition.visible, 10000).sendKeys(validPassword);
         submitEnabledButton(SECURITY_SAVE_BTN);
@@ -393,7 +393,7 @@ public class TestsPekamaSettingsPersonal {
     @Test
     public void tabSecurity_PasswordValidations_C() {
         String validPassword = Utils.randomString(8)+VALID_PASSWORD;
-        rootLogger.info("Validation empty fields Current password & New Password");
+        rootLogger.info("Validation empty fields Current passwordPekama & New Password");
         openSettingsTabSecurity();
         SECURITY_TAB_CONFIRM_PASSWORD.waitUntil(Condition.visible, 10000).sendKeys(validPassword);
         submitEnabledButton(SECURITY_SAVE_BTN);
@@ -403,7 +403,7 @@ public class TestsPekamaSettingsPersonal {
     @Test
     public void tabSecurity_PasswordValidations_D() {
         String validPassword = Utils.randomString(8)+VALID_PASSWORD;
-        rootLogger.info("Change Password - BUG noValidation - No Current password checks MAJOR(Not reproduced)");
+        rootLogger.info("Change Password - BUG noValidation - No Current passwordPekama checks MAJOR(Not reproduced)");
         openSettingsTabSecurity();
         SECURITY_TAB_NEW_PASSWORD.waitUntil(Condition.visible, 10000).sendKeys(validPassword);
         SECURITY_TAB_CONFIRM_PASSWORD.sendKeys(validPassword);
@@ -414,7 +414,7 @@ public class TestsPekamaSettingsPersonal {
     @Test
     public void tabSecurity_PasswordValidations_E() {
         String validPassword = Utils.randomString(8)+VALID_PASSWORD;
-        rootLogger.info("Change Password - no New password");
+        rootLogger.info("Change Password - no New passwordPekama");
         openSettingsTabSecurity();
         SECURITY_TAB_CURRENT_PASSWORD.waitUntil(Condition.visible, 10000).sendKeys(User3.PEKAMA_PASSWORD.getValue());
         SECURITY_TAB_CONFIRM_PASSWORD.sendKeys(validPassword);
@@ -425,7 +425,7 @@ public class TestsPekamaSettingsPersonal {
     @Test
     public void tabSecurity_PasswordValidations_F() {
         String validPassword = Utils.randomString(8)+VALID_PASSWORD;
-        rootLogger.info("Change Password - no Confirm password");
+        rootLogger.info("Change Password - no Confirm passwordPekama");
         openSettingsTabSecurity();
         SECURITY_TAB_CURRENT_PASSWORD.waitUntil(visible, 10000).sendKeys(User3.PEKAMA_PASSWORD.getValue());
         SECURITY_TAB_NEW_PASSWORD.sendKeys(validPassword);
@@ -435,7 +435,7 @@ public class TestsPekamaSettingsPersonal {
     }
     @Test
     public void tabSecurity_PasswordValidations_G() {
-        rootLogger.info("Change Password - not Old can be new password");
+        rootLogger.info("Change Password - not Old can be new passwordPekama");
         openSettingsTabSecurity();
         SECURITY_TAB_CURRENT_PASSWORD.waitUntil(visible, 10000).sendKeys(TEST_USER_PASSWORD);
         SECURITY_TAB_NEW_PASSWORD.sendKeys(TEST_USER_OLD_PASSWORD);

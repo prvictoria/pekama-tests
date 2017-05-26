@@ -12,6 +12,7 @@ import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
 import static Page.PekamaLogin.*;
 import static Page.TestsCredentials.*;
+import static Steps.ObjectUser.newBuilder;
 import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static Steps.StepsPekama.checkText;
 import static Steps.StepsPekama.fillField;
@@ -56,8 +57,8 @@ public class TestsPekamaLogin {
     }
     @Test
     public void invalidPassword() {
-        ObjectUser invalid = new ObjectUser();
-        invalid.submitLoginCredentials(
+        ObjectUser user = newBuilder().build();
+        user.submitLoginCredentials(
                 "testqweeco001@gmail.com",
                 "12345");
         loginError.shouldHave(Condition.exactText(loginErrorMsg));
@@ -66,8 +67,8 @@ public class TestsPekamaLogin {
     }
     @Test
     public void invalidLogin() {
-        ObjectUser invalid = new ObjectUser();
-        invalid.submitLoginCredentials(
+        ObjectUser user = newBuilder().build();
+        user.submitLoginCredentials(
                 "1a2a3a12aa31231@gmail.com",
                 "asui67we34");
         loginError.shouldHave(Condition.exactText(loginErrorMsg));
@@ -76,8 +77,8 @@ public class TestsPekamaLogin {
     }
     @Test
     public void invalidLoginAndPassword() {
-        ObjectUser invalid = new ObjectUser();
-        invalid.submitLoginCredentials(
+        ObjectUser user = newBuilder().build();
+        user.submitLoginCredentials(
                 "teastaaaqweeco001@gmail.com",
                 "asui2132367we34");
         loginError.shouldHave(Condition.exactText(loginErrorMsg));
@@ -91,8 +92,8 @@ public class TestsPekamaLogin {
         loginField_Password.getAttribute("required");
         assertTrue(loginField_Password.getAttribute("required"), true);
 
-        ObjectUser invalid = new ObjectUser();
-        invalid.submitLoginCredentials(
+        ObjectUser user = newBuilder().build();
+        user.submitLoginCredentials(
                 null,
                 "asui2132367we34");
         btnLogin.shouldBe(visible);
@@ -101,7 +102,7 @@ public class TestsPekamaLogin {
         loginField_Password.shouldBe(empty);
         rootLogger.info("Login only was submitted");
 
-        invalid.submitLoginCredentials(
+        user.submitLoginCredentials(
                 "teastaaaqweeco001@gmail.com",
                 "");
         fillField(loginField_Email, "teastaaaqweeco001@gmail.com");
@@ -112,7 +113,7 @@ public class TestsPekamaLogin {
         btnSignup.shouldBe(visible);
         rootLogger.info("Password only was submitted");
 
-        invalid.submitLoginCredentials(
+        user.submitLoginCredentials(
                 "",
                 "");
         loginField_Password.clear();
@@ -124,8 +125,8 @@ public class TestsPekamaLogin {
     }
     @Test
     public void validCredentials() {
-        ObjectUser invalid = new ObjectUser();
-        invalid.submitLoginCredentials(
+        ObjectUser user = newBuilder().build();
+        user.submitLoginCredentials(
                 User1.GMAIL_EMAIL.getValue(),
                 User1.PEKAMA_PASSWORD.getValue());
         btnLogin.shouldBe(Condition.not(visible));

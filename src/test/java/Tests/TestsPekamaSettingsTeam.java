@@ -58,7 +58,7 @@ public class TestsPekamaSettingsTeam {
         if (skipBefore==false){
             clearBrowserCache();
             rootLogger.info("Open host");
-            ObjectUser user = new ObjectUser();
+            ObjectUser user = ObjectUser.newBuilder().build();
             user.loginByURL(
                     TEST_USER_LOGIN,
                     TEST_USER_PASSWORD,

@@ -8,6 +8,7 @@ import static Page.PekamaLogin.*;
 import static Page.PekamaResetPassword.*;
 import static Page.PekamaSignUp.*;
 import static Page.TestsCredentials.*;
+import static Page.UrlStrings.*;
 import static Steps.StepsHttpAuth.*;
 import static Steps.StepsPekama.*;
 import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
@@ -23,7 +24,7 @@ import static com.codeborne.selenide.Selenide.sleep;
 public class ObjectUser {
     static final Logger rootLogger = LogManager.getRootLogger();
     public String email;
-    public String password;
+    public String passwordPekama;
     public String name;
     public String surname;
     public String company;
@@ -31,21 +32,121 @@ public class ObjectUser {
     public String role;
     public String phone;
     public String country;
-    public Boolean isSignUpSucceed;
-    public Boolean isLoginSucceed;
+    public Boolean isSignUpSucceed = false;
+    public Boolean isLoginSucceed = false;
+
+    private ObjectUser(Builder builder) {
+        email = builder.email;
+        passwordPekama = builder.passwordPekama;
+        name = builder.name;
+        surname = builder.surname;
+        company = builder.company;
+        businessType = builder.businessType;
+        role = builder.role;
+        phone = builder.phone;
+        country = builder.country;
+        isSignUpSucceed = builder.isSignUpSucceed;
+        isLoginSucceed = builder.isLoginSucceed;
+    }
+
+    public static Builder newBuilder() {
+        return new Builder();
+    }
+    public static final class Builder {
+        private String email;
+        private String passwordPekama;
+        private String name;
+        private String surname;
+        private String company;
+        private String businessType;
+        private String role;
+        private String phone;
+        private String country;
+        private Boolean isSignUpSucceed;
+        private Boolean isLoginSucceed;
+
+        private Builder() {
+        }
+
+        public Builder email(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public Builder passwordPekama(String password) {
+            this.passwordPekama = password;
+            return this;
+        }
+
+        public Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder surname(String surname) {
+            this.surname = surname;
+            return this;
+        }
+
+        public Builder company(String company) {
+            this.company = company;
+            return this;
+        }
+
+        public Builder businessType(String businessType) {
+            this.businessType = businessType;
+            return this;
+        }
+
+        public Builder role(String role) {
+            this.role = role;
+            return this;
+        }
+
+        public Builder phone(String phone) {
+            this.phone = phone;
+            return this;
+        }
+
+        public Builder country(String country) {
+            this.country = country;
+            return this;
+        }
+
+        public Builder isSignUpSucceed(Boolean isSignUpSucceed) {
+            this.isSignUpSucceed = isSignUpSucceed;
+            return this;
+        }
+
+        public Builder isLoginSucceed(Boolean isLoginSucceed) {
+            this.isLoginSucceed = isLoginSucceed;
+            return this;
+        }
+
+        public ObjectUser build() {
+            return new ObjectUser(this);
+        }
+    }
+
+
+
+
 
     public void loginByURL(String email, String password, String url){
         this.email = email;
-        this.password = password;
+        this.passwordPekama = password;
         openUrlWithBaseAuth(url);
         submitCookie(10);
         hideZopim();
         submitLoginCredentials(email, password);
+        if(getActualUrl().equals(URL_PEKAMA_DASHBOARD)){
+            this.isLoginSucceed = true;
+        }
     }
 
     public void submitLoginCredentials(String email, String password){
         this.email = email;
-        this.password = password;
+        this.passwordPekama = password;
 
         scrollUp();
         if(email!=null) {
@@ -65,7 +166,7 @@ public class ObjectUser {
         this.name = name;
         this.surname = surname;
         this.company = company;
-        this.password = password;
+        this.passwordPekama = password;
         this.businessType = businessTypeValue;
         this.role = yourRoleValue;
         this.phone = phone;
@@ -84,7 +185,7 @@ public class ObjectUser {
             signupCompany.waitUntil(visible, 20000).sendKeys(this.company);
         }
         if(password!=null) {
-            signupPassword.waitUntil(visible, 20000).sendKeys(this.password);
+            signupPassword.waitUntil(visible, 20000).sendKeys(this.passwordPekama);
         }
         if(businessTypeValue !=null){
             signupSelectBusinessType.selectOptionByValue(this.businessType);
@@ -118,8 +219,8 @@ public class ObjectUser {
             RESET_PAGE_EMAIL.sendKeys(email);
             RESET_PAGE_RESET_BTN.shouldBe(visible).click();
             sleep(1000);
-        rootLogger.info("Reset email password is: "+email);
-        this.password = email;
+        rootLogger.info("Reset email passwordPekama is: "+email);
+        this.passwordPekama = email;
         return email;
     }
     public String submitResetPassword(String newPassword){
@@ -130,24 +231,25 @@ public class ObjectUser {
         NEWPASSWORD_PAGE_CONFIRM_PASSWORD.shouldBe(Condition.visible).sendKeys(newPassword);
         NEWPASSWORD_PAGE_RESTORE_BTN.shouldBe(visible).click();
         sleep(1000);
-        rootLogger.info("New password "+newPassword);
-        this.password = newPassword;
+        rootLogger.info("New passwordPekama "+newPassword);
+        this.passwordPekama = newPassword;
         return newPassword;
     }
     public String submitResetPassword(String newPassword, String confirmPassword){
         if(newPassword!=null){
             NEWPASSWORD_PAGE_NEW_PASSWORD.waitUntil(visible, 10000).sendKeys(newPassword);
-            rootLogger.info("New password "+newPassword);
+            rootLogger.info("New passwordPekama "+newPassword);
         }
         if(confirmPassword!=null){
             NEWPASSWORD_PAGE_CONFIRM_PASSWORD.shouldBe(Condition.visible).sendKeys(confirmPassword);
-            rootLogger.info("Confirm password "+confirmPassword);
+            rootLogger.info("Confirm passwordPekama "+confirmPassword);
         }
         NEWPASSWORD_PAGE_RESTORE_BTN.shouldBe(visible).click();
         sleep(1000);
-        this.password = newPassword;
+        this.passwordPekama = newPassword;
         return newPassword;
     }
+
 
 
 }

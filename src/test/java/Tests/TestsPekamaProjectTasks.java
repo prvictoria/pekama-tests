@@ -33,7 +33,7 @@ import static Tests.BeforeTestsSetUp.*;
 public class TestsPekamaProjectTasks {
     static final Logger rootLogger = LogManager.getRootLogger();
     private static final String OWNER_LOGIN_EMAIL = User3.GMAIL_EMAIL.getValue();
-    private static final String OWNER_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
+    private static final String OWNER_PASSWORD_PEKAMA = User3.PEKAMA_PASSWORD.getValue();
     private static final String OWNER_TEAM_NAME = User3.TEAM_NAME.getValue();
     private final static String OWNER_FULL_TEAM_NAME = User3.FULL_TEAM_NAME.getValue();
     private static String member1 = null;
@@ -43,6 +43,7 @@ public class TestsPekamaProjectTasks {
     private static String projectName;
     private static String projectUrl;
     private static boolean skipBefore = false;
+    private static ObjectUser owner = ObjectUser.newBuilder().email(OWNER_LOGIN_EMAIL).passwordPekama(OWNER_PASSWORD_PEKAMA).build();
 
     @Rule
     public Timeout tests = Timeout.seconds(600);
@@ -52,8 +53,7 @@ public class TestsPekamaProjectTasks {
         setBrowser();
         holdBrowserAfterTest();
         if(skipBefore==false) {
-            ObjectUser user = new ObjectUser();
-            user.loginByURL(OWNER_LOGIN_EMAIL, OWNER_PASSWORD, URL_LogIn);
+            owner.loginByURL(owner.email, owner.passwordPekama, URL_LogIn);
 
             rootLogger.info("Create project");
             submitEnabledButton(DASHBOARD_BTN_NEW_PROJECT);
@@ -72,9 +72,8 @@ public class TestsPekamaProjectTasks {
     }
     @Before
     public void login() {
-        clearBrowserCache();
-        ObjectUser user = new ObjectUser();
-        user.loginByURL(OWNER_LOGIN_EMAIL, OWNER_PASSWORD, projectUrl);
+        //clearBrowserCache();
+        owner.loginByURL(owner.email, owner.passwordPekama, URL_LogIn);
         checkText(projectName);
         StepsPekamaProject.deleteAllTasks();
     }

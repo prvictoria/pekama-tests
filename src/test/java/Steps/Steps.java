@@ -30,7 +30,7 @@ public abstract class Steps {
 
     //Selenide steps
     public static void clickSelector(SelenideElement element){
-        element.waitUntil(exist, 15000).waitUntil(visible, 10000).click();
+        element.waitUntil(exist, 20000).waitUntil(visible, 10000).click();
     }
     public static Boolean checkTextInSelector(SelenideElement element, String text){
         element.waitUntil(exist, 10000)

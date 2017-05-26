@@ -38,7 +38,7 @@ import static com.codeborne.selenide.WebDriverRunner.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsMessages {
     static final Logger rootLogger = LogManager.getRootLogger();
-    private static final String INVITER_EMAIL = User3.GMAIL_EMAIL.getValue();
+    private static final String INVITER_LOGIN_EMAIL = User3.GMAIL_EMAIL.getValue();
     private static final String INVITER_EMAIL_PASSWORD = User3.GMAIL_PASSWORD.getValue();
     private static final String INVITER_PEKAMA_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
     private static final String INVITER_NAME_FULL_TEAM_NAME = User3.FULL_TEAM_NAME.getValue();
@@ -55,6 +55,8 @@ public class TestsMessages {
     private static final String COLLABORATOR_PEKAMA_PASSWORD = User1.PEKAMA_PASSWORD.getValue();
     private static final String GUEST_EMAIL = User5.GMAIL_EMAIL.getValue();
     private static final String GUEST_EMAIL_PASSWORD = User5.GMAIL_PASSWORD.getValue();
+    private static ObjectUser owner = ObjectUser.newBuilder().email(INVITER_LOGIN_EMAIL).passwordPekama(INVITER_PEKAMA_PASSWORD).build();
+    private static ObjectUser collaborator = ObjectUser.newBuilder().email(COLLABORATOR_EMAIL).passwordPekama(COLLABORATOR_PEKAMA_PASSWORD).build();
 
     private static String subjectLineExample = null;
     private static String testProjectName = null;
@@ -74,7 +76,7 @@ public class TestsMessages {
         if(debug==false) {
             MessagesIMAP emailTask = new MessagesIMAP();
             emailTask.imapSearchEmailDeleteAll(
-                    INVITER_EMAIL,
+                    INVITER_LOGIN_EMAIL,
                     INVITER_EMAIL_PASSWORD);
             emailTask.imapSearchEmailDeleteAll(
                     INVITED_EMAIL,
@@ -82,8 +84,7 @@ public class TestsMessages {
             emailTask.imapSearchEmailDeleteAll(
                     COLLABORATOR_EMAIL,
                     COLLABORATOR_EMAIL_PASSWORD);
-            ObjectUser user = new ObjectUser();
-            user.loginByURL(INVITER_EMAIL, INVITER_PEKAMA_PASSWORD, URL_LogIn);
+            owner.loginByURL(owner.email, owner.passwordPekama, URL_PEKAMA_LOGIN);
             deleteAllMembers();
             getWebDriver().quit();
         }
@@ -92,12 +93,8 @@ public class TestsMessages {
     @Before
     public void before() {
         if (skipBefore==false) {
-            clearBrowserCache();
-            ObjectUser creator = new ObjectUser();
-            creator.loginByURL(
-                    INVITER_EMAIL,
-                    INVITER_PEKAMA_PASSWORD,
-                    URL_PEKAMA_LOGIN);
+            //clearBrowserCache();
+            owner.loginByURL(owner.email, owner.passwordPekama, URL_PEKAMA_LOGIN);
             rootLogger.info("Create project");
             DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 15000).click();
             testProjectName = submitMwNewProject();
@@ -724,7 +721,7 @@ public class TestsMessages {
         MessagesIMAP emailTask = new MessagesIMAP();
         Assert.assertTrue(
                 emailTask.validateEmailMessage(
-                        INVITER_EMAIL,
+                        INVITER_LOGIN_EMAIL,
                         INVITER_EMAIL_PASSWORD,
                         "COPY_OF_MY_OWN_MESSAGE",
                         LOREM_IPSUM_SHORT,
@@ -740,11 +737,7 @@ public class TestsMessages {
         skipBefore = true;
       //  repryLink = "https://u1528369.ct.sendgrid.net/wf/click?upn=nlPIBkCFx3ihDwn5X-2FQH25GimnAenIWRK2CNbjwb1wz4MhLyrPlDXqARqX-2FoYxFNbrjSdkTycqH9IUseFSWnM-2F3L2QDDFm6XOpyOMUSqms0-3D_FhKIrNJz0J-2FLui-2BhorTXHazj59U-2BmXqSH3Q93OorhOgeYov1Ufk9vFFXG5Ntep8eoNf46zw8iVivjaYI07Za3OlTl3RkPuH16WaCuXZo-2FdTBRfJTZhKbG8zpyau5YKjB3L3x1mhTWFfaA05p1O7I8EaImFM6KER0npwusk-2FxVocP3SA3-2FbPdMBYnC7pACNNzlLXAQPDcxyBkV1Akw6IOB8DFbnm2tqEGbncvHn53U0EBKnYal25sNsT92EF8Dc68PQ2SvDGda-2FvBdR5UBu81pVgjqAVqOHxI26M0AiFGmwqgKkDIiCJWOX5KCYmZfR-2FO";
         Assert.assertNotNull(repryLink);
-        ObjectUser follower = new ObjectUser();
-        follower.loginByURL(
-                COLLABORATOR_EMAIL,
-                COLLABORATOR_PEKAMA_PASSWORD,
-                URL_PEKAMA_LOGIN);
+        collaborator.loginByURL(owner.email, owner.passwordPekama, URL_PEKAMA_LOGIN);
         openUrlWithBaseAuth(repryLink);
         checkTreadTitle("COPY_OF_MY_OWN_MESSAGE");
         rootLogger.info("Test Passed");
@@ -755,11 +748,7 @@ public class TestsMessages {
         skipBefore = false;
         //repryLink = "https://u1528369.ct.sendgrid.net/wf/click?upn=nlPIBkCFx3ihDwn5X-2FQH25GimnAenIWRK2CNbjwb1wz4MhLyrPlDXqARqX-2FoYxFNbrjSdkTycqH9IUseFSWnM-2F3L2QDDFm6XOpyOMUSqms0-3D_FhKIrNJz0J-2FLui-2BhorTXHazj59U-2BmXqSH3Q93OorhOgeYov1Ufk9vFFXG5Ntep8eoNf46zw8iVivjaYI07Za3OlTl3RkPuH16WaCuXZo-2FdTBRfJTZhKbG8zpyau5YKjB3L3x1mhTWFfaA05p1O7I8EaImFM6KER0npwusk-2FxVocP3SA3-2FbPdMBYnC7pACNNzlLXAQPDcxyBkV1Akw6IOB8DFbnm2tqEGbncvHn53U0EBKnYal25sNsT92EF8Dc68PQ2SvDGda-2FvBdR5UBu81pVgjqAVqOHxI26M0AiFGmwqgKkDIiCJWOX5KCYmZfR-2FO";
         Assert.assertNotNull(repryLink);
-        ObjectUser creator = new ObjectUser();
-        creator.loginByURL(
-                INVITER_EMAIL,
-                INVITER_PEKAMA_PASSWORD,
-                URL_PEKAMA_LOGIN);
+        owner.loginByURL(owner.email, owner.passwordPekama, URL_PEKAMA_LOGIN);
         openUrlWithBaseAuth(repryLink);
         checkText("You followed a link meant for one of your other accounts. Please sign in with that account to proceed.");
         rootLogger.info("Test Passed");
@@ -799,7 +788,7 @@ public class TestsMessages {
         MessagesIMAP emailTask1 = new MessagesIMAP();
         Assert.assertTrue(
                 emailTask1.validateEmailMessage(
-                        INVITER_EMAIL,
+                        INVITER_LOGIN_EMAIL,
                         INVITER_EMAIL_PASSWORD,
                         "EMAIL_TO_GUEST_MESSAGE",
                         LOREM_IPSUM_SHORT,
@@ -833,11 +822,7 @@ public class TestsMessages {
         openUrlWithBaseAuth(URL_PEKAMA_LOGOUT);
 
         rootLogger.info("Set FOLLOWER email settings");
-        ObjectUser follower = new ObjectUser();
-        follower.loginByURL(
-                COLLABORATOR_EMAIL,
-                COLLABORATOR_PEKAMA_PASSWORD,
-                URL_PEKAMA_LOGIN);
+        collaborator.loginByURL(owner.email, owner.passwordPekama, URL_PEKAMA_LOGIN);
         openSettingsTabEmails();
         selectReceiveEmailOptions(
                 true,
@@ -849,11 +834,7 @@ public class TestsMessages {
         openUrlWithBaseAuth(URL_PEKAMA_LOGOUT);
 
         rootLogger.info("Create thread");
-        ObjectUser creator = new ObjectUser();
-        creator.loginByURL(
-                INVITER_EMAIL,
-                INVITER_PEKAMA_PASSWORD,
-                URL_PEKAMA_LOGIN);
+        owner.loginByURL(owner.email, owner.passwordPekama, URL_PEKAMA_LOGIN);
         openUrlWithBaseAuth(testProjectUrl);
         callModalNewConversation();
         submitNewConversationWindow(

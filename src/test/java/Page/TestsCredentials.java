@@ -180,7 +180,7 @@ public class TestsCredentials {
             return value;
         }
     }
-    //Reset password flow, login with Auth2 flow
+    //Reset password Pekama flow, login with Auth2 flow
     //No need accounts on server
     public enum User7 {
         GMAIL_EMAIL("");

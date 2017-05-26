@@ -53,6 +53,7 @@ public class TestsPekamaProjectCharges {
     private static ObjectCharges invoice1Sort = new ObjectCharges();
     private static ObjectCharges invoice2Sort = new ObjectCharges();
     private static ObjectCharges invoice3Sort = new ObjectCharges();
+    private static ObjectUser user = ObjectUser.newBuilder().email(OWNER_LOGIN_EMAIL).passwordPekama(OWNER_PASSWORD).build();
 
     private static String projectName;
     private static String projectUrl;
@@ -66,44 +67,43 @@ public class TestsPekamaProjectCharges {
         setBrowser();
         holdBrowserAfterTest();
         if(skipBefore==false) {
-            ObjectUser user = new ObjectUser();
-            user.loginByURL(OWNER_LOGIN_EMAIL, OWNER_PASSWORD, URL_LogIn);
+            user.loginByURL(user.email, user.passwordPekama, URL_LogIn);
 
-        rootLogger.info("Create project");
-        submitEnabledButton(DASHBOARD_BTN_NEW_PROJECT);
-        projectName = submitMwNewProject();
-        projectUrl = getActualUrl();
+            rootLogger.info("Create project");
+            submitEnabledButton(DASHBOARD_BTN_NEW_PROJECT);
+            projectName = submitMwNewProject();
+            projectUrl = getActualUrl();
 
-        deleteAllMembers();
-        addMember("A-member@email.com", TAB_MEMBERS_BTN_ADD);
-        addMember("B-member@office.eu", TAB_MEMBERS_BTN_ADD);
+            deleteAllMembers();
+            addMember("A-member@email.com", TAB_MEMBERS_BTN_ADD);
+            addMember("B-member@office.eu", TAB_MEMBERS_BTN_ADD);
 
-        deleteAllContacts();
-        rootLogger.info("Create contacts in reports");
-        contact1.createCompany(REPORT, "ip lawyers ltd",
-                null, null,
-                null, null,null,
-                null, null,
-                null, null);
-        contact2.createCompany(REPORT, "Law firm",
-                null, null,
-                null, null,null,
-                null, null,
-                null, null);
-        contact3.createPerson(REPORT, null,
-                "Name", "Surname", null,
-                null, null,
-                null, null,null,
-                null, null,
-                null, null);
-        openPageWithSpinner(URL_ReportsProjects);
+            deleteAllContacts();
+            rootLogger.info("Create contacts in reports");
+            contact1.createCompany(REPORT, "ip lawyers ltd",
+                    null, null,
+                    null, null,null,
+                    null, null,
+                    null, null);
+            contact2.createCompany(REPORT, "Law firm",
+                    null, null,
+                    null, null,null,
+                    null, null,
+                    null, null);
+            contact3.createPerson(REPORT, null,
+                    "Name", "Surname", null,
+                    null, null,
+                    null, null,null,
+                    null, null,
+                    null, null);
+            openPageWithSpinner(URL_ReportsProjects);
 
-        rootLogger.info("Add contacts to project");
-        openUrlWithBaseAuth(projectUrl);
-        selectAndAddContact(contact1, DOMESTIC_REPRESENTATIVE.getValue());
-        selectAndAddContact(contact2, OWNER_COMPANY.getValue());
-        selectAndAddContact(contact3, INVESTOR.getValue());
-        getWebDriver().quit();
+            rootLogger.info("Add contacts to project");
+            openUrlWithBaseAuth(projectUrl);
+            selectAndAddContact(contact1, DOMESTIC_REPRESENTATIVE.getValue());
+            selectAndAddContact(contact2, OWNER_COMPANY.getValue());
+            selectAndAddContact(contact3, INVESTOR.getValue());
+            getWebDriver().quit();
         }
         else {rootLogger.info("Before suite was skipped");
         }
@@ -111,8 +111,7 @@ public class TestsPekamaProjectCharges {
     @Before
     public void login() {
         clearBrowserCache();
-        ObjectUser user = new ObjectUser();
-        user.loginByURL(OWNER_LOGIN_EMAIL, OWNER_PASSWORD, projectUrl);
+        user.loginByURL(user.email, user.passwordPekama, projectUrl);
     }
 
     @Test
@@ -134,13 +133,13 @@ public class TestsPekamaProjectCharges {
 
         rootLogger.info("Validate sort order and rows by: "+"Date");
         selectSortOrderInProject(null, false);
-        checkInvoiceRow(1, invoice3Sort);
-        checkInvoiceRow(2, invoice2Sort);
-        checkInvoiceRow(3, invoice1Sort);
-        selectSortOrderInProject("Date", true);
         checkInvoiceRow(1, invoice1Sort);
         checkInvoiceRow(2, invoice2Sort);
         checkInvoiceRow(3, invoice3Sort);
+        selectSortOrderInProject("Date", true);
+        checkInvoiceRow(1, invoice3Sort);
+        checkInvoiceRow(2, invoice2Sort);
+        checkInvoiceRow(3, invoice1Sort);
     }
     @Test
     public void tabCharges_B2_sort_by_last_created(){
@@ -172,11 +171,11 @@ public class TestsPekamaProjectCharges {
     public void tabCharges_B4_sort_by_amount(){
         clickSelector(PROJECT_TAB_CHARGES);
         rootLogger.info("Validate sort order and rows by: "+"Amount");
-        selectSortOrderInProject("Amount", false);
+        selectSortOrderInProject("Amount", true);
         checkInvoiceRow(1, invoice1Sort);
         checkInvoiceRow(2, invoice3Sort);
         checkInvoiceRow(3, invoice2Sort);
-        selectSortOrderInProject("Amount", true);
+        selectSortOrderInProject("Amount", false);
         checkInvoiceRow(1, invoice2Sort);
         checkInvoiceRow(2, invoice3Sort);
         checkInvoiceRow(3, invoice1Sort);
@@ -190,9 +189,9 @@ public class TestsPekamaProjectCharges {
         checkInvoiceRow(2, invoice2Sort);
         checkInvoiceRow(3, invoice3Sort);
         selectSortOrderInProject("From", false);
-        checkInvoiceRow(1, invoice3Sort);
+        checkInvoiceRow(1, invoice1Sort);
         checkInvoiceRow(2, invoice2Sort);
-        checkInvoiceRow(3, invoice1Sort);
+        checkInvoiceRow(3, invoice3Sort);
     }
     @Test
     public void tabCharges_B6_sort_by_to(){
@@ -200,8 +199,8 @@ public class TestsPekamaProjectCharges {
         rootLogger.info("Validate sort order and rows by: "+"To");
         selectSortOrderInProject("To", true);
         checkInvoiceRow(1, invoice1Sort);
-        checkInvoiceRow(2, invoice2Sort);
-        checkInvoiceRow(3, invoice3Sort);
+        checkInvoiceRow(3, invoice2Sort);
+        checkInvoiceRow(2, invoice3Sort);
         selectSortOrderInProject("To", false);
         checkInvoiceRow(1, invoice2Sort);
         checkInvoiceRow(2, invoice3Sort);
@@ -225,13 +224,13 @@ public class TestsPekamaProjectCharges {
         clickSelector(PROJECT_TAB_CHARGES);
         rootLogger.info("Validate sort order and rows by: "+"Status");
         selectSortOrderInProject("Status", true);
-        checkInvoiceRow(1, invoice3Sort);
-        checkInvoiceRow(2, invoice2Sort);
-        checkInvoiceRow(3, invoice1Sort);
-        selectSortOrderInProject("Status", false);
         checkInvoiceRow(1, invoice1Sort);
-        checkInvoiceRow(2, invoice2Sort);
         checkInvoiceRow(3, invoice3Sort);
+        checkInvoiceRow(2, invoice2Sort);
+        selectSortOrderInProject("Status", false);
+        checkInvoiceRow(1, invoice2Sort);
+        checkInvoiceRow(2, invoice3Sort);
+        checkInvoiceRow(3, invoice1Sort);
     }
 
     @Test
@@ -421,7 +420,6 @@ public class TestsPekamaProjectCharges {
     @Test
     public void tabCharges_Xero_B_ValidationNotAllowedCurrency(){
         StepsPekamaProject.deleteAllCharges();
-        checkText(PLACEHOLDER_EMPTY_LIST);
 
         String price = "5000";
         rootLogger.info("Create Charge");
@@ -439,7 +437,6 @@ public class TestsPekamaProjectCharges {
     @Test//(timeout=240000)
     public void tabCharges_Xero_C_MergeCharges(){
         StepsPekamaProject.deleteAllCharges();
-        checkText(PLACEHOLDER_EMPTY_LIST);
 
         String xeroLogin = OWNER_LOGIN_EMAIL;
         String xeroPassword = OWNER_XERO_PASSWORD;

@@ -8,9 +8,6 @@ public class UrlStrings {
     public static final String URL_SingUp = SELECT_HOST+"/signup/";
     public static final String URL_LogIn = SELECT_HOST+"/accounts/login/";
     public static final String URL_Logout = SELECT_HOST+"/accounts/logout";
-    public static final String URL_ResetPassword = SELECT_HOST+"/accounts/password/reset/";
-    public static final String URL_ResetPasswordSuccess = SELECT_HOST+"/accounts/password/reset/done/";
-    public static final String URL_ResetPasswordComplete = SELECT_HOST+"/accounts/password/reset/complete/";
     public static final String URL_Landing = SELECT_HOST+"/";
     public static final String URL_Dashboard = SELECT_HOST+"/a/dashboard";
     public static final String URL_NotFound = SELECT_HOST+"/a/projects/not_found";

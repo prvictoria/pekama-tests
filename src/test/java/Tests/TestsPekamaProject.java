@@ -49,11 +49,12 @@ public class TestsPekamaProject {
     private static String testContactName = "name"+ randomString(10);
     private static String testContactSurname = "surname"+ randomString(10);
     private static String projectUrl;
-    private final static String TEST_USER_EMAIL = User3.GMAIL_EMAIL.getValue();
-    private final static String TEST_USER_NAME_SURNAME = User3.NAME_SURNAME.getValue();
-    private final static String TEST_USER_PEKAMA_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
-    private final static String TEST_USER_XERO_PASSWORD = User3.XERO_PASSWORD.getValue();
-    private final static String TEST_USER_FULL_TEAM_NAME = User3.FULL_TEAM_NAME.getValue();
+    private final static String OWNER_LOGIN_EMAIL = User3.GMAIL_EMAIL.getValue();
+    private final static String OWNER_USER_NAME_SURNAME = User3.NAME_SURNAME.getValue();
+    private final static String OWNER_PEKAMA_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
+    private final static String OWNER_XERO_PASSWORD = User3.XERO_PASSWORD.getValue();
+    private final static String OWNER_FULL_TEAM_NAME = User3.FULL_TEAM_NAME.getValue();
+
     private final static String COLLABORATOR_TEAM_NAME = User1.TEAM_NAME.getValue();
     private static String TEST_CASE_TYPE = null;
     private final static String TEST_CASE_COUNTRY = PITCAIRN_ISLANDS.getValue();
@@ -75,6 +76,9 @@ public class TestsPekamaProject {
     private static final String EXPERT_NAME_SURNAME = TestsCredentials.User2.NAME_SURNAME.getValue();
     private final static String INTRODUCER_NAME = "Rand, Kaldor & Zane LLP (RKNZ)";
     private static ObjectContact contact = new ObjectContact();
+
+    private static ObjectUser owner = ObjectUser.newBuilder().email(OWNER_LOGIN_EMAIL).passwordPekama(OWNER_PEKAMA_PASSWORD).build();
+
     @Rule
     public Timeout tests = Timeout.seconds(600);
     private static boolean skipBefore = false;
@@ -96,10 +100,8 @@ public class TestsPekamaProject {
     @Before
     public void before() {
         if(nextIsImapTest==false) {
-            clearBrowserCache();
-            ObjectUser requester = new ObjectUser();
-            requester.loginByURL(
-                    REQUESTER_EMAIL, REQUESTER_PEKAMA_PASSWORD, URL_LogIn);
+            //clearBrowserCache();
+            owner.loginByURL(owner.email, owner.passwordPekama, URL_LogIn);
             if (skipBefore == false) {
                 DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 30000).click();
                 testProjectTitle = submitMwNewProject(
@@ -209,7 +211,7 @@ public class TestsPekamaProject {
         rootLogger.info("Check report email");
         String login = User5.GMAIL_EMAIL.getValue();
         String password = User5.GMAIL_PASSWORD.getValue();
-        String inviterNameSurname = TEST_USER_NAME_SURNAME;
+        String inviterNameSurname = OWNER_USER_NAME_SURNAME;
         String projectName = testProjectTitle;
         MessagesIMAP validation = new MessagesIMAP();
         Boolean validationResult = validation.validateEmailInviteInProject(login, password, inviterNameSurname, projectName);

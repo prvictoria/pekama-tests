@@ -50,7 +50,7 @@ public class TestsPekamaReportsFiltersContacts {
         setBrowser();
         holdBrowserAfterTest();
         if(skipBefore==false) {
-            ObjectUser user = new ObjectUser();
+            ObjectUser user = ObjectUser.newBuilder().build();
             user.loginByURL(OWNER_LOGIN, OWNER_PASSWORD, URL_PEKAMA_LOGIN);
 
             deleteAllContacts();
@@ -91,7 +91,7 @@ public class TestsPekamaReportsFiltersContacts {
     @Before
     public void login() {
         //clearBrowserCache();
-        ObjectUser user = new ObjectUser();
+        ObjectUser user = ObjectUser.newBuilder().build();
         user.loginByURL(OWNER_LOGIN, OWNER_PASSWORD, URL_ReportsContacts);
     }
     @Test

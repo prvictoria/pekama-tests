@@ -39,7 +39,7 @@ import static Tests.BeforeTestsSetUp.*;
 public class TestsPekamaProjectInfo {
     static final Logger rootLogger = LogManager.getRootLogger();
     private static final String OWNER_LOGIN_EMAIL = User3.GMAIL_EMAIL.getValue();
-    private static final String OWNER_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
+    private static final String OWNER_PASSWORD_PEKAMA = User3.PEKAMA_PASSWORD.getValue();
     private static final String OWNER_TEAM_NAME = User3.TEAM_NAME.getValue();
     private final static String OWNER_FULL_TEAM_NAME = User3.FULL_TEAM_NAME.getValue();
     private static String TEST_CASE_TYPE = null;
@@ -57,8 +57,8 @@ public class TestsPekamaProjectInfo {
         holdBrowserAfterTest();
         TEST_CASE_TYPE = MATTER_TYPE_TRADEMARK;
         if(skipBefore==false) {
-            ObjectUser user = new ObjectUser();
-            user.loginByURL(OWNER_LOGIN_EMAIL, OWNER_PASSWORD, URL_LogIn);
+            ObjectUser user = ObjectUser.newBuilder().build();
+            user.loginByURL(OWNER_LOGIN_EMAIL, OWNER_PASSWORD_PEKAMA, URL_LogIn);
 
             rootLogger.info("Create project");
             submitEnabledButton(DASHBOARD_BTN_NEW_PROJECT);
@@ -77,8 +77,8 @@ public class TestsPekamaProjectInfo {
     @Before
     public void login() {
         //clearBrowserCache();
-        ObjectUser user = new ObjectUser();
-        user.loginByURL(OWNER_LOGIN_EMAIL, OWNER_PASSWORD, projectUrl);
+        ObjectUser owner = ObjectUser.newBuilder().email(OWNER_LOGIN_EMAIL).passwordPekama(OWNER_PASSWORD_PEKAMA).build();
+        owner.loginByURL(owner.email, owner.passwordPekama, projectUrl);
         clickSelector(PROJECT_TAB_INFO);
     }
 
