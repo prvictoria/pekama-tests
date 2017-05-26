@@ -9,7 +9,7 @@ import java.util.Enumeration;
 /**
  * Created by VatslauX on 25-May-17.
  */
-public class BuildUser implements Builder{
+public class BuildUser {
     static final Logger rootLogger = LogManager.getRootLogger();
     public String email;
     public String password;

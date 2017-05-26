@@ -1,6 +1,7 @@
 package Tests;
 
 import Steps.*;
+import Utils.ExpectedFailure;
 import org.apache.logging.log4j.*;
 import org.junit.*;
 import org.junit.rules.Timeout;
@@ -158,6 +159,7 @@ public class TestsPekamaProjectInfo {
     public void tabInfo_C0_AddNumber_validation() {
 
     }
+    @ExpectedFailure
     @Test
     public void tabInfo_C1_AddNumber() {
         nextIsImapTest = false;
