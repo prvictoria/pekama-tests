@@ -25,13 +25,32 @@ public class ObjectUser {
     static final Logger rootLogger = LogManager.getRootLogger();
     public String email;
     public String passwordPekama;
+    public String passwordEmail;
+    public String passwordBox;
+    public String passwordXero;
+    public String passwordLinkedIn;
+
     public String name;
     public String surname;
+    public String nameSurname;
     public String company;
     public String businessType;
     public String role;
     public String phone;
+    public String fax;
+    public String mobile;
+    public String legalEntity;
+    public String street;
+    public String zip;
+    public String city;
+    public String region;
     public String country;
+
+    public String teamName;
+    public String teamFullName;
+    public String teamCode;
+    public String teamInitials;
+
     public Boolean isSignUpSucceed = false;
     public Boolean isLoginSucceed = false;
 
