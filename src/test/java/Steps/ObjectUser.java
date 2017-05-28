@@ -11,7 +11,6 @@ import static Page.TestsCredentials.*;
 import static Page.UrlStrings.*;
 import static Steps.StepsHttpAuth.*;
 import static Steps.StepsPekama.*;
-import static Steps.Steps.checkActualUrl;
 import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
 import static Utils.Utils.randomString;
 import static com.codeborne.selenide.Condition.*;
@@ -53,7 +52,7 @@ public class ObjectUser implements ILogin {
     public String teamInitials;
 
     public Boolean isSignUpSucceed = false;
-    public Boolean isLoginSucceed = false;
+    public Boolean isLoggedIn = false;
 
     public ObjectUser(Builder builder) {
         email = builder.email;
@@ -82,7 +81,7 @@ public class ObjectUser implements ILogin {
         teamCode = builder.teamCode;
         teamInitials = builder.teamInitials;
         isSignUpSucceed = builder.isSignUpSucceed;
-        isLoginSucceed = builder.isLoginSucceed;
+        isLoggedIn = builder.isLoginSucceed;
     }
     public static Builder newBuilder() {
         return new Builder();
@@ -274,7 +273,7 @@ public class ObjectUser implements ILogin {
         hideZopim();
         submitLoginCredentials(email, password);
         if(getActualUrl().equals(URL_PEKAMA_DASHBOARD)){
-            this.isLoginSucceed = true;
+            this.isLoggedIn = true;
         }
     }
 
@@ -379,11 +378,23 @@ public class ObjectUser implements ILogin {
             rootLogger.info("Confirm passwordPekama "+confirmPassword);
         }
         NEWPASSWORD_PAGE_RESTORE_BTN.shouldBe(visible).click();
-        sleep(1000);
-        this.passwordPekama = newPassword;
-        return newPassword;
+        sleep(2000);
+        if(getActualUrl().equals(URL_PEKAMA_RESET_PASSWORD_COMPLETE)) {
+            this.passwordPekama = newPassword;
+            return newPassword;
+        }
+        else return null;
     }
 
+    private static Boolean checkActualUrl(ObjectUser user, String url){
+        if(getActualUrl().equals(url)){
+            user.isLoggedIn = true;
+            return true;
+        }
+        else
+            user.isLoggedIn = false;
+            return false;
+    };
     public enum Users {OWNER, TEAM_MEMBER, ADMIN, COLLABORATOR, VIEWER, REQUESTER, EXPERT, PRETENDER, USER_01, USER_02, USER_03, USER_04, USER_05, USER_06, USER_07, USER_08, USER_09, USER_10};
     public ObjectUser buildUser(ObjectUser.Users id) {
         ObjectUser user = null;
@@ -453,6 +464,27 @@ public class ObjectUser implements ILogin {
             case USER_03:
                 break;
             case USER_04:
+                user = new ObjectUser(newBuilder())
+                        .newBuilder()
+                        .email(User4.GMAIL_EMAIL.getValue())
+                        .passwordPekama(User4.PEKAMA_PASSWORD.getValue())
+                        .passwordEmail(User4.GMAIL_PASSWORD.getValue())
+                        .passwordBox(User4.BOX_PASSWORD.getValue())
+                        .passwordLinkedIn(User4.LINKEDIN_PASSWORD.getValue())
+                        .passwordXero(User4.XERO_PASSWORD.getValue())
+                        .name(User4.NAME.getValue())
+                        .surname(User4.SURNAME.getValue())
+                        .company(User4.TEAM_NAME.getValue())
+                        .businessType(null)
+                        .role(null)
+                        .phone(null)
+                        .country(null)
+                        .teamName(User4.TEAM_NAME.getValue())
+                        .teamFullName(User4.FULL_TEAM_NAME.getValue())
+                        .teamCode(User4.TEAM_CODE.getValue())
+                        .teamInitials(User4.TEAM_INITIALS.getValue())
+                        .build();
+                logUserFields(user);
                 break;
             case USER_05:
                 break;

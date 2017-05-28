@@ -6,6 +6,7 @@ import org.junit.Test;
 import static Page.UrlStrings.URL_PEKAMA_LOGIN;
 import static Steps.ObjectUser.*;
 import static Steps.ObjectUser.Users.OWNER;
+import static Steps.ObjectUser.Users.USER_04;
 
 
 /**
@@ -42,18 +43,19 @@ public class TestClasses {
         ObjectUser user1 = newBuilder().phone("333-44-5555").isLoginSucceed(true).build();
         System.out.println(user1);
         System.out.println(user1.phone);
-        System.out.println(user1.isLoginSucceed);
+        System.out.println(user1.isLoggedIn);
         System.out.println("================================");
 
         owner.login(owner.email, owner.passwordPekama, URL_PEKAMA_LOGIN);
         System.out.println(owner);
         System.out.println(owner.phone);
-        System.out.println(owner.isLoginSucceed);
+        System.out.println(owner.isLoggedIn);
         System.out.println("================================");
 
     }
     @Test
     public void test_build_user(){
         ObjectUser owner = new ObjectUser(newBuilder()).buildUser(OWNER);
+        ObjectUser user = new ObjectUser(newBuilder()).buildUser(USER_04);
     }
 }

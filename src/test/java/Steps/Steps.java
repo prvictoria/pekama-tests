@@ -1,25 +1,11 @@
 package Steps;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.*;
 import org.junit.Assert;
-import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static Page.PekamaLogin.*;
-import static Page.PekamaReports.REPORTS_ALL_CHECKBOX;
-import static Page.PekamaReports.REPORTS_PLACEHOLDER_NO_DATA;
-import static Page.TestsCredentials.*;
-import static Page.TestsStrings.PLACEHOLDER_NO_DATA;
-import static Steps.StepsHttpAuth.*;
 import static Steps.StepsPekama.*;
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 /**
  * Created by Viachaslau Balashevich.
@@ -43,15 +29,16 @@ public abstract class Steps {
         Assert.assertTrue(selectedColor.equals("rgb("+colourRgb+")"));
         return true;
     }
-    public static Boolean checkActualUrl(ObjectUser user, String url){
-        if(getActualUrl().equals(url)){
-            user.isLoginSucceed = true;
-            return true;
-        }
-        else
-            user.isLoginSucceed = false;
-            return false;
-    };
+    abstract Boolean checkActualUrl(ObjectUser user, String url);
+//    public static Boolean checkActualUrl(ObjectUser user, String url){
+//        if(getActualUrl().equals(url)){
+//            user.isLoggedIn = true;
+//            return true;
+//        }
+//        else
+//            user.isLoggedIn = false;
+//            return false;
+//    };
 
 }
 
