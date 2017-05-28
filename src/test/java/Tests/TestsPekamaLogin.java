@@ -100,7 +100,7 @@ public class TestsPekamaLogin {
         btnSignup.shouldBe(visible);
         loginField_Password.clear();
         loginField_Password.shouldBe(empty);
-        rootLogger.info("Login only was submitted");
+        rootLogger.info("ILogin only was submitted");
 
         user.submitLoginCredentials(
                 "teastaaaqweeco001@gmail.com",

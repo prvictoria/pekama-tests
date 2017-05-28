@@ -59,7 +59,7 @@ public class TestsPekamaProjectContacts{
         setBrowser();
         holdBrowserAfterTest();
         if(skipBefore==false) {
-          owner.loginByURL(owner.email, owner.passwordPekama, URL_PEKAMA_LOGIN);
+          owner.login(owner.email, owner.passwordPekama, URL_PEKAMA_LOGIN);
         }
         else {rootLogger.info("Before suite was skipped");
         }
@@ -74,7 +74,7 @@ public class TestsPekamaProjectContacts{
     @Before
     public void login() {
         //clearBrowserCache();
-        owner.loginByURL(owner.email, owner.passwordPekama, projectUrl);
+        owner.login(owner.email, owner.passwordPekama, projectUrl);
     }
     @Test
     public void tabContacts_F1_addNewContact_Person() {

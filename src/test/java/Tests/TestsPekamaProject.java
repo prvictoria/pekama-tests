@@ -101,7 +101,7 @@ public class TestsPekamaProject {
     public void before() {
         if(nextIsImapTest==false) {
             //clearBrowserCache();
-            owner.loginByURL(owner.email, owner.passwordPekama, URL_LogIn);
+            owner.login(owner.email, owner.passwordPekama, URL_LogIn);
             if (skipBefore == false) {
                 DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 30000).click();
                 testProjectTitle = submitMwNewProject(

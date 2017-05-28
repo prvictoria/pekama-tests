@@ -13,14 +13,14 @@ public class TestsCredentials {
         PEKAMA_PASSWORD("asui67we34"),
         LINKEDIN_PASSWORD("asui67we34@Q"),
         BOX_PASSWORD("32qew8127a12a"),
-        NAME("Test001"),
-        SURNAME("Quality01"),
-        NAME_SURNAME("Test001 Quality01"),
-        TEAM_NAME("QweecoTeam01"),
-        TEAM_CODE("QT01"),
-        FULL_TEAM_NAME("QweecoTeam01 (QT01)"),
-        COMMUNITY_CASE_TYPE("Patent"),
-        COMMUNITY_CASE_COUNTRY("Pitcairn Islands");
+        XERO_PASSWORD(""),
+        NAME("A-USER-NAME"),
+        SURNAME("A-USER-SURNAME"),
+        NAME_SURNAME("A-USER-NAME A-USER-SURNAME"),
+        TEAM_NAME("TEAM_01"),
+        FULL_TEAM_NAME("TEAM_01 (01TQ)"),
+        TEAM_CODE("01TQ"),
+        TEAM_INITIALS("01");
         private String value;
         User1(String value) {
             this.value = value;
@@ -28,21 +28,21 @@ public class TestsCredentials {
         public String getValue() {
             return value;
         }
-    } //Requester
+    }
+    //Requester
     public enum User2 {
         GMAIL_EMAIL("testqweeco002@gmail.com"),
         GMAIL_PASSWORD("123456789qasw1"),
         PEKAMA_PASSWORD("asui67we34"),
         LINKEDIN_PASSWORD("123456789qasw"),
         BOX_PASSWORD("32qew8127a12a"),
-        NAME("Test002"),
-        SURNAME("Quality02"),
-        NAME_SURNAME("Test002 Quality02"),
-        TEAM_NAME("QweecoTeam02"),
-        TEAM_CODE("QT02"),
-        FULL_TEAM_NAME("QweecoTeam02 (QT02)"),
-        COMMUNITY_CASE_TYPE("Patent"),
-        COMMUNITY_CASE_COUNTRY("Pitcairn Islands");
+        NAME("B-USER-NAME"),
+        SURNAME("B-USER-SURNAME"),
+        NAME_SURNAME("B-USER-NAME B-USER-SURNAME"),
+        TEAM_NAME("TEAM_02"),
+        FULL_TEAM_NAME("TEAM_02 (02TQ)"),
+        TEAM_CODE("02TQ"),
+        TEAM_INITIALS("02");
         private String value;
         User2(String value) {
             this.value = value;
@@ -50,7 +50,8 @@ public class TestsCredentials {
         public String getValue() {
             return value;
         }
-    } //Expert
+    }
+    //Expert
     public enum User3 {
         GMAIL_EMAIL("testqweeco003@gmail.com"),
         GMAIL_PASSWORD("123456789qasw1"),
@@ -58,9 +59,6 @@ public class TestsCredentials {
         LINKEDIN_PASSWORD("123456789qasw"),
         BOX_PASSWORD("32qew8127a12a"),
         XERO_PASSWORD("asui67we34"),
-        NAME("Test003"),
-        SURNAME("Quality03"),
-        NAME_SURNAME("Test003 Quality03"),
         PHONE("205-780-5656"),
         FAX("(205) 254-2294"),
         MOBILE("205- 324-8712"),
@@ -70,11 +68,13 @@ public class TestsCredentials {
         CITY("Birmingham"),
         REGION("Alabama"),
         COUNTRY("United States"),
-        TEAM_NAME("QweecoTeam03"),
-        TEAM_CODE("QT03"),
-        FULL_TEAM_NAME("QweecoTeam03 (QT03)"),
-        COMMUNITY_CASE_TYPE("Patent"),
-        COMMUNITY_CASE_COUNTRY("Pitcairn Islands");
+        NAME("C-USER-NAME"),
+        SURNAME("C-USER-SURNAME"),
+        NAME_SURNAME("C-USER-NAME C-USER-SURNAME"),
+        TEAM_NAME("TEAM_03"),
+        FULL_TEAM_NAME("TEAM_03 (03TQ)"),
+        TEAM_CODE("03TQ"),
+        TEAM_INITIALS("03");
         private String value;
         User3(String value) {
             this.value = value;
@@ -82,16 +82,15 @@ public class TestsCredentials {
         public String getValue() {
             return value;
         }
-    } //Requester
+    }
+    //Requester
     public enum User4 {
         GMAIL_EMAIL("testqweeco004@gmail.com"),
         GMAIL_PASSWORD("123456789qasw1"),
         PEKAMA_PASSWORD("asui67we34"),
         LINKEDIN_PASSWORD("123456789qasw"),
         BOX_PASSWORD("32qew8127a12a"),
-        NAME("Test004"),
-        SURNAME("Quality04"),
-        NAME_SURNAME("Test004 Quality04"),
+        XERO_PASSWORD("asui67we34"),
         PHONE("205-780-5656"),
         FAX("(205) 254-2294"),
         MOBILE("205- 324-8712"),
@@ -101,12 +100,13 @@ public class TestsCredentials {
         CITY("Birmingham"),
         REGION("Alabama"),
         COUNTRY("United States"),
-        TEAM_NAME("QweecoTeam04"),
-        TEAM_CODE("QT04"),
-        FULL_TEAM_NAME("QweecoTeam04 (QT04)"),
-        COMMUNITY_CASE_TYPE("Patent"),
-        COMMUNITY_CASE_COUNTRY("Pitcairn Islands");
-
+        NAME("D-USER-NAME"),
+        SURNAME("D-USER-SURNAME"),
+        NAME_SURNAME("D-USER-NAME D-USER-SURNAME"),
+        TEAM_NAME("TEAM_04"),
+        FULL_TEAM_NAME("TEAM_04 (04TQ)"),
+        TEAM_CODE("04TQ"),
+        TEAM_INITIALS("04");
         private String value;
         User4(String value) {
             this.value = value;
@@ -121,9 +121,7 @@ public class TestsCredentials {
         PEKAMA_PASSWORD("asui67we34"),
         LINKEDIN_PASSWORD("123456789qasw"),
         BOX_PASSWORD("32qew8127a12a"),
-        NAME("Test005"),
-        SURNAME("Quality05"),
-        NAME_SURNAME("Test005 Quality05"),
+        XERO_PASSWORD("asui67we34"),
         PHONE("205-780-5656"),
         FAX("(205) 254-2294"),
         MOBILE("205- 324-8712"),
@@ -133,12 +131,13 @@ public class TestsCredentials {
         CITY("Birmingham"),
         REGION("Alabama"),
         COUNTRY("United States"),
-        TEAM_NAME("QweecoTeam05"),
-        TEAM_CODE("QT05"),
-        FULL_TEAM_NAME("QweecoTeam05 (QT05)"),
-        COMMUNITY_CASE_TYPE("Patent"),
-        COMMUNITY_CASE_COUNTRY("Pitcairn Islands");
-
+        NAME("E-USER-NAME"),
+        SURNAME("E-USER-SURNAME"),
+        NAME_SURNAME("E-USER-NAME E-USER-SURNAME"),
+        TEAM_NAME("TEAM_05"),
+        FULL_TEAM_NAME("TEAM_05 (05TQ)"),
+        TEAM_CODE("05TQ"),
+        TEAM_INITIALS("05");
         private String value;
         User5(String value) {
             this.value = value;
@@ -146,7 +145,8 @@ public class TestsCredentials {
         public String getValue() {
             return value;
         }
-    } //Edit profile flow
+    }
+    //Edit profile flow
     public enum User6 {
         GMAIL_EMAIL("testqweeco006@gmail.com"),
         GMAIL_PASSWORD("123456789qasw1"),
@@ -154,9 +154,7 @@ public class TestsCredentials {
         PEKAMA_OLD_PASSWORD("asui67we34Aw!"),
         LINKEDIN_PASSWORD("123456789qasw"),
         BOX_PASSWORD("32qew8127a12a"),
-        NAME("Test006"),
-        SURNAME("Quality06"),
-        NAME_SURNAME("Test006 Quality06"),
+        XERO_PASSWORD("asui67we34"),
         PHONE("205-780-5656"),
         FAX("(205) 254-2294"),
         MOBILE("205- 324-8712"),
@@ -166,12 +164,13 @@ public class TestsCredentials {
         CITY("Birmingham"),
         REGION("Alabama"),
         COUNTRY("United States"),
-        TEAM_NAME("QweecoTeam06"),
-        TEAM_CODE("QT06"),
-        FULL_TEAM_NAME("QweecoTeam06 (QT06)"),
-        COMMUNITY_CASE_TYPE("Patent"),
-        COMMUNITY_CASE_COUNTRY("Pitcairn Islands");
-
+        NAME("F-USER-NAME"),
+        SURNAME("F-USER-SURNAME"),
+        NAME_SURNAME("F-USER-NAME F-USER-SURNAME"),
+        TEAM_NAME("TEAM_06"),
+        FULL_TEAM_NAME("TEAM_06 (06TQ)"),
+        TEAM_CODE("06TQ"),
+        TEAM_INITIALS("06");
         private String value;
         User6(String value) {
             this.value = value;
@@ -183,7 +182,7 @@ public class TestsCredentials {
     //Reset password Pekama flow, login with Auth2 flow
     //No need accounts on server
     public enum User7 {
-        GMAIL_EMAIL("");
+        GMAIL_EMAIL("G");
 
         private String value;
         User7(String value) {
@@ -200,9 +199,7 @@ public class TestsCredentials {
         PEKAMA_PASSWORD("asui67we34Aw!"),
         LINKEDIN_PASSWORD("123456789qasw"),
         BOX_PASSWORD("32qew8127a12a"),
-        NAME("Test008"),
-        SURNAME("Quality08"),
-        NAME_SURNAME("Test008 Quality08"),
+        XERO_PASSWORD("asui67we34"),
         PHONE("205-780-5656"),
         FAX("(205) 254-2294"),
         MOBILE("205- 324-8712"),
@@ -212,11 +209,13 @@ public class TestsCredentials {
         CITY("Birmingham"),
         REGION("Alabama"),
         COUNTRY("United States"),
-        TEAM_NAME("QweecoTeam08"),
-        TEAM_CODE("QT08"),
-        FULL_TEAM_NAME("QweecoTeam08 (QT08)"),
-        COMMUNITY_CASE_TYPE("Patent"),
-        COMMUNITY_CASE_COUNTRY("Pitcairn Islands");
+        NAME("H-USER-NAME"),
+        SURNAME("H-USER-SURNAME"),
+        NAME_SURNAME("H-USER-NAME H-USER-SURNAME"),
+        TEAM_NAME("TEAM_08"),
+        FULL_TEAM_NAME("TEAM_08 (08TQ)"),
+        TEAM_CODE("08TQ"),
+        TEAM_INITIALS("08");
 
     private String value;
         User8(String value) {

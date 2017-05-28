@@ -58,7 +58,7 @@ public class TestsPekamaProjectInfo {
         TEST_CASE_TYPE = MATTER_TYPE_TRADEMARK;
         if(skipBefore==false) {
             ObjectUser user = ObjectUser.newBuilder().build();
-            user.loginByURL(OWNER_LOGIN_EMAIL, OWNER_PASSWORD_PEKAMA, URL_LogIn);
+            user.login(OWNER_LOGIN_EMAIL, OWNER_PASSWORD_PEKAMA, URL_LogIn);
 
             rootLogger.info("Create project");
             submitEnabledButton(DASHBOARD_BTN_NEW_PROJECT);
@@ -78,7 +78,7 @@ public class TestsPekamaProjectInfo {
     public void login() {
         //clearBrowserCache();
         ObjectUser owner = ObjectUser.newBuilder().email(OWNER_LOGIN_EMAIL).passwordPekama(OWNER_PASSWORD_PEKAMA).build();
-        owner.loginByURL(owner.email, owner.passwordPekama, projectUrl);
+        owner.login(owner.email, owner.passwordPekama, projectUrl);
         clickSelector(PROJECT_TAB_INFO);
     }
 

@@ -31,7 +31,7 @@ public class CommunityDashboard extends Page {
 
     public static final SelenideElement COMMUNITY_TAB_TITLE = $(byXpath("//*[@class='panel-heading']//*[@class='title']"));
     public static final SelenideElement COMMUNITY_INNRER_BTN_SIGNUP = $(byXpath("//a[@type='button' and contains(.,'Sign up')]"));
-    public static final SelenideElement COMMUNITY_INNRER_BTN_LOGIN = $(byXpath("//a[@type='button' and contains(.,'Login')]"));
+    public static final SelenideElement COMMUNITY_INNRER_BTN_LOGIN = $(byXpath("//a[@type='button' and contains(.,'ILogin')]"));
 
     public static final SelenideElement COMMUNITY_BTN_StartConversation = $(byXpath("//button[contains(text(),'start new conversation')]"));
     public static final SelenideElement COMMUNITY_BTN_StartRequestInstruction = $(byXpath("//button[contains(text(),'request introductions')]"));

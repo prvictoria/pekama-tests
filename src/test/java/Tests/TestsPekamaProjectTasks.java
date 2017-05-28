@@ -53,7 +53,7 @@ public class TestsPekamaProjectTasks {
         setBrowser();
         holdBrowserAfterTest();
         if(skipBefore==false) {
-            owner.loginByURL(owner.email, owner.passwordPekama, URL_LogIn);
+            owner.login(owner.email, owner.passwordPekama, URL_LogIn);
 
             rootLogger.info("Create project");
             submitEnabledButton(DASHBOARD_BTN_NEW_PROJECT);
@@ -73,7 +73,7 @@ public class TestsPekamaProjectTasks {
     @Before
     public void login() {
         //clearBrowserCache();
-        owner.loginByURL(owner.email, owner.passwordPekama, URL_LogIn);
+        owner.login(owner.email, owner.passwordPekama, URL_LogIn);
         checkText(projectName);
         StepsPekamaProject.deleteAllTasks();
     }

@@ -290,9 +290,9 @@ public class TestsPekamaResetPassword {
             openUrlWithBaseAuth(AUTH_URL);
             sleep(1000);
             ObjectUser owner = ObjectUser.newBuilder().email(email).passwordPekama(NEW_PASSWORD_PEKAMA).build();
-            owner.loginByURL(owner.email, owner.passwordPekama, URL_PEKAMA_LOGIN);
+            owner.login(owner.email, owner.passwordPekama, URL_PEKAMA_LOGIN);
             Assert.assertTrue(owner.isLoginSucceed);
-        rootLogger.info("Login into Pekama with NEW valid credentials");
+        rootLogger.info("ILogin into Pekama with NEW valid credentials");
             openUrlWithBaseAuth(URL_Logout);
         }
         else Assert.fail("password - "+ NEW_PASSWORD_PEKAMA);

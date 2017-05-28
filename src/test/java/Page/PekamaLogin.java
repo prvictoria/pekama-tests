@@ -15,7 +15,7 @@ import static com.codeborne.selenide.Selenide.$;
  */
 public class PekamaLogin extends Page {
     public static final SelenideElement lOGIN_TITLE = $(byXpath("//*[@class='title']"));
-    public static final String lOGIN_TITLE_TEXT = "Login";
+    public static final String lOGIN_TITLE_TEXT = "ILogin";
 
     public static final SelenideElement loginLinkedin = $(byXpath(""));
     public static final SelenideElement loginGoogle = $(byXpath(""));

@@ -17,6 +17,8 @@ import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
 import static Steps.ObjectProject.checkReportsProjectRow;
 import static Steps.ObjectProject.projectEnterPoint.REPORTS;
+import static Steps.ObjectUser.Users.OWNER;
+import static Steps.ObjectUser.newBuilder;
 import static Steps.StepsModalWindows.submitMwNewProject;
 import static Steps.StepsPekamaReports.*;
 import static Tests.BeforeTestsSetUp.*;
@@ -29,14 +31,11 @@ import static com.codeborne.selenide.WebDriverRunner.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaReportsFiltersProjects {
     static final Logger rootLogger = LogManager.getRootLogger();
-    private static final String OWNER_LOGIN_EMAIL = User8.GMAIL_EMAIL.getValue();
-    private static final String OWNER_PASSWORD_PEKAMA = User8.PEKAMA_PASSWORD.getValue();
-    private static final String OWNER_TEAM_NAME = User8.TEAM_NAME.getValue();
     private static ObjectProject project1 = new ObjectProject();
     private static ObjectProject project2 = new ObjectProject();
     private static ObjectProject project3 = new ObjectProject();
     private static ObjectProject project4 = new ObjectProject();
-    private static ObjectUser owner = ObjectUser.newBuilder().email(OWNER_LOGIN_EMAIL).passwordPekama(OWNER_PASSWORD_PEKAMA).build();
+    private static ObjectUser owner = new ObjectUser(newBuilder()).buildUser(OWNER);
 
 
     private static boolean skipBefore = false;
@@ -50,7 +49,7 @@ public class TestsPekamaReportsFiltersProjects {
         holdBrowserAfterTest();
 
         if(skipBefore==false) {
-            owner.loginByURL(owner.email, owner.passwordPekama, URL_ReportsProjects);
+            owner.login(owner, URL_ReportsProjects);
 
             deleteAllProjects();
             project1.setValues("SortPrj1", PATENT.getValue(),
@@ -78,11 +77,11 @@ public class TestsPekamaReportsFiltersProjects {
     @Before
     public void login() {
         //clearBrowserCache();
-        owner.loginByURL(owner.email, owner.passwordPekama, URL_ReportsProjects);
+        owner.login(owner, URL_ReportsProjects);
     }
     @AfterClass
     public static void clear(){
-        owner.loginByURL(owner.email, owner.passwordPekama, URL_ReportsProjects);
+        owner.login(owner, URL_ReportsProjects);
         deleteAllProjects();
         getWebDriver().quit();
     }

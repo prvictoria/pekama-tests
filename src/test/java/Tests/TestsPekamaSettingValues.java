@@ -47,7 +47,7 @@ public class TestsPekamaSettingValues {
         clearBrowserCache();
         rootLogger.info("Open host");
         ObjectUser user = ObjectUser.newBuilder().build();
-        user.loginByURL(
+        user.login(
                 TEST_USER_LOGIN,
                 TEST_USER_PASSWORD,
                 URL_VALUES);

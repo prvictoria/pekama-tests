@@ -69,7 +69,7 @@ public class TestsCommunityOutgoing {
 //        clearBrowserCache();
 //        rootLogger.info("Open host");
 //        StepsPekama loginIntoPekama = new StepsPekama();
-//        loginIntoPekama.loginByURL(
+//        loginIntoPekama.login(
 //                REQUESTER_EMAIL,
 //                REQUESTER_PEKAMA_PASSWORD,
 //                URL_COMMUNITY_LOGIN);

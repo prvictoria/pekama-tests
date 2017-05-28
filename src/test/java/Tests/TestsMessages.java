@@ -84,7 +84,7 @@ public class TestsMessages {
             emailTask.imapSearchEmailDeleteAll(
                     COLLABORATOR_EMAIL,
                     COLLABORATOR_EMAIL_PASSWORD);
-            owner.loginByURL(owner.email, owner.passwordPekama, URL_PEKAMA_LOGIN);
+            owner.login(owner.email, owner.passwordPekama, URL_PEKAMA_LOGIN);
             deleteAllMembers();
             getWebDriver().quit();
         }
@@ -94,7 +94,7 @@ public class TestsMessages {
     public void before() {
         if (skipBefore==false) {
             //clearBrowserCache();
-            owner.loginByURL(owner.email, owner.passwordPekama, URL_PEKAMA_LOGIN);
+            owner.login(owner.email, owner.passwordPekama, URL_PEKAMA_LOGIN);
             rootLogger.info("Create project");
             DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 15000).click();
             testProjectName = submitMwNewProject();
@@ -737,7 +737,7 @@ public class TestsMessages {
         skipBefore = true;
       //  repryLink = "https://u1528369.ct.sendgrid.net/wf/click?upn=nlPIBkCFx3ihDwn5X-2FQH25GimnAenIWRK2CNbjwb1wz4MhLyrPlDXqARqX-2FoYxFNbrjSdkTycqH9IUseFSWnM-2F3L2QDDFm6XOpyOMUSqms0-3D_FhKIrNJz0J-2FLui-2BhorTXHazj59U-2BmXqSH3Q93OorhOgeYov1Ufk9vFFXG5Ntep8eoNf46zw8iVivjaYI07Za3OlTl3RkPuH16WaCuXZo-2FdTBRfJTZhKbG8zpyau5YKjB3L3x1mhTWFfaA05p1O7I8EaImFM6KER0npwusk-2FxVocP3SA3-2FbPdMBYnC7pACNNzlLXAQPDcxyBkV1Akw6IOB8DFbnm2tqEGbncvHn53U0EBKnYal25sNsT92EF8Dc68PQ2SvDGda-2FvBdR5UBu81pVgjqAVqOHxI26M0AiFGmwqgKkDIiCJWOX5KCYmZfR-2FO";
         Assert.assertNotNull(repryLink);
-        collaborator.loginByURL(owner.email, owner.passwordPekama, URL_PEKAMA_LOGIN);
+        collaborator.login(owner.email, owner.passwordPekama, URL_PEKAMA_LOGIN);
         openUrlWithBaseAuth(repryLink);
         checkTreadTitle("COPY_OF_MY_OWN_MESSAGE");
         rootLogger.info("Test Passed");
@@ -748,7 +748,7 @@ public class TestsMessages {
         skipBefore = false;
         //repryLink = "https://u1528369.ct.sendgrid.net/wf/click?upn=nlPIBkCFx3ihDwn5X-2FQH25GimnAenIWRK2CNbjwb1wz4MhLyrPlDXqARqX-2FoYxFNbrjSdkTycqH9IUseFSWnM-2F3L2QDDFm6XOpyOMUSqms0-3D_FhKIrNJz0J-2FLui-2BhorTXHazj59U-2BmXqSH3Q93OorhOgeYov1Ufk9vFFXG5Ntep8eoNf46zw8iVivjaYI07Za3OlTl3RkPuH16WaCuXZo-2FdTBRfJTZhKbG8zpyau5YKjB3L3x1mhTWFfaA05p1O7I8EaImFM6KER0npwusk-2FxVocP3SA3-2FbPdMBYnC7pACNNzlLXAQPDcxyBkV1Akw6IOB8DFbnm2tqEGbncvHn53U0EBKnYal25sNsT92EF8Dc68PQ2SvDGda-2FvBdR5UBu81pVgjqAVqOHxI26M0AiFGmwqgKkDIiCJWOX5KCYmZfR-2FO";
         Assert.assertNotNull(repryLink);
-        owner.loginByURL(owner.email, owner.passwordPekama, URL_PEKAMA_LOGIN);
+        owner.login(owner.email, owner.passwordPekama, URL_PEKAMA_LOGIN);
         openUrlWithBaseAuth(repryLink);
         checkText("You followed a link meant for one of your other accounts. Please sign in with that account to proceed.");
         rootLogger.info("Test Passed");
@@ -822,7 +822,7 @@ public class TestsMessages {
         openUrlWithBaseAuth(URL_PEKAMA_LOGOUT);
 
         rootLogger.info("Set FOLLOWER email settings");
-        collaborator.loginByURL(owner.email, owner.passwordPekama, URL_PEKAMA_LOGIN);
+        collaborator.login(owner.email, owner.passwordPekama, URL_PEKAMA_LOGIN);
         openSettingsTabEmails();
         selectReceiveEmailOptions(
                 true,
@@ -834,7 +834,7 @@ public class TestsMessages {
         openUrlWithBaseAuth(URL_PEKAMA_LOGOUT);
 
         rootLogger.info("Create thread");
-        owner.loginByURL(owner.email, owner.passwordPekama, URL_PEKAMA_LOGIN);
+        owner.login(owner.email, owner.passwordPekama, URL_PEKAMA_LOGIN);
         openUrlWithBaseAuth(testProjectUrl);
         callModalNewConversation();
         submitNewConversationWindow(

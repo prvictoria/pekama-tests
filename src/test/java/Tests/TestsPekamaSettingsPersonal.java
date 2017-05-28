@@ -47,7 +47,7 @@ public class TestsPekamaSettingsPersonal {
     public void before() {
         clearBrowserCache();
         ObjectUser user = ObjectUser.newBuilder().build();
-        user.loginByURL(TEST_USER_LOGIN, TEST_USER_PASSWORD, URL_LogIn);
+        user.login(TEST_USER_LOGIN, TEST_USER_PASSWORD, URL_LogIn);
     }
 
     @Test
@@ -95,7 +95,7 @@ public class TestsPekamaSettingsPersonal {
         PERSONAL_SETTINGS_BTN.waitUntil(visible, 20000).shouldBe(Condition.visible);
         TEAM_SETTINGS_BTN.waitUntil(visible, 20000).shouldBe(Condition.visible);
         PERSONAL_DETAILS_TAB_TITLE.shouldHave(text("Personal details"));
-        SECURITY_TAB_TITLE.shouldHave(text("Login & Security"));
+        SECURITY_TAB_TITLE.shouldHave(text("ILogin & Security"));
         EMAILS_TAB_TITLE.shouldHave(text("Emails"));
         SIGNATURE_TAB_TITLE.shouldHave(text("E-mail signature"));
         IMAP_TAB_TITLE.shouldHave(text("IMAP"));

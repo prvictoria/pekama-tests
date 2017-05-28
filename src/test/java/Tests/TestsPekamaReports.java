@@ -69,7 +69,7 @@ public class TestsPekamaReports {
         if(skipBefore==false) {
             clearBrowserCache();
             ObjectUser user = ObjectUser.newBuilder().build();
-            user.loginByURL(TEST_USER_LOGIN, TEST_USER_PASSWORD, URL_LogIn);
+            user.login(TEST_USER_LOGIN, TEST_USER_PASSWORD, URL_LogIn);
         }
         else {rootLogger.info("Before was skipped");}
     }

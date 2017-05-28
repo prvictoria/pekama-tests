@@ -66,7 +66,7 @@ public class TestsCommunityIntegration {
 //    public void before() {
 //        clearBrowserCache();
 //        StepsPekama loginIntoPekama = new StepsPekama();
-//        loginIntoPekama.loginByURL(
+//        loginIntoPekama.login(
 //                REQUESTER_EMAIL,
 //                REQUESTER_PEKAMA_PASSWORD,
 //                URL_LogIn);
@@ -234,7 +234,7 @@ public class TestsCommunityIntegration {
 //
 //        rootLogger.info("Expert login");
 //        StepsPekama loginIntoPekama = new StepsPekama();
-//        loginIntoPekama.loginByURL(
+//        loginIntoPekama.login(
 //                EXPERT_EMAIL,
 //                EXPERT_PEKAMA_PASSWORD,
 //                URL_LogIn);
@@ -267,7 +267,7 @@ public class TestsCommunityIntegration {
 //
 //        rootLogger.info("Expert login");
 //        StepsPekama loginIntoPekama = new StepsPekama();
-//        loginIntoPekama.loginByURL(
+//        loginIntoPekama.login(
 //                EXPERT_EMAIL,
 //                EXPERT_PEKAMA_PASSWORD,
 //                URL_LogIn);

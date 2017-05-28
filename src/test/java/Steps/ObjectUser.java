@@ -11,6 +11,7 @@ import static Page.TestsCredentials.*;
 import static Page.UrlStrings.*;
 import static Steps.StepsHttpAuth.*;
 import static Steps.StepsPekama.*;
+import static Steps.Steps.checkActualUrl;
 import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
 import static Utils.Utils.randomString;
 import static com.codeborne.selenide.Condition.*;
@@ -21,7 +22,7 @@ import static com.codeborne.selenide.Selenide.sleep;
 /**
  * Created by Viachaslau_Balashevi on 3/29/2017.
  */
-public class ObjectUser {
+public class ObjectUser implements ILogin {
     static final Logger rootLogger = LogManager.getRootLogger();
     public String email;
     public String passwordPekama;
@@ -54,89 +55,173 @@ public class ObjectUser {
     public Boolean isSignUpSucceed = false;
     public Boolean isLoginSucceed = false;
 
-    private ObjectUser(Builder builder) {
+    public ObjectUser(Builder builder) {
         email = builder.email;
         passwordPekama = builder.passwordPekama;
+        passwordEmail = builder.passwordEmail;
+        passwordBox = builder.passwordBox;
+        passwordXero = builder.passwordXero;
+        passwordLinkedIn = builder.passwordLinkedIn;
         name = builder.name;
         surname = builder.surname;
+        nameSurname = builder.nameSurname;
         company = builder.company;
         businessType = builder.businessType;
         role = builder.role;
         phone = builder.phone;
+        fax = builder.fax;
+        mobile = builder.mobile;
+        legalEntity = builder.legalEntity;
+        street = builder.street;
+        zip = builder.zip;
+        city = builder.city;
+        region = builder.region;
         country = builder.country;
+        teamName = builder.teamName;
+        teamFullName = builder.teamFullName;
+        teamCode = builder.teamCode;
+        teamInitials = builder.teamInitials;
         isSignUpSucceed = builder.isSignUpSucceed;
         isLoginSucceed = builder.isLoginSucceed;
     }
-
     public static Builder newBuilder() {
         return new Builder();
     }
     public static final class Builder {
         private String email;
         private String passwordPekama;
+        private String passwordEmail;
+        private String passwordBox;
+        private String passwordXero;
+        private String passwordLinkedIn;
         private String name;
         private String surname;
+        private String nameSurname;
         private String company;
         private String businessType;
         private String role;
         private String phone;
+        private String fax;
+        private String mobile;
+        private String legalEntity;
+        private String street;
+        private String zip;
+        private String city;
+        private String region;
         private String country;
+        private String teamName;
+        private String teamFullName;
+        private String teamCode;
+        private String teamInitials;
         private Boolean isSignUpSucceed;
         private Boolean isLoginSucceed;
 
         private Builder() {
         }
-
         public Builder email(String email) {
             this.email = email;
             return this;
         }
-
         public Builder passwordPekama(String password) {
             this.passwordPekama = password;
             return this;
         }
-
+        public Builder passwordEmail(String passwordEmail) {
+            this.passwordEmail = passwordEmail;
+            return this;
+        }
+        public Builder passwordBox(String passwordBox) {
+            this.passwordBox = passwordBox;
+            return this;
+        }
+        public Builder passwordXero(String passwordXero) {
+            this.passwordXero = passwordXero;
+            return this;
+        }
+        public Builder passwordLinkedIn(String passwordLinkedIn) {
+            this.passwordLinkedIn = passwordLinkedIn;
+            return this;
+        }
         public Builder name(String name) {
             this.name = name;
             return this;
         }
-
         public Builder surname(String surname) {
             this.surname = surname;
             return this;
         }
-
+        public Builder nameSurname(String nameSurname) {
+            this.nameSurname = nameSurname;
+            return this;
+        }
         public Builder company(String company) {
             this.company = company;
             return this;
         }
-
         public Builder businessType(String businessType) {
             this.businessType = businessType;
             return this;
         }
-
         public Builder role(String role) {
             this.role = role;
             return this;
         }
-
         public Builder phone(String phone) {
             this.phone = phone;
             return this;
         }
-
+        public Builder fax(String fax) {
+            this.fax = fax;
+            return this;
+        }
+        public Builder mobile(String mobile) {
+            this.mobile = mobile;
+            return this;
+        }
+        public Builder legalEntity(String legalEntity) {
+            this.legalEntity = legalEntity;
+            return this;
+        }
+        public Builder street(String street) {
+            this.street = street;
+            return this;
+        }
+        public Builder zip(String zip) {
+            this.zip = zip;
+            return this;
+        }
+        public Builder city(String city) {
+            this.city = city;
+            return this;
+        }
+        public Builder region(String region) {
+            this.region = region;
+            return this;
+        }
         public Builder country(String country) {
             this.country = country;
             return this;
         }
-
+        public Builder teamName(String teamName) {
+            this.teamName = teamName;
+            return this;
+        }
+        public Builder teamFullName(String teamFullName) {
+            this.teamFullName = teamFullName;
+            return this;
+        }
+        public Builder teamCode(String teamCode) {
+            this.teamCode = teamCode;
+            return this;
+        }
+        public Builder teamInitials(String teamInitials) {
+            this.teamInitials = teamInitials;
+            return this;
+        }
         public Builder isSignUpSucceed(Boolean isSignUpSucceed) {
             this.isSignUpSucceed = isSignUpSucceed;
             return this;
         }
-
         public Builder isLoginSucceed(Boolean isLoginSucceed) {
             this.isLoginSucceed = isLoginSucceed;
             return this;
@@ -147,11 +232,31 @@ public class ObjectUser {
         }
     }
 
+    @Override
+    public String login(ObjectUser user){
+        this.email = user.email;
+        this.passwordPekama = user.passwordPekama;
+        openUrlWithBaseAuth(URL_PEKAMA_LOGIN);
+        submitCookie(10);
+        hideZopim();
+        submitLoginCredentials(this.email, this.passwordPekama);
+        checkActualUrl(user, URL_PEKAMA_DASHBOARD);
+        return getActualUrl();
+    }
+    @Override
+    public String login(ObjectUser user, String url){
+        this.email = user.email;
+        this.passwordPekama = user.passwordPekama;
+        openUrlWithBaseAuth(url);
+        submitCookie(10);
+        hideZopim();
+        submitLoginCredentials(this.email, this.passwordPekama);
+        checkActualUrl(user, URL_PEKAMA_DASHBOARD);
+        return getActualUrl();
+    }
 
 
-
-
-    public void loginByURL(String email, String password, String url){
+    public void login(String email, String password, String url){
         this.email = email;
         this.passwordPekama = password;
         openUrlWithBaseAuth(url);
@@ -269,6 +374,110 @@ public class ObjectUser {
         return newPassword;
     }
 
+    public enum Users {OWNER, TEAM_MEMBER, ADMIN, COLLABORATOR, VIEWER, REQUESTER, EXPERT, PRETENDER, USER_01, USER_02, USER_03, USER_04, USER_05, USER_06, USER_07, USER_08, USER_09, USER_10};
+    public ObjectUser buildUser(ObjectUser.Users id) {
+        ObjectUser user = null;
+        switch (id) {
+            case OWNER:
+                user = new ObjectUser(newBuilder())
+                        .newBuilder()
+                        .email(User8.GMAIL_EMAIL.getValue())
+                        .passwordPekama(User8.PEKAMA_PASSWORD.getValue())
+                        .passwordEmail(User8.GMAIL_PASSWORD.getValue())
+                        .passwordBox(User8.BOX_PASSWORD.getValue())
+                        .passwordLinkedIn(User8.LINKEDIN_PASSWORD.getValue())
+                        .passwordXero(User8.XERO_PASSWORD.getValue())
+                        .name(User8.NAME.getValue())
+                        .surname(User8.SURNAME.getValue())
+                        .company(User8.TEAM_NAME.getValue())
+                        .businessType(null)
+                        .role(null)
+                        .phone(null)
+                        .country(null)
+                        .teamName(User8.TEAM_NAME.getValue())
+                        .teamFullName(User8.FULL_TEAM_NAME.getValue())
+                        .teamCode(User8.TEAM_CODE.getValue())
+                        .teamInitials(User8.TEAM_INITIALS.getValue())
+                        .build();
+                logUserFields(user);
+                break;
+            case TEAM_MEMBER:
+                break;
+            case ADMIN:
+                break;
+            case COLLABORATOR:
+                break;
+            case VIEWER:
+                break;
+            case REQUESTER:
+                break;
+            case EXPERT:
+                break;
+            case PRETENDER:
+                break;
+            case USER_01:
+                user = new ObjectUser(newBuilder())
+                        .newBuilder()
+                        .email(User1.GMAIL_EMAIL.getValue())
+                        .passwordPekama(User1.PEKAMA_PASSWORD.getValue())
+                        .passwordEmail(User1.GMAIL_PASSWORD.getValue())
+                        .passwordBox(User1.BOX_PASSWORD.getValue())
+                        .passwordLinkedIn(User1.LINKEDIN_PASSWORD.getValue())
+                        .passwordXero(User1.XERO_PASSWORD.getValue())
+                        .name(User1.NAME.getValue())
+                        .surname(User1.SURNAME.getValue())
+                        .company(User1.TEAM_NAME.getValue())
+                        .businessType(null)
+                        .role(null)
+                        .phone(null)
+                        .country(null)
+                        .teamName(User1.TEAM_NAME.getValue())
+                        .teamFullName(User1.FULL_TEAM_NAME.getValue())
+                        .teamCode(User1.TEAM_CODE.getValue())
+                        .teamInitials(User1.TEAM_INITIALS.getValue())
+                        .build();
+                logUserFields(user);
+                break;
+            case USER_02:
+                break;
+            case USER_03:
+                break;
+            case USER_04:
+                break;
+            case USER_05:
+                break;
+            case USER_06:
+                break;
+            case USER_07:
+                break;
+            case USER_08:
+                break;
+            case USER_09:
+                break;
+            case USER_10:
+                break;
+        }
+        return user;
+    };
+    public void logUserFields(ObjectUser user){
+        rootLogger.info(user.email);
+        rootLogger.info(user.passwordPekama);
+        rootLogger.info(user.passwordEmail);
+        rootLogger.info(user.passwordBox);
+        rootLogger.info(user.passwordLinkedIn);
+        rootLogger.info(user.passwordXero);
 
+        rootLogger.info(user.name);
+        rootLogger.info(user.surname);
+        rootLogger.info(user.company);
+        rootLogger.info(user.businessType);
+        rootLogger.info(user.role);
+        rootLogger.info(user.phone);
+        rootLogger.info(user.country);
 
+        rootLogger.info(user.teamName);
+        rootLogger.info(user.teamFullName);
+        rootLogger.info(user.teamCode);
+        rootLogger.info(user.teamInitials);
+    }
 }

@@ -12,14 +12,15 @@ import javax.mail.MessagingException;
 
 import java.io.IOException;
 
-import static Page.TestsCredentials.*;
 import static Page.TestsCredentials.Countries.*;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
-import static Steps.ObjectContact.contactType.COMPANY;
-import static Steps.ObjectContact.contactType.PERSON;
-import static Steps.ObjectContact.enterPoint.REPORT;
+import static Steps.ObjectContact.contactType.*;
+import static Steps.ObjectContact.enterPoint.*;
+import static Steps.ObjectUser.Users.OWNER;
+import static Steps.ObjectUser.newBuilder;
 import static Steps.StepsModalWindows.submitMwNewProject;
+import static Steps.StepsPekama.openUrlIfActualNotEquals;
 import static Steps.StepsPekamaReports.*;
 import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
 import static Tests.BeforeTestsSetUp.setBrowser;
@@ -31,15 +32,12 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaReportsFiltersContacts {
     static final Logger rootLogger = LogManager.getRootLogger();
-    private static final String OWNER_LOGIN = User8.GMAIL_EMAIL.getValue();
-    private static final String OWNER_PASSWORD = User8.PEKAMA_PASSWORD.getValue();
-    private static final String OWNER_TEAM_NAME = User8.TEAM_NAME.getValue();
     private static ObjectContact company1 = new ObjectContact();
     private static ObjectContact company2 = new ObjectContact();
     private static ObjectContact person3 = new ObjectContact();
     private static ObjectContact person4 = new ObjectContact();
     private static ObjectContact person5 = new ObjectContact();
-
+    private static final ObjectUser user = new ObjectUser(newBuilder()).buildUser(OWNER);
     private static boolean skipBefore = false;
 
     @Rule
@@ -50,8 +48,7 @@ public class TestsPekamaReportsFiltersContacts {
         setBrowser();
         holdBrowserAfterTest();
         if(skipBefore==false) {
-            ObjectUser user = ObjectUser.newBuilder().build();
-            user.loginByURL(OWNER_LOGIN, OWNER_PASSWORD, URL_PEKAMA_LOGIN);
+            user.login(user);
 
             deleteAllContacts();
             rootLogger.info("Create contacts in reports");
@@ -91,8 +88,8 @@ public class TestsPekamaReportsFiltersContacts {
     @Before
     public void login() {
         //clearBrowserCache();
-        ObjectUser user = ObjectUser.newBuilder().build();
-        user.loginByURL(OWNER_LOGIN, OWNER_PASSWORD, URL_ReportsContacts);
+        user.login(user, URL_ReportsContacts);
+        openUrlIfActualNotEquals(URL_ReportsContacts);
     }
     @Test
     public void contacts_sort_1_by_name(){

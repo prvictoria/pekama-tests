@@ -43,6 +43,15 @@ public abstract class Steps {
         Assert.assertTrue(selectedColor.equals("rgb("+colourRgb+")"));
         return true;
     }
+    public static Boolean checkActualUrl(ObjectUser user, String url){
+        if(getActualUrl().equals(url)){
+            user.isLoginSucceed = true;
+            return true;
+        }
+        else
+            user.isLoginSucceed = false;
+            return false;
+    };
 
 }
 

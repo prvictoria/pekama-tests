@@ -79,7 +79,7 @@ public class TestsCommunityIncoming {
 //        if (skipBefore==false) {
 //            rootLogger.info("Open host");
 //            ObjectUser user = new ObjectUser();
-//            user.loginByURL(
+//            user.login(
 //                    REQUESTER_EMAIL,
 //                    REQUESTER_PEKAMA_PASSWORD,
 //                    URL_COMMUNITY_LOGIN);
@@ -102,7 +102,7 @@ public class TestsCommunityIncoming {
 //        caseName = createCase(EXPERT_TEAM_NAME);
 //        rootLogger.info("Expert login");
 //        StepsPekama loginIntoPekama = new StepsPekama();
-//        loginIntoPekama.loginByURL(
+//        loginIntoPekama.login(
 //                EXPERT_EMAIL,
 //                EXPERT_PEKAMA_PASSWORD,
 //                URL_COMMUNITY_LOGIN);
@@ -120,7 +120,7 @@ public class TestsCommunityIncoming {
 //
 //        rootLogger.info("Expert login");
 //        ObjectUser user = new ObjectUser();
-//        user.loginByURL(
+//        user.login(
 //                EXPERT_EMAIL,
 //                EXPERT_PEKAMA_PASSWORD,
 //                URL_COMMUNITY_LOGIN);
@@ -141,7 +141,7 @@ public class TestsCommunityIncoming {
 //        caseName = createCase(EXPERT_TEAM_NAME);
 //        rootLogger.info("Expert login");
 //        StepsPekama loginIntoPekama = new StepsPekama();
-//        loginIntoPekama.loginByURL(
+//        loginIntoPekama.login(
 //                EXPERT_EMAIL,
 //                EXPERT_PEKAMA_PASSWORD,
 //                URL_COMMUNITY_LOGIN);
@@ -179,7 +179,7 @@ public class TestsCommunityIncoming {
 //        caseName = createCase(EXPERT_TEAM_NAME);
 //        rootLogger.info("Expert login");
 //        StepsPekama loginIntoPekama = new StepsPekama();
-//        loginIntoPekama.loginByURL(
+//        loginIntoPekama.login(
 //                EXPERT_EMAIL,
 //                EXPERT_PEKAMA_PASSWORD,
 //                URL_COMMUNITY_LOGIN);
@@ -242,7 +242,7 @@ public class TestsCommunityIncoming {
 //        caseName = createCase(EXPERT_TEAM_NAME);
 //        rootLogger.info("Expert login");
 //        StepsPekama loginIntoPekama = new StepsPekama();
-//        loginIntoPekama.loginByURL(
+//        loginIntoPekama.login(
 //                EXPERT_EMAIL,
 //                EXPERT_PEKAMA_PASSWORD,
 //                URL_COMMUNITY_LOGIN);
@@ -266,7 +266,7 @@ public class TestsCommunityIncoming {
 //        caseName = createCase(EXPERT_TEAM_NAME);
 //        rootLogger.info("Expert login");
 //        StepsPekama loginIntoPekama = new StepsPekama();
-//        loginIntoPekama.loginByURL(
+//        loginIntoPekama.login(
 //                EXPERT_EMAIL,
 //                EXPERT_PEKAMA_PASSWORD,
 //                URL_COMMUNITY_LOGIN);
@@ -318,7 +318,7 @@ public class TestsCommunityIncoming {
 //
 //        rootLogger.info("Expert login");
 //        StepsPekama loginIntoPekama = new StepsPekama();
-//        loginIntoPekama.loginByURL(
+//        loginIntoPekama.login(
 //                EXPERT_EMAIL,
 //                EXPERT_PEKAMA_PASSWORD,
 //                URL_COMMUNITY_LOGIN);
@@ -344,7 +344,7 @@ public class TestsCommunityIncoming {
 //
 //        rootLogger.info("Expert login");
 //        StepsPekama loginIntoPekama = new StepsPekama();
-//        loginIntoPekama.loginByURL(
+//        loginIntoPekama.login(
 //                EXPERT_EMAIL,
 //                EXPERT_PEKAMA_PASSWORD,
 //                URL_COMMUNITY_LOGIN);
@@ -371,7 +371,7 @@ public class TestsCommunityIncoming {
 //
 //        rootLogger.info("Expert login");
 //        StepsPekama loginIntoPekama = new StepsPekama();
-//        loginIntoPekama.loginByURL(
+//        loginIntoPekama.login(
 //                EXPERT_EMAIL,
 //                EXPERT_PEKAMA_PASSWORD,
 //                URL_COMMUNITY_LOGIN);
@@ -398,7 +398,7 @@ public class TestsCommunityIncoming {
 //
 //        rootLogger.info("Expert login");
 //        StepsPekama loginIntoPekama = new StepsPekama();
-//        loginIntoPekama.loginByURL(
+//        loginIntoPekama.login(
 //                EXPERT_EMAIL,
 //                EXPERT_PEKAMA_PASSWORD,
 //                URL_COMMUNITY_LOGIN);
@@ -429,7 +429,7 @@ public class TestsCommunityIncoming {
 //
 //        rootLogger.info("Expert login");
 //        StepsPekama loginIntoPekama = new StepsPekama();
-//        loginIntoPekama.loginByURL(
+//        loginIntoPekama.login(
 //                EXPERT_EMAIL,
 //                EXPERT_PEKAMA_PASSWORD,
 //                URL_COMMUNITY_LOGIN);
@@ -468,7 +468,7 @@ public class TestsCommunityIncoming {
 //
 //        rootLogger.info("Expert login");
 //        StepsPekama loginIntoPekama = new StepsPekama();
-//        loginIntoPekama.loginByURL(
+//        loginIntoPekama.login(
 //                EXPERT_EMAIL,
 //                EXPERT_PEKAMA_PASSWORD,
 //                URL_COMMUNITY_LOGIN);

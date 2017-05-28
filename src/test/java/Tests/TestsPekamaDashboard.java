@@ -70,7 +70,7 @@ public class TestsPekamaDashboard {
     @Before
     public void before() {
         ObjectUser user = ObjectUser.newBuilder().build();
-        user.loginByURL(
+        user.login(
                 USER_EMAIL,
                 USER_PEKAMA_PASSWORD,
                 URL_LogIn);

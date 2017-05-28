@@ -58,7 +58,7 @@ public class TestsCommunityProfile {
 //    @Before
 //    public void openUrlLogin() {
 //        StepsPekama loginIntoPekama = new StepsPekama();
-//        loginIntoPekama.loginByURL(PEKAMA_USER_EMAIL, PEKAMA_USER_PASSWORD, URL_COMMUNITY_LOGIN);
+//        loginIntoPekama.login(PEKAMA_USER_EMAIL, PEKAMA_USER_PASSWORD, URL_COMMUNITY_LOGIN);
 //        log.info("Redirect back after login");
 //        COMMUNITY_TAB_Profile.shouldBe(Condition.visible).shouldHave(Condition.text("my profile")).click();
 //    }

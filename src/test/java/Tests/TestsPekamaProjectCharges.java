@@ -67,7 +67,7 @@ public class TestsPekamaProjectCharges {
         setBrowser();
         holdBrowserAfterTest();
         if(skipBefore==false) {
-            user.loginByURL(user.email, user.passwordPekama, URL_LogIn);
+            user.login(user.email, user.passwordPekama, URL_LogIn);
 
             rootLogger.info("Create project");
             submitEnabledButton(DASHBOARD_BTN_NEW_PROJECT);
@@ -111,7 +111,7 @@ public class TestsPekamaProjectCharges {
     @Before
     public void login() {
         clearBrowserCache();
-        user.loginByURL(user.email, user.passwordPekama, projectUrl);
+        user.login(user.email, user.passwordPekama, projectUrl);
     }
 
     @Test
