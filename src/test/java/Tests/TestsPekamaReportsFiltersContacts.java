@@ -48,7 +48,7 @@ public class TestsPekamaReportsFiltersContacts {
         setBrowser();
         holdBrowserAfterTest();
         if(skipBefore==false) {
-            user.login(user);
+            user.login();
 
             deleteAllContacts();
             rootLogger.info("Create contacts in reports");

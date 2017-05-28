@@ -233,6 +233,16 @@ public class ObjectUser implements ILogin {
     }
 
     @Override
+    public String login() {
+        openUrlWithBaseAuth(URL_PEKAMA_LOGIN);
+        submitCookie(10);
+        hideZopim();
+        submitLoginCredentials(this.email, this.passwordPekama);
+        checkActualUrl(this, URL_PEKAMA_DASHBOARD);
+        return getActualUrl();
+    }
+
+    @Override
     public String login(ObjectUser user){
         this.email = user.email;
         this.passwordPekama = user.passwordPekama;

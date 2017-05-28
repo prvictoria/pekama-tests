@@ -24,6 +24,9 @@ import static Steps.MessagesValidator.ValidationReport.*;
 import static Steps.ObjectContact.contactType.COMPANY;
 import static Steps.ObjectContact.contactType.PERSON;
 import static Steps.ObjectContact.enterPoint.*;
+import static Steps.ObjectUser.Users.OWNER;
+import static Steps.ObjectUser.Users.USER_01;
+import static Steps.ObjectUser.newBuilder;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static Steps.StepsHttpAuth.*;
@@ -46,7 +49,7 @@ public class TestsPekamaReports {
     private static final String GMAIL_LOGIN = TEST_USER_LOGIN;
     private static final String GMAIL_PASSWORD = User1.GMAIL_PASSWORD.getValue();
     private static final String USER_TEAM_NAME = User1.TEAM_NAME.getValue();
-    
+    private static final ObjectUser user = new ObjectUser(newBuilder()).buildUser(USER_01);
     private static String projectName;
     private static boolean skipBefore = false;    
     
@@ -61,15 +64,14 @@ public class TestsPekamaReports {
         holdBrowserAfterTest();
         MessagesIMAP emailTask = new MessagesIMAP();
         emailTask.imapSearchEmailDeleteAll(
-                GMAIL_LOGIN,
-                GMAIL_PASSWORD);
+                user.email,
+                user.passwordEmail);
     }
     @Before
     public void login() {
         if(skipBefore==false) {
             clearBrowserCache();
-            ObjectUser user = ObjectUser.newBuilder().build();
-            user.login(TEST_USER_LOGIN, TEST_USER_PASSWORD, URL_LogIn);
+            user.login();
         }
         else {rootLogger.info("Before was skipped");}
     }
