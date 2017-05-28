@@ -5,6 +5,7 @@ package Steps;
  */
 public interface ILogin {
     public String login();
+    public String login(String url);
     public String login(ObjectUser user);
     public String login(ObjectUser user, String url);
 }

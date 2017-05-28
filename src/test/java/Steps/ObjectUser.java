@@ -7,6 +7,9 @@ import org.apache.logging.log4j.Logger;
 import static Page.PekamaLogin.*;
 import static Page.PekamaResetPassword.*;
 import static Page.PekamaSignUp.*;
+import static Page.PekamaTeamSettings.*;
+import static Page.PekamaTeamSettings.TAB_PROFILE_BTN_SAVE;
+import static Page.PekamaTeamSettings.TAB_PROFILE_REGION;
 import static Page.TestsCredentials.*;
 import static Page.UrlStrings.*;
 import static Steps.StepsHttpAuth.*;
@@ -50,7 +53,12 @@ public class ObjectUser implements ILogin {
     public String teamFullName;
     public String teamCode;
     public String teamInitials;
-
+    public String teamEmail;
+    public String teamStreet;
+    public String teamZip;
+    public String teamCity;
+    public String teamRegion;
+    public String teamCountry;
     public Boolean isSignUpSucceed = false;
     public Boolean isLoggedIn = false;
 
@@ -80,12 +88,19 @@ public class ObjectUser implements ILogin {
         teamFullName = builder.teamFullName;
         teamCode = builder.teamCode;
         teamInitials = builder.teamInitials;
+        teamEmail = builder.teamEmail;
+        teamStreet = builder.teamStreet;
+        teamZip = builder.teamZip;
+        teamCity = builder.teamCity;
+        teamRegion = builder.teamRegion;
+        teamCountry = builder.teamCountry;
         isSignUpSucceed = builder.isSignUpSucceed;
-        isLoggedIn = builder.isLoginSucceed;
+        isLoggedIn = builder.isLoggedIn;
     }
     public static Builder newBuilder() {
         return new Builder();
     }
+
     public static final class Builder {
         private String email;
         private String passwordPekama;
@@ -112,115 +127,214 @@ public class ObjectUser implements ILogin {
         private String teamFullName;
         private String teamCode;
         private String teamInitials;
+        private String teamEmail;
+        private String teamStreet;
+        private String teamZip;
+        private String teamCity;
+        private String teamRegion;
+        private String teamCountry;
         private Boolean isSignUpSucceed;
+        private Boolean isLoggedIn;
         private Boolean isLoginSucceed;
 
         private Builder() {
         }
+
         public Builder email(String email) {
             this.email = email;
             return this;
         }
+
         public Builder passwordPekama(String password) {
             this.passwordPekama = password;
             return this;
         }
+
         public Builder passwordEmail(String passwordEmail) {
             this.passwordEmail = passwordEmail;
             return this;
         }
+
         public Builder passwordBox(String passwordBox) {
             this.passwordBox = passwordBox;
             return this;
         }
+
         public Builder passwordXero(String passwordXero) {
             this.passwordXero = passwordXero;
             return this;
         }
+
         public Builder passwordLinkedIn(String passwordLinkedIn) {
             this.passwordLinkedIn = passwordLinkedIn;
             return this;
         }
+
         public Builder name(String name) {
             this.name = name;
             return this;
         }
+
         public Builder surname(String surname) {
             this.surname = surname;
             return this;
         }
+
         public Builder nameSurname(String nameSurname) {
             this.nameSurname = nameSurname;
             return this;
         }
+
         public Builder company(String company) {
             this.company = company;
             return this;
         }
+
         public Builder businessType(String businessType) {
             this.businessType = businessType;
             return this;
         }
+
         public Builder role(String role) {
             this.role = role;
             return this;
         }
+
         public Builder phone(String phone) {
             this.phone = phone;
             return this;
         }
+
         public Builder fax(String fax) {
             this.fax = fax;
             return this;
         }
+
         public Builder mobile(String mobile) {
             this.mobile = mobile;
             return this;
         }
+
         public Builder legalEntity(String legalEntity) {
             this.legalEntity = legalEntity;
             return this;
         }
+
         public Builder street(String street) {
             this.street = street;
             return this;
         }
+
         public Builder zip(String zip) {
             this.zip = zip;
             return this;
         }
+
         public Builder city(String city) {
             this.city = city;
             return this;
         }
+
         public Builder region(String region) {
             this.region = region;
             return this;
         }
+
         public Builder country(String country) {
             this.country = country;
             return this;
         }
+
         public Builder teamName(String teamName) {
             this.teamName = teamName;
             return this;
         }
+
         public Builder teamFullName(String teamFullName) {
             this.teamFullName = teamFullName;
             return this;
         }
+
         public Builder teamCode(String teamCode) {
             this.teamCode = teamCode;
             return this;
         }
+
         public Builder teamInitials(String teamInitials) {
             this.teamInitials = teamInitials;
             return this;
         }
+
+        public Builder teamEmail(String teamEmail) {
+            this.teamEmail = teamEmail;
+            return this;
+        }
+
+        /**
+         * Sets the {@code teamStreet} and returns a reference to this Builder so that the methods can be chained together.
+         *
+         * @param teamStreet the {@code teamStreet} to set
+         * @return a reference to this Builder
+         */
+        public Builder teamStreet(String teamStreet) {
+            this.teamStreet = teamStreet;
+            return this;
+        }
+
+        /**
+         * Sets the {@code teamZip} and returns a reference to this Builder so that the methods can be chained together.
+         *
+         * @param teamZip the {@code teamZip} to set
+         * @return a reference to this Builder
+         */
+        public Builder teamZip(String teamZip) {
+            this.teamZip = teamZip;
+            return this;
+        }
+
+        /**
+         * Sets the {@code teamCity} and returns a reference to this Builder so that the methods can be chained together.
+         *
+         * @param teamCity the {@code teamCity} to set
+         * @return a reference to this Builder
+         */
+        public Builder teamCity(String teamCity) {
+            this.teamCity = teamCity;
+            return this;
+        }
+
+        /**
+         * Sets the {@code teamRegion} and returns a reference to this Builder so that the methods can be chained together.
+         *
+         * @param teamRegion the {@code teamRegion} to set
+         * @return a reference to this Builder
+         */
+        public Builder teamRegion(String teamRegion) {
+            this.teamRegion = teamRegion;
+            return this;
+        }
+
+        /**
+         * Sets the {@code teamCountry} and returns a reference to this Builder so that the methods can be chained together.
+         *
+         * @param teamCountry the {@code teamCountry} to set
+         * @return a reference to this Builder
+         */
+        public Builder teamCountry(String teamCountry) {
+            this.teamCountry = teamCountry;
+            return this;
+        }
+
         public Builder isSignUpSucceed(Boolean isSignUpSucceed) {
             this.isSignUpSucceed = isSignUpSucceed;
             return this;
         }
+
+        public Builder isLoggedIn(Boolean isLoggedIn) {
+            this.isLoggedIn = isLoggedIn;
+            return this;
+        }
+
         public Builder isLoginSucceed(Boolean isLoginSucceed) {
             this.isLoginSucceed = isLoginSucceed;
             return this;
@@ -238,6 +352,16 @@ public class ObjectUser implements ILogin {
         hideZopim();
         submitLoginCredentials(this.email, this.passwordPekama);
         checkActualUrl(this, URL_PEKAMA_DASHBOARD);
+        return getActualUrl();
+    }
+
+    @Override
+    public String login(String url) {
+        openUrlWithBaseAuth(url);
+        submitCookie(10);
+        hideZopim();
+        submitLoginCredentials(this.email, this.passwordPekama);
+        checkActualUrl(this, url);
         return getActualUrl();
     }
 
@@ -260,7 +384,7 @@ public class ObjectUser implements ILogin {
         submitCookie(10);
         hideZopim();
         submitLoginCredentials(this.email, this.passwordPekama);
-        checkActualUrl(user, URL_PEKAMA_DASHBOARD);
+        checkActualUrl(user, url);
         return getActualUrl();
     }
 
@@ -385,7 +509,31 @@ public class ObjectUser implements ILogin {
         }
         else return null;
     }
-
+    public void submitTeamDetailsForm(){
+        TAB_PROFILE_BTN_SAVE.waitUntil(visible, 20000).shouldBe(disabled);
+        $(byText("Title:")).shouldBe(visible);
+        fillField(TAB_PROFILE_TITLE, this.teamName);
+        $(byText("Code:")).shouldBe(visible);
+        fillField(TAB_PROFILE_CODE, this.teamCode);
+        $(byText("Business type:")).shouldBe(visible);
+        $(byText("Your role:")).shouldBe(visible);
+        $(byText("Email:")).shouldBe(visible);
+        fillField(TAB_PROFILE_EMAIL, this.teamEmail);
+        $(byText("@organizations.pekama.com")).shouldBe(visible);
+        TAB_PROFILE_BTN_SAVE.shouldBe(enabled).click();
+    }
+    public Boolean validateTeamDetailsForm(){
+        $(byText("Title:")).shouldBe(visible);
+        TAB_PROFILE_TITLE.shouldHave(value(this.teamName));
+        $(byText("Code:")).shouldBe(visible);
+        TAB_PROFILE_CODE.shouldHave(value(this.teamCode));
+        $(byText("Business type:")).shouldBe(visible);
+        $(byText("Your role:")).shouldBe(visible);
+        $(byText("Email:")).shouldBe(visible);
+        TAB_PROFILE_EMAIL.shouldHave(value(this.teamEmail));
+        $(byText("@organizations.pekama.com")).shouldBe(visible);
+        return true;
+    }
     private static Boolean checkActualUrl(ObjectUser user, String url){
         if(getActualUrl().equals(url)){
             user.isLoggedIn = true;
@@ -396,7 +544,7 @@ public class ObjectUser implements ILogin {
             return false;
     };
     public enum Users {OWNER, TEAM_MEMBER, ADMIN, COLLABORATOR, VIEWER, REQUESTER, EXPERT, PRETENDER, USER_01, USER_02, USER_03, USER_04, USER_05, USER_06, USER_07, USER_08, USER_09, USER_10};
-    public ObjectUser buildUser(ObjectUser.Users id) {
+    public ObjectUser buildUser(Users id) {
         ObjectUser user = null;
         switch (id) {
             case OWNER:
@@ -419,6 +567,7 @@ public class ObjectUser implements ILogin {
                         .teamFullName(User8.FULL_TEAM_NAME.getValue())
                         .teamCode(User8.TEAM_CODE.getValue())
                         .teamInitials(User8.TEAM_INITIALS.getValue())
+                        .teamEmail("team01email")
                         .build();
                 logUserFields(user);
                 break;
@@ -439,7 +588,7 @@ public class ObjectUser implements ILogin {
             case USER_01:
                 user = new ObjectUser(newBuilder())
                         .newBuilder()
-                        .email(User1.GMAIL_EMAIL.getValue())
+                        .email(User5.GMAIL_EMAIL.getValue())
                         .passwordPekama(User1.PEKAMA_PASSWORD.getValue())
                         .passwordEmail(User1.GMAIL_PASSWORD.getValue())
                         .passwordBox(User1.BOX_PASSWORD.getValue())
@@ -460,8 +609,50 @@ public class ObjectUser implements ILogin {
                 logUserFields(user);
                 break;
             case USER_02:
+                user = new ObjectUser(newBuilder())
+                        .newBuilder()
+                        .email(User2.GMAIL_EMAIL.getValue())
+                        .passwordPekama(User2.PEKAMA_PASSWORD.getValue())
+                        .passwordEmail(User2.GMAIL_PASSWORD.getValue())
+                        .passwordBox(User2.BOX_PASSWORD.getValue())
+                        .passwordLinkedIn(User2.LINKEDIN_PASSWORD.getValue())
+                        .passwordXero(User2.XERO_PASSWORD.getValue())
+                        .name(User2.NAME.getValue())
+                        .surname(User2.SURNAME.getValue())
+                        .company(User2.TEAM_NAME.getValue())
+                        .businessType(null)
+                        .role(null)
+                        .phone(null)
+                        .country(null)
+                        .teamName(User2.TEAM_NAME.getValue())
+                        .teamFullName(User2.FULL_TEAM_NAME.getValue())
+                        .teamCode(User2.TEAM_CODE.getValue())
+                        .teamInitials(User2.TEAM_INITIALS.getValue())
+                        .build();
+                logUserFields(user);
                 break;
             case USER_03:
+                user = new ObjectUser(newBuilder())
+                        .newBuilder()
+                        .email(User3.GMAIL_EMAIL.getValue())
+                        .passwordPekama(User3.PEKAMA_PASSWORD.getValue())
+                        .passwordEmail(User3.GMAIL_PASSWORD.getValue())
+                        .passwordBox(User3.BOX_PASSWORD.getValue())
+                        .passwordLinkedIn(User3.LINKEDIN_PASSWORD.getValue())
+                        .passwordXero(User3.XERO_PASSWORD.getValue())
+                        .name(User3.NAME.getValue())
+                        .surname(User3.SURNAME.getValue())
+                        .company(User3.TEAM_NAME.getValue())
+                        .businessType(null)
+                        .role(null)
+                        .phone(null)
+                        .country(null)
+                        .teamName(User3.TEAM_NAME.getValue())
+                        .teamFullName(User3.FULL_TEAM_NAME.getValue())
+                        .teamCode(User3.TEAM_CODE.getValue())
+                        .teamInitials(User3.TEAM_INITIALS.getValue())
+                        .build();
+                logUserFields(user);
                 break;
             case USER_04:
                 user = new ObjectUser(newBuilder())
@@ -487,12 +678,77 @@ public class ObjectUser implements ILogin {
                 logUserFields(user);
                 break;
             case USER_05:
+                user = new ObjectUser(newBuilder())
+                        .newBuilder()
+                        .email(User5.GMAIL_EMAIL.getValue())
+                        .passwordPekama(User5.PEKAMA_PASSWORD.getValue())
+                        .passwordEmail(User5.GMAIL_PASSWORD.getValue())
+                        .passwordBox(User5.BOX_PASSWORD.getValue())
+                        .passwordLinkedIn(User5.LINKEDIN_PASSWORD.getValue())
+                        .passwordXero(User5.XERO_PASSWORD.getValue())
+                        .name(User5.NAME.getValue())
+                        .surname(User5.SURNAME.getValue())
+                        .company(User5.TEAM_NAME.getValue())
+                        .businessType(null)
+                        .role(null)
+                        .phone(null)
+                        .country(null)
+                        .teamName(User5.TEAM_NAME.getValue())
+                        .teamFullName(User5.FULL_TEAM_NAME.getValue())
+                        .teamCode(User5.TEAM_CODE.getValue())
+                        .teamInitials(User5.TEAM_INITIALS.getValue())
+                        .build();
+                logUserFields(user);
                 break;
             case USER_06:
+                user = new ObjectUser(newBuilder())
+                        .newBuilder()
+                        .email(User6.GMAIL_EMAIL.getValue())
+                        .passwordPekama(User6.PEKAMA_PASSWORD.getValue())
+                        .passwordEmail(User6.GMAIL_PASSWORD.getValue())
+                        .passwordBox(User6.BOX_PASSWORD.getValue())
+                        .passwordLinkedIn(User6.LINKEDIN_PASSWORD.getValue())
+                        .passwordXero(User6.XERO_PASSWORD.getValue())
+                        .name(User6.NAME.getValue())
+                        .surname(User6.SURNAME.getValue())
+                        .company(User6.TEAM_NAME.getValue())
+                        .businessType(null)
+                        .role(null)
+                        .phone(null)
+                        .country(null)
+                        .teamName(User6.TEAM_NAME.getValue())
+                        .teamFullName(User6.FULL_TEAM_NAME.getValue())
+                        .teamCode(User6.TEAM_CODE.getValue())
+                        .teamInitials(User6.TEAM_INITIALS.getValue())
+                        .teamEmail("team01email")
+                        .build();
+                logUserFields(user);
                 break;
             case USER_07:
+                
                 break;
             case USER_08:
+                user = new ObjectUser(newBuilder())
+                        .newBuilder()
+                        .email(User8.GMAIL_EMAIL.getValue())
+                        .passwordPekama(User8.PEKAMA_PASSWORD.getValue())
+                        .passwordEmail(User8.GMAIL_PASSWORD.getValue())
+                        .passwordBox(User8.BOX_PASSWORD.getValue())
+                        .passwordLinkedIn(User8.LINKEDIN_PASSWORD.getValue())
+                        .passwordXero(User8.XERO_PASSWORD.getValue())
+                        .name(User8.NAME.getValue())
+                        .surname(User8.SURNAME.getValue())
+                        .company(User8.TEAM_NAME.getValue())
+                        .businessType(null)
+                        .role(null)
+                        .phone(null)
+                        .country(null)
+                        .teamName(User8.TEAM_NAME.getValue())
+                        .teamFullName(User8.FULL_TEAM_NAME.getValue())
+                        .teamCode(User8.TEAM_CODE.getValue())
+                        .teamInitials(User8.TEAM_INITIALS.getValue())
+                        .build();
+                logUserFields(user);
                 break;
             case USER_09:
                 break;

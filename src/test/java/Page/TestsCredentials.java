@@ -36,6 +36,7 @@ public class TestsCredentials {
         PEKAMA_PASSWORD("asui67we34"),
         LINKEDIN_PASSWORD("123456789qasw"),
         BOX_PASSWORD("32qew8127a12a"),
+        XERO_PASSWORD(""),
         NAME("B-USER-NAME"),
         SURNAME("B-USER-SURNAME"),
         NAME_SURNAME("B-USER-NAME B-USER-SURNAME"),
@@ -216,7 +217,6 @@ public class TestsCredentials {
         FULL_TEAM_NAME("TEAM_08 (08TQ)"),
         TEAM_CODE("08TQ"),
         TEAM_INITIALS("08");
-
     private String value;
         User8(String value) {
             this.value = value;
@@ -237,7 +237,7 @@ public class TestsCredentials {
             return value;
         }
     }
-    //Pekama collaborator
+    //Pekama viewer
     public enum User10 {
         GMAIL_EMAIL("");
 

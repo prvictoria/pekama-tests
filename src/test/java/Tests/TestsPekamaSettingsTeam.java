@@ -18,6 +18,10 @@ import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
 import static Steps.MessagesValidator.ValidationInviteInTeamUnregistered.teamBackLink;
+import static Steps.ObjectUser.*;
+import static Steps.ObjectUser.Users.USER_05;
+import static Steps.ObjectUser.Users.USER_06;
+import static Steps.ObjectUser.newBuilder;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static Tests.BeforeTestsSetUp.*;
@@ -25,9 +29,7 @@ import static Utils.Utils.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.byXpath;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.Selenide.sleep;
+import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 
 /**
@@ -37,12 +39,8 @@ import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaSettingsTeam {
     static final Logger rootLogger = LogManager.getRootLogger();
-    private final String TEST_USER_LOGIN = User1.GMAIL_EMAIL.getValue();
-    private final String TEST_USER_PASSWORD = User1.PEKAMA_PASSWORD.getValue();
-    private final String TEST_USER_NAME_SURNAME = User1.NAME_SURNAME.getValue();
-    private final String TEST_USER_TEAM_NAME = User1.TEAM_NAME.getValue();
-    private final String TEST_USER_FULL_TEAM_NAME = User1.FULL_TEAM_NAME.getValue();
-    private final String TEST_USER_NAME = User1.NAME.getValue();
+    private static ObjectUser user = new ObjectUser(newBuilder()).buildUser(USER_06);
+    private static ObjectUser invited = new ObjectUser(newBuilder()).buildUser(USER_05);
     private static boolean skipBefore = false;
 
     @Rule public Timeout tests = Timeout.seconds(300);
@@ -56,13 +54,9 @@ public class TestsPekamaSettingsTeam {
     @Before
     public void before() {
         if (skipBefore==false){
-            clearBrowserCache();
-            rootLogger.info("Open host");
-            ObjectUser user = ObjectUser.newBuilder().build();
-            user.login(
-                    TEST_USER_LOGIN,
-                    TEST_USER_PASSWORD,
-                    URL_TeamSettings);
+            //clearBrowserCache();
+            //rootLogger.info("Open host");
+            user.login(URL_TeamSettings);
         }
         else {rootLogger.info("Before was skipped");}
     }
@@ -87,8 +81,8 @@ public class TestsPekamaSettingsTeam {
         SETTINGS_TEAM_TAB_DOCUMENT_TEMPLATES.waitUntil(visible, 15000).shouldHave(Condition.text("Document Templates"));
         SETTINGS_TEAM_TAB_STORAGE.waitUntil(visible, 15000).shouldHave(Condition.text("Storage"));
 
-        SETTINGS_TEAM_INFO_TEAM_NAME.shouldHave(text(TEST_USER_TEAM_NAME));
-        SETTINGS_TEAM_INFO_ACTUAL_TEAM.shouldHave(text(TEST_USER_FULL_TEAM_NAME));
+        SETTINGS_TEAM_INFO_TEAM_NAME.shouldHave(text(user.teamName));
+        SETTINGS_TEAM_INFO_ACTUAL_TEAM.shouldHave(text(user.teamFullName));
         SETTINGS_TEAM_INFO_REGISTRATION_DATE.getText();
         rootLogger.info("Texts and tabs present");
 
@@ -168,11 +162,11 @@ public class TestsPekamaSettingsTeam {
     @Test 
     public void testC_inviteNewMember_B_CheckEmail() {
         rootLogger.info("Check invite email");
-        String login = User5.GMAIL_EMAIL.getValue();
-        String password = User5.GMAIL_PASSWORD.getValue();
-        String inviterNameSurname = TEST_USER_NAME_SURNAME;
-        String inviterFullTeamName = TEST_USER_FULL_TEAM_NAME;
-        String inviterName = TEST_USER_NAME;
+        String login = invited.email;
+        String password = invited.passwordEmail;
+        String inviterNameSurname = user.nameSurname;
+        String inviterFullTeamName = user.teamFullName;
+        String inviterName = user.name;
         MessagesIMAP validation = new MessagesIMAP();
         Boolean validationResult = validation.validateEmailInviteInTeamUnregistered(
                 login, password,
@@ -253,5 +247,19 @@ public class TestsPekamaSettingsTeam {
         fillField(TAB_PROFILE_CODE, code);
         TAB_PROFILE_BTN_SAVE.shouldBe(enabled).click();
         checkText(ERROR_MSG_BLANK_FIELD, 2);
+    }
+    @Test
+    public void submit_team_details_form(){
+        rootLogger.info("Change team data");
+        ObjectUser change = ObjectUser.newBuilder().teamName("company").teamCode("CODE").teamEmail("email").build();
+        change.submitTeamDetailsForm();
+        sleep(2000);
+        refresh();
+        change.validateTeamDetailsForm();
+        rootLogger.info("Return default team data");
+        user.submitTeamDetailsForm();
+        sleep(2000);
+        refresh();
+        user.validateTeamDetailsForm();
     }
 }

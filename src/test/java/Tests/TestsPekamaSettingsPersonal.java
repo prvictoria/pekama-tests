@@ -15,6 +15,9 @@ import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
+import static Steps.ObjectUser.Users.USER_04;
+import static Steps.ObjectUser.Users.USER_06;
+import static Steps.ObjectUser.newBuilder;
 import static Steps.StepsExternal.authGmail;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
@@ -31,10 +34,7 @@ import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaSettingsPersonal {
     static final Logger rootLogger = LogManager.getRootLogger();
-    private static final String TEST_USER_LOGIN = User6.GMAIL_EMAIL.getValue();
-    private static final String TEST_USER_PASSWORD = User6.PEKAMA_PASSWORD.getValue();
-    private static final String TEST_USER_OLD_PASSWORD = User6.PEKAMA_PASSWORD.getValue();
-    private static final String testUserGmailPassword = User6.GMAIL_PASSWORD.getValue();
+    private static ObjectUser user = new ObjectUser(newBuilder()).buildUser(USER_06);
     @Rule
     public Timeout tests = Timeout.seconds(400);
     @BeforeClass
@@ -46,8 +46,7 @@ public class TestsPekamaSettingsPersonal {
     @Before
     public void before() {
         clearBrowserCache();
-        ObjectUser user = ObjectUser.newBuilder().build();
-        user.login(TEST_USER_LOGIN, TEST_USER_PASSWORD, URL_LogIn);
+        user.login();
     }
 
     @Test
@@ -437,9 +436,9 @@ public class TestsPekamaSettingsPersonal {
     public void tabSecurity_PasswordValidations_G() {
         rootLogger.info("Change Password - not Old can be new passwordPekama");
         openSettingsTabSecurity();
-        SECURITY_TAB_CURRENT_PASSWORD.waitUntil(visible, 10000).sendKeys(TEST_USER_PASSWORD);
-        SECURITY_TAB_NEW_PASSWORD.sendKeys(TEST_USER_OLD_PASSWORD);
-        SECURITY_TAB_CONFIRM_PASSWORD.sendKeys(TEST_USER_OLD_PASSWORD);
+        SECURITY_TAB_CURRENT_PASSWORD.waitUntil(visible, 10000).sendKeys(user.passwordPekama);
+        SECURITY_TAB_NEW_PASSWORD.sendKeys(user.passwordPekama);
+        SECURITY_TAB_CONFIRM_PASSWORD.sendKeys(user.passwordPekama);
         submitEnabledButton(SECURITY_SAVE_BTN);
         $$(byText(ERROR_MSG_NEW_PASSOWRD_EQUALS_TO_OLD)).shouldHaveSize(1);
         rootLogger.info("Validation error present");
@@ -599,8 +598,8 @@ public class TestsPekamaSettingsPersonal {
         IMAP_TAB_SSL.shouldBe(Condition.visible);
 
         rootLogger.info("Connect email manual");
-        fillField(IMAP_TAB_FIELD_USENAME, TEST_USER_LOGIN);
-        fillField(IMAP_TAB_FIELD_PASSWORD, testUserGmailPassword);
+        fillField(IMAP_TAB_FIELD_USENAME, user.email);
+        fillField(IMAP_TAB_FIELD_PASSWORD, user.passwordEmail);
         fillField(IMAP_TAB_FIELD_SERVER_NAME, "imap.gmail.com");
         fillField(IMAP_TAB_FIELD_PORT, "993");
         IMAP_TAB_SSL.click();
@@ -640,7 +639,7 @@ public class TestsPekamaSettingsPersonal {
             rootLogger.info("Connect Gmail via Auth2");
             IMAP_TAB_BTN_CONNECT_GMAIL.click();
             sleep(2000);
-            authGmail(TEST_USER_LOGIN);
+            authGmail(user.email);
             sleep(1000);
             switchTo().window("Pekama | Projects");
 
