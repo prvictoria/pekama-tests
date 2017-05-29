@@ -9,7 +9,7 @@ import static Page.Emails.EMAIL_INVITE_IN_PROJECT_TITLE;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
-public class Messages extends Steps {
+public class Messages {
     static final Logger rootLogger = LogManager.getRootLogger();
     //Subject strings
     public static final String EMAIL_SUBJECT_ = "";
@@ -57,8 +57,8 @@ public class Messages extends Steps {
 
     //Email messages and other formated strings
     //Email Invite in Team
-    public static final String EMAIL_SUBJECT_YOU_INVITED_IN_TEAM(String name_surname, String fullTeamName) {
-        String subject = String.format("%s invited you to join %s on Pekama", name_surname, fullTeamName);
+    public static final String EMAIL_SUBJECT_YOU_INVITED_IN_TEAM(String inviterNameSurname, String fullTeamName) {
+        String subject = String.format("%s invited you to join %s on Pekama", inviterNameSurname, fullTeamName);
         return subject;
     }
     public static final String EMAIL_TITLE_YOU_INVITED_IN_TEAM(String fullTeamName) {

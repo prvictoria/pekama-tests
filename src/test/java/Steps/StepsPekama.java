@@ -29,7 +29,7 @@ import static com.codeborne.selenide.WebDriverRunner.*;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
-public class StepsPekama extends Steps {
+public class StepsPekama {
     static final Logger rootLogger = LogManager.getRootLogger();
 
     @Deprecated
@@ -45,34 +45,6 @@ public class StepsPekama extends Steps {
         btnLogin.waitUntil(not(visible), 15000);
         rootLogger.info("Valid Credentials were submitted");
     }
-    @Deprecated
-    public void  submitLoginCredentials(String PEKAMA_USER_EMAIL){
-        hideZopim();
-        submitCookie();
-        loginField_Email.sendKeys(PEKAMA_USER_EMAIL);
-        sleep(500);
-        rootLogger.info(PEKAMA_USER_EMAIL+ " - login selected");
-        loginField_Password.sendKeys(GENERIC_PEKAMA_PASSWORD);
-        sleep(500);
-        loginButton_Login.click();
-        btnLogin.waitUntil(not(visible), 15000);
-        rootLogger.info("Valid Credentials were submitted");
-
-    }
-    @Deprecated
-    public void  submitLoginCredentials(String PEKAMA_USER_EMAIL, String USER_PEKAMA_PASSWORD){
-        submitCookie();
-        hideZopim();
-        loginField_Email.sendKeys(PEKAMA_USER_EMAIL);
-        rootLogger.info(PEKAMA_USER_EMAIL+ " - login selected");
-        $(loginField_Password).sendKeys(USER_PEKAMA_PASSWORD);
-        loginButton_Login.click();
-        btnLogin.shouldBe(Condition.not(visible));
-        sleep(1000);
-        rootLogger.info("Valid Credentials were submitted");
-
-    }
-
     public static void  submitCookie(){
         rootLogger.info("Check if cookie present");
         sleep(1000);
@@ -665,84 +637,8 @@ public class StepsPekama extends Steps {
         CONVERSATION_INPUT_TEXT_COLLAPSED.shouldBe(visible).click();
         sleep(4000);
     }
-    public static String absolutePath(String path) {
-        return new File(path).getAbsolutePath();
-    }
-    public static void uploadFile(String fileName, SelenideElement input){
-        String relativePath = "src/test/java/UploadFiles/"+fileName;
-        String absolutePath = absolutePath(relativePath);
-        rootLogger.info(absolutePath);
-        sleep(2000);
-        input.waitUntil(exist, 20000).sendKeys(absolutePath);
-        sleep(3000);
-    }
-    public enum UploadFiles {JPG, ICO, PNG, SVG, PDF,  WORD, EXCEL, ZIP, GOOGLE};
-    public static void executeAutoItScript(String scriptName) throws IOException {
-        String relativePath = "src/test/java/ScriptsAutoIt/"+ scriptName;
-        sleep(2000);
-        String scriptPath = absolutePath(relativePath);
-        rootLogger.info(scriptPath);
-        Runtime.getRuntime().exec(scriptPath);
-        sleep(4000);
-    }
-    public static void uploadFiles(String fileName){
-        try {
-            Runtime.getRuntime().exec("src/test/java/ScriptsAutoIt/script_runtime.exe"+" "+fileName);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    public static String executeAutoItScript(UploadFiles fileType) throws IOException {
-        String[] scriptNames = {"script_upload_jpeg_ff.exe", "script_upload_icon_ff.exe", "script_upload_png_ff.exe", "script_upload_svg_ff.exe", "script_upload_pdf_ff.exe", "script_upload_wordx_ff.exe", "script_upload_excelx_ff.exe", "script_upload_zip_ff.exe", "script_upload_googledoc_ff.exe"};
-        String scriptName = null;
-        String[] fileNames = {"jpeg.jpg", "icon.ico", "png.png", "svg.svg", "pdf.pdf", "word.docx", "excel.xl", "zip.zip", "googledoc.gdoc"};
-        String fileName = null;
-        switch(fileType) {
-            case JPG:
-                scriptName = scriptNames[0];
-                fileName = fileNames[0];
-                break;
-            case ICO:
-                scriptName = scriptNames[1];
-                fileName = fileNames[1];
-                break;
-            case PNG:
-                scriptName = scriptNames[2];
-                fileName = fileNames[2];
-                break;
-            case SVG:
-                scriptName = scriptNames[3];
-                fileName = fileNames[3];
-                break;
-            case PDF:
-                scriptName = scriptNames[4];
-                fileName = fileNames[4];
-                break;
-            case WORD:
-                scriptName = scriptNames[5];
-                fileName = fileNames[5];
-                break;
-            case EXCEL:
-                scriptName = scriptNames[6];
-                fileName = fileNames[6];
-                break;
-            case ZIP:
-                scriptName = scriptNames[7];
-                fileName = fileNames[7];
-                break;
-            case GOOGLE:
-                scriptName = scriptNames[8];
-                fileName = fileNames[8];
-                break;
-        }
-        String relativePath = "src/test/java/ScriptsAutoIt/"+ scriptName;
-        sleep(3000);
-        String scriptPath = absolutePath(relativePath);
-        rootLogger.info(scriptPath);
-        Runtime.getRuntime().exec(scriptPath);
-        sleep(8000);
-        return fileName;
-    }
+
+
     public static String addMember(String email, SelenideElement button){
         button.shouldBe(visible).shouldBe(enabled).click();
         submitAddMemberWindow(email,  true);

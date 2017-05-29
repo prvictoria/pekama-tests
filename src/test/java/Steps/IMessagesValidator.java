@@ -12,11 +12,11 @@ import static Steps.MessagesIMAP.*;
 /**
  * Created by Viachaslau_Balashevi on 4/11/2017.
  */
-public interface MessagesValidator {
+public interface IMessagesValidator {
     boolean validationEmail(String...strings);
     String validateLink(String html, Integer index);
     //}
-    class ValidationNotificationCaseConfirmed implements MessagesValidator {
+    class ValidationNotificationCaseConfirmed implements IMessagesValidator {
         private String html = null;
         public static String userEmail = null;
         public static String expertTeam = null;
@@ -49,7 +49,7 @@ public interface MessagesValidator {
             return null;
         }
     }
-    class ValidationSignUp implements MessagesValidator {
+    class ValidationSignUp implements IMessagesValidator {
         private String html = null;
         public static String userEmail = null;
 
@@ -79,7 +79,7 @@ public interface MessagesValidator {
             return null;
         }
     }
-    class ValidationInvite implements MessagesValidator {
+    class ValidationInvite implements IMessagesValidator {
         private String html = null;
 
         @Override
@@ -98,7 +98,7 @@ public interface MessagesValidator {
             return null;
         }
     }
-    class ValidationInviteInPekama implements MessagesValidator {
+    class ValidationInviteInPekama implements IMessagesValidator {
         private String html = null;
 
         @Override
@@ -117,7 +117,7 @@ public interface MessagesValidator {
             return null;
         }
     }
-    class ValidationInviteCommunity implements MessagesValidator {
+    class ValidationInviteCommunity implements IMessagesValidator {
         private String html = null;
         public static String userEmail = null;
         public static String inviterNameSurname = null;
@@ -159,7 +159,7 @@ public interface MessagesValidator {
             return null;
         }
     }
-    class ValidationInviteInProject implements MessagesValidator {
+    class ValidationInviteInProject implements IMessagesValidator {
         private String html = null;
         public static String userEmail = null;
         public static String projectName = null;
@@ -199,7 +199,7 @@ public interface MessagesValidator {
             return null;
         }
     }
-    class ValidationInviteInTeamUnregistered implements MessagesValidator {
+    class ValidationInviteInTeamUnregistered implements IMessagesValidator {
         private String html = null;
         public static String userEmail = null;
         public static String inviterNameSurname = null;
@@ -241,7 +241,7 @@ public interface MessagesValidator {
             return null;
         }
     }
-    class ValidationInviteInTeamRegistered implements MessagesValidator {
+    class ValidationInviteInTeamRegistered implements IMessagesValidator {
         private String html = null;
         public static String userEmail = null;
         public static String inviterNameSurname = null;
@@ -281,7 +281,7 @@ public interface MessagesValidator {
             return null;
         }
     }
-    class ValidationCongratulationCaseCreated implements MessagesValidator {
+    class ValidationCongratulationCaseCreated implements IMessagesValidator {
         private String html = null;
         public static String userEmail = null;
         public static String teamName = null;
@@ -308,7 +308,7 @@ public interface MessagesValidator {
             return null;
         }
     }
-    class ValidationCongratulationForInvite implements MessagesValidator {
+    class ValidationCongratulationForInvite implements IMessagesValidator {
         private String html = null;
         public static String userEmail = null;
         public static String invitedEmail = null;
@@ -335,7 +335,7 @@ public interface MessagesValidator {
             return null;
         }
     }
-    class ValidationResetPassword implements MessagesValidator {
+    class ValidationResetPassword implements IMessagesValidator {
         private String html = null;
 
         @Override
@@ -362,7 +362,7 @@ public interface MessagesValidator {
             return link;
         }
     }
-    class ValidationReport implements MessagesValidator {
+    class ValidationReport implements IMessagesValidator {
         private String html = null;
         public static String reportSchedule = null;
         public static String reportBackLink = null;
@@ -387,7 +387,7 @@ public interface MessagesValidator {
             return null;
         }
     }
-    class ValidationEmailMessage implements MessagesValidator {
+    class ValidationEmailMessage implements IMessagesValidator {
         private String html = null;
         private String text = null;
         public static String userNameSurname = null;

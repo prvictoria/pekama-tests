@@ -37,7 +37,6 @@ public class TestsPekamaReportsFiltersProjects {
     private static ObjectProject project4 = new ObjectProject();
     private static ObjectUser owner = new ObjectUser(newBuilder()).buildUser(OWNER);
 
-
     private static boolean skipBefore = false;
 
     @Rule

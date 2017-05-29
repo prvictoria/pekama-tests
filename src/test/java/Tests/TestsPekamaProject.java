@@ -1,5 +1,5 @@
 package Tests;
-import Page.TestsCredentials;
+import Page.PekamaProject;
 import Steps.*;
 import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.LogManager;
@@ -23,7 +23,10 @@ import static Page.UrlConfig.*;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
 import static Steps.Messages.*;
-import static Steps.MessagesValidator.ValidationInviteInProject.projectBackLink;
+import static Steps.IMessagesValidator.ValidationInviteInProject.projectBackLink;
+import static Steps.ObjectFile.*;
+import static Steps.ObjectUser.Users.*;
+import static Steps.ObjectUser.newBuilder;
 import static Steps.StepsCommunity.checkCaseNameFirstRow;
 import static Steps.StepsCommunity.selectExpert;
 import static Steps.Steps.clickSelector;
@@ -46,38 +49,13 @@ import static com.codeborne.selenide.WebDriverRunner.*;
 public class TestsPekamaProject {
     static final Logger rootLogger = LogManager.getRootLogger();
     private static String testProjectTitle = "new test project - "+ randomString(6);
-    private static String testContactName = "name"+ randomString(10);
-    private static String testContactSurname = "surname"+ randomString(10);
     private static String projectUrl;
-    private final static String OWNER_LOGIN_EMAIL = User3.GMAIL_EMAIL.getValue();
-    private final static String OWNER_USER_NAME_SURNAME = User3.NAME_SURNAME.getValue();
-    private final static String OWNER_PEKAMA_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
-    private final static String OWNER_XERO_PASSWORD = User3.XERO_PASSWORD.getValue();
-    private final static String OWNER_FULL_TEAM_NAME = User3.FULL_TEAM_NAME.getValue();
-
-    private final static String COLLABORATOR_TEAM_NAME = User1.TEAM_NAME.getValue();
     private static String TEST_CASE_TYPE = null;
-    private final static String TEST_CASE_COUNTRY = PITCAIRN_ISLANDS.getValue();
     private final static String TEST_CASE_NAME = "CUSTOM_NAME"+randomString(10);
-
-    private final static String REQUESTER_EMAIL = TestsCredentials.User3.GMAIL_EMAIL.getValue();
-    private final static String REQUESTER_PEKAMA_PASSWORD = TestsCredentials.User3.PEKAMA_PASSWORD.getValue();
-    private final static String REQUESTER_NAME = TestsCredentials.User3.NAME.getValue();
-    private final static String REQUESTER_SURNAME = TestsCredentials.User3.SURNAME.getValue();
-    private final static String REQUESTER_FULL_TEAM_NAME = TestsCredentials.User3.FULL_TEAM_NAME.getValue();
-    private final static String REQUESTER_NAME_SURNAME = TestsCredentials.User3.NAME_SURNAME.getValue();
-
-    private final static String EXPERT_EMAIL = TestsCredentials.User2.GMAIL_EMAIL.getValue();
-    private final static String EXPERT_PEKAMA_PASSWORD = TestsCredentials.User2.PEKAMA_PASSWORD.getValue();
-    private final static String EXPERT_NAME = TestsCredentials.User2.NAME.getValue();
-    private final static String EXPERT_SURNAME = TestsCredentials.User2.SURNAME.getValue();
-    private final static String EXPERT_TEAM_NAME = TestsCredentials.User2.TEAM_NAME.getValue();
-    private final static String EXPERT_FULL_TEAM_NAME = TestsCredentials.User2.FULL_TEAM_NAME.getValue();
-    private static final String EXPERT_NAME_SURNAME = TestsCredentials.User2.NAME_SURNAME.getValue();
     private final static String INTRODUCER_NAME = "Rand, Kaldor & Zane LLP (RKNZ)";
-    private static ObjectContact contact = new ObjectContact();
-
-    private static ObjectUser owner = ObjectUser.newBuilder().email(OWNER_LOGIN_EMAIL).passwordPekama(OWNER_PEKAMA_PASSWORD).build();
+    private static final ObjectUser owner = new ObjectUser(newBuilder()).buildUser(USER_03);
+    private static final ObjectUser collaborator = new ObjectUser(newBuilder()).buildUser(USER_05);
+    private static final ObjectUser expert = new ObjectUser(newBuilder()).buildUser(USER_02);
 
     @Rule
     public Timeout tests = Timeout.seconds(600);
@@ -101,7 +79,7 @@ public class TestsPekamaProject {
     public void before() {
         if(nextIsImapTest==false) {
             //clearBrowserCache();
-            owner.login(owner.email, owner.passwordPekama, URL_LogIn);
+            owner.login();
             if (skipBefore == false) {
                 DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 30000).click();
                 testProjectTitle = submitMwNewProject(
@@ -146,11 +124,11 @@ public class TestsPekamaProject {
         PROJECT_TAB_CONTACTS.click();
         projectTabContacts_AddCollaborator.click();
         waitForModalWindow(TITLE_MW_SHARE_PROJECT);
-        selectTeam(COLLABORATOR_TEAM_NAME);
+        selectTeam(collaborator.teamName);
         submitEnabledButton(MW_BTN_OK);
         MW.shouldNotBe(visible);
-        $$(byText(OWNER)).shouldHaveSize(1);
-        $$(byText(COLLABORATOR)).shouldHaveSize(1);
+        $$(byText(PekamaProject.OWNER)).shouldHaveSize(1);
+        $$(byText(PekamaProject.COLLABORATOR)).shouldHaveSize(1);
 
         rootLogger.info("Edit role to - "+ROLE_VIEWER);
         projectTabContacts_TeamEdit.click();
@@ -160,7 +138,7 @@ public class TestsPekamaProject {
       //  MW_SHARE_PROJECT_SELECT_ROLE.selectOption(new String[]{ROLE_VIEWER});
         submitEnabledButton(MW_BTN_OK);
         MW.shouldNotBe(visible);
-        $$(byText(VIEWER)).shouldHaveSize(1);
+        $$(byText(PekamaProject.VIEWER)).shouldHaveSize(1);
 
         rootLogger.info("Edit role to - "+ROLE_ADMIN);
         projectTabContacts_TeamEdit.click();
@@ -170,7 +148,7 @@ public class TestsPekamaProject {
      //   MW_SHARE_PROJECT_SELECT_ROLE.selectOption(new String[]{ROLE_ADMIN});
         submitEnabledButton(MW_BTN_OK);
         MW.shouldNotBe(visible);
-        $$(byText(ADMIN)).shouldHaveSize(1);
+        $$(byText(PekamaProject.ADMIN)).shouldHaveSize(1);
 
         rootLogger.info("Edit role to - "+ROLE_COLLABORATOR);
         projectTabContacts_TeamEdit.click();
@@ -180,15 +158,15 @@ public class TestsPekamaProject {
       //  MW_SHARE_PROJECT_SELECT_ROLE.selectOption(new String[]{ROLE_COLLABORATOR});
         submitEnabledButton(MW_BTN_OK);
         MW.shouldNotBe(visible);
-        $$(byText(COLLABORATOR)).shouldHaveSize(1);
+        $$(byText(PekamaProject.COLLABORATOR)).shouldHaveSize(1);
 
         rootLogger.info("Delete collaborator");
         projectTabContacts_TeamDelete.click();
         submitConfirmAction();
-        $$(byText(OWNER)).shouldHaveSize(1);
-        $$(byText(ADMIN)).shouldHaveSize(0);
-        $$(byText(COLLABORATOR)).shouldHaveSize(0);
-        $$(byText(VIEWER)).shouldHaveSize(0);
+        $$(byText(PekamaProject.OWNER)).shouldHaveSize(1);
+        $$(byText(PekamaProject.ADMIN)).shouldHaveSize(0);
+        $$(byText(PekamaProject.COLLABORATOR)).shouldHaveSize(0);
+        $$(byText(PekamaProject.VIEWER)).shouldHaveSize(0);
     }
     @Test
     public void tabContacts_E_inviteCollaborator_Action() {
@@ -202,8 +180,8 @@ public class TestsPekamaProject {
         submitEnabledButton(MW_SHARE_PROJECT_BTN_FIND);
         submitEnabledButton(MW_BTN_OK);
         MW.shouldNotBe(visible);
-        $$(byText(OWNER)).shouldHaveSize(1);
-        $$(byText(COLLABORATOR)).shouldHaveSize(1);
+        $$(byText(PekamaProject.OWNER)).shouldHaveSize(1);
+        $$(byText(PekamaProject.COLLABORATOR)).shouldHaveSize(1);
     }
     @Test
     public void tabContacts_E_inviteCollaborator_ValidationEmail() {
@@ -211,7 +189,7 @@ public class TestsPekamaProject {
         rootLogger.info("Check report email");
         String login = User5.GMAIL_EMAIL.getValue();
         String password = User5.GMAIL_PASSWORD.getValue();
-        String inviterNameSurname = OWNER_USER_NAME_SURNAME;
+        String inviterNameSurname = owner.nameSurname;
         String projectName = testProjectTitle;
         MessagesIMAP validation = new MessagesIMAP();
         Boolean validationResult = validation.validateEmailInviteInProject(login, password, inviterNameSurname, projectName);
@@ -342,10 +320,12 @@ public class TestsPekamaProject {
     }
     @Test
     public void tabDoc_С1_uploadFileInDifferentZones() {
-        String fileName = uploadFileInRoot(UploadFiles.PDF, true, true);
+        ObjectFile filePdf =  new ObjectFile(ObjectFile.newBuilder()).buildFile(FileTypes.PDF);
+        ObjectFile fileGoogleDoc = new ObjectFile(ObjectFile.newBuilder()).buildFile(FileTypes.GOOGLE);
+        String fileName = uploadFileInRoot(filePdf, true, true);
         Assert.assertNotNull(fileName);
 
-        fileName = uploadFileInRoot(UploadFiles.GOOGLE, false, true);
+        fileName = uploadFileInRoot(fileGoogleDoc, false, true);
         Assert.assertNotNull(fileName);
         rootLogger.info("Test passed");
     }
@@ -496,7 +476,7 @@ public class TestsPekamaProject {
         hideZopim();
         rootLogger.info("Create Draft case");
         WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.shouldBe(disabled);
-        selectExpert(EXPERT_TEAM_NAME);
+        selectExpert(expert.teamName);
 
         submitEnabledButton(WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS);
         fillField(WIZARD_FIELD_CASE_NAME, TEST_CASE_NAME);
@@ -522,12 +502,12 @@ public class TestsPekamaProject {
 
         rootLogger.info("Check project members");
         PROJECT_TAB_CONTACTS.shouldBe(visible).click();
-        checkText(OWNER);
-        checkText(REQUESTER_FULL_TEAM_NAME);
-        checkText(ADMIN);
+        checkText(PekamaProject.OWNER);
+        checkText(owner.teamFullName);
+        checkText(PekamaProject.ADMIN);
         checkText(INTRODUCER_NAME);
-        checkText(VIEWER);
-        checkText(EXPERT_FULL_TEAM_NAME);
+        checkText(PekamaProject.VIEWER);
+        checkText(expert.teamFullName);
 
         rootLogger.info("Check redirect to Community after click case row");
         PROJECT_TAB_INFO.shouldBe(visible).click();
@@ -564,7 +544,7 @@ public class TestsPekamaProject {
         sleep(3000);
         submitCookie();
         hideZopim();
-        selectExpert(EXPERT_TEAM_NAME);
+        selectExpert(expert.teamName);
         submitEnabledButton(WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS);
         fillField(WIZARD_FIELD_CASE_NAME, TEST_CASE_NAME);
         WIZARD_BTN_NEXT.click();
@@ -596,10 +576,10 @@ public class TestsPekamaProject {
 
         rootLogger.info("Check project members");
         PROJECT_TAB_CONTACTS.shouldBe(visible).click();
-        checkText(OWNER);
-        checkText(REQUESTER_FULL_TEAM_NAME);
-        checkText(ADMIN);
-        checkText(EXPERT_FULL_TEAM_NAME);
+        checkText(PekamaProject.OWNER);
+        checkText(owner.teamFullName);
+        checkText(PekamaProject.ADMIN);
+        checkText(expert.teamFullName);
         checkTextNotPresent(INTRODUCER_NAME); //Removed from case - Admin function
         rootLogger.info("Test passed");
     }

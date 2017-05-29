@@ -9,6 +9,7 @@ import static Page.PekamaProjectCharges.TAB_CHARGES_LIST;
 import static Page.PekamaReports.REPORTS_BTN_NEW_PROJECT;
 import static Page.PekamaReportsProjects.*;
 import static Page.UrlStrings.*;
+import static Steps.Steps.checkTextInSelector;
 import static Steps.StepsPekamaProject.setProjectDefining;
 import static Steps.StepsPekamaProject.setProjectSubType;
 import static Steps.StepsPekamaProject.setProjectType;
@@ -48,6 +49,9 @@ public class ObjectProject {
     public String projectTmNumber = null;
     public String projectUrl = null;
     public String[] contactNames = null;
+    public ObjectUser projectOwner = null;
+    public ObjectUser[] projectCollaborators = null;
+    public ObjectUser projectCollaborator = null;
 
     public enum projectEnterPoint {DASHBOARD, REPORTS, CONTACTS, FAMILY, CLONE}
     public void setValues(

@@ -21,8 +21,8 @@ import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
-import static Steps.MessagesValidator.ValidationEmailMessage.*;
-import static Steps.MessagesValidator.ValidationInviteInProject.*;
+import static Steps.IMessagesValidator.ValidationEmailMessage.*;
+import static Steps.IMessagesValidator.ValidationInviteInProject.*;
 import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsModalWindows.ModalConversationFollowerActions.*;
@@ -242,7 +242,7 @@ public class TestsMessages {
                         LOREM_IPSUM_SHORT,
                         INVITER_NAME_SURNAME,
                         COLLABORATOR_NAME_SURNAME,
-                        new MessagesValidator.ValidationEmailMessage()
+                        new IMessagesValidator.ValidationEmailMessage()
                 )
         );
     }
@@ -301,7 +301,7 @@ public class TestsMessages {
                         LOREM_IPSUM_SHORT,
                         INVITER_NAME_SURNAME,
                         COLLABORATOR_NAME_SURNAME,
-                        new MessagesValidator.ValidationEmailMessage()
+                        new IMessagesValidator.ValidationEmailMessage()
                 )
         );
     }
@@ -343,7 +343,7 @@ public class TestsMessages {
                         LOREM_IPSUM_SHORT,
                         INVITER_NAME_SURNAME,
                         COLLABORATOR_NAME_SURNAME,
-                        new MessagesValidator.ValidationEmailMessage()
+                        new IMessagesValidator.ValidationEmailMessage()
                 )
         );
     }
@@ -401,7 +401,7 @@ public class TestsMessages {
                         LOREM_IPSUM_SHORT,
                         INVITER_NAME_SURNAME,
                         COLLABORATOR_NAME_SURNAME,
-                        new MessagesValidator.ValidationEmailMessage()
+                        new IMessagesValidator.ValidationEmailMessage()
                 )
         );
     }
@@ -444,7 +444,7 @@ public class TestsMessages {
                         LOREM_IPSUM_SHORT,
                         INVITER_NAME_SURNAME,
                         COLLABORATOR_NAME_SURNAME,
-                        new MessagesValidator.ValidationEmailMessage()
+                        new IMessagesValidator.ValidationEmailMessage()
                 )
         );
     }
@@ -727,7 +727,7 @@ public class TestsMessages {
                         LOREM_IPSUM_SHORT,
                         INVITER_NAME_SURNAME,
                         COLLABORATOR_NAME_SURNAME,
-                        new MessagesValidator.ValidationEmailMessage()
+                        new IMessagesValidator.ValidationEmailMessage()
                 )
         );
         repryLink = ValidationEmailMessage.replyLink;
@@ -794,7 +794,7 @@ public class TestsMessages {
                         LOREM_IPSUM_SHORT,
                         INVITER_NAME_SURNAME,
                         GUEST_EMAIL,
-                        new MessagesValidator.ValidationEmailMessage()
+                        new IMessagesValidator.ValidationEmailMessage()
                 )
         );
 
@@ -809,7 +809,7 @@ public class TestsMessages {
                         LOREM_IPSUM_SHORT,
                         INVITER_NAME_SURNAME,
                         GUEST_EMAIL,
-                        new MessagesValidator.ValidationEmailMessage()
+                        new IMessagesValidator.ValidationEmailMessage()
                 )
         );
     }
@@ -860,7 +860,7 @@ public class TestsMessages {
                         LOREM_IPSUM_SHORT,
                         INVITER_NAME_SURNAME,
                         COLLABORATOR_NAME_SURNAME,
-                        new MessagesValidator.ValidationEmailMessage()
+                        new IMessagesValidator.ValidationEmailMessage()
                 )
         );
     }

@@ -29,6 +29,8 @@ public class ObjectTask {
     public String[] tasksAll = null;
     public Boolean taskZoneAll = false;
     public String[] taskTeams = null;
+    public String linkeProjectName;
+    public String taskUrl;
 
 
 

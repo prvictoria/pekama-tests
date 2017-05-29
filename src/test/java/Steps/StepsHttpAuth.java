@@ -12,7 +12,7 @@ import static org.junit.Assume.assumeTrue;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
-public class StepsHttpAuth extends Steps {
+public class StepsHttpAuth {
     static final Logger rootLogger = LogManager.getRootLogger();
     public void httpAuthStagingPekama() {
         //assumeTrue(isFirefox());

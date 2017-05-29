@@ -4,6 +4,8 @@ import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.*;
 import org.junit.Assert;
 
+import java.io.File;
+
 import static Steps.StepsPekama.*;
 import static com.codeborne.selenide.Condition.*;
 
@@ -14,6 +16,7 @@ import static com.codeborne.selenide.Condition.*;
 public abstract class Steps {
     static final Logger rootLogger = LogManager.getRootLogger();
 
+    abstract Boolean checkActualUrl(ObjectUser user, String url);
     //Selenide steps
     public static void clickSelector(SelenideElement element){
         element.waitUntil(exist, 20000).waitUntil(visible, 10000).click();
@@ -29,16 +32,9 @@ public abstract class Steps {
         Assert.assertTrue(selectedColor.equals("rgb("+colourRgb+")"));
         return true;
     }
-    abstract Boolean checkActualUrl(ObjectUser user, String url);
-//    public static Boolean checkActualUrl(ObjectUser user, String url){
-//        if(getActualUrl().equals(url)){
-//            user.isLoggedIn = true;
-//            return true;
-//        }
-//        else
-//            user.isLoggedIn = false;
-//            return false;
-//    };
+    public static String absolutePath(String path) {
+        return new File(path).getAbsolutePath();
+    }
 
 }
 

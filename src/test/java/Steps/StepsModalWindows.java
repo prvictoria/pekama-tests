@@ -15,6 +15,7 @@ import static Page.PekamaProject.*;
 import static Page.PekamaTeamSettings.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
+import static Steps.ObjectFile.FileTypes.*;
 import static Steps.StepsModalWindows.ModalConversationFollowerActions.*;
 import static Steps.StepsModalWindows.ModalConversationTeamActions.*;
 import static Steps.StepsPekama.*;
@@ -463,15 +464,15 @@ public class StepsModalWindows {
         MW.shouldNotBe(Condition.visible);
         return folderName;
     }
-    public static String uploadModalUploadFiles(UploadFiles fileType) throws IOException {
+    public static String uploadModalUploadFiles(ObjectFile file)  {
         waitForModalWindow("Files upload");
         MW_UPLOAD_FILES_CANCEL.shouldBe(visible);
         MW_UPLOAD_FILES_UPLOAD.shouldNotBe(visible);
         MW_UPLOAD_FILES_CHOOSE.shouldBe(visible).click();
-        String fileName = executeAutoItScript(fileType);
+        file.uploadFile();
         MW_UPLOAD_FILES_LIST.shouldHaveSize(1);
-        MW_UPLOAD_FILES_FIRST_FILE.shouldHave(text(fileName));
-        return fileName;
+        MW_UPLOAD_FILES_FIRST_FILE.shouldHave(text(file.fileFullName));
+        return file.fileFullName;
     }
     public static Boolean submitModalUploadFiles(Boolean submitModal){
         if (submitModal ==true){
@@ -771,7 +772,7 @@ public class StepsModalWindows {
         return eventType;
     }
     public enum modalDocumentTemplateOptions {SUBMIT, CANCEL, ABORT_UPLOAD}
-    public static String submitModalDocTemplate(modalDocumentTemplateOptions option, UploadFiles fileType, Boolean selectAutodeploy) throws IOException {
+    public static String submitModalDocTemplate(modalDocumentTemplateOptions option, ObjectFile.FileTypes fileType, Boolean selectAutodeploy) throws IOException {
         String templateDocName = "";
         fileName = null;
         waitForModalWindow(MW_DOC_TEMPLATE_TITLE);
@@ -780,7 +781,10 @@ public class StepsModalWindows {
         submitEnabledButton(MW_DOC_TEMPLATE_UPLOAD);
 
         rootLogger.info("Check uploaded file name");
-        fileName = executeAutoItScript(fileType);
+        ObjectFile file = new ObjectFile(ObjectFile.newBuilder()).buildFile(fileType);
+        file.uploadFile();
+        fileName = file.fileFullName;
+        //fileName = executeAutoItScript(fileType);
         MW_DOC_TEMPLATE_UPLOADED_FILE_NAME.shouldHave(text("Uploading: "+fileName));
         MW_DOC_TEMPLATE_PROGRESS_BAR.shouldHave(text("100%"));
         MW_DOC_TEMPLATE_ABORT_UPLOAD.shouldBe(visible);
@@ -822,18 +826,18 @@ public class StepsModalWindows {
         $$(byText(eventInfo)).filter(visible).shouldHaveSize(1);
         return true;
     }
-    public static void submitImportContactsModal(String fileName, String error) {
-        if(fileName==null){
+    public static void submitImportContactsModal(ObjectFile file, String error) {
+        if(file==null){
             Assert.fail("File for upload not defined");
         }
         MW_IMPORT_CONTACTS_UPLOAD_BTN.shouldBe(visible).shouldBe(enabled);
         MW_BTN_CANCEL.shouldBe(visible).shouldBe(enabled);
         MW_IMPORT_CONTACTS_UPLOAD_BTN.click();
-        uploadFiles(fileName);
-        if(fileName!=null && error==null){
+        file.uploadFile();
+        if(file!=null && error==null){
             MW.shouldNotBe(visible);
         }
-        if(fileName!=null && error!=null){
+        if(file!=null && error!=null){
             MW_IMPORT_CONTACTS_UPLOAD_BTN.waitUntil(not(visible), 15000);
             MW_IMPORT_CONTACTS_ERROR.shouldBe(visible).shouldHave(text(error));
             MW_IMPORT_CONTACTS_ABORT_UPLOAD.shouldBe(visible).click();
@@ -844,5 +848,17 @@ public class StepsModalWindows {
             MW.shouldNotBe(visible);
         }
     }
+    //TODO
+    // Access control modal
+    public static void submitAccessControlModal(ObjectZone zone, ObjectUser collaborator){
+        waitForModalWindow("Access control");
 
+        if(zone.zoneIsAll==true){
+
+            selectAllTeams(zone.zoneIsAll);
+        }
+
+        submitEnabledButton(MW_BTN_OK);
+
+    }
 }

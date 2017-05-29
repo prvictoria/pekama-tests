@@ -1,5 +1,4 @@
 package Tests;
-import Page.TestsCredentials.*;
 import Steps.*;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.SelenideElement;
@@ -20,11 +19,10 @@ import static Page.TestsCredentials.Countries.PITCAIRN_ISLANDS;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
-import static Steps.MessagesValidator.ValidationReport.*;
+import static Steps.IMessagesValidator.ValidationReport.*;
 import static Steps.ObjectContact.contactType.COMPANY;
 import static Steps.ObjectContact.contactType.PERSON;
 import static Steps.ObjectContact.enterPoint.*;
-import static Steps.ObjectUser.Users.OWNER;
 import static Steps.ObjectUser.Users.USER_01;
 import static Steps.ObjectUser.newBuilder;
 import static Steps.StepsModalWindows.*;
@@ -44,19 +42,11 @@ import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaReports {
     static final Logger rootLogger = LogManager.getRootLogger();
-    private static final String TEST_USER_LOGIN = User1.GMAIL_EMAIL.getValue();
-    private static final String TEST_USER_PASSWORD = User1.PEKAMA_PASSWORD.getValue();
-    private static final String GMAIL_LOGIN = TEST_USER_LOGIN;
-    private static final String GMAIL_PASSWORD = User1.GMAIL_PASSWORD.getValue();
-    private static final String USER_TEAM_NAME = User1.TEAM_NAME.getValue();
     private static final ObjectUser user = new ObjectUser(newBuilder()).buildUser(USER_01);
-    private static String projectName;
-    private static boolean skipBefore = false;    
+    private static boolean skipBefore = false;
     
     @Rule
     public Timeout tests = Timeout.seconds(600);
-
-
     @BeforeClass
     public static void beforeClass() throws IOException, MessagingException {
         setEnvironment ();
@@ -121,8 +111,8 @@ public class TestsPekamaReports {
         String thisMailingListName = "Projects Test Mailing List";
         //if (thisMailingListName==null){Assert.fail("Case not created");}
         rootLogger.info("Check report email");
-        String login = GMAIL_LOGIN;
-        String password = GMAIL_PASSWORD;
+        String login = user.email;
+        String password = user.passwordEmail;
         String reportSchedule = "999";
         String reportName = thisMailingListName;
         MessagesIMAP validation = new MessagesIMAP();
@@ -148,8 +138,8 @@ public class TestsPekamaReports {
 
         //if (thisMailingListName==null){Assert.fail("Case not created");}
         rootLogger.info("Check report email");
-        String login = GMAIL_LOGIN;
-        String password = GMAIL_PASSWORD;
+        String login = user.email;
+        String password = user.passwordEmail;
         String reportSchedule = "999";
         String reportName = thisMailingListName;
         MessagesIMAP validation = new MessagesIMAP();
@@ -176,8 +166,8 @@ public class TestsPekamaReports {
         String thisMailingListName = "Events Test Mailing List";
         //if (thisMailingListName==null){Assert.fail("Case not created");}
         rootLogger.info("Check report email");
-        String login = GMAIL_LOGIN;
-        String password = GMAIL_PASSWORD;
+        String login = user.email;
+        String password = user.passwordEmail;
         String reportSchedule = "999";
         String reportName = thisMailingListName;
         MessagesIMAP validation = new MessagesIMAP();
@@ -205,8 +195,8 @@ public class TestsPekamaReports {
         rootLogger.info("Check email - report");
         //if (thisMailingListName==null){Assert.fail("Case not created");}
         rootLogger.info("Check report email");
-        String login = GMAIL_LOGIN;
-        String password = GMAIL_PASSWORD;
+        String login = user.email;
+        String password = user.passwordEmail;
         String reportSchedule = "999";
         String reportName = thisMailingListName;
         MessagesIMAP validation = new MessagesIMAP();
@@ -233,8 +223,8 @@ public class TestsPekamaReports {
         String thisMailingListName = "Contacts Test Mailing List";
         //if (thisMailingListName==null){Assert.fail("Case not created");}
         rootLogger.info("Check report email");
-        String login = GMAIL_LOGIN;
-        String password = GMAIL_PASSWORD;
+        String login = user.email;
+        String password = user.passwordEmail;
         String reportSchedule = "999";
         String reportName = thisMailingListName;
         MessagesIMAP validation = new MessagesIMAP();
@@ -257,8 +247,8 @@ public class TestsPekamaReports {
 
         //if (thisMailingListName==null){Assert.fail("Case not created");}
         rootLogger.info("Check report email");
-        String login = GMAIL_LOGIN;
-        String password = GMAIL_PASSWORD;
+        String login = user.email;
+        String password = user.passwordEmail;
         String reportSchedule = "999";
         String reportName = thisMailingListName;
         MessagesIMAP validation = new MessagesIMAP();
@@ -633,9 +623,10 @@ public class TestsPekamaReports {
 
     @Test
     public void contacts_y_import_ContactsMaxValue() {
+        ObjectFile fileCsv = new ObjectFile(ObjectFile.newBuilder()).buildFile("ContactsMaxValue", "csv");
         deleteAllContacts();
         callImportContactModal();
-        submitImportContactsModal("ContactsMaxValue.csv", null);
+        submitImportContactsModal(fileCsv, null);
         sleep(3000);
         refresh();
         REPORTS_LIST_ROWS.shouldHaveSize(1);
@@ -643,21 +634,24 @@ public class TestsPekamaReports {
     }
     @Test
     public void contacts_y_import_ContactsMinValue() {
+        ObjectFile fileCsv = new ObjectFile(ObjectFile.newBuilder()).buildFile("ContactsMinValue", "csv");
         deleteAllContacts();
         callImportContactModal();
-        submitImportContactsModal("ContactsMinValue.csv", null);
+        submitImportContactsModal(fileCsv, null);
         sleep(3000);
         refresh();
         REPORTS_LIST_ROWS.shouldHaveSize(1);
     }
     @Test
     public void contacts_y_import_ContactsValidationNotCsv() {
+        ObjectFile filePng = new ObjectFile(ObjectFile.newBuilder()).buildFile("png", "png");
         callImportContactModal();
-        submitImportContactsModal("png.png", "file: Not a valid CSV file");
+        submitImportContactsModal(filePng, "file: Not a valid CSV file");
     }
     @Test
     public void contacts_y_import_ContactsValidationNameSurname() {
+        ObjectFile fileCsv = new ObjectFile(ObjectFile.newBuilder()).buildFile("ContactsValidationNameSurname", "csv");
         callImportContactModal();
-        submitImportContactsModal("ContactsValidationNameSurname.csv", "file: Multiple headers: SAZipCode. ");
+        submitImportContactsModal(fileCsv, "file: Multiple headers: SAZipCode. ");
     }
 }

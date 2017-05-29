@@ -18,6 +18,7 @@ import static Page.PekamaProjectCharges.*;
 import static Page.TestsCredentials.Countries.NETHERLANDS_ANTILES;
 import static Page.TestsStrings.*;
 import static Page.UrlStrings.*;
+import static Steps.Steps.clickSelector;
 import static Steps.StepsCommunity.*;
 import static Steps.StepsModalWindows.*;
 import static Utils.Utils.*;
@@ -39,14 +40,9 @@ public class StepsPekamaProject extends StepsPekama {
         checkText(PLACEHOLDER_NoFiles);
         rootLogger.info(PLACEHOLDER_NoFiles);
     }
-    public static String uploadFileInRoot(UploadFiles fileType, boolean allTeamsIsSelected, Boolean submitModal) {
+    public static String uploadFileInRoot(ObjectFile file, boolean allTeamsIsSelected, Boolean submitModal) {
         callUploadFilesModal();
-        String fileName = null;
-        try {
-            fileName = uploadModalUploadFiles(fileType);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        String fileName = uploadModalUploadFiles(file);
         selectAllTeams(allTeamsIsSelected);
         submitModalUploadFiles(submitModal);
         checkText(fileName);

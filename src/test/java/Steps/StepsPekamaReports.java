@@ -13,6 +13,7 @@ import static Page.TestsStrings.*;
 import static Page.UrlStrings.*;
 import static Steps.ObjectContact.*;
 import static Steps.ObjectContact.contactType.*;
+import static Steps.Steps.clickSelector;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static com.codeborne.selenide.Condition.*;
@@ -27,7 +28,7 @@ import static com.codeborne.selenide.Selenide.sleep;
 /**
  * Created by VatslauX on 02-May-17.
  */
-public class StepsPekamaReports extends Steps {
+public class StepsPekamaReports {
     static final Logger rootLogger = LogManager.getRootLogger();
     public static String mailingListCreateNew(String thisMailingListName){
         rootLogger.info("Create new mailing list");
@@ -333,7 +334,7 @@ public class StepsPekamaReports extends Steps {
     }
     public static Boolean selectSortOrderAndCheck(String order, Boolean orderIsAscending){
         if (order != null) {
-            Steps.clickSelector(REPORTS_SORT_ORDER_TYPE);
+            clickSelector(REPORTS_SORT_ORDER_TYPE);
             clickSelector(REPORTS_SELECT_SORT_ORDER(order));
             String ActualTaskOrder = REPORTS_SORT_ORDER_TYPE.getText();
             Assert.assertEquals(order, ActualTaskOrder);

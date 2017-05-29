@@ -114,7 +114,7 @@ public class TestsPekamaResetPassword {
                 user.email,
                 user.passwordEmail,
                 EMAIL_SUBJECT_PASSWORD_REGISTRATION,
-                new MessagesValidator.ValidationResetPassword(), 0);
+                new IMessagesValidator.ValidationResetPassword(), 0);
         Assert.assertTrue(REDIRECT_LINK!=null);
         rootLogger.info("Test passed");
     }
@@ -328,7 +328,7 @@ public class TestsPekamaResetPassword {
                     user.email,
                     user.passwordEmail,
                     "Password Restoration [Pekama]",
-                    new MessagesValidator.ValidationResetPassword(), 0);
+                    new IMessagesValidator.ValidationResetPassword(), 0);
             rootLogger.info("Email and links correspond requirements");
 
             openUrlWithBaseAuth(REDIRECT_LINK);

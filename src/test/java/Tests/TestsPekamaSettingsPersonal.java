@@ -1,4 +1,5 @@
 package Tests;
+import Steps.ObjectFile;
 import Steps.ObjectUser;
 import Utils.Utils;
 import com.codeborne.selenide.*;
@@ -15,6 +16,8 @@ import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
+import static Steps.ObjectFile.*;
+import static Steps.ObjectFile.FileTypes.*;
 import static Steps.ObjectUser.Users.USER_04;
 import static Steps.ObjectUser.Users.USER_06;
 import static Steps.ObjectUser.newBuilder;
@@ -50,12 +53,13 @@ public class TestsPekamaSettingsPersonal {
     }
 
     @Test
-    public void avatarUpload_jpeg() throws IOException {
+    public void avatarUpload_jpeg() {
+        ObjectFile file =  new ObjectFile(ObjectFile.newBuilder()).buildFile(JPG);
         openSettingsTabPersonalDetails();
             try {
                 PERSONAL_DETAILS_DELETE_AVATAR.waitUntil(visible, 15000).shouldBe(disabled);
                 PERSONAL_DETAILS_UPLOAD_AVATAR_BTN.shouldBe(visible).click();
-                executeAutoItScript(UploadFiles.JPG);
+                file.uploadFile();
             }
             finally {
                 PERSONAL_DETAILS_DELETE_AVATAR.waitUntil(visible, 15000).shouldBe(enabled).click();
@@ -65,12 +69,13 @@ public class TestsPekamaSettingsPersonal {
             }
     }
     @Test
-    public void avatarUpload_png() throws IOException {
+    public void avatarUpload_png() {
+        ObjectFile file =  new ObjectFile(ObjectFile.newBuilder()).buildFile(PNG);
         openSettingsTabPersonalDetails();
         try {
             PERSONAL_DETAILS_DELETE_AVATAR.waitUntil(visible, 15000).shouldBe(disabled);
             PERSONAL_DETAILS_UPLOAD_AVATAR_BTN.shouldBe(visible).click();
-            executeAutoItScript(UploadFiles.PNG);
+            file.uploadFile();
         }
         finally {
             PERSONAL_DETAILS_DELETE_AVATAR.waitUntil(visible, 15000).click();
@@ -80,10 +85,11 @@ public class TestsPekamaSettingsPersonal {
         }
     }
     @Test
-    public void avatarUpload_pdf_Validation() throws IOException {
+    public void avatarUpload_pdf_Validation() {
+        ObjectFile file =  new ObjectFile(ObjectFile.newBuilder()).buildFile(PDF);
         openSettingsTabPersonalDetails();
         PERSONAL_DETAILS_UPLOAD_AVATAR_BTN.shouldBe(visible).click();
-        executeAutoItScript(UploadFiles.PDF);
+        file.uploadFile();
         checkText("Upload a valid image. The file you uploaded was either not an image or a corrupted image.");
         rootLogger.info("Test passed - error present");
     }
@@ -94,7 +100,7 @@ public class TestsPekamaSettingsPersonal {
         PERSONAL_SETTINGS_BTN.waitUntil(visible, 20000).shouldBe(Condition.visible);
         TEAM_SETTINGS_BTN.waitUntil(visible, 20000).shouldBe(Condition.visible);
         PERSONAL_DETAILS_TAB_TITLE.shouldHave(text("Personal details"));
-        SECURITY_TAB_TITLE.shouldHave(text("ILogin & Security"));
+        SECURITY_TAB_TITLE.shouldHave(text("Login & Security"));
         EMAILS_TAB_TITLE.shouldHave(text("Emails"));
         SIGNATURE_TAB_TITLE.shouldHave(text("E-mail signature"));
         IMAP_TAB_TITLE.shouldHave(text("IMAP"));

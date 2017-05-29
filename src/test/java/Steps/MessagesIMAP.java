@@ -1,5 +1,5 @@
 package Steps;
-import Steps.MessagesValidator.ValidationNotificationCaseConfirmed;
+import Steps.IMessagesValidator.ValidationNotificationCaseConfirmed;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Document;
@@ -12,7 +12,6 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.search.FlagTerm;
 import javax.mail.search.SearchTerm;
-import java.io.File;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.regex.Pattern;
@@ -20,10 +19,9 @@ import java.util.regex.Pattern;
 import static Page.TestsCredentials.*;
 import static Steps.Messages.*;
 import static Steps.Messages.EMAIL_SUBJECT_YOU_INVITED_IN_COMMUNITY;
-import static Steps.MessagesValidator.*;
-import static Steps.MessagesValidator.ValidationEmailMessage.followerEmailOrTeamNameSurname;
-import static Steps.MessagesValidator.ValidationEmailMessage.replyLink;
-import static Steps.MessagesValidator.ValidationInviteInProject.projectBackLink;
+import static Steps.IMessagesValidator.*;
+import static Steps.IMessagesValidator.ValidationEmailMessage.replyLink;
+import static Steps.IMessagesValidator.ValidationInviteInProject.projectBackLink;
 import static Utils.Utils.formatDateToString;
 import static com.codeborne.selenide.Selenide.getElement;
 import static com.codeborne.selenide.Selenide.sleep;
@@ -523,7 +521,7 @@ public class MessagesIMAP {
         }
         return false;
     }
-    public boolean searchEmailBySubjectAndValidate(String userName, String password, final String keyword, MessagesValidator validator) {
+    public boolean searchEmailBySubjectAndValidate(String userName, String password, final String keyword, IMessagesValidator validator) {
         Properties properties = setProperties (IMAP_HOST, IMAP_PORT);
         Session session = Session.getDefaultInstance(properties);
         try {
@@ -563,7 +561,7 @@ public class MessagesIMAP {
         }
         return false;
     }
-    public String searchEmailBySubjectAndValidate(String userName, String password, final String keyword, MessagesValidator validator, Integer index) {
+    public String searchEmailBySubjectAndValidate(String userName, String password, final String keyword, IMessagesValidator validator, Integer index) {
 
         Properties properties = setProperties (IMAP_HOST, IMAP_PORT);
         try {
@@ -806,7 +804,7 @@ public class MessagesIMAP {
         Assert.assertTrue(validationResult==true);
         return true;
     }
-    public boolean validateEmailMessage(String email, String password, String keyword, String text, String userNameSurname, String followerEmailOrTeamNameSurname, MessagesValidator validator) throws IOException, MessagingException {
+    public boolean validateEmailMessage(String email, String password, String keyword, String text, String userNameSurname, String followerEmailOrTeamNameSurname, IMessagesValidator validator) throws IOException, MessagingException {
         ValidationEmailMessage.userNameSurname = userNameSurname;
         ValidationEmailMessage.followerEmailOrTeamNameSurname = followerEmailOrTeamNameSurname;
         String html;

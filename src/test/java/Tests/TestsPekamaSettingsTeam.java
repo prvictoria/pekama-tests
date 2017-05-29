@@ -1,5 +1,6 @@
 package Tests;
 import Steps.MessagesIMAP;
+import Steps.ObjectFile;
 import Steps.ObjectUser;
 import Utils.Retry;
 import com.codeborne.selenide.Condition;
@@ -13,12 +14,12 @@ import java.io.IOException;
 
 import static Page.ModalWindows.*;
 import static Page.PekamaTeamSettings.*;
-import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
-import static Steps.MessagesValidator.ValidationInviteInTeamUnregistered.teamBackLink;
-import static Steps.ObjectUser.*;
+import static Steps.IMessagesValidator.ValidationInviteInTeamUnregistered.teamBackLink;
+import static Steps.ObjectFile.FileTypes.JPG;
+import static Steps.ObjectFile.FileTypes.PDF;
 import static Steps.ObjectUser.Users.USER_05;
 import static Steps.ObjectUser.Users.USER_06;
 import static Steps.ObjectUser.newBuilder;
@@ -30,7 +31,6 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 
 /**
  * Created by Viachaslau Balashevich.
@@ -88,11 +88,12 @@ public class TestsPekamaSettingsTeam {
 
     }
     @Test
-    public void logoUpload_jpeg() throws IOException {
+    public void logoUpload_jpeg() {
+        ObjectFile file = new ObjectFile(ObjectFile.newBuilder()).buildFile(JPG);
         try {
             SETTINGS_TEAM_INFO_DELETE_LOGO.waitUntil(visible, 15000).shouldBe(disabled);
             SETTINGS_TEAM_INFO_UPLOAD_LOGO.shouldBe(visible).click();
-            executeAutoItScript(UploadFiles.JPG);
+            file.uploadFile();
         }
         finally {
             SETTINGS_TEAM_INFO_DELETE_LOGO.waitUntil(visible, 15000).shouldBe(enabled).click();
@@ -104,8 +105,9 @@ public class TestsPekamaSettingsTeam {
     }
     @Test
     public void logoUpload_pdf_Validation() throws IOException {
+        ObjectFile file = new ObjectFile(ObjectFile.newBuilder()).buildFile(PDF);
         SETTINGS_TEAM_INFO_UPLOAD_LOGO.shouldBe(visible).click();
-        executeAutoItScript(UploadFiles.PDF);
+        file.uploadFile();
         checkText("Upload a valid image. The file you uploaded was either not an image or a corrupted image.");
         rootLogger.info("Test passed - error present");
     }
@@ -148,8 +150,7 @@ public class TestsPekamaSettingsTeam {
     }
     @Test 
     public void testC_inviteNewMember_A_Invite() {
-        String newMemberEmail = User5.GMAIL_EMAIL.getValue();
-        String newMemberPassword = User5.GMAIL_PASSWORD.getValue();
+        String newMemberEmail = invited.email;
         rootLogger.info("Add member");
         SETTINGS_TEAM_TAB_MEMBERS.waitUntil(visible, 20000).click();
         addMember(newMemberEmail, TAB_MEMBERS_BTN_ADD);

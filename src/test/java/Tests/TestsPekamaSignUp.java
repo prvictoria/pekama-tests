@@ -1,5 +1,6 @@
 package Tests;
 import Steps.MessagesIMAP;
+import Steps.ObjectFile;
 import Steps.ObjectUser;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
@@ -16,7 +17,8 @@ import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
-import static Steps.MessagesValidator.*;
+import static Steps.IMessagesValidator.*;
+import static Steps.ObjectFile.FileTypes.*;
 import static Steps.StepsHttpAuth.*;
 import static Steps.StepsPekama.*;
 import static Tests.BeforeTestsSetUp.*;
@@ -262,8 +264,10 @@ public class TestsPekamaSignUp {
     @Test
     public void sendSignUpEmail_D1_UploadAvatarJpg() {
         skipBefore = false;
+
         signupUpAvatar.waitUntil(exist, 10000).shouldHave(attribute("class", "hidden image-preview"));
-        uploadFile("jpeg.jpg", signupUploadInput);
+        ObjectFile fileJpg = new ObjectFile(ObjectFile.newBuilder()).buildFile(JPG);
+        fileJpg.uploadFile(signupUploadInput);
         signupUpAvatar.waitUntil(exist, 10000).shouldHave(attribute("class", "image-preview"));
         rootLogger.info("Avatar uploaded");
 
@@ -286,7 +290,8 @@ public class TestsPekamaSignUp {
     public void sendSignUpEmail_D2_UploadAvatarPng() {
         skipBefore = false;
         signupUpAvatar.waitUntil(exist, 10000).shouldHave(attribute("class", "hidden image-preview"));
-        uploadFile("png.png", signupUploadInput);
+        ObjectFile filePng = new ObjectFile(ObjectFile.newBuilder()).buildFile(PNG);
+        filePng.uploadFile(signupUploadInput);
         signupUpAvatar.waitUntil(exist, 10000).shouldHave(attribute("class", "image-preview"));
         rootLogger.info("Avatar uploaded");
 
@@ -308,7 +313,8 @@ public class TestsPekamaSignUp {
     public void sendSignUpEmail_D3_UploadAvatarIcon() {
         skipBefore = false;
         signupUpAvatar.waitUntil(exist, 10000).shouldHave(attribute("class", "hidden image-preview"));
-        uploadFile("icon.ico", signupUploadInput);
+        ObjectFile fileIcon = new ObjectFile(ObjectFile.newBuilder()).buildFile(ICO);
+        fileIcon.uploadFile(signupUploadInput);
         signupUpAvatar.waitUntil(exist, 10000).shouldHave(attribute("class", "image-preview"));
         rootLogger.info("Avatar uploaded");
 
@@ -331,7 +337,8 @@ public class TestsPekamaSignUp {
     public void sendSignUpEmail_D4_UploadAvatarSvg_Validation() {
         skipBefore = false;
         signupUpAvatar.waitUntil(exist, 10000).shouldHave(attribute("class", "hidden image-preview"));
-        uploadFile("svg.svg", signupUploadInput);
+        ObjectFile fileSvg = new ObjectFile(ObjectFile.newBuilder()).buildFile(SVG);
+        fileSvg.uploadFile(signupUploadInput);
         signupUpAvatar.waitUntil(exist, 10000).shouldHave(attribute("class", "image-preview"));
         rootLogger.info("Avatar uploaded - but not displayed");
 
@@ -353,7 +360,8 @@ public class TestsPekamaSignUp {
     public void sendSignUpEmail_D5_UploadAvatarPdf_Validation() {
         skipBefore = false;
         signupUpAvatar.waitUntil(exist, 10000).shouldHave(attribute("class", "hidden image-preview"));
-        uploadFile("pdf.pdf", signupUploadInput);
+        ObjectFile filePdf = new ObjectFile(ObjectFile.newBuilder()).buildFile(PDF);
+        filePdf.uploadFile(signupUploadInput);
         signupUpAvatar.waitUntil(exist, 10000).shouldHave(attribute("class", "image-preview"));
 
         rootLogger.info("Submit SignUp with valid but fake user");

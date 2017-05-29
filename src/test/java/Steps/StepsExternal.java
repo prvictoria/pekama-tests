@@ -20,7 +20,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.alertIsPresent;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
-public class StepsExternal extends Steps {
+public class StepsExternal {
     static final Logger rootLogger = LogManager.getRootLogger();
     static String REDIRECT_LINK;
     public static String checkReportBackLink;
