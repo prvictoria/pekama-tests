@@ -278,31 +278,6 @@ public class TestsPekamaReports {
             {Assert.fail("Checkbox sending interval is still - has ON value");}
         rootLogger.info("Test passed");
     }
-    @Test
-    public void projects_sort_test(){
-        String projectName = null;
-        openPageWithSpinner(URL_ReportsProjects);
-        rootLogger.info("Create project");
-        submitEnabledButton(REPORTS_BTN_NEW_PROJECT);
-        projectName = submitMwNewProject();
-        openPageWithSpinner(URL_ReportsProjects);
-        REPORTS_SORT_BY_NONE.waitUntil(visible, 15000).click();
-        REPORTS_SORT_BY_LAST_CREATED.shouldBe(visible).click();
-        String actualTitle = REPORTS_LIST_PROJECT_TILE_ROW1.getText();
-        rootLogger.info("Actual title in row: " + actualTitle);
-        REPORTS_LIST_PROJECT_TILE_ROW1.shouldHave(matchText(projectName));
-    }
-
-    @Test
-    public void projects_delete_all(){
-        deleteAllProjects();
-        rootLogger.info("Test passed");
-    }
-    @Test
-    public void tasks_delete_all(){
-        deleteAllTasks();
-        rootLogger.info("Test passed");
-    }
 
     @Test
     public void charges_delete_all(){
