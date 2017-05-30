@@ -9,6 +9,10 @@ import org.junit.runners.MethodSorters;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
+
+import static Steps.ObjectUser.Users.USER_03;
+import static Steps.ObjectUser.Users.USER_04;
+import static Steps.ObjectUser.newBuilder;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.WebDriverRunner.*;
@@ -32,10 +36,6 @@ import static Tests.BeforeTestsSetUp.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaProjectTasks {
     static final Logger rootLogger = LogManager.getRootLogger();
-    private static final String OWNER_LOGIN_EMAIL = User3.GMAIL_EMAIL.getValue();
-    private static final String OWNER_PASSWORD_PEKAMA = User3.PEKAMA_PASSWORD.getValue();
-    private static final String OWNER_TEAM_NAME = User3.TEAM_NAME.getValue();
-    private final static String OWNER_FULL_TEAM_NAME = User3.FULL_TEAM_NAME.getValue();
     private static String member1 = null;
     private static String member2 = null;
     private static String member3 = null;
@@ -43,7 +43,7 @@ public class TestsPekamaProjectTasks {
     private static String projectName;
     private static String projectUrl;
     private static boolean skipBefore = false;
-    private static ObjectUser owner = ObjectUser.newBuilder().email(OWNER_LOGIN_EMAIL).passwordPekama(OWNER_PASSWORD_PEKAMA).build();
+    private static final ObjectUser owner = new ObjectUser(newBuilder()).buildUser(USER_03);
 
     @Rule
     public Timeout tests = Timeout.seconds(600);
@@ -53,7 +53,7 @@ public class TestsPekamaProjectTasks {
         setBrowser();
         holdBrowserAfterTest();
         if(skipBefore==false) {
-            owner.login(owner.email, owner.passwordPekama, URL_LogIn);
+            owner.login();
 
             rootLogger.info("Create project");
             submitEnabledButton(DASHBOARD_BTN_NEW_PROJECT);
@@ -73,7 +73,7 @@ public class TestsPekamaProjectTasks {
     @Before
     public void login() {
         //clearBrowserCache();
-        owner.login(owner.email, owner.passwordPekama, URL_LogIn);
+        owner.login(projectUrl);
         checkText(projectName);
         StepsPekamaProject.deleteAllTasks();
     }

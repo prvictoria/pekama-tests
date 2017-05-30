@@ -164,15 +164,16 @@ public class StepsPekamaReports {
         rootLogger.info("Delete all objects on: "+pageUrl);
         openUrlIfActualNotEquals(pageUrl);
         sleep(2000);
-        if(REPORTS_LIST_ROWS.size()==0){
+        if(REPORTS_LIST_ROWS.size()==0 || REPORTS_PLACEHOLDER_NO_DATA.isDisplayed()==true){
             rootLogger.info("No objects");
             return;
         }
         else {
             REPORTS_ALL_CHECKBOX.setSelected(true);
-            sleep(2000);
+            sleep(1000);
             Steps.checkColourInSelector(REPORTS_ALL_CHECKBOX, "42, 164, 245");
-            if(REPORTS_LIST_ROWS.size()==0){
+            sleep(1000);
+            if(REPORTS_LIST_ROWS.size()==0 || REPORTS_PLACEHOLDER_NO_DATA.isDisplayed()==true){
                 rootLogger.info("No objects");
                 return;
             }

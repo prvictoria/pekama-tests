@@ -109,18 +109,13 @@ public class TestsPekamaReports {
     }
     @Test 
     public void projects_send_report_B_CheckEmail() {
+        skipBefore = false;
         String thisMailingListName = "Projects Test Mailing List";
-        //if (thisMailingListName==null){Assert.fail("Case not created");}
         rootLogger.info("Check report email");
-        String login = user.email;
-        String password = user.passwordEmail;
-        String reportSchedule = "999";
-        String reportName = thisMailingListName;
         MessagesIMAP validation = new MessagesIMAP();
-        Boolean validationResult = validation.validateEmailReport(login, password, reportSchedule, reportName);
+        Boolean validationResult = validation.validateEmailReport(user.email, user.passwordEmail, "999", thisMailingListName);
         Assert.assertTrue(validationResult);
         rootLogger.info("Test passed");
-        skipBefore = false;
     }
 
     @Test 
@@ -135,19 +130,13 @@ public class TestsPekamaReports {
     }
     @Test 
     public void tasks_send_report_B_CheckEmail() {
+        skipBefore = false;
         String thisMailingListName = "Tasks Test Mailing List";
-
-        //if (thisMailingListName==null){Assert.fail("Case not created");}
         rootLogger.info("Check report email");
-        String login = user.email;
-        String password = user.passwordEmail;
-        String reportSchedule = "999";
-        String reportName = thisMailingListName;
         MessagesIMAP validation = new MessagesIMAP();
-        Boolean validationResult = validation.validateEmailReport(login, password, reportSchedule, reportName);
+        Boolean validationResult = validation.validateEmailReport(user.email, user.passwordEmail, "999", thisMailingListName);
         Assert.assertTrue(validationResult);
         rootLogger.info("Test passed");
-        skipBefore = false;
     }
 
     @Test 
@@ -164,18 +153,13 @@ public class TestsPekamaReports {
     }
     @Test 
     public void events_send_report_B_CheckEmail() {
+        skipBefore = false;
         String thisMailingListName = "Events Test Mailing List";
-        //if (thisMailingListName==null){Assert.fail("Case not created");}
         rootLogger.info("Check report email");
-        String login = user.email;
-        String password = user.passwordEmail;
-        String reportSchedule = "999";
-        String reportName = thisMailingListName;
         MessagesIMAP validation = new MessagesIMAP();
-        Boolean validationResult = validation.validateEmailReport(login, password, reportSchedule, reportName);
+        Boolean validationResult = validation.validateEmailReport(user.email, user.passwordEmail, "999", thisMailingListName);
         Assert.assertTrue(validationResult);
         rootLogger.info("Test passed");
-        skipBefore = false;
     }
 
     @Test 
@@ -194,14 +178,9 @@ public class TestsPekamaReports {
     public void charges_send_report_B_CheckEmail() {
         String thisMailingListName = "Charges Test Mailing List";
         rootLogger.info("Check email - report");
-        //if (thisMailingListName==null){Assert.fail("Case not created");}
         rootLogger.info("Check report email");
-        String login = user.email;
-        String password = user.passwordEmail;
-        String reportSchedule = "999";
-        String reportName = thisMailingListName;
         MessagesIMAP validation = new MessagesIMAP();
-        Boolean validationResult = validation.validateEmailReport(login, password, reportSchedule, reportName);
+        Boolean validationResult = validation.validateEmailReport(user.email, user.passwordEmail, "999", thisMailingListName);
         Assert.assertTrue(validationResult);
         rootLogger.info("Test passed");
         skipBefore = false;
@@ -221,18 +200,13 @@ public class TestsPekamaReports {
     }
     @Test 
     public void contacts_send_report_B_CheckEmail() {
+        skipBefore = false;
         String thisMailingListName = "Contacts Test Mailing List";
-        //if (thisMailingListName==null){Assert.fail("Case not created");}
         rootLogger.info("Check report email");
-        String login = user.email;
-        String password = user.passwordEmail;
-        String reportSchedule = "999";
-        String reportName = thisMailingListName;
         MessagesIMAP validation = new MessagesIMAP();
-        Boolean validationResult = validation.validateEmailReport(login, password, reportSchedule, reportName);
+        Boolean validationResult = validation.validateEmailReport(user.email, user.passwordEmail, "999", thisMailingListName);
         Assert.assertTrue(validationResult);
         rootLogger.info("Test passed");
-        skipBefore = false;
     }
 
     @Test 

@@ -431,11 +431,6 @@ public class TestsPekamaProject {
     }
 
 
-
-
-
-
-
     @Test
     public void tabInfo_checkRedirectToCommunityWizard() {
         if (testProjectTitle ==null || projectUrl ==null){

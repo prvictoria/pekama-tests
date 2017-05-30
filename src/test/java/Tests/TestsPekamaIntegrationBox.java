@@ -20,6 +20,9 @@ import static Page.TestsCredentials.User1;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
+import static Steps.ObjectUser.Users.USER_01;
+import static Steps.ObjectUser.Users.USER_04;
+import static Steps.ObjectUser.newBuilder;
 import static Steps.StepsExternal.loginBox;
 import static Steps.StepsHttpAuth.*;
 import static Steps.StepsModalWindows.*;
@@ -35,16 +38,14 @@ import static com.codeborne.selenide.WebDriverRunner.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaIntegrationBox {
     static final Logger rootLogger = LogManager.getRootLogger();
-    private static final String OWNER_EMAIL = User1.GMAIL_EMAIL.getValue();
-    private static final String OWNER_PASSWORD = User1.PEKAMA_PASSWORD.getValue();
-    private static final String OWNER_BOX_PASSWORD = User1.BOX_PASSWORD.getValue();
-
+    private static final ObjectUser user = new ObjectUser(newBuilder()).buildUser(USER_01);
     private static String pekamaProjectUrl;
     private static String boxProjectName;
     private static String boxTeamFolderUrl;
     private static String boxProjectFolderUrl;
     private static String actualBoxProjectName;
     private static boolean skipBefore = false;
+    private static String boxNameFolderTeam = "Pekama - "+user.teamFullName;
 
     private static final String FolderNameBeforeConnect = "Folder created before connect";
     private static final String FolderNameAfterConnect = "Folder created after connect";
@@ -66,11 +67,7 @@ public class TestsPekamaIntegrationBox {
     public void before() {
         clearBrowserCache();
         if (skipBefore==false) {
-            ObjectUser user = ObjectUser.newBuilder().build();
-            user.login(
-                    OWNER_EMAIL,
-                    OWNER_PASSWORD,
-                    URL_Dashboard);
+            user.login();
         }
         else {rootLogger.info("Before was skipped");}
     }
@@ -115,8 +112,8 @@ public class TestsPekamaIntegrationBox {
             switchToChildWindow();
             sleep(6000);
             if(boxWindowSubmit.isDisplayed()) {
-                boxWindowEmail.sendKeys(OWNER_EMAIL);
-                boxWindowPassword.sendKeys(OWNER_BOX_PASSWORD);
+                boxWindowEmail.sendKeys(user.email);
+                boxWindowPassword.sendKeys(user.passwordBox);
                 boxWindowSubmit.click();
                 boxWindowSubmit.shouldNot(visible);
                 rootLogger.info("Login BOX submitted");
@@ -183,10 +180,10 @@ public class TestsPekamaIntegrationBox {
         }
 
         rootLogger.info("Check created files and folders in BOX");
-        loginBox(OWNER_EMAIL, OWNER_BOX_PASSWORD);
+        loginBox(user.email, user.passwordBox);
         rootLogger.info("Check Team folder");
-        teamFolderIsPresent = checkTextLoop(boxNameFolderTeam1, 15000);
-        $(byText(boxNameFolderTeam1)).click();
+        teamFolderIsPresent = checkTextLoop(boxNameFolderTeam, 15000);
+        $(byText(boxNameFolderTeam)).click();
         sleep(2000);
         boxTeamFolderUrl = getActualUrl();
 
@@ -232,7 +229,7 @@ public class TestsPekamaIntegrationBox {
         $(byText(PLACEHOLDER_NoFiles)).shouldBe(visible);
 
         rootLogger.info("Check BOX sync");
-        loginBox(boxProjectFolderUrl, OWNER_EMAIL, OWNER_BOX_PASSWORD);
+        loginBox(boxProjectFolderUrl, user.email, user.passwordBox);
         checkTextNotPresentLoop(FolderNameBeforeConnect, 15000);
         checkTextNotPresentLoop(FileNameBeforeConnect, 15000);
         checkTextNotPresentLoop(FolderNameAfterConnect, 15000);
@@ -267,7 +264,7 @@ public class TestsPekamaIntegrationBox {
         deleteProject();
 
         rootLogger.info("check in box results");
-        loginBox(boxTeamFolderUrl, OWNER_EMAIL, OWNER_BOX_PASSWORD);
+        loginBox(boxTeamFolderUrl, user.email, user.passwordBox);
         checkTextNotPresentLoop(boxProjectName);
         rootLogger.info("Project folder removed");
         rootLogger.info("Test passed");

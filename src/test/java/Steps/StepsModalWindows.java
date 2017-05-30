@@ -774,21 +774,19 @@ public class StepsModalWindows {
     public enum modalDocumentTemplateOptions {SUBMIT, CANCEL, ABORT_UPLOAD}
     public static String submitModalDocTemplate(modalDocumentTemplateOptions option, ObjectFile.FileTypes fileType, Boolean selectAutodeploy) throws IOException {
         String templateDocName = "";
-        fileName = null;
         waitForModalWindow(MW_DOC_TEMPLATE_TITLE);
         MW_BTN_OK.shouldBe(disabled);
         MW_DOC_TEMPLATE_TITLE_FIELD.shouldHave(value(""));
         submitEnabledButton(MW_DOC_TEMPLATE_UPLOAD);
 
         rootLogger.info("Check uploaded file name");
-        ObjectFile file = new ObjectFile(ObjectFile.newBuilder()).buildFile(fileType);
-        file.uploadFile();
-        fileName = file.fileFullName;
-        //fileName = executeAutoItScript(fileType);
-        MW_DOC_TEMPLATE_UPLOADED_FILE_NAME.shouldHave(text("Uploading: "+fileName));
+        ObjectFile file = new ObjectFile(ObjectFile.newBuilder())
+                .buildFile(fileType)
+                .uploadFile();
+        MW_DOC_TEMPLATE_UPLOADED_FILE_NAME.shouldHave(text("Uploading: "+file.fileFullName));
         MW_DOC_TEMPLATE_PROGRESS_BAR.shouldHave(text("100%"));
         MW_DOC_TEMPLATE_ABORT_UPLOAD.shouldBe(visible);
-        MW_DOC_TEMPLATE_TITLE_FIELD.shouldHave(value(fileName));
+        MW_DOC_TEMPLATE_TITLE_FIELD.shouldHave(value(file.fileFullName));
 
         switch(option) {
             case SUBMIT:
