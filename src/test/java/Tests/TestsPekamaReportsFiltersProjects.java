@@ -10,7 +10,6 @@ import org.junit.runners.MethodSorters;
 import javax.mail.MessagingException;
 import java.io.IOException;
 
-import static Page.TestsCredentials.*;
 import static Page.TestsCredentials.Countries.*;
 import static Page.TestsCredentials.MatterType.*;
 import static Page.UrlConfig.*;
@@ -31,10 +30,10 @@ import static com.codeborne.selenide.WebDriverRunner.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaReportsFiltersProjects {
     static final Logger rootLogger = LogManager.getRootLogger();
-    private static ObjectProject project1 = new ObjectProject();
-    private static ObjectProject project2 = new ObjectProject();
-    private static ObjectProject project3 = new ObjectProject();
-    private static ObjectProject project4 = new ObjectProject();
+    private static ObjectProject project1 = ObjectProject.newBuilder().build();
+    private static ObjectProject project2 = ObjectProject.newBuilder().build();
+    private static ObjectProject project3 = ObjectProject.newBuilder().build();
+    private static ObjectProject project4 = ObjectProject.newBuilder().build();
     private static ObjectUser owner = new ObjectUser(newBuilder()).buildUser(OWNER);
 
     private static boolean skipBefore = false;
@@ -60,13 +59,13 @@ public class TestsPekamaReportsFiltersProjects {
             project4.setValues("SortPrj4", COPYRIGHT.getValue(),
                     USA.getValue(), "ref2", null);
 
-            project1.create(REPORTS, project1);
+            project1.createProject(REPORTS, project1);
             project1.selectProjectValues(null, "Basic Filing", "Large");
-            project2.create(REPORTS, project2);
+            project2.createProject(REPORTS, project2);
             project2.selectProjectValues(null, "Potential Cooperation", null);
-            project3.create(REPORTS, project3);
+            project3.createProject(REPORTS, project3);
             project3.selectProjectValues(null, "Opposition", "Word Mark");
-            project4.create(REPORTS, project4);
+            project4.createProject(REPORTS, project4);
             project4.selectProjectValues(null, null, null);
             getWebDriver().quit();
         }

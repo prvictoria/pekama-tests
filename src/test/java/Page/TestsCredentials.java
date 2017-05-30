@@ -408,16 +408,7 @@ public class TestsCredentials {
     "BOX_PASSWORD"
     ETC) */
 
-    @Test
-    public  void enumTest() {
-        System.out.println(TrademarkEvents.APPLICATION_REGISTERED.eventName);
-        System.out.println(TrademarkEvents.APPLICATION_REGISTERED.toString());
-        System.out.println(TrademarkEvents.APPLICATION_REGISTERED.getValue());
-//        System.out.println(User1.GMAIL_PASSWORD.value);
-//        System.out.println(User1.TEAM_CODE.value);
-//        System.out.println(User1.FULL_TEAM_NAME.value);
 
-    }
 
     public static final String GENERIC_PEKAMA_PASSWORD = "asui67we34";
     public static final String GMAIL_PASSWORD = "123456789qasw1";

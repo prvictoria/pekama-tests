@@ -21,6 +21,9 @@ import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
 import static Steps.ObjectCharges.checkReportsInvoiceRow;
 import static Steps.ObjectContact.enterPoint.*;
+import static Steps.ObjectUser.Users.OWNER;
+import static Steps.ObjectUser.Users.USER_01;
+import static Steps.ObjectUser.newBuilder;
 import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static Steps.StepsModalWindows.submitMwNewProject;
 import static Steps.StepsPekama.*;
@@ -38,15 +41,13 @@ import static com.codeborne.selenide.WebDriverRunner.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaReportsFiltersCharges {
     static final Logger rootLogger = LogManager.getRootLogger();
-    private static final String OWNER_LOGIN = User8.GMAIL_EMAIL.getValue();
-    private static final String OWNER_PASSWORD = User8.PEKAMA_PASSWORD.getValue();
-    private static final String OWNER_TEAM_NAME = User8.TEAM_NAME.getValue();
     private static ObjectCharges invoice1 = new ObjectCharges();
     private static ObjectCharges invoice2 = new ObjectCharges();
     private static ObjectCharges invoice3 = new ObjectCharges();
     private static ObjectContact contact1 = new ObjectContact();
     private static ObjectContact contact2 = new ObjectContact();
     private static ObjectContact contact3 = new ObjectContact();
+    private static final ObjectUser user = new ObjectUser(newBuilder()).buildUser(OWNER);
     private static String projectName;
     private static String projectUrl;
     private static boolean skipBefore = false;
@@ -59,8 +60,7 @@ public class TestsPekamaReportsFiltersCharges {
         setBrowser();
         holdBrowserAfterTest();
         if(skipBefore==false) {
-            ObjectUser user = ObjectUser.newBuilder().build();
-            user.login(OWNER_LOGIN, OWNER_PASSWORD, URL_PEKAMA_LOGIN);
+            user.login();
 
         rootLogger.info("Create project");
         submitEnabledButton(DASHBOARD_BTN_NEW_PROJECT);
@@ -99,15 +99,15 @@ public class TestsPekamaReportsFiltersCharges {
         selectAndAddContact(contact3, INVESTOR.getValue());
 
             rootLogger.info("Create charges in project");
-            invoice1.create(OWNER_TEAM_NAME, contact1.contactLegalEntity,
+            invoice1.create(user.teamName, contact1.contactLegalEntity,
                     null, "Billed",
                     CHARGES_TYPE_EXPENSES, 10,
                     "abc", GBP, 1);
-            invoice2.create(OWNER_TEAM_NAME, null,
+            invoice2.create(user.teamName, null,
                     "A-member", "Not Billed",
                     CHARGES_TYPE_ASSOCIATE, 0,
                     "def",ILS, 999);
-            invoice3.create(OWNER_TEAM_NAME, contact3.contactNameSurname,
+            invoice3.create(user.teamName, contact3.contactNameSurname,
                     "B-member", "Billed & Paid",
                     CHARGES_TYPE_FEES, -10,
                     "xyz",USD, 100);
@@ -119,8 +119,7 @@ public class TestsPekamaReportsFiltersCharges {
     @Before
     public void login() {
         //clearBrowserCache();
-        ObjectUser user = ObjectUser.newBuilder().build();
-        user.login(OWNER_LOGIN, OWNER_PASSWORD, URL_ReportsCharges);
+        user.login(URL_ReportsCharges);
     }
     @Test
     public void charges_sort_last_created (){

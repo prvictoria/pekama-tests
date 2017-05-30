@@ -488,11 +488,9 @@ public class MessagesIMAP {
     public Boolean searchEmailBySubject(String userName, String password, final String keyword) {
         Properties properties = setProperties (IMAP_HOST, IMAP_PORT);
         Session session = Session.getDefaultInstance(properties);
-
         try {
             // connects to the message store
-            Store store = session.getStore("imap");
-            store.connect(userName, password);
+            Store store = store(properties, userName, password);
 
             // opens the inbox folder
             Folder folderInbox = store.getFolder("INBOX");

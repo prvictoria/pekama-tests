@@ -12,6 +12,9 @@ import java.awt.*;
 import java.io.IOException;
 
 import static Page.TestsCredentials.Countries.NETHERLANDS_ANTILES;
+import static Steps.ObjectUser.Users.USER_01;
+import static Steps.ObjectUser.Users.USER_03;
+import static Steps.ObjectUser.newBuilder;
 import static Utils.Utils.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
@@ -38,11 +41,8 @@ import static Tests.BeforeTestsSetUp.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaProjectInfo {
     static final Logger rootLogger = LogManager.getRootLogger();
-    private static final String OWNER_LOGIN_EMAIL = User3.GMAIL_EMAIL.getValue();
-    private static final String OWNER_PASSWORD_PEKAMA = User3.PEKAMA_PASSWORD.getValue();
-    private static final String OWNER_TEAM_NAME = User3.TEAM_NAME.getValue();
-    private final static String OWNER_FULL_TEAM_NAME = User3.FULL_TEAM_NAME.getValue();
     private static String TEST_CASE_TYPE = null;
+    private static final ObjectUser user = new ObjectUser(newBuilder()).buildUser(USER_03);
 
     private static String projectName;
     private static String projectUrl;
@@ -57,8 +57,7 @@ public class TestsPekamaProjectInfo {
         holdBrowserAfterTest();
         TEST_CASE_TYPE = MATTER_TYPE_TRADEMARK;
         if(skipBefore==false) {
-            ObjectUser user = ObjectUser.newBuilder().build();
-            user.login(OWNER_LOGIN_EMAIL, OWNER_PASSWORD_PEKAMA, URL_LogIn);
+            user.login();
 
             rootLogger.info("Create project");
             submitEnabledButton(DASHBOARD_BTN_NEW_PROJECT);
@@ -77,8 +76,7 @@ public class TestsPekamaProjectInfo {
     @Before
     public void login() {
         //clearBrowserCache();
-        ObjectUser owner = ObjectUser.newBuilder().email(OWNER_LOGIN_EMAIL).passwordPekama(OWNER_PASSWORD_PEKAMA).build();
-        owner.login(owner.email, owner.passwordPekama, projectUrl);
+        user.login(projectUrl);
         clickSelector(PROJECT_TAB_INFO);
     }
 
@@ -221,7 +219,7 @@ public class TestsPekamaProjectInfo {
         scrollUp();
         TAB_INFO_PROJECT_TYPE.shouldHave(text(TEST_CASE_TYPE));
         sleep(1000);
-        ObjectProject project = new ObjectProject();
+        ObjectProject project = ObjectProject.newBuilder().build();
         project.selectProjectValues(
                 NETHERLANDS_ANTILES.getValue(),
                 TrademarkTypes.BASIC.getValue(),

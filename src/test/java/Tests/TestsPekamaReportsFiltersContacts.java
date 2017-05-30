@@ -99,6 +99,7 @@ public class TestsPekamaReportsFiltersContacts {
         checkReportsContactRow(PERSON, 3, person3, null, null,null);
         checkReportsContactRow(COMPANY, 4, company2, null, null,null);
         checkReportsContactRow(COMPANY, 5, company1, null, null,null);
+
         selectSortOrderAndCheck("Name", false);
         checkReportsContactRow(COMPANY, 1, company1, null, null,null);
         checkReportsContactRow(COMPANY, 2, company2, null, null,null);
@@ -114,6 +115,7 @@ public class TestsPekamaReportsFiltersContacts {
         checkReportsContactRow(PERSON, 3, person3, null, null,null);
         checkReportsContactRow(PERSON, 4, person4, null, null,null);
         checkReportsContactRow(PERSON, 5, person5, null, null,null);
+
         selectSortOrderAndCheck("Type", false);
         checkReportsContactRow(PERSON, 1, person3, null, null,null);
         checkReportsContactRow(PERSON, 2, person4, null, null,null);
@@ -129,6 +131,8 @@ public class TestsPekamaReportsFiltersContacts {
         checkReportsContactRow(COMPANY, 3, company1, null, null,null);
         checkReportsContactRow(COMPANY, 4, company2, null, null,null);
         checkReportsContactRow(PERSON, 5, person4, null, null,null);
+
+
         selectSortOrderAndCheck("Company", false);
         checkReportsContactRow(COMPANY, 1, company1, null, null,null);
         checkReportsContactRow(COMPANY, 2, company2, null, null,null);
@@ -144,6 +148,7 @@ public class TestsPekamaReportsFiltersContacts {
         checkReportsContactRow(COMPANY, 3, company2, null, null,null);
         checkReportsContactRow(PERSON, 4, person4, null, null,null);
         checkReportsContactRow(PERSON, 5, person5, null, null,null);
+
         selectSortOrderAndCheck("Country", false);
         checkReportsContactRow(PERSON, 1, person4, null, null,null);
         checkReportsContactRow(PERSON, 2, person5, null, null,null);
@@ -159,6 +164,7 @@ public class TestsPekamaReportsFiltersContacts {
         checkReportsContactRow(PERSON, 3, person3, null, null,null);
         checkReportsContactRow(COMPANY, 4, company2, null, null,null);
         checkReportsContactRow(COMPANY, 5, company1, null, null,null);
+
         selectSortOrderAndCheck("Last created", true);
         checkReportsContactRow(COMPANY, 1, company1, null, null,null);
         checkReportsContactRow(COMPANY, 2, company2, null, null,null);
@@ -174,6 +180,7 @@ public class TestsPekamaReportsFiltersContacts {
         checkReportsContactRow(PERSON, 3, person3, null, null,null);
         checkReportsContactRow(COMPANY, 4, company2, null, null,null);
         checkReportsContactRow(COMPANY, 5, company1, null, null,null);
+
         selectSortOrderAndCheck("Last modified", true);
         checkReportsContactRow(COMPANY, 1, company1, null, null,null);
         checkReportsContactRow(COMPANY, 2, company2, null, null,null);

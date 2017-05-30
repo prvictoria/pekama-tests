@@ -156,11 +156,14 @@ public class StepsPekamaReports {
             submitConfirmAction();
             sleep(2000);
             waitForSpinnerNotPresent();
+            return;
         }
+        return;
     }
     public static void deleteAllObjectOnReportPage(String pageUrl){
         rootLogger.info("Delete all objects on: "+pageUrl);
         openUrlIfActualNotEquals(pageUrl);
+        sleep(2000);
         if(REPORTS_LIST_ROWS.size()==0){
             rootLogger.info("No objects");
             return;
@@ -173,8 +176,14 @@ public class StepsPekamaReports {
                 rootLogger.info("No objects");
                 return;
             }
+            if(getActualUrl().equals(URL_ReportsEvents)){
+                Steps.clickDeleteAndConfirm(REPORTS_DELETE_EVENTS);
+                Steps.checkTextInSelector(REPORTS_PLACEHOLDER_NO_DATA, PLACEHOLDER_NO_DATA);
+                return;
+            }
             clickDeleteAndConfirm();
             Steps.checkTextInSelector(REPORTS_PLACEHOLDER_NO_DATA, PLACEHOLDER_NO_DATA);
+            return;
         }
     }
     public static void deleteAllProjects(){

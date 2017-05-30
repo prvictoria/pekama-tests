@@ -1,15 +1,21 @@
 package Steps;
 
+import Page.TestsCredentials;
 import org.junit.Test;
 
 //import static Steps.BuildUser.newBuilder;
+import static Page.TestsCredentials.*;
+import static Page.TestsCredentials.ProductionCaseType.PATENT;
 import static Page.UrlStrings.URL_PEKAMA_LOGIN;
+import static Steps.ObjectEvent.PatentEventTypes.ABANDONMENT;
+import static Steps.ObjectEvent.PatentEventTypes.GRANT;
 import static Steps.ObjectFile.FileTypes.JPG;
 import static Steps.ObjectFile.FileTypes.PDF;
 import static Steps.ObjectFile.FileTypes.SVG;
 import static Steps.ObjectUser.*;
 import static Steps.ObjectUser.Users.OWNER;
 import static Steps.ObjectUser.Users.USER_04;
+import static Utils.Utils.getDate;
 
 
 /**
@@ -21,6 +27,15 @@ public class TestClasses {
     private static ObjectUser owner = newBuilder().email(OWNER_LOGIN_EMAIL).passwordPekama(OWNER_PASSWORD_PEKAMA).build();
     private static ObjectUser user = newBuilder().build();
 
+    @Test
+    public  void enumTest() {
+        System.out.println(TrademarkEvents.APPLICATION_REGISTERED.toString());
+        System.out.println(TrademarkEvents.APPLICATION_REGISTERED.getValue());
+//        System.out.println(User1.GMAIL_PASSWORD.value);
+//        System.out.println(User1.TEAM_CODE.value);
+//        System.out.println(User1.FULL_TEAM_NAME.value);
+
+    }
     @Test
     public void test_build_user() {
         ObjectUser user1 = newBuilder().phone("333-44-5555").isLoginSucceed(true).build();
@@ -49,8 +64,34 @@ public class TestClasses {
         System.out.println(file.fileName);
         System.out.println("================================");
 
-        ObjectFile file3 = new ObjectFile(ObjectFile.newBuilder().fileName("").fileExtension(""));
-        ObjectFile genericFile = new ObjectFile(ObjectFile.newBuilder()).buildFile("12121", "1212");
+        ObjectFile file3 = ObjectFile.newBuilder().fileName("").fileExtension("").build();
+        ObjectFile genericFile = ObjectFile.newBuilder().build();
         ObjectFile fileJpg = new ObjectFile(ObjectFile.newBuilder()).buildFile(JPG);
+    }
+    @Test
+    public void test_build_project(){
+        ObjectProject project = ObjectProject
+                .newBuilder()
+                .projectMatterType(CaseType.PATENT.getValue())
+                .projectDefining("CANADA")
+                .projectName("EVENTS_")
+                .build();
+        project.logProjectFields();
+    }
+    @Test
+    public void test_build_event(){
+        ObjectEvent event = ObjectEvent
+                .newBuilder()
+                .eventRelevantToMatterType("PATENT")
+                .eventRelevantToDefining("Canada")
+                .eventRelevantToType("Any")
+                .eventType("Abandonement")
+                .eventDateFormToday(0)
+                .eventDate(getDate (0))
+                .eventInfo("INFO_01")
+                .build();
+        event.logEventFields();
+
+        ObjectEvent event1 = new ObjectEvent(ObjectEvent.newBuilder()).buildEventInPatent(GRANT);
     }
 }

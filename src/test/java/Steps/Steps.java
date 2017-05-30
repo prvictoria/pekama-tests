@@ -6,8 +6,11 @@ import org.junit.Assert;
 
 import java.io.File;
 
+import static Page.PekamaReports.REPORTS_DELETE;
+import static Steps.StepsModalWindows.submitConfirmAction;
 import static Steps.StepsPekama.*;
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selenide.sleep;
 
 /**
  * Created by Viachaslau Balashevich.
@@ -35,6 +38,14 @@ public abstract class Steps {
     public static String absolutePath(String path) {
         return new File(path).getAbsolutePath();
     }
-
+    public static void clickDeleteAndConfirm(SelenideElement element){
+        sleep(2000);
+        if(element.isDisplayed()) {
+            element.click();
+            submitConfirmAction();
+            sleep(2000);
+            waitForSpinnerNotPresent();
+        }
+    }
 }
 

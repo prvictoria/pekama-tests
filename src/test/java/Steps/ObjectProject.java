@@ -53,6 +53,30 @@ public class ObjectProject {
     public ObjectUser[] projectCollaborators = null;
     public ObjectUser projectCollaborator = null;
 
+    public ObjectProject(Builder builder) {
+        project = builder.project;
+        projectName = builder.projectName;
+        projectNumber = builder.projectNumber;
+        projectFullName = builder.projectFullName;
+        projectMatterType = builder.projectMatterType;
+        projectDefining = builder.projectDefining;
+        projectType = builder.projectType;
+        projectSubType = builder.projectSubType;
+        projectStatus = builder.projectStatus;
+        projectNotes = builder.projectNotes;
+        projectReference = builder.projectReference;
+        projectTmNumber = builder.projectTmNumber;
+        projectUrl = builder.projectUrl;
+        contactNames = builder.contactNames;
+        projectOwner = builder.projectOwner;
+        projectCollaborators = builder.projectCollaborators;
+        projectCollaborator = builder.projectCollaborator;
+    }
+
+    public static Builder newBuilder() {
+        return new Builder();
+    }
+
     public enum projectEnterPoint {DASHBOARD, REPORTS, CONTACTS, FAMILY, CLONE}
     public void setValues(
             String projectName, String projectMatterType,
@@ -124,7 +148,7 @@ public class ObjectProject {
             setProjectSubType(subType);
         }
     }
-    public void create(projectEnterPoint enterPoint, ObjectProject project){
+    public ObjectProject createProject(projectEnterPoint enterPoint, ObjectProject project){
         switch (enterPoint){
             case DASHBOARD:
                 openUrlIfActualNotEquals(URL_PEKAMA_DASHBOARD);
@@ -156,7 +180,7 @@ public class ObjectProject {
         if(MW.isDisplayed()==false){
             getProjectValues();
         }
-        return;
+        return this;
     }
     public static Boolean checkReportsProjectRow(Integer rowCount, ObjectProject project){
         if(project==null){
@@ -192,5 +216,123 @@ public class ObjectProject {
         }
         rootLogger.info("Row validation Failed");
         return false;
+    }
+
+    public static final class Builder {
+        private String project;
+        private String projectName;
+        private String projectNumber;
+        private String projectFullName;
+        private String projectMatterType;
+        private String projectDefining;
+        private String projectType;
+        private String projectSubType;
+        private String projectStatus;
+        private String projectNotes;
+        private String projectReference;
+        private String projectTmNumber;
+        private String projectUrl;
+        private String[] contactNames;
+        private ObjectUser projectOwner;
+        private ObjectUser[] projectCollaborators;
+        private ObjectUser projectCollaborator;
+
+        private Builder() {
+        }
+
+        public Builder project(String project) {
+            this.project = project;
+            return this;
+        }
+
+        public Builder projectName(String projectName) {
+            this.projectName = projectName;
+            return this;
+        }
+
+        public Builder projectNumber(String projectNumber) {
+            this.projectNumber = projectNumber;
+            return this;
+        }
+
+        public Builder projectFullName(String projectFullName) {
+            this.projectFullName = projectFullName;
+            return this;
+        }
+
+        public Builder projectMatterType(String projectMatterType) {
+            this.projectMatterType = projectMatterType;
+            return this;
+        }
+
+        public Builder projectDefining(String projectDefining) {
+            this.projectDefining = projectDefining;
+            return this;
+        }
+
+        public Builder projectType(String projectType) {
+            this.projectType = projectType;
+            return this;
+        }
+
+        public Builder projectSubType(String projectSubType) {
+            this.projectSubType = projectSubType;
+            return this;
+        }
+
+        public Builder projectStatus(String projectStatus) {
+            this.projectStatus = projectStatus;
+            return this;
+        }
+
+        public Builder projectNotes(String projectNotes) {
+            this.projectNotes = projectNotes;
+            return this;
+        }
+
+        public Builder projectReference(String projectReference) {
+            this.projectReference = projectReference;
+            return this;
+        }
+
+        public Builder projectTmNumber(String projectTmNumber) {
+            this.projectTmNumber = projectTmNumber;
+            return this;
+        }
+
+        public Builder projectUrl(String projectUrl) {
+            this.projectUrl = projectUrl;
+            return this;
+        }
+
+        public Builder contactNames(String[] contactNames) {
+            this.contactNames = contactNames;
+            return this;
+        }
+
+        public Builder projectOwner(ObjectUser projectOwner) {
+            this.projectOwner = projectOwner;
+            return this;
+        }
+
+        public Builder projectCollaborators(ObjectUser[] projectCollaborators) {
+            this.projectCollaborators = projectCollaborators;
+            return this;
+        }
+
+        public Builder projectCollaborator(ObjectUser projectCollaborator) {
+            this.projectCollaborator = projectCollaborator;
+            return this;
+        }
+
+        public ObjectProject build() {
+            return new ObjectProject(this);
+        }
+    }
+    public void logProjectFields(){
+        rootLogger.info("projectMatterType: "+this.projectMatterType);
+        rootLogger.info("projectDefining: "+this.projectDefining);
+        rootLogger.info("projectName: "+this.projectName);
+        rootLogger.info("==================");
     }
 }

@@ -607,6 +607,7 @@ public class ObjectUser implements ILogin {
                         .teamFullName(User1.FULL_TEAM_NAME.getValue())
                         .teamCode(User1.TEAM_CODE.getValue())
                         .teamInitials(User1.TEAM_INITIALS.getValue())
+                        .teamEmail("team01email")
                         .build();
                 logUserFields(user);
                 break;
@@ -631,6 +632,7 @@ public class ObjectUser implements ILogin {
                         .teamFullName(User2.FULL_TEAM_NAME.getValue())
                         .teamCode(User2.TEAM_CODE.getValue())
                         .teamInitials(User2.TEAM_INITIALS.getValue())
+                        .teamEmail("team02email")
                         .build();
                 logUserFields(user);
                 break;
@@ -655,6 +657,7 @@ public class ObjectUser implements ILogin {
                         .teamFullName(User3.FULL_TEAM_NAME.getValue())
                         .teamCode(User3.TEAM_CODE.getValue())
                         .teamInitials(User3.TEAM_INITIALS.getValue())
+                        .teamEmail("team03email")
                         .build();
                 logUserFields(user);
                 break;
@@ -679,6 +682,7 @@ public class ObjectUser implements ILogin {
                         .teamFullName(User4.FULL_TEAM_NAME.getValue())
                         .teamCode(User4.TEAM_CODE.getValue())
                         .teamInitials(User4.TEAM_INITIALS.getValue())
+                        .teamEmail("team03email")
                         .build();
                 logUserFields(user);
                 break;
@@ -703,6 +707,7 @@ public class ObjectUser implements ILogin {
                         .teamFullName(User5.FULL_TEAM_NAME.getValue())
                         .teamCode(User5.TEAM_CODE.getValue())
                         .teamInitials(User5.TEAM_INITIALS.getValue())
+                        .teamEmail("team05email")
                         .build();
                 logUserFields(user);
                 break;
@@ -755,6 +760,7 @@ public class ObjectUser implements ILogin {
                         .teamFullName(User8.FULL_TEAM_NAME.getValue())
                         .teamCode(User8.TEAM_CODE.getValue())
                         .teamInitials(User8.TEAM_INITIALS.getValue())
+                        .teamEmail("team08email")
                         .build();
                 logUserFields(user);
                 break;

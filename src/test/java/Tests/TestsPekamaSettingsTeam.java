@@ -39,12 +39,12 @@ import static com.codeborne.selenide.Selenide.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaSettingsTeam {
     static final Logger rootLogger = LogManager.getRootLogger();
-    private static ObjectUser user = new ObjectUser(newBuilder()).buildUser(USER_06);
-    private static ObjectUser invited = new ObjectUser(newBuilder()).buildUser(USER_05);
+    private final static ObjectUser user = new ObjectUser(newBuilder()).buildUser(USER_06);
+    private final static ObjectUser invited = new ObjectUser(newBuilder()).buildUser(USER_05);
     private static boolean skipBefore = false;
 
     @Rule public Timeout tests = Timeout.seconds(300);
-    @Rule public Retry retry = new Retry(2);
+    //@Rule public Retry retry = new Retry(2);
     @BeforeClass
     public static void beforeClass() throws IOException {
         setEnvironment ();

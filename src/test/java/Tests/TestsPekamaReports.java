@@ -31,6 +31,7 @@ import static Steps.StepsHttpAuth.*;
 import static Steps.StepsPekamaReports.*;
 import static Tests.BeforeTestsSetUp.*;
 import static Utils.Utils.randomString;
+import static com.codeborne.selenide.CollectionCondition.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
@@ -302,21 +303,17 @@ public class TestsPekamaReports {
         deleteAllTasks();
         rootLogger.info("Test passed");
     }
-    @Test
-    public void events_delete_all(){
-        deleteAllEvents();
-        rootLogger.info("Test passed");
-    }
+
     @Test
     public void charges_delete_all(){
         deleteAllCharges();
-        $$(byText(PLACEHOLDER_NO_DATA)).shouldHave(CollectionCondition.sizeGreaterThanOrEqual(1));
+        $$(byText(PLACEHOLDER_NO_DATA)).shouldHave(sizeGreaterThanOrEqual(1));
         rootLogger.info("Test passed");
     }
     @Test
     public void contacts_check_gui_and_delete_all(){
         deleteAllContacts();
-        $$(byText(PLACEHOLDER_NO_DATA)).shouldHave(CollectionCondition.sizeGreaterThanOrEqual(1));
+        $$(byText(PLACEHOLDER_NO_DATA)).shouldHave(sizeGreaterThanOrEqual(1));
         rootLogger.info("All contacts were deleted");
 
         REPORTS_BTN_LIST.shouldBe(visible).shouldBe(enabled).shouldHave(attribute("class", "btn btn-gray btn-active"));
@@ -440,11 +437,11 @@ public class TestsPekamaReports {
                 null, null,null,
                 null, null,
                 null, null);
-        int listSize = REPORTS_LIST_ROWS.size();
+        REPORTS_LIST_ROWS.shouldHaveSize(1);
         clickContactEdit(1);
         contact.editForm(1, "Person", "Private", "Name", "Surname", null, "123456@email.com", "8017-12-45-34", "8029-78-89-79", "01-4565645645654", "Street", "zip", "London", "Center", "United Kingdom");
         clickContactDelete(1);
-        REPORTS_LIST_ROWS.shouldHaveSize(listSize-1);
+        REPORTS_LIST_ROWS.shouldHaveSize(0);
         rootLogger.info("Contact CRUD test Passed");
     }
     @Test
