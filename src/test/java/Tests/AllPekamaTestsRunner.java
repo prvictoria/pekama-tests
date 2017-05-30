@@ -33,8 +33,8 @@ import org.junit.runners.Suite;
 
         TestsPekamaReports.class,
         TestsPekamaReportsFiltersProjects.class,
-        //TestsPekamaReportsFiltersTasks.class,
-        //TestsPekamaReportsFiltersEvents.class,
+        TestsPekamaReportsFiltersTasks.class,
+        TestsPekamaReportsFiltersEvents.class,
         TestsPekamaReportsFiltersCharges.class,
         TestsPekamaReportsFiltersContacts.class
 })
