@@ -38,7 +38,6 @@ public class TestsPekamaLogin {
     public Timeout tests = Timeout.seconds(600);
     @BeforeClass
     public static void beforeClass() throws IOException {
-        clearBrowserCache();
         setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();

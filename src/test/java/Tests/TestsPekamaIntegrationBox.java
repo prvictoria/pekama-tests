@@ -65,7 +65,6 @@ public class TestsPekamaIntegrationBox {
     }
     @Before
     public void before() {
-        clearBrowserCache();
         if (skipBefore==false) {
             user.login();
         }

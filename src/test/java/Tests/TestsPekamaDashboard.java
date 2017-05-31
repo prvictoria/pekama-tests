@@ -75,10 +75,6 @@ public class TestsPekamaDashboard {
                 USER_PEKAMA_PASSWORD,
                 URL_LogIn);
     }
-    @AfterClass
-    public static void afterClass() {
-        clearBrowserCache();
-    }
 
     @Test
     public void testA_Gui() {

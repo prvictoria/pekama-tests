@@ -14,6 +14,9 @@ import java.io.IOException;
 import static Page.PekamaProject.*;
 import static Page.PekamaTeamSettings.*;
 import static Steps.ObjectCharges.checkInvoiceRow;
+import static Steps.ObjectUser.Users.USER_03;
+import static Steps.ObjectUser.Users.USER_04;
+import static Steps.ObjectUser.newBuilder;
 import static Steps.Steps.clickSelector;
 import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static com.codeborne.selenide.Condition.*;
@@ -42,18 +45,13 @@ import static Tests.BeforeTestsSetUp.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaProjectCharges {
     static final Logger rootLogger = LogManager.getRootLogger();
-    private static final String OWNER_LOGIN_EMAIL = User3.GMAIL_EMAIL.getValue();
-    private static final String OWNER_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
-    private static final String OWNER_TEAM_NAME = User3.TEAM_NAME.getValue();
-    private static final String OWNER_XERO_PASSWORD = User3.XERO_PASSWORD.getValue();
-    private final static String OWNER_FULL_TEAM_NAME = User3.FULL_TEAM_NAME.getValue();
-    private static ObjectContact contact1 = new ObjectContact();
-    private static ObjectContact contact2 = new ObjectContact();
-    private static ObjectContact contact3 = new ObjectContact();
+    private static ObjectContact contact1 = ObjectContact.newBuilder().build();
+    private static ObjectContact contact2 = ObjectContact.newBuilder().build();
+    private static ObjectContact contact3 = ObjectContact.newBuilder().build();
     private static ObjectCharges invoice1Sort = new ObjectCharges();
     private static ObjectCharges invoice2Sort = new ObjectCharges();
     private static ObjectCharges invoice3Sort = new ObjectCharges();
-    private static ObjectUser user = ObjectUser.newBuilder().email(OWNER_LOGIN_EMAIL).passwordPekama(OWNER_PASSWORD).build();
+    private static final ObjectUser user = new ObjectUser(newBuilder()).buildUser(USER_03);
 
     private static String projectName;
     private static String projectUrl;
@@ -67,7 +65,7 @@ public class TestsPekamaProjectCharges {
         setBrowser();
         holdBrowserAfterTest();
         if(skipBefore==false) {
-            user.login(user.email, user.passwordPekama, URL_LogIn);
+            user.login();
 
             rootLogger.info("Create project");
             submitEnabledButton(DASHBOARD_BTN_NEW_PROJECT);
@@ -110,7 +108,6 @@ public class TestsPekamaProjectCharges {
     }
     @Before
     public void login() {
-        clearBrowserCache();
         user.login(user.email, user.passwordPekama, projectUrl);
     }
 
@@ -118,15 +115,15 @@ public class TestsPekamaProjectCharges {
     public void tabCharges_B1_sort_by_date(){
         StepsPekamaProject.deleteAllCharges();
 
-        invoice1Sort.create(OWNER_TEAM_NAME, contact1.contactLegalEntity,
+        invoice1Sort.create(user.teamName, contact1.contactLegalEntity,
                 null, "Billed",
                 CHARGES_TYPE_EXPENSES, 10,
                 "abc", GBP, 1);
-        invoice2Sort.create(OWNER_TEAM_NAME, null,
+        invoice2Sort.create(user.teamName, null,
                 "A-member", "Not Billed",
                 CHARGES_TYPE_ASSOCIATE, 0,
                 "def",ILS, 999);
-        invoice3Sort.create(OWNER_TEAM_NAME, contact3.contactNameSurname,
+        invoice3Sort.create(user.teamName, contact3.contactNameSurname,
                 "B-member", "Billed & Paid",
                 CHARGES_TYPE_FEES, -10,
                 "xyz",USD, 100);
@@ -242,7 +239,7 @@ public class TestsPekamaProjectCharges {
         callChargesModal();
 
         rootLogger.info("Validation empty field");
-        MW_CHARGES_SELECT_FROM.shouldHave(text(OWNER_FULL_TEAM_NAME));
+        MW_CHARGES_SELECT_FROM.shouldHave(text(user.teamFullName));
         fillField(MW_CHARGES_INPUT_ITEM, LOREM_IPSUM_SHORT);
         submitEnabledButton(MW_BTN_OK);
         checkText(ERROR_MSG_REQUIRED_FIELD, 2);
@@ -314,8 +311,6 @@ public class TestsPekamaProjectCharges {
     public void tabCharges_Xero_A_SendBill()  throws SoftAssertionError {
         StepsPekamaProject.deleteAllCharges();
 
-        String xeroLogin = OWNER_LOGIN_EMAIL;
-        String xeroPassword = OWNER_XERO_PASSWORD;
         String price = "5000";
         rootLogger.info("Create Charge");
         String testSearchChargesType = CHARGES_TYPE_ASSOCIATE;
@@ -331,8 +326,8 @@ public class TestsPekamaProjectCharges {
                 rootLogger.info(url);
                 if (checkPageTitle(PAGE_TITLE_XERO_LOGIN)==false){
                     Assert.fail("Xero window NOT found");}
-                fillField(extXeroEmail, xeroLogin);
-                fillField(extXeroPassword, xeroPassword);
+                fillField(extXeroEmail, user.email);
+                fillField(extXeroPassword, user.passwordXero);
                 submitEnabledButton(extXeroLogin);
                 rootLogger.info("Xero login window submitted");
 
@@ -373,8 +368,8 @@ public class TestsPekamaProjectCharges {
             if (checkPageTitle(PAGE_TITLE_XERO_LOGIN)==true){
                 try {
                     getActualUrl();
-                    fillField(extXeroEmail, xeroLogin);
-                    fillField(extXeroPassword, xeroPassword);
+                    fillField(extXeroEmail, user.email);
+                    fillField(extXeroPassword, user.passwordXero);
                     submitEnabledButton(extXeroLogin);
                     sleep(5000);
                     rootLogger.info("Xero login window submitted");
@@ -438,8 +433,6 @@ public class TestsPekamaProjectCharges {
     public void tabCharges_Xero_C_MergeCharges(){
         StepsPekamaProject.deleteAllCharges();
 
-        String xeroLogin = OWNER_LOGIN_EMAIL;
-        String xeroPassword = OWNER_XERO_PASSWORD;
         String price1 = "7777";
         String price2 = "1111";
         String testSearchChargesType = CHARGES_TYPE_ASSOCIATE;
@@ -461,8 +454,8 @@ public class TestsPekamaProjectCharges {
             String url = getActualUrl();
             rootLogger.info(url);
 
-            fillField(extXeroEmail, xeroLogin);
-            fillField(extXeroPassword, xeroPassword);
+            fillField(extXeroEmail, user.email);
+            fillField(extXeroPassword, user.passwordXero);
             submitEnabledButton(extXeroLogin);
             rootLogger.info("Xero login window submitted");}
         catch (SoftAssertionError e) {

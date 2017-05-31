@@ -10,6 +10,13 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         MessagesIMAP.class,
+        TestsPekamaReports.class,
+        TestsPekamaReportsFiltersProjects.class,
+        TestsPekamaReportsFiltersTasks.class,
+        TestsPekamaReportsFiltersEvents.class,
+        TestsPekamaReportsFiltersCharges.class,
+        TestsPekamaReportsFiltersContacts.class,
+
         TestsPekamaDashboard.class,
         TestsPekamaLanding.class,
         TestsPekamaLogin.class,
@@ -29,14 +36,9 @@ import org.junit.runners.Suite;
         TestsPekamaProjectTasks.class,
         TestsPekamaProjectCharges.class,
 
-        TestsPekamaTemplates.class,
+        TestsPekamaTemplates.class
 
-        TestsPekamaReports.class,
-        TestsPekamaReportsFiltersProjects.class,
-        TestsPekamaReportsFiltersTasks.class,
-        TestsPekamaReportsFiltersEvents.class,
-        TestsPekamaReportsFiltersCharges.class,
-        TestsPekamaReportsFiltersContacts.class
+
 })
 public class AllPekamaTestsRunner extends AllTestsRunner {
 

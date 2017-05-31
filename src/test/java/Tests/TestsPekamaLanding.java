@@ -38,10 +38,6 @@ public class TestsPekamaLanding {
         String AUTH_URL = ENVIRONMENT_PEKAMA;
         openHost.openUrlWithBaseAuth(AUTH_URL);
     }
-    @AfterClass
-    public static void afterClass() {
-        clearBrowserCache();
-    }
     @Test //GUI
     public void openLandingGui() {
         BTN_LOGIN.shouldBe(Condition.visible);

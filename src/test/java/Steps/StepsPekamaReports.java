@@ -1,5 +1,6 @@
 package Steps;
 
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
@@ -16,14 +17,16 @@ import static Steps.ObjectContact.contactType.*;
 import static Steps.Steps.clickSelector;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
+import static com.codeborne.selenide.CollectionCondition.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selectors.byLinkText;
+import static com.codeborne.selenide.Condition.empty;
+import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
-import static com.codeborne.selenide.Selenide.sleep;
+import static com.codeborne.selenide.Selenide.*;
 
 /**
  * Created by VatslauX on 02-May-17.
@@ -164,28 +167,31 @@ public class StepsPekamaReports {
         rootLogger.info("Delete all objects on: "+pageUrl);
         openUrlIfActualNotEquals(pageUrl);
         sleep(2000);
-        if(REPORTS_LIST_ROWS.size()==0 || REPORTS_PLACEHOLDER_NO_DATA.isDisplayed()==true){
-            rootLogger.info("No objects");
-            return;
-        }
-        else {
-            REPORTS_ALL_CHECKBOX.setSelected(true);
-            sleep(1000);
-            Steps.checkColourInSelector(REPORTS_ALL_CHECKBOX, "42, 164, 245");
-            sleep(1000);
-            if(REPORTS_LIST_ROWS.size()==0 || REPORTS_PLACEHOLDER_NO_DATA.isDisplayed()==true){
-                rootLogger.info("No objects");
-                return;
+        int i =0;
+        while (i > 15 || REPORTS_LIST_ROWS.filter(visible).size()>0 || REPORTS_PLACEHOLDER_NO_DATA.isDisplayed()==false) {
+            if(REPORTS_PLACEHOLDER_NO_DATA.isDisplayed() == true){
+                rootLogger.info("No objects in list");
+                 return;
             }
-            if(getActualUrl().equals(URL_ReportsEvents)){
-                Steps.clickDeleteAndConfirm(REPORTS_DELETE_EVENTS);
+            if(REPORTS_LIST_ROWS.filter(visible).size()>0){
+                break;
+            }
+            sleep(1000);
+            i++;
+        }
+                REPORTS_ALL_CHECKBOX.setSelected(true);
+                sleep(1000);
+                Steps.checkColourInSelector(REPORTS_ALL_CHECKBOX, "42, 164, 245");
+                sleep(1000);
+                if (getActualUrl().equals(URL_ReportsEvents)) {
+                    Steps.clickDeleteAndConfirm(REPORTS_DELETE_EVENTS);
+                    Steps.checkTextInSelector(REPORTS_PLACEHOLDER_NO_DATA, PLACEHOLDER_NO_DATA);
+                    return;
+                }
+                else
+                clickDeleteAndConfirm();
                 Steps.checkTextInSelector(REPORTS_PLACEHOLDER_NO_DATA, PLACEHOLDER_NO_DATA);
                 return;
-            }
-            clickDeleteAndConfirm();
-            Steps.checkTextInSelector(REPORTS_PLACEHOLDER_NO_DATA, PLACEHOLDER_NO_DATA);
-            return;
-        }
     }
     public static void deleteAllProjects(){
         rootLogger.info("Delete all Tasks");
@@ -228,6 +234,7 @@ public class StepsPekamaReports {
         SelenideElement contactCharges = elementInRowListReport(rowCount, REPORTS_CONTACT_ROW_CHARGES_TOTAL);
         ElementsCollection contactRelations = $$(byXpath(REPORTS_ROW_BY_INDEX_LIST(rowCount)+REPORTS_CONTACT_ROW_RELATIONS));
         if(rowCount<10) {
+            REPORTS_LIST_ROWS.shouldHave(sizeGreaterThanOrEqual(rowCount));
             if (contactType==PERSON) {
                 contactName.shouldHave(text(contact.contactNameSurname));
                 if (contact.contactCompany != null) {
@@ -346,6 +353,7 @@ public class StepsPekamaReports {
         if (order != null) {
             clickSelector(REPORTS_SORT_ORDER_TYPE);
             clickSelector(REPORTS_SELECT_SORT_ORDER(order));
+            sleep(1000);
             String ActualTaskOrder = REPORTS_SORT_ORDER_TYPE.getText();
             Assert.assertEquals(order, ActualTaskOrder);
             if (orderIsAscending != null) {

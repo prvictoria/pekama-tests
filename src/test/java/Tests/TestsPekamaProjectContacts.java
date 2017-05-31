@@ -42,9 +42,15 @@ public class TestsPekamaProjectContacts{
     private static final String OWNER_TEAM_NAME = User3.TEAM_NAME.getValue();
     private static final String OWNER_XERO_PASSWORD = User3.XERO_PASSWORD.getValue();
     private final static String OWNER_FULL_TEAM_NAME = User3.FULL_TEAM_NAME.getValue();
-    private static ObjectContact contact = new ObjectContact();
+
     private static String testContactName = "name"+ randomString(10);
     private static String testContactSurname = "surname"+ randomString(10);
+    private static ObjectContact contact = ObjectContact.newBuilder()
+            .contactType("Person")
+            .contactFirstName(testContactName)
+            .contactLastName(testContactSurname)
+            .build()
+            .logContactFields();
     private static String projectName;
     private static String projectUrl;
     private static boolean skipBefore = false;

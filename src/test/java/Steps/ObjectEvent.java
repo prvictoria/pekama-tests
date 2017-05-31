@@ -4,9 +4,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import static Page.ModalWindows.*;
-import static Page.ModalWindows.MW;
-import static Page.ModalWindows.MW_BTN_SAVE;
-import static Page.TestsStrings.TITLE_MW_EVENT;
+import static Page.PekamaReports.*;
+import static Page.PekamaReportsEvents.*;
+import static Page.PekamaReportsProjects.REPORTS_PROJECT_TITLE;
+import static Page.TestsStrings.*;
+import static Steps.Steps.checkTextInSelector;
 import static Steps.StepsModalWindows.clickPlusButtonNewEvent;
 import static Steps.StepsModalWindows.setDueDateFromToday;
 import static Steps.StepsModalWindows.waitForModalWindow;
@@ -14,7 +16,7 @@ import static Steps.StepsPekama.*;
 import static Utils.Utils.getDate;
 import static com.codeborne.selenide.Condition.disabled;
 import static com.codeborne.selenide.Condition.not;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 
 /**
  * Created by VatslauX on 20-May-17.
@@ -239,5 +241,28 @@ public class ObjectEvent {
         submitEnabledButton(MW_BTN_SAVE);
         MW.waitUntil(not(visible), 15000);
         return this;
+    }
+    public static Boolean checkReportsEventRow(Integer rowCount, ObjectEvent event){
+        if(event==null){
+            rootLogger.info("No project row to validate");
+            return false;
+        }
+        if(rowCount==null){
+            REPORTS_LIST_ROWS.shouldHaveSize(0);
+            checkTextInSelector(REPORTS_PLACEHOLDER_NO_DATA, PLACEHOLDER_NO_DATA);
+            return true;
+        }
+        if(rowCount!=null && event!=null) {
+            if (event.eventDate != null) {
+                checkTextInSelector(REPORTS_EVENT_DATE(rowCount), event.eventDate);
+            }
+            if (event.eventInfo != null) {
+                checkTextInSelector(REPORTS_EVENT_DESCRIPTION(rowCount), event.eventInfo);
+            }
+            if (event.eventType != null) {
+                checkTextInSelector(REPORTS_EVENT_TYPE(rowCount), event.eventType);
+            }
+        }
+        return true;
     }
 }

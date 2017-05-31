@@ -61,7 +61,6 @@ public class TestsPekamaReports {
     @Before
     public void login() {
         if(skipBefore==false) {
-            clearBrowserCache();
             user.login();
         }
         else {rootLogger.info("Before was skipped");}
@@ -120,13 +119,13 @@ public class TestsPekamaReports {
 
     @Test 
     public void tasks_send_report_A_Send() {
+        skipBefore = true;
         String thisMailingListName = "Tasks Test Mailing List";
         rootLogger.info("Open Tasks reports, opened URL - " + URL_ReportsTasks);
         openPageWithSpinner(URL_ReportsTasks);
         rootLogger.info("Open Dropdown and createPerson new mailing list");
         mailingListCreateNew(thisMailingListName);
         mailingListSendReport(thisMailingListName);
-        skipBefore = true;
     }
     @Test 
     public void tasks_send_report_B_CheckEmail() {
@@ -141,6 +140,7 @@ public class TestsPekamaReports {
 
     @Test 
     public void events_send_report_A_SendReport() {
+        skipBefore = true;
         String thisMailingListName = "Events Test Mailing List";
         rootLogger.info("Open Event reports, opened URL - " + URL_ReportsEvents);
         openPageWithSpinner(URL_ReportsEvents);
@@ -149,7 +149,6 @@ public class TestsPekamaReports {
         mailingListCreateNew(thisMailingListName);
         rootLogger.info("Send report");
         mailingListSendReport(thisMailingListName);
-        skipBefore = true;
     }
     @Test 
     public void events_send_report_B_CheckEmail() {
@@ -164,6 +163,7 @@ public class TestsPekamaReports {
 
     @Test 
     public void charges_send_report_A_SendReport() {
+        skipBefore = true;
         String thisMailingListName = "Charges Test Mailing List";
         rootLogger.info("Open Charges reports, opened URL - " + URL_ReportsCharges);
         openPageWithSpinner(URL_ReportsCharges);
@@ -172,10 +172,10 @@ public class TestsPekamaReports {
         mailingListCreateNew(thisMailingListName);
         rootLogger.info("Send report");
         mailingListSendReport(thisMailingListName);
-        skipBefore = true;
     }
     @Test 
     public void charges_send_report_B_CheckEmail() {
+        skipBefore = false;
         String thisMailingListName = "Charges Test Mailing List";
         rootLogger.info("Check email - report");
         rootLogger.info("Check report email");
@@ -183,11 +183,11 @@ public class TestsPekamaReports {
         Boolean validationResult = validation.validateEmailReport(user.email, user.passwordEmail, "999", thisMailingListName);
         Assert.assertTrue(validationResult);
         rootLogger.info("Test passed");
-        skipBefore = false;
     }
    
     @Test 
     public void contacts_send_report_A_SendReport() {
+        skipBefore = true;
         String thisMailingListName = "Contacts Test Mailing List";
         rootLogger.info("Open Contacts reports, opened URL - "+URL_ReportsContacts);
         openPageWithSpinner(URL_ReportsContacts);
@@ -196,7 +196,6 @@ public class TestsPekamaReports {
         mailingListCreateNew(thisMailingListName);
         rootLogger.info("Send report");
         mailingListSendReport(thisMailingListName);
-        skipBefore = true;
     }
     @Test 
     public void contacts_send_report_B_CheckEmail() {
@@ -274,7 +273,7 @@ public class TestsPekamaReports {
 
     @Test
     public void contacts_a_validation_modal_person(){
-        ObjectContact contact = new ObjectContact();
+        ObjectContact contact = ObjectContact.newBuilder().build();
         contact.createPerson(REPORT, null,
                 null, null,
                 null, null,
@@ -287,7 +286,7 @@ public class TestsPekamaReports {
     }
     @Test
     public void contacts_a_validation_modal_company(){
-        ObjectContact contact = new ObjectContact();
+        ObjectContact contact = ObjectContact.newBuilder().build();
         contact.createCompany(REPORT,  null,
                 null, null,
                 null, null, null, null,
@@ -299,7 +298,7 @@ public class TestsPekamaReports {
     @Test
     public void contacts_a_validation_modal_max_length(){
         String string = randomString(256);
-        ObjectContact contact = new ObjectContact();
+        ObjectContact contact = ObjectContact.newBuilder().build();
         contact.createPerson(REPORT, string,
                 string, string,
                 null, string, string, string,
@@ -316,7 +315,7 @@ public class TestsPekamaReports {
     @Test
     public void contacts_a_validation_form_person(){
         deleteAllContacts();
-        ObjectContact contact = new ObjectContact();
+        ObjectContact contact = ObjectContact.newBuilder().build();
         contact.createCompany(REPORT, "Company1",
                 null, null,
                 null, null,null,
@@ -335,7 +334,7 @@ public class TestsPekamaReports {
     @Test
     public void contacts_a_validation_form_company(){
         deleteAllContacts();
-        ObjectContact contact = new ObjectContact();
+        ObjectContact contact = ObjectContact.newBuilder().build();
         contact.createPerson(REPORT, null, "Name", "Surname", null,
                 null, null,
                 null, null,null,
@@ -353,7 +352,7 @@ public class TestsPekamaReports {
     @Test
     public void contacts_a_validation_form_person_separate_fields(){
         deleteAllContacts();
-        ObjectContact contact = new ObjectContact();
+        ObjectContact contact = ObjectContact.newBuilder().build();
         contact.createPerson(REPORT, null, "Name", "Surname", null,
                 null, null,
                 null, null,null,
@@ -380,7 +379,7 @@ public class TestsPekamaReports {
     @Test
     public void contacts_a_edit_form_person(){
         deleteAllContacts();
-        ObjectContact contact = new ObjectContact();
+        ObjectContact contact = ObjectContact.newBuilder().build();
         contact.createCompany(REPORT, "Company1",
                 null, null,
                 null, null,null,
@@ -397,13 +396,13 @@ public class TestsPekamaReports {
     public void contacts_a_select_company_in_form_person(){
         deleteAllContacts();
 
-        ObjectContact company = new ObjectContact();
+        ObjectContact company = ObjectContact.newBuilder().build();
         company.createCompany(REPORT, "Company",
                 null, null,
                 null, null,null,
                 null, null,
                 null, null);
-        ObjectContact person = new ObjectContact();
+        ObjectContact person = ObjectContact.newBuilder().build();
         person.createPerson(REPORT, null,
                 "Name", "Surname", null,
                 null, null,
@@ -421,13 +420,13 @@ public class TestsPekamaReports {
     public void contacts_a_select_company_in_modal_person(){
         deleteAllContacts();
 
-        ObjectContact company = new ObjectContact();
+        ObjectContact company = ObjectContact.newBuilder().build();
         company.createCompany(REPORT, "Company",
                 null, null,
                 null, null,null,
                 null, null,
                 null, null);
-        ObjectContact person = new ObjectContact();
+        ObjectContact person = ObjectContact.newBuilder().build();
         person.createPerson(REPORT, null,
                 "Name", "Surname", company.contactLegalEntity,
                 null, null,
@@ -442,7 +441,7 @@ public class TestsPekamaReports {
     public void contacts_create_project(){
         deleteAllContacts();
 
-        ObjectContact company = new ObjectContact();
+        ObjectContact company = ObjectContact.newBuilder().build();
         company.createCompany(REPORT, "Company",
                 null, null,
                 null, null,null,
@@ -458,9 +457,9 @@ public class TestsPekamaReports {
     }
     @Test
     public void contacts_merge_positive() {
-        ObjectContact contactPerson1 = new ObjectContact();
+        ObjectContact contactPerson1 = ObjectContact.newBuilder().build();
         contactPerson1.setValues("Person", null, "NameZ", "SurnameZ", "email01@new.test");
-        ObjectContact contactPerson2 = new ObjectContact();
+        ObjectContact contactPerson2 =ObjectContact.newBuilder().build();
         contactPerson2.setValues("Person", null, "NameA", "SurnameA", "email02@new.test");
 
         deleteAllContacts();
@@ -508,9 +507,9 @@ public class TestsPekamaReports {
     }
     @Test
     public void contacts_merge_validation_person_and_company() {
-        ObjectContact contactPerson = new ObjectContact();
+        ObjectContact contactPerson = ObjectContact.newBuilder().build();
         contactPerson.setValues("Person", null, "NameZ", "SurnameZ", "email01@new.test");
-        ObjectContact contactCompany = new ObjectContact();
+        ObjectContact contactCompany =ObjectContact.newBuilder().build();
         contactCompany.setValues("Company", "Firm", null, null, "email02@new.test");
 
         deleteAllContacts();
@@ -532,11 +531,11 @@ public class TestsPekamaReports {
     }
     @Test
     public void contacts_merge_validation_one_person_has_company() {
-        ObjectContact contactCompany = new ObjectContact();
+        ObjectContact contactCompany =ObjectContact.newBuilder().build();
         contactCompany.setValues("Company", "Z-Firm", null, null, "email02@new.test");
-        ObjectContact contactPerson = new ObjectContact();
+        ObjectContact contactPerson =ObjectContact.newBuilder().build();
         contactPerson.setValues("Person", null, "NameZ", "SurnameZ", "email01@new.test");
-        ObjectContact contactAffiliated = new ObjectContact();
+        ObjectContact contactAffiliated =ObjectContact.newBuilder().build();
         contactAffiliated.setValues("Person", contactCompany.contactLegalEntity, "NameA", "SurnameA", "worker@new.test");
 
         deleteAllContacts();

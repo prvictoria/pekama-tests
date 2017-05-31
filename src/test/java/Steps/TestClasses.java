@@ -5,8 +5,12 @@ import org.junit.Test;
 
 //import static Steps.BuildUser.newBuilder;
 import static Page.TestsCredentials.*;
+import static Page.TestsCredentials.Countries.AFGHANISTAN;
+import static Page.TestsCredentials.Countries.NETHERLANDS_ANTILES;
+import static Page.TestsCredentials.Countries.PITCAIRN_ISLANDS;
 import static Page.TestsCredentials.ProductionCaseType.PATENT;
 import static Page.UrlStrings.URL_PEKAMA_LOGIN;
+import static Steps.ObjectContact.enterPoint.REPORT;
 import static Steps.ObjectEvent.PatentEventTypes.ABANDONMENT;
 import static Steps.ObjectEvent.PatentEventTypes.GRANT;
 import static Steps.ObjectFile.FileTypes.JPG;
@@ -70,8 +74,7 @@ public class TestClasses {
     }
     @Test
     public void test_build_project(){
-        ObjectProject project = ObjectProject
-                .newBuilder()
+        ObjectProject project = ObjectProject.newBuilder()
                 .projectMatterType(CaseType.PATENT.getValue())
                 .projectDefining("CANADA")
                 .projectName("EVENTS_")
@@ -80,8 +83,7 @@ public class TestClasses {
     }
     @Test
     public void test_build_event(){
-        ObjectEvent event = ObjectEvent
-                .newBuilder()
+        ObjectEvent event = ObjectEvent.newBuilder()
                 .eventRelevantToMatterType("PATENT")
                 .eventRelevantToDefining("Canada")
                 .eventRelevantToType("Any")
@@ -93,5 +95,21 @@ public class TestClasses {
         event.logEventFields();
 
         ObjectEvent event1 = new ObjectEvent(ObjectEvent.newBuilder()).buildEventInPatent(GRANT);
+    }
+    @Test
+    public void test_build_contact(){
+        ObjectContact contact = ObjectContact.newBuilder()
+                .contactType("Company")
+                .contactLegalEntity("Law firm")
+                .contactEmail("boss@dot.com")
+                .contactCountry(PITCAIRN_ISLANDS.getValue())
+                .build()
+                .logContactFields();
+        ObjectContact person = ObjectContact.newBuilder()
+                .contactType("Person")
+                .contactFirstName("")
+                .contactLastName("")
+                .build()
+                .logContactFields();
     }
 }

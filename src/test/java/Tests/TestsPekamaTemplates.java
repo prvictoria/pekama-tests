@@ -23,6 +23,9 @@ import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
 import static Steps.ObjectFile.*;
 import static Steps.ObjectFile.FileTypes.*;
+import static Steps.ObjectUser.Users.USER_03;
+import static Steps.ObjectUser.Users.USER_04;
+import static Steps.ObjectUser.newBuilder;
 import static Steps.Steps.clickSelector;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsModalWindows.modalDocumentTemplateOptions.*;
@@ -44,9 +47,7 @@ import static com.codeborne.selenide.WebDriverRunner.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaTemplates {
     static final Logger rootLogger = LogManager.getRootLogger();
-    String TEAM = TestsCredentials.User3.TEAM_NAME.getValue();
-    String TEST_USER_LOGIN = User3.GMAIL_EMAIL.getValue();
-    String TEST_USER_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
+    private static ObjectUser user = new ObjectUser(newBuilder()).buildUser(USER_03);
     static String templateProjectName;
     static String setName;
     static String templateName;
@@ -66,15 +67,9 @@ public class TestsPekamaTemplates {
     }
     @Before
     public void login() {
-        clearBrowserCache();
-        rootLogger.info("Open URL - " +URL_Dashboard);
-        ObjectUser user = ObjectUser.newBuilder().build();
-        user.login(TEST_USER_LOGIN, TEST_USER_PASSWORD, URL_Dashboard);
+        user.login();
     }
-//    @After
-//    public void logout(){
-//        openUrlWithBaseAuth(URL_Logout);
-//    }
+
     @Test
     public void templateProject_A_Validation() {
         String projectName;

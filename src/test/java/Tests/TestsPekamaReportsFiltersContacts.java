@@ -32,11 +32,47 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaReportsFiltersContacts {
     static final Logger rootLogger = LogManager.getRootLogger();
-    private static ObjectContact company1 = new ObjectContact();
-    private static ObjectContact company2 = new ObjectContact();
-    private static ObjectContact person3 = new ObjectContact();
-    private static ObjectContact person4 = new ObjectContact();
-    private static ObjectContact person5 = new ObjectContact();
+    private static ObjectContact company1 = ObjectContact.newBuilder()
+            .contactType("Company")
+            .contactLegalEntity("Lawyers & Brothers Co")
+            .contactEmail("newmail@dot.com")
+            .contactCountry(AFGHANISTAN.getValue())
+            .build()
+            .logContactFields();;
+    private static ObjectContact company2 = ObjectContact.newBuilder()
+            .contactType("Company")
+            .contactLegalEntity("Law firm")
+            .contactEmail("boss@dot.com")
+            .contactCountry(PITCAIRN_ISLANDS.getValue())
+            .build()
+            .logContactFields();;
+    private static ObjectContact person3 = ObjectContact.newBuilder()
+            .contactType("Person")
+            .contactFirstName("John")
+            .contactLastName("Drizer")
+            .contactCompany("Law firm")
+            .contactEmail("mr.rabbit@dot.com")
+            .contactCountry(NETHERLANDS_ANTILES.getValue())
+            .build()
+            .logContactFields();
+    private static ObjectContact person4 = ObjectContact.newBuilder()
+            .contactType("Person")
+            .contactFirstName("Elton")
+            .contactLastName("Hopkins")
+            .contactCompany(null)
+            .contactEmail(null)
+            .contactCountry(null)
+            .build()
+            .logContactFields();
+    private static ObjectContact person5 = ObjectContact.newBuilder()
+            .contactType("Person")
+            .contactFirstName("Joanna")
+            .contactLastName("Kispers")
+            .contactCompany("Lawyers & Brothers Co")
+            .contactEmail(null)
+            .contactCountry(null)
+            .build()
+            .logContactFields();
     private static final ObjectUser user = new ObjectUser(newBuilder()).buildUser(OWNER);
     private static boolean skipBefore = false;
 
@@ -52,34 +88,11 @@ public class TestsPekamaReportsFiltersContacts {
 
             deleteAllContacts();
             rootLogger.info("Create contacts in reports");
-            company1.createCompany(REPORT, "Lawyers & Brothers Co",
-                    "newmail@dot.com", null,
-                    null, null,null,
-                    null, null,
-                    null, AFGHANISTAN.getValue());
-            company2.createCompany(REPORT, "Law firm",
-                    "boss@dot.com", null,
-                    null, null,null,
-                    null, null,
-                    null, PITCAIRN_ISLANDS.getValue());
-            person3.createPerson(REPORT, null,
-                    "John", "Drizer", "Law firm",
-                    "mr.rabbit@dot.com", null,
-                    null, null,null,
-                    null, null,
-                    null, NETHERLANDS_ANTILES.getValue());
-            person4.createPerson(REPORT, null,
-                    "Elton", "Hopkins", null,
-                    null, null,
-                    null, null,null,
-                    null, null,
-                    null, null);
-            person5.createPerson(REPORT, null,
-                    "Joanna", "Kispers", "Lawyers & Brothers Co",
-                    null, null,
-                    null, null,null,
-                    null, null,
-                    null, null);
+            company1.createContact(REPORT);
+            company2.createContact(REPORT);
+            person3.createContact(REPORT);
+            person4.createContact(REPORT);
+            person5.createContact(REPORT);
             getWebDriver().quit();
         }
         else {rootLogger.info("Before suite was skipped");
@@ -87,8 +100,7 @@ public class TestsPekamaReportsFiltersContacts {
     }
     @Before
     public void login() {
-        //clearBrowserCache();
-        user.login(user, URL_ReportsContacts);
+        user.login(URL_ReportsContacts);
         openUrlIfActualNotEquals(URL_ReportsContacts);
     }
     @Test

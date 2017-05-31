@@ -48,7 +48,6 @@ public class TestsPekamaSettingsPersonal {
     }
     @Before
     public void before() {
-        clearBrowserCache();
         user.login();
     }
 

@@ -14,6 +14,9 @@ import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
+import static Steps.ObjectUser.Users.USER_01;
+import static Steps.ObjectUser.Users.USER_04;
+import static Steps.ObjectUser.newBuilder;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static Tests.BeforeTestsSetUp.*;
@@ -30,9 +33,8 @@ import static com.codeborne.selenide.WebDriverRunner.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaSettingValues {
     static final Logger rootLogger = LogManager.getRootLogger();
-    private final static String TEST_USER_LOGIN = User1.GMAIL_EMAIL.getValue();
-    private final static String TEST_USER_PASSWORD = User1.PEKAMA_PASSWORD.getValue();
     private static String TEST_MATTER_TYPE = MATTER_TYPE_TRADEMARK;
+    private static ObjectUser user = new ObjectUser(newBuilder()).buildUser(USER_01);
     @Rule
     public Timeout tests = Timeout.seconds(300);
     @BeforeClass
@@ -44,18 +46,9 @@ public class TestsPekamaSettingValues {
     }
     @Before
     public void before() {
-        clearBrowserCache();
         rootLogger.info("Open host");
-        ObjectUser user = ObjectUser.newBuilder().build();
-        user.login(
-                TEST_USER_LOGIN,
-                TEST_USER_PASSWORD,
-                URL_VALUES);
+        user.login(URL_VALUES);
     }
-//    @After
-//    public void after() {
-//        openUrlWithBaseAuth(URL_Logout);
-//    }
 
     @Test
     public void statusCRUD(){
