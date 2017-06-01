@@ -23,6 +23,8 @@ import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
 import static Steps.IMessagesValidator.ValidationEmailMessage.*;
 import static Steps.IMessagesValidator.ValidationInviteInProject.*;
+import static Steps.ObjectUser.Users.*;
+import static Steps.ObjectUser.newBuilder;
 import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsModalWindows.ModalConversationFollowerActions.*;
@@ -38,25 +40,10 @@ import static com.codeborne.selenide.WebDriverRunner.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsMessages {
     static final Logger rootLogger = LogManager.getRootLogger();
-    private static final String INVITER_LOGIN_EMAIL = User3.GMAIL_EMAIL.getValue();
-    private static final String INVITER_EMAIL_PASSWORD = User3.GMAIL_PASSWORD.getValue();
-    private static final String INVITER_PEKAMA_PASSWORD = User3.PEKAMA_PASSWORD.getValue();
-    private static final String INVITER_NAME_FULL_TEAM_NAME = User3.FULL_TEAM_NAME.getValue();
-    private static final String INVITER_TEAM_NAME = User3.TEAM_NAME.getValue();
-    private static final String INVITER_NAME_SURNAME = User3.NAME_SURNAME.getValue();
-    private static final String INVITER_NAME = User3.NAME.getValue();
-
-    private static final String INVITED_EMAIL = User5.GMAIL_EMAIL.getValue();
-    private static final String INVITED_EMAIL_PASSWORD = User5.GMAIL_PASSWORD.getValue();
-
-    private static final String COLLABORATOR_NAME_SURNAME = User1.NAME_SURNAME.getValue();
-    private static final String COLLABORATOR_EMAIL = User1.GMAIL_EMAIL.getValue();
-    private static final String COLLABORATOR_EMAIL_PASSWORD = User1.GMAIL_PASSWORD.getValue();
-    private static final String COLLABORATOR_PEKAMA_PASSWORD = User1.PEKAMA_PASSWORD.getValue();
-    private static final String GUEST_EMAIL = User5.GMAIL_EMAIL.getValue();
-    private static final String GUEST_EMAIL_PASSWORD = User5.GMAIL_PASSWORD.getValue();
-    private static ObjectUser owner = ObjectUser.newBuilder().email(INVITER_LOGIN_EMAIL).passwordPekama(INVITER_PEKAMA_PASSWORD).build();
-    private static ObjectUser collaborator = ObjectUser.newBuilder().email(COLLABORATOR_EMAIL).passwordPekama(COLLABORATOR_PEKAMA_PASSWORD).build();
+    private final static ObjectUser collaborator = new ObjectUser(newBuilder()).buildUser(USER_01);
+    private final static ObjectUser guest = new ObjectUser(newBuilder()).buildUser(USER_05);
+    private final static ObjectUser invited = new ObjectUser(newBuilder()).buildUser(USER_05);
+    private static ObjectUser owner = new ObjectUser(newBuilder()).buildUser(USER_03);
 
     private static String subjectLineExample = null;
     private static String testProjectName = null;
@@ -76,15 +63,15 @@ public class TestsMessages {
         if(debug==false) {
             MessagesIMAP emailTask = new MessagesIMAP();
             emailTask.imapSearchEmailDeleteAll(
-                    INVITER_LOGIN_EMAIL,
-                    INVITER_EMAIL_PASSWORD);
+                    owner.email,
+                    owner.passwordEmail);
             emailTask.imapSearchEmailDeleteAll(
-                    INVITED_EMAIL,
-                    INVITED_EMAIL_PASSWORD);
+                    invited.email,
+                    invited.passwordEmail);
             emailTask.imapSearchEmailDeleteAll(
-                    COLLABORATOR_EMAIL,
-                    COLLABORATOR_EMAIL_PASSWORD);
-            owner.login(owner.email, owner.passwordPekama, URL_PEKAMA_LOGIN);
+                    collaborator.email,
+                    collaborator.passwordEmail);
+            owner.login();
             deleteAllMembers();
             getWebDriver().quit();
         }
@@ -93,8 +80,7 @@ public class TestsMessages {
     @Before
     public void before() {
         if (skipBefore==false) {
-            //clearBrowserCache();
-            owner.login(owner.email, owner.passwordPekama, URL_PEKAMA_LOGIN);
+            owner.login();
             rootLogger.info("Create project");
             DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 15000).click();
             testProjectName = submitMwNewProject();
@@ -130,7 +116,7 @@ public class TestsMessages {
         waitForModalWindow(TITLE_MW_CONVERSATION);
         MW_CONVERSATION_INPUT_Subject.shouldBe(empty);
         MW_CONVERSATION_INPUT_Follower.shouldBe(empty);
-        checkText(INVITER_TEAM_NAME);
+        checkText(owner.teamName);
 
         MW_CHECKBOX_ALL_TEAMS.shouldNotBe(checked);
         fillField(MW_CONVERSATION_INPUT_Subject, subject);
@@ -214,7 +200,7 @@ public class TestsMessages {
         submitNewConversationWindow(
                 ADD_FOLLOWER,
                 null,
-                COLLABORATOR_EMAIL,
+                collaborator.email,
                 null,
                 null,
                 false,
@@ -236,12 +222,12 @@ public class TestsMessages {
         MessagesIMAP emailTask2 = new MessagesIMAP();
         Assert.assertTrue(
                 emailTask2.validateEmailMessage(
-                        COLLABORATOR_EMAIL,
-                        COLLABORATOR_EMAIL_PASSWORD,
+                        collaborator.email,
+                        collaborator.passwordEmail,
                         "CUSTOM",
                         LOREM_IPSUM_SHORT,
-                        INVITER_NAME_SURNAME,
-                        COLLABORATOR_NAME_SURNAME,
+                        owner.nameSurname,
+                        collaborator.nameSurname,
                         new IMessagesValidator.ValidationEmailMessage()
                 )
         );
@@ -272,7 +258,7 @@ public class TestsMessages {
         submitNewConversationWindow(
                 ADD_FOLLOWER,
                 "THREAD SUBJECT",
-                COLLABORATOR_EMAIL,
+                collaborator.email,
                 null,
                 null,
                 false,
@@ -295,12 +281,12 @@ public class TestsMessages {
         MessagesIMAP emailTask2 = new MessagesIMAP();
         Assert.assertTrue(
                 emailTask2.validateEmailMessage(
-                        COLLABORATOR_EMAIL,
-                        COLLABORATOR_EMAIL_PASSWORD,
+                        collaborator.email,
+                        collaborator.passwordEmail,
                         "THREAD SUBJECT",
                         LOREM_IPSUM_SHORT,
-                        INVITER_NAME_SURNAME,
-                        COLLABORATOR_NAME_SURNAME,
+                        owner.nameSurname,
+                        collaborator.nameSurname,
                         new IMessagesValidator.ValidationEmailMessage()
                 )
         );
@@ -313,7 +299,7 @@ public class TestsMessages {
         submitNewConversationWindow(
                 ADD_FOLLOWER,
                 null,
-                COLLABORATOR_EMAIL,
+                collaborator.email,
                 null,
                 null,
                 false,
@@ -337,12 +323,12 @@ public class TestsMessages {
         MessagesIMAP emailTask2 = new MessagesIMAP();
         Assert.assertTrue(
                 emailTask2.validateEmailMessage(
-                        COLLABORATOR_EMAIL,
-                        COLLABORATOR_EMAIL_PASSWORD,
+                        collaborator.email,
+                        collaborator.passwordEmail,
                         testProjectName,
                         LOREM_IPSUM_SHORT,
-                        INVITER_NAME_SURNAME,
-                        COLLABORATOR_NAME_SURNAME,
+                        owner.nameSurname,
+                        collaborator.nameSurname,
                         new IMessagesValidator.ValidationEmailMessage()
                 )
         );
@@ -371,7 +357,7 @@ public class TestsMessages {
         submitNewConversationWindow(
                 ADD_FOLLOWER,
                 null,
-                COLLABORATOR_EMAIL,
+                collaborator.email,
                 null,
                 null,
                 false,
@@ -395,12 +381,12 @@ public class TestsMessages {
         MessagesIMAP emailTask2 = new MessagesIMAP();
         Assert.assertTrue(
                 emailTask2.validateEmailMessage(
-                        COLLABORATOR_EMAIL,
-                        COLLABORATOR_EMAIL_PASSWORD,
+                        collaborator.email,
+                        collaborator.passwordEmail,
                         subjectLineExample,
                         LOREM_IPSUM_SHORT,
-                        INVITER_NAME_SURNAME,
-                        COLLABORATOR_NAME_SURNAME,
+                        owner.nameSurname,
+                        collaborator.nameSurname,
                         new IMessagesValidator.ValidationEmailMessage()
                 )
         );
@@ -414,7 +400,7 @@ public class TestsMessages {
         submitNewConversationWindow(
                 ADD_FOLLOWER,
                 null,
-                COLLABORATOR_EMAIL,
+                collaborator.email,
                 null,
                 null,
                 false,
@@ -438,12 +424,12 @@ public class TestsMessages {
         MessagesIMAP emailTask2 = new MessagesIMAP();
         Assert.assertTrue(
                 emailTask2.validateEmailMessage(
-                        COLLABORATOR_EMAIL,
-                        COLLABORATOR_EMAIL_PASSWORD,
+                        collaborator.email,
+                        collaborator.passwordEmail,
                         subjectLineExample,
                         LOREM_IPSUM_SHORT,
-                        INVITER_NAME_SURNAME,
-                        COLLABORATOR_NAME_SURNAME,
+                        owner.nameSurname,
+                        collaborator.nameSurname,
                         new IMessagesValidator.ValidationEmailMessage()
                 )
         );
@@ -453,8 +439,8 @@ public class TestsMessages {
     public void createProject_C1_ExternalConversationDefaults() {
         createExternalConversation();
         editTreadTitle(null);
-        validateFollowerExternal(INVITER_NAME_SURNAME);
-        deleteFollower(INVITER_NAME_SURNAME);
+        validateFollowerExternal(owner.nameSurname);
+        deleteFollower(owner.nameSurname);
         rootLogger.info("Test passed");
     }
     @Test
@@ -515,7 +501,7 @@ public class TestsMessages {
         skipBefore = false;
         rootLogger.info("Create thread in private zone");
         callModalNewConversation();
-        String newFollower = COLLABORATOR_EMAIL;
+        String newFollower = collaborator.email;
         submitNewConversationWindow(
                 ADD_FOLLOWER,
                 null,
@@ -525,7 +511,7 @@ public class TestsMessages {
                 false,
                 true
         );
-        validateFollowerTeamChat(COLLABORATOR_NAME_SURNAME, 2, 1);
+        validateFollowerTeamChat(collaborator.nameSurname, 2, 1);
     }
     //TODO Why ?
     @Ignore
@@ -554,7 +540,7 @@ public class TestsMessages {
         try {
             rootLogger.info("Create thread in private zone");
             callModalNewConversation();
-            String newFollower = INVITED_EMAIL;
+            String newFollower = collaborator.email;
             submitNewConversationWindow(
                     ADD_GUEST,
                     null,
@@ -576,11 +562,11 @@ public class TestsMessages {
     @Test 
     public void inviteInTeamChatPekamaMemberAsGuestRegisteredUser_ValidationEmail(){
         skipBefore = false;
-        String login = INVITED_EMAIL;
-        String password = INVITED_EMAIL_PASSWORD;
-        String inviterNameSurname = INVITER_NAME_SURNAME;
-        String inviterFullTeamName = INVITER_NAME_FULL_TEAM_NAME;
-        String inviterName = INVITER_NAME;
+        String login = invited.email;
+        String password = invited.passwordEmail;
+        String inviterNameSurname = owner.nameSurname;
+        String inviterFullTeamName = owner.teamFullName;
+        String inviterName = owner.name;
         MessagesIMAP validation = new MessagesIMAP();
         Boolean validationResult = validation.validateEmailInviteInTeamUnregistered(
                 login, password,
@@ -597,7 +583,7 @@ public class TestsMessages {
         try {
             rootLogger.info("Create thread in private zone");
             callModalNewConversation();
-            String newFollower = COLLABORATOR_EMAIL;
+            String newFollower = collaborator.email;
             submitNewConversationWindow(
                     ADD_GUEST,
                     null,
@@ -619,11 +605,11 @@ public class TestsMessages {
     @Test @Category({AllImapTests.class})
     public void inviteInTeamChatPekamaMemberAsGuestNewUser_ValidationEmail(){
         skipBefore = false;
-        String login = COLLABORATOR_EMAIL;
-        String password = COLLABORATOR_EMAIL_PASSWORD;
-        String inviterNameSurname = INVITER_NAME_SURNAME;
-        String inviterFullTeamName = INVITER_NAME_FULL_TEAM_NAME;
-        String inviterName = INVITER_NAME;
+        String login = collaborator.email;
+        String password = collaborator.passwordEmail;
+        String inviterNameSurname = owner.nameSurname;
+        String inviterFullTeamName = owner.teamFullName;
+        String inviterName = owner.name;
         MessagesIMAP validation = new MessagesIMAP();
         Boolean validationResult = validation.validateEmailInviteInTeamRegistered(
                 login, password,
@@ -652,30 +638,29 @@ public class TestsMessages {
         StepsPekamaProject.validateFollowerTeamChat(followerNameSurname, 2, 1);
     }
     @Test 
-    public void inviteInTeamChatNewCollaborator_Action(){
+    public void inviteInTeamChatNewCollaborator_Action_unregistered(){
         skipBefore = true;
         rootLogger.info("Create thread in private zone");
         callModalNewConversation();
-        String newFollower = User5.GMAIL_EMAIL.getValue();
         submitNewConversationWindow(
                 INVITE_FOLLOWER,
                 null,
-                newFollower,
+                invited.email,
                 null,
                 null,
                 false,
                 true
         );
-        String followerNameSurname = newFollower+" (inactive)";
+        String followerNameSurname =  invited.email+" (inactive)";
         StepsPekamaProject.validateFollowerTeamChat(followerNameSurname, 2, 0);
     }
     @Test @Category({AllImapTests.class})
     public void inviteInTeamChatNewCollaborator_ValidationEmail(){
         skipBefore = false;
         rootLogger.info("Check invite email");
-        String login = INVITED_EMAIL;
-        String password = INVITED_EMAIL_PASSWORD;
-        String inviterNameSurname = INVITER_NAME_SURNAME;
+        String login = invited.email;
+        String password = invited.passwordEmail;
+        String inviterNameSurname = owner.nameSurname;
         String projectName = testProjectName;
         MessagesIMAP validation = new MessagesIMAP();
         Boolean validationResult = validation.validateEmailInviteInProject(login, password, inviterNameSurname, projectName);
@@ -704,7 +689,7 @@ public class TestsMessages {
         submitNewConversationWindow(
                 ADD_FOLLOWER,
                 "COPY_OF_MY_OWN_MESSAGE",
-                COLLABORATOR_EMAIL,
+                collaborator.email,
                 null,
                 null,
                 false,
@@ -721,12 +706,12 @@ public class TestsMessages {
         MessagesIMAP emailTask = new MessagesIMAP();
         Assert.assertTrue(
                 emailTask.validateEmailMessage(
-                        INVITER_LOGIN_EMAIL,
-                        INVITER_EMAIL_PASSWORD,
+                        owner.email,
+                        owner.passwordEmail,
                         "COPY_OF_MY_OWN_MESSAGE",
                         LOREM_IPSUM_SHORT,
-                        INVITER_NAME_SURNAME,
-                        COLLABORATOR_NAME_SURNAME,
+                        owner.nameSurname,
+                        collaborator.nameSurname,
                         new IMessagesValidator.ValidationEmailMessage()
                 )
         );
@@ -735,20 +720,17 @@ public class TestsMessages {
     @Test @Category({AllImapTests.class})
     public void checkThatUserGetCopyOwnMessages_C_CheckRedirectReplyLinkFollower() throws IOException, MessagingException {
         skipBefore = true;
-      //  repryLink = "https://u1528369.ct.sendgrid.net/wf/click?upn=nlPIBkCFx3ihDwn5X-2FQH25GimnAenIWRK2CNbjwb1wz4MhLyrPlDXqARqX-2FoYxFNbrjSdkTycqH9IUseFSWnM-2F3L2QDDFm6XOpyOMUSqms0-3D_FhKIrNJz0J-2FLui-2BhorTXHazj59U-2BmXqSH3Q93OorhOgeYov1Ufk9vFFXG5Ntep8eoNf46zw8iVivjaYI07Za3OlTl3RkPuH16WaCuXZo-2FdTBRfJTZhKbG8zpyau5YKjB3L3x1mhTWFfaA05p1O7I8EaImFM6KER0npwusk-2FxVocP3SA3-2FbPdMBYnC7pACNNzlLXAQPDcxyBkV1Akw6IOB8DFbnm2tqEGbncvHn53U0EBKnYal25sNsT92EF8Dc68PQ2SvDGda-2FvBdR5UBu81pVgjqAVqOHxI26M0AiFGmwqgKkDIiCJWOX5KCYmZfR-2FO";
         Assert.assertNotNull(repryLink);
-        collaborator.login(owner.email, owner.passwordPekama, URL_PEKAMA_LOGIN);
+        collaborator.login();
         openUrlWithBaseAuth(repryLink);
         checkTreadTitle("COPY_OF_MY_OWN_MESSAGE");
         rootLogger.info("Test Passed");
-
     }
     @Test @Category({AllImapTests.class})
     public void checkThatUserGetCopyOwnMessages_D_CheckRedirectReplyLinkCreator() throws IOException, MessagingException {
         skipBefore = false;
-        //repryLink = "https://u1528369.ct.sendgrid.net/wf/click?upn=nlPIBkCFx3ihDwn5X-2FQH25GimnAenIWRK2CNbjwb1wz4MhLyrPlDXqARqX-2FoYxFNbrjSdkTycqH9IUseFSWnM-2F3L2QDDFm6XOpyOMUSqms0-3D_FhKIrNJz0J-2FLui-2BhorTXHazj59U-2BmXqSH3Q93OorhOgeYov1Ufk9vFFXG5Ntep8eoNf46zw8iVivjaYI07Za3OlTl3RkPuH16WaCuXZo-2FdTBRfJTZhKbG8zpyau5YKjB3L3x1mhTWFfaA05p1O7I8EaImFM6KER0npwusk-2FxVocP3SA3-2FbPdMBYnC7pACNNzlLXAQPDcxyBkV1Akw6IOB8DFbnm2tqEGbncvHn53U0EBKnYal25sNsT92EF8Dc68PQ2SvDGda-2FvBdR5UBu81pVgjqAVqOHxI26M0AiFGmwqgKkDIiCJWOX5KCYmZfR-2FO";
         Assert.assertNotNull(repryLink);
-        owner.login(owner.email, owner.passwordPekama, URL_PEKAMA_LOGIN);
+        owner.login();
         openUrlWithBaseAuth(repryLink);
         checkText("You followed a link meant for one of your other accounts. Please sign in with that account to proceed.");
         rootLogger.info("Test Passed");
@@ -756,8 +738,8 @@ public class TestsMessages {
     }
     @Test 
     public void checkThatGuestFollowerGetEmail_A_PostMessage() throws IOException, MessagingException {
-        userNameSurname = INVITER_NAME_SURNAME;
-        followerEmailOrTeamNameSurname = GUEST_EMAIL;
+        userNameSurname = owner.nameSurname;
+        followerEmailOrTeamNameSurname = guest.email;
         rootLogger.info("Set email settings");
         openSettingsTabEmails();
         selectReceiveEmailOptions(
@@ -774,7 +756,7 @@ public class TestsMessages {
         submitNewConversationWindow(
                 ADD_GUEST,
                 "EMAIL_TO_GUEST_MESSAGE",
-                GUEST_EMAIL,
+                guest.email,
                 null,
                 null,
                 false,
@@ -788,12 +770,12 @@ public class TestsMessages {
         MessagesIMAP emailTask1 = new MessagesIMAP();
         Assert.assertTrue(
                 emailTask1.validateEmailMessage(
-                        INVITER_LOGIN_EMAIL,
-                        INVITER_EMAIL_PASSWORD,
+                        owner.email,
+                        owner.passwordEmail,
                         "EMAIL_TO_GUEST_MESSAGE",
                         LOREM_IPSUM_SHORT,
-                        INVITER_NAME_SURNAME,
-                        GUEST_EMAIL,
+                        owner.nameSurname,
+                        guest.email,
                         new IMessagesValidator.ValidationEmailMessage()
                 )
         );
@@ -803,12 +785,12 @@ public class TestsMessages {
         MessagesIMAP emailTask2 = new MessagesIMAP();
         Assert.assertTrue(
                 emailTask2.validateEmailMessage(
-                        GUEST_EMAIL,
-                        GUEST_EMAIL_PASSWORD,
+                        guest.email,
+                        guest.passwordEmail,
                         "EMAIL_TO_GUEST_MESSAGE",
                         LOREM_IPSUM_SHORT,
-                        INVITER_NAME_SURNAME,
-                        GUEST_EMAIL,
+                        owner.nameSurname,
+                        guest.email,
                         new IMessagesValidator.ValidationEmailMessage()
                 )
         );
@@ -816,13 +798,13 @@ public class TestsMessages {
 
     @Test 
     public void checkThatFollowerGetEmail() throws IOException, MessagingException {
-        userNameSurname = INVITER_NAME_SURNAME;
-        followerEmailOrTeamNameSurname = COLLABORATOR_NAME_SURNAME;
+        userNameSurname = owner.nameSurname;
+        followerEmailOrTeamNameSurname = collaborator.nameSurname;
 
         openUrlWithBaseAuth(URL_PEKAMA_LOGOUT);
 
         rootLogger.info("Set FOLLOWER email settings");
-        collaborator.login(owner.email, owner.passwordPekama, URL_PEKAMA_LOGIN);
+        collaborator.login();
         openSettingsTabEmails();
         selectReceiveEmailOptions(
                 true,
@@ -834,13 +816,13 @@ public class TestsMessages {
         openUrlWithBaseAuth(URL_PEKAMA_LOGOUT);
 
         rootLogger.info("Create thread");
-        owner.login(owner.email, owner.passwordPekama, URL_PEKAMA_LOGIN);
+        owner.login();
         openUrlWithBaseAuth(testProjectUrl);
         callModalNewConversation();
         submitNewConversationWindow(
                 ADD_FOLLOWER,
                 "EMAIL_TO_FOLLOWER_MESSAGE",
-                COLLABORATOR_EMAIL,
+                collaborator.email,
                 null,
                 null,
                 false,
@@ -854,12 +836,12 @@ public class TestsMessages {
         MessagesIMAP emailTask2 = new MessagesIMAP();
         Assert.assertTrue(
                 emailTask2.validateEmailMessage(
-                        COLLABORATOR_EMAIL,
-                        COLLABORATOR_EMAIL_PASSWORD,
+                        collaborator.email,
+                        collaborator.passwordEmail,
                         "EMAIL_TO_FOLLOWER_MESSAGE",
                         LOREM_IPSUM_SHORT,
-                        INVITER_NAME_SURNAME,
-                        COLLABORATOR_NAME_SURNAME,
+                        owner.nameSurname,
+                        collaborator.nameSurname,
                         new IMessagesValidator.ValidationEmailMessage()
                 )
         );

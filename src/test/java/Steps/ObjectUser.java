@@ -772,6 +772,7 @@ public class ObjectUser implements ILogin {
         return user;
     };
     public void logUserFields(ObjectUser user){
+        rootLogger.info("USER fields:");
         rootLogger.info(user.email);
         rootLogger.info(user.passwordPekama);
         rootLogger.info(user.passwordEmail);
@@ -791,5 +792,6 @@ public class ObjectUser implements ILogin {
         rootLogger.info(user.teamFullName);
         rootLogger.info(user.teamCode);
         rootLogger.info(user.teamInitials);
+        rootLogger.info("======================");
     }
 }
