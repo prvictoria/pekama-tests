@@ -338,10 +338,10 @@ public class StepsPekamaReports {
             Assert.assertEquals(order, ActualTaskOrder);
             if (orderIsAscending != null) {
                 if (orderIsAscending == true) {
-                    REPORTS_SORT_ORDER_ASCENDING.shouldBe(visible);
+                    REPORTS_SORT_ORDER_ASCENDING.waitUntil(visible, 10000);
                     return true;
                 } else {
-                    REPORTS_SORT_ORDER_DESCENDING.shouldBe(visible);
+                    REPORTS_SORT_ORDER_DESCENDING.waitUntil(visible, 10000);
                     return true;
                 }
             }

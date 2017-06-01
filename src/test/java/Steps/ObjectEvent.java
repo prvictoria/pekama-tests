@@ -159,7 +159,7 @@ public class ObjectEvent {
         rootLogger.info("==========================");
     }
     public enum PatentEventTypes {CASE_CREATED, ABANDONMENT, CASE_CLOSED, GRANT}
-    public ObjectEvent buildEventInPatent(PatentEventTypes types){
+    public ObjectEvent buildEventInPatent(PatentEventTypes types, Integer dateFromToday){
         ObjectEvent event = null;
         switch (types){
             case CASE_CREATED:
@@ -169,9 +169,9 @@ public class ObjectEvent {
                         .eventRelevantToDefining("Canada")
                         .eventRelevantToType("Any")
                         .eventType("Case Created")
-                        .eventDateFormToday(0)
-                        .eventDate(getDate (0))
-                        .eventInfo("")
+                        .eventDateFormToday(dateFromToday)
+                        .eventDate(getDate (dateFromToday))
+                        .eventInfo("INFO_00")
                         .eventIsLessImportant(true)
                         .eventIsAutoDeployed(true)
                         .build();
@@ -184,8 +184,8 @@ public class ObjectEvent {
                         .eventRelevantToDefining("Canada")
                         .eventRelevantToType("Any")
                         .eventType("Abandonement")
-                        .eventDateFormToday(0)
-                        .eventDate(getDate (0))
+                        .eventDateFormToday(dateFromToday)
+                        .eventDate(getDate (dateFromToday))
                         .eventInfo("INFO_01")
                         .eventIsLessImportant(false)
                         .eventIsAutoDeployed(false)
@@ -200,8 +200,8 @@ public class ObjectEvent {
                         .eventRelevantToDefining("Canada")
                         .eventRelevantToType("Any")
                         .eventType("Case Closed")
-                        .eventDateFormToday(10)
-                        .eventDate(getDate (10))
+                        .eventDateFormToday(dateFromToday)
+                        .eventDate(getDate (dateFromToday))
                         .eventInfo("INFO_02")
                         .eventIsLessImportant(false)
                         .eventIsAutoDeployed(false)
@@ -215,8 +215,8 @@ public class ObjectEvent {
                         .eventRelevantToDefining("Canada")
                         .eventRelevantToType("Any")
                         .eventType("Decision to Grant")
-                        .eventDateFormToday(-10)
-                        .eventDate(getDate (-10))
+                        .eventDateFormToday(dateFromToday)
+                        .eventDate(getDate (dateFromToday))
                         .eventInfo("INFO_03")
                         .eventIsLessImportant(false)
                         .eventIsAutoDeployed(false)
@@ -242,7 +242,7 @@ public class ObjectEvent {
         MW.waitUntil(not(visible), 15000);
         return this;
     }
-    public static Boolean checkReportsEventRow(Integer rowCount, ObjectEvent event){
+    public static Boolean checkReportsEventRow(Integer rowCount, ObjectEvent event, ObjectUser user, ObjectProject project){
         if(event==null){
             rootLogger.info("No project row to validate");
             return false;
@@ -257,7 +257,10 @@ public class ObjectEvent {
                 checkTextInSelector(REPORTS_EVENT_DATE(rowCount), event.eventDate);
             }
             if (event.eventInfo != null) {
-                checkTextInSelector(REPORTS_EVENT_DESCRIPTION(rowCount), event.eventInfo);
+                checkTextInSelector(REPORTS_EVENT_DESCRIPTION(rowCount), project.projectName);
+            }
+            if (event.eventInfo != null) {
+                checkTextInSelector(REPORTS_EVENT_TEAM_CREATOR(rowCount), user.teamName);
             }
             if (event.eventType != null) {
                 checkTextInSelector(REPORTS_EVENT_TYPE(rowCount), event.eventType);

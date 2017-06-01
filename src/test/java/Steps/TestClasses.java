@@ -94,7 +94,7 @@ public class TestClasses {
                 .build();
         event.logEventFields();
 
-        ObjectEvent event1 = new ObjectEvent(ObjectEvent.newBuilder()).buildEventInPatent(GRANT);
+        ObjectEvent event1 = new ObjectEvent(ObjectEvent.newBuilder()).buildEventInPatent(GRANT, 10);
     }
     @Test
     public void test_build_contact(){
