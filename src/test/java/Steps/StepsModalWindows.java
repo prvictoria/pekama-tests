@@ -16,6 +16,7 @@ import static Page.PekamaTeamSettings.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Steps.ObjectFile.FileTypes.*;
+import static Steps.Steps.clickSelector;
 import static Steps.StepsModalWindows.ModalConversationFollowerActions.*;
 import static Steps.StepsModalWindows.ModalConversationTeamActions.*;
 import static Steps.StepsPekama.*;
@@ -830,10 +831,11 @@ public class StepsModalWindows {
         }
         MW_IMPORT_CONTACTS_UPLOAD_BTN.shouldBe(visible).shouldBe(enabled);
         MW_BTN_CANCEL.shouldBe(visible).shouldBe(enabled);
-        MW_IMPORT_CONTACTS_UPLOAD_BTN.click();
+        clickSelector(MW_IMPORT_CONTACTS_UPLOAD_BTN);
+        sleep(2000);
         file.uploadFile();
         if(file!=null && error==null){
-            MW.shouldNotBe(visible);
+            MW.waitUntil(not(visible), 10000);
         }
         if(file!=null && error!=null){
             MW_IMPORT_CONTACTS_UPLOAD_BTN.waitUntil(not(visible), 15000);

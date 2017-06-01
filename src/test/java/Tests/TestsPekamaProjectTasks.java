@@ -72,7 +72,6 @@ public class TestsPekamaProjectTasks {
     }
     @Before
     public void login() {
-        //clearBrowserCache();
         owner.login(projectUrl);
         checkText(projectName);
         StepsPekamaProject.deleteAllTasks();

@@ -6,4 +6,8 @@ WinWaitActive("File Upload")
 Send($fullPath)
 Send("{ENTER}")
 Sleep(1000)
+
+Func kill()
+   Exit 0
+EndFunc
 Exit

@@ -1,5 +1,6 @@
 package Steps;
 
+import Page.PekamaProject;
 import com.codeborne.selenide.SelenideElement;
 import org.junit.Assert;
 import org.junit.Ignore;
@@ -9,6 +10,8 @@ import org.junit.Test;
 import java.io.IOException;
 
 import static Page.CommunityDashboard.*;
+import static Page.CommunityWizard.BTN_SEND_INSTRUCTION;
+import static Page.CommunityWizard.WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS;
 import static Page.ModalWindows.*;
 import static Page.PekamaConversationProject.*;
 import static Page.PekamaDashboard.*;
@@ -17,6 +20,7 @@ import static Page.PekamaProject.*;
 import static Page.PekamaProjectCharges.*;
 import static Page.TestsCredentials.Countries.NETHERLANDS_ANTILES;
 import static Page.TestsStrings.*;
+import static Page.UrlConfig.INTRODUCER_NAME;
 import static Page.UrlStrings.*;
 import static Steps.Steps.clickSelector;
 import static Steps.StepsCommunity.*;
@@ -119,6 +123,7 @@ public class StepsPekamaProject extends StepsPekama {
         }
         else return false;
     }
+
 // INFO TAB =====================================================================
     public static String setProjectDefining(String defining){
         if(defining!=null) {
@@ -157,6 +162,66 @@ public class StepsPekamaProject extends StepsPekama {
         return null;
     }
 
+    public static void clickStartNewCase(){
+        checkText("No community cases.");
+        TAB_INFO_COMMUNITY_TITLE.waitUntil(visible, 20000).shouldHave(text("Services from the Pekama IP Community"));
+        rootLogger.info("Check redirect to Community Wizard");
+        TAB_INFO_COMMUNITY_BTN_START_NEW.waitUntil(visible, 20000).click();
+        checkThatWindowsQtyIs(2);
+        switchTo().window(PAGE_TITLE_COMMUNITY);
+        if (checkPageTitle(PAGE_TITLE_COMMUNITY)==false){
+            Assert.fail("No redirect to Community");
+        }
+        //TODO wizard assert
+        WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS.waitUntil(visible, 20000)
+                .shouldBe(disabled);
+    }
+    public static void switchToPekamaWindow(String projectUrl){
+        rootLogger.info("Open Pekama");
+        switchTo().window(PAGE_TITLE_PEKAMA);
+        if (checkPageTitle(PAGE_TITLE_PEKAMA)==false){
+            Assert.fail("No redirect to Community");
+        }
+        String actualUrl = getActualUrl();
+        Assert.assertEquals
+                ("Opened url not same to the project url", projectUrl, actualUrl);
+        refresh();
+    }
+    public static void redirectToCommunityFormCaseRow(){
+        rootLogger.info("Check redirect to Community after click case row");
+        PROJECT_TAB_INFO.shouldBe(visible).click();
+        TAB_INFO_COMMUNITY_CASE_ROW.click();
+        sleep(2000);
+        checkThatWindowsQtyIs(3);
+        switchToCommunityWindow();
+        //TODO new UI
+        BTN_SEND_INSTRUCTION.waitUntil(visible, 20000);
+        sleep(1000);
+    }
+    public static Boolean checkProjectCommunityCase(ObjectCase objectCase){
+        TAB_INFO_COMMUNITY_BTN_START_NEW.waitUntil(visible, 20000).shouldBe(visible);
+
+        TAB_INFO_COMMUNITY_CASE_NAME.waitUntil(visible, 15000).shouldHave(text(objectCase.caseTitle));
+        TAB_INFO_COMMUNITY_CASE_TYPE.shouldHave(text(objectCase.caseMatterType));
+        //todo logic if different statuses
+        if(objectCase.caseStatus.equals("asdsasasas")){
+            TAB_INFO_COMMUNITY_CASE_ACTION.shouldHave(text("cancel case"));
+            TAB_INFO_COMMUNITY_CASE_STATUS.shouldHave(text(objectCase.caseStatus));
+        }
+
+        return true;
+    }
+    public static Boolean checkCollaborators(ObjectUser owner, ObjectUser expert){
+        rootLogger.info("Check project members");
+        PROJECT_TAB_CONTACTS.shouldBe(visible).click();
+        checkText(OWNER);
+        checkText(owner.teamFullName);
+        checkText(ADMIN);
+        checkText(INTRODUCER_NAME);
+        checkText(VIEWER);
+        checkText(expert.teamFullName);
+        return true;
+    }
     // INFO TAB - NUMBERS ========================================================
     public static void numberCreate(String numberType, String numberValue){
         rootLogger.info("select number from list - ");
@@ -307,14 +372,22 @@ public class StepsPekamaProject extends StepsPekama {
 // TASKS TAB =========================================================================
     public static void deleteAllTasks(){
         clickSelector(PROJECT_TAB_TASKS);
-        sleep(3000);
-        if($(byText(PLACEHOLDER_EMPTY_LIST)).isDisplayed()){return;}
+        int i = 0;
+        while (i<15){
+            sleep(1000);
+            if($(byText(PLACEHOLDER_EMPTY_LIST)).isDisplayed()){
+                return;
+            }
             rootLogger.info("Delete All tasks");
             clickSelector(projectAllCheckbox);
-            if($(byText(PLACEHOLDER_EMPTY_LIST)).isDisplayed()){return;}
-                clickSelector(TAB_TASKS_BTN_DELETE);
-                submitConfirmAction();
-                checkText(PLACEHOLDER_EMPTY_LIST);
+                sleep(1000);
+                    if(TAB_TASKS_BTN_DELETE.isDisplayed()){
+                        clickSelector(TAB_TASKS_BTN_DELETE);
+                        submitConfirmAction();
+                        checkText(PLACEHOLDER_EMPTY_LIST);
+                    }
+            i++;
+        }
     }
     public static void deleteTaskCard(){
         submitEnabledButton(PROJECT_TASK_CARD_BTN_DEL_TASK);

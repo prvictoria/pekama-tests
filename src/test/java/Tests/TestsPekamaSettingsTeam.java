@@ -23,6 +23,7 @@ import static Steps.ObjectFile.FileTypes.PDF;
 import static Steps.ObjectUser.Users.USER_05;
 import static Steps.ObjectUser.Users.USER_06;
 import static Steps.ObjectUser.newBuilder;
+import static Steps.Steps.clickSelector;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static Tests.BeforeTestsSetUp.*;
@@ -90,23 +91,17 @@ public class TestsPekamaSettingsTeam {
     @Test
     public void logoUpload_jpeg() {
         ObjectFile file = new ObjectFile(ObjectFile.newBuilder()).buildFile(JPG);
-        try {
-            SETTINGS_TEAM_INFO_DELETE_LOGO.waitUntil(visible, 15000).shouldBe(disabled);
-            SETTINGS_TEAM_INFO_UPLOAD_LOGO.shouldBe(visible).click();
-            file.uploadFile();
-        }
-        finally {
-            SETTINGS_TEAM_INFO_DELETE_LOGO.waitUntil(visible, 15000).shouldBe(enabled).click();
-            sleep(4000);
-            SETTINGS_TEAM_INFO_DELETE_LOGO.waitUntil(visible, 15000).shouldBe(disabled);
-            SETTINGS_TEAM_INFO_PLACEHOLDER.waitUntil(visible, 10000);
-            rootLogger.info("Test passed");
-        }
+        clickSelector(SETTINGS_TEAM_INFO_UPLOAD_LOGO);
+        file.uploadFile();
+        clickSelector(SETTINGS_TEAM_INFO_DELETE_LOGO);
+        SETTINGS_TEAM_INFO_DELETE_LOGO.waitUntil(disabled, 10000);
+        SETTINGS_TEAM_INFO_PLACEHOLDER.waitUntil(visible, 10000);
+        rootLogger.info("Test passed");
     }
     @Test
     public void logoUpload_pdf_Validation() throws IOException {
         ObjectFile file = new ObjectFile(ObjectFile.newBuilder()).buildFile(PDF);
-        SETTINGS_TEAM_INFO_UPLOAD_LOGO.shouldBe(visible).click();
+        clickSelector(SETTINGS_TEAM_INFO_UPLOAD_LOGO);
         file.uploadFile();
         checkText("Upload a valid image. The file you uploaded was either not an image or a corrupted image.");
         rootLogger.info("Test passed - error present");

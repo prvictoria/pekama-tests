@@ -21,6 +21,7 @@ import static Steps.ObjectFile.FileTypes.*;
 import static Steps.ObjectUser.Users.USER_04;
 import static Steps.ObjectUser.Users.USER_06;
 import static Steps.ObjectUser.newBuilder;
+import static Steps.Steps.clickSelector;
 import static Steps.StepsExternal.authGmail;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
@@ -55,39 +56,27 @@ public class TestsPekamaSettingsPersonal {
     public void avatarUpload_jpeg() {
         ObjectFile file =  new ObjectFile(ObjectFile.newBuilder()).buildFile(JPG);
         openSettingsTabPersonalDetails();
-            try {
-                PERSONAL_DETAILS_DELETE_AVATAR.waitUntil(visible, 15000).shouldBe(disabled);
-                PERSONAL_DETAILS_UPLOAD_AVATAR_BTN.shouldBe(visible).click();
-                file.uploadFile();
-            }
-            finally {
-                PERSONAL_DETAILS_DELETE_AVATAR.waitUntil(visible, 15000).shouldBe(enabled).click();
-                sleep(4000);
-                PERSONAL_DETAILS_DELETE_AVATAR.waitUntil(visible, 15000).shouldBe(disabled);
-                rootLogger.info("Test passed");
-            }
+        clickSelector(PERSONAL_DETAILS_UPLOAD_AVATAR_BTN);
+        file.uploadFile();
+        clickSelector(PERSONAL_DETAILS_DELETE_AVATAR);
+        PERSONAL_DETAILS_DELETE_AVATAR.waitUntil(disabled, 10000);
+        rootLogger.info("Test passed");
     }
     @Test
     public void avatarUpload_png() {
         ObjectFile file =  new ObjectFile(ObjectFile.newBuilder()).buildFile(PNG);
         openSettingsTabPersonalDetails();
-        try {
-            PERSONAL_DETAILS_DELETE_AVATAR.waitUntil(visible, 15000).shouldBe(disabled);
-            PERSONAL_DETAILS_UPLOAD_AVATAR_BTN.shouldBe(visible).click();
-            file.uploadFile();
-        }
-        finally {
-            PERSONAL_DETAILS_DELETE_AVATAR.waitUntil(visible, 15000).click();
-            sleep(4000);
-            PERSONAL_DETAILS_DELETE_AVATAR.waitUntil(visible, 15000).shouldBe(disabled);
-            rootLogger.info("Test passed");
-        }
+        clickSelector(PERSONAL_DETAILS_UPLOAD_AVATAR_BTN);
+        file.uploadFile();
+        clickSelector(PERSONAL_DETAILS_DELETE_AVATAR);
+        PERSONAL_DETAILS_DELETE_AVATAR.waitUntil(disabled, 10000);
+        rootLogger.info("Test passed");
     }
     @Test
     public void avatarUpload_pdf_Validation() {
         ObjectFile file =  new ObjectFile(ObjectFile.newBuilder()).buildFile(PDF);
         openSettingsTabPersonalDetails();
-        PERSONAL_DETAILS_UPLOAD_AVATAR_BTN.shouldBe(visible).click();
+        clickSelector(PERSONAL_DETAILS_UPLOAD_AVATAR_BTN);
         file.uploadFile();
         checkText("Upload a valid image. The file you uploaded was either not an image or a corrupted image.");
         rootLogger.info("Test passed - error present");
