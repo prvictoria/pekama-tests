@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import org.junit.*;
 import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
+import org.openqa.selenium.WebDriver;
 
 import java.io.IOException;
 
@@ -21,11 +22,15 @@ import static Steps.ObjectFile.FileTypes.*;
 import static Steps.ObjectUser.Users.USER_04;
 import static Steps.ObjectUser.Users.USER_06;
 import static Steps.ObjectUser.newBuilder;
+import static Steps.Steps.clickSelectIfEnabled;
 import static Steps.Steps.clickSelector;
 import static Steps.StepsExternal.authGmail;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
+import static Steps.StepsPekamaSettings.checkPersonalForm;
+import static Steps.StepsPekamaSettings.submitPersonalForm;
 import static Tests.BeforeTestsSetUp.*;
+import static Utils.Utils.randomString;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
@@ -38,7 +43,7 @@ import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaSettingsPersonal {
     static final Logger rootLogger = LogManager.getRootLogger();
-    private static ObjectUser user = new ObjectUser(newBuilder()).buildUser(USER_06);
+    private static final ObjectUser user = new ObjectUser(newBuilder()).buildUser(USER_06);
     @Rule
     public Timeout tests = Timeout.seconds(400);
     @BeforeClass
@@ -46,6 +51,7 @@ public class TestsPekamaSettingsPersonal {
         setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
+
     }
     @Before
     public void before() {
@@ -56,6 +62,7 @@ public class TestsPekamaSettingsPersonal {
     public void avatarUpload_jpeg() {
         ObjectFile file =  new ObjectFile(ObjectFile.newBuilder()).buildFile(JPG);
         openSettingsTabPersonalDetails();
+        clickSelectIfEnabled(PERSONAL_DETAILS_DELETE_AVATAR);
         clickSelector(PERSONAL_DETAILS_UPLOAD_AVATAR_BTN);
         file.uploadFile();
         clickSelector(PERSONAL_DETAILS_DELETE_AVATAR);
@@ -66,7 +73,9 @@ public class TestsPekamaSettingsPersonal {
     public void avatarUpload_png() {
         ObjectFile file =  new ObjectFile(ObjectFile.newBuilder()).buildFile(PNG);
         openSettingsTabPersonalDetails();
+        clickSelectIfEnabled(PERSONAL_DETAILS_DELETE_AVATAR);
         clickSelector(PERSONAL_DETAILS_UPLOAD_AVATAR_BTN);
+        sleep(2000);
         file.uploadFile();
         clickSelector(PERSONAL_DETAILS_DELETE_AVATAR);
         PERSONAL_DETAILS_DELETE_AVATAR.waitUntil(disabled, 10000);
@@ -76,7 +85,9 @@ public class TestsPekamaSettingsPersonal {
     public void avatarUpload_pdf_Validation() {
         ObjectFile file =  new ObjectFile(ObjectFile.newBuilder()).buildFile(PDF);
         openSettingsTabPersonalDetails();
+        clickSelectIfEnabled(PERSONAL_DETAILS_DELETE_AVATAR);
         clickSelector(PERSONAL_DETAILS_UPLOAD_AVATAR_BTN);
+        sleep(2000);
         file.uploadFile();
         checkText("Upload a valid image. The file you uploaded was either not an image or a corrupted image.");
         rootLogger.info("Test passed - error present");
@@ -93,241 +104,228 @@ public class TestsPekamaSettingsPersonal {
         SIGNATURE_TAB_TITLE.shouldHave(text("E-mail signature"));
         IMAP_TAB_TITLE.shouldHave(text("IMAP"));
         TIME_TRACKER_TAB_TITLE.shouldHave(text("Time Tracker"));
+
+        $(byText("First name:")).waitUntil(Condition.visible, 10000);
+        $(byText("Last name:")).shouldBe(Condition.visible);
+        $(byText("Phone #")).shouldBe(Condition.visible);
+        $(byText("Fax #")).shouldBe(Condition.visible);
+        $(byText("Mobile #")).shouldBe(Condition.visible);
+        $(byText("Legal entity:")).shouldBe(Condition.visible);
+        $(byText("Street address:")).shouldBe(Condition.visible);
+        $(byText("Post code:")).shouldBe(Condition.visible);
+        $(byText("City:")).shouldBe(Condition.visible);
+        $(byText("State/Region")).shouldBe(Condition.visible);
+        $(byText("Country:")).shouldBe(Condition.visible);
         rootLogger.info("Personal settings GUI is consistent");
     }
     @Test
     public void tabPersonalDetails_Y_SaveUserData() {
-        openSettingsTabPersonalDetails();
-        rootLogger.info("Enter and Save ObjectUser Data");
-        $(byText("First name:")).waitUntil(Condition.visible, 10000);
-        PERSONAL_DETAILS_INPUT_NAME.clear();
-        PERSONAL_DETAILS_INPUT_NAME.sendKeys(User3.NAME.getValue());
-        $(byText("Last name:")).shouldBe(Condition.visible);
-        PERSONAL_DETAILS_INPUT_SURNAME.clear();
-        PERSONAL_DETAILS_INPUT_SURNAME.sendKeys(User3.SURNAME.getValue());
-        $(byText("Phone #")).shouldBe(Condition.visible);
-        PERSONAL_DETAILS_INPUT_PHONE.clear();
-        PERSONAL_DETAILS_INPUT_PHONE.sendKeys(User3.PHONE.getValue());
-        $(byText("Fax #")).shouldBe(Condition.visible);
-        PERSONAL_DETAILS_INPUT_FAX.clear();
-        PERSONAL_DETAILS_INPUT_FAX.sendKeys(User3.FAX.getValue());
-        $(byText("Mobile #")).shouldBe(Condition.visible);
-        PERSONAL_DETAILS_INPUT_MOBILE.clear();
-        PERSONAL_DETAILS_INPUT_MOBILE.sendKeys(User3.MOBILE.getValue());
-        $(byText("Legal entity:")).shouldBe(Condition.visible);
-        PERSONAL_DETAILS_INPUT_LEGAL_ENTITY.clear();
-        PERSONAL_DETAILS_INPUT_LEGAL_ENTITY.sendKeys(User3.LEGAL_ENTITY.getValue());
-        $(byText("Street address:")).shouldBe(Condition.visible);
-        PERSONAL_DETAILS_INPUT_STREET.clear();
-        PERSONAL_DETAILS_INPUT_STREET.sendKeys(User3.STREET.getValue());
-        $(byText("Post code:")).shouldBe(Condition.visible);
-        PERSONAL_DETAILS_INPUT_ZIP.clear();
-        PERSONAL_DETAILS_INPUT_ZIP.sendKeys(User3.ZIP.getValue());
-        $(byText("City:")).shouldBe(Condition.visible);
-        PERSONAL_DETAILS_INPUT_CITY.clear();
-        PERSONAL_DETAILS_INPUT_CITY.sendKeys(User3.CITY.getValue());
-        $(byText("State/Region")).shouldBe(Condition.visible);
-        PERSONAL_DETAILS_INPUT_REGION.clear();
-        PERSONAL_DETAILS_INPUT_REGION.sendKeys(User3.REGION.getValue());
-        $(byText("Country:")).shouldBe(Condition.visible);
-        submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
-        sleep(4000);
-        PERSONAL_DETAILS_SAVE_BTN.waitUntil(Condition.disabled, 10000);
+        rootLogger.info("Enter and Save Default ObjectUser Data");
+        submitPersonalForm(user);
         rootLogger.info("New data saved in all fields");
     }
     @Test
     public void tabPersonalDetails_Z_CheckSavedData() {
-        openSettingsTabPersonalDetails();
         rootLogger.info("Check Saved Data");
-        sleep(2000);
-        $(byText("First name:")).shouldBe(Condition.visible);
-        PERSONAL_DETAILS_INPUT_NAME.shouldHave(Condition.value(User3.NAME.getValue()));
-        $(byText("Last name:")).shouldBe(Condition.visible);
-        PERSONAL_DETAILS_INPUT_SURNAME.shouldHave(Condition.value(User3.SURNAME.getValue()));
-        $(byText("Phone #")).shouldBe(Condition.visible);
-        PERSONAL_DETAILS_INPUT_PHONE.shouldHave(Condition.value(User3.PHONE.getValue()));
-        $(byText("Fax #")).shouldBe(Condition.visible);
-        PERSONAL_DETAILS_INPUT_FAX.shouldHave(Condition.value(User3.FAX.getValue()));
-        $(byText("Mobile #")).shouldBe(Condition.visible);
-        PERSONAL_DETAILS_INPUT_MOBILE.shouldHave(Condition.value(User3.MOBILE.getValue()));
-        $(byText("Legal entity:")).shouldBe(Condition.visible);
-        PERSONAL_DETAILS_INPUT_LEGAL_ENTITY.shouldHave(Condition.value(User3.LEGAL_ENTITY.getValue()));
-        $(byText("Street address:")).shouldBe(Condition.visible);
-        PERSONAL_DETAILS_INPUT_STREET.shouldHave(Condition.value(User3.STREET.getValue()));
-        $(byText("Post code:")).shouldBe(Condition.visible);
-        PERSONAL_DETAILS_INPUT_ZIP.shouldHave(Condition.value(User3.ZIP.getValue()));
-        $(byText("City:")).shouldBe(Condition.visible);
-        PERSONAL_DETAILS_INPUT_CITY.shouldHave(Condition.value(User3.CITY.getValue()));
-        $(byText("State/Region")).shouldBe(Condition.visible);
-        PERSONAL_DETAILS_INPUT_REGION.shouldHave(Condition.value(User3.REGION.getValue()));
-        $(byText("Country:")).shouldBe(Condition.visible);
-        PERSONAL_DETAILS_SAVE_BTN.shouldBe(Condition.disabled);
-        rootLogger.info("ObjectUser default data present");
+        checkPersonalForm(user);
     }
+
     @Test
-    public void tabPersonalDetails_Name_A() {
-        openSettingsTabPersonalDetails();
+    public void tabPersonalDetails_Name_A_empty() {
         rootLogger.info("Validation Name field");
-        $(byText("First name:")).shouldBe(Condition.visible);
-        String RANDOM_20_LETTER = Utils.randomString(20);
-        PERSONAL_DETAILS_INPUT_SURNAME.sendKeys(RANDOM_20_LETTER);
-        PERSONAL_DETAILS_INPUT_NAME.clear();
-        sleep(1000);
-        submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
-        sleep(500);
-        PERSONAL_DETAILS_INPUT_NAME.shouldHave(Condition.value(""));
+        ObjectUser fakeUser = newBuilder().name("").surname(randomString(20)).build();
+        submitPersonalForm(fakeUser);
         checkText(ERROR_MSG_BLANK_NAME);
         rootLogger.info("Validation present - "+ERROR_MSG_BLANK_NAME);
     }
     @Test
-    public void tabPersonalDetails_Name_B() {
-        openSettingsTabPersonalDetails();
+    public void tabPersonalDetails_Name_B_validation() {
         rootLogger.info("Validation max length Name field");
-        $(byText("First name:")).shouldBe(Condition.visible);
-        String RANDOM_101_LETTER = Utils.randomString(101);
-        PERSONAL_DETAILS_INPUT_NAME.clear();
-        PERSONAL_DETAILS_INPUT_NAME.sendKeys(RANDOM_101_LETTER);
-        submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
-        sleep(500);
+        ObjectUser fakeUser = newBuilder().name(randomString(101)).build();
+        submitPersonalForm(fakeUser);
         checkText(ERROR_MSG_VALIDATION_LENGTH_100);
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_100);
     }
     @Test
-    public void tabPersonalDetails_NameSurname_A() {
-        openSettingsTabPersonalDetails();
+    public void tabPersonalDetails_Name_C_save() {
+        rootLogger.info("Save and check Name field");
+        ObjectUser fakeUser = newBuilder().name(randomString(100)).build();
+        submitPersonalForm(fakeUser);
+        refresh();
+        checkPersonalForm(fakeUser);
+    }
+
+    @Test
+    public void tabPersonalDetails_NameSurname_A_empty() {
         rootLogger.info("Validation Name field");
-        $(byText("Last name:")).shouldBe(Condition.visible);
-        PERSONAL_DETAILS_INPUT_NAME.clear();
-        PERSONAL_DETAILS_INPUT_SURNAME.clear();
-        submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
-        sleep(500);
-        PERSONAL_DETAILS_INPUT_SURNAME.shouldHave(Condition.value(""));
-        PERSONAL_DETAILS_INPUT_NAME.shouldHave(Condition.value(""));
+        ObjectUser fakeUser = newBuilder().name("").surname("").build();
+        submitPersonalForm(fakeUser);
         checkText(ERROR_MSG_BLANK_NAME);
         checkText(ERROR_MSG_BLANK_SURNAME);
         rootLogger.info("Validation present - "+ERROR_MSG_BLANK_SURNAME);
     }
+
     @Test
-    public void tabPersonalDetails_Surname_A() {
-        openSettingsTabPersonalDetails();
-        rootLogger.info("Validation Name field");
-        $(byText("Last name:")).shouldBe(Condition.visible);
-        String RANDOM_20_LETTER = Utils.randomString(20);
-        PERSONAL_DETAILS_INPUT_NAME.sendKeys(RANDOM_20_LETTER);
-        PERSONAL_DETAILS_INPUT_SURNAME.clear();
-        submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
-        PERSONAL_DETAILS_INPUT_SURNAME.shouldHave(Condition.value(""));
+    public void tabPersonalDetails_Surname_A_empty() {
+        rootLogger.info("Validation Surname field");
+        ObjectUser fakeUser = newBuilder().name(randomString(20)).surname("").build();
+        submitPersonalForm(fakeUser);
         checkText(ERROR_MSG_BLANK_SURNAME);
         rootLogger.info("Validation present - "+ERROR_MSG_BLANK_SURNAME);
     }
     @Test
-    public void tabPersonalDetails_Surname_B() {
-        openSettingsTabPersonalDetails();
+    public void tabPersonalDetails_Surname_B_validation() {
         rootLogger.info("Validation max length Surname field");
-        $(byText("Last name:")).shouldBe(Condition.visible);
-        String RANDOM_101_LETTER = Utils.randomString(101);
-        PERSONAL_DETAILS_INPUT_SURNAME.clear();
-        PERSONAL_DETAILS_INPUT_SURNAME.sendKeys(RANDOM_101_LETTER);
-        submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
+        ObjectUser fakeUser = newBuilder().surname(randomString(101)).build();
+        submitPersonalForm(fakeUser);
         checkText(ERROR_MSG_VALIDATION_LENGTH_100);
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_100);
     }
     @Test
-    public void tabPersonalDetails_Phone_A() {
-        openSettingsTabPersonalDetails();
+    public void tabPersonalDetails_Surname_C_save() {
+        rootLogger.info("Save and check Name field");
+        ObjectUser fakeUser = newBuilder().surname(randomString(100)).build();
+        submitPersonalForm(fakeUser);
+        refresh();
+        checkPersonalForm(fakeUser);
+    }
+
+    @Test
+    public void tabPersonalDetails_Phone_A_validation() {
         rootLogger.info("Validation max length Phone field");
-        $(byText("Phone #")).shouldBe(Condition.visible);
-        String RANDOM_101_LETTER = Utils.randomString(21);
-        PERSONAL_DETAILS_INPUT_PHONE.clear();
-        PERSONAL_DETAILS_INPUT_PHONE.sendKeys(RANDOM_101_LETTER);
-        submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
+        ObjectUser fakeUser = newBuilder().phone(randomString(21)).build();
+        submitPersonalForm(fakeUser);
         checkText(ERROR_MSG_VALIDATION_LENGTH_20);
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_20);
     }
     @Test
-    public void tabPersonalDetails_Fax_A() {
-        openSettingsTabPersonalDetails();
-        rootLogger.info("Validation max length Fax field");
-        $(byText("Fax #")).shouldBe(Condition.visible);
-        String RANDOM_21_LETTER = Utils.randomString(21);
-        PERSONAL_DETAILS_INPUT_FAX.clear();
-        PERSONAL_DETAILS_INPUT_FAX.sendKeys(RANDOM_21_LETTER);
-        submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
+    public void tabPersonalDetails_Phone_B_save() {
+        rootLogger.info("Save and check Fax field");
+        ObjectUser fakeUser = newBuilder().phone(randomString(20)).build();
+        submitPersonalForm(fakeUser);
+        refresh();
+        checkPersonalForm(fakeUser);
+    }
+
+    @Test
+    public void tabPersonalDetails_Fax_A_validation() {
+        ObjectUser fakeUser = newBuilder().fax(randomString(21)).build();
+        submitPersonalForm(fakeUser);
         checkText(ERROR_MSG_VALIDATION_LENGTH_20);
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_20);
     }
     @Test
-    public void tabPersonalDetails_Mobile_A() {
-        openSettingsTabPersonalDetails();
+    public void tabPersonalDetails_Fax_B_save() {
+        rootLogger.info("Save and check Fax field");
+        ObjectUser fakeUser = newBuilder().fax(randomString(20)).build();
+        submitPersonalForm(fakeUser);
+        refresh();
+        checkPersonalForm(fakeUser);
+    }
+
+    @Test
+    public void tabPersonalDetails_Mobile_A_validation() {
         rootLogger.info("Validation max length Mobile field");
-        $(byText("Mobile #")).shouldBe(Condition.visible);
-        String RANDOM_21_LETTER = Utils.randomString(21);
-        PERSONAL_DETAILS_INPUT_MOBILE.clear();
-        PERSONAL_DETAILS_INPUT_MOBILE.sendKeys(RANDOM_21_LETTER);
-        submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
+        ObjectUser fakeUser = newBuilder().mobile(randomString(21)).build();
+        submitPersonalForm(fakeUser);
         checkText(ERROR_MSG_VALIDATION_LENGTH_20);
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_20);
     }
     @Test
-    public void tabPersonalDetails_LegalEntity_A() {
-        openSettingsTabPersonalDetails();
+    public void tabPersonalDetails_Mobile_B_save() {
+        rootLogger.info("Save and check Region field");
+        ObjectUser fakeUser = newBuilder().mobile(randomString(20)).build();
+        submitPersonalForm(fakeUser);
+        refresh();
+        checkPersonalForm(fakeUser);
+    }
+
+    @Test
+    public void tabPersonalDetails_LegalEntity_A_validation() {
         rootLogger.info("Validation max length Legal entity field");
-        $(byText("Legal entity:")).shouldBe(Condition.visible);
-        String RANDOM_256_LETTER = Utils.randomString(256);
-        PERSONAL_DETAILS_INPUT_LEGAL_ENTITY.clear();
-        PERSONAL_DETAILS_INPUT_LEGAL_ENTITY.sendKeys(RANDOM_256_LETTER);
-        submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
+        ObjectUser fakeUser = newBuilder().legalEntity(randomString(256)).build();
+        submitPersonalForm(fakeUser);
         checkText(ERROR_MSG_VALIDATION_LENGTH_255);
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_255);
     }
     @Test
-    public void tabPersonalDetails_StreetAddress_A() {
-        openSettingsTabPersonalDetails();
+    public void tabPersonalDetails_LegalEntity_B_save() {
+        rootLogger.info("Save and check Region field");
+        ObjectUser fakeUser = newBuilder().legalEntity(randomString(255)).build();
+        submitPersonalForm(fakeUser);
+        refresh();
+        checkPersonalForm(fakeUser);
+    }
+
+    @Test
+    public void tabPersonalDetails_StreetAddress_A_validation() {
         rootLogger.info("Validation max length Legal entity field");
-        $(byText("Street address:")).shouldBe(Condition.visible);
-        String RANDOM_256_LETTER = Utils.randomString(256);
-        PERSONAL_DETAILS_INPUT_STREET.clear();
-        PERSONAL_DETAILS_INPUT_STREET.sendKeys(RANDOM_256_LETTER);
-        submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
+        ObjectUser fakeUser = newBuilder().street(randomString(256)).build();
+        submitPersonalForm(fakeUser);
         checkText(ERROR_MSG_VALIDATION_LENGTH_255);
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_255);
     }
     @Test
-    public void tabPersonalDetails_PostalCode_A() {
-        openSettingsTabPersonalDetails();
+    public void tabPersonalDetails_StreetAddress_B_save() {
+        rootLogger.info("Save and check Region field");
+        ObjectUser fakeUser = newBuilder().street(randomString(255)).build();
+        submitPersonalForm(fakeUser);
+        refresh();
+        checkPersonalForm(fakeUser);
+    }
+
+    @Test
+    public void tabPersonalDetails_PostalCode_A_validation() {
         rootLogger.info("Validation max length Post code field");
-        $(byText("Post code:")).shouldBe(Condition.visible);
-        String RANDOM_21_LETTER = Utils.randomString(21);
-        PERSONAL_DETAILS_INPUT_ZIP.clear();
-        PERSONAL_DETAILS_INPUT_ZIP.sendKeys(RANDOM_21_LETTER);
-        submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
+        ObjectUser fakeUser = newBuilder().zip(randomString(21)).build();
+        submitPersonalForm(fakeUser);
         checkText(ERROR_MSG_VALIDATION_LENGTH_20);
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_20);
     }
     @Test
-    public void tabPersonalDetails_City_A() {
-        openSettingsTabPersonalDetails();
+    public void tabPersonalDetails_PostalCode_B_save() {
+        rootLogger.info("Save and check Region field");
+        ObjectUser fakeUser = newBuilder().zip(randomString(20)).build();
+        submitPersonalForm(fakeUser);
+        refresh();
+        checkPersonalForm(fakeUser);
+    }
+
+    @Test
+    public void tabPersonalDetails_City_A_validation() {
         rootLogger.info("Validation max length City field");
-        $(byText("City:")).shouldBe(Condition.visible);
-        String RANDOM_256_LETTER = Utils.randomString(256);
-        PERSONAL_DETAILS_INPUT_CITY.clear();
-        PERSONAL_DETAILS_INPUT_CITY.sendKeys(RANDOM_256_LETTER);
-        submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
+        ObjectUser fakeUser = newBuilder().city(randomString(256)).build();
+        submitPersonalForm(fakeUser);
         checkText(ERROR_MSG_VALIDATION_LENGTH_255);
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_255);
     }
     @Test
-    public void tabPersonalDetails_Region_A() {
+    public void tabPersonalDetails_City_B_save() {
+        rootLogger.info("Save and check City field");
+        ObjectUser fakeUser = newBuilder().city(randomString(255)).build();
+        submitPersonalForm(fakeUser);
+        refresh();
+        checkPersonalForm(fakeUser);
+    }
+
+    @Test
+    public void tabPersonalDetails_Region_A_validation() {
         openSettingsTabPersonalDetails();
-        rootLogger.info("Validation max length Region entity field");
-        $(byText("State/Region")).shouldBe(Condition.visible);
-        String RANDOM_256_LETTER = Utils.randomString(256);
-        PERSONAL_DETAILS_INPUT_REGION.clear();
-        PERSONAL_DETAILS_INPUT_REGION.sendKeys(RANDOM_256_LETTER);
-        submitEnabledButton(PERSONAL_DETAILS_SAVE_BTN);
+        rootLogger.info("Validation max length Region field");
+        ObjectUser fakeUser = newBuilder().region(randomString(256)).build();
+        submitPersonalForm(fakeUser);
         checkText(ERROR_MSG_VALIDATION_LENGTH_255);
         rootLogger.info("Validation present - "+ERROR_MSG_VALIDATION_LENGTH_255);
     }
+    @Test
+    public void tabPersonalDetails_Region_B_save() {
+        rootLogger.info("Save and check Region field");
+        ObjectUser fakeUser = newBuilder().region(randomString(254)).build();
+        submitPersonalForm(fakeUser);
+        refresh();
+        checkPersonalForm(fakeUser);
+    }
+
     @Test
     public void tabPersonalDetails_SelectCountry_A() {
         openSettingsTabPersonalDetails();
@@ -364,7 +362,7 @@ public class TestsPekamaSettingsPersonal {
         $(byText("Disabled")).shouldBe(Condition.visible);
         rootLogger.info("State by default - PASSED");
 
-        String validPassword = Utils.randomString(8)+VALID_PASSWORD;
+        String validPassword = randomString(8)+VALID_PASSWORD;
         rootLogger.info("Validation empty fields New passwordPekama & Confirm Password");
         SECURITY_TAB_CURRENT_PASSWORD.waitUntil(Condition.visible, 10000).sendKeys(validPassword);
         submitEnabledButton(SECURITY_SAVE_BTN);
@@ -375,7 +373,7 @@ public class TestsPekamaSettingsPersonal {
     }
     @Test
     public void tabSecurity_PasswordValidations_B() {
-        String validPassword = Utils.randomString(8)+VALID_PASSWORD;
+        String validPassword = randomString(8)+VALID_PASSWORD;
         rootLogger.info("Validation empty fields Current passwordPekama & Confirm Password");
         openSettingsTabSecurity();
         SECURITY_TAB_NEW_PASSWORD.waitUntil(Condition.visible, 10000).sendKeys(validPassword);
@@ -385,7 +383,7 @@ public class TestsPekamaSettingsPersonal {
     }
     @Test
     public void tabSecurity_PasswordValidations_C() {
-        String validPassword = Utils.randomString(8)+VALID_PASSWORD;
+        String validPassword = randomString(8)+VALID_PASSWORD;
         rootLogger.info("Validation empty fields Current passwordPekama & New Password");
         openSettingsTabSecurity();
         SECURITY_TAB_CONFIRM_PASSWORD.waitUntil(Condition.visible, 10000).sendKeys(validPassword);
@@ -395,7 +393,7 @@ public class TestsPekamaSettingsPersonal {
     }
     @Test
     public void tabSecurity_PasswordValidations_D() {
-        String validPassword = Utils.randomString(8)+VALID_PASSWORD;
+        String validPassword = randomString(8)+VALID_PASSWORD;
         rootLogger.info("Change Password - BUG noValidation - No Current passwordPekama checks MAJOR(Not reproduced)");
         openSettingsTabSecurity();
         SECURITY_TAB_NEW_PASSWORD.waitUntil(Condition.visible, 10000).sendKeys(validPassword);
@@ -406,7 +404,7 @@ public class TestsPekamaSettingsPersonal {
     }
     @Test
     public void tabSecurity_PasswordValidations_E() {
-        String validPassword = Utils.randomString(8)+VALID_PASSWORD;
+        String validPassword = randomString(8)+VALID_PASSWORD;
         rootLogger.info("Change Password - no New passwordPekama");
         openSettingsTabSecurity();
         SECURITY_TAB_CURRENT_PASSWORD.waitUntil(Condition.visible, 10000).sendKeys(User3.PEKAMA_PASSWORD.getValue());
@@ -417,7 +415,7 @@ public class TestsPekamaSettingsPersonal {
     }
     @Test
     public void tabSecurity_PasswordValidations_F() {
-        String validPassword = Utils.randomString(8)+VALID_PASSWORD;
+        String validPassword = randomString(8)+VALID_PASSWORD;
         rootLogger.info("Change Password - no Confirm passwordPekama");
         openSettingsTabSecurity();
         SECURITY_TAB_CURRENT_PASSWORD.waitUntil(visible, 10000).sendKeys(User3.PEKAMA_PASSWORD.getValue());
@@ -454,7 +452,7 @@ public class TestsPekamaSettingsPersonal {
     @Test
     public void tabSecurity_PasswordValidations_K() {
         rootLogger.info("Max length validation");
-        String RANDOM_129_LETTER = Utils.randomString(129);
+        String RANDOM_129_LETTER = randomString(129);
         openSettingsTabSecurity();
         SECURITY_TAB_CURRENT_PASSWORD.sendKeys(User3.PEKAMA_PASSWORD.getValue());
         SECURITY_TAB_NEW_PASSWORD.sendKeys(RANDOM_129_LETTER);

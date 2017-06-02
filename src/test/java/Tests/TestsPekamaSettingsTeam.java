@@ -13,6 +13,7 @@ import org.junit.runners.MethodSorters;
 import java.io.IOException;
 
 import static Page.ModalWindows.*;
+import static Page.PekamaPersonalSettings.PERSONAL_DETAILS_DELETE_AVATAR;
 import static Page.PekamaTeamSettings.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
@@ -23,6 +24,7 @@ import static Steps.ObjectFile.FileTypes.PDF;
 import static Steps.ObjectUser.Users.USER_05;
 import static Steps.ObjectUser.Users.USER_06;
 import static Steps.ObjectUser.newBuilder;
+import static Steps.Steps.clickSelectIfEnabled;
 import static Steps.Steps.clickSelector;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
@@ -61,13 +63,6 @@ public class TestsPekamaSettingsTeam {
         }
         else {rootLogger.info("Before was skipped");}
     }
-//    @After
-//    public void after() {
-//        if (skipBefore==false) {
-//            openUrlWithBaseAuth(URL_Logout);
-//        }
-//        else {rootLogger.info("After was skipped");}
-//    }
 
     @Test
     public void profile_testA_GUI() {
@@ -91,6 +86,8 @@ public class TestsPekamaSettingsTeam {
     @Test
     public void logoUpload_jpeg() {
         ObjectFile file = new ObjectFile(ObjectFile.newBuilder()).buildFile(JPG);
+        SETTINGS_TEAM_INFO_DELETE_LOGO.waitUntil(visible, 10000);
+        clickSelectIfEnabled(SETTINGS_TEAM_INFO_DELETE_LOGO);
         clickSelector(SETTINGS_TEAM_INFO_UPLOAD_LOGO);
         file.uploadFile();
         clickSelector(SETTINGS_TEAM_INFO_DELETE_LOGO);
@@ -101,7 +98,9 @@ public class TestsPekamaSettingsTeam {
     @Test
     public void logoUpload_pdf_Validation() throws IOException {
         ObjectFile file = new ObjectFile(ObjectFile.newBuilder()).buildFile(PDF);
+        clickSelectIfEnabled(SETTINGS_TEAM_INFO_DELETE_LOGO);
         clickSelector(SETTINGS_TEAM_INFO_UPLOAD_LOGO);
+        sleep(2000);
         file.uploadFile();
         checkText("Upload a valid image. The file you uploaded was either not an image or a corrupted image.");
         rootLogger.info("Test passed - error present");
@@ -143,8 +142,10 @@ public class TestsPekamaSettingsTeam {
         deleteMemberInactive(newMemberEmail);
         rootLogger.info("Test passed");
     }
+
     @Test 
     public void testC_inviteNewMember_A_Invite() {
+        skipBefore = true;
         String newMemberEmail = invited.email;
         rootLogger.info("Add member");
         SETTINGS_TEAM_TAB_MEMBERS.waitUntil(visible, 20000).click();
@@ -153,10 +154,10 @@ public class TestsPekamaSettingsTeam {
 
         rootLogger.info("Delete member");
         deleteMember(newMemberEmail);
-        skipBefore = true;
     }
     @Test 
     public void testC_inviteNewMember_B_CheckEmail() {
+        skipBefore = false;
         rootLogger.info("Check invite email");
         String login = invited.email;
         String password = invited.passwordEmail;
@@ -171,11 +172,11 @@ public class TestsPekamaSettingsTeam {
         Assert.assertNotNull(teamBackLink);
         rootLogger.info("Link invite to Team is: "+teamBackLink);
         rootLogger.info("Test passed");
-        skipBefore = false;
     }
 
     @Test
     public void values_testA_GUI() {
+        skipBefore = false;
          rootLogger.info("Start test GUI and links");
          SETTINGS_TEAM_TAB_VALUES.waitUntil(visible, 20000).click();
          SETTINGS_VALUES_TAB_TRADEMARK.shouldHave(text("Trademark")).shouldBe(visible);
@@ -233,6 +234,7 @@ public class TestsPekamaSettingsTeam {
     }
     @Test
     public void tabProfile_testC_ValidationEmpty() {
+        skipBefore = false;
         String teamName = "";
         String code = "";
         rootLogger.info("Check max length validation");
@@ -246,6 +248,7 @@ public class TestsPekamaSettingsTeam {
     }
     @Test
     public void submit_team_details_form(){
+        skipBefore = false;
         rootLogger.info("Change team data");
         ObjectUser change = ObjectUser.newBuilder().teamName("company").teamCode("CODE").teamEmail("email").build();
         change.submitTeamDetailsForm();

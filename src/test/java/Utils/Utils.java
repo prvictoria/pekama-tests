@@ -23,7 +23,13 @@ public class Utils {
                }
                return sb.toString();
     }
-
+    public String randomText(int len) {
+        StringBuilder sb = new StringBuilder(len);
+        for (int i = 0; i < len; i++) {
+            sb.append(AB.charAt(rnd.nextInt(AB.length())));
+        }
+        return sb.toString();
+    }
     public static String getCurrentDate(){
         DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
         java.util.Date date = new java.util.Date();
@@ -104,5 +110,6 @@ public class Utils {
 //        matchedString();
 //        System.out.println(randomString(10));
 //        System.out.println(getDate(-100));
+
     }
 }

@@ -10,6 +10,7 @@ import static Page.PekamaReportsContacts.*;
 import static Page.TestsStrings.*;
 import static Page.UrlStrings.*;
 import static Steps.ObjectContact.enterPoint.*;
+import static Steps.Steps.openUrl;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static Steps.StepsPekamaProject.*;
@@ -282,10 +283,7 @@ public class ObjectContact {
             }
         }
         if(enterPoint==REPORT){
-            String url = getActualUrl();
-            if(url.equals(URL_ReportsContacts)==false){
-                openPageWithSpinner(URL_ReportsContacts);
-            }
+            openUrl(URL_ReportsContacts);
             submitEnabledButton(REPORTS_BTN_ADD_CONTACT);
         }
         fillModalForm( "Person",
@@ -329,10 +327,7 @@ public class ObjectContact {
             }
         }
         if(enterPoint==REPORT){
-            String url = getActualUrl();
-            if(url.equals(URL_ReportsContacts)==false){
-                openPageWithSpinner(URL_ReportsContacts);
-            }
+            openUrl(URL_ReportsContacts);
             submitEnabledButton(REPORTS_BTN_ADD_CONTACT);
         }
         fillModalForm( "Company",

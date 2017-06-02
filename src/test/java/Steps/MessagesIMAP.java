@@ -712,12 +712,13 @@ public class MessagesIMAP {
         ValidationInviteInTeamUnregistered.inviterNameSurname = inviterNameSurname;
         ValidationInviteInTeamUnregistered.inviterName = inviterName;
         ValidationInviteInTeamUnregistered.inviterFullTeamName = inviterFullTeamName;
-
+        rootLogger.info("Search this subject: "+EMAIL_SUBJECT_YOU_INVITED_IN_TEAM(inviterNameSurname, inviterFullTeamName));
         Boolean detectResult = detectEmailIMAP(
                 login,
                 password,
                 EMAIL_SUBJECT_YOU_INVITED_IN_TEAM(inviterNameSurname, inviterFullTeamName));
         Assert.assertTrue(detectResult);
+
         MessagesIMAP searcher = new MessagesIMAP();
         Boolean validationResult = searcher.searchEmailBySubjectAndValidate(
                 login,

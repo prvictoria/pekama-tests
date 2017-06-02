@@ -20,6 +20,7 @@ import static Steps.ObjectUser.*;
 import static Steps.ObjectUser.Users.OWNER;
 import static Steps.ObjectUser.Users.USER_04;
 import static Utils.Utils.getDate;
+import static Utils.Utils.randomString;
 
 
 /**
@@ -56,6 +57,10 @@ public class TestClasses {
 
         ObjectUser owner = new ObjectUser(newBuilder()).buildUser(OWNER);
         ObjectUser user = new ObjectUser(newBuilder()).buildUser(USER_04);
+        ObjectUser fakeUser = newBuilder()
+                .name(randomString(101))
+                .surname(randomString(20))
+                .build();
     }
     @Test
     public void test_build_file(){

@@ -78,7 +78,6 @@ public class TestsPekamaProject {
     @Before
     public void before() {
         if(nextIsImapTest==false) {
-            //clearBrowserCache();
             owner.login();
             if (skipBefore == false) {
                 DASHBOARD_BTN_NEW_PROJECT.waitUntil(visible, 30000).click();

@@ -781,6 +781,7 @@ public class StepsModalWindows {
         submitEnabledButton(MW_DOC_TEMPLATE_UPLOAD);
 
         rootLogger.info("Check uploaded file name");
+        sleep(3000);
         ObjectFile file = new ObjectFile(ObjectFile.newBuilder())
                 .buildFile(fileType)
                 .uploadFile();

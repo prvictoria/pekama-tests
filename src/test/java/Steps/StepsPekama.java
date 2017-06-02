@@ -18,6 +18,7 @@ import static Page.PekamaTeamSettings.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.UrlStrings.*;
+import static Steps.Steps.openUrl;
 import static Steps.StepsHttpAuth.*;
 import static Steps.StepsModalWindows.*;
 import static Utils.Utils.randomString;
@@ -134,6 +135,10 @@ public class StepsPekama {
         selector.shouldBe(visible);
         selector.shouldHave(Condition.value(enteredValue));
         rootLogger.info("This text present in element: "+enteredValue);
+    }
+    public static void checkInputValue(SelenideElement selector, String enteredValue, String log) {
+        selector.shouldBe(visible);
+        selector.shouldHave(Condition.value(enteredValue));
     }
     public static void submitEnabledButton(SelenideElement buttonName) {
         buttonName.waitUntil(visible, 15000);
@@ -602,7 +607,7 @@ public class StepsPekama {
     }
 
     public static void openSettingsTabPersonalDetails(){
-        openUrlWithBaseAuth(URL_PersonalSettings);
+        openUrl(URL_PersonalSettings);
         PERSONAL_DETAILS_TAB_TITLE.waitUntil(visible, 15000).click();
     }
     public static void openSettingsTabSecurity(){

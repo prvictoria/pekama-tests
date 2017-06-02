@@ -7,6 +7,8 @@ import org.junit.Assert;
 import java.io.File;
 
 import static Page.PekamaReports.REPORTS_DELETE;
+import static Page.PekamaTeamSettings.SETTINGS_TEAM_INFO_DELETE_LOGO;
+import static Page.UrlStrings.URL_ReportsContacts;
 import static Steps.StepsModalWindows.submitConfirmAction;
 import static Steps.StepsPekama.*;
 import static com.codeborne.selenide.Condition.*;
@@ -20,7 +22,14 @@ public abstract class Steps {
     static final Logger rootLogger = LogManager.getRootLogger();
 
     abstract Boolean checkActualUrl(ObjectUser user, String url);
+
     //Selenide steps
+    public static void openUrl(String url){
+        String actualUrl = getActualUrl();
+        if(actualUrl.equals(url)==false){
+            openPageWithSpinner(url);
+        }
+    }
     public static void clickSelector(SelenideElement element){
         element.waitUntil(exist, 20000).waitUntil(visible, 10000).click();
     }
@@ -45,6 +54,13 @@ public abstract class Steps {
             submitConfirmAction();
             sleep(2000);
             waitForSpinnerNotPresent();
+        }
+    }
+    public static void clickSelectIfEnabled(SelenideElement selector){
+        selector.waitUntil(visible, 10000);
+        if(selector.isEnabled()){
+            clickSelector(selector);
+            sleep(3000);
         }
     }
 }

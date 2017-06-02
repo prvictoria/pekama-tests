@@ -42,6 +42,7 @@ public class PekamaPersonalSettings extends Page {
     public static final SelenideElement PERSONAL_DETAILS_COUNTRY_SELECT = $(byXpath("//*[@name='country']//span"));
     public static final SelenideElement PERSONAL_DETAILS_COUNTRY_INPUT = $(byXpath("//*[@name='country']//input"));
     public static final SelenideElement PERSONAL_DETAILS_SAVE_BTN = $(byXpath(personalSettingsTabPersonal+"//button[contains(.,'Save')]"));
+    public static final SelenideElement PERSONAL_DETAILS_SAVE_BTN_WITH_SPINNER = $(byXpath(personalSettingsTabPersonal+"//button[contains(.,'Save')][./i]"));
     public static final SelenideElement PERSONAL_DETAILS_COUNTRY_PLACEHOLDER = $(byXpath("Choose country..."));
 
     //tab fields find by NAME
