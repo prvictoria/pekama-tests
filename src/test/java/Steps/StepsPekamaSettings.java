@@ -3,10 +3,12 @@ package Steps;
 import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.Assert;
 
 import static Page.PekamaPersonalSettings.*;
 import static Page.PekamaPersonalSettings.PERSONAL_DETAILS_SAVE_BTN;
 import static Page.PekamaTeamSettings.*;
+import static Steps.StepsModalWindows.submitConfirmAction;
 import static Steps.StepsPekama.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
@@ -162,6 +164,56 @@ public class StepsPekamaSettings {
         PERSONAL_DETAILS_SAVE_BTN.shouldBe(Condition.disabled);
         rootLogger.info("ObjectUser default data present");
         return true;
+    }
+    public static void connectImap(ObjectUser user){
+        openSettingsTabIMAP();
+        rootLogger.info("Connect email manual");
+        fillField(IMAP_TAB_FIELD_USENAME, user.email);
+        fillField(IMAP_TAB_FIELD_PASSWORD, user.passwordEmail);
+        fillField(IMAP_TAB_FIELD_SERVER_NAME, "imap.gmail.com");
+        fillField(IMAP_TAB_FIELD_PORT, "993");
+        IMAP_TAB_SSL.click();
+        submitEnabledButton(IMAP_TAB_BTN_SAVE_AND_CHECK);
+    }
+    public static void deleteImap(){
+        int i = 0;
+        openSettingsTabIMAP();
+        while (IMAP_TAB_BTN_DELETE.isDisplayed()==false && i<10){
+            sleep(1000);
+            i++;
+        }
+        if (IMAP_TAB_BTN_DELETE.isDisplayed())
+        {
+            rootLogger.info("Delete detected account");
+            submitEnabledButton(IMAP_TAB_BTN_DELETE);
+            submitConfirmAction();
+            sleep(500);
+            IMAP_TAB_BTN_DELETE.shouldNotBe(visible);
+            return;
+        }
+        rootLogger.info("No connected IMAP detected");
+        return;
+    }
+    public static Boolean validateImap(Boolean isConnectSucceed){
+        Assert.assertNotNull(isConnectSucceed);
+        sleep(2000);
+        if(isConnectSucceed==true){
+            Assert.assertFalse($(byText("Connection error. Please, check your settings.")).isDisplayed());
+            checkText("OK");
+            IMAP_TAB_BTN_DELETE.waitUntil(visible, 30000);
+            return true;
+        }
+        if(isConnectSucceed==false){
+            checkText("Connection error. Please, check your settings.");
+            Assert.assertFalse($(byText("OK")).isDisplayed());
+            return false;
+        }
+        return null;
+    }
+    public static void clickConnectGoogle(){
+        rootLogger.info("Connect Gmail via Auth2");
+        IMAP_TAB_BTN_CONNECT_GMAIL.click();
+        sleep(2000);
     }
 
 }

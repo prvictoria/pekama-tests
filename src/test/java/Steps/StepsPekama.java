@@ -448,7 +448,14 @@ public class StepsPekama {
         rootLogger.info("Switch to Pekama window");
         switchTo().window(PAGE_TITLE_PEKAMA);
         if (checkPageTitle(PAGE_TITLE_PEKAMA)==false){
-            Assert.fail("No redirect to Community");
+            Assert.fail("No redirect to Pekama");
+        }
+    }
+    public static void switchToGoogleWindow(){
+        rootLogger.info("Switch to Google window");
+        switchTo().window("Sign in - Google Accounts");
+        if (checkPageTitle("Sign in - Google Accounts")==false){
+            Assert.fail("No redirect to Google auth window");
         }
     }
 

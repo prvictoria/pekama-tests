@@ -40,4 +40,6 @@ dependencies {
     // https://mvnrepository.com/artifact/com.hynnet/jacob
     testCompile group: 'com.hynnet', name: 'jacob', version: '1.18'
 
+    testCompile 'org.testng:testng:6.10'
+
 }

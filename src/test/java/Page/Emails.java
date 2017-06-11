@@ -91,10 +91,15 @@ public class Emails extends Page {
     public static final String GMAIL_URL_SIGN_OUT = "https://accounts.google.com/Logout?continue=https%3A%2F%2Faccounts.google.com%2FServiceLogin%3Fsacu%3D1&il=true&zx=icxpgruz0yao";
 
     public static final SelenideElement GMAIL_LOGIN_COOKIE = $(byName("PersistentCookie"));
-    public static final SelenideElement GMAIL_LOGIN_FIELD = $(byName("Email"));
-    public static final SelenideElement GMAIL_PASSWORD_FIELD = $(byId("Passwd"));
+    public static final SelenideElement GMAIL_LOGIN_FIELD = $(byName("identifier"));
+    public static final SelenideElement GMAIL_PASSWORD_FIELD = $(byName("password"));
     public static final SelenideElement GMAIL_SIGNIN_BTN = $(byId("signIn"));
-    public static final SelenideElement GMAIL_NEXT_BTN = $(byId("next"));
+    public static final SelenideElement GMAIL_NEXT_BTN = $(byId("identifierNext"));
+    public static final SelenideElement GMAIL_NEXT_SUBMIT_PASSWORD = $(byId("passwordNext"));
+    public static final SelenideElement GMAIL_ALLOW_ACCESS = $(byId("submit_approve_access"));
+    public static final SelenideElement GMAIL_DENY_ACCESS = $(byId("submit_deny_access"));
+
+
     public static final SelenideElement GMAIL_INBOX_BTN = $(byXpath("//div[@role='navigation']"));
     public static final SelenideElement GMAIL_SELECT_MENU = $(byXpath("//*[@data-tooltip='Select']/div[1]/div"));
     public static final SelenideElement GMAIL_ARCHIVE_BTN = $(byXpath("//*[@data-tooltip='Archive']"));

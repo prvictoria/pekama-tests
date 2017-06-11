@@ -229,20 +229,20 @@ public class TestsPekamaIntegrationBox {
 
         rootLogger.info("Check BOX sync");
         loginBox(boxProjectFolderUrl, user.email, user.passwordBox);
+        sleep(5000);
         checkTextNotPresentLoop(FolderNameBeforeConnect, 15000);
         checkTextNotPresentLoop(FileNameBeforeConnect, 15000);
         checkTextNotPresentLoop(FolderNameAfterConnect, 15000);
         checkTextNotPresentLoop(FileNameAfterConnect, 15000);
-        rootLogger.info("Check in BOX results");
-        $(byText(FolderNameBeforeConnect)).shouldNotBe(visible);
-        $(byText(FileNameBeforeConnect)).shouldNotBe(visible);
-        rootLogger.info("Sync files before connect passed");
-
-        $(byText(FolderNameAfterConnect)).shouldNotBe(visible);
-        $(byText(FileNameAfterConnect)).shouldNotBe(visible);
-        rootLogger.info("Sync files after connect passed");
-        boxNoFiles.waitUntil(visible, 20000);
-        boxNoFilesPlaceholder.shouldBe(exist);
+//        rootLogger.info("Check in BOX results");
+//        $(byText(FolderNameBeforeConnect)).shouldNotBe(visible);
+//        $(byText(FileNameBeforeConnect)).shouldNotBe(visible);
+//        rootLogger.info("Sync files before connect passed");
+//
+//        $(byText(FolderNameAfterConnect)).shouldNotBe(visible);
+//        $(byText(FileNameAfterConnect)).shouldNotBe(visible);
+//        rootLogger.info("Sync files after connect passed");
+        checkText("There are no items in this folder.");
 
         rootLogger.info("Files were deleted from BOX");
         rootLogger.info("Test passed");

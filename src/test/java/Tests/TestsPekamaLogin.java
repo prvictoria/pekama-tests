@@ -32,7 +32,6 @@ import static org.junit.Assert.assertTrue;
  * https://www.linkedin.com/in/viachaslau
  */
 public class TestsPekamaLogin {
-    String testDashboardUrl = "";
     static final Logger rootLogger = LogManager.getRootLogger();
     @Rule
     public Timeout tests = Timeout.seconds(600);

@@ -1,14 +1,12 @@
 package Tests;
 import Steps.ObjectFile;
 import Steps.ObjectUser;
-import Utils.Utils;
 import com.codeborne.selenide.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
 import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
-import org.openqa.selenium.WebDriver;
 
 import java.io.IOException;
 
@@ -16,26 +14,22 @@ import static Page.ModalWindows.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.setEnvironment;
-import static Page.UrlStrings.*;
-import static Steps.ObjectFile.*;
 import static Steps.ObjectFile.FileTypes.*;
-import static Steps.ObjectUser.Users.USER_04;
 import static Steps.ObjectUser.Users.USER_06;
 import static Steps.ObjectUser.newBuilder;
 import static Steps.Steps.clickSelectIfEnabled;
 import static Steps.Steps.clickSelector;
-import static Steps.StepsExternal.authGmail;
+import static Steps.StepsExternal.submitAuthGmail;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
-import static Steps.StepsPekamaSettings.checkPersonalForm;
-import static Steps.StepsPekamaSettings.submitPersonalForm;
+import static Steps.StepsPekamaSettings.*;
 import static Tests.BeforeTestsSetUp.*;
 import static Utils.Utils.randomString;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static Page.PekamaPersonalSettings.*;
-import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
+
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
@@ -568,82 +562,43 @@ public class TestsPekamaSettingsPersonal {
     }
 
     @Test
-    public void tabIMAP_A_ManualConnect() {
-        openSettingsTabIMAP();
-        sleep(2000);
-        if (IMAP_TAB_BTN_DELETE.isDisplayed())
-        {
-            rootLogger.info("Delete detected account");
-            IMAP_TAB_BTN_DELETE.click();
-            submitConfirmAction();
-            sleep(500);
-        }
+    public void tabIMAP_A1_ManualConnect() {
+        deleteImap();
         rootLogger.info("Check Defaults");
-        IMAP_TAB_FIELD_USENAME.shouldBe(Condition.visible);
-        IMAP_TAB_FIELD_PASSWORD.shouldBe(Condition.visible);
-        IMAP_TAB_FIELD_SERVER_NAME.shouldBe(Condition.visible);
-        IMAP_TAB_FIELD_PORT.shouldBe(Condition.visible);
+        IMAP_TAB_FIELD_USENAME.shouldBe(Condition.visible).shouldBe(empty);
+        IMAP_TAB_FIELD_PASSWORD.shouldBe(Condition.visible).shouldBe(empty);
+        IMAP_TAB_FIELD_SERVER_NAME.shouldBe(Condition.visible).shouldBe(empty);
+        IMAP_TAB_FIELD_PORT.shouldBe(Condition.visible).shouldBe(empty);
         IMAP_TAB_BTN_CONNECT_GMAIL.shouldBe(Condition.visible);
         IMAP_TAB_BTN_SAVE_AND_CHECK.shouldBe(Condition.visible);
-        IMAP_TAB_FIELD_USENAME.shouldBe(Condition.visible);
         IMAP_TAB_BTN_CHECK.shouldBe(Condition.visible);
         IMAP_TAB_SSL.shouldBe(Condition.visible);
-
-        rootLogger.info("Connect email manual");
-        fillField(IMAP_TAB_FIELD_USENAME, user.email);
-        fillField(IMAP_TAB_FIELD_PASSWORD, user.passwordEmail);
-        fillField(IMAP_TAB_FIELD_SERVER_NAME, "imap.gmail.com");
-        fillField(IMAP_TAB_FIELD_PORT, "993");
-        IMAP_TAB_SSL.click();
-        submitEnabledButton(IMAP_TAB_BTN_SAVE_AND_CHECK);
-        IMAP_TAB_BTN_DELETE.waitUntil(visible, 30000);
-
-        rootLogger.info("Delete connected account");
-        submitEnabledButton(IMAP_TAB_BTN_DELETE);
-        submitConfirmAction();
-        sleep(500);
-        IMAP_TAB_BTN_DELETE.shouldNotBe(visible);
+        connectImap(user);
+        validateImap(true);
     }
-    @Ignore //TODO sim auth - blocked this test!
+    @Test
+    public void tabIMAP_A2_CheckConnectionAndDelete() {
+        openSettingsTabIMAP();
+        submitEnabledButton(IMAP_TAB_BTN_CHECK);
+        validateImap(true);
+        deleteImap();
+    }
+    @Test
+    public void tabIMAP_A3_InvalidCredentials(){
+        ObjectUser fakeUser = newBuilder().email("1234355@email.com").passwordEmail("12121212").build();
+        connectImap(fakeUser);
+        validateImap( false);
+    }
     @Test
     public void tabIMAP_B_GoggleAuthConnect() {
-        openSettingsTabIMAP();
-        sleep(2000);
-        rootLogger.info("Check Defaults");
-            if (IMAP_TAB_BTN_DELETE.isDisplayed())
-            {
-                rootLogger.info("Delete detected account");
-                IMAP_TAB_BTN_DELETE.click();
-                submitConfirmAction();
-                sleep(500);
-            }
-            if (IMAP_TAB_FIELD_USENAME.isDisplayed()){
-            IMAP_TAB_FIELD_USENAME.shouldBe(Condition.visible);
-            IMAP_TAB_FIELD_PASSWORD.shouldBe(Condition.visible);
-            IMAP_TAB_FIELD_SERVER_NAME.shouldBe(Condition.visible);
-            IMAP_TAB_FIELD_PORT.shouldBe(Condition.visible);
-            IMAP_TAB_BTN_CONNECT_GMAIL.shouldBe(Condition.visible);
-            IMAP_TAB_BTN_SAVE_AND_CHECK.shouldBe(Condition.visible);
-            IMAP_TAB_FIELD_USENAME.shouldBe(Condition.visible);
-            IMAP_TAB_BTN_CHECK.shouldBe(Condition.visible);
-            IMAP_TAB_SSL.shouldBe(Condition.visible);
+        deleteImap();
+        clickConnectGoogle();
+        submitAuthGmail(user);
+        IMAP_TAB_FIELD_USENAME.shouldHave(value(user.email));
 
-            rootLogger.info("Connect Gmail via Auth2");
-            IMAP_TAB_BTN_CONNECT_GMAIL.click();
-            sleep(2000);
-            authGmail(user.email);
-            sleep(1000);
-            switchTo().window("Pekama | Projects");
-
-            rootLogger.info("Delete connected account");
-            submitEnabledButton(IMAP_TAB_BTN_DELETE);
-            submitConfirmAction();
-            sleep(500);
-            IMAP_TAB_BTN_DELETE.shouldNotBe(visible);
-        }
+        rootLogger.info("Check that User name and surname retrieved from Gmail");
         PERSONAL_DETAILS_TAB_TITLE.shouldBe(visible).click();
         refresh();
-        rootLogger.info("Check Data retreved from Gmail");
         sleep(2000);
         PERSONAL_DETAILS_INPUT_NAME.shouldHave(Condition.value("TestEmail06"));
         PERSONAL_DETAILS_INPUT_SURNAME.shouldHave(Condition.value("GmailAccount06"));
@@ -655,7 +610,7 @@ public class TestsPekamaSettingsPersonal {
         rootLogger.info("Check Defaults");
         TIME_TRACKER_TAB_SAVE_BTN.shouldBe(disabled);
 
-        rootLogger.info("DeSelect: Prompt me to bill my time whenever I leave a project ");
+        rootLogger.info("De-Select: Prompt me to bill my time whenever I leave a project ");
         TIME_TRACKER_TAB_ENABLE.setSelected(false).shouldNotBe(selected);
         submitEnabledButton(TIME_TRACKER_TAB_SAVE_BTN);
         TIME_TRACKER_TAB_SAVE_BTN.shouldBe(disabled);
@@ -672,6 +627,7 @@ public class TestsPekamaSettingsPersonal {
         submitEnabledButton(TIME_TRACKER_TAB_SAVE_BTN);
         TIME_TRACKER_TAB_SAVE_BTN.shouldBe(disabled);
         TIME_TRACKER_TAB_RATE.shouldHave(value("1000"));
+
         rootLogger.info("Clear Hourly rate");
         fillField(TIME_TRACKER_TAB_RATE, "");
         submitEnabledButton(TIME_TRACKER_TAB_SAVE_BTN);

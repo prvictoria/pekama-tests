@@ -8,7 +8,8 @@ import org.openqa.selenium.NoSuchElementException;
 import static Page.Box.*;
 import static Page.Emails.*;
 import static Page.TestsCredentials.GMAIL_PASSWORD;
-import static Steps.StepsPekama.checkText;
+import static Steps.Steps.clickSelector;
+import static Steps.StepsPekama.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selectors.byText;
@@ -303,27 +304,30 @@ public class StepsExternal {
     public static void checkFile(){    }
     public static void checkFilesRemoved(){    }
 
-    public static void authGmail(String GMAIL_LOGIN) {
+    public static void submitAuthGmail(ObjectUser user) {
         sleep(5000);
-        //switchTo().window("Sign in - Google Accounts");
-        switchTo().window("Sign in - Google Accounts");
-        sleep(5000);
+        switchToGoogleWindow();
+
         rootLogger.info("Type email");
-        GMAIL_LOGIN_FIELD.waitUntil(visible, 15000).sendKeys(GMAIL_LOGIN);
+        fillField(GMAIL_LOGIN_FIELD, user.email, "Type email");
         rootLogger.info("Submit email");
         GMAIL_NEXT_BTN.shouldBe(visible).click();
+
         rootLogger.info("Type password");
-        GMAIL_PASSWORD_FIELD.shouldBe(visible).sendKeys(GMAIL_PASSWORD);
+        fillField(GMAIL_PASSWORD_FIELD, user.passwordEmail, "Type password");
         rootLogger.info("Submit password");
-        GMAIL_SIGNIN_BTN.shouldBe(visible).click();
-        rootLogger.info("Inbox opened");
-        $(byXpath("//*[@id='submit_approve_access']")).shouldBe(visible);
-        $(byXpath("//*[@id='submit_approve_access']")).shouldBe(enabled).click();
-        sleep(1000);
-        $(byXpath("//*[@id='submit_approve_access']")).waitUntil(not(visible), 15000);
-        sleep(3000);
-//        close();
-//        switchTo().window(0);
+        GMAIL_NEXT_SUBMIT_PASSWORD.shouldBe(visible).click();
+
+        rootLogger.info("Select user");
+        checkText(user.email);
+        sleep(4000);
+        clickSelector($(byText(user.email)));
+        rootLogger.info("Allow access to account");
+        sleep(4000);
+        submitEnabledButton(GMAIL_ALLOW_ACCESS);
+
+        sleep(4000);
+        switchToPekamaWindow();
     }
     public static void loginBox(String login, String password){
         rootLogger.info("Login BOX");
