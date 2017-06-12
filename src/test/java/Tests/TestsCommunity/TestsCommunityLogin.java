@@ -21,9 +21,7 @@ import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
 import static Tests.BeforeTestsSetUp.setBrowser;
 import static com.codeborne.selenide.Condition.empty;
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.Selenide.sleep;
+import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 import static com.codeborne.selenide.WebDriverRunner.url;
 import static org.junit.Assert.assertEquals;
@@ -39,11 +37,19 @@ public class TestsCommunityLogin {
         setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
-    }
-
-    @Test
-    public void loginPageOpen(){
         openUrlIfActualNotEquals(JOIN_URL);
+    }
+    @BeforeMethod
+    public void before() {
+        refresh();
+    }
+    @Test
+    public void login(){
+
+    }
+    @Test
+    public void logout(){
+
     }
 }
 

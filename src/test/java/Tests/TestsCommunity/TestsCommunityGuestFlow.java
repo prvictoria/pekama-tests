@@ -8,27 +8,19 @@ import org.testng.annotations.*;
 
 import java.io.IOException;
 
-import static Page.NewCommunity.Header.*;
 import static Page.NewCommunity.PageAbout.*;
 import static Page.NewCommunity.PageLanding.*;
 import static Page.NewCommunity.PageSignIn.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
-import static Page.UrlStrings.*;
-import static Page.PekamaLogin.*;
-import static Page.TestsCredentials.*;
-import static Steps.ObjectUser.newBuilder;
 import static Steps.Steps.clickSelector;
-import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
+import static Steps.StepsNewCommunity.*;
 import static Steps.StepsPekama.*;
-import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
+import static Tests.BeforeTestsSetUp.*;
 import static Tests.BeforeTestsSetUp.setBrowser;
 import static com.codeborne.selenide.Condition.empty;
-import static com.codeborne.selenide.Condition.value;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
-import static com.codeborne.selenide.WebDriverRunner.*;
 
 /**
  * Created by VatslauX on 11-Jun-17.
@@ -45,7 +37,7 @@ public class TestsCommunityGuestFlow {
         submitCookie(10);
     }
     @BeforeMethod
-    public void openTarget() throws IOException {
+    public void openTarget() {
         refresh();
     }
 
@@ -95,15 +87,8 @@ public class TestsCommunityGuestFlow {
         JOIN_RESET_SUBMIT.shouldNotBe(visible);
     }
     @Test
-    public void joinPageValidateEmptyResetPassword(){
-        openUrlIfActualNotEquals(JOIN_URL);
-        clickSelector(JOIN_LOGIN_RESET_PASSWORD);
-        clickSelector(JOIN_RESET_SUBMIT);
-        checkText(ERROR_MSG_BLANK_FIELD);
-    }
-    @Test
     public void aboutPageVerifyContent1(){
-        clickSelector(HEADER_TAB_ABOUT);
+        Header.clickAboutTab();
         ABOUT_BUTTON1_START.shouldBe(visible);
         ABOUT_BUTTON2_START.shouldBe(visible);
         clickSelector(ABOUT_BUTTON1_START);
@@ -111,13 +96,20 @@ public class TestsCommunityGuestFlow {
     }
     @Test
     public void aboutPageVerifyContent2(){
-        clickSelector(HEADER_TAB_ABOUT);
+        openUrlIfActualNotEquals(ABOUT_URL);
         ABOUT_BUTTON1_START.shouldBe(visible);
         ABOUT_BUTTON2_START.shouldBe(visible);
         clickSelector(ABOUT_BUTTON2_START);
         Assert.assertEquals(LANDING_URL, getActualUrl());
     }
 
+    @Test
+    public void joinPageValidateEmptyResetPassword(){
+        Header.clickSingInTab();
+        clickSelector(JOIN_LOGIN_RESET_PASSWORD);
+        clickSelector(JOIN_RESET_SUBMIT);
+        checkText(ERROR_MSG_BLANK_FIELD);
+    }
 }
 
 

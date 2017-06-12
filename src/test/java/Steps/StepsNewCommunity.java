@@ -1,18 +1,37 @@
 package Steps;
 
+import static Page.NewCommunity.Header.*;
+import static Page.NewCommunity.PageSignIn.JOIN_URL;
+import static Steps.Steps.clickSelector;
+import static Steps.StepsPekama.openUrlIfActualNotEquals;
+
 /**
  * Created by VatslauX on 05-May-17.
  */
 public class StepsNewCommunity {
 
     public static class Header{
-        public static void headerClickPekama(){}
-        public static void headerClickExperts(){}
-        public static void headerClickCases(){}
-        public static void headerClickProfile(){}
-        public static void headerClickAbout(){}
-        public static void headerClickFeedback(){}
-        public static void headerClickSignIn(){}
+        public static void clickPekamaTab(){
+            clickSelector(HEADER_TAB_PEKAMA);
+        }
+        public static void clickExpertsTab(){
+            clickSelector(HEADER_TAB_EXPERTS);
+        }
+        public static void clickCasesTab(){
+            clickSelector(HEADER_TAB_CASES);
+        }
+        public static void clickProfileTab(){
+            clickSelector(HEADER_TAB_PROFILE);
+        }
+        public static void clickAboutTab(){
+            clickSelector(HEADER_TAB_ABOUT);
+        }
+        public static void clickSingInTab(){
+            clickSelector(HEADER_TAB_JOIN);
+        }
+        public static void clickMeTab(){
+            clickSelector(HEADER_TAB_ME);
+        }
     }
 
     public static class Wizard{
@@ -245,9 +264,7 @@ public class StepsNewCommunity {
          }
     }
 
-    public static class About{
-
-    }
+    public static class About{    }
 
     public static class Case{
         public static Boolean checkCaseName(String caseName){return true;}
@@ -268,6 +285,61 @@ public class StepsNewCommunity {
         public static Boolean checkExpert(Integer expertNumber, String companyName, String expertNameSurname, String status, Integer price){return true;}
         public static Boolean checkLastMessage(){return true;}
 
+    }
+    public static class Login {
+        public static void submitLogin(ObjectUser user){
+            openUrlIfActualNotEquals(JOIN_URL);
+            if(user.email!=null){
+
+            }
+
+            if(user.passwordPekama!=null){
+
+            }
+            return;
+        }
+        public static Boolean validateSubmitLogin(Boolean submittedDataIsValid){
+            openUrlIfActualNotEquals(JOIN_URL);
+            if(submittedDataIsValid==true){
+
+                return true;
+            }
+            else {
+
+                return false;
+            }
+        }
+
+        public static void submitSignUp(ObjectUser user){
+
+        }
+        public static Boolean validateSubmitSignUp(Boolean submittedDataIsValid){
+            openUrlIfActualNotEquals(JOIN_URL);
+            if(submittedDataIsValid==true){
+
+                return true;
+            }
+            else {
+
+                return false;
+            }
+        }
+
+        public static void submitResetPassword(ObjectUser user){
+            openUrlIfActualNotEquals(JOIN_URL);
+
+        }
+        public static Boolean validateSubmitResetPassword(Boolean submittedDataIsValid){
+            openUrlIfActualNotEquals(JOIN_URL);
+            if(submittedDataIsValid==true){
+
+                return true;
+            }
+            else {
+
+                return false;
+            }
+        }
     }
 
 }
