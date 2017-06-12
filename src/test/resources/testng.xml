@@ -1,0 +1,10 @@
+<suite name="Community" parallel="classes" thread-count="3">
+       <test name="TmpTest" >
+            <classes>
+            <class name="TestsCommunityGuestFlow"  />
+            <class name="TestsCommunityJoin"  />
+            <class name="TestsCommunityLogin"  />
+            </classes>
+       </test>
+</suite>
+

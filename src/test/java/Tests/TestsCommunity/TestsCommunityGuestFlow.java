@@ -117,14 +117,14 @@ public class TestsCommunityGuestFlow {
         ObjectUser user = newBuilder().email(null).build();
         Header.clickSingInTab();
         submitResetPassword(user);
-        validateSubmitResetPassword(false);
+        validateSubmitResetPassword(false, ERROR_MSG_BLANK_FIELD);
     }
     @Test
     public void joinPageResetPasswordFakeEmail(){
         ObjectUser user = newBuilder().email("123456@email.com").build();
         Header.clickSingInTab();
         submitResetPassword(user);
-        validateSubmitResetPassword(true);
+        validateSubmitResetPassword(true, null);
     }
 
 }

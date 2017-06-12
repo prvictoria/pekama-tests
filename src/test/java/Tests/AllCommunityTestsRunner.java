@@ -1,5 +1,7 @@
 package Tests;
 import Steps.MessagesIMAP;
+import Tests.TestsCommunity.TestsCommunityGuestFlow;
+import Tests.TestsCommunity.TestsCommunityLogin;
 import org.junit.experimental.categories.Categories;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -11,14 +13,8 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         MessagesIMAP.class,
-        TestsCommunityIntegration.class,
-        TestCommunityIntegrationRedirect.class,
-        TestsCommunityDashboard.class,
-        TestsCommynityLanding.class,
-        TestsCommunityWizard.class,
-        TestsCommunityProfile.class,
-        TestsCommunityOutgoing.class,
-        TestsCommunityIncoming.class,
+        TestsCommunityLogin.class,
+        TestsCommunityGuestFlow.class
 })
 public class AllCommunityTestsRunner extends AllTestsRunner {
 }

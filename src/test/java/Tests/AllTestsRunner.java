@@ -11,14 +11,14 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         MessagesIMAP.class, //conditional clean emails
-        TestsCommunityIntegration.class,
-        TestCommunityIntegrationRedirect.class,
-        TestsCommynityLanding.class,
-        TestsCommunityDashboard.class,
-        TestsCommunityWizard.class,
-        TestsCommunityProfile.class,
-        TestsCommunityOutgoing.class,
-        TestsCommunityIncoming.class,
+//        TestsCommunityIntegration.class,
+//        TestCommunityIntegrationRedirect.class,
+//        TestsCommynityLanding.class,
+//        TestsCommunityDashboard.class,
+//        TestsCommunityWizard.class,
+//        TestsCommunityProfile.class,
+//        TestsCommunityOutgoing.class,
+//        TestsCommunityIncoming.class,
 
         TestsPekamaDashboard.class,
         TestsPekamaLanding.class,

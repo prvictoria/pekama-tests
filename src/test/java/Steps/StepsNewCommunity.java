@@ -1,12 +1,18 @@
 package Steps;
 
+import com.codeborne.selenide.Condition;
+
 import static Page.NewCommunity.Header.*;
+import static Page.NewCommunity.PageMyAccount.*;
 import static Page.NewCommunity.PageSignIn.*;
-import static Page.TestsStrings.ERROR_MSG_BLANK_FIELD;
+import static Page.TestsStrings.*;
 import static Steps.Steps.clickSelector;
+import static Steps.StepsNewCommunity.Header.clickMeTab;
 import static Steps.StepsPekama.checkText;
 import static Steps.StepsPekama.fillField;
 import static Steps.StepsPekama.openUrlIfActualNotEquals;
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selenide.sleep;
 
 /**
  * Created by VatslauX on 05-May-17.
@@ -289,26 +295,28 @@ public class StepsNewCommunity {
         public static Boolean checkLastMessage(){return true;}
 
     }
+
     public static class Login {
         public static void submitLogin(ObjectUser user){
             openUrlIfActualNotEquals(JOIN_URL);
             if(user.email!=null){
-
+                fillField(JOIN_LOGIN_EMAIL, user.email, "Email filled");
             }
-
             if(user.passwordPekama!=null){
-
+                fillField(JOIN_LOGIN_PASSWORD, user.passwordPekama, "Password filled");
             }
+            clickSelector(JOIN_LOGIN_SUBMIT);
             return;
         }
-        public static Boolean validateSubmitLogin(Boolean submittedDataIsValid){
+        public static Boolean validateSubmitLogin(Boolean submittedDataIsValid, String error, Integer errorQty){
             openUrlIfActualNotEquals(JOIN_URL);
             if(submittedDataIsValid==true){
-
+                HEADER_TAB_JOIN.shouldNot(visible);
+                HEADER_TAB_ME.should(visible);
                 return true;
             }
             else {
-
+                checkText(error, errorQty);
                 return false;
             }
         }
@@ -336,16 +344,26 @@ public class StepsNewCommunity {
             }
             clickSelector(JOIN_RESET_SUBMIT);
         }
-        public static Boolean validateSubmitResetPassword(Boolean submittedDataIsValid){
+        public static Boolean validateSubmitResetPassword(Boolean submittedDataIsValid, String error){
             openUrlIfActualNotEquals(JOIN_URL);
             if(submittedDataIsValid==true){
                 checkText("The password restoration instructions has been sent to your email address, please check your inbox.");
                 return true;
             }
             else {
-                checkText(ERROR_MSG_BLANK_FIELD);
+                checkText(error);
                 return false;
             }
+        }
+    }
+
+    public static class Account{
+        public static void logout(){
+            clickMeTab();
+            clickSelector(ACCOUNT_LOGOUT);
+            sleep(4000);
+            HEADER_TAB_JOIN.should(visible);
+            HEADER_TAB_ME.shouldNot(visible);
         }
     }
 
