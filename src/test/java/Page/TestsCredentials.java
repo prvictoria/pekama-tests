@@ -84,11 +84,11 @@ public class TestsCredentials {
             return value;
         }
     }
-    //Requester
+    //RESET PASSWORD TESTS
     public enum User4 {
         GMAIL_EMAIL("testqweeco004@gmail.com"),
         GMAIL_PASSWORD("123456789qasw1"),
-        PEKAMA_PASSWORD("asui67we34"),
+        PEKAMA_PASSWORD("123456aA!"),
         LINKEDIN_PASSWORD("123456789qasw"),
         BOX_PASSWORD("32qew8127a12a"),
         XERO_PASSWORD("asui67we34"),

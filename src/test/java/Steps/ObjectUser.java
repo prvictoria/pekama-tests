@@ -779,25 +779,25 @@ public class ObjectUser implements ILogin {
     };
     public void logUserFields(ObjectUser user){
         rootLogger.info("USER fields:");
-        rootLogger.info(user.email);
-        rootLogger.info(user.passwordPekama);
-        rootLogger.info(user.passwordEmail);
-        rootLogger.info(user.passwordBox);
-        rootLogger.info(user.passwordLinkedIn);
-        rootLogger.info(user.passwordXero);
+        rootLogger.info("email: "+user.email);
+        rootLogger.info("passwordPekama: "+user.passwordPekama);
+        rootLogger.info("passwordEmail: "+user.passwordEmail);
+        rootLogger.info("passwordBox: "+user.passwordBox);
+        rootLogger.info("passwordLinkedIn: "+user.passwordLinkedIn);
+        rootLogger.info("passwordXero: "+user.passwordXero);
 
-        rootLogger.info(user.name);
-        rootLogger.info(user.surname);
-        rootLogger.info(user.company);
-        rootLogger.info(user.businessType);
-        rootLogger.info(user.role);
-        rootLogger.info(user.phone);
-        rootLogger.info(user.country);
+        rootLogger.info("name: "+user.name);
+        rootLogger.info("surname: "+user.surname);
+        rootLogger.info("company: "+user.company);
+        rootLogger.info("businessType: "+user.businessType);
+        rootLogger.info("role: "+user.role);
+        rootLogger.info("phone: "+user.phone);
+        rootLogger.info("country: "+user.country);
 
-        rootLogger.info(user.teamName);
-        rootLogger.info(user.teamFullName);
-        rootLogger.info(user.teamCode);
-        rootLogger.info(user.teamInitials);
+        rootLogger.info("teamName: "+user.teamName);
+        rootLogger.info("teamFullName: "+user.teamFullName);
+        rootLogger.info("teamCode: "+user.teamCode);
+        rootLogger.info("teamInitials: "+user.teamInitials);
         rootLogger.info("======================");
     }
 }

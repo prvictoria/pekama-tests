@@ -14,6 +14,7 @@ import static Page.NewCommunity.PageLanding.*;
 import static Page.NewCommunity.PageSignIn.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
+import static Steps.ObjectUser.Users.*;
 import static Steps.ObjectUser.newBuilder;
 import static Steps.Steps.clickSelector;
 import static Steps.StepsNewCommunity.*;
@@ -31,9 +32,9 @@ import static com.codeborne.selenide.Selenide.*;
  */
 public class TestsCommunityGuestFlow {
     static final Logger rootLogger = LogManager.getRootLogger();
-    private static final ObjectUser registeredUser = null;
+    private static final ObjectUser registeredUser = new ObjectUser(newBuilder()).buildUser(USER_01);
     private static final ObjectUser newUser = null;
-    private static final ObjectUser forgottenPasswordUser = null;
+    private static final ObjectUser forgottenPasswordUser = new ObjectUser(newBuilder()).buildUser(USER_04);;
 
     @BeforeClass
     public void setUp() throws IOException {
@@ -125,6 +126,7 @@ public class TestsCommunityGuestFlow {
         submitResetPassword(user);
         validateSubmitResetPassword(true);
     }
+
 }
 
 

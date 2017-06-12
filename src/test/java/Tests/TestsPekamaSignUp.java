@@ -19,6 +19,10 @@ import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
 import static Steps.IMessagesValidator.*;
 import static Steps.ObjectFile.FileTypes.*;
+import static Steps.ObjectUser.Users.USER_01;
+import static Steps.ObjectUser.Users.USER_04;
+import static Steps.ObjectUser.Users.USER_05;
+import static Steps.ObjectUser.newBuilder;
 import static Steps.StepsHttpAuth.*;
 import static Steps.StepsPekama.*;
 import static Tests.BeforeTestsSetUp.*;
@@ -35,17 +39,9 @@ import static com.codeborne.selenide.Selenide.refresh;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaSignUp {
     static final Logger rootLogger = LogManager.getRootLogger();
-    static String login = null;
-    static String password = null;
-    public String EXIST_USER = User1.GMAIL_EMAIL.getValue();
-    private static final String NEW_USER = User5.GMAIL_EMAIL.getValue();
-    private static final String FAKE_USER = "fake_user@email.com";
-    String actualBackLink;
-    SelenideElement EMAIL_SUBJECT = EMAIL_CONFIRM_REGISTRATION_SUBJECT;
-    String EMAIL_TITLE = EMAIL_CONFIRM_REGISTRATION_TITLE;
-    String EMAIL_TEXT = EMAIL_CONFIRM_REGISTRATION_TEXT;
-    String EMAIL_BTN = EMAIL_CONFIRM_REGISTRATION_BTN;
-    SelenideElement EMAIL_REDIRECT_LINK = EMAIL_CONFIRM_REGISTRATION_BACKLINK;
+    private static ObjectUser fakeUser = newBuilder().email("fake_user@email.com").build();
+    private static final ObjectUser registeredUser = new ObjectUser(newBuilder()).buildUser(USER_01);
+    private static final ObjectUser newUser = new ObjectUser(newBuilder()).buildUser(USER_05);
     private static boolean skipBefore = false;
     @Rule
     public Timeout tests = Timeout.seconds(500);
@@ -219,7 +215,7 @@ public class TestsPekamaSignUp {
     public void userExist() {
         ObjectUser fakeUser = ObjectUser.newBuilder().build();
         fakeUser.submitSignUp(
-                EXIST_USER,
+                registeredUser.email,
                 VALID_SURNAME, VALID_NAME,
                 VALID_COMPANY, VALID_PASSWORD,
                 "4", "4",
@@ -236,7 +232,7 @@ public class TestsPekamaSignUp {
         rootLogger.info("submitSignUp with valid user");
         ObjectUser fakeUser = ObjectUser.newBuilder().build();
         fakeUser.submitSignUp(
-                NEW_USER,
+                newUser.email,
                 VALID_SURNAME,
                 VALID_NAME,
                 VALID_COMPANY,
@@ -252,10 +248,8 @@ public class TestsPekamaSignUp {
     }
     @Test
     public void sendSignUpEmail_A2_CheckEmail() {
-        login = User5.GMAIL_EMAIL.getValue();
-        password = User5.GMAIL_PASSWORD.getValue();
         MessagesIMAP validation = new MessagesIMAP();
-        Boolean validationResult = validation.validateEmailSignUp(login, password);
+        Boolean validationResult = validation.validateEmailSignUp(newUser.email, newUser.passwordEmail);
         Assert.assertTrue(validationResult);
         rootLogger.info("Test passed");
         skipBefore = false;
@@ -275,7 +269,7 @@ public class TestsPekamaSignUp {
         rootLogger.info("BUG https://www.pivotaltracker.com/n/projects/1239770/stories/142325561");
         ObjectUser fakeUser = ObjectUser.newBuilder().build();
         fakeUser.submitSignUp(
-                FAKE_USER,
+                fakeUser.email,
                 VALID_SURNAME,
                 VALID_NAME,
                 VALID_COMPANY,
@@ -298,7 +292,7 @@ public class TestsPekamaSignUp {
         rootLogger.info("Submit SignUp with valid but fake user");
         ObjectUser fakeUser = ObjectUser.newBuilder().build();
         fakeUser.submitSignUp(
-                FAKE_USER,
+                fakeUser.email,
                 VALID_SURNAME,
                 VALID_NAME,
                 VALID_COMPANY,
@@ -320,9 +314,8 @@ public class TestsPekamaSignUp {
 
         rootLogger.info("Submit SignUp with valid but fake user");
         rootLogger.info("BUG https://www.pivotaltracker.com/n/projects/1239770/stories/142325561");
-        ObjectUser fakeUser = ObjectUser.newBuilder().build();
         fakeUser.submitSignUp(
-                FAKE_USER,
+                fakeUser.email,
                 VALID_SURNAME,
                 VALID_NAME,
                 VALID_COMPANY,
@@ -343,9 +336,8 @@ public class TestsPekamaSignUp {
         rootLogger.info("Avatar uploaded - but not displayed");
 
         rootLogger.info("Submit SignUp with valid but fake user");
-        ObjectUser fakeUser = ObjectUser.newBuilder().build();
         fakeUser.submitSignUp(
-                FAKE_USER,
+                fakeUser.email,
                 VALID_SURNAME,
                 VALID_NAME,
                 VALID_COMPANY,
@@ -365,9 +357,8 @@ public class TestsPekamaSignUp {
         signupUpAvatar.waitUntil(exist, 10000).shouldHave(attribute("class", "image-preview"));
 
         rootLogger.info("Submit SignUp with valid but fake user");
-        ObjectUser fakeUser = ObjectUser.newBuilder().build();
         fakeUser.submitSignUp(
-                FAKE_USER,
+                fakeUser.email,
                 VALID_SURNAME,
                 VALID_NAME,
                 VALID_COMPANY,
@@ -380,7 +371,6 @@ public class TestsPekamaSignUp {
     }
     @Test
     public void joinToTeam() {
-        ObjectUser fakeUser = ObjectUser.newBuilder().build();
         fakeUser.submitSignUp(
                 VALID_EMAIL,
                 VALID_SURNAME,

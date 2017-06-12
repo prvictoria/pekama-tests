@@ -41,16 +41,7 @@ import static org.junit.Assert.assertEquals;
 public class TestsPekamaResetPassword {
     static String REDIRECT_LINK;
     static final Logger rootLogger = LogManager.getLogger(TestsPekamaResetPassword.class);
-    public static String SELECT_HOST = ENVIRONMENT_PEKAMA;
     private static String NEW_PASSWORD_PEKAMA = null;
-    private SelenideElement EMAIL_SUBJECT = EMAIL_RESET_PASSWORD_SUBJECT;
-    private String EMAIL_TITLE = EMAIL_RESET_PASSWORD_TITLE;
-    private String EMAIL_TEXT = EMAIL_RESET_PASSWORD_TEXT;
-    private String EMAIL_BTN = EMAIL_RESET_PASSWORD_BTN;
-    private SelenideElement EMAIL_REDIRECT_LINK = EMAIL_RESET_PASSWORD_BACKLINK;
-    private String email = User4.GMAIL_EMAIL.getValue();
-    private static final String USERNAME = User4.NAME.getValue();
-    private static final String USERSURNAME = User4.SURNAME.getValue();
     private static final ObjectUser user = new ObjectUser(newBuilder()).buildUser(USER_04);
     private static boolean skipBefore = false;
     @Rule
@@ -65,14 +56,7 @@ public class TestsPekamaResetPassword {
                 user.email,
                 user.passwordEmail);
     }
-//    @Ignore
-//    @Before
-//    public void before(){
-//    }
-//    @AfterClass
-//    public static void afterClass() {
-//        clearBrowserCache();
-//    }
+
     @Test
     public void openResetPassword() {
         rootLogger.info("Open URL - " +URL_LogIn);
@@ -97,7 +81,7 @@ public class TestsPekamaResetPassword {
         REDIRECT_LINK = null;
         rootLogger.info("Open URL - " + URL_PEKAMA_RESET_PASSWORD);
         openUrlWithBaseAuth(URL_PEKAMA_RESET_PASSWORD);
-        user.submitReset(email);
+        user.submitReset(user.email);
 
        RESET_PAGE_SUCCESS.shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_SUCCESS_MSG));
         String testSuccessMsg = RESET_PAGE_SUCCESS.getText();
@@ -313,7 +297,7 @@ public class TestsPekamaResetPassword {
             rootLogger.info("ObjectUser password - " + NEW_PASSWORD_PEKAMA);
             openUrlWithBaseAuth(URL_PEKAMA_RESET_PASSWORD);
             sleep(1000);
-            user.submitReset(email);
+            user.submitReset(user.email);
            RESET_PAGE_SUCCESS.shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_SUCCESS_MSG));
             String testSuccessMsg = RESET_PAGE_SUCCESS.getText();
             rootLogger.info(testSuccessMsg + " displayed, valid email submitted");

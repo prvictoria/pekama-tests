@@ -319,7 +319,7 @@ public class StepsNewCommunity {
         public static Boolean validateSubmitSignUp(Boolean submittedDataIsValid){
             openUrlIfActualNotEquals(JOIN_URL);
             if(submittedDataIsValid==true){
-
+                checkText("You were sent an email message with the account activation link. Please check your inbox.");
                 return true;
             }
             else {
