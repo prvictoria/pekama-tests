@@ -1,9 +1,9 @@
 <suite name="Community" parallel="classes" thread-count="3">
-       <test name="TmpTest" >
+       <test name="Test" >
             <classes>
-            <class name="TestsCommunityGuestFlow"  />
-            <class name="TestsCommunityJoin"  />
-            <class name="TestsCommunityLogin"  />
+            <class name="Tests.TestsCommunity.TestsCommunityGuestFlow"  />
+            <class name="Tests.TestsCommunity.TestsCommunityJoin"  />
+            <class name="Tests.TestsCommunity.TestsCommunityLogin"  />
             </classes>
        </test>
 </suite>
