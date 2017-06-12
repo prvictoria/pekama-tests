@@ -1,8 +1,11 @@
 package Steps;
 
 import static Page.NewCommunity.Header.*;
-import static Page.NewCommunity.PageSignIn.JOIN_URL;
+import static Page.NewCommunity.PageSignIn.*;
+import static Page.TestsStrings.ERROR_MSG_BLANK_FIELD;
 import static Steps.Steps.clickSelector;
+import static Steps.StepsPekama.checkText;
+import static Steps.StepsPekama.fillField;
 import static Steps.StepsPekama.openUrlIfActualNotEquals;
 
 /**
@@ -327,16 +330,20 @@ public class StepsNewCommunity {
 
         public static void submitResetPassword(ObjectUser user){
             openUrlIfActualNotEquals(JOIN_URL);
-
+            clickSelector(JOIN_LOGIN_RESET_PASSWORD);
+            if(user.email!=null){
+                fillField(JOIN_RESET_EMAIL, user.email);
+            }
+            clickSelector(JOIN_RESET_SUBMIT);
         }
         public static Boolean validateSubmitResetPassword(Boolean submittedDataIsValid){
             openUrlIfActualNotEquals(JOIN_URL);
             if(submittedDataIsValid==true){
-
+                checkText("The password restoration instructions has been sent to your email address, please check your inbox.");
                 return true;
             }
             else {
-
+                checkText(ERROR_MSG_BLANK_FIELD);
                 return false;
             }
         }

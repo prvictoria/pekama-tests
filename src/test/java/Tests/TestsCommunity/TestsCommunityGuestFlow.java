@@ -1,5 +1,6 @@
 package Tests.TestsCommunity;
 
+import Steps.ObjectUser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -13,8 +14,11 @@ import static Page.NewCommunity.PageLanding.*;
 import static Page.NewCommunity.PageSignIn.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
+import static Steps.ObjectUser.newBuilder;
 import static Steps.Steps.clickSelector;
 import static Steps.StepsNewCommunity.*;
+import static Steps.StepsNewCommunity.Login.submitResetPassword;
+import static Steps.StepsNewCommunity.Login.validateSubmitResetPassword;
 import static Steps.StepsPekama.*;
 import static Tests.BeforeTestsSetUp.*;
 import static Tests.BeforeTestsSetUp.setBrowser;
@@ -27,6 +31,10 @@ import static com.codeborne.selenide.Selenide.*;
  */
 public class TestsCommunityGuestFlow {
     static final Logger rootLogger = LogManager.getRootLogger();
+    private static final ObjectUser registeredUser = null;
+    private static final ObjectUser newUser = null;
+    private static final ObjectUser forgottenPasswordUser = null;
+
     @BeforeClass
     public void setUp() throws IOException {
         setEnvironment ();
@@ -104,11 +112,18 @@ public class TestsCommunityGuestFlow {
     }
 
     @Test
-    public void joinPageValidateEmptyResetPassword(){
+    public void joinPageEmptyResetPasswordValidate(){
+        ObjectUser user = newBuilder().email(null).build();
         Header.clickSingInTab();
-        clickSelector(JOIN_LOGIN_RESET_PASSWORD);
-        clickSelector(JOIN_RESET_SUBMIT);
-        checkText(ERROR_MSG_BLANK_FIELD);
+        submitResetPassword(user);
+        validateSubmitResetPassword(false);
+    }
+    @Test
+    public void joinPageResetPasswordFakeEmail(){
+        ObjectUser user = newBuilder().email("123456@email.com").build();
+        Header.clickSingInTab();
+        submitResetPassword(user);
+        validateSubmitResetPassword(true);
     }
 }
 
