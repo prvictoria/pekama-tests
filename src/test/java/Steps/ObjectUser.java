@@ -36,6 +36,7 @@ public class ObjectUser implements ILogin {
     public String name;
     public String surname;
     public String nameSurname;
+    public String initials;
     public String company;
     public String businessType;
     public String role;
@@ -72,6 +73,7 @@ public class ObjectUser implements ILogin {
         name = builder.name;
         surname = builder.surname;
         nameSurname = builder.nameSurname;
+        initials = builder.initials;
         company = builder.company;
         businessType = builder.businessType;
         role = builder.role;
@@ -111,6 +113,7 @@ public class ObjectUser implements ILogin {
         private String name;
         private String surname;
         private String nameSurname;
+        private String initials;
         private String company;
         private String businessType;
         private String role;
@@ -182,6 +185,11 @@ public class ObjectUser implements ILogin {
 
         public Builder nameSurname(String nameSurname) {
             this.nameSurname = nameSurname;
+            return this;
+        }
+
+        public Builder initials(String initials) {
+            this.initials = initials;
             return this;
         }
 
@@ -559,6 +567,7 @@ public class ObjectUser implements ILogin {
                         .name(User8.NAME.getValue())
                         .surname(User8.SURNAME.getValue())
                         .nameSurname(User8.NAME_SURNAME.getValue())
+                        .initials(User8.INITIALS.getValue())
                         .company(User8.TEAM_NAME.getValue())
                         .businessType(null)
                         .role(null)
@@ -598,6 +607,7 @@ public class ObjectUser implements ILogin {
                         .name(User1.NAME.getValue())
                         .surname(User1.SURNAME.getValue())
                         .nameSurname(User1.NAME_SURNAME.getValue())
+                        .initials(User1.INITIALS.getValue())
                         .company(User1.TEAM_NAME.getValue())
                         .businessType(null)
                         .role(null)

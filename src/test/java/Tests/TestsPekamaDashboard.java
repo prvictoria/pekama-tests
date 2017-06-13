@@ -27,6 +27,9 @@ import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
+import static Steps.ObjectUser.Users.OWNER;
+import static Steps.ObjectUser.Users.USER_01;
+import static Steps.ObjectUser.newBuilder;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
@@ -43,22 +46,11 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 public class TestsPekamaDashboard {
     static final Logger rootLogger = LogManager.getRootLogger();
 
-    private static String testProjectTitle = "new test project - "+ randomString(6);
-    private static String testContactName = "name"+ randomString(10);
-    private static String testContactSurname = "surname"+ randomString(10);
-    private static String defaultProjectURL;
     private static String TEST_PROJECT_TYPE = MATTER_TYPE_TRADEMARK;
-    private final static String USER_EMAIL = User1.GMAIL_EMAIL.getValue();
-    private final static String USER_PEKAMA_PASSWORD = User1.PEKAMA_PASSWORD.getValue();
-    private final static String USER_NAME = User1.NAME.getValue();
-    private final String TEST_USER_TEAM_NAME = User1.TEAM_NAME.getValue();
-    private static final String USER_NAME_SURNAME =  User1.NAME_SURNAME.getValue();
-
-    private final static String USER_XERO_PASSWORD = User3.XERO_PASSWORD.getValue();
-    private final String TEST_USER_FULL_TEAM_NAME = User3.FULL_TEAM_NAME.getValue();
+    private static final ObjectUser user = new ObjectUser(newBuilder()).buildUser(USER_01);
 
     @Rule public Timeout tests = Timeout.seconds(300);
-    @Rule public Retry retry = new Retry(2);
+    //@Rule public Retry retry = new Retry(2);
 
     @BeforeClass
     public static void beforeClass() throws IOException {
@@ -69,11 +61,7 @@ public class TestsPekamaDashboard {
     }
     @Before
     public void before() {
-        ObjectUser user = ObjectUser.newBuilder().build();
-        user.login(
-                USER_EMAIL,
-                USER_PEKAMA_PASSWORD,
-                URL_LogIn);
+        user.login();
     }
 
     @Test
@@ -392,7 +380,7 @@ public class TestsPekamaDashboard {
 
     @Test
     public void blockProfileAndTeam_defaultData(){
-        String filename = "200x200_ring_TQ.png"; //Placeholder initials
+        String filename = "200x200_ring_"+user.initials+".png"; //Placeholder initials
         checkText("Your Profile And Team");
         String avatar = DASHBOARD_PROFILE_AVATAR.shouldBe(visible).getAttribute("src");
         rootLogger.info(avatar);
@@ -400,13 +388,13 @@ public class TestsPekamaDashboard {
         rootLogger.info(avatarIsGeneric);
         Assert.assertTrue(avatarIsGeneric);
 
-        String hi = "Hi, "+USER_NAME+" Q.";
+        String hi = "Hi, "+user.name+" Q.";
         String testHi = DASHBOARD_PROFILE_HI.shouldBe(visible).getText();
-        Boolean userNameIsPresent = testHi.contains(USER_NAME);
+        Boolean userNameIsPresent = testHi.contains(user.name);
         Assert.assertTrue(userNameIsPresent);
 
         DASHBOARD_PROFILE_SETTINGS_LINK.shouldBe(visible).shouldHave(text("Your Settings"));
-        DASHBOARD_PROFILE_ACTIVE_TEAM_NAME.shouldBe(visible).shouldHave(text(TEST_USER_TEAM_NAME));
+        DASHBOARD_PROFILE_ACTIVE_TEAM_NAME.shouldBe(visible).shouldHave(text(user.teamName));
 
         String projectsAvailableQty = DASHBOARD_PROJECTS_QTY.getText();
         rootLogger.info(projectsAvailableQty);
@@ -420,7 +408,7 @@ public class TestsPekamaDashboard {
             Boolean membersQty = DASHBOARD_PROFILE_MEMBERS_QTY.getText().contains("1");
             Assert.assertTrue(membersQty);
             DASHBOARD_PROFILE_MEMBERS_LIST.shouldHaveSize(1);
-            DASHBOARD_PROFILE_MEMBER_ROW_LAST.shouldHave(text(USER_NAME_SURNAME));
+            DASHBOARD_PROFILE_MEMBER_ROW_LAST.shouldHave(text(user.nameSurname));
         }
         finally {
             refresh();
@@ -453,7 +441,7 @@ public class TestsPekamaDashboard {
             rootLogger.info("Members qty comparison is "+membersQty);
             DASHBOARD_PROFILE_MEMBERS_LIST.shouldHaveSize(i+1);
             if(i<5){
-                DASHBOARD_PROFILE_MEMBER_ROW_LAST.shouldHave(text(USER_NAME_SURNAME));
+                DASHBOARD_PROFILE_MEMBER_ROW_LAST.shouldHave(text(user.nameSurname));
             }
         } finally {
             refresh();
