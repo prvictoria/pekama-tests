@@ -38,6 +38,9 @@ public class PageSignIn {
     public static final SelenideElement JOIN_INPUT_BUSINESS_TYPE = $(byXpath(JOIN_SIGN_UP_FORM+"//label[text()='Buisness type']/following-sibling::div//input[@type='search']"));
     public static final SelenideElement JOIN_SELECT_ROLE = $(byXpath(JOIN_SIGN_UP_FORM+"//label[text()='Your role']/following-sibling::div//span"));
     public static final SelenideElement JOIN_INPUT_ROLE = $(byXpath(JOIN_SIGN_UP_FORM+"//label[text()='Your role']/following-sibling::div//input[@type='search']"));
+    public static final SelenideElement JOIN_PHONE = $(byXpath(JOIN_SIGN_UP_FORM+""));
+    public static final SelenideElement JOIN_SELECT_COUNTRY = $(byXpath(JOIN_SIGN_UP_FORM+""));
+    public static final SelenideElement JOIN_INPUT_COUNTRY = $(byXpath(JOIN_SIGN_UP_FORM+""));
     public static final SelenideElement JOIN_SIGN_UP_SUBMIT = $(byXpath(JOIN_SIGN_UP_FORM+"//button"));
 
     public static final SelenideElement JOIN_AGREE_TERMS = $(byXpath(JOIN_SIGN_UP_FORM+"//input[@type='checkbox']/following-sibling::i"));

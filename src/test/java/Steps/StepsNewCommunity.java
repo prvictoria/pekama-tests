@@ -5,13 +5,14 @@ import com.codeborne.selenide.Condition;
 import static Page.NewCommunity.Header.*;
 import static Page.NewCommunity.PageMyAccount.*;
 import static Page.NewCommunity.PageSignIn.*;
+import static Page.PekamaSignUp.*;
 import static Page.TestsStrings.*;
 import static Steps.Steps.clickSelector;
 import static Steps.StepsNewCommunity.Header.clickMeTab;
-import static Steps.StepsPekama.checkText;
-import static Steps.StepsPekama.fillField;
-import static Steps.StepsPekama.openUrlIfActualNotEquals;
+import static Steps.StepsPekama.*;
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.sleep;
 
 /**
@@ -356,7 +357,59 @@ public class StepsNewCommunity {
             }
         }
     }
+    public static class Join {
+        public boolean submitSignUp(ObjectUser user){
+            if(user.name!=null) {
+                JOIN_NAME.waitUntil(visible, 20000).sendKeys(user.name);
+            }
+            if(user.surname!=null) {
+                JOIN_SURNAME.waitUntil(visible, 20000).sendKeys(user.surname );
+            }
+            if(user.company!=null) {
+                JOIN_COMPANY.waitUntil(visible, 20000).sendKeys(user.company);
+            }
+            if(user.email!=null) {
+                JOIN_EMAIL.waitUntil(visible, 20000).sendKeys(user.email);
+            }
+            if(user.passwordPekama!=null) {
+                JOIN_PASSWORD.waitUntil(visible, 20000).sendKeys(user.passwordPekama);
+            }
+            if(user.businessType !=null){
+                selectItemInDropdown(
+                        JOIN_SELECT_BUSINESS_TYPE,
+                        JOIN_INPUT_BUSINESS_TYPE,
+                        user.businessType);
+            }
+            if(user.role!=null){
+                selectItemInDropdown(
+                        JOIN_SELECT_ROLE,
+                        JOIN_INPUT_ROLE,
+                        user.role);
+            }
+            //TODO STUB!
+            if(user.phone!=null) {
+                JOIN_PHONE.waitUntil(visible, 20000).sendKeys(user.phone);
+            }
+            //TODO STUB!
+            if(user.country!=null){
+                selectItemInDropdown(
+                        JOIN_SELECT_COUNTRY,
+                        JOIN_INPUT_COUNTRY,
+                        user.country);
+            }
+            submitEnabledButton(JOIN_SIGN_UP_SUBMIT);
+            sleep(4000);
 
+            if($(byText("Confirm your Account")).exists()){
+                user.isSignUpSucceed = true;
+                return true;}
+            if($(byText("Teams on Your Domain")).exists()){
+                user.isSignUpSucceed = true;
+                return true;}
+            user.isSignUpSucceed = false;
+            return false;
+        }
+    }
     public static class Account{
         public static void logout(){
             clickMeTab();

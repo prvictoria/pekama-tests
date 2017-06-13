@@ -19,11 +19,8 @@ import static Steps.StepsPekama.fillField;
 import static Steps.StepsPekama.openUrlIfActualNotEquals;
 import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
 import static Tests.BeforeTestsSetUp.setBrowser;
-import static com.codeborne.selenide.Condition.empty;
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.Selenide.sleep;
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 import static com.codeborne.selenide.WebDriverRunner.url;
 import static org.junit.Assert.assertEquals;
@@ -40,11 +37,16 @@ public class TestsCommunityJoin {
         setBrowser();
         holdBrowserAfterTest();
     }
-
-    @Test
-        public void joinPageOpen(){
+    @BeforeMethod
+    public void openTarget() {
         openUrlIfActualNotEquals(JOIN_URL);
     }
+    @Test
+    public void joinCheckDefaults(){
+
+
+    }
+
 }
 
 

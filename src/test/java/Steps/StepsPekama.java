@@ -451,6 +451,13 @@ public class StepsPekama {
             Assert.fail("No redirect to Pekama");
         }
     }
+    public static void switchToTermsWindow(){
+        rootLogger.info("Switch to Pekama window");
+        switchTo().window("Pekama | Terms and Conditions");
+        if (checkPageTitle("Pekama | Terms and Conditions")==false){
+            Assert.fail("No redirect to Terms and Conditions");
+        }
+    }
     public static void switchToGoogleWindow(){
         rootLogger.info("Switch to Google window");
         switchTo().window("Sign in - Google Accounts");

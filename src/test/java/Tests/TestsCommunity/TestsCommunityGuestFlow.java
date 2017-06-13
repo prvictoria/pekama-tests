@@ -81,6 +81,15 @@ public class TestsCommunityGuestFlow {
         JOIN_TERMS_LINK.shouldBe(visible);
     }
     @Test
+    public void joinOpenTerms(){
+        openUrlIfActualNotEquals("https://staging.pekama.com/about/terms/");
+        openUrlIfActualNotEquals(JOIN_URL);
+        clickSelector(JOIN_TERMS_LINK);
+        sleep(4000);
+        switchToTermsWindow();
+        Assert.assertEquals(getActualUrl(), "https://staging.pekama.com/about/terms/");
+    }
+    @Test
     public void joinPageVerifyResetPasswordContent(){
         openUrlIfActualNotEquals(JOIN_URL);
         JOIN_LOGIN_RESET_PASSWORD.shouldBe(visible).click();
