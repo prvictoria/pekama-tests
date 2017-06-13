@@ -18,6 +18,7 @@ import static Steps.ObjectUser.Users.*;
 import static Steps.ObjectUser.newBuilder;
 import static Steps.Steps.clickSelector;
 import static Steps.StepsNewCommunity.*;
+import static Steps.StepsNewCommunity.Join.selectAgreeTerms;
 import static Steps.StepsNewCommunity.Login.submitResetPassword;
 import static Steps.StepsNewCommunity.Login.validateSubmitResetPassword;
 import static Steps.StepsPekama.*;
@@ -74,9 +75,8 @@ public class TestsCommunityGuestFlow {
         JOIN_SELECT_ROLE.shouldHave(text(""));
 
         JOIN_SIGN_UP_SUBMIT.shouldBe(disabled);
-        Assert.assertTrue(JOIN_AGREE_TERMS_VALUE.attr("class").contains("ng-empty"));
-        JOIN_AGREE_TERMS.click();
-        Assert.assertTrue(JOIN_AGREE_TERMS_VALUE.attr("class").contains("ng-not-empty"));
+        selectAgreeTerms();
+        JOIN_SIGN_UP_SUBMIT.shouldBe(enabled);
 
         JOIN_TERMS_LINK.shouldBe(visible);
     }

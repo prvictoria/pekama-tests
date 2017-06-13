@@ -1,8 +1,11 @@
 package Tests.TestsCommunity;
 
+import Steps.ObjectUser;
+import Steps.StepsNewCommunity;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import org.junit.Assert;
 import org.testng.annotations.*;
 
 import java.io.IOException;
@@ -14,6 +17,7 @@ import static Page.PekamaLogin.*;
 import static Page.TestsCredentials.*;
 import static Steps.ObjectUser.newBuilder;
 import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
+import static Steps.StepsNewCommunity.*;
 import static Steps.StepsPekama.checkText;
 import static Steps.StepsPekama.fillField;
 import static Steps.StepsPekama.openUrlIfActualNotEquals;
@@ -42,9 +46,12 @@ public class TestsCommunityJoin {
         openUrlIfActualNotEquals(JOIN_URL);
     }
     @Test
-    public void joinCheckDefaults(){
-
-
+    public void joinValidate(){
+        ObjectUser user = newBuilder().build();
+        Join.submitSignUp(user);
+        Assert.assertFalse(user.isSignUpSucceed);
+        checkText("This field may not be blank.", 5);
+        checkText("This field is required.", 2);
     }
 
 }

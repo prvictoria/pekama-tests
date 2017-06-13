@@ -1,6 +1,7 @@
 package Steps;
 
 import com.codeborne.selenide.Condition;
+import org.testng.Assert;
 
 import static Page.NewCommunity.Header.*;
 import static Page.NewCommunity.PageMyAccount.*;
@@ -322,9 +323,6 @@ public class StepsNewCommunity {
             }
         }
 
-        public static void submitSignUp(ObjectUser user){
-
-        }
         public static Boolean validateSubmitSignUp(Boolean submittedDataIsValid){
             openUrlIfActualNotEquals(JOIN_URL);
             if(submittedDataIsValid==true){
@@ -358,7 +356,7 @@ public class StepsNewCommunity {
         }
     }
     public static class Join {
-        public boolean submitSignUp(ObjectUser user){
+        public static boolean submitSignUp(ObjectUser user){
             if(user.name!=null) {
                 JOIN_NAME.waitUntil(visible, 20000).sendKeys(user.name);
             }
@@ -397,6 +395,7 @@ public class StepsNewCommunity {
                         JOIN_INPUT_COUNTRY,
                         user.country);
             }
+            selectAgreeTerms();
             submitEnabledButton(JOIN_SIGN_UP_SUBMIT);
             sleep(4000);
 
@@ -408,6 +407,11 @@ public class StepsNewCommunity {
                 return true;}
             user.isSignUpSucceed = false;
             return false;
+        }
+        public static void selectAgreeTerms(){
+            Assert.assertTrue(JOIN_AGREE_TERMS_VALUE.attr("class").contains("ng-empty"));
+            JOIN_AGREE_TERMS.click();
+            Assert.assertTrue(JOIN_AGREE_TERMS_VALUE.attr("class").contains("ng-not-empty"));
         }
     }
     public static class Account{
