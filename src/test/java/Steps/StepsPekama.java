@@ -225,7 +225,7 @@ public class StepsPekama {
         openUrlWithBaseAuth(url);
         sleep(3000);
         waitForSpinnerNotPresent();
-        rootLogger.info(url +" - is opened");
+        //rootLogger.info(url +" - is opened");
     };
 
     public static SelenideElement valueGetRowByName(String valueName) {

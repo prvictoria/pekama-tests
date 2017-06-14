@@ -16,8 +16,8 @@ public class UrlStrings {
     public static final String URL_PEKAMA_LOGIN = ENVIRONMENT_PEKAMA+"/accounts/login/";
     public static final String URL_PEKAMA_LOGOUT = ENVIRONMENT_PEKAMA+"/accounts/logout";
     public static final String URL_PEKAMA_RESET_PASSWORD = ENVIRONMENT_PEKAMA+"/accounts/password/reset/";
-    public static final String URL_PEKAMA_RESET_PASSWORD_SUCCESS = ENVIRONMENT_PEKAMA+"/accounts/password/reset/done/";
-    public static final String URL_PEKAMA_RESET_PASSWORD_COMPLETE = ENVIRONMENT_PEKAMA+"/accounts/password/reset/complete/";
+    public static final String URL_PEKAMA_RESET_PASSWORD_SUCCESS = SELECT_HOST+"/accounts/password/reset/done/";
+    public static final String URL_RESET_PASSWORD_COMPLETE = SELECT_HOST+"/accounts/password/reset/complete/";
     public static final String URL_PEKAMA_LANDING = ENVIRONMENT_PEKAMA+"/";
     public static final String URL_PEKAMA_DASHBOARD = ENVIRONMENT_PEKAMA+"/a/dashboard";
     public static final String URL_PEKAMA_404 = ENVIRONMENT_PEKAMA+"/a/projects/not_found";

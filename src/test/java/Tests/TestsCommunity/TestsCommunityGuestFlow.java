@@ -106,11 +106,12 @@ public class TestsCommunityGuestFlow {
     }
     @Test
     public void aboutPageVerifyContent1(){
+        openUrlIfActualNotEquals(LANDING_URL);
         Header.clickAboutTab();
         ABOUT_BUTTON1_START.shouldBe(visible);
         ABOUT_BUTTON2_START.shouldBe(visible);
         clickSelector(ABOUT_BUTTON1_START);
-        Assert.assertEquals(LANDING_URL, getActualUrl());
+        Assert.assertEquals("https://communitystaging.pekama.com/grow_network", getActualUrl());
     }
     @Test
     public void aboutPageVerifyContent2(){
@@ -118,12 +119,13 @@ public class TestsCommunityGuestFlow {
         ABOUT_BUTTON1_START.shouldBe(visible);
         ABOUT_BUTTON2_START.shouldBe(visible);
         clickSelector(ABOUT_BUTTON2_START);
-        Assert.assertEquals(LANDING_URL, getActualUrl());
+        Assert.assertEquals("https://communitystaging.pekama.com/grow_network", getActualUrl());
     }
 
     @Test
     public void joinPageEmptyResetPasswordValidate(){
         ObjectUser user = newBuilder().email(null).build();
+        openUrlIfActualNotEquals(LANDING_URL);
         Header.clickSingInTab();
         submitResetPassword(user);
         validateSubmitResetPassword(false, ERROR_MSG_BLANK_FIELD);
@@ -131,6 +133,7 @@ public class TestsCommunityGuestFlow {
     @Test
     public void joinPageResetPasswordFakeEmail(){
         ObjectUser user = newBuilder().email("123456@email.com").build();
+        openUrlIfActualNotEquals(LANDING_URL);
         Header.clickSingInTab();
         submitResetPassword(user);
         validateSubmitResetPassword(true, null);

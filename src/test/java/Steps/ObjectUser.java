@@ -9,7 +9,6 @@ import static Page.PekamaResetPassword.*;
 import static Page.PekamaSignUp.*;
 import static Page.PekamaTeamSettings.*;
 import static Page.PekamaTeamSettings.TAB_PROFILE_BTN_SAVE;
-import static Page.PekamaTeamSettings.TAB_PROFILE_REGION;
 import static Page.TestsCredentials.*;
 import static Page.UrlStrings.*;
 import static Steps.StepsHttpAuth.*;
@@ -511,7 +510,7 @@ public class ObjectUser implements ILogin {
         }
         NEWPASSWORD_PAGE_RESTORE_BTN.shouldBe(visible).click();
         sleep(2000);
-        if(getActualUrl().equals(URL_PEKAMA_RESET_PASSWORD_COMPLETE)) {
+        if(getActualUrl().equals(URL_RESET_PASSWORD_COMPLETE)) {
             this.passwordPekama = newPassword;
             return newPassword;
         }

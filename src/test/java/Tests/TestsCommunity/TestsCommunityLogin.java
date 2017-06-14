@@ -44,10 +44,10 @@ public class TestsCommunityLogin {
         setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
-        openUrlIfActualNotEquals(JOIN_URL);
     }
     @BeforeMethod
     public void before() {
+        openUrlIfActualNotEquals(JOIN_URL);
         refresh();
     }
     @Test

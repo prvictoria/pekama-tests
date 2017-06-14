@@ -54,9 +54,9 @@ public class PekamaSignUp extends Page {
 
     public static final String[] arrayInvalidEmails = {"\"ab\"c@flxmd.by","ab\"c\"@flxmd.by","abc\"@flxmd.by", "\"ab\"c\"@flxmd.by", "事件王@flxmd.by", "ÀÇÈ@flxmd.by", "! # $ % * / ? | ^ { } ` ~ & ' + - =@flxmd.by", "abc@@eflxmd.by", "abcflxmd.by", "@abc@flxmd.by", "abc@", "@", "abc@flxmd..by", "abc@!#$%*/?|^{}`~&'+=com", "abc@fl\"xmd.by", "abc@ 事件|王.com", "abc@flx md.by"};
     //    not validated "bc@flxmd123.by",  "abc@flxmd-flxmd.by", "abc@ÀÇÈ.com",
-    //public static final SelenideElement[] arrayShortPasswords = $(byXpath({"1234567", "abcdefg", "1#qQ"};
-    //public static final SelenideElement[] arrayCommonPasswords = $(byXpath({"1234567", "abcdefg", "1234567890", "qwertyuiop", "QWERTYUIOP", "!\"#$%&()*+-,./:;<=>?[]{}~'", "1234567890qwertyuiop", "1234567890QWERTYUIOP", "1234567890#", "qwertyuiopQWERTYUIOP", "qwertyuiop#", "QWERTYUIOP#", "1#qQ"};
-    public static final String[] arrayInvalidPasswords = {"1234567", "abcdefg", "12345678901", "qwertyuiop", "QWERTYUIOP", "!\"#$%&()*+-,./:;<=>?[]{}~'", "1234567890qwertyuiop", "1234567890QWERTYUIOP", "1234567890#", "qwertyuiopQWERTYUIOP", "qwertyuiop#", "QWERTYUIOP#", "1#qQ"}; //1#qQ 1#qQ 1#qQ 1#qQ - no empty space validation
+
+    public static final String[] arrayInvalidPasswords = {"1234567", "abcdefg", "1#qQ"};
+//    public static final String[] arrayInvalidPasswords = {"1234567", "abcdefg", "12345678901", "qwertyuiop", "QWERTYUIOP", "!\"#$%&()*+-,./:;<=>?[]{}~'", "1234567890qwertyuiop", "1234567890QWERTYUIOP", "1234567890#", "qwertyuiopQWERTYUIOP", "qwertyuiop#", "QWERTYUIOP#", "1#qQ"};
 
     public static final String SIGN_UP_JOIN_PAGE_TITLE = "Teams on Your Domain";
     public static final String SIGN_UP_JOIN_PAGE_TEXT = "We found some existing teams on your domain.";

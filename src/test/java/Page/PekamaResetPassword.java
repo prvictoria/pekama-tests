@@ -37,4 +37,6 @@ public class PekamaResetPassword extends Page {
     public static final String FAILED_RESET_TEXT_1 = "The password reset link was invalid";
     public static final String FAILED_RESET_TEXT_2 = "possibly because it has already been used.";
     public static final String FAILED_RESET_TEXT_3 = "Please request a new password reset.";
+
+    //
 }

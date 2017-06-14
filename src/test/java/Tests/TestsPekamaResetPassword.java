@@ -2,7 +2,6 @@ package Tests;
 import Steps.*;
 import Utils.Utils;
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
@@ -12,7 +11,6 @@ import org.junit.runners.MethodSorters;
 import javax.mail.MessagingException;
 import java.io.IOException;
 
-import static Page.Emails.*;
 import static Page.PekamaLogin.*;
 import static Page.PekamaResetPassword.*;
 import static Page.PekamaSignUp.*;
@@ -164,6 +162,58 @@ public class TestsPekamaResetPassword {
         }
         else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
     }
+    @Test
+    public void resetPassword_F_similar_to_name() {
+        if (REDIRECT_LINK != null) {
+            rootLogger.info("Open URL - " +REDIRECT_LINK);
+            openUrlWithBaseAuth(REDIRECT_LINK);
+            sleep(1000);
+            rootLogger.info("Validation test - name");
+            user.submitResetPassword(
+                    user.name,
+                    user.name);
+            checkText("This password is too short. It must contain at least 8 characters.");
+            checkText(ERROR_MSG_PASSWORD_FAMILIAR_TO_NAME);
+            checkText("Your password must contain at least one lowercase character, one uppercase character and one digit.");
+            RESET_PAGE_ERROR.filter(visible).shouldHave(size(3));
+            rootLogger.info("ObjectUser submitted own Username to email passwords - "+ERROR_MSG_SHORT_PASSWORD);
+        }
+        else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
+    }
+    @Test
+    public void resetPassword_G_similar_to_surname() {
+        if (REDIRECT_LINK != null) {
+            rootLogger.info("Open URL - " +REDIRECT_LINK);
+            openUrlWithBaseAuth(REDIRECT_LINK);
+            sleep(1000);
+            rootLogger.info("Validation test - surname");
+            user.submitResetPassword(
+                    user.surname,
+                    user.surname);
+            checkText("This password is too short. It must contain at least 8 characters.");
+            checkText(ERROR_MSG_PASSWORD_FAMILIAR_TO_SURNAME);
+            checkText("Your password must contain at least one lowercase character, one uppercase character and one digit.");
+            RESET_PAGE_ERROR.filter(visible).shouldHave(size(3));
+            rootLogger.info("ObjectUser submitted own Surname to email passwords - "+ ERROR_MSG_PASSWORD_FAMILIAR_TO_SURNAME);
+        }
+        else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
+    }
+    @Test
+    public void resetPassword_I_max_length_validation() {
+        if (REDIRECT_LINK != null) {
+            rootLogger.info("Open URL - " +REDIRECT_LINK);
+            openUrlWithBaseAuth(REDIRECT_LINK);
+            sleep(1000);
+            rootLogger.info("Validation test");
+            String RANDOM_129_LETTER = Utils.randomString(129);
+            user.submitResetPassword(
+                    RANDOM_129_LETTER,
+                    RANDOM_129_LETTER);
+            checkText("Ensure this value has at most 128 characters (it has 129).");
+            rootLogger.info("Max length validation present - "+ ERROR_MSG_PASSWORD_FAMILIAR_TO_EMAIL);
+        }
+        else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
+    }
     @Ignore //TODO bug ?
     @Test
     public void resetPassword_F_weak_password_validation_loop() {
@@ -188,61 +238,6 @@ public class TestsPekamaResetPassword {
     }
 
     @Test
-    public void resetPassword_G_similar_to_name() {
-        if (REDIRECT_LINK != null) {
-            rootLogger.info("Open URL - " +REDIRECT_LINK);
-            openUrlWithBaseAuth(REDIRECT_LINK);
-            sleep(1000);
-            rootLogger.info("Validation test - name");
-            user.submitResetPassword(
-                    user.name,
-                    user.name);
-            checkText("This password is too short. It must contain at least 8 characters.");
-            checkText(ERROR_MSG_PASSWORD_FAMILIAR_TO_NAME);
-            checkText("Your password must contain at least one lowercase character, one uppercase character and one digit.");
-            RESET_PAGE_ERROR.filter(visible).shouldHave(size(3));
-            rootLogger.info("ObjectUser submitted own Username to email passwords - "+ERROR_MSG_SHORT_PASSWORD);
-        }
-        else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
-    }
-
-    @Test
-    public void resetPassword_H_similar_to_surname() {
-        if (REDIRECT_LINK != null) {
-            rootLogger.info("Open URL - " +REDIRECT_LINK);
-            openUrlWithBaseAuth(REDIRECT_LINK);
-            sleep(1000);
-            rootLogger.info("Validation test - surname");
-            user.submitResetPassword(
-                    user.surname,
-                    user.surname);
-            checkText("This password is too short. It must contain at least 8 characters.");
-            checkText(ERROR_MSG_PASSWORD_FAMILIAR_TO_SURNAME);
-            checkText("Your password must contain at least one lowercase character, one uppercase character and one digit.");
-            RESET_PAGE_ERROR.filter(visible).shouldHave(size(3));
-            rootLogger.info("ObjectUser submitted own Surname to email passwords - "+ ERROR_MSG_PASSWORD_FAMILIAR_TO_SURNAME);
-        }
-        else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
-    }
-
-    @Test
-    public void resetPassword_I_max_length_validation() {
-        if (REDIRECT_LINK != null) {
-            rootLogger.info("Open URL - " +REDIRECT_LINK);
-            openUrlWithBaseAuth(REDIRECT_LINK);
-            sleep(1000);
-            rootLogger.info("Validation test");
-            String RANDOM_129_LETTER = Utils.randomString(129);
-            user.submitResetPassword(
-                    RANDOM_129_LETTER,
-                    RANDOM_129_LETTER);
-            checkText("Ensure this value has at most 128 characters (it has 129).");
-            rootLogger.info("Max length validation present - "+ ERROR_MSG_PASSWORD_FAMILIAR_TO_EMAIL);
-        }
-        else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
-    }
-
-    @Test
     public void resetPassword_P_valid_new_password() {
         if (REDIRECT_LINK != null) {
             rootLogger.info("Open URL - " +REDIRECT_LINK);
@@ -254,7 +249,7 @@ public class TestsPekamaResetPassword {
             $(byText(RESET_PAGE_FINISHED_TITLE)).waitUntil(visible, 15000);
             RESET_PAGE_FINISHED_BTN_LOGIN.shouldBe(visible);
             String thisUrl = url();
-            assertEquals(thisUrl, URL_PEKAMA_RESET_PASSWORD_COMPLETE);
+            assertEquals(thisUrl, URL_RESET_PASSWORD_COMPLETE);
             rootLogger.info("ObjectUser submitted valid credentials");
             return;
         }
