@@ -1,8 +1,8 @@
 package Tests.TestsCommunity;
 
+import Page.NewCommunity.PageJoin;
 import Steps.ObjectUser;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.*;
 
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -11,16 +11,12 @@ import java.io.IOException;
 
 import static Page.NewCommunity.PageAbout.*;
 import static Page.NewCommunity.PageLanding.*;
-import static Page.NewCommunity.PageSignIn.*;
+import static Page.NewCommunity.PageJoin.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Steps.ObjectUser.Users.*;
 import static Steps.ObjectUser.newBuilder;
 import static Steps.Steps.clickSelector;
-import static Steps.StepsNewCommunity.*;
-import static Steps.StepsNewCommunity.Join.selectAgreeTerms;
-import static Steps.StepsNewCommunity.Login.submitResetPassword;
-import static Steps.StepsNewCommunity.Login.validateSubmitResetPassword;
 import static Steps.StepsPekama.*;
 import static Tests.BeforeTestsSetUp.*;
 import static Tests.BeforeTestsSetUp.setBrowser;
@@ -36,6 +32,7 @@ public class TestsCommunityGuestFlow {
     private static final ObjectUser registeredUser = new ObjectUser(newBuilder()).buildUser(USER_01);
     private static final ObjectUser newUser = null;
     private static final ObjectUser forgottenPasswordUser = new ObjectUser(newBuilder()).buildUser(USER_04);;
+    private PageJoin pageJoin;
 
     @BeforeClass
     public void setUp() throws IOException {
@@ -48,6 +45,7 @@ public class TestsCommunityGuestFlow {
     }
     @BeforeMethod
     public void openTarget() {
+        pageJoin = new PageJoin();
         refresh();
     }
 
@@ -66,6 +64,7 @@ public class TestsCommunityGuestFlow {
     @Test
     public void joinPageVerifySignUpContent(){
         openUrlIfActualNotEquals(JOIN_URL);
+
         JOIN_NAME.shouldBe(visible).shouldBe(empty);
         JOIN_SURNAME.shouldBe(visible).shouldBe(empty);
         JOIN_COMPANY.shouldBe(visible).shouldBe(empty);
@@ -75,7 +74,7 @@ public class TestsCommunityGuestFlow {
         JOIN_SELECT_ROLE.shouldHave(text(""));
 
         JOIN_SIGN_UP_SUBMIT.shouldBe(disabled);
-        selectAgreeTerms();
+        pageJoin.selectAgreeTerms();
         JOIN_SIGN_UP_SUBMIT.shouldBe(enabled);
 
         JOIN_TERMS_LINK.shouldBe(visible);
@@ -107,7 +106,7 @@ public class TestsCommunityGuestFlow {
     @Test
     public void aboutPageVerifyContent1(){
         openUrlIfActualNotEquals(LANDING_URL);
-        Header.clickAboutTab();
+        pageJoin.clickAboutTab();
         ABOUT_BUTTON1_START.shouldBe(visible);
         ABOUT_BUTTON2_START.shouldBe(visible);
         clickSelector(ABOUT_BUTTON1_START);
@@ -126,19 +125,23 @@ public class TestsCommunityGuestFlow {
     public void joinPageEmptyResetPasswordValidate(){
         ObjectUser user = newBuilder().email(null).build();
         openUrlIfActualNotEquals(LANDING_URL);
-        Header.clickSingInTab();
-        submitResetPassword(user);
-        validateSubmitResetPassword(false, ERROR_MSG_BLANK_FIELD);
+        pageJoin.clickSingInTab();
+        pageJoin.submitResetPassword(user);
+        pageJoin.validateSubmitResetPassword(false, ERROR_MSG_BLANK_FIELD);
     }
     @Test
     public void joinPageResetPasswordFakeEmail(){
         ObjectUser user = newBuilder().email("123456@email.com").build();
         openUrlIfActualNotEquals(LANDING_URL);
-        Header.clickSingInTab();
-        submitResetPassword(user);
-        validateSubmitResetPassword(true, null);
+        pageJoin.clickSingInTab();
+        pageJoin.submitResetPassword(user);
+        pageJoin.validateSubmitResetPassword(true, null);
     }
-
+    @Test
+    public void joinPageOpenBlog(){
+        openUrlIfActualNotEquals(JOIN_URL);
+        pageJoin.clickBlogTab().switchToBlog();
+    }
 }
 
 

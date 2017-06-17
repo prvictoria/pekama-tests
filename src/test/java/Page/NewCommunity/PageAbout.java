@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selenide.$;
 /**
  * Created by VatslauX on 25-May-17.
  */
-public class PageAbout {
+public class PageAbout extends ModuleHeader{
     public static final String ABOUT_URL = "https://communitystaging.pekama.com/about";
 
     public static final SelenideElement ABOUT_ = $(byXpath(""));

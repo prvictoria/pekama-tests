@@ -1,5 +1,6 @@
 package Tests.TestsCommunity;
 
+import Page.NewCommunity.PageJoin;
 import Steps.IMessagesValidator;
 import Steps.MessagesIMAP;
 import Steps.ObjectUser;
@@ -12,20 +13,18 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-import static Page.NewCommunity.PageSignIn.JOIN_URL;
+import static Page.NewCommunity.PageJoin.JOIN_URL;
 import static Page.PekamaResetPassword.*;
 import static Page.PekamaResetPassword.RESET_PAGE_FINISHED_BTN_LOGIN;
 import static Page.PekamaSignUp.arrayInvalidPasswords;
 import static Page.UrlConfig.setEnvironment;
-import static Page.UrlStrings.URL_RESET_PASSWORD_COMPLETE;
+import static Page.UrlStrings.*;
 import static Steps.Messages.EMAIL_SUBJECT_PASSWORD_REGISTRATION;
 import static Steps.MessagesIMAP.detectEmailIMAP;
 import static Steps.ObjectUser.Users.USER_04;
 import static Steps.ObjectUser.newBuilder;
 import static Steps.Steps.clickSelector;
 import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
-import static Steps.StepsNewCommunity.Login.submitResetPassword;
-import static Steps.StepsNewCommunity.Login.validateSubmitResetPassword;
 import static Steps.StepsPekama.*;
 import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
 import static Tests.BeforeTestsSetUp.setBrowser;
@@ -41,7 +40,8 @@ import static org.junit.Assert.assertEquals;
  */
 public class TestsCommunityResetPassword {
     static final Logger rootLogger = LogManager.getRootLogger();
-    private static final ObjectUser forgottenPasswordUser = new ObjectUser(newBuilder()).buildUser(USER_04);;
+    private static final ObjectUser forgottenPasswordUser = new ObjectUser(newBuilder()).buildUser(USER_04);
+    private PageJoin pageJoin;
     private static String resetPasswordLink = null;
     private static String usedPasswordLink = null;
     private static String newPasswordPekama = null;
@@ -59,13 +59,14 @@ public class TestsCommunityResetPassword {
     }
     @BeforeMethod
     public void openTarget() {
+        pageJoin = new PageJoin();
         refresh();
     }
     @Test (priority = 100)
     public void resetPassword_A_get_link() {
         resetPasswordLink = null;
-        submitResetPassword(forgottenPasswordUser);
-        validateSubmitResetPassword(true, null);
+        pageJoin.submitResetPassword(forgottenPasswordUser);
+        pageJoin.validateSubmitResetPassword(true, null);
 
         rootLogger.info("Check reset password email");
         Boolean detectResult = detectEmailIMAP(
@@ -79,12 +80,12 @@ public class TestsCommunityResetPassword {
                 forgottenPasswordUser.passwordEmail,
                 EMAIL_SUBJECT_PASSWORD_REGISTRATION,
                 new IMessagesValidator.ValidationResetPassword(), 0);
-        Assert.assertTrue(resetPasswordLink!=null);
+        Assert.assertNotNull(resetPasswordLink);
         rootLogger.info("Test passed");
     }
     @Test (priority = 101)
     public void resetPassword_F_weak_password_validation_loop() {
-        if (resetPasswordLink != null) {
+        Assert.assertNotNull(resetPasswordLink);
             rootLogger.info("Start Validation Loop - "+"ObjectUser submitted invalid password");
             openUrlIfActualNotEquals(resetPasswordLink);
             for (int arrayLength = 0; arrayLength < arrayInvalidPasswords.length; arrayLength++) {
@@ -96,8 +97,6 @@ public class TestsCommunityResetPassword {
                 sleep(500);
             }
             rootLogger.info("Validation Loop - passed");
-        }
-        else Assert.fail("Redirect Link is - "+resetPasswordLink);
     }
     @Test (priority = 102)
     public void resetPassword_P_valid_new_password() {

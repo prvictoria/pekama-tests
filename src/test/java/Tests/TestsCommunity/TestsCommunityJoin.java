@@ -1,7 +1,7 @@
 package Tests.TestsCommunity;
 
+import Page.NewCommunity.PageJoin;
 import Steps.ObjectUser;
-import Steps.StepsNewCommunity;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -10,23 +10,14 @@ import org.testng.annotations.*;
 
 import java.io.IOException;
 
-import static Page.NewCommunity.PageSignIn.*;
+import static Page.NewCommunity.PageJoin.*;
 import static Page.UrlConfig.*;
-import static Page.UrlStrings.*;
-import static Page.PekamaLogin.*;
-import static Page.TestsCredentials.*;
 import static Steps.ObjectUser.newBuilder;
-import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
-import static Steps.StepsNewCommunity.*;
 import static Steps.StepsPekama.checkText;
 import static Steps.StepsPekama.fillField;
 import static Steps.StepsPekama.openUrlIfActualNotEquals;
 import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
 import static Tests.BeforeTestsSetUp.setBrowser;
-import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
-import static com.codeborne.selenide.WebDriverRunner.url;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -35,6 +26,7 @@ import static org.junit.Assert.assertTrue;
  */
 public class TestsCommunityJoin {
     static final Logger rootLogger = LogManager.getRootLogger();
+    private PageJoin pageJoin;
     @BeforeClass
     public void setUp() throws IOException {
         setEnvironment ();
@@ -43,12 +35,13 @@ public class TestsCommunityJoin {
     }
     @BeforeMethod
     public void openTarget() {
+        pageJoin = new PageJoin();
         openUrlIfActualNotEquals(JOIN_URL);
     }
     @Test
     public void joinValidate(){
         ObjectUser user = newBuilder().build();
-        Join.submitSignUp(user);
+        pageJoin.submitSignUp(user);
         Assert.assertFalse(user.isSignUpSucceed);
         checkText("This field may not be blank.", 5);
         checkText("This field is required.", 2);

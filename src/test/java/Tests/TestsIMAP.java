@@ -1,6 +1,8 @@
 package Tests;
 
 import Steps.MessagesIMAP;
+import Steps.ObjectProject;
+import Steps.ObjectUser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
@@ -94,14 +96,10 @@ public class TestsIMAP {
         return;
     }
     @Test
-    public void validateEmailInviteInProject(){
+    public void validateEmailInviteInProject(ObjectUser inviter, ObjectUser invited, ObjectProject project){
         rootLogger.info("Check invite email");
-        String login = INVITED_EMAIL;
-        String password = INVITED_PASSWORD;
-        String inviterNameSurname = INVITER_NAME_SURNAME;
-        String projectName = PROJECT_TITLE;
         MessagesIMAP validation = new MessagesIMAP();
-        Boolean validationResult = validation.validateEmailInviteInProject(login, password, inviterNameSurname, projectName);
+        Boolean validationResult = validation.validateEmailInviteInProject(invited.email, invited.passwordEmail, inviter.nameSurname, project.projectName);
         Assert.assertTrue(validationResult);
         Assert.assertNotNull(projectBackLink);
         rootLogger.info("Test passed");

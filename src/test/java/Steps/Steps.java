@@ -8,20 +8,20 @@ import java.io.File;
 
 import static Page.PekamaReports.REPORTS_DELETE;
 import static Page.PekamaTeamSettings.SETTINGS_TEAM_INFO_DELETE_LOGO;
+import static Page.TestsStrings.PAGE_TITLE_COMMUNITY;
 import static Page.UrlStrings.URL_ReportsContacts;
 import static Steps.StepsModalWindows.submitConfirmAction;
 import static Steps.StepsPekama.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.sleep;
+import static com.codeborne.selenide.Selenide.switchTo;
 
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
-public abstract class Steps {
+public class Steps implements  ISwitchToWindow{
     static final Logger rootLogger = LogManager.getRootLogger();
-
-    abstract Boolean checkActualUrl(ObjectUser user, String url);
 
     //Selenide steps
     public static void openUrl(String url){
@@ -62,6 +62,19 @@ public abstract class Steps {
             clickSelector(selector);
             sleep(3000);
         }
+    }
+    @Override
+    public Boolean switchToWindow(String windowName){
+            rootLogger.info("Switch to "+windowName);
+            switchTo().window(windowName);
+        if (checkPageTitle(windowName)==true){
+            return true;
+        }
+            if (checkPageTitle(windowName)==false){
+                Assert.fail("Page is not "+windowName);
+                return false;
+            }
+         return false;
     }
 }
 
