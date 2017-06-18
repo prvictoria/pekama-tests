@@ -20,7 +20,7 @@ import static com.codeborne.selenide.Selenide.switchTo;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
-public class Steps implements  ISwitchToWindow{
+public class Steps implements ISwitchToWindow{
     static final Logger rootLogger = LogManager.getRootLogger();
 
     //Selenide steps

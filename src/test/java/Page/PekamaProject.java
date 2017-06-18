@@ -3,7 +3,7 @@ package Page;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
-import com.codeborne.selenide.CollectionCondition;
+import Steps.Page;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 

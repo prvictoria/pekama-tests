@@ -1,4 +1,7 @@
 package Page;
+
+import Steps.Page;
+
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau

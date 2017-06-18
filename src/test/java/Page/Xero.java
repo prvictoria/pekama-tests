@@ -1,4 +1,5 @@
 package Page;
+import Steps.Page;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selectors.byId;

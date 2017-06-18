@@ -3,10 +3,10 @@ package Page;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
+import Steps.Page;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
-import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;

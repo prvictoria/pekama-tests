@@ -1,5 +1,8 @@
 package Steps;
 
+import Steps.ObjectMessage;
+import Steps.ObjectProject;
+
 /**
  * Created by VatslauX on 25-May-17.
  */

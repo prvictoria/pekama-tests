@@ -32,7 +32,7 @@ public class StepsHttpAuth {
         sleep(250);
 
    }
-    public static void openUrlWithBaseAuth(String url) {
+   public static void openUrlWithBaseAuth(String url) {
         if(testBrowser==1){
             getWebDriver().manage().window().maximize();
             Selenide.open(url,
@@ -50,5 +50,5 @@ public class StepsHttpAuth {
             sleep(250);
             rootLogger.info(url+" URL opened");
         }
-    }
+   }
 }

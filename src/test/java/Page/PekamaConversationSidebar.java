@@ -3,6 +3,7 @@ package Page;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
+import Steps.Page;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selectors.byXpath;

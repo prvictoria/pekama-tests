@@ -3,12 +3,12 @@ package Page;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
+import Steps.Page;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
 
-import static Steps.StepsPekamaReports.elementInRowListReport;
 import static com.codeborne.selenide.Selectors.byLinkText;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;

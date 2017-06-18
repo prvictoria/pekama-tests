@@ -1,10 +1,11 @@
 package Page.NewCommunity;
 
-import Steps.Steps;
+
+import Steps.Page;
 
 /**
  * Created by VatslauX on 25-May-17.
  */
-public class PageCommunity extends Steps {
+public class PageCommunity extends Page {
     public static final String COMMUNITY_URL = "";
 }

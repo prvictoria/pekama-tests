@@ -1,13 +1,10 @@
 package Steps;
 
-import Page.PekamaProject;
 import com.codeborne.selenide.SelenideElement;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
-
-import java.io.IOException;
 
 import static Page.CommunityDashboard.*;
 import static Page.CommunityWizard.BTN_SEND_INSTRUCTION;
@@ -18,7 +15,6 @@ import static Page.PekamaDashboard.*;
 import static Page.PekamaProject.*;
 
 import static Page.PekamaProjectCharges.*;
-import static Page.TestsCredentials.Countries.NETHERLANDS_ANTILES;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.INTRODUCER_NAME;
 import static Page.UrlStrings.*;

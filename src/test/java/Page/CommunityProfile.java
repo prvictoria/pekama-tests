@@ -3,9 +3,8 @@ package Page;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
-import com.codeborne.selenide.Condition;
+import Steps.Page;
 import com.codeborne.selenide.SelenideElement;
-import org.junit.Assert;
 
 import static com.codeborne.selenide.Selectors.byName;
 import static com.codeborne.selenide.Selectors.byXpath;
