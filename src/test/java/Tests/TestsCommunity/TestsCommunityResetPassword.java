@@ -38,7 +38,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * Created by VatslauX on 14-Jun-17.
  */
-public class TestsCommunityResetPassword {
+public class TestsCommunityResetPassword extends Configuration{
     static final Logger rootLogger = LogManager.getRootLogger();
     private static final ObjectUser forgottenPasswordUser = new ObjectUser(newBuilder()).buildUser(USER_04);
     private PageJoin pageJoin;
@@ -47,19 +47,12 @@ public class TestsCommunityResetPassword {
     private static String newPasswordPekama = null;
     private static String usedPasswordPekama = null;
     
-
-    @BeforeClass
-    public void setUp() throws IOException {
-        setEnvironment(2);
-        setBrowser();
-        holdBrowserAfterTest();
-        openUrlIfActualNotEquals(JOIN_URL);
-        hideZopim();
-        submitCookie(10);
-    }
     @BeforeMethod
     public void openTarget() {
         pageJoin = new PageJoin();
+        openUrlIfActualNotEquals(JOIN_URL);
+        hideZopim();
+        submitCookie(10);
         refresh();
     }
     @Test (priority = 100)

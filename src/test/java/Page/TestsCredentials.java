@@ -119,7 +119,8 @@ public class TestsCredentials {
         public String getValue() {
             return value;
         }
-    } //Expert
+    }
+    //Invite user flow
     public enum User5 {
         GMAIL_EMAIL("testqweeco005@gmail.com"),
         GMAIL_PASSWORD("123456789qasw11"),
@@ -135,15 +136,19 @@ public class TestsCredentials {
         ZIP("35211"),
         CITY("Birmingham"),
         REGION("Alabama"),
-        COUNTRY("United States"),
+        COUNTRY("United States Virgin Islands"),
         NAME("E-USER-NAME"),
         SURNAME("E-USER-SURNAME"),
         NAME_SURNAME("E-USER-NAME E-USER-SURNAME"),
         INITIALS("EE"),
+
+        BUSINESS_TYPE("Broker"),
+        BUSINESS_ROLE("A company I own"),
         TEAM_NAME("TEAM_05"),
         FULL_TEAM_NAME("TEAM_05 (05TQ)"),
         TEAM_CODE("05TQ"),
         TEAM_INITIALS("05");
+
         private String value;
         User5(String value) {
             this.value = value;

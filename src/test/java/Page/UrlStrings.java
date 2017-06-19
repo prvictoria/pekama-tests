@@ -75,8 +75,8 @@ public class UrlStrings {
     //Email links
     public static final String EMAIL_CONFIRM_INVITATION_LINK_PEKAMA = ENVIRONMENT_PEKAMA+"/accounts/confirm/";
     public static final String EMAIL_CONFIRM_INVITATION_LINK_COMMUNITY = ENVIRONMENT_COMMUNITY+"/community/activate/";
-    public static final String EMAIL_CONFIRM_REGISTRATION_LINK_PEKAMA = ENVIRONMENT_PEKAMA+"/accounts/confirm/";
-    public static final String EMAIL_CONFIRM_REGISTRATION_LINK_COMMUNITY = ENVIRONMENT_COMMUNITY+"/accounts/confirm/";
+    public static final String EMAIL_CONFIRM_REGISTRATION_LINK = SELECT_HOST+"/accounts/confirm/";
+    //public static final String EMAIL_CONFIRM_REGISTRATION_LINK_COMMUNITY = ENVIRONMENT_COMMUNITY+"/accounts/confirm/";
     public static final String EMAIL_INVITE_IN_PEKAMA_LINK1 = ENVIRONMENT_PEKAMA+"/accounts/invitation/";
     public static final String EMAIL_INVITE_IN_PROJECT_LINK2 = "/?next=/n/legal/submatter/";
     public static final String EMAIL_INVITE_IN_TEAM_LINK2 = "/?next=/organizations/primary/";

@@ -27,25 +27,20 @@ import static com.codeborne.selenide.Selenide.*;
 /**
  * Created by VatslauX on 11-Jun-17.
  */
-public class TestsCommunityGuestFlow {
+public class TestsCommunityGuestFlow extends Configuration{
     static final Logger rootLogger = LogManager.getRootLogger();
     private static final ObjectUser registeredUser = new ObjectUser(newBuilder()).buildUser(USER_01);
     private static final ObjectUser newUser = null;
     private static final ObjectUser forgottenPasswordUser = new ObjectUser(newBuilder()).buildUser(USER_04);;
     private PageJoin pageJoin;
 
-    @BeforeClass
-    public void setUp() throws IOException {
-        setEnvironment ();
-        setBrowser();
-        holdBrowserAfterTest();
-        openUrlIfActualNotEquals(JOIN_URL);
-        hideZopim();
-        submitCookie(10);
-    }
     @BeforeMethod
     public void openTarget() {
         pageJoin = new PageJoin();
+        openUrlIfActualNotEquals(JOIN_URL);
+        hideZopim();
+        submitCookie(10);
+
         refresh();
     }
 

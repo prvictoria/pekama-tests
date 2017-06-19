@@ -13,9 +13,8 @@ import static Page.NewCommunity.PageJoin.*;
 import static Page.UrlConfig.*;
 import static Steps.ObjectUser.Users.*;
 import static Steps.ObjectUser.newBuilder;
-import static Steps.StepsPekama.checkText;
-import static Steps.StepsPekama.fillField;
-import static Steps.StepsPekama.openUrlIfActualNotEquals;
+import static Steps.StepsPekama.*;
+import static Steps.StepsPekama.submitCookie;
 import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
 import static Tests.BeforeTestsSetUp.setBrowser;
 import static com.codeborne.selenide.Selenide.*;
@@ -25,21 +24,17 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by VatslauX on 11-Jun-17.
  */
-public class TestsCommunityLogin {
+public class TestsCommunityLogin extends Configuration{
     static final Logger rootLogger = LogManager.getRootLogger();
     private static final ObjectUser registeredUser = new ObjectUser(newBuilder()).buildUser(USER_01);
     private PageJoin pageJoin;
 
-    @BeforeClass
-    public void setUp() throws IOException {
-        setEnvironment ();
-        setBrowser();
-        holdBrowserAfterTest();
-    }
     @BeforeMethod
     public void before() {
         pageJoin = new PageJoin();
         openUrlIfActualNotEquals(JOIN_URL);
+        hideZopim();
+        submitCookie(10);
         refresh();
     }
     @Test

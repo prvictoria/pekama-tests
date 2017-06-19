@@ -7,7 +7,7 @@ import static com.codeborne.selenide.Selenide.$;
 /**
  * Created by VatslauX on 12-Jun-17.
  */
-public class PageMyAccount extends ModuleHeader {
+public class PageAccount extends ModuleHeader {
     public static final String ACCOUNT_URL = "https://communitystaging.pekama.com/personal";
 
     public static final SelenideElement ACCOUNT_LOGOUT = $(byXpath("//a[text()='Sign out']"));

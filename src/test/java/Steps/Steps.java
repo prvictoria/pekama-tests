@@ -6,6 +6,7 @@ import org.junit.Assert;
 
 import java.io.File;
 
+import static Page.ModalWindows.CSS_SelectHighlighted;
 import static Page.PekamaReports.REPORTS_DELETE;
 import static Page.PekamaTeamSettings.SETTINGS_TEAM_INFO_DELETE_LOGO;
 import static Page.TestsStrings.PAGE_TITLE_COMMUNITY;
@@ -13,6 +14,8 @@ import static Page.UrlStrings.URL_ReportsContacts;
 import static Steps.StepsModalWindows.submitConfirmAction;
 import static Steps.StepsPekama.*;
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selectors.byXpath;
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.sleep;
 import static com.codeborne.selenide.Selenide.switchTo;
 
@@ -20,7 +23,7 @@ import static com.codeborne.selenide.Selenide.switchTo;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
-public class Steps implements ISwitchToWindow{
+public class Steps implements ISwitchToWindow, ISelectDropdown{
     static final Logger rootLogger = LogManager.getRootLogger();
 
     //Selenide steps
@@ -63,6 +66,7 @@ public class Steps implements ISwitchToWindow{
             sleep(3000);
         }
     }
+
     @Override
     public Boolean switchToWindow(String windowName){
             rootLogger.info("Switch to "+windowName);
@@ -74,7 +78,30 @@ public class Steps implements ISwitchToWindow{
                 Assert.fail("Page is not "+windowName);
                 return false;
             }
-         return false;
+        return false;
+    }
+
+    @Override
+    public void selectItemInDropdown(SelenideElement uiSelectName, SelenideElement uiSelectInput, final String selectableItemPath, String inputValue) {
+        //rootLogger.info("select - "+inputValue);
+        uiSelectName.waitUntil(visible, 20000).click();
+        fillField(uiSelectInput, inputValue);
+        FORMAT_ELEMENT_PATTERN (selectableItemPath, inputValue).waitUntil(visible, 15000).click();
+        rootLogger.info("Selected value - "+inputValue);
+    }
+    @Override
+    public void selectItemInDropdown(SelenideElement uiSelectName, SelenideElement uiSelectInput, SelenideElement selectableItem, String inputValue) {
+        //rootLogger.info("select - "+inputValue);
+        uiSelectName.waitUntil(visible, 20000).click();
+        fillField(uiSelectInput, inputValue);
+        selectableItem.waitUntil(visible, 15000).click();
+        rootLogger.info("Selected value - "+inputValue);
+    }
+
+    public static final SelenideElement FORMAT_ELEMENT_PATTERN (String formatPath, String text) {
+        String path = String.format(formatPath, text);
+        SelenideElement element = $(byXpath(path));
+        return element;
     }
 }
 

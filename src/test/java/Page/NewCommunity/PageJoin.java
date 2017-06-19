@@ -7,13 +7,13 @@ import Steps.ObjectUser;
 import com.codeborne.selenide.SelenideElement;
 import org.testng.Assert;
 
-import static Page.NewCommunity.PageMyAccount.ACCOUNT_LOGOUT;
-import static Steps.Steps.clickSelector;
+import static Page.NewCommunity.PageAccount.ACCOUNT_LOGOUT;
+import static Page.PekamaReports.REPORTS_ROW_BY_INDEX_LIST;
 import static Steps.StepsPekama.*;
 import static Steps.StepsPekama.checkText;
 import static Steps.StepsPekama.openUrlIfActualNotEquals;
+import static Steps.StepsPekamaReports.elementInRowListReport;
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selectors.byName;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
@@ -47,13 +47,30 @@ public class PageJoin extends ModuleHeader implements IResetPassword, ISignUp, I
     public static final SelenideElement JOIN_COMPANY = $(byXpath(JOIN_SIGN_UP_FORM+"//input[@name='company']"));
     public static final SelenideElement JOIN_EMAIL = $(byXpath(JOIN_SIGN_UP_FORM+"//input[@name='email']"));
     public static final SelenideElement JOIN_PASSWORD = $(byXpath(JOIN_SIGN_UP_FORM+"//input[@name='password']"));
-    public static final SelenideElement JOIN_SELECT_BUSINESS_TYPE = $(byXpath(JOIN_SIGN_UP_FORM+"//label[text()='Buisness type']/following-sibling::div//span"));
+    public static final SelenideElement JOIN_SELECT_BUSINESS_TYPE = $(byXpath(JOIN_SIGN_UP_FORM+"//label[text()='Buisness type']/following-sibling::div/div"));
     public static final SelenideElement JOIN_INPUT_BUSINESS_TYPE = $(byXpath(JOIN_SIGN_UP_FORM+"//label[text()='Buisness type']/following-sibling::div//input[@type='search']"));
-    public static final SelenideElement JOIN_SELECT_ROLE = $(byXpath(JOIN_SIGN_UP_FORM+"//label[text()='Your role']/following-sibling::div//span"));
+    private static final String JOIN_SELECT_BUSINESS_TYPE_IN_LIST_PATH = "//label[text()='Buisness type']/following-sibling::div//span[contains(.,'%s')]";
+
+    public static final SelenideElement JOIN_SELECT_ROLE = $(byXpath(JOIN_SIGN_UP_FORM+"//label[text()='Your role']/following-sibling::div/div"));
     public static final SelenideElement JOIN_INPUT_ROLE = $(byXpath(JOIN_SIGN_UP_FORM+"//label[text()='Your role']/following-sibling::div//input[@type='search']"));
-    public static final SelenideElement JOIN_PHONE = $(byXpath(JOIN_SIGN_UP_FORM+""));
-    public static final SelenideElement JOIN_SELECT_COUNTRY = $(byXpath(JOIN_SIGN_UP_FORM+""));
-    public static final SelenideElement JOIN_INPUT_COUNTRY = $(byXpath(JOIN_SIGN_UP_FORM+""));
+    private static final String JOIN_SELECT_ROLE_IN_LIST_PATH = "//label[text()='Your role']/following-sibling::div//span[contains(.,'%s')]";
+
+    public static final SelenideElement JOIN_PHONE = $(byXpath(JOIN_SIGN_UP_FORM+"//input[@name='phone_number']"));
+
+    public static final SelenideElement JOIN_SELECT_COUNTRY = $(byXpath(JOIN_SIGN_UP_FORM+"//label[text()='Country']/following-sibling::div/div"));
+    public static final SelenideElement JOIN_INPUT_COUNTRY = $(byXpath(JOIN_SIGN_UP_FORM+"//label[text()='Country']/following-sibling::div//input[@type='search']"));
+    public static final SelenideElement JOIN_SELECT_COUNTRY_IN_LIST(String country) {
+        SelenideElement element = FORMAT_ELEMENT_PATTERN (JOIN_SELECT_COUNTRY_IN_LIST_PATH, country);
+        return element;
+    }
+    private static final String JOIN_SELECT_COUNTRY_IN_LIST_PATH = "//label[text()='Country']/following-sibling::div//span[contains(.,'%s')]";
+
+//    public static final SelenideElement JOIN_ITEM_IN_COUNTRY_LIST (String country) {
+//        String path = String.format("//label[text()='Country']/following-sibling::div//span[contains(.,'%s')]", country);
+//        SelenideElement element = $(byXpath(path));
+//        return element;
+//    }
+
     public static final SelenideElement JOIN_SIGN_UP_SUBMIT = $(byXpath(JOIN_SIGN_UP_FORM+"//button"));
 
     public static final SelenideElement JOIN_AGREE_TERMS = $(byXpath(JOIN_SIGN_UP_FORM+"//input[@type='checkbox']/following-sibling::i"));
@@ -129,36 +146,36 @@ public class PageJoin extends ModuleHeader implements IResetPassword, ISignUp, I
             selectItemInDropdown(
                     JOIN_SELECT_BUSINESS_TYPE,
                     JOIN_INPUT_BUSINESS_TYPE,
+                    JOIN_SELECT_BUSINESS_TYPE_IN_LIST_PATH,
                     user.businessType);
         }
         if(user.role!=null){
             selectItemInDropdown(
                     JOIN_SELECT_ROLE,
                     JOIN_INPUT_ROLE,
+                    JOIN_SELECT_ROLE_IN_LIST_PATH,
                     user.role);
         }
-        //TODO STUB!
+
         if(user.phone!=null) {
-            JOIN_PHONE.waitUntil(visible, 20000).sendKeys(user.phone);
+            fillField(JOIN_PHONE, user.phone);
         }
-        //TODO STUB!
         if(user.country!=null){
             selectItemInDropdown(
                     JOIN_SELECT_COUNTRY,
                     JOIN_INPUT_COUNTRY,
+                    JOIN_SELECT_COUNTRY_IN_LIST_PATH,
                     user.country);
         }
         selectAgreeTerms();
         submitEnabledButton(JOIN_SIGN_UP_SUBMIT);
         sleep(4000);
 
-        if($(byText("Confirm your Account")).exists()){
+        if($(byText("We’ve just sent an account activation link to "+user.email)).exists()){
             user.isSignUpSucceed = true;
             return true;}
-        if($(byText("Teams on Your Domain")).exists()){
-            user.isSignUpSucceed = true;
-            return true;}
-        user.isSignUpSucceed = false;
+        else
+            user.isSignUpSucceed = false;
         return false;
     }
 

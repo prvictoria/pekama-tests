@@ -1,4 +1,6 @@
 package Steps;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.junit.Assert;
@@ -13,6 +15,7 @@ import static Steps.MessagesIMAP.*;
  * Created by Viachaslau_Balashevi on 4/11/2017.
  */
 public interface IMessagesValidator {
+    static final Logger rootLogger = LogManager.getRootLogger();
     boolean validationEmail(String...strings);
     String validateLink(String html, Integer index);
     //}
@@ -62,9 +65,9 @@ public interface IMessagesValidator {
             Assert.assertTrue(parseHtmlHrefArray(html).size() == 3);
             Elements links = parseHtmlHrefArray(html);
             String link1 = getLink(links, 0);
-            Assert.assertTrue(link1.contains(EMAIL_CONFIRM_REGISTRATION_LINK_PEKAMA));
+            Assert.assertTrue(link1.contains(EMAIL_CONFIRM_REGISTRATION_LINK));
             String link2 = getLink(links, 1);
-            Assert.assertTrue(link2.contains(EMAIL_CONFIRM_REGISTRATION_LINK_PEKAMA));
+            Assert.assertTrue(link2.contains(EMAIL_CONFIRM_REGISTRATION_LINK));
             String link3 = getLink(links, 2);
             Assert.assertTrue(link3.contains(userEmail));
             Assert.assertTrue(html.contains("Almost there..."));
