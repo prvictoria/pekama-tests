@@ -1,11 +1,6 @@
 package Tests;
 
-import Steps.MessagesIMAP;
-import org.junit.Before;
 import org.junit.FixMethodOrder;
-import org.junit.Test;
-import org.junit.experimental.categories.Categories;
-import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.junit.runners.Suite;
 
@@ -20,6 +15,6 @@ import static Page.UrlConfig.setEnvironment;
             TestsIMAP.class
     })
     @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-    public class AllImapTests extends AllTestsRunner {
+    public class AllImapTests {
 
 }

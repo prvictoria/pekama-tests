@@ -21,7 +21,7 @@ import org.junit.runners.Suite;
         TestsPekamaLanding.class,
         TestsPekamaLogin.class,
         TestsPekamaResetPassword.class, //not important for now
-        //TestsPekamaSignUp.class,
+        TestsPekamaSignUp.class,
 
         TestsPekamaSettingsPersonal.class,
         TestsPekamaSettingsTeam.class,
@@ -40,6 +40,6 @@ import org.junit.runners.Suite;
 
 
 })
-public class AllPekamaTestsRunner extends AllTestsRunner {
+public class AllPekamaTestsRunner {
 
 }
