@@ -28,8 +28,8 @@ public class BeforeTestsSetUp {
 
     public static boolean localDriverPathWindows = true;
     public static boolean localDriverPathLinux = false;
-    public static boolean localDriverPathWeb = false;
-    public static int testBrowser = 2;
+    public static boolean localDriverPathWeb = true;
+    public static int testBrowser = 1;
     public static void setBrowser() throws IOException {
         switch (testBrowser) {
             case 1:

@@ -1,5 +1,6 @@
 package Tests.TestsCommunity;
 
+import Page.NewCommunity.PageAbout;
 import Page.NewCommunity.PageJoin;
 import Steps.ObjectUser;
 import org.apache.logging.log4j.*;
@@ -104,7 +105,8 @@ public class TestsCommunityGuestFlow extends Configuration{
         pageJoin.clickAboutTab();
         ABOUT_BUTTON1_START.shouldBe(visible);
         ABOUT_BUTTON2_START.shouldBe(visible);
-        clickSelector(ABOUT_BUTTON1_START);
+        PageAbout pageAbout = new PageAbout();
+        pageAbout.clickUpperStartButton();
         Assert.assertEquals("https://communitystaging.pekama.com/grow_network", getActualUrl());
     }
     @Test
@@ -112,7 +114,8 @@ public class TestsCommunityGuestFlow extends Configuration{
         openUrlIfActualNotEquals(ABOUT_URL);
         ABOUT_BUTTON1_START.shouldBe(visible);
         ABOUT_BUTTON2_START.shouldBe(visible);
-        clickSelector(ABOUT_BUTTON2_START);
+        PageAbout pageAbout = new PageAbout();
+        pageAbout.clickBottomStartButton();
         Assert.assertEquals("https://communitystaging.pekama.com/grow_network", getActualUrl());
     }
 

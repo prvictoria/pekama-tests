@@ -48,11 +48,13 @@ public class TestsPekamaReportsFiltersEvents {
     public final static ObjectEvent event3 = new ObjectEvent(ObjectEvent.newBuilder())
             .buildEventInPatent(GRANT, -20);
     private static final ObjectUser user = new ObjectUser(newBuilder()).buildUser(OWNER);
+    static String a;
 
     @Rule
     public Timeout tests = Timeout.seconds(600);
     @BeforeClass
     public static void beforeClass() throws IOException {
+        a = "";
         setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
