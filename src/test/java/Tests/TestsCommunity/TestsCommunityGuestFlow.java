@@ -23,11 +23,9 @@ import static Tests.BeforeTestsSetUp.*;
 import static Tests.BeforeTestsSetUp.setBrowser;
 import static com.codeborne.selenide.Condition.empty;
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-/**
- * Created by VatslauX on 11-Jun-17.
- */
 public class TestsCommunityGuestFlow extends Configuration{
     static final Logger rootLogger = LogManager.getRootLogger();
     private static final ObjectUser registeredUser = new ObjectUser(newBuilder()).buildUser(USER_01);
@@ -37,17 +35,15 @@ public class TestsCommunityGuestFlow extends Configuration{
 
     @BeforeMethod
     public void openTarget() {
-        pageJoin = new PageJoin();
-        openUrlIfActualNotEquals(JOIN_URL);
+        pageJoin = new PageJoin().openPageUrl();
         hideZopim();
-        submitCookie(10);
-
-        refresh();
+        submitCookie(5);
+//        refresh();
     }
 
     @Test
     public void joinPageVerifyLoginContent(){
-        openUrlIfActualNotEquals(JOIN_URL);
+        refresh();
         JOIN_LOGIN_EMAIL.shouldBe(visible).shouldBe(empty);
         JOIN_LOGIN_PASSWORD.shouldBe(visible).shouldBe(empty);
         Assert.assertTrue(JOIN_LOGIN_REMEMBER_ME_VALUE.attr("class").contains("ng-empty"));
@@ -59,8 +55,7 @@ public class TestsCommunityGuestFlow extends Configuration{
     }
     @Test
     public void joinPageVerifySignUpContent(){
-        openUrlIfActualNotEquals(JOIN_URL);
-
+        refresh();
         JOIN_NAME.shouldBe(visible).shouldBe(empty);
         JOIN_SURNAME.shouldBe(visible).shouldBe(empty);
         JOIN_COMPANY.shouldBe(visible).shouldBe(empty);
@@ -86,7 +81,7 @@ public class TestsCommunityGuestFlow extends Configuration{
     }
     @Test
     public void joinPageVerifyResetPasswordContent(){
-        openUrlIfActualNotEquals(JOIN_URL);
+        refresh();
         JOIN_LOGIN_RESET_PASSWORD.shouldBe(visible).click();
         JOIN_LOGIN_RESET_PASSWORD.shouldNotBe(visible);
         JOIN_RESET_EMAIL.shouldBe(visible).shouldBe(empty);
@@ -101,20 +96,16 @@ public class TestsCommunityGuestFlow extends Configuration{
     }
     @Test
     public void aboutPageVerifyContent1(){
-        openUrlIfActualNotEquals(LANDING_URL);
-        pageJoin.clickAboutTab();
-        ABOUT_BUTTON1_START.shouldBe(visible);
-        ABOUT_BUTTON2_START.shouldBe(visible);
         PageAbout pageAbout = new PageAbout();
+        openUrlIfActualNotEquals(LANDING_URL);
+        pageAbout.clickAboutTab();
         pageAbout.clickUpperStartButton();
         Assert.assertEquals("https://communitystaging.pekama.com/grow_network", getActualUrl());
     }
     @Test
     public void aboutPageVerifyContent2(){
-        openUrlIfActualNotEquals(ABOUT_URL);
-        ABOUT_BUTTON1_START.shouldBe(visible);
-        ABOUT_BUTTON2_START.shouldBe(visible);
         PageAbout pageAbout = new PageAbout();
+        openUrlIfActualNotEquals(ABOUT_URL);
         pageAbout.clickBottomStartButton();
         Assert.assertEquals("https://communitystaging.pekama.com/grow_network", getActualUrl());
     }
@@ -137,7 +128,6 @@ public class TestsCommunityGuestFlow extends Configuration{
     }
     @Test
     public void joinPageOpenBlog(){
-        openUrlIfActualNotEquals(JOIN_URL);
         pageJoin.clickBlogTab().switchToBlog();
     }
 }

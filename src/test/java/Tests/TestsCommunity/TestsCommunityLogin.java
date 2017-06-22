@@ -62,7 +62,6 @@ public class TestsCommunityLogin extends Configuration{
         pageJoin.validateSubmitLogin(false, "Please enter a correct email and password. Note that the password field is case-sensitive.", 1);
     }
 
-
     @Test
     public void loginUpperCaseLogin(){
         ObjectUser user = newBuilder().email(registeredUser.email.toUpperCase()).passwordPekama(registeredUser.passwordPekama).build();

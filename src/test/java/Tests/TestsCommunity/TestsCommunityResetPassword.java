@@ -100,7 +100,7 @@ public class TestsCommunityResetPassword extends Configuration{
             rootLogger.info("Positive test");
             forgottenPasswordUser.submitResetPassword(null);
             newPasswordPekama = forgottenPasswordUser.passwordPekama;
-            $(byText(RESET_PAGE_FINISHED_TITLE)).waitUntil(visible, 15000);
+            checkText(RESET_PAGE_FINISHED_TITLE);
             RESET_PAGE_FINISHED_BTN_LOGIN.shouldBe(visible);
             assertEquals(getActualUrl(), URL_RESET_PASSWORD_COMPLETE);
 
@@ -120,7 +120,7 @@ public class TestsCommunityResetPassword extends Configuration{
             sleep(1000);
 
             rootLogger.info("Validation test - link was used");
-            $(byText(FAILED_RESET_TITLE_TEXT)).waitUntil(visible, 10000);
+            checkText(FAILED_RESET_TITLE_TEXT);
             rootLogger.info("Page Title - "+FAILED_RESET_TITLE_TEXT);
             return;
     }

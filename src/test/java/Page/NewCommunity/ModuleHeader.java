@@ -21,31 +21,38 @@ public class ModuleHeader extends PageCommunity{
     public static final SelenideElement HEADER_TAB_ME = $(byXpath("//div[@class='header__nav']//*[@href='/personal']"));
 
 
-    public void clickPekamaTab(){
+    public PageLanding clickPekamaTab(){
         clickSelector(HEADER_TAB_PEKAMA);
+        return new PageLanding();
     }
-    public void clickExpertsTab(){
+    public PageExperts clickExpertsTab(){
         clickSelector(HEADER_TAB_EXPERTS);
+        return new PageExperts();
     }
-    public void clickCasesTab(){
+    public PageCases clickCasesTab(){
         clickSelector(HEADER_TAB_CASES);
+        return new PageCases();
     }
-    public void clickProfileTab(){
+    public PageProfile clickProfileTab(){
         clickSelector(HEADER_TAB_PROFILE);
+        return new PageProfile();
     }
-    public void clickAboutTab(){
+    public PageAbout clickAboutTab(){
         clickSelector(HEADER_TAB_ABOUT);
+        return new PageAbout();
     }
     public PageBlog clickBlogTab(){
         clickSelector(HEADER_TAB_BLOG);
-        PageBlog pageBlog = new PageBlog();
-        return pageBlog;
+        return new PageBlog();
     }
-    public void clickSingInTab(){
+    public PageJoin clickSingInTab(){
         clickSelector(HEADER_TAB_JOIN);
+        return new PageJoin();
+
     }
-    public void clickMeTab(){
+    public PageAccount clickMeTab(){
         clickSelector(HEADER_TAB_ME);
+        return new PageAccount();
     }
 
 }

@@ -1,5 +1,7 @@
 package Steps;
 import Steps.IMessagesValidator.ValidationNotificationCaseConfirmed;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Document;
@@ -37,6 +39,7 @@ import javax.mail.Multipart;
 import javax.mail.Session;
 import javax.mail.Store;
 public class MessagesIMAP {
+    static final Logger rootLogger = LogManager.getRootLogger();
     static String login = null;
     static String password = null;
     static String subject = null;
@@ -59,6 +62,7 @@ public class MessagesIMAP {
 
     //IMAP STEPS
     private Properties setProperties (String host, String port){
+
         Properties properties = new Properties();
         // server setting
         properties.put("mail.imap.host", host);

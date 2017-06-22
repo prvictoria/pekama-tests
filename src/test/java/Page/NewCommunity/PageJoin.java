@@ -47,9 +47,9 @@ public class PageJoin extends ModuleHeader implements IResetPassword, ISignUp, I
     public static final SelenideElement JOIN_COMPANY = $(byXpath(JOIN_SIGN_UP_FORM+"//input[@name='company']"));
     public static final SelenideElement JOIN_EMAIL = $(byXpath(JOIN_SIGN_UP_FORM+"//input[@name='email']"));
     public static final SelenideElement JOIN_PASSWORD = $(byXpath(JOIN_SIGN_UP_FORM+"//input[@name='password']"));
-    public static final SelenideElement JOIN_SELECT_BUSINESS_TYPE = $(byXpath(JOIN_SIGN_UP_FORM+"//label[text()='Buisness type']/following-sibling::div/div"));
-    public static final SelenideElement JOIN_INPUT_BUSINESS_TYPE = $(byXpath(JOIN_SIGN_UP_FORM+"//label[text()='Buisness type']/following-sibling::div//input[@type='search']"));
-    private static final String JOIN_SELECT_BUSINESS_TYPE_IN_LIST_PATH = "//label[text()='Buisness type']/following-sibling::div//span[contains(.,'%s')]";
+    public static final SelenideElement JOIN_SELECT_BUSINESS_TYPE = $(byXpath(JOIN_SIGN_UP_FORM+"//label[text()='Business type']/following-sibling::div/div"));
+    public static final SelenideElement JOIN_INPUT_BUSINESS_TYPE = $(byXpath(JOIN_SIGN_UP_FORM+"//label[text()='Business type']/following-sibling::div//input[@type='search']"));
+    private static final String JOIN_SELECT_BUSINESS_TYPE_IN_LIST_PATH = "//label[text()='Business type']/following-sibling::div//span[contains(.,'%s')]";
 
     public static final SelenideElement JOIN_SELECT_ROLE = $(byXpath(JOIN_SIGN_UP_FORM+"//label[text()='Your role']/following-sibling::div/div"));
     public static final SelenideElement JOIN_INPUT_ROLE = $(byXpath(JOIN_SIGN_UP_FORM+"//label[text()='Your role']/following-sibling::div//input[@type='search']"));
@@ -77,6 +77,12 @@ public class PageJoin extends ModuleHeader implements IResetPassword, ISignUp, I
     public static final SelenideElement JOIN_AGREE_TERMS_VALUE = $(byXpath(JOIN_SIGN_UP_FORM+"//input[@type='checkbox']"));
     public static final SelenideElement JOIN_TERMS_LINK = $(byXpath(JOIN_SIGN_UP_FORM+"//*[@href='https://staging.pekama.com/about/terms/']"));
     public static final SelenideElement JOIN_ = $(byXpath(JOIN_SIGN_UP_FORM+""));
+
+
+    public PageJoin openPageUrl(){
+        openUrlIfActualNotEquals(JOIN_URL);
+        return this;
+    }
 
     public void submitLogin(ObjectUser user){
         openUrlIfActualNotEquals(JOIN_URL);

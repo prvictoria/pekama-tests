@@ -28,8 +28,9 @@ public class BeforeTestsSetUp {
 
     public static boolean localDriverPathWindows = true;
     public static boolean localDriverPathLinux = false;
-    public static boolean localDriverPathWeb = true;
-    public static int testBrowser = 1;
+    public static boolean localDriverPathWeb = false;
+    public enum PathToDriver {WIN, LINUX, WEB}
+    public static int testBrowser = 2;
     public static void setBrowser() throws IOException {
         switch (testBrowser) {
             case 1:
@@ -41,11 +42,6 @@ public class BeforeTestsSetUp {
                     startMaximized = false;
                     ChromeDriverManager.getInstance().setup();
                 }
-//                browserSize = "1700x1000";
-//                getWebDriver().manage().window().setPosition(new Point(0, 0));
-//                getWebDriver().manage().window().setSize(new Dimension(1800, 1000));
-//                System.out.print("position " + getWebDriver().manage().window().getPosition());
-//                System.out.print("size " + getWebDriver().manage().window().getSize());
                 rootLogger.info("Tests will performed in Chrome");
                 break;
             case 2:

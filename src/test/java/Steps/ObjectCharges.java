@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import static Page.ModalWindows.*;
+import static Page.ModalWindows.MW_CHARGES_SELECT_FROM;
 import static Page.PekamaProjectCharges.*;
 import static Page.PekamaReports.*;
 import static Page.PekamaReportsCharges.*;
@@ -326,7 +327,7 @@ public class ObjectCharges {
         }
         if(rowCount==null){
             TAB_CHARGES_LIST.shouldHaveSize(0);
-            checkTextInSelector(REPORTS_PLACEHOLDER_NO_DATA, PLACEHOLDER_NO_DATA);
+            Steps.checkTextInSelector(REPORTS_PLACEHOLDER_NO_DATA, PLACEHOLDER_NO_DATA);
         }
         if(rowCount!=null && charges!=null){
             if(charges.invoiceItem!=null){
