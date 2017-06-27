@@ -30,6 +30,10 @@
           <option name="url" value="https://github.com/VatslauX/ApiPealTests.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="git@git.epam.com:libg-cap/libg-cap-test-automation.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
     <option name="cloneParentDir" value="D:\PRJ" />
