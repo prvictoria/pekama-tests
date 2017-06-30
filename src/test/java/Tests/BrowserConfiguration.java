@@ -2,19 +2,22 @@ package Tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
-import io.github.bonigarcia.wdm.ChromeDriverManager;
-import io.github.bonigarcia.wdm.EdgeDriverManager;
-import io.github.bonigarcia.wdm.FirefoxDriverManager;
-import io.github.bonigarcia.wdm.InternetExplorerDriverManager;
+import io.github.bonigarcia.wdm.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.io.IOException;
 
 import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
 import static com.codeborne.selenide.Configuration.browser;
 import static com.codeborne.selenide.Configuration.startMaximized;
+import static com.codeborne.selenide.WebDriverRunner.*;
 
 /**
  * Created by VatslauX on 22-Jun-17.
@@ -22,28 +25,28 @@ import static com.codeborne.selenide.Configuration.startMaximized;
 public class BrowserConfiguration {
     static final Logger rootLogger = LogManager.getRootLogger();
     public static String setChromeDriverPath() {
-        String chromeDriverPath = "src/test/lib/chromedriver.exe";
-        System.setProperty("webdriver.chrome.driver", chromeDriverPath);
-        rootLogger.info("Local driver path is selected");
-        return chromeDriverPath;
+        String path = "src/test/lib/chromedriver.exe";
+        System.setProperty("webdriver.chrome.driver", path);
+        rootLogger.info("Local driver path is selected: "+path);
+        return path;
     }
     public static String setFirefoxDriverPathWin() {
-        String ffDriverPath = "src/test/lib/geckodriver.exe";
-        System.setProperty("webdriver.gecko.driver", ffDriverPath);
-        rootLogger.info("Windows Local driver path is selected");
-        return ffDriverPath;
+        String path = "src/test/lib/geckodriver.exe";
+        System.setProperty("webdriver.gecko.driver", path);
+        rootLogger.info("Windows Local driver path is selected: "+path);
+        return path;
     }
     public static String setEdgeDriverPathWin() {
         String path = "src/test/lib/MicrosoftWebDriver14393.exe";
         System.setProperty("webdriver.edge.driver", path);
-        rootLogger.info("Windows Local driver path is selected");
+        rootLogger.info("Windows Local driver path is selected:"+path );
         return path;
     }
     public static String setFirefoxDriverPathLinux() {
-        String ffDriverPath = "src/test/lib/geckodriver";
-        System.setProperty("webdriver.gecko.driver", ffDriverPath);
+        String path = "src/test/lib/geckodriver";
+        System.setProperty("webdriver.gecko.driver", path);
         rootLogger.info("Linux Local driver path is selected");
-        return ffDriverPath;
+        return path;
     }
     public static void holdBrowserAfterTest() {
         Configuration test = new Configuration();
@@ -53,10 +56,32 @@ public class BrowserConfiguration {
         Configuration test = new Configuration();
         test.holdBrowserOpen = value;
     }
+    public void setRemoteDriver(){
+        RemoteWebDriver remote = (RemoteWebDriver)
+                getWebDriver();
+        WebDriverRunner.setWebDriver(remote);
+        remote.manage().window().maximize();
+        return;
+    }
+    public void maximizeBrowser(){
+        WebDriver driver = getWebDriver();
+        driver.manage().window().maximize();
+    }
+    public void browserCapabilities(){
+
+    }
+
+    public static WebDriver  setChromeOptions(){
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--start-maximized");
+        WebDriver driver = new ChromeDriver(chromeOptions);
+        return driver;
+    }
 
     public enum SelectPathToDriver {WIN, LINUX, WEB}
     public enum SelectBrowsers {CHROME, MARIONETTE, EDGE}
     public BrowserConfiguration setBrowser(SelectBrowsers browsers, SelectPathToDriver pathToDriver, boolean holdBrowserAfterTest) throws IOException {
+
         holdBrowserAfterTest(holdBrowserAfterTest);
         switch (browsers) {
             case CHROME:
@@ -64,9 +89,10 @@ public class BrowserConfiguration {
                 switch (pathToDriver){
                     case WIN:
                         setChromeDriverPath();
+                        setWebDriver(setChromeOptions());
+                        //Todo close after tests?
                         break;
                     case WEB:
-                        startMaximized = false;
                         ChromeDriverManager.getInstance().setup();
                         break;
                     case LINUX:

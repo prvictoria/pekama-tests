@@ -43,7 +43,26 @@ dependencies {
 
     // https://mvnrepository.com/artifact/com.hynnet/jacob
     testCompile group: 'com.hynnet', name: 'jacob', version: '1.18'
-
-
-
 }
+//test {
+//    doFirst {
+//        println "test task executing"
+//    }
+//    useTestNG() { excludeGroups 'integration' }
+//    systemProperty "t", "test"
+//}
+//task integrationTest(type: Test, dependsOn: test) {
+//    doFirst {
+//        println "integration test task executing"
+//    }
+//    useTestNG() {
+//        includeGroups 'integration'
+//    }
+//    systemProperty "i", "integration"
+//    testLogging.showStandardStreams = true
+////}
+//test {
+//    useTestNG()
+//    systemProperty "driver", "firefox"
+//    systemProperty "browser", "-Dremote=http://localhost:5678/wd/hub"
+//}

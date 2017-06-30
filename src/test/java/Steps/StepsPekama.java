@@ -171,9 +171,11 @@ public class StepsPekama {
     }
     public static void scrollUp() {
         executeJavaScript("scrollTo(0, -1000)");
+        sleep(500);
     }
     public static void scrollDown() {
         executeJavaScript("scrollTo(0, 1000)");
+        sleep(500);
     }
 
     public static void scrollCustom(int value) {

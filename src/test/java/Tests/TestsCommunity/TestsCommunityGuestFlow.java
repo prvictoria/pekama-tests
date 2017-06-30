@@ -38,7 +38,6 @@ public class TestsCommunityGuestFlow extends Configuration{
         pageJoin = new PageJoin().openPageUrl();
         hideZopim();
         submitCookie(5);
-//        refresh();
     }
 
     @Test

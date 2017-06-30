@@ -1,0 +1,50 @@
+REM example "givens"
+set DRIVE=C:
+set ROOTPATH=\fee\fie\fo
+set RELPATH=funky\stuff
+set FILENAME=blarf.txt
+
+REM method ii) using the "current directory" functionality
+%DRIVE%
+cd %ROOTPATH%
+cd %RELPATH%
+more %FILENAME%
+
+REM method iii) using explicit concatenation
+set FULLPATH=%DRIVE%%ROOTPATH%\%RELPATH%
+set PATHFILENAME=%FULLPATH%\%FILENAME%
+more %PATHFILENAME%
+
+REM DOS/BAT handling of drive letter is odd (is it part of the path, or not?)
+REM It may be necessary to use "cd /D ..."
+
+REM Path calculations are easier 
+REM so long as DOS/BAT understands that "\\" is the same as "\"
+
+%~dp0 resolves to the full path of the folder in which the batch script resides.
+
+@echo off
+echo %%~dp0 is "%~dp0"
+echo %%0 is "%0"
+echo %%~dpnx0 is "%~dpnx0"
+echo %%~f1 is "%~f1"
+echo %%~dp0%%~1 is "%~dp0%~1"
+
+rem Temporarily change the current working directory, to retrieve a full path
+rem   to the first parameter
+pushd .
+cd %~dp0
+echo batch-relative %%~f1 is "%~f1"
+popd
+If you save this as c:\temp\example.bat and the run it from c:\Users\Public as
+
+c:\Users\Public>\temp\example.bat ..\windows
+
+...you'll observe the following output:
+
+%~dp0 is "C:\temp\"
+%0 is "\temp\example.bat"
+%~dpnx0 is "C:\temp\example.bat"
+%~f1 is "C:\Users\windows"
+%~dp0%~1 is "C:\temp\..\windows"
+batch-relative %~f1 is "C:\Windows"

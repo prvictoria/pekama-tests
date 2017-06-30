@@ -18,6 +18,7 @@ import static Steps.ObjectUser.newBuilder;
 import static Steps.StepsPekama.*;
 import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
 import static Tests.BeforeTestsSetUp.setBrowser;
+import static com.codeborne.selenide.Selenide.refresh;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -37,6 +38,7 @@ public class TestsCommunityJoin extends Configuration{
             openUrlIfActualNotEquals(JOIN_URL);
             hideZopim();
             submitCookie(10);
+            refresh();
         }
     }
     @Test (priority = 100)
