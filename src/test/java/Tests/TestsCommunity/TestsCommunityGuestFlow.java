@@ -99,14 +99,14 @@ public class TestsCommunityGuestFlow extends Configuration{
         openUrlIfActualNotEquals(LANDING_URL);
         pageAbout.clickAboutTab();
         pageAbout.clickUpperStartButton();
-        Assert.assertEquals("https://communitystaging.pekama.com/grow_network", getActualUrl());
+        Assert.assertEquals(getActualUrl(), "https://communitystaging.pekama.com/grow");
     }
     @Test
     public void aboutPageVerifyContent2(){
         PageAbout pageAbout = new PageAbout();
         openUrlIfActualNotEquals(ABOUT_URL);
         pageAbout.clickBottomStartButton();
-        Assert.assertEquals("https://communitystaging.pekama.com/grow_network", getActualUrl());
+        Assert.assertEquals(getActualUrl(), "https://communitystaging.pekama.com/grow");
     }
 
     @Test
