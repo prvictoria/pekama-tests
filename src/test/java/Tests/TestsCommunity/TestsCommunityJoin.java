@@ -44,6 +44,7 @@ public class TestsCommunityJoin extends Configuration{
     @Test (priority = 100)
     public void joinValidate(){
         ObjectUser user = newBuilder().build();
+        refresh();
         pageJoin.submitSignUp(user);
         Assert.assertFalse(user.isSignUpSucceed);
         checkText("This field may not be blank.", 6);

@@ -1,10 +1,11 @@
-<suite name="Community" parallel="classes" thread-count="1">
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Community" parallel="classes" thread-count="2">
        <test name="Test" >
             <classes>
-                <!--<class name="Tests.TestsCommunity.TestsCommunityGuestFlow"  />-->
+                <class name="Tests.TestsCommunity.TestsCommunityGuestFlow"  />
                 <class name="Tests.TestsCommunity.TestsCommunityJoin"  />
-                <!--<class name="Tests.TestsCommunity.TestsCommunityLogin"  />-->
-                <!--<class name="Tests.TestsCommunity.TestsCommunityResetPassword"  />-->
+                <class name="Tests.TestsCommunity.TestsCommunityLogin"  />
+                <class name="Tests.TestsCommunity.TestsCommunityResetPassword"  />
             </classes>
        </test>
 </suite>

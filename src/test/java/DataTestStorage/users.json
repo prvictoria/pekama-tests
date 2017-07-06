@@ -1,0 +1,48 @@
+{
+  "user": [
+    {
+      "userIndex" : 0,
+      "username" : "parserTestName",
+      "password" : "password",
+
+      "email" : "email",
+      "passwordPekama" : "passwordPekama",
+      "passwordEmail" : "passwordEmail",
+      "passwordBox" : "passwordBox",
+      "passwordXero" : "passwordXero",
+      "passwordLinkedIn" : "passwordLinkedIn",
+
+      "name" : "name",
+      "surname" : "surname",
+      "nameSurname" : "nameSurname",
+      "initials" : "initials",
+      "company" : "company",
+      "businessType" : "businessType",
+      "role" : "role",
+      "phone" : "phone",
+      "fax" : "fax",
+      "mobile" : "mobile",
+      "legalEntity" : "legalEntity",
+      "street" : "street",
+      "zip" : "zip",
+      "city" : "city",
+      "region" : "region",
+      "country" : "country",
+
+      "teamName" : "teamName",
+      "teamFullName" : "teamFullName",
+      "teamCode" : "teamCode",
+      "teamInitials" : "teamInitials",
+      "teamEmail" : "teamEmail",
+      "teamStreet" : "teamStreet",
+      "teamZip" : "teamZip",
+      "teamCity" : "teamCity",
+      "teamRegion" : "teamRegion",
+      "teamCountry" : "teamCountry",
+
+      "isSignUpSucceed": false,
+      "isLoggedIn": false
+    }
+
+  ]
+}

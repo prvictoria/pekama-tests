@@ -25,6 +25,7 @@ import static com.codeborne.selenide.Selenide.sleep;
  */
 public class ObjectUser implements ILogin {
     static final Logger rootLogger = LogManager.getRootLogger();
+    private String index;
     public String email;
     public String passwordPekama;
     public String passwordEmail;
