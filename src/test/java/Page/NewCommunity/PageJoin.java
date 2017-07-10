@@ -1,18 +1,16 @@
 package Page.NewCommunity;
 
-import Steps.ILogout;
-import Steps.IResetPassword;
-import Steps.ISignUp;
+import Steps.Intrefaces.ILogout;
+import Steps.Intrefaces.IResetPassword;
+import Steps.Intrefaces.ISignUp;
 import Steps.ObjectUser;
 import com.codeborne.selenide.SelenideElement;
 import org.testng.Assert;
 
 import static Page.NewCommunity.PageAccount.ACCOUNT_LOGOUT;
-import static Page.PekamaReports.REPORTS_ROW_BY_INDEX_LIST;
 import static Steps.StepsPekama.*;
 import static Steps.StepsPekama.checkText;
 import static Steps.StepsPekama.openUrlIfActualNotEquals;
-import static Steps.StepsPekamaReports.elementInRowListReport;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.byXpath;

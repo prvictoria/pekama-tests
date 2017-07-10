@@ -92,10 +92,20 @@ public class UrlConfig {
                 INTRODUCER_NAME = "Rand, Kaldor & Zane LLP (RKNZ)";
                 break;
             case 3:
-                rootLogger.info("Tests will executed on Production server");
+                rootLogger.info("Tests will executed on Production server against Pekama");
                 ENVIRONMENT_PEKAMA = PROD_PEKAMA;
                 ENVIRONMENT_COMMUNITY = PROD_COMMUNITY;
                 SELECT_HOST = ENVIRONMENT_PEKAMA;
+                MATTER_TYPE_TRADEMARK = ProductionCaseType.TRADEMARK.getValue();
+                MATTER_TYPE_PATENT = ProductionCaseType.PATENT.getValue();
+                COMMUNITY_SERVICE = "Filing an Application";
+                INTRODUCER_NAME = "Rand, Kaldor & Zane LLP (RKNZ)";
+                break;
+            case 4:
+                rootLogger.info("Tests will executed on Production server against Community");
+                ENVIRONMENT_PEKAMA = PROD_PEKAMA;
+                ENVIRONMENT_COMMUNITY = PROD_COMMUNITY;
+                SELECT_HOST = ENVIRONMENT_COMMUNITY;
                 MATTER_TYPE_TRADEMARK = ProductionCaseType.TRADEMARK.getValue();
                 MATTER_TYPE_PATENT = ProductionCaseType.PATENT.getValue();
                 COMMUNITY_SERVICE = "Filing an Application";

@@ -1,6 +1,10 @@
 package Steps;
 
 import Page.TestsCredentials;
+import Steps.Objects.Emails.AbstractEmail;
+import Steps.Objects.Emails.Email;
+import Steps.Objects.Emails.EmailTypes;
+import Steps.Objects.Emails.EmailTypes.*;
 import org.junit.Test;
 
 //import static Steps.BuildUser.newBuilder;
@@ -19,6 +23,8 @@ import static Steps.ObjectFile.FileTypes.SVG;
 import static Steps.ObjectUser.*;
 import static Steps.ObjectUser.Users.OWNER;
 import static Steps.ObjectUser.Users.USER_04;
+import static Steps.ObjectUser.Users.USER_05;
+import static Steps.Objects.Emails.AbstractEmail.*;
 import static Utils.Utils.getDate;
 import static Utils.Utils.randomString;
 
@@ -116,5 +122,13 @@ public class TestClasses {
                 .contactLastName("")
                 .build()
                 .logContactFields();
+    }
+    @Test
+    public void testNewEmailsBuilder(){
+        ObjectUser user = new ObjectUser(newBuilder()).buildUser(USER_05);
+        Email email = new Email().buildEmail(EmailTypes.SIGN_UP, user);
+        rootLogger.info(email.getAbstractEmail().emailSubject());
+
+
     }
 }

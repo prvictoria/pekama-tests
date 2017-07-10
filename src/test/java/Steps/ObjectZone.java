@@ -1,9 +1,11 @@
 package Steps;
 
+import Steps.Intrefaces.ISelectZone;
+
 /**
  * Created by VatslauX on 29-May-17.
  */
-public class ObjectZone implements ISelectZone{
+public class ObjectZone implements ISelectZone {
     public Boolean zoneIsAll = false;
     public String zoneOwner = null;
     public String[] zoneCollaborators = null;

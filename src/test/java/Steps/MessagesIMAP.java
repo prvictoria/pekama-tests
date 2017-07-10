@@ -1,5 +1,6 @@
 package Steps;
-import Steps.IMessagesValidator.ValidationNotificationCaseConfirmed;
+import Steps.Intrefaces.IMessagesValidator;
+import Steps.Intrefaces.IMessagesValidator.ValidationNotificationCaseConfirmed;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jsoup.Jsoup;
@@ -21,9 +22,9 @@ import java.util.regex.Pattern;
 import static Page.TestsCredentials.*;
 import static Steps.Messages.*;
 import static Steps.Messages.EMAIL_SUBJECT_YOU_INVITED_IN_COMMUNITY;
-import static Steps.IMessagesValidator.*;
-import static Steps.IMessagesValidator.ValidationEmailMessage.replyLink;
-import static Steps.IMessagesValidator.ValidationInviteInProject.projectBackLink;
+import static Steps.Intrefaces.IMessagesValidator.*;
+import static Steps.Intrefaces.IMessagesValidator.ValidationEmailMessage.replyLink;
+import static Steps.Intrefaces.IMessagesValidator.ValidationInviteInProject.projectBackLink;
 import static Utils.Utils.formatDateToString;
 import static com.codeborne.selenide.Selenide.getElement;
 import static com.codeborne.selenide.Selenide.sleep;
@@ -40,11 +41,6 @@ import javax.mail.Session;
 import javax.mail.Store;
 public class MessagesIMAP {
     static final Logger rootLogger = LogManager.getRootLogger();
-    static String login = null;
-    static String password = null;
-    static String subject = null;
-    static String emailFrom = null;
-    static String teamName = null;
     public static final String IMAP_HOST = "imap.gmail.com";
     public static final String IMAP_PORT = "993";
     /**
@@ -659,6 +655,7 @@ public class MessagesIMAP {
         Assert.assertTrue(validationResult==true);
         return true;
     }
+
     public boolean validateEmailSignUp(String login, String password){
         ValidationSignUp.userEmail = login;
         Boolean detectResult = detectEmailIMAP(
@@ -675,10 +672,12 @@ public class MessagesIMAP {
         Assert.assertTrue(validationResult==true);
         return true;
     }
+
     public boolean validateEmailResetPassword(){
 
         return true;
     }
+
     public boolean validateEmailCongratulation(String login, String password, String teamName){
         ValidationCongratulationCaseCreated.userEmail = login;
         ValidationCongratulationCaseCreated.teamName = teamName;
@@ -695,6 +694,7 @@ public class MessagesIMAP {
                 new ValidationCongratulationCaseCreated());
         return true;
     }
+
     public boolean validateEmailCongratulationForInvite(String login, String password, String invitedEmail){
         ValidationCongratulationForInvite.userEmail = login;
         ValidationCongratulationForInvite.invitedEmail = invitedEmail;
@@ -711,6 +711,7 @@ public class MessagesIMAP {
                 new ValidationCongratulationForInvite());
         return true;
     }
+
     public boolean validateEmailInviteInTeamUnregistered(String login, String password, String inviterNameSurname, String inviterName, String inviterFullTeamName){
         ValidationInviteInTeamUnregistered.userEmail = login;
         ValidationInviteInTeamUnregistered.inviterNameSurname = inviterNameSurname;
@@ -731,6 +732,7 @@ public class MessagesIMAP {
                 new ValidationInviteInTeamUnregistered());
         return validationResult;
     }
+
     public boolean validateEmailInviteInTeamRegistered(String login, String password, String inviterNameSurname, String inviterName, String inviterFullTeamName){
         ValidationInviteInTeamRegistered.userEmail = login;
         ValidationInviteInTeamRegistered.inviterNameSurname = inviterNameSurname;
@@ -750,6 +752,7 @@ public class MessagesIMAP {
                 new ValidationInviteInTeamRegistered());
         return validationResult;
     }
+
     public boolean validateEmailInviteInProject(String login, String password, String inviterNameSurname, String projectName){
         ValidationInviteInProject.inviterNameSurname = inviterNameSurname;
         ValidationInviteInProject.projectName = projectName;
@@ -767,6 +770,7 @@ public class MessagesIMAP {
                 new ValidationInviteInProject());
         return validationResult;
     }
+
     public boolean validateEmailInviteInCommunity(String login, String password, String name_surname, String customText){
         ValidationInviteCommunity.userEmail = login;
         ValidationInviteCommunity.inviterNameSurname = name_surname;
@@ -827,57 +831,9 @@ public class MessagesIMAP {
         }
         else return false;
     }
-    //IMAP APP
-//    String keyword = "Confirm Registration [Pekama]";
-//    String keyword = "no-reply@accounts.google.com";
-//    String keyword = "dan@pekama.com";
-//    String keyword = "noreply@emstaging.pekama.com";
-//    String keyword = "We are waiting for you!";
-//    String keyword = "Pekama Report \"Last week's Events\"";
-//    String keyword = "Ready to confirm completion in Pekama?";
-    String keyword = "New sign-in from Firefox on Windows";
-    String text = "Why are we sending this?";
-    public static void main(String[] args) {
-//        login = User5.GMAIL_EMAIL.getValue();
-//        password = User5.GMAIL_PASSWORD.getValue();
-//        setEnvironment();
-//        String name_surname = TestsCredentials.User3.NAME_SURNAME.getValue();
-//        String projectName = "new test project - 83B25I";
-//        String keyword = EMAIL_SUBJECT_YOU_INVITED_IN_PROJECT(name_surname);
-//        rootLogger.info(keyword);
-//        detectEmailIMAP(login, password, keyword);
-       // MessagesIMAP searcher = new MessagesIMAP();
-        //searcher.searchEmailBySubject(login, password, keyword);
-        //searcher.searchEmailBySubjectAndValidate(login, password, keyword, new ValidationCongratulationCaseCreated());
-        rootLogger.info("Check report email");
-        String login = User5.GMAIL_EMAIL.getValue();
-        String password = User5.GMAIL_PASSWORD.getValue();
-        String inviterNameSurname = User3.NAME_SURNAME.getValue();
-        String projectName = "new test project - 83B25I";
-        MessagesIMAP validation = new MessagesIMAP();
-        Boolean validationResult = validation.validateEmailInviteInProject(login, password, inviterNameSurname, projectName);
-        Assert.assertTrue(validationResult);
-        Assert.assertNotNull(projectBackLink);
-        rootLogger.info("Link invite to project is: "+projectBackLink);
-        rootLogger.info("Test passed");
-    }
-   @Test
+    @Test
     public void clearAllEmails() throws MessagingException, IOException {
         MessagesIMAP emailTask = new MessagesIMAP();
-//        Assert.assertTrue(
-//                emailTask.validateEmailMessage(
-//                        User2.GMAIL_EMAIL.getValue(),
-//                        User2.GMAIL_PASSWORD.getValue(),
-//                        keyword,
-//                        text,
-//                        new MessagesValidator.ValidationEmailMessage()
-//                )
-//
-//        );
-//        emailTask.getEmail(
-//               User2.GMAIL_EMAIL.getValue(),
-//               User2.GMAIL_PASSWORD.getValue(),
-//                keyword);
         emailTask.imapSearchEmailDeleteAll(
                 User1.GMAIL_EMAIL.getValue(),
                 User1.GMAIL_PASSWORD.getValue());

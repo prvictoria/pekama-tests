@@ -1,5 +1,6 @@
 package Steps;
 
+import Steps.Intrefaces.ILogin;
 import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

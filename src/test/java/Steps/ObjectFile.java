@@ -1,5 +1,6 @@
 package Steps;
 
+import Steps.Intrefaces.IUpload;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,7 +15,7 @@ import static com.codeborne.selenide.Selenide.sleep;
 /**
  * Created by VatslauX on 20-May-17.
  */
-public class ObjectFile implements IUpload{
+public class ObjectFile implements IUpload {
     static final Logger rootLogger = LogManager.getRootLogger();
     public Boolean isFolder = null;
     public String folderName = null;

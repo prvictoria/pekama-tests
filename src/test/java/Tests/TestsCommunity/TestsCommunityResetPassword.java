@@ -1,17 +1,14 @@
 package Tests.TestsCommunity;
 
 import Page.NewCommunity.PageJoin;
-import Steps.IMessagesValidator;
+import Steps.Intrefaces.IMessagesValidator;
 import Steps.MessagesIMAP;
 import Steps.ObjectUser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.io.IOException;
 
 import static Page.NewCommunity.PageJoin.JOIN_URL;
 import static Page.PekamaResetPassword.*;
@@ -27,9 +24,7 @@ import static Steps.Steps.clickSelector;
 import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static Steps.StepsPekama.*;
 import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
-import static Tests.BeforeTestsSetUp.setBrowser;
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.refresh;
 import static com.codeborne.selenide.Selenide.sleep;

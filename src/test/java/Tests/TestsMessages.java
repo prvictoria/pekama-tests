@@ -4,6 +4,7 @@ package Tests;
  * https://www.linkedin.com/in/viachaslau
  */
 import Steps.*;
+import Steps.Intrefaces.IMessagesValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
@@ -21,8 +22,8 @@ import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
-import static Steps.IMessagesValidator.ValidationEmailMessage.*;
-import static Steps.IMessagesValidator.ValidationInviteInProject.*;
+import static Steps.Intrefaces.IMessagesValidator.ValidationEmailMessage.*;
+import static Steps.Intrefaces.IMessagesValidator.ValidationInviteInProject.*;
 import static Steps.ObjectUser.Users.*;
 import static Steps.ObjectUser.newBuilder;
 import static Steps.StepsHttpAuth.openUrlWithBaseAuth;

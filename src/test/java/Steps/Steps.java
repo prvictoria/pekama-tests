@@ -1,16 +1,13 @@
 package Steps;
 
+import Steps.Intrefaces.ISelectDropdown;
+import Steps.Intrefaces.ISwitchToWindow;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.*;
 import org.junit.Assert;
 
 import java.io.File;
 
-import static Page.ModalWindows.CSS_SelectHighlighted;
-import static Page.PekamaReports.REPORTS_DELETE;
-import static Page.PekamaTeamSettings.SETTINGS_TEAM_INFO_DELETE_LOGO;
-import static Page.TestsStrings.PAGE_TITLE_COMMUNITY;
-import static Page.UrlStrings.URL_ReportsContacts;
 import static Steps.StepsModalWindows.submitConfirmAction;
 import static Steps.StepsPekama.*;
 import static com.codeborne.selenide.Condition.*;
@@ -23,7 +20,7 @@ import static com.codeborne.selenide.Selenide.switchTo;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
-public class Steps implements ISwitchToWindow, ISelectDropdown{
+public class Steps implements ISwitchToWindow, ISelectDropdown {
     static final Logger rootLogger = LogManager.getRootLogger();
 
     //Selenide steps

@@ -1,6 +1,5 @@
 package Tests;
 import Steps.*;
-import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,7 +18,7 @@ import static Page.TestsCredentials.Countries.PITCAIRN_ISLANDS;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
-import static Steps.IMessagesValidator.ValidationReport.*;
+import static Steps.Intrefaces.IMessagesValidator.ValidationReport.*;
 import static Steps.ObjectContact.contactType.COMPANY;
 import static Steps.ObjectContact.contactType.PERSON;
 import static Steps.ObjectContact.enterPoint.*;
@@ -35,7 +34,7 @@ import static com.codeborne.selenide.CollectionCondition.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
+
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau

@@ -15,7 +15,7 @@ import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlStrings.*;
-import static Steps.IMessagesValidator.*;
+import static Steps.Intrefaces.IMessagesValidator.*;
 import static Steps.ObjectFile.FileTypes.*;
 import static Steps.ObjectUser.Users.USER_01;
 import static Steps.ObjectUser.Users.USER_05;
@@ -209,7 +209,7 @@ public class TestsPekamaSignUp {
         rootLogger.info("Password rules validation LOOP - Passed");
     }
     @Test
-    public void userExist() {
+    public void userExistValidation() {
         ObjectUser fakeUser = ObjectUser.newBuilder().build();
         fakeUser.submitSignUp(
                 registeredUser.email,

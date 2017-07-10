@@ -1,5 +1,6 @@
 package Tests;
 import Steps.*;
+import Steps.Intrefaces.IMessagesValidator;
 import Utils.Utils;
 import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.LogManager;

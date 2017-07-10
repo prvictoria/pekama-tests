@@ -8,4 +8,10 @@ import org.apache.logging.log4j.Logger;
  */
 public class ObjectEmail {
     static final Logger rootLogger = LogManager.getRootLogger();
+
+
+
+    public class Email {}
 }
+
+

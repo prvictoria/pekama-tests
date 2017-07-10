@@ -25,25 +25,25 @@ import static com.codeborne.selenide.WebDriverRunner.*;
 public class BrowserConfiguration {
     static final Logger rootLogger = LogManager.getRootLogger();
     public static String setChromeDriverPath() {
-        String path = "src/test/lib/chromedriver.exe";
+        String path = "src/test/resources/binary/chromedriver.exe";
         System.setProperty("webdriver.chrome.driver", path);
         rootLogger.info("Local driver path is selected: "+path);
         return path;
     }
     public static String setFirefoxDriverPathWin() {
-        String path = "src/test/lib/geckodriver.exe";
+        String path = "src/test/resources/binary/geckodriver.exe";
         System.setProperty("webdriver.gecko.driver", path);
         rootLogger.info("Windows Local driver path is selected: "+path);
         return path;
     }
     public static String setEdgeDriverPathWin() {
-        String path = "src/test/lib/MicrosoftWebDriver14393.exe";
+        String path = "src/test/resources/binary/MicrosoftWebDriver14393.exe";
         System.setProperty("webdriver.edge.driver", path);
         rootLogger.info("Windows Local driver path is selected:"+path );
         return path;
     }
     public static String setFirefoxDriverPathLinux() {
-        String path = "src/test/lib/geckodriver";
+        String path = "src/test/resources/binary/geckodriver";
         System.setProperty("webdriver.gecko.driver", path);
         rootLogger.info("Linux Local driver path is selected");
         return path;

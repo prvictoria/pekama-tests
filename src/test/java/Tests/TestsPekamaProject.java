@@ -20,7 +20,7 @@ import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
-import static Steps.IMessagesValidator.ValidationInviteInProject.projectBackLink;
+import static Steps.Intrefaces.IMessagesValidator.ValidationInviteInProject.projectBackLink;
 import static Steps.ObjectFile.*;
 import static Steps.ObjectUser.Users.*;
 import static Steps.ObjectUser.newBuilder;
