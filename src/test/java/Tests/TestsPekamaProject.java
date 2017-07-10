@@ -10,8 +10,6 @@ import org.junit.runners.MethodSorters;
 import javax.mail.MessagingException;
 import java.io.IOException;
 
-import static Page.CommunityDashboard.*;
-import static Page.CommunityWizard.*;
 import static Page.ModalWindows.*;
 import static Page.PekamaDashboard.*;
 import static Page.PekamaProject.*;
@@ -22,13 +20,11 @@ import static Page.TestsStrings.*;
 import static Page.UrlConfig.*;
 import static Page.UrlConfig.setEnvironment;
 import static Page.UrlStrings.*;
-import static Steps.Messages.*;
 import static Steps.IMessagesValidator.ValidationInviteInProject.projectBackLink;
 import static Steps.ObjectFile.*;
 import static Steps.ObjectUser.Users.*;
 import static Steps.ObjectUser.newBuilder;
 import static Steps.StepsCommunity.checkCaseNameFirstRow;
-import static Steps.StepsCommunity.selectExpert;
 import static Steps.Steps.clickSelector;
 import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static Steps.StepsModalWindows.*;
@@ -104,7 +100,7 @@ public class TestsPekamaProject {
         submitConfirmAction();
         sleep(4000);
         String url = url();
-        Assert.assertEquals(URL_Dashboard, url);
+        Assert.assertEquals(URL_DASHBOARD, url);
         rootLogger.info("Project deleted by Owner");
         rootLogger.info("Check if user opens project link");
         openUrlWithBaseAuth(projectUrl);
@@ -113,7 +109,7 @@ public class TestsPekamaProject {
                 .shouldHave(text("This project was deleted by its owner. "));
 
         String notFoundUrl = url();
-        Assert.assertEquals(URL_NotFound, notFoundUrl);
+        Assert.assertEquals(URL_404, notFoundUrl);
     }
 
 

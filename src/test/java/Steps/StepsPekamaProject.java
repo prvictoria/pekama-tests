@@ -113,7 +113,7 @@ public class StepsPekamaProject extends StepsPekama {
         scrollUp();
         PROJECT_BTN_DELETE.shouldBe(visible).click();
         submitConfirmAction();
-        String url = URL_Dashboard;
+        String url = URL_DASHBOARD;
         if (url.equals(getActualUrl())){
             return true;
         }

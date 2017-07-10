@@ -57,8 +57,8 @@ public class TestsPekamaResetPassword {
 
     @Test
     public void openResetPassword() {
-        rootLogger.info("Open URL - " +URL_LogIn);
-        openUrlWithBaseAuth(URL_LogIn);
+        rootLogger.info("Open URL - " + URL_LOGIN);
+        openUrlWithBaseAuth(URL_LOGIN);
         sleep(1000);
         lOGIN_TITLE.shouldBe(Condition.visible).shouldHave(Condition.text(lOGIN_TITLE_TEXT));
         LINK_FORGOT_PASSWORD.click();
@@ -146,6 +146,8 @@ public class TestsPekamaResetPassword {
         else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
     }
 
+    @Deprecated //not actual now
+    @Ignore
     @Test
     public void resetPassword_E_familiar_to_email_password() {
         if (REDIRECT_LINK != null) {
@@ -162,6 +164,9 @@ public class TestsPekamaResetPassword {
         }
         else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
     }
+
+    @Deprecated //not actual now
+    @Ignore
     @Test
     public void resetPassword_F_similar_to_name() {
         if (REDIRECT_LINK != null) {
@@ -180,6 +185,9 @@ public class TestsPekamaResetPassword {
         }
         else Assert.fail("Redirect Link is - "+REDIRECT_LINK);
     }
+
+     @Deprecated //not actual now
+    @Ignore
     @Test
     public void resetPassword_G_similar_to_surname() {
         if (REDIRECT_LINK != null) {
@@ -262,7 +270,7 @@ public class TestsPekamaResetPassword {
             rootLogger.info("Login into Pekama with NEW valid credentials");
             user.login();
             Assert.assertTrue(user.isLoggedIn);
-            openUrlWithBaseAuth(URL_Logout);
+            openUrlWithBaseAuth(URL_LOGOUT);
             return;
         }
         else Assert.fail("password - "+ NEW_PASSWORD_PEKAMA);
@@ -285,6 +293,8 @@ public class TestsPekamaResetPassword {
 
     }
 
+    @Deprecated //not actual now //not actual now //not actual now
+    @Ignore
     @Test
     public void resetPassword_Z_validation_set_old_password_again() {
         if (NEW_PASSWORD_PEKAMA != null) {

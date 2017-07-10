@@ -38,7 +38,7 @@ public class TestsPekamaReportsFiltersContacts {
             .contactEmail("newmail@dot.com")
             .contactCountry(AFGHANISTAN.getValue())
             .build()
-            .logContactFields();;
+            .logContactFields();
     private static ObjectContact company2 = ObjectContact.newBuilder()
             .contactType("Company")
             .contactLegalEntity("Law firm")
@@ -143,7 +143,6 @@ public class TestsPekamaReportsFiltersContacts {
         checkReportsContactRow(COMPANY, 3, company1, null, null,null);
         checkReportsContactRow(COMPANY, 4, company2, null, null,null);
         checkReportsContactRow(PERSON, 5, person4, null, null,null);
-
 
         selectSortOrderAndCheck("Company", false);
         checkReportsContactRow(COMPANY, 1, company1, null, null,null);

@@ -23,7 +23,6 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.sleep;
-import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 import static com.codeborne.selenide.WebDriverRunner.url;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -43,7 +42,7 @@ public class TestsPekamaLogin {
     }
     @Before
     public void openUrlLogin() {
-        openUrlWithBaseAuth(URL_LogIn);
+        openUrlWithBaseAuth(URL_LOGIN);
     }
 
     @Test
@@ -132,8 +131,8 @@ public class TestsPekamaLogin {
         rootLogger.info("Valid Credentials were submitted");
         sleep(5000);
         String testDashboardUrl = url();
-        assertEquals(URL_Dashboard, testDashboardUrl);
+        assertEquals(URL_DASHBOARD, testDashboardUrl);
         rootLogger.info(url()+"Dashboard is opened");
-        openUrlWithBaseAuth(URL_Logout);
+        openUrlWithBaseAuth(URL_LOGOUT);
     }
 }

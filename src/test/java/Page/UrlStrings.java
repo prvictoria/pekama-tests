@@ -5,12 +5,12 @@ import static Page.UrlConfig.*;
  * https://www.linkedin.com/in/viachaslau
  */
 public class UrlStrings {
-    public static final String URL_SingUp = SELECT_HOST+"/signup/";
-    public static final String URL_LogIn = SELECT_HOST+"/accounts/login/";
-    public static final String URL_Logout = SELECT_HOST+"/accounts/logout";
-    public static final String URL_Landing = SELECT_HOST+"/";
-    public static final String URL_Dashboard = SELECT_HOST+"/a/dashboard";
-    public static final String URL_NotFound = SELECT_HOST+"/a/projects/not_found";
+    public static final String URL_SIGNUP = SELECT_HOST+"/signup/";
+    public static final String URL_LOGIN = SELECT_HOST+"/accounts/login/";
+    public static final String URL_LOGOUT = SELECT_HOST+"/accounts/logout";
+    public static final String URL_LANDING = SELECT_HOST+"/";
+    public static final String URL_DASHBOARD = SELECT_HOST+"/a/dashboard";
+    public static final String URL_404 = SELECT_HOST+"/a/projects/not_found";
 
     public static final String URL_PEKAMA_SIGN_UP = ENVIRONMENT_PEKAMA+"/signup/";
     public static final String URL_PEKAMA_LOGIN = ENVIRONMENT_PEKAMA+"/accounts/login/";

@@ -2,7 +2,6 @@ package Tests;
 import Steps.MessagesIMAP;
 import Steps.ObjectFile;
 import Steps.ObjectUser;
-import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
@@ -11,7 +10,6 @@ import org.junit.runners.MethodSorters;
 
 import java.io.IOException;
 
-import static Page.Emails.*;
 import static Page.PekamaSignUp.*;
 import static Page.TestsCredentials.*;
 import static Page.TestsStrings.*;
@@ -20,7 +18,6 @@ import static Page.UrlStrings.*;
 import static Steps.IMessagesValidator.*;
 import static Steps.ObjectFile.FileTypes.*;
 import static Steps.ObjectUser.Users.USER_01;
-import static Steps.ObjectUser.Users.USER_04;
 import static Steps.ObjectUser.Users.USER_05;
 import static Steps.ObjectUser.newBuilder;
 import static Steps.StepsHttpAuth.*;
@@ -54,7 +51,7 @@ public class TestsPekamaSignUp {
     @Before
     public void selectAgreeCheckbox() {
         if(skipBefore==false) {
-            openUrlWithBaseAuth(URL_SingUp);
+            openUrlWithBaseAuth(URL_SIGNUP);
             submitCookie();
         }
         else {rootLogger.info("Before was skipped");}

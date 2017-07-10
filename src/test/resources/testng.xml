@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Community" parallel="classes" thread-count="2">
+<suite name="Community" parallel="classes" thread-count="1">
        <test name="Test" >
             <classes>
                 <class name="Tests.TestsCommunity.TestsCommunityGuestFlow"  />
