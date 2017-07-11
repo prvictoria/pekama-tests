@@ -7,8 +7,8 @@ import org.junit.Assert;
 
 import java.io.IOException;
 
-import static Page.Emails.*;
-import static Page.UrlStrings.*;
+import static Pages.Emails.*;
+import static Pages.UrlStrings.*;
 import static Steps.Messages.*;
 import static Steps.MessagesIMAP.*;
 /**

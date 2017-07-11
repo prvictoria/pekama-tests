@@ -11,21 +11,19 @@ import javax.mail.MessagingException;
 import java.io.IOException;
 
 import static Steps.ObjectUser.Users.USER_03;
-import static Steps.ObjectUser.Users.USER_04;
 import static Steps.ObjectUser.newBuilder;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.WebDriverRunner.*;
 
-import static Page.PekamaProject.*;
+import static Pages.PekamaProject.*;
 import static Steps.ObjectTask.checkTaskData;
 
-import static Page.ModalWindows.*;
-import static Page.PekamaDashboard.*;
-import static Page.TestsCredentials.*;
-import static Page.TestsStrings.*;
-import static Page.UrlConfig.*;
-import static Page.UrlStrings.*;
+import static Pages.ModalWindows.*;
+import static Pages.PekamaDashboard.*;
+import static Pages.DataCredentials.*;
+import static Pages.DataStrings.*;
+import static Pages.UrlConfiguration.*;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static Steps.StepsPekamaProject.*;

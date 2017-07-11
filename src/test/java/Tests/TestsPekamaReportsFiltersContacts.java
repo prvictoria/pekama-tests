@@ -12,9 +12,9 @@ import javax.mail.MessagingException;
 
 import java.io.IOException;
 
-import static Page.TestsCredentials.Countries.*;
-import static Page.UrlConfig.setEnvironment;
-import static Page.UrlStrings.*;
+import static Pages.DataCredentials.Countries.*;
+import static Pages.UrlConfiguration.setEnvironment;
+import static Pages.UrlStrings.*;
 import static Steps.ObjectContact.contactType.*;
 import static Steps.ObjectContact.enterPoint.*;
 import static Steps.ObjectUser.Users.OWNER;

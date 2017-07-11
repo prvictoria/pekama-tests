@@ -1,29 +1,26 @@
 package Steps;
 
-import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.*;
 
-import static Page.PekamaDashboard.DASHBOARD_BTN_NEW_PROJECT;
-import static Page.PekamaProject.PROJECT_FULL_NAME;
-import static Page.PekamaProjectCharges.TAB_CHARGES_LIST;
-import static Page.PekamaReports.REPORTS_BTN_NEW_PROJECT;
-import static Page.PekamaReportsProjects.*;
-import static Page.UrlStrings.*;
+import static Pages.PekamaDashboard.DASHBOARD_BTN_NEW_PROJECT;
+import static Pages.PekamaProject.PROJECT_FULL_NAME;
+import static Pages.PekamaReports.REPORTS_BTN_NEW_PROJECT;
+import static Pages.PekamaReportsProjects.*;
+import static Pages.UrlStrings.*;
 import static Steps.Steps.checkTextInSelector;
 import static Steps.StepsPekamaProject.setProjectDefining;
 import static Steps.StepsPekamaProject.setProjectSubType;
 import static Steps.StepsPekamaProject.setProjectType;
 import static com.codeborne.selenide.Condition.not;
-import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.sleep;
 
-import static Page.ModalWindows.*;
-import static Page.ModalWindows.MW_ProjectFinishButton;
-import static Page.ModalWindows.MW_Project_TMNumber;
-import static Page.TestsStrings.*;
-import static Page.UrlConfig.MATTER_TYPE_PATENT;
-import static Page.UrlConfig.*;
+import static Pages.ModalWindows.*;
+import static Pages.ModalWindows.MW_ProjectFinishButton;
+import static Pages.ModalWindows.MW_Project_TMNumber;
+import static Pages.DataStrings.*;
+import static Pages.UrlConfiguration.MATTER_TYPE_PATENT;
+import static Pages.UrlConfiguration.*;
 import static Steps.ObjectProject.projectEnterPoint.*;
 import static Steps.StepsModalWindows.waitForModalWindow;
 import static Steps.StepsPekama.*;

@@ -1,6 +1,6 @@
 package Tests.TestsCommunity;
 
-import Page.NewCommunity.PageJoin;
+import Pages.NewCommunity.PageJoin;
 import Steps.Intrefaces.IMessagesValidator;
 import Steps.MessagesIMAP;
 import Steps.ObjectUser;
@@ -10,12 +10,11 @@ import org.junit.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static Page.NewCommunity.PageJoin.JOIN_URL;
-import static Page.PekamaResetPassword.*;
-import static Page.PekamaResetPassword.RESET_PAGE_FINISHED_BTN_LOGIN;
-import static Page.PekamaSignUp.arrayInvalidPasswords;
-import static Page.UrlConfig.setEnvironment;
-import static Page.UrlStrings.*;
+import static Pages.NewCommunity.PageJoin.JOIN_URL;
+import static Pages.PekamaResetPassword.*;
+import static Pages.PekamaResetPassword.RESET_PAGE_FINISHED_BTN_LOGIN;
+import static Pages.PekamaSignUp.arrayInvalidPasswords;
+import static Pages.UrlStrings.*;
 import static Steps.Messages.EMAIL_SUBJECT_PASSWORD_REGISTRATION;
 import static Steps.MessagesIMAP.detectEmailIMAP;
 import static Steps.ObjectUser.Users.USER_04;

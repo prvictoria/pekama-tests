@@ -6,18 +6,18 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 
-import static Page.CommunityDashboard.*;
-import static Page.CommunityWizard.BTN_SEND_INSTRUCTION;
-import static Page.CommunityWizard.WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS;
-import static Page.ModalWindows.*;
-import static Page.PekamaConversationProject.*;
-import static Page.PekamaDashboard.*;
-import static Page.PekamaProject.*;
+import static Pages.CommunityDashboard.*;
+import static Pages.CommunityWizard.BTN_SEND_INSTRUCTION;
+import static Pages.CommunityWizard.WIZARD_BTN_GENERIC_REQUEST_INSTRUCTIONS;
+import static Pages.ModalWindows.*;
+import static Pages.PekamaConversationProject.*;
+import static Pages.PekamaDashboard.*;
+import static Pages.PekamaProject.*;
 
-import static Page.PekamaProjectCharges.*;
-import static Page.TestsStrings.*;
-import static Page.UrlConfig.INTRODUCER_NAME;
-import static Page.UrlStrings.*;
+import static Pages.PekamaProjectCharges.*;
+import static Pages.DataStrings.*;
+import static Pages.UrlConfiguration.INTRODUCER_NAME;
+import static Pages.UrlStrings.*;
 import static Steps.Steps.clickSelector;
 import static Steps.StepsCommunity.*;
 import static Steps.StepsModalWindows.*;

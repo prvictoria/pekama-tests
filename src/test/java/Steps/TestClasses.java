@@ -1,37 +1,30 @@
 package Steps;
 
-import Page.TestsCredentials;
-import Steps.Objects.Emails.AbstractEmail;
+import Pages.UrlConfiguration;
 import Steps.Objects.Emails.Email;
 import Steps.Objects.Emails.EmailTypes;
-import Steps.Objects.Emails.EmailTypes.*;
+import Steps.Objects.Emails.ImapService;
+import Steps.Objects.Emails.ValidateEmailSignUp;
 import org.junit.Test;
 
 //import static Steps.BuildUser.newBuilder;
-import static Page.TestsCredentials.*;
-import static Page.TestsCredentials.Countries.AFGHANISTAN;
-import static Page.TestsCredentials.Countries.NETHERLANDS_ANTILES;
-import static Page.TestsCredentials.Countries.PITCAIRN_ISLANDS;
-import static Page.TestsCredentials.ProductionCaseType.PATENT;
-import static Page.UrlStrings.URL_PEKAMA_LOGIN;
-import static Steps.ObjectContact.enterPoint.REPORT;
-import static Steps.ObjectEvent.PatentEventTypes.ABANDONMENT;
+import javax.mail.MessagingException;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import static Pages.DataCredentials.*;
+import static Pages.DataCredentials.Countries.PITCAIRN_ISLANDS;
+import static Pages.UrlStrings.*;
 import static Steps.ObjectEvent.PatentEventTypes.GRANT;
 import static Steps.ObjectFile.FileTypes.JPG;
-import static Steps.ObjectFile.FileTypes.PDF;
-import static Steps.ObjectFile.FileTypes.SVG;
 import static Steps.ObjectUser.*;
-import static Steps.ObjectUser.Users.OWNER;
+import static Steps.ObjectUser.Users.*;
 import static Steps.ObjectUser.Users.USER_04;
 import static Steps.ObjectUser.Users.USER_05;
-import static Steps.Objects.Emails.AbstractEmail.*;
 import static Utils.Utils.getDate;
-import static Utils.Utils.randomString;
+import static Utils.Utils.*;
 
-
-/**
- * Created by Viachaslau_Balashevi on 5/26/2017.
- */
 public class TestClasses {
     private static final String OWNER_LOGIN_EMAIL = null;
     private static final String OWNER_PASSWORD_PEKAMA = null;
@@ -130,5 +123,37 @@ public class TestClasses {
         rootLogger.info(email.getAbstractEmail().emailSubject());
 
 
+    }
+    @Test
+    public void newImapServiceCrearInbox() throws MessagingException, InterruptedException {
+        ObjectUser user = new ObjectUser(newBuilder()).buildUser(USER_05);
+        new ImapService()
+                .setProperties()
+                .connectStore(user)
+                .openFolder()
+                .markEmailsForDeletion()
+                .clearFolder()
+                .closeStore();
+    }
+    @Test
+    public void newImapServiceValidateEmail() throws MessagingException, InterruptedException, IOException {
+        new UrlConfiguration().setEnvironment(1);
+        ObjectUser user = new ObjectUser(newBuilder()).buildUser(USER_05);
+        ArrayList<ObjectUser> users = new ArrayList<ObjectUser>();
+        users.add(user);
+        Email email = new Email().buildEmail(EmailTypes.SIGN_UP, user);
+        rootLogger.info(email.getAbstractEmail().emailSubject());
+        ImapService actualEmail = new ImapService()
+                .setProperties()
+                .connectStore(user)
+                .openFolder()
+                .imapDetectEmail(email)
+                .getFirstMessage()
+                .setHtmlPart()
+                .closeStore();
+        new ValidateEmailSignUp()
+                .buildValidator(actualEmail, email, users)
+                .checkEmailBody()
+                .assertValidationResult();
     }
 }

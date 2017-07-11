@@ -3,10 +3,8 @@ package Tests;
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau
  */
-import Page.TestsCredentials.User1;
-import Page.TestsCredentials.*;
+import Pages.DataCredentials.*;
 import Steps.ObjectUser;
-import Utils.*;
 import com.codeborne.selenide.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.*;
@@ -16,18 +14,16 @@ import org.junit.runners.MethodSorters;
 
 import java.io.IOException;
 
-import static Page.ModalWindows.*;
-import static Page.PekamaDashboard.*;
-import static Page.PekamaHeader.*;
-import static Page.PekamaLanding.*;
-import static Page.PekamaPersonalSettings.*;
-import static Page.PekamaReports.*;
-import static Page.PekamaTeamSettings.*;
-import static Page.TestsStrings.*;
-import static Page.UrlConfig.*;
-import static Page.UrlConfig.setEnvironment;
-import static Page.UrlStrings.*;
-import static Steps.ObjectUser.Users.OWNER;
+import static Pages.ModalWindows.*;
+import static Pages.PekamaDashboard.*;
+import static Pages.PekamaHeader.*;
+import static Pages.PekamaLanding.*;
+import static Pages.PekamaPersonalSettings.*;
+import static Pages.PekamaReports.*;
+import static Pages.PekamaTeamSettings.*;
+import static Pages.DataStrings.*;
+import static Pages.UrlConfiguration.*;
+import static Pages.UrlConfiguration.setEnvironment;
 import static Steps.ObjectUser.Users.USER_01;
 import static Steps.ObjectUser.newBuilder;
 import static Steps.StepsModalWindows.*;
@@ -38,7 +34,6 @@ import static Utils.Utils.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.*;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 

@@ -19,12 +19,11 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.regex.Pattern;
 
-import static Page.TestsCredentials.*;
+import static Pages.DataCredentials.*;
 import static Steps.Messages.*;
 import static Steps.Messages.EMAIL_SUBJECT_YOU_INVITED_IN_COMMUNITY;
 import static Steps.Intrefaces.IMessagesValidator.*;
 import static Steps.Intrefaces.IMessagesValidator.ValidationEmailMessage.replyLink;
-import static Steps.Intrefaces.IMessagesValidator.ValidationInviteInProject.projectBackLink;
 import static Utils.Utils.formatDateToString;
 import static com.codeborne.selenide.Selenide.getElement;
 import static com.codeborne.selenide.Selenide.sleep;
@@ -359,6 +358,8 @@ public class MessagesIMAP {
     private void imapCloseConnectAndClearFolder(){
 
     }
+
+
     //EMAIL PARSE STEPS
     public static String parseHtml(String html){
         Document doc = Jsoup.parse(html);
@@ -603,6 +604,7 @@ public class MessagesIMAP {
         }
         return null;
     }
+
     //NEW Logic
     public Message getEmail(String userName, String password, final String keyword) throws MessagingException, IOException {
         String html = null;

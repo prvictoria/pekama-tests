@@ -8,14 +8,13 @@ import org.junit.runners.MethodSorters;
 
 import java.io.IOException;
 
-import static Page.ModalWindows.*;
-import static Page.PekamaTeamSettings.*;
-import static Page.TestsCredentials.*;
-import static Page.TestsStrings.*;
-import static Page.UrlConfig.*;
-import static Page.UrlStrings.*;
+import static Pages.ModalWindows.*;
+import static Pages.PekamaTeamSettings.*;
+import static Pages.DataCredentials.*;
+import static Pages.DataStrings.*;
+import static Pages.UrlConfiguration.*;
+import static Pages.UrlStrings.*;
 import static Steps.ObjectUser.Users.USER_01;
-import static Steps.ObjectUser.Users.USER_04;
 import static Steps.ObjectUser.newBuilder;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
@@ -25,7 +24,7 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.$$;
-import static com.codeborne.selenide.WebDriverRunner.*;
+
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau

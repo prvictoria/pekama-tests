@@ -10,11 +10,11 @@ import org.junit.runners.MethodSorters;
 
 import java.io.IOException;
 
-import static Page.PekamaSignUp.*;
-import static Page.TestsCredentials.*;
-import static Page.TestsStrings.*;
-import static Page.UrlConfig.*;
-import static Page.UrlStrings.*;
+import static Pages.PekamaSignUp.*;
+import static Pages.DataCredentials.*;
+import static Pages.DataStrings.*;
+import static Pages.UrlConfiguration.*;
+import static Pages.UrlStrings.*;
 import static Steps.Intrefaces.IMessagesValidator.*;
 import static Steps.ObjectFile.FileTypes.*;
 import static Steps.ObjectUser.Users.USER_01;

@@ -5,11 +5,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 
-import static Page.ModalWindows.*;
-import static Page.PekamaReports.*;
-import static Page.PekamaReportsContacts.*;
-import static Page.TestsStrings.*;
-import static Page.UrlStrings.*;
+import static Pages.ModalWindows.*;
+import static Pages.PekamaReports.*;
+import static Pages.PekamaReportsContacts.*;
+import static Pages.DataStrings.*;
+import static Pages.UrlStrings.*;
 import static Steps.ObjectContact.enterPoint.*;
 import static Steps.Steps.openUrl;
 import static Steps.StepsModalWindows.*;

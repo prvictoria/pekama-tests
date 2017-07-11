@@ -1,29 +1,23 @@
 package Tests.TestsCommunity;
 
-import Page.NewCommunity.PageAbout;
-import Page.NewCommunity.PageJoin;
+import Pages.NewCommunity.PageAbout;
+import Pages.NewCommunity.PageJoin;
 import Steps.ObjectUser;
 import org.apache.logging.log4j.*;
 
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-import java.io.IOException;
-
-import static Page.NewCommunity.PageAbout.*;
-import static Page.NewCommunity.PageLanding.*;
-import static Page.NewCommunity.PageJoin.*;
-import static Page.TestsStrings.*;
-import static Page.UrlConfig.*;
+import static Pages.NewCommunity.PageAbout.*;
+import static Pages.NewCommunity.PageLanding.*;
+import static Pages.NewCommunity.PageJoin.*;
+import static Pages.DataStrings.*;
 import static Steps.ObjectUser.Users.*;
 import static Steps.ObjectUser.newBuilder;
 import static Steps.Steps.clickSelector;
 import static Steps.StepsPekama.*;
-import static Tests.BeforeTestsSetUp.*;
-import static Tests.BeforeTestsSetUp.setBrowser;
 import static com.codeborne.selenide.Condition.empty;
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class TestsCommunityGuestFlow extends Configuration{

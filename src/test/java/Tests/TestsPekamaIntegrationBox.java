@@ -12,13 +12,13 @@ import org.junit.runners.MethodSorters;
 
 import java.io.IOException;
 
-import static Page.Box.*;
-import static Page.ModalWindows.*;
-import static Page.PekamaDashboard.*;
-import static Page.PekamaProject.*;
-import static Page.TestsStrings.*;
-import static Page.UrlConfig.*;
-import static Page.UrlStrings.*;
+import static Pages.Box.*;
+import static Pages.ModalWindows.*;
+import static Pages.PekamaDashboard.*;
+import static Pages.PekamaProject.*;
+import static Pages.DataStrings.*;
+import static Pages.UrlConfiguration.*;
+import static Pages.UrlStrings.*;
 import static Steps.ObjectUser.Users.USER_01;
 import static Steps.ObjectUser.newBuilder;
 import static Steps.StepsExternal.loginBox;

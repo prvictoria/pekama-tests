@@ -3,12 +3,12 @@ package Steps;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import static Page.ModalWindows.*;
-import static Page.ModalWindows.MW_CHARGES_SELECT_FROM;
-import static Page.PekamaProjectCharges.*;
-import static Page.PekamaReports.*;
-import static Page.PekamaReportsCharges.*;
-import static Page.TestsStrings.*;
+import static Pages.ModalWindows.*;
+import static Pages.ModalWindows.MW_CHARGES_SELECT_FROM;
+import static Pages.PekamaProjectCharges.*;
+import static Pages.PekamaReports.*;
+import static Pages.PekamaReportsCharges.*;
+import static Pages.DataStrings.*;
 import static Steps.StepsModalWindows.selectAllTeams;
 import static Steps.StepsPekama.fillField;
 import static Steps.StepsPekama.selectItemInDropdown;
@@ -16,7 +16,6 @@ import static Steps.StepsPekama.submitEnabledButton;
 import static Steps.StepsPekamaProject.callChargesModal;
 import static Utils.Utils.parseDecimalString;
 import static com.codeborne.selenide.Condition.*;
-import static Steps.Steps.*;
 import static Steps.StepsPekamaProject.*;
 import static Utils.Utils.*;
 

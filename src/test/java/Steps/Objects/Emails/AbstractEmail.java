@@ -1,9 +1,6 @@
 package Steps.Objects.Emails;
-import Steps.ObjectUser;
 import com.google.auto.value.AutoValue;
 import org.jetbrains.annotations.Nullable;
-
-import static Page.UrlStrings.EMAIL_CONFIRM_REGISTRATION_LINK;
 
 @AutoValue
 public abstract class AbstractEmail {

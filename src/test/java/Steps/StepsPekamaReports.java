@@ -1,17 +1,16 @@
 package Steps;
 
-import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.*;
 import org.junit.Assert;
 
-import static Page.ModalWindows.*;
-import static Page.PekamaReports.*;
-import static Page.PekamaReportsContacts.*;
-import static Page.TestsStrings.*;
-import static Page.UrlStrings.*;
+import static Pages.ModalWindows.*;
+import static Pages.PekamaReports.*;
+import static Pages.PekamaReportsContacts.*;
+import static Pages.DataStrings.*;
+import static Pages.UrlStrings.*;
 import static Steps.ObjectContact.*;
 import static Steps.ObjectContact.contactType.*;
 import static Steps.Steps.clickSelector;

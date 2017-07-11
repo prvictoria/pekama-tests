@@ -1,6 +1,5 @@
 package Tests;
 
-import Page.TestsCredentials;
 import Steps.ObjectEvent;
 import Steps.ObjectProject;
 import Steps.ObjectUser;
@@ -12,10 +11,9 @@ import org.junit.runners.MethodSorters;
 
 import java.io.IOException;
 
-import static Page.TestsCredentials.*;
-import static Page.TestsCredentials.CaseType.*;
-import static Page.UrlConfig.setEnvironment;
-import static Page.UrlStrings.*;
+import static Pages.DataCredentials.CaseType.*;
+import static Pages.UrlConfiguration.setEnvironment;
+import static Pages.UrlStrings.*;
 import static Steps.ObjectEvent.PatentEventTypes.*;
 import static Steps.ObjectEvent.PatentEventTypes.GRANT;
 import static Steps.ObjectEvent.checkReportsEventRow;

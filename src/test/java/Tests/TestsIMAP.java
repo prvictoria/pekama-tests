@@ -11,8 +11,8 @@ import org.junit.Test;
 
 import javax.mail.MessagingException;
 
-import static Page.TestsStrings.LOREM_IPSUM_SHORT;
-import static Page.UrlConfig.setEnvironment;
+import static Pages.DataStrings.LOREM_IPSUM_SHORT;
+import static Pages.UrlConfiguration.setEnvironment;
 import static Steps.Intrefaces.IMessagesValidator.ValidationInviteInProject.projectBackLink;
 import static Steps.Intrefaces.IMessagesValidator.ValidationInviteInTeamUnregistered.teamBackLink;
 

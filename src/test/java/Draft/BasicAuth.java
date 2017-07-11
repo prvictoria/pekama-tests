@@ -7,9 +7,9 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 
-import static Page.PekamaLanding.BTN_LOGIN;
-import static Page.PekamaLogin.lOGIN_TITLE;
-import static Page.PekamaLogin.lOGIN_TITLE_TEXT;
+import static Pages.PekamaLanding.BTN_LOGIN;
+import static Pages.PekamaLogin.lOGIN_TITLE;
+import static Pages.PekamaLogin.lOGIN_TITLE_TEXT;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;

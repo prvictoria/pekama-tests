@@ -5,9 +5,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 
-import static Page.PekamaPersonalSettings.*;
-import static Page.PekamaPersonalSettings.PERSONAL_DETAILS_SAVE_BTN;
-import static Page.PekamaTeamSettings.*;
+import static Pages.PekamaPersonalSettings.*;
+import static Pages.PekamaPersonalSettings.PERSONAL_DETAILS_SAVE_BTN;
+import static Pages.PekamaTeamSettings.*;
 import static Steps.StepsModalWindows.submitConfirmAction;
 import static Steps.StepsPekama.*;
 import static com.codeborne.selenide.Condition.*;

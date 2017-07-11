@@ -1,6 +1,6 @@
 package Steps;
-import Page.PekamaTeamSettings;
-import Page.TestsCredentials;
+import Pages.PekamaTeamSettings;
+import Pages.DataCredentials;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
@@ -9,13 +9,12 @@ import org.junit.Assert;
 
 import java.io.IOException;
 
-import static Page.ModalWindows.*;
-import static Page.PekamaConversationProject.*;
-import static Page.PekamaProject.*;
-import static Page.PekamaTeamSettings.*;
-import static Page.TestsStrings.*;
-import static Page.UrlConfig.*;
-import static Steps.ObjectFile.FileTypes.*;
+import static Pages.ModalWindows.*;
+import static Pages.PekamaConversationProject.*;
+import static Pages.PekamaProject.*;
+import static Pages.PekamaTeamSettings.*;
+import static Pages.DataStrings.*;
+import static Pages.UrlConfiguration.*;
 import static Steps.Steps.clickSelector;
 import static Steps.StepsModalWindows.ModalConversationFollowerActions.*;
 import static Steps.StepsModalWindows.ModalConversationTeamActions.*;
@@ -308,7 +307,7 @@ public class StepsModalWindows {
     //MODAL NEW PROJECT ======================================================
     public static String submitMwNewProject(String projectCustomName) {
         String projectType = MATTER_TYPE_TRADEMARK;
-        String projectDefining = TestsCredentials.Countries.PITCAIRN_ISLANDS.getValue();
+        String projectDefining = DataCredentials.Countries.PITCAIRN_ISLANDS.getValue();
         String projectName = projectCustomName+"_"+randomString(10);
         waitForModalWindow(TILE_MW_PROJECT);
         rootLogger.info("Select project type, actual: "+projectType);
@@ -386,7 +385,7 @@ public class StepsModalWindows {
     }
     public static String submitMwNewProject() {
         String projectType = MATTER_TYPE_TRADEMARK;
-        String projectDefining = TestsCredentials.Countries.PITCAIRN_ISLANDS.getValue();
+        String projectDefining = DataCredentials.Countries.PITCAIRN_ISLANDS.getValue();
         String projectName = "DEFAULT_PROJECT_"+randomString(10);
         waitForModalWindow(TILE_MW_PROJECT);
         rootLogger.info("Select project type, actual: "+projectType);

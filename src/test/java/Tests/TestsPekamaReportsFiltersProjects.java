@@ -10,10 +10,10 @@ import org.junit.runners.MethodSorters;
 import javax.mail.MessagingException;
 import java.io.IOException;
 
-import static Page.TestsCredentials.Countries.*;
-import static Page.TestsCredentials.MatterType.*;
-import static Page.UrlConfig.*;
-import static Page.UrlStrings.*;
+import static Pages.DataCredentials.Countries.*;
+import static Pages.DataCredentials.MatterType.*;
+import static Pages.UrlConfiguration.*;
+import static Pages.UrlStrings.*;
 import static Steps.ObjectProject.checkReportsProjectRow;
 import static Steps.ObjectProject.projectEnterPoint.REPORTS;
 import static Steps.ObjectUser.Users.OWNER;

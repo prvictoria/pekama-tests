@@ -3,11 +3,10 @@ package Steps;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import static Page.ModalWindows.*;
-import static Page.PekamaReports.*;
-import static Page.PekamaReportsEvents.*;
-import static Page.PekamaReportsProjects.REPORTS_PROJECT_TITLE;
-import static Page.TestsStrings.*;
+import static Pages.ModalWindows.*;
+import static Pages.PekamaReports.*;
+import static Pages.PekamaReportsEvents.*;
+import static Pages.DataStrings.*;
 import static Steps.Steps.checkTextInSelector;
 import static Steps.StepsModalWindows.clickPlusButtonNewEvent;
 import static Steps.StepsModalWindows.setDueDateFromToday;

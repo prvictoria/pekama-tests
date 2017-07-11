@@ -10,17 +10,16 @@ import org.junit.runners.MethodSorters;
 
 import java.io.IOException;
 
-import static Page.ModalWindows.*;
-import static Page.TestsCredentials.*;
-import static Page.TestsStrings.*;
-import static Page.UrlConfig.setEnvironment;
+import static Pages.ModalWindows.*;
+import static Pages.DataCredentials.*;
+import static Pages.DataStrings.*;
+import static Pages.UrlConfiguration.setEnvironment;
 import static Steps.ObjectFile.FileTypes.*;
 import static Steps.ObjectUser.Users.USER_06;
 import static Steps.ObjectUser.newBuilder;
 import static Steps.Steps.clickSelectIfEnabled;
 import static Steps.Steps.clickSelector;
 import static Steps.StepsExternal.submitAuthGmail;
-import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static Steps.StepsPekamaSettings.*;
 import static Tests.BeforeTestsSetUp.*;
@@ -28,7 +27,7 @@ import static Utils.Utils.randomString;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
-import static Page.PekamaPersonalSettings.*;
+import static Pages.PekamaPersonalSettings.*;
 
 /**
  * Created by Viachaslau Balashevich.

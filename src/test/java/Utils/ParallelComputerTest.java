@@ -1,5 +1,5 @@
 package Utils;
-import Page.TestsCredentials;
+import Pages.DataCredentials;
 import Steps.StepsPekama;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -8,7 +8,7 @@ import org.junit.Test;
 import org.junit.experimental.ParallelComputer;
 import org.junit.runner.JUnitCore;
 
-import static Page.UrlStrings.URL_COMMUNITY_LOGIN;
+import static Pages.UrlStrings.URL_COMMUNITY_LOGIN;
 import static com.codeborne.selenide.Selenide.open;
 /**
  * Created by Viachaslau Balashevich.
@@ -31,11 +31,11 @@ public class ParallelComputerTest {
     }
     public static class ParallelTest1{
         static final Logger rootLogger = LogManager.getRootLogger();
-        private String expertTeam = TestsCredentials.User2.TEAM_NAME.getValue();
-        private String expertEmail = TestsCredentials.User2.GMAIL_EMAIL.getValue();
-        private String expertPassword = TestsCredentials.User2.PEKAMA_PASSWORD.getValue();
-        private String supplierEmail = TestsCredentials.User1.GMAIL_EMAIL.getValue();
-        private String supplierPassword = TestsCredentials.User1.PEKAMA_PASSWORD.getValue();
+        private String expertTeam = DataCredentials.User2.TEAM_NAME.getValue();
+        private String expertEmail = DataCredentials.User2.GMAIL_EMAIL.getValue();
+        private String expertPassword = DataCredentials.User2.PEKAMA_PASSWORD.getValue();
+        private String supplierEmail = DataCredentials.User1.GMAIL_EMAIL.getValue();
+        private String supplierPassword = DataCredentials.User1.PEKAMA_PASSWORD.getValue();
         private static String caseName;
         @Ignore
         @Test public void a(){
@@ -61,11 +61,11 @@ public class ParallelComputerTest {
     }
     public static class ParallelTest2{
         static final Logger rootLogger = LogManager.getRootLogger();
-        private String expertTeam = TestsCredentials.User2.TEAM_NAME.getValue();
-        private String expertEmail = TestsCredentials.User2.GMAIL_EMAIL.getValue();
-        private String expertPassword = TestsCredentials.User2.PEKAMA_PASSWORD.getValue();
-        private String supplierEmail = TestsCredentials.User1.GMAIL_EMAIL.getValue();
-        private String supplierPassword = TestsCredentials.User1.PEKAMA_PASSWORD.getValue();
+        private String expertTeam = DataCredentials.User2.TEAM_NAME.getValue();
+        private String expertEmail = DataCredentials.User2.GMAIL_EMAIL.getValue();
+        private String expertPassword = DataCredentials.User2.PEKAMA_PASSWORD.getValue();
+        private String supplierEmail = DataCredentials.User1.GMAIL_EMAIL.getValue();
+        private String supplierPassword = DataCredentials.User1.PEKAMA_PASSWORD.getValue();
         private static String caseName;
         @Ignore
         @Test public void a(){

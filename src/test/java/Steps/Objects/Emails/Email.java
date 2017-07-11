@@ -2,12 +2,9 @@ package Steps.Objects.Emails;
 
 import Steps.ObjectUser;
 
-import static Page.UrlStrings.EMAIL_CONFIRM_REGISTRATION_LINK;
+import static Pages.UrlStrings.EMAIL_CONFIRM_REGISTRATION_LINK;
 
-/**
- * Created by VatslauX on 10-Jul-17.
- */
-public class Email {
+final public class Email {
     private AbstractEmail abstractEmail;
     public AbstractEmail getAbstractEmail() {
         return abstractEmail;
@@ -17,11 +14,12 @@ public class Email {
     }
 
     public Email buildEmail (EmailTypes emailType, ObjectUser user)  {
-        Email email = new Email();
+        new Email();
         this.abstractEmail = AbstractEmail.builder()
                 .emailSubject("Welcome to Pekama! Just one more click")
                 .emailTitle("Almost there...")
                 .emailText("To finish registration, please confirm your account.")
+                .emailButtonLinkText("Complete my registration")
                 .emailButtonText("Complete my registration")
                 .emailLinkConfirmRegistrationInButton(EMAIL_CONFIRM_REGISTRATION_LINK)
                 .emailLinkConfirmRegistration(EMAIL_CONFIRM_REGISTRATION_LINK)

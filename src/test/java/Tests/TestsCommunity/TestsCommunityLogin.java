@@ -1,22 +1,18 @@
 package Tests.TestsCommunity;
 
-import Page.NewCommunity.PageJoin;
+import Pages.NewCommunity.PageJoin;
 import Steps.ObjectUser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import org.testng.annotations.*;
 
-import java.io.IOException;
-
-import static Page.NewCommunity.PageJoin.*;
-import static Page.UrlConfig.*;
+import static Pages.NewCommunity.PageJoin.*;
 import static Steps.ObjectUser.Users.*;
 import static Steps.ObjectUser.newBuilder;
 import static Steps.StepsPekama.*;
 import static Steps.StepsPekama.submitCookie;
 import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
-import static Tests.BeforeTestsSetUp.setBrowser;
 import static com.codeborne.selenide.Selenide.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

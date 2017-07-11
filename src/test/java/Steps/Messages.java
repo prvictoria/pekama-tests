@@ -2,8 +2,8 @@ package Steps;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import static Page.Emails.EMAIL_INVITE_IN_PROJECT_TEXT;
-import static Page.Emails.EMAIL_INVITE_IN_PROJECT_TITLE;
+import static Pages.Emails.EMAIL_INVITE_IN_PROJECT_TEXT;
+import static Pages.Emails.EMAIL_INVITE_IN_PROJECT_TITLE;
 
 /**
  * Created by Viachaslau Balashevich.

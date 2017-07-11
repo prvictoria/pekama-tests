@@ -1,17 +1,17 @@
 package Steps;
-import Page.TestsCredentials;
+import Pages.DataCredentials;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
-import static Page.CommunityDashboard.*;
-import static Page.CommunityOutgoing.*;
-import static Page.CommunityProfile.*;
-import static Page.CommunityWizard.*;
-import static Page.ModalWindows.*;
-import static Page.TestsStrings.*;
-import static Page.UrlConfig.*;
+import static Pages.CommunityDashboard.*;
+import static Pages.CommunityOutgoing.*;
+import static Pages.CommunityProfile.*;
+import static Pages.CommunityWizard.*;
+import static Pages.ModalWindows.*;
+import static Pages.DataStrings.*;
+import static Pages.UrlConfiguration.*;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static Utils.Utils.randomString;
@@ -247,7 +247,7 @@ public class StepsCommunity {
     public static String submitWizard1Step(String caseType){
         searchExpertsQuery(
                 caseType,
-                TestsCredentials.Countries.PITCAIRN_ISLANDS.getValue(),
+                DataCredentials.Countries.PITCAIRN_ISLANDS.getValue(),
                 COMMUNITY_SERVICE);
         //String searchQueryUrl = searchExpertsSubmit();
         return searchQueryUrl;
@@ -485,9 +485,9 @@ public class StepsCommunity {
     }
     public static String createCase() {
         rootLogger.info("1st Step - Search");
-        String expertTeam = TestsCredentials.User1.TEAM_NAME.getValue();
+        String expertTeam = DataCredentials.User1.TEAM_NAME.getValue();
         String caseType = MATTER_TYPE_PATENT;
-        String caseCountry = TestsCredentials.Countries.PITCAIRN_ISLANDS.getValue();
+        String caseCountry = DataCredentials.Countries.PITCAIRN_ISLANDS.getValue();
         String status = COMMUNITY_STATUS_SENT;
         String caseName = "DEFAULT_CASE"+randomString(10);
 
@@ -521,7 +521,7 @@ public class StepsCommunity {
     public static String createCase(String expertTeam) {
         rootLogger.info("1st Step - Search");
         String caseType = MATTER_TYPE_PATENT;
-        String caseCountry = TestsCredentials.Countries.PITCAIRN_ISLANDS.getValue();
+        String caseCountry = DataCredentials.Countries.PITCAIRN_ISLANDS.getValue();
         String status = COMMUNITY_STATUS_SENT;
         String caseName = "DEFAULT_CASE_"+randomString(10);
 
@@ -555,7 +555,7 @@ public class StepsCommunity {
     public static String createDraftCase(String expertTeam) {
         rootLogger.info("1st Step - Search");
         String caseType = MATTER_TYPE_PATENT;
-        String caseCountry = TestsCredentials.Countries.PITCAIRN_ISLANDS.getValue();
+        String caseCountry = DataCredentials.Countries.PITCAIRN_ISLANDS.getValue();
         String caseName = "DEFAULT_DRAFT_CASE" + randomString(10);
         searchExpertsQuery(caseType, caseCountry, COMMUNITY_SERVICE);
         rootLogger.info("2nd Step - select expert");

@@ -5,9 +5,8 @@ import org.apache.logging.log4j.Logger;
 import org.junit.*;
 import org.openqa.selenium.NoSuchElementException;
 
-import static Page.Box.*;
-import static Page.Emails.*;
-import static Page.TestsCredentials.GMAIL_PASSWORD;
+import static Pages.Box.*;
+import static Pages.Emails.*;
 import static Steps.Steps.clickSelector;
 import static Steps.StepsPekama.*;
 import static com.codeborne.selenide.Condition.*;

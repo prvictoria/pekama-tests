@@ -2,9 +2,9 @@ package Steps;
 
 import org.apache.logging.log4j.*;
 
-import static Page.ModalWindows.*;
-import static Page.PekamaProject.*;
-import static Page.TestsStrings.*;
+import static Pages.ModalWindows.*;
+import static Pages.PekamaProject.*;
+import static Pages.DataStrings.*;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekamaProject.*;
 import static Utils.Utils.getDate;

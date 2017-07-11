@@ -7,17 +7,17 @@ import org.junit.runners.MethodSorters;
 
 import java.io.IOException;
 
-import static Page.PekamaLanding.*;
-import static Page.PekamaLogin.*;
-import static Page.PekamaSignUp.*;
-import static Page.UrlConfig.*;
-import static Page.TestsCredentials.*;
+import static Pages.PekamaLanding.*;
+import static Pages.PekamaLogin.*;
+import static Pages.PekamaSignUp.*;
+import static Pages.UrlConfiguration.*;
+import static Pages.DataCredentials.*;
 import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
 import static Tests.BeforeTestsSetUp.setBrowser;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
+
 /**
  * Created by Viachaslau Balashevich.
  * https://www.linkedin.com/in/viachaslau

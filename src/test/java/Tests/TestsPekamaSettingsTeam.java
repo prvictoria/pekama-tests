@@ -11,11 +11,11 @@ import org.junit.runners.MethodSorters;
 
 import java.io.IOException;
 
-import static Page.ModalWindows.*;
-import static Page.PekamaTeamSettings.*;
-import static Page.TestsStrings.*;
-import static Page.UrlConfig.*;
-import static Page.UrlStrings.*;
+import static Pages.ModalWindows.*;
+import static Pages.PekamaTeamSettings.*;
+import static Pages.DataStrings.*;
+import static Pages.UrlConfiguration.*;
+import static Pages.UrlStrings.*;
 import static Steps.Intrefaces.IMessagesValidator.ValidationInviteInTeamUnregistered.teamBackLink;
 import static Steps.ObjectFile.FileTypes.JPG;
 import static Steps.ObjectFile.FileTypes.PDF;

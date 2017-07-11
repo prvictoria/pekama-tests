@@ -13,7 +13,7 @@ import javax.mail.MessagingException;
 import java.io.IOException;
 
 
-import static Page.PekamaProject.*;
+import static Pages.PekamaProject.*;
 import static Utils.Utils.randomString;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
@@ -21,12 +21,12 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.*;
 
-import static Page.ModalWindows.*;
-import static Page.PekamaReports.*;
-import static Page.TestsCredentials.*;
-import static Page.TestsStrings.*;
-import static Page.UrlConfig.*;
-import static Page.UrlStrings.*;
+import static Pages.ModalWindows.*;
+import static Pages.PekamaReports.*;
+import static Pages.DataCredentials.*;
+import static Pages.DataStrings.*;
+import static Pages.UrlConfiguration.*;
+import static Pages.UrlStrings.*;
 import static Steps.ObjectContact.enterPoint.*;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;

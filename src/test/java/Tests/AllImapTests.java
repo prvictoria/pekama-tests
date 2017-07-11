@@ -4,8 +4,6 @@ import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
 import org.junit.runners.Suite;
 
-import static Page.UrlConfig.setEnvironment;
-
 /**
  * Created by VatslauX on 20-Mar-17.
  */

@@ -6,18 +6,15 @@ import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriverException;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Set;
 
-import static Page.ModalWindows.*;
-import static Page.PekamaConversationProject.*;
-import static Page.PekamaLogin.*;
-import static Page.PekamaPersonalSettings.*;
-import static Page.PekamaTeamSettings.*;
-import static Page.TestsCredentials.*;
-import static Page.TestsStrings.*;
-import static Page.UrlStrings.*;
+import static Pages.ModalWindows.*;
+import static Pages.PekamaConversationProject.*;
+import static Pages.PekamaLogin.*;
+import static Pages.PekamaPersonalSettings.*;
+import static Pages.PekamaTeamSettings.*;
+import static Pages.DataStrings.*;
+import static Pages.UrlStrings.*;
 import static Steps.Steps.openUrl;
 import static Steps.StepsHttpAuth.*;
 import static Steps.StepsModalWindows.*;

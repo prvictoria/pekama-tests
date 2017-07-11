@@ -8,10 +8,10 @@ import org.junit.rules.Timeout;
 
 import java.io.IOException;
 
-import static Page.UrlConfig.*;
-import static Page.UrlStrings.*;
-import static Page.PekamaLogin.*;
-import static Page.TestsCredentials.*;
+import static Pages.UrlConfiguration.*;
+import static Pages.UrlStrings.*;
+import static Pages.PekamaLogin.*;
+import static Pages.DataCredentials.*;
 import static Steps.ObjectUser.newBuilder;
 import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static Steps.StepsPekama.checkText;

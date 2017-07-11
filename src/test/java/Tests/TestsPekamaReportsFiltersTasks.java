@@ -1,6 +1,5 @@
 package Tests;
 
-import Steps.ObjectEvent;
 import Steps.ObjectProject;
 import Steps.ObjectTask;
 import Steps.ObjectUser;
@@ -12,13 +11,9 @@ import org.junit.runners.MethodSorters;
 
 import java.io.IOException;
 
-import static Page.TestsCredentials.CaseType.PATENT;
-import static Page.UrlConfig.setEnvironment;
-import static Page.UrlStrings.URL_ReportsEvents;
-import static Page.UrlStrings.URL_ReportsTasks;
-import static Steps.ObjectEvent.PatentEventTypes.ABANDONMENT;
-import static Steps.ObjectEvent.PatentEventTypes.CASE_CLOSED;
-import static Steps.ObjectEvent.PatentEventTypes.GRANT;
+import static Pages.DataCredentials.CaseType.PATENT;
+import static Pages.UrlConfiguration.setEnvironment;
+import static Pages.UrlStrings.URL_ReportsTasks;
 import static Steps.ObjectUser.Users.OWNER;
 import static Steps.ObjectUser.newBuilder;
 import static Steps.StepsPekamaReports.deleteAllTasks;

@@ -11,8 +11,7 @@ import javax.mail.MessagingException;
 import java.awt.*;
 import java.io.IOException;
 
-import static Page.TestsCredentials.Countries.NETHERLANDS_ANTILES;
-import static Steps.ObjectUser.Users.USER_01;
+import static Pages.DataCredentials.Countries.NETHERLANDS_ANTILES;
 import static Steps.ObjectUser.Users.USER_03;
 import static Steps.ObjectUser.newBuilder;
 import static Utils.Utils.*;
@@ -22,22 +21,19 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.*;
 
-import static Page.PekamaProject.*;
+import static Pages.PekamaProject.*;
 import static Steps.Steps.clickSelector;
 
-import static Page.ModalWindows.*;
-import static Page.PekamaDashboard.*;
-import static Page.TestsCredentials.*;
-import static Page.TestsStrings.*;
-import static Page.UrlConfig.*;
-import static Page.UrlStrings.*;
+import static Pages.ModalWindows.*;
+import static Pages.PekamaDashboard.*;
+import static Pages.DataCredentials.*;
+import static Pages.DataStrings.*;
+import static Pages.UrlConfiguration.*;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
 import static Steps.StepsPekamaProject.*;
 import static Tests.BeforeTestsSetUp.*;
-/**
- * Created by VatslauX on 20-May-17.
- */
+
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsPekamaProjectInfo {
     static final Logger rootLogger = LogManager.getRootLogger();
