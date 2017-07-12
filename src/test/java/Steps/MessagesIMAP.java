@@ -608,6 +608,8 @@ public class MessagesIMAP {
         }
         else return false;
     }
+
+
     @Test
     public void clearAllEmails() throws MessagingException, IOException {
         MessagesIMAP emailTask = new MessagesIMAP();
