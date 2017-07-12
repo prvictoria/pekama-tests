@@ -1,15 +1,18 @@
 package Steps.Objects.Emails;
 
+import Steps.ObjectUser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jsoup.select.Elements;
 import org.junit.Assert;
 
 import static Steps.MessagesIMAP.*;
+import static Steps.Objects.Emails.EmailTypes.RESET_PASSWORD;
 
 final public class ValidatorEmailResetPassword {
     private static final Logger rootLogger = LogManager.getRootLogger();
     private EmailValidator emailValidator;
+    private Email referenceEmail;
     private String html;
     private String resetPasswordLink;
     private boolean isValidationPassed = false;
@@ -17,7 +20,10 @@ final public class ValidatorEmailResetPassword {
     public String getResetPasswordLink() {
         return resetPasswordLink;
     }
-
+    public ValidatorEmailResetPassword buildReferenceEmail(EmailTypes emailType, ObjectUser user){
+        this.referenceEmail = new Email().buildEmail(emailType, user);
+        return this;
+    }
     public ValidatorEmailResetPassword buildValidator(ImapService actualEmail, Email referenceEmail){
         new ValidatorEmailResetPassword();
         this.emailValidator = EmailValidator.builder()

@@ -303,29 +303,31 @@ public class TestsPekamaResetPassword {
     @Deprecated //not actual now //not actual now //not actual now
     @Ignore
     @Test
-    public void resetPassword_Z_validation_set_old_password_again() {
+    public void resetPassword_Z_validation_set_old_password_again() throws MessagingException, InterruptedException, IOException {
         if (NEW_PASSWORD_PEKAMA != null) {
             REDIRECT_LINK = null;
-            rootLogger.info("ObjectUser password - " + NEW_PASSWORD_PEKAMA);
             openUrlWithBaseAuth(URL_PEKAMA_RESET_PASSWORD);
-            sleep(1000);
             user.submitReset(user.email);
-           RESET_PAGE_SUCCESS.shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_SUCCESS_MSG));
-            String testSuccessMsg = RESET_PAGE_SUCCESS.getText();
-            rootLogger.info(testSuccessMsg + " displayed, valid email submitted");
+            Steps.checkTextInSelector(RESET_PAGE_SUCCESS, RESET_PAGE_SUCCESS_MSG);
 
             rootLogger.info("Check reset password email");
-            detectEmailIMAP(
-                    user.email,
-                    user.passwordEmail,
-                    "Password Restoration [Pekama]");
-            MessagesIMAP searcher = new MessagesIMAP();
-            REDIRECT_LINK = searcher.searchEmailBySubjectAndValidate(
-                    user.email,
-                    user.passwordEmail,
-                    "Password Restoration [Pekama]",
-                    new IMessagesValidator.ValidationResetPassword(), 0);
-            rootLogger.info("Email and links correspond requirements");
+            Email referenceEmail = new Email().buildEmail(RESET_PASSWORD, user);
+            rootLogger.info(referenceEmail.getAbstractEmail().emailSubject());
+            ImapService actualEmail = new ImapService()
+                    .setProperties()
+                    .connectStore(user)
+                    .openFolder()
+                    .imapDetectEmail(referenceEmail)
+                    .getFirstMessage()
+                    .setHtmlPart()
+                    .markEmailsForDeletion()
+                    .clearFolder()
+                    .closeStore();
+            REDIRECT_LINK = new ValidatorEmailResetPassword()
+                    .buildValidator(actualEmail, referenceEmail)
+                    .checkEmailBody()
+                    .assertValidationResult()
+                    .getResetPasswordLink();
 
             openUrlWithBaseAuth(REDIRECT_LINK);
             user.submitResetPassword(
