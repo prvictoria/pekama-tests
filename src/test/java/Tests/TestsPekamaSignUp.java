@@ -2,12 +2,17 @@ package Tests;
 import Steps.MessagesIMAP;
 import Steps.ObjectFile;
 import Steps.ObjectUser;
+import Steps.Objects.Emails.Email;
+import Steps.Objects.Emails.EmailTypes;
+import Steps.Objects.Emails.ImapService;
+import Steps.Objects.Emails.ValidateEmailSignUp;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
 import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 
 import static Pages.PekamaSignUp.*;
@@ -40,13 +45,21 @@ public class TestsPekamaSignUp {
     private static final ObjectUser registeredUser = new ObjectUser(newBuilder()).buildUser(USER_01);
     private static final ObjectUser newUser = new ObjectUser(newBuilder()).buildUser(USER_05);
     private static boolean skipBefore = false;
+    static ObjectUser invited = new ObjectUser(newBuilder()).buildUser(USER_05);
     @Rule
     public Timeout tests = Timeout.seconds(500);
     @BeforeClass
-    public static void beforeClass() throws IOException {
+    public static void beforeClass() throws IOException, MessagingException, InterruptedException {
         setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
+        new ImapService()
+                .setProperties()
+                .connectStore(invited)
+                .openFolder()
+                .markEmailsForDeletion()
+                .clearFolder()
+                .closeStore();
     }
     @Before
     public void selectAgreeCheckbox() {
@@ -56,7 +69,16 @@ public class TestsPekamaSignUp {
         }
         else {rootLogger.info("Before was skipped");}
     }
-
+    @AfterClass
+    public static void clear() throws MessagingException, InterruptedException {
+        new ImapService()
+                .setProperties()
+                .connectStore(invited)
+                .openFolder()
+                .markEmailsForDeletion()
+                .clearFolder()
+                .closeStore();
+    }
     @Test
     public void allFieldsEmpty() {
         rootLogger.info("Check default form state");
@@ -225,11 +247,12 @@ public class TestsPekamaSignUp {
 
     @Test
     public void sendSignUpEmail_A1_Send() {
-        ValidationSignUp.userEmail = User5.GMAIL_EMAIL.getValue();
+        skipBefore = true;
         rootLogger.info("submitSignUp with valid user");
-        ObjectUser fakeUser = ObjectUser.newBuilder().build();
-        fakeUser.submitSignUp(
-                newUser.email,
+
+
+        invited.submitSignUp(
+                invited.email,
                 VALID_SURNAME,
                 VALID_NAME,
                 VALID_COMPANY,
@@ -237,19 +260,28 @@ public class TestsPekamaSignUp {
                 "1",
                 "1",
                 VALID_PHONE, "1");
-        Assert.assertTrue(fakeUser.isSignUpSucceed);
+        Assert.assertTrue(invited.isSignUpSucceed);
         $(byText("Confirm your Account")).shouldBe(visible);
         $(byText("You were sent an email message with the account activation link. Please check your inbox.")).shouldBe(visible);
         rootLogger.info("Check email invite from pekama");
-        skipBefore = true;
     }
     @Test
-    public void sendSignUpEmail_A2_CheckEmail() {
-        MessagesIMAP validation = new MessagesIMAP();
-        Boolean validationResult = validation.validateEmailSignUp(newUser.email, newUser.passwordEmail);
-        Assert.assertTrue(validationResult);
-        rootLogger.info("Test passed");
+    public void sendSignUpEmail_A2_CheckEmail() throws MessagingException, InterruptedException, IOException {
         skipBefore = false;
+
+        Email referenceEmail = new Email().buildEmail(EmailTypes.SIGN_UP, invited);
+        ImapService actualEmail = new ImapService()
+                .setProperties()
+                .connectStore(invited)
+                .openFolder()
+                .imapDetectEmail(referenceEmail)
+                .getFirstMessage()
+                .setHtmlPart()
+                .closeStore();
+        new ValidateEmailSignUp()
+                .buildValidator(actualEmail, referenceEmail)
+                .checkEmailBody()
+                .assertValidationResult();
     }
 
     @Test

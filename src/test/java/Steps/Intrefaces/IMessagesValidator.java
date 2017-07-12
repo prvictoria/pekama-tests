@@ -52,6 +52,7 @@ public interface IMessagesValidator {
             return null;
         }
     }
+    @Deprecated
     class ValidationSignUp implements IMessagesValidator {
         private String html = null;
         public static String userEmail = null;
@@ -338,6 +339,7 @@ public interface IMessagesValidator {
             return null;
         }
     }
+    @Deprecated
     class ValidationResetPassword implements IMessagesValidator {
         private String html = null;
 

@@ -10,7 +10,7 @@ import org.junit.runners.Suite;
 //    @RunWith(Categories.class)
 //    @Categories.IncludeCategory(Tests.AllImapTests.class)
     @Suite.SuiteClasses({
-            TestsIMAP.class
+            //TestsIMAP.class
     })
     @FixMethodOrder(MethodSorters.NAME_ASCENDING)
     public class AllImapTests {

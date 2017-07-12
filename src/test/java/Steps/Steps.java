@@ -8,6 +8,7 @@ import org.junit.Assert;
 
 import java.io.File;
 
+import static Pages.PekamaResetPassword.RESET_PAGE_SUCCESS_MSG;
 import static Steps.StepsModalWindows.submitConfirmAction;
 import static Steps.StepsPekama.*;
 import static com.codeborne.selenide.Condition.*;
@@ -37,6 +38,7 @@ public class Steps implements ISwitchToWindow, ISelectDropdown {
         element.waitUntil(exist, 10000)
                .waitUntil(visible, 15000)
                .shouldHave(text(text));
+        rootLogger.info("This text present in element: "+text);
         return true;
     }
     public static Boolean checkColourInSelector(SelenideElement element, String colourRgb){

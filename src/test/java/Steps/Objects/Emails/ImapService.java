@@ -93,6 +93,7 @@ public class ImapService {
 
     public ImapService closeStore() throws MessagingException {
         rootLogger.info("Disconnect");
+        rootLogger.info(" ---------------------------------------");
         this.store.close();
         return this;
     }
@@ -214,8 +215,9 @@ public class ImapService {
                     rootLogger.info(bp.getContentType());
                     rootLogger.info("--------------------------------");
                     this.messageHtmlPart = (String) bp.getContent();
+                    return this;
                 } else {
-                    rootLogger.debug("some other bodypart...");
+                    rootLogger.debug("some other body part...");
                 }
             }
         }

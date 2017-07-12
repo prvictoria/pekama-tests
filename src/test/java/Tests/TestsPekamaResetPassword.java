@@ -1,6 +1,8 @@
 package Tests;
+import Pages.PekamaLogin;
 import Steps.*;
 import Steps.Intrefaces.IMessagesValidator;
+import Steps.Objects.Emails.*;
 import Utils.Utils;
 import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.LogManager;
@@ -12,7 +14,6 @@ import org.junit.runners.MethodSorters;
 import javax.mail.MessagingException;
 import java.io.IOException;
 
-import static Pages.PekamaLogin.*;
 import static Pages.PekamaResetPassword.*;
 import static Pages.PekamaSignUp.*;
 import static Pages.UrlConfiguration.*;
@@ -23,6 +24,8 @@ import static Steps.Messages.*;
 import static Steps.MessagesIMAP.*;
 import static Steps.ObjectUser.Users.USER_04;
 import static Steps.ObjectUser.newBuilder;
+import static Steps.Objects.Emails.EmailTypes.RESET_PASSWORD;
+import static Steps.Steps.*;
 import static Steps.StepsHttpAuth.*;
 import static Steps.StepsPekama.checkText;
 import static Tests.BeforeTestsSetUp.*;
@@ -61,8 +64,8 @@ public class TestsPekamaResetPassword {
         rootLogger.info("Open URL - " + URL_LOGIN);
         openUrlWithBaseAuth(URL_LOGIN);
         sleep(1000);
-        lOGIN_TITLE.shouldBe(Condition.visible).shouldHave(Condition.text(lOGIN_TITLE_TEXT));
-        LINK_FORGOT_PASSWORD.click();
+        PekamaLogin.lOGIN_TITLE.shouldBe(Condition.visible).shouldHave(Condition.text(PekamaLogin.lOGIN_TITLE_TEXT));
+        PekamaLogin.LINK_FORGOT_PASSWORD.click();
         RESET_PAGE_TITLE.waitUntil(visible, 20000).shouldHave(Condition.text(RESET_PAGE_TITLE_TEXT));
         RESET_PAGE_EMAIL.shouldHave(value(""));
         RESET_PAGE_RESET_BTN.shouldBe(visible).shouldBe(enabled);
@@ -76,28 +79,31 @@ public class TestsPekamaResetPassword {
        $(byText(ERROR_MSG_INVALID_EMAIL)).shouldBe(visible);
     }
     @Test
-    public void resetPassword_A_get_link() {
+    public void resetPassword_A_get_link() throws MessagingException, InterruptedException, IOException {
         REDIRECT_LINK = null;
-        rootLogger.info("Open URL - " + URL_PEKAMA_RESET_PASSWORD);
         openUrlWithBaseAuth(URL_PEKAMA_RESET_PASSWORD);
         user.submitReset(user.email);
-
-       RESET_PAGE_SUCCESS.shouldBe(Condition.visible).shouldHave(Condition.text(RESET_PAGE_SUCCESS_MSG));
-        String testSuccessMsg = RESET_PAGE_SUCCESS.getText();
-        rootLogger.info(testSuccessMsg + " displayed, valid email submitted");
+        Steps.checkTextInSelector(RESET_PAGE_SUCCESS, RESET_PAGE_SUCCESS_MSG);
 
         rootLogger.info("Check reset password email");
-        Boolean detectResult = detectEmailIMAP(
-                user.email,
-                user.passwordEmail,
-                EMAIL_SUBJECT_PASSWORD_REGISTRATION);
-        MessagesIMAP searcher = new MessagesIMAP();
-        Assert.assertTrue(detectResult);
-        REDIRECT_LINK = searcher.searchEmailBySubjectAndValidate(
-                user.email,
-                user.passwordEmail,
-                EMAIL_SUBJECT_PASSWORD_REGISTRATION,
-                new IMessagesValidator.ValidationResetPassword(), 0);
+        Email referenceEmail = new Email().buildEmail(RESET_PASSWORD, user);
+        rootLogger.info(referenceEmail.getAbstractEmail().emailSubject());
+        ImapService actualEmail = new ImapService()
+                .setProperties()
+                .connectStore(user)
+                .openFolder()
+                .imapDetectEmail(referenceEmail)
+                .getFirstMessage()
+                .setHtmlPart()
+                .markEmailsForDeletion()
+                .clearFolder()
+                .closeStore();
+        REDIRECT_LINK = new ValidatorEmailResetPassword()
+                .buildValidator(actualEmail, referenceEmail)
+                .checkEmailBody()
+                .assertValidationResult()
+                .getResetPasswordLink();
+
         Assert.assertTrue(REDIRECT_LINK!=null);
         rootLogger.info("Test passed");
     }

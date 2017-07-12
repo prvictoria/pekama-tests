@@ -150,9 +150,11 @@ public class TestClasses {
                 .imapDetectEmail(email)
                 .getFirstMessage()
                 .setHtmlPart()
+                .markEmailsForDeletion()
+                .clearFolder()
                 .closeStore();
         new ValidateEmailSignUp()
-                .buildValidator(actualEmail, email, users)
+                .buildValidator(actualEmail, email)
                 .checkEmailBody()
                 .assertValidationResult();
     }

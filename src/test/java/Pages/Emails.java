@@ -11,12 +11,9 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class Emails extends Page {
     //reset password Pekama
-    public static final SelenideElement EMAIL_RESET_PASSWORD = $(byXpath(""));
     public static final String EMAIL_RESET_PASSWORD_TITLE = "Password Restoration";
     public static final String EMAIL_RESET_PASSWORD_TEXT = "You've received this e-mail because you requested to reset the password for your user account. Press the button bellow to complete restoration.";
     public static final String EMAIL_RESET_PASSWORD_BTN = "Reset Password";
-    public static final SelenideElement EMAIL_RESET_PASSWORD_SUBJECT = $(byXpath("//span[contains(.,'Password Restoration [Pekama]')]"));
-    public static final SelenideElement EMAIL_RESET_PASSWORD_BACKLINK = $(byXpath("//td/a[contains(@href, '"+SELECT_HOST+"/accounts/password/reset/')]"));
     public static String EMAIL_RESET_PASSWORD_LINK = SELECT_HOST+"/accounts/password/reset/";
     public static String EMAIL_SUBJECT = "//span[contains(.,'%1$s')]";
 

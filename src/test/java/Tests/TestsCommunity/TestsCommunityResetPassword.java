@@ -4,11 +4,18 @@ import Pages.NewCommunity.PageJoin;
 import Steps.Intrefaces.IMessagesValidator;
 import Steps.MessagesIMAP;
 import Steps.ObjectUser;
+import Steps.Objects.Emails.Email;
+import Steps.Objects.Emails.ImapService;
+import Steps.Objects.Emails.ValidatorEmailResetPassword;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import javax.mail.MessagingException;
+
+import java.io.IOException;
 
 import static Pages.NewCommunity.PageJoin.JOIN_URL;
 import static Pages.PekamaResetPassword.*;
@@ -19,6 +26,7 @@ import static Steps.Messages.EMAIL_SUBJECT_PASSWORD_REGISTRATION;
 import static Steps.MessagesIMAP.detectEmailIMAP;
 import static Steps.ObjectUser.Users.USER_04;
 import static Steps.ObjectUser.newBuilder;
+import static Steps.Objects.Emails.EmailTypes.RESET_PASSWORD;
 import static Steps.Steps.clickSelector;
 import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static Steps.StepsPekama.*;
@@ -29,9 +37,6 @@ import static com.codeborne.selenide.Selenide.refresh;
 import static com.codeborne.selenide.Selenide.sleep;
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created by VatslauX on 14-Jun-17.
- */
 public class TestsCommunityResetPassword extends Configuration{
     static final Logger rootLogger = LogManager.getRootLogger();
     private static final ObjectUser forgottenPasswordUser = new ObjectUser(newBuilder()).buildUser(USER_04);
@@ -50,24 +55,31 @@ public class TestsCommunityResetPassword extends Configuration{
         refresh();
     }
     @Test (priority = 100)
-    public void resetPassword_A_get_link() {
+    public void resetPassword_A_get_link() throws MessagingException, InterruptedException, IOException {
         resetPasswordLink = null;
         pageJoin.submitResetPassword(forgottenPasswordUser);
         pageJoin.validateSubmitResetPassword(true, null);
 
         rootLogger.info("Check reset password email");
-        Boolean detectResult = detectEmailIMAP(
-                forgottenPasswordUser.email,
-                forgottenPasswordUser.passwordEmail,
-                EMAIL_SUBJECT_PASSWORD_REGISTRATION);
-        MessagesIMAP searcher = new MessagesIMAP();
-        Assert.assertTrue(detectResult);
-        resetPasswordLink = searcher.searchEmailBySubjectAndValidate(
-                forgottenPasswordUser.email,
-                forgottenPasswordUser.passwordEmail,
-                EMAIL_SUBJECT_PASSWORD_REGISTRATION,
-                new IMessagesValidator.ValidationResetPassword(), 0);
+        Email referenceEmail = new Email().buildEmail(RESET_PASSWORD, forgottenPasswordUser);
+        rootLogger.info(referenceEmail.getAbstractEmail().emailSubject());
+        ImapService actualEmail = new ImapService()
+                .setProperties()
+                .connectStore(forgottenPasswordUser)
+                .openFolder()
+                .imapDetectEmail(referenceEmail)
+                .getFirstMessage()
+                .setHtmlPart()
+                .markEmailsForDeletion()
+                .clearFolder()
+                .closeStore();
+        resetPasswordLink = new ValidatorEmailResetPassword()
+                .buildValidator(actualEmail, referenceEmail)
+                .checkEmailBody()
+                .assertValidationResult()
+                .getResetPasswordLink();
         Assert.assertNotNull(resetPasswordLink);
+
         rootLogger.info("Test passed");
     }
     @Test (priority = 101)

@@ -1,32 +1,25 @@
 package Steps.Objects.Emails;
 
-import Steps.ObjectUser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jsoup.select.Elements;
 import org.junit.Assert;
 
-import static Steps.MessagesIMAP.getLink;
-import static Steps.MessagesIMAP.parseHtmlHrefArray;
-import static Steps.MessagesIMAP.parseHtmlLinkText;
+import static Steps.MessagesIMAP.*;
 
-final public class ValidateEmailSignUp {
+final public class ValidatorEmailResetPassword {
     private static final Logger rootLogger = LogManager.getRootLogger();
     private EmailValidator emailValidator;
     private String html;
-    private String signUpLink;
-    private ObjectUser recipient;
-    private ObjectUser sender;
-    private ObjectUser other;
+    private String resetPasswordLink;
     private boolean isValidationPassed = false;
 
-
-    public String getSignUpLink() {
-        return signUpLink;
+    public String getResetPasswordLink() {
+        return resetPasswordLink;
     }
 
-    public ValidateEmailSignUp buildValidator(ImapService actualEmail, Email referenceEmail){
-        new ValidateEmailSignUp();
+    public ValidatorEmailResetPassword buildValidator(ImapService actualEmail, Email referenceEmail){
+        new ValidatorEmailResetPassword();
         this.emailValidator = EmailValidator.builder()
                 .html(actualEmail.getMessageHtmlPart())
                 .actualEmail(actualEmail)
@@ -37,26 +30,23 @@ final public class ValidateEmailSignUp {
 
 
     //@Override
-    public ValidateEmailSignUp checkEmailBody(){
+    public ValidatorEmailResetPassword checkEmailBody(){
         //this.recipient = this.emailValidator.users().get(0);
         this.html = this.emailValidator.actualEmail().getMessageHtmlPart();
 
         if(emailValidator!=null){
             Assert.assertTrue(parseHtmlLinkText(this.html)
                     .equals(this.emailValidator.referenceEmail()
-                    .getAbstractEmail().emailButtonLinkText()));
-            Assert.assertTrue(parseHtmlHrefArray(this.html).size() == 3);
+                            .getAbstractEmail().emailButtonLinkText()));
+            Assert.assertTrue(parseHtmlHrefArray(this.html).size() == 2);
             Elements links = parseHtmlHrefArray(this.html);
             Assert.assertTrue(getLink(links, 0)
-                            .contains(this.emailValidator
-                            .referenceEmail().getAbstractEmail()
-                            .emailLinkConfirmRegistrationInButton()));
+                    .contains(this.emailValidator
+                    .referenceEmail().getAbstractEmail()
+                    .emailLinkResetPasswordInButton()));
             Assert.assertTrue(getLink(links, 1)
                     .contains(this.emailValidator
-                            .referenceEmail().getAbstractEmail().emailLinkConfirmRegistration()));
-            Assert.assertTrue(getLink(links, 2)
-                    .contains(this.emailValidator
-                            .referenceEmail().getAbstractEmail().emailLinkMailTo()));
+                    .referenceEmail().getAbstractEmail().emailLinkResetPassword()));
 
             //Text asserts
             Assert.assertTrue(this.html.contains(this.emailValidator
@@ -66,13 +56,14 @@ final public class ValidateEmailSignUp {
             Assert.assertTrue(this.html.contains(this.emailValidator
                     .referenceEmail().getAbstractEmail().emailText()));
             rootLogger.info("Email validation passed");
-            this.signUpLink = getLink(links, 0);
+            this.resetPasswordLink = getLink(links, 0);
             this.isValidationPassed = true;
             return this;
         }
         return this;
     }
-    public ValidateEmailSignUp assertValidationResult(){
+
+    public ValidatorEmailResetPassword assertValidationResult(){
         if(isValidationPassed==false){
             Assert.fail("Validation failed");
         }

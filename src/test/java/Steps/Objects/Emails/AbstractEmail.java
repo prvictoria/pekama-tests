@@ -19,6 +19,10 @@ public abstract class AbstractEmail {
     @Nullable
     public abstract String emailLinkConfirmRegistration();
     @Nullable
+    public abstract String emailLinkResetPasswordInButton();
+    @Nullable
+    public abstract String emailLinkResetPassword();
+    @Nullable
     public abstract String emailLinkMailTo();
 
     public static Builder builder() {
@@ -42,6 +46,10 @@ public abstract class AbstractEmail {
         public abstract Builder emailLinkConfirmRegistration(@Nullable String emailLinkConfirmRegistration);
 
         public abstract Builder emailLinkMailTo(@Nullable String emailLinkMailTo);
+
+        public abstract Builder emailLinkResetPasswordInButton(String emailLinkResetPasswordInButton);
+
+        public abstract Builder emailLinkResetPassword(String emailLinkResetPassword);
 
         public abstract AbstractEmail build();
     }

@@ -3,11 +3,19 @@ package Tests.TestsCommunity;
 import Pages.NewCommunity.PageJoin;
 import Steps.MessagesIMAP;
 import Steps.ObjectUser;
+import Steps.Objects.Emails.Email;
+import Steps.Objects.Emails.EmailTypes;
+import Steps.Objects.Emails.ImapService;
+import Steps.Objects.Emails.ValidateEmailSignUp;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import org.junit.Assert;
 import org.testng.annotations.*;
+
+import javax.mail.MessagingException;
+
+import java.io.IOException;
 
 import static Pages.NewCommunity.PageJoin.*;
 import static Steps.ObjectUser.Users.USER_05;
@@ -35,6 +43,7 @@ public class TestsCommunityJoin extends Configuration{
             hideZopim();
             submitCookie(10);
             refresh();
+            invited = new ObjectUser(newBuilder()).buildUser(USER_05);
         }
     }
     @Test (priority = 100)
@@ -47,20 +56,51 @@ public class TestsCommunityJoin extends Configuration{
         checkText("This field is required.", 3);
     }
     @Test (priority = 200)
-    public void joinSuccess(){
+    public void joinSuccess() throws MessagingException, InterruptedException {
         skipBefore = true;
-        invited = new ObjectUser(newBuilder()).buildUser(USER_05);
+
+
+        new ImapService()
+                .setProperties()
+                .connectStore(invited)
+                .openFolder()
+                .markEmailsForDeletion()
+                .clearFolder()
+                .closeStore();
+
         pageJoin.submitSignUp(invited);
         Assert.assertTrue(invited.isSignUpSucceed);
     }
-    @Test (priority = 201, dependsOnMethods = { "joinSuccess" })
-    public void joinGetEmail() {
+    @Test (priority = 202, dependsOnMethods = { "joinSuccess" })
+    public void joinGetEmail() throws MessagingException, InterruptedException, IOException {
         skipBefore = false;
-        invited = new ObjectUser(newBuilder()).buildUser(USER_05);
-        MessagesIMAP validation = new MessagesIMAP();
-        Boolean validationResult = validation.validateEmailSignUp(invited.email, invited.passwordEmail);
-        Assert.assertTrue(validationResult);
+
+        Email referenceEmail = new Email().buildEmail(EmailTypes.SIGN_UP, invited);
+        ImapService actualEmail = new ImapService()
+                .setProperties()
+                .connectStore(invited)
+                .openFolder()
+                .imapDetectEmail(referenceEmail)
+                .getFirstMessage()
+                .setHtmlPart()
+                .closeStore();
+        new ValidateEmailSignUp()
+                .buildValidator(actualEmail, referenceEmail)
+                .checkEmailBody()
+                .assertValidationResult();
+
         rootLogger.info("Test passed");
+    }
+
+    @AfterClass
+    public void clear() throws MessagingException, InterruptedException {
+        new ImapService()
+                .setProperties()
+                .connectStore(invited)
+                .openFolder()
+                .markEmailsForDeletion()
+                .clearFolder()
+                .closeStore();
     }
 }
 
