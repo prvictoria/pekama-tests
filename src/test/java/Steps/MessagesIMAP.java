@@ -171,44 +171,6 @@ public class MessagesIMAP {
         }
         return false;
     }
-    private static boolean searchTermSubjectLoop(final String keyword) {
-        SearchTerm searchResult = null;
-        Integer i = 0;
-        while (searchResult==null && i<10) {
-            searchResult = searchTermSubject(keyword);
-            if(searchResult!=null){
-                rootLogger.info("Email with subject '"+keyword+"' detected");
-                return true;}
-            sleep(5000);
-            i++;
-            rootLogger.info("Loop # "+i);
-        }
-        if(searchResult==null){
-            Assert.fail("Email not detected in Inbox");
-            return false;
-        }
-        return false;
-    }
-    private static SearchTerm searchTermAddress(final String keyword) {
-        // creates a search criterion
-        SearchTerm searchCondition = new SearchTerm() {
-            @Override
-            public boolean match(Message message) {
-                try {
-                    Address[] froms = message.getFrom();
-                    String email = froms == null ? null : ((InternetAddress) froms[0]).getAddress();
-                    //System.out.println(email);
-                    if (email.contains(keyword)) {
-                        return true;
-                    }
-                } catch (MessagingException ex) {
-                    ex.printStackTrace();
-                }
-                return false;
-            }
-        };
-        return searchCondition;
-    }
     private static void deleteDetectedEmailBySubject(String subjectToDelete, Message message) throws MessagingException {
         String subject = message.getSubject();
         if (subjectToDelete!=null) {
@@ -218,17 +180,6 @@ public class MessagesIMAP {
                 return;
             }
             else {rootLogger.info("Email with defined subject not detected");}
-        }
-    }
-    private static void deleteDetectedEmailBySenderEmail(String keyword, Message message) throws MessagingException {
-        if (keyword != null) {
-            Address[] froms = message.getFrom();
-            String email = froms == null ? null : ((InternetAddress) froms[0]).getAddress();
-            System.out.println(email);
-            if (email.equals(keyword)) {
-                message.setFlag(Flag.DELETED, true);
-                System.out.println("Marked DELETE for message: " + message.getSubject());
-            }
         }
     }
     private static Object emailHtmlPart(Message message) throws IOException, MessagingException {
@@ -296,6 +247,7 @@ public class MessagesIMAP {
         }
         return content;
     }
+
     private static Message emailDetails (Message[] foundMessages, Integer i) throws MessagingException, IOException {
         Message message = foundMessages[i];
         System.out.println("---------------------------------");
@@ -453,39 +405,7 @@ public class MessagesIMAP {
         return element;
     }
     //END TO END IMAP FLOW - need refactor
-    public void searchEmailByAddress(String userName, String password, final String keyword) {
-        Properties properties = setProperties (IMAP_HOST, IMAP_PORT);
-        Session session = Session.getDefaultInstance(properties);
 
-        try {
-            // connects to the message store
-            Store store = session.getStore("imap");
-            store.connect(userName, password);
-
-            // opens the inbox folder
-            Folder folderInbox = store.getFolder("INBOX");
-            folderInbox.open(Folder.READ_WRITE);
-            SearchTerm searchCondition = searchTermAddress(keyword);
-
-            // performs search through the folder
-            Message[] foundMessages = folderInbox.search(searchCondition);
-
-            for (int i = 0; i < foundMessages.length; i++) {
-                Message message = emailDetails (foundMessages, i);
-            }
-            // disconnect
-            folderInbox.close(true);
-            store.close();
-        } catch (NoSuchProviderException ex) {
-            System.out.println("No provider.");
-            ex.printStackTrace();
-        } catch (MessagingException ex) {
-            System.out.println("Could not connect to the message store.");
-            ex.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
     public Boolean searchEmailBySubject(String userName, String password, final String keyword) {
         Properties properties = setProperties (IMAP_HOST, IMAP_PORT);
         Session session = Session.getDefaultInstance(properties);
@@ -560,50 +480,7 @@ public class MessagesIMAP {
         }
         return false;
     }
-    public String searchEmailBySubjectAndValidate(String userName, String password, final String keyword, IMessagesValidator validator, Integer index) {
 
-        Properties properties = setProperties (IMAP_HOST, IMAP_PORT);
-        try {
-            Store store = store(properties, userName, password);
-            Folder folderInbox = folder (store);
-            SearchTerm searchCondition = searchTermSubject(keyword);
-
-            // performs search through the folder
-            Message[] foundMessages = folderInbox.search(searchCondition);
-            if (foundMessages.length < 1) {
-                Assert.fail("No Mails in inbox");
-            }
-            if (foundMessages.length > 1) {
-                rootLogger.info("More that 1 Mails detected");
-            }
-
-            String link = null;
-            for (int i = 0; i < foundMessages.length; i++) {
-                //Message message = emailDetails (foundMessages, i);
-                String html = emailHtmlPart(foundMessages[i]).toString();
-                //System.out.println(html);
-                if (validator.validationEmail(html) == true) {
-                    link = validator.validateLink(html, index);
-                    deleteDetectedEmailBySubject(keyword, foundMessages[i]);
-                } else {
-                    Assert.fail("Mail validation failed");
-                }
-            }
-            // disconnect
-            clearFolder(folderInbox);
-            closeStore(store);
-            return link;
-        } catch (NoSuchProviderException ex) {
-            System.out.println("No provider.");
-            ex.printStackTrace();
-        } catch (MessagingException ex) {
-            System.out.println("Could not connect to the message store.");
-            ex.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 
     //NEW Logic
     public Message getEmail(String userName, String password, final String keyword) throws MessagingException, IOException {
@@ -616,10 +493,6 @@ public class MessagesIMAP {
         if(result==true){
             Message[] messages = messages(folderInbox, searchCondition);
             Message message = messages[0];
-
-//            deleteDetectedEmailBySubject(keyword, messages[0]);
-//            clearFolder(folderInbox);
-//            closeStore(store);
             return message;
         }
         if (result==false) {
@@ -639,81 +512,6 @@ public class MessagesIMAP {
     }
 
     //FINAL VALIDATOR EMAILS
-    public boolean validateEmailNotificationCaseConfirmed(String login, String password, String expertTeam, String caseName){
-        ValidationNotificationCaseConfirmed.userEmail = login;
-        ValidationNotificationCaseConfirmed.expertTeam = expertTeam;
-        ValidationNotificationCaseConfirmed.caseName = caseName;
-        Boolean detectResult = detectEmailIMAP(
-                login,
-                password,
-                EMAIL_SUBJECT_NOTIFICATION_INSTRUCTION_CONFIRMED(expertTeam) );
-        Assert.assertTrue(detectResult);
-        MessagesIMAP searcher = new MessagesIMAP();
-        Boolean validationResult = searcher.searchEmailBySubjectAndValidate(
-                login,
-                password,
-                EMAIL_SUBJECT_NOTIFICATION_INSTRUCTION_CONFIRMED(expertTeam),
-                new ValidationNotificationCaseConfirmed());
-        Assert.assertTrue(validationResult==true);
-        return true;
-    }
-
-    public boolean validateEmailSignUp(String login, String password){
-        ValidationSignUp.userEmail = login;
-        Boolean detectResult = detectEmailIMAP(
-                login,
-                password,
-                EMAIL_SUBJECT_CONFIRM_REGISTRATION);
-        Assert.assertTrue(detectResult);
-        MessagesIMAP searcher = new MessagesIMAP();
-        Boolean validationResult = searcher.searchEmailBySubjectAndValidate(
-                login,
-                password,
-                EMAIL_SUBJECT_CONFIRM_REGISTRATION,
-                new ValidationSignUp());
-        Assert.assertTrue(validationResult==true);
-        return true;
-    }
-
-    public boolean validateEmailResetPassword(){
-
-        return true;
-    }
-
-    public boolean validateEmailCongratulation(String login, String password, String teamName){
-        ValidationCongratulationCaseCreated.userEmail = login;
-        ValidationCongratulationCaseCreated.teamName = teamName;
-        Boolean detectResult = detectEmailIMAP(
-                login,
-                password,
-                EMAIL_SUBJECT_CONGRATULATION_CASE_CREATED);
-        MessagesIMAP searcher = new MessagesIMAP();
-        Assert.assertTrue(detectResult);
-        searcher.searchEmailBySubjectAndValidate(
-                login,
-                password,
-                EMAIL_SUBJECT_CONGRATULATION_CASE_CREATED,
-                new ValidationCongratulationCaseCreated());
-        return true;
-    }
-
-    public boolean validateEmailCongratulationForInvite(String login, String password, String invitedEmail){
-        ValidationCongratulationForInvite.userEmail = login;
-        ValidationCongratulationForInvite.invitedEmail = invitedEmail;
-        Boolean detectResult = detectEmailIMAP(
-                login,
-                password,
-                EMAIL_SUBJECT_CONGRATULATION_FOR_INVITE(invitedEmail));
-        MessagesIMAP searcher = new MessagesIMAP();
-        Assert.assertTrue(detectResult);
-        searcher.searchEmailBySubjectAndValidate(
-                login,
-                password,
-                EMAIL_SUBJECT_CONGRATULATION_FOR_INVITE(invitedEmail),
-                new ValidationCongratulationForInvite());
-        return true;
-    }
-
     public boolean validateEmailInviteInTeamUnregistered(String login, String password, String inviterNameSurname, String inviterName, String inviterFullTeamName){
         ValidationInviteInTeamUnregistered.userEmail = login;
         ValidationInviteInTeamUnregistered.inviterNameSurname = inviterNameSurname;
@@ -773,29 +571,6 @@ public class MessagesIMAP {
         return validationResult;
     }
 
-    public boolean validateEmailInviteInCommunity(String login, String password, String name_surname, String customText){
-        ValidationInviteCommunity.userEmail = login;
-        ValidationInviteCommunity.inviterNameSurname = name_surname;
-        ValidationInviteCommunity.customText = customText;
-        System.out.println(EMAIL_SUBJECT_YOU_INVITED_IN_COMMUNITY(name_surname));
-        Boolean detectResult = detectEmailIMAP(
-                login,
-                password,
-                EMAIL_SUBJECT_YOU_INVITED_IN_COMMUNITY(name_surname));
-        Assert.assertTrue(detectResult);
-        MessagesIMAP searcher = new MessagesIMAP();
-        Boolean validationResult = searcher.searchEmailBySubjectAndValidate(
-                login,
-                password,
-                EMAIL_SUBJECT_YOU_INVITED_IN_COMMUNITY(name_surname),
-                new ValidationInviteCommunity());
-        Assert.assertTrue(validationResult==true);
-        return true;
-    }
-    public boolean validateEmailInviteInPekama(){
-
-        return true;
-    }
     public boolean validateEmailReport(String login, String password, String reportSchedule, String reportName){
         ValidationReport.reportSchedule = reportSchedule;
         System.out.println(EMAIL_SUBJECT_REPORT(reportName));
