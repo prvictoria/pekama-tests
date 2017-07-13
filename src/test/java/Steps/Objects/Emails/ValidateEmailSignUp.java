@@ -32,7 +32,7 @@ final public class ValidateEmailSignUp {
                 .actualEmail(actualEmail)
                 .referenceEmail(referenceEmail)
                 .build();
-        return this; 
+        return this;
     }
 
 

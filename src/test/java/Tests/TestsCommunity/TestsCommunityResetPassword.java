@@ -61,20 +61,10 @@ public class TestsCommunityResetPassword extends Configuration{
         pageJoin.validateSubmitResetPassword(true, null);
 
         rootLogger.info("Check reset password email");
-        Email referenceEmail = new Email().buildEmail(RESET_PASSWORD, forgottenPasswordUser);
-        rootLogger.info(referenceEmail.getAbstractEmail().emailSubject());
-        ImapService actualEmail = new ImapService()
-                .setProperties()
-                .connectStore(forgottenPasswordUser)
-                .openFolder()
-                .imapDetectEmail(referenceEmail)
-                .getFirstMessage()
-                .setHtmlPart()
-                .markEmailsForDeletion()
-                .clearFolder()
-                .closeStore();
         resetPasswordLink = new ValidatorEmailResetPassword()
-                .buildValidator(actualEmail, referenceEmail)
+                .buildReferenceEmail(forgottenPasswordUser)
+                .getEmailFormInbox()
+                .buildValidator()
                 .checkEmailBody()
                 .assertValidationResult()
                 .getResetPasswordLink();

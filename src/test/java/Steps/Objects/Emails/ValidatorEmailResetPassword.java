@@ -1,10 +1,15 @@
 package Steps.Objects.Emails;
 
+import Objects.Object;
 import Steps.ObjectUser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jsoup.select.Elements;
 import org.junit.Assert;
+
+import javax.mail.MessagingException;
+
+import java.io.IOException;
 
 import static Steps.MessagesIMAP.*;
 import static Steps.Objects.Emails.EmailTypes.RESET_PASSWORD;
@@ -16,20 +21,39 @@ final public class ValidatorEmailResetPassword {
     private String html;
     private String resetPasswordLink;
     private boolean isValidationPassed = false;
+    private ObjectUser user;
+    private ImapService actualEmail;
 
     public String getResetPasswordLink() {
         return resetPasswordLink;
     }
-    public ValidatorEmailResetPassword buildReferenceEmail(EmailTypes emailType, ObjectUser user){
-        this.referenceEmail = new Email().buildEmail(emailType, user);
+
+    public ValidatorEmailResetPassword buildReferenceEmail(ObjectUser user){
+        this.user = user;
+        this.referenceEmail = new Email().buildEmail(RESET_PASSWORD, this.user);
         return this;
     }
-    public ValidatorEmailResetPassword buildValidator(ImapService actualEmail, Email referenceEmail){
+
+    public ValidatorEmailResetPassword getEmailFormInbox() throws MessagingException, InterruptedException, IOException {
+        this.actualEmail = new ImapService()
+                .setProperties()
+                .connectStore(this.user)
+                .openFolder()
+                .imapDetectEmail(this.referenceEmail)
+                .getFirstMessage()
+                .setHtmlPart()
+                .markEmailsForDeletion()
+                .clearFolder()
+                .closeStore();
+        return this;
+    }
+
+    public ValidatorEmailResetPassword buildValidator(){
         new ValidatorEmailResetPassword();
         this.emailValidator = EmailValidator.builder()
-                .html(actualEmail.getMessageHtmlPart())
-                .actualEmail(actualEmail)
-                .referenceEmail(referenceEmail)
+                .html(this.actualEmail.getMessageHtmlPart())
+                .actualEmail(this.actualEmail)
+                .referenceEmail(this.referenceEmail)
                 .build();
         return this;
     }
