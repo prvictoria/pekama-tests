@@ -5,6 +5,7 @@ package Tests;
  */
 import Steps.*;
 import Steps.Intrefaces.IMessagesValidator;
+import Steps.Objects.Emails.ValidatorEmailInviteInProject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
@@ -23,7 +24,6 @@ import static Pages.DataStrings.*;
 import static Pages.UrlConfiguration.*;
 import static Pages.UrlStrings.*;
 import static Steps.Intrefaces.IMessagesValidator.ValidationEmailMessage.*;
-import static Steps.Intrefaces.IMessagesValidator.ValidationInviteInProject.*;
 import static Steps.ObjectUser.Users.*;
 import static Steps.ObjectUser.newBuilder;
 import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
@@ -656,17 +656,18 @@ public class TestsMessages {
         StepsPekamaProject.validateFollowerTeamChat(followerNameSurname, 2, 0);
     }
     @Test @Category({AllImapTests.class})
-    public void inviteInTeamChatNewCollaborator_ValidationEmail(){
+    public void inviteInTeamChatNewCollaborator_ValidationEmail() throws InterruptedException, MessagingException, IOException {
         skipBefore = false;
         rootLogger.info("Check invite email");
-        String login = invited.email;
-        String password = invited.passwordEmail;
-        String inviterNameSurname = owner.nameSurname;
-        String projectName = testProjectName;
-        MessagesIMAP validation = new MessagesIMAP();
-        Boolean validationResult = validation.validateEmailInviteInProject(login, password, inviterNameSurname, projectName);
-        Assert.assertTrue(validationResult);
-        Assert.assertNotNull(projectBackLink);
+
+        ObjectProject project = ObjectProject.newBuilder().projectName(testProjectName).build();
+        new ValidatorEmailInviteInProject()
+                .buildReferenceEmail(invited, owner, project)
+                .getEmailFormInbox()
+                .buildValidator()
+                .checkEmailBody()
+                .assertValidationResult()
+                .getInviteLink();
         rootLogger.info("Test passed");
         return;
     }

@@ -5,5 +5,6 @@ public enum EmailTypes {
     REPORT,
     SIGN_UP,
     RESET_PASSWORD,
-    INVITED_IN_TEAM;
+    INVITE_IN_PROJECT,
+    INVITE_IN_TEAM;
 }

@@ -1,10 +1,7 @@
 package Steps;
 
 import Pages.UrlConfiguration;
-import Steps.Objects.Emails.ReferenceEmail;
-import Steps.Objects.Emails.EmailTypes;
-import Steps.Objects.Emails.ImapService;
-import Steps.Objects.Emails.ValidatorEmailSignUp;
+import Steps.Objects.Emails.*;
 import org.junit.Test;
 
 //import static Steps.BuildUser.newBuilder;
@@ -15,6 +12,7 @@ import java.util.ArrayList;
 
 import static Pages.DataCredentials.*;
 import static Pages.DataCredentials.Countries.PITCAIRN_ISLANDS;
+import static Pages.DataCredentials.MatterType.PATENT;
 import static Pages.UrlStrings.*;
 import static Steps.ObjectEvent.PatentEventTypes.GRANT;
 import static Steps.ObjectFile.FileTypes.JPG;
@@ -148,5 +146,13 @@ public class TestClasses {
                 .checkEmailBody()
                 .assertValidationResult()
                 .getSignUpLink();
+    }
+    @Test
+    public void builderTestInviteInProject(){
+        new UrlConfiguration().setEnvironment(1);
+        ObjectUser user1 = new ObjectUser(newBuilder()).buildUser(USER_05);
+        ObjectUser user2 = new ObjectUser(newBuilder()).buildUser(USER_01);
+        ObjectProject project1 = ObjectProject.newBuilder().projectName("AAAAAAA").build();
+        ValidatorEmailInviteInProject buildReferenceEmail = new ValidatorEmailInviteInProject().buildReferenceEmail(user1, user2, project1);
     }
 }

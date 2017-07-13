@@ -163,13 +163,15 @@ public interface IMessagesValidator {
             return null;
         }
     }
+
+    @Deprecated
     class ValidationInviteInProject implements IMessagesValidator {
         private String html = null;
         public static String userEmail = null;
         public static String projectName = null;
         public static String inviterNameSurname = null;
         public static String projectBackLink = null;
-
+        @Deprecated
         @Override
         public boolean validationEmail(String...strings) {
             this.html = strings[0];

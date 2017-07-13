@@ -553,42 +553,7 @@ public class MessagesIMAP {
         return validationResult;
     }
 
-    public boolean validateEmailInviteInProject(String login, String password, String inviterNameSurname, String projectName){
-        ValidationInviteInProject.inviterNameSurname = inviterNameSurname;
-        ValidationInviteInProject.projectName = projectName;
-        ValidationInviteInProject.userEmail = login;
-        Boolean detectResult = detectEmailIMAP(
-                login,
-                password,
-                EMAIL_SUBJECT_YOU_INVITED_IN_PROJECT(inviterNameSurname));
-        Assert.assertTrue(detectResult);
-        MessagesIMAP searcher = new MessagesIMAP();
-        Boolean validationResult = searcher.searchEmailBySubjectAndValidate(
-                login,
-                password,
-                EMAIL_SUBJECT_YOU_INVITED_IN_PROJECT(inviterNameSurname),
-                new ValidationInviteInProject());
-        return validationResult;
-    }
-
-    public boolean validateEmailReport(String login, String password, String reportSchedule, String reportName){
-        ValidationReport.reportSchedule = reportSchedule;
-        System.out.println(EMAIL_SUBJECT_REPORT(reportName));
-        Boolean detectResult = detectEmailIMAP(
-                login,
-                password,
-                EMAIL_SUBJECT_REPORT(reportName));
-        Assert.assertTrue(detectResult);
-        MessagesIMAP searcher = new MessagesIMAP();
-        Boolean validationResult = searcher.searchEmailBySubjectAndValidate(
-                login,
-                password,
-                EMAIL_SUBJECT_REPORT(reportName),
-                new ValidationReport());
-        Assert.assertTrue(validationResult==true);
-        return true;
-    }
-    public boolean validateEmailMessage(String email, String password, String keyword, String text, String userNameSurname, String followerEmailOrTeamNameSurname, IMessagesValidator validator) throws IOException, MessagingException {
+   public boolean validateEmailMessage(String email, String password, String keyword, String text, String userNameSurname, String followerEmailOrTeamNameSurname, IMessagesValidator validator) throws IOException, MessagingException {
         ValidationEmailMessage.userNameSurname = userNameSurname;
         ValidationEmailMessage.followerEmailOrTeamNameSurname = followerEmailOrTeamNameSurname;
         String html;
