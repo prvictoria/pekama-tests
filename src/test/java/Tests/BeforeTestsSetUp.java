@@ -22,7 +22,7 @@ import static com.codeborne.selenide.WebDriverRunner.FIREFOX;
  *hello, you could try this - enter about:config into the firefox location bar (confirm the info message in case it shows up) & search for the preference named toolkit.startup.max_resumed_crashes. double-click it and change its value to something very high like 999999 (maybe setting it to 0 or -1 will also work, however i haven't tried that myself).
  *
  */
-@Deprecated
+
 public class BeforeTestsSetUp {
     static final Logger rootLogger = LogManager.getRootLogger();
 

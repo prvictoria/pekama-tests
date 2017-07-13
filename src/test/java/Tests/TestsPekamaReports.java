@@ -1,5 +1,8 @@
 package Tests;
 import Steps.*;
+import Steps.Objects.Emails.ImapService;
+import Steps.Objects.Emails.ValidatorEmailReport;
+import Steps.Objects.Emails.ValidatorEmailSignUp;
 import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -48,15 +51,19 @@ public class TestsPekamaReports {
     @Rule
     public Timeout tests = Timeout.seconds(600);
     @BeforeClass
-    public static void beforeClass() throws IOException, MessagingException {
+    public static void beforeClass() throws IOException, MessagingException, InterruptedException {
         setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
-        MessagesIMAP emailTask = new MessagesIMAP();
-        emailTask.imapSearchEmailDeleteAll(
-                user.email,
-                user.passwordEmail);
+        new ImapService()
+                .setProperties()
+                .connectStore(user)
+                .openFolder()
+                .markEmailsForDeletion()
+                .clearFolder()
+                .closeStore();
     }
+
     @Before
     public void login() {
         if(skipBefore==false) {
@@ -106,13 +113,18 @@ public class TestsPekamaReports {
         mailingListSendReport(thisMailingListName);
     }
     @Test 
-    public void projects_send_report_B_CheckEmail() {
+    public void projects_send_report_B_CheckEmail() throws InterruptedException, MessagingException, IOException {
         skipBefore = false;
         String thisMailingListName = "Projects Test Mailing List";
+
         rootLogger.info("Check report email");
-        MessagesIMAP validation = new MessagesIMAP();
-        Boolean validationResult = validation.validateEmailReport(user.email, user.passwordEmail, "999", thisMailingListName);
-        Assert.assertTrue(validationResult);
+        new ValidatorEmailReport()
+                .buildReferenceEmail(user, "999", thisMailingListName)
+                .getEmailFormInbox()
+                .buildValidator()
+                .checkEmailBody()
+                .assertValidationResult()
+                .getUnSubscribeLink();
         rootLogger.info("Test passed");
     }
 
@@ -127,13 +139,18 @@ public class TestsPekamaReports {
         mailingListSendReport(thisMailingListName);
     }
     @Test 
-    public void tasks_send_report_B_CheckEmail() {
+    public void tasks_send_report_B_CheckEmail() throws InterruptedException, MessagingException, IOException {
         skipBefore = false;
         String thisMailingListName = "Tasks Test Mailing List";
+
         rootLogger.info("Check report email");
-        MessagesIMAP validation = new MessagesIMAP();
-        Boolean validationResult = validation.validateEmailReport(user.email, user.passwordEmail, "999", thisMailingListName);
-        Assert.assertTrue(validationResult);
+        new ValidatorEmailReport()
+                .buildReferenceEmail(user, "999", thisMailingListName)
+                .getEmailFormInbox()
+                .buildValidator()
+                .checkEmailBody()
+                .assertValidationResult()
+                .getUnSubscribeLink();
         rootLogger.info("Test passed");
     }
 
@@ -150,13 +167,18 @@ public class TestsPekamaReports {
         mailingListSendReport(thisMailingListName);
     }
     @Test 
-    public void events_send_report_B_CheckEmail() {
+    public void events_send_report_B_CheckEmail() throws InterruptedException, MessagingException, IOException {
         skipBefore = false;
         String thisMailingListName = "Events Test Mailing List";
+
         rootLogger.info("Check report email");
-        MessagesIMAP validation = new MessagesIMAP();
-        Boolean validationResult = validation.validateEmailReport(user.email, user.passwordEmail, "999", thisMailingListName);
-        Assert.assertTrue(validationResult);
+        new ValidatorEmailReport()
+                .buildReferenceEmail(user, "999", thisMailingListName)
+                .getEmailFormInbox()
+                .buildValidator()
+                .checkEmailBody()
+                .assertValidationResult()
+                .getUnSubscribeLink();
         rootLogger.info("Test passed");
     }
 
@@ -173,14 +195,18 @@ public class TestsPekamaReports {
         mailingListSendReport(thisMailingListName);
     }
     @Test 
-    public void charges_send_report_B_CheckEmail() {
+    public void charges_send_report_B_CheckEmail() throws InterruptedException, MessagingException, IOException {
         skipBefore = false;
         String thisMailingListName = "Charges Test Mailing List";
-        rootLogger.info("Check email - report");
+
         rootLogger.info("Check report email");
-        MessagesIMAP validation = new MessagesIMAP();
-        Boolean validationResult = validation.validateEmailReport(user.email, user.passwordEmail, "999", thisMailingListName);
-        Assert.assertTrue(validationResult);
+        new ValidatorEmailReport()
+                .buildReferenceEmail(user, "999", thisMailingListName)
+                .getEmailFormInbox()
+                .buildValidator()
+                .checkEmailBody()
+                .assertValidationResult()
+                .getUnSubscribeLink();
         rootLogger.info("Test passed");
     }
    
@@ -197,18 +223,23 @@ public class TestsPekamaReports {
         mailingListSendReport(thisMailingListName);
     }
     @Test 
-    public void contacts_send_report_B_CheckEmail() {
+    public void contacts_send_report_B_CheckEmail() throws InterruptedException, MessagingException, IOException {
         skipBefore = false;
         String thisMailingListName = "Contacts Test Mailing List";
+
         rootLogger.info("Check report email");
-        MessagesIMAP validation = new MessagesIMAP();
-        Boolean validationResult = validation.validateEmailReport(user.email, user.passwordEmail, "999", thisMailingListName);
-        Assert.assertTrue(validationResult);
+        new ValidatorEmailReport()
+                .buildReferenceEmail(user, "999", thisMailingListName)
+                .getEmailFormInbox()
+                .buildValidator()
+                .checkEmailBody()
+                .assertValidationResult()
+                .getUnSubscribeLink();
         rootLogger.info("Test passed");
     }
 
     @Test 
-    public void contacts_report_unsubscribe() {
+    public void contacts_report_unsubscribe() throws InterruptedException, MessagingException, IOException {
         String thisMailingListName = "Contacts Test unsubscribe link";
         rootLogger.info("Open ProjectValues reports, opened URL - "+URL_ReportsProjects);
         openPageWithSpinner(URL_ReportsContacts);
@@ -218,36 +249,25 @@ public class TestsPekamaReports {
         rootLogger.info("Send report");
         mailingListSendReport(thisMailingListName);
 
-        //if (thisMailingListName==null){Assert.fail("Case not created");}
-        rootLogger.info("Check report email");
-        String login = user.email;
-        String password = user.passwordEmail;
-        String reportSchedule = "999";
-        String reportName = thisMailingListName;
-        MessagesIMAP validation = new MessagesIMAP();
-        Boolean validationResult = validation.validateEmailReport(login, password, reportSchedule, reportName);
-        Assert.assertTrue(validationResult);
-        rootLogger.info("Test passed");
-        skipBefore = false;
+        String link = new ValidatorEmailReport()
+                .buildReferenceEmail(user, "999", thisMailingListName)
+                .getEmailFormInbox()
+                .buildValidator()
+                .checkEmailBody()
+                .assertValidationResult()
+                .getUnSubscribeLink();
 
-        rootLogger.info("Check email - report usubscribe link");
-        SelenideElement EMAIL_SUBJECT = EMAIL_REPORT_SUBJECT;
-        String link = unsubscribeLink;
-
+        rootLogger.info("Open link");
         openUrlWithBaseAuth(link);
-        sleep(5000);
-        $$(byText("You will no longer receive this report.")).filterBy(visible).shouldHaveSize(1);
+        checkText("You will no longer receive this report.");
 
-        rootLogger.info("Check checkbox value in mailing list");
+        rootLogger.info("Check checkbox is UNCHECKED in mailing list");
         openUrlWithBaseAuth(URL_ReportsContacts);
         sleep(3000);
         waitForSpinnerNotPresent();
-        boolean checkboxValue = mailingListCheckboxValue(thisMailingListName);
-
-            if (link == null)
-            {Assert.fail("Unsubscribe Link not found");}
-            if (checkboxValue==false)
-            {Assert.fail("Checkbox sending interval is still - has ON value");}
+        Assert.assertTrue(
+                "Checkbox sending interval is still - has ON value",
+                mailingListCheckboxValue(thisMailingListName));
         rootLogger.info("Test passed");
     }
 

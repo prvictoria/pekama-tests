@@ -4,8 +4,10 @@ import Steps.ObjectUser;
 
 import static Pages.Emails.EMAIL_RESET_PASSWORD_LINK;
 import static Pages.UrlStrings.EMAIL_CONFIRM_REGISTRATION_LINK;
+import static Pages.UrlStrings.REPORT_BACK_LINK;
+import static Pages.UrlStrings.REPORT_UNSUBSCRIBE_LINK;
 
-final public class Email {
+final public class ReferenceEmail {
     private AbstractEmail abstractEmail;
     public AbstractEmail getAbstractEmail() {
         return abstractEmail;
@@ -13,10 +15,33 @@ final public class Email {
     public void setAbstractEmail(AbstractEmail abstractEmail) {
         this.abstractEmail = abstractEmail;
     }
+    public static String reportSchedule;
+    public static String reportName;
 
-    public Email buildEmail (EmailTypes emailType, ObjectUser user)  {
-        new Email();
+    public ReferenceEmail buildEmail (EmailTypes emailType, ObjectUser user)  {
+        new ReferenceEmail();
         switch (emailType) {
+            case DEFAULT:
+                //Depends on host selection Pekama or Community in tests
+                this.abstractEmail = AbstractEmail.builder()
+                        .emailSubject("")
+                        .emailTitle("")
+                        .emailText("")
+                        .emailButtonLinkText("")
+                        .emailButtonText("")
+                        .emailLinkConfirmRegistrationInButton("")
+                        .emailLinkConfirmRegistration("")
+                        .build();
+                break;
+            case REPORT:
+                //Pekama only
+                this.abstractEmail = AbstractEmail.builder()
+                        .emailSubject("Pekama Report \""+reportName+"\" - ")
+                        .emailText("This is the report that you configured in Pekama. You will get it every "+reportSchedule+" days.")
+                        .emailLinkBackToPekama(REPORT_BACK_LINK)
+                        .emailLinkUnSubscribe(REPORT_UNSUBSCRIBE_LINK)
+                        .build();
+                break;
             case SIGN_UP:
                 //Depends on host selection Pekama or Community in tests
                 this.abstractEmail = AbstractEmail.builder()

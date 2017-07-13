@@ -119,7 +119,7 @@ public class ImapService {
         return this;
     }
     //SEARCH Email logic
-    private ImapService searchConditionEmailBySubject(final Email email) {
+    private ImapService searchConditionEmailBySubject(final ReferenceEmail email) {
         // creates a search criterion
         this.searchCondition = new SearchTerm() {
             @Override
@@ -139,7 +139,7 @@ public class ImapService {
         return this;
     }
 
-    public ImapService imapDetectEmail(final Email email) throws MessagingException, IOException, InterruptedException {
+    public ImapService imapDetectEmail(final ReferenceEmail email) throws MessagingException, IOException, InterruptedException {
         searchConditionEmailBySubject(email);
 
         int loop = 0;

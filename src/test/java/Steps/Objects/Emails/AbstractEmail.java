@@ -23,6 +23,10 @@ public abstract class AbstractEmail {
     @Nullable
     public abstract String emailLinkResetPassword();
     @Nullable
+    public abstract String emailLinkBackToPekama();
+    @Nullable
+    public abstract String emailLinkUnSubscribe();
+    @Nullable
     public abstract String emailLinkMailTo();
 
     public static Builder builder() {
@@ -47,9 +51,13 @@ public abstract class AbstractEmail {
 
         public abstract Builder emailLinkMailTo(@Nullable String emailLinkMailTo);
 
-        public abstract Builder emailLinkResetPasswordInButton(String emailLinkResetPasswordInButton);
+        public abstract Builder emailLinkResetPasswordInButton(@Nullable String emailLinkResetPasswordInButton);
 
-        public abstract Builder emailLinkResetPassword(String emailLinkResetPassword);
+        public abstract Builder emailLinkResetPassword(@Nullable String emailLinkResetPassword);
+
+        public abstract Builder emailLinkBackToPekama(@Nullable String emailLinkBackToPekama);
+
+        public abstract Builder emailLinkUnSubscribe(@Nullable String emailLinkUnSubscribe);
 
         public abstract AbstractEmail build();
     }

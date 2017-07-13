@@ -1,10 +1,10 @@
 package Steps;
 
 import Pages.UrlConfiguration;
-import Steps.Objects.Emails.Email;
+import Steps.Objects.Emails.ReferenceEmail;
 import Steps.Objects.Emails.EmailTypes;
 import Steps.Objects.Emails.ImapService;
-import Steps.Objects.Emails.ValidateEmailSignUp;
+import Steps.Objects.Emails.ValidatorEmailSignUp;
 import org.junit.Test;
 
 //import static Steps.BuildUser.newBuilder;
@@ -119,7 +119,7 @@ public class TestClasses {
     @Test
     public void testNewEmailsBuilder(){
         ObjectUser user = new ObjectUser(newBuilder()).buildUser(USER_05);
-        Email email = new Email().buildEmail(EmailTypes.SIGN_UP, user);
+        ReferenceEmail email = new ReferenceEmail().buildEmail(EmailTypes.SIGN_UP, user);
         rootLogger.info(email.getAbstractEmail().emailSubject());
 
 
@@ -141,21 +141,12 @@ public class TestClasses {
         ObjectUser user = new ObjectUser(newBuilder()).buildUser(USER_05);
         ArrayList<ObjectUser> users = new ArrayList<ObjectUser>();
         users.add(user);
-        Email email = new Email().buildEmail(EmailTypes.SIGN_UP, user);
-        rootLogger.info(email.getAbstractEmail().emailSubject());
-        ImapService actualEmail = new ImapService()
-                .setProperties()
-                .connectStore(user)
-                .openFolder()
-                .imapDetectEmail(email)
-                .getFirstMessage()
-                .setHtmlPart()
-                .markEmailsForDeletion()
-                .clearFolder()
-                .closeStore();
-        new ValidateEmailSignUp()
-                .buildValidator(actualEmail, email)
+        new ValidatorEmailSignUp()
+                .buildReferenceEmail(users.get(0))
+                .getEmailFormInbox()
+                .buildValidator()
                 .checkEmailBody()
-                .assertValidationResult();
+                .assertValidationResult()
+                .getSignUpLink();
     }
 }

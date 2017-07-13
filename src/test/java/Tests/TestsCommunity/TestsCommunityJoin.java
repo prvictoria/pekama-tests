@@ -1,12 +1,9 @@
 package Tests.TestsCommunity;
 
 import Pages.NewCommunity.PageJoin;
-import Steps.MessagesIMAP;
 import Steps.ObjectUser;
-import Steps.Objects.Emails.Email;
-import Steps.Objects.Emails.EmailTypes;
 import Steps.Objects.Emails.ImapService;
-import Steps.Objects.Emails.ValidateEmailSignUp;
+import Steps.Objects.Emails.ValidatorEmailSignUp;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -75,19 +72,13 @@ public class TestsCommunityJoin extends Configuration{
     public void joinGetEmail() throws MessagingException, InterruptedException, IOException {
         skipBefore = false;
 
-        Email referenceEmail = new Email().buildEmail(EmailTypes.SIGN_UP, invited);
-        ImapService actualEmail = new ImapService()
-                .setProperties()
-                .connectStore(invited)
-                .openFolder()
-                .imapDetectEmail(referenceEmail)
-                .getFirstMessage()
-                .setHtmlPart()
-                .closeStore();
-        new ValidateEmailSignUp()
-                .buildValidator(actualEmail, referenceEmail)
+        new ValidatorEmailSignUp()
+                .buildReferenceEmail(invited)
+                .getEmailFormInbox()
+                .buildValidator()
                 .checkEmailBody()
-                .assertValidationResult();
+                .assertValidationResult()
+                .getSignUpLink();
 
         rootLogger.info("Test passed");
     }

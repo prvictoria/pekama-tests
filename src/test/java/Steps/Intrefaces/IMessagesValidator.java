@@ -367,6 +367,7 @@ public interface IMessagesValidator {
             return link;
         }
     }
+    @Deprecated
     class ValidationReport implements IMessagesValidator {
         private String html = null;
         public static String reportSchedule = null;
@@ -382,6 +383,7 @@ public interface IMessagesValidator {
             Assert.assertTrue(reportBackLink.contains(REPORT_BACK_LINK));
             unsubscribeLink = getLink(links, 1);
             Assert.assertTrue(unsubscribeLink.contains(REPORT_UNSUBSCRIBE_LINK));
+
             Assert.assertTrue(html.contains(EMAIL_SUBJECT_SCHEDULE(reportSchedule)));
             rootLogger.info("Email validation passed");
             return true;
