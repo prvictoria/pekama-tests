@@ -146,6 +146,7 @@ public class TestClasses {
                 .checkEmailBody()
                 .assertValidationResult()
                 .getSignUpLink();
+        rootLogger.info(user.email);
     }
     @Test
     public void builderTestInviteInProject(){

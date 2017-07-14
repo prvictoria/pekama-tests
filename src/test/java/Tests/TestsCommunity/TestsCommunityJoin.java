@@ -19,6 +19,7 @@ import static Steps.ObjectUser.Users.USER_05;
 import static Steps.ObjectUser.newBuilder;
 import static Steps.StepsPekama.*;
 import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
+import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.refresh;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -56,7 +57,6 @@ public class TestsCommunityJoin extends Configuration{
     public void joinSuccess() throws MessagingException, InterruptedException {
         skipBefore = true;
 
-
         new ImapService()
                 .setProperties()
                 .connectStore(invited)
@@ -66,6 +66,7 @@ public class TestsCommunityJoin extends Configuration{
                 .closeStore();
 
         pageJoin.submitSignUp(invited);
+
         Assert.assertTrue(invited.isSignUpSucceed);
     }
     @Test (priority = 202, dependsOnMethods = { "joinSuccess" })

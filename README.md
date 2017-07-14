@@ -50,7 +50,7 @@ On the project used
 - Clone project from GitHub ot PRJ fodder via GIT or IntelliJ or Github desktop
 - Set SDK for project
 - Sync Gradle (if not works - open project as Gradle project via menu FILE->Open)
-- Run Tasks: clean, compileJava, CompileTestJava
+- Run Gradle Tasks: clean, compileJava, CompileTestJava
 
 ### Set up CI Jenkins on localhost
  - Todo /////

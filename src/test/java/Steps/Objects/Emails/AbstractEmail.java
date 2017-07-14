@@ -31,6 +31,8 @@ public abstract class AbstractEmail {
     @Nullable
     public abstract String emailLinkPathPart2();
     @Nullable
+    public abstract String emailLinkPathPart3();
+    @Nullable
     public abstract String emailLinkMailTo();
 
     public static Builder builder() {
@@ -66,6 +68,8 @@ public abstract class AbstractEmail {
         public abstract Builder emailLinkPathPart1(@Nullable String emailLinkPathPart1);
 
         public abstract Builder emailLinkPathPart2(@Nullable String emailLinkPathPart2);
+
+        public abstract Builder emailLinkPathPart3(@Nullable String emailLinkPathPart3);
 
         public abstract AbstractEmail build();
     }

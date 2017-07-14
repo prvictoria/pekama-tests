@@ -24,6 +24,13 @@ import static com.codeborne.selenide.WebDriverRunner.*;
  */
 public class BrowserConfiguration {
     static final Logger rootLogger = LogManager.getRootLogger();
+    //TODO Victory phantom path
+    public static String setPhantomDriverPath() {
+        String path = "src/test/resources/binary/";
+        System.setProperty("..driver", path);
+        rootLogger.info("Local driver path is selected: "+path);
+        return path;
+    }
     public static String setChromeDriverPath() {
         String path = "src/test/resources/binary/chromedriver.exe";
         System.setProperty("webdriver.chrome.driver", path);
@@ -79,7 +86,7 @@ public class BrowserConfiguration {
     }
 
     public enum SelectPathToDriver {WIN, LINUX, WEB}
-    public enum SelectBrowsers {CHROME, MARIONETTE, EDGE}
+    public enum SelectBrowsers {CHROME, MARIONETTE, EDGE, PHANTOM}
     public BrowserConfiguration setBrowser(SelectBrowsers browsers, SelectPathToDriver pathToDriver, boolean holdBrowserAfterTest) throws IOException {
 
         holdBrowserAfterTest(holdBrowserAfterTest);
@@ -128,6 +135,20 @@ public class BrowserConfiguration {
                         break;
                     case WEB:
                         EdgeDriverManager.getInstance().setup();
+                        break;
+                }
+                rootLogger.info("Tests will performed in EDGE");
+                break;
+
+            case PHANTOM:
+                browser = WebDriverRunner.EDGE;
+                startMaximized = true;
+                switch (pathToDriver) {
+                    case WIN:
+
+                        break;
+                    case WEB:
+
                         break;
                 }
                 rootLogger.info("Tests will performed in EDGE");
