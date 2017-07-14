@@ -19,6 +19,8 @@ final public class ReferenceEmail {
     public static ObjectUser invitedUser;
     public static ObjectUser inviterUser;
     public static ArrayList<ObjectUser> usersArrayList;
+    public static String followerEmailOrTeamNameSurname;
+    public static String thisEmailSubject;
 
 
 
@@ -35,6 +37,23 @@ final public class ReferenceEmail {
                         .emailButtonText("")
                         .emailLinkConfirmRegistrationInButton("")
                         .emailLinkConfirmRegistration("")
+                        .build();
+                break;
+            case MESSAGE_EMAIL:
+                //Emails from messages
+                if(user.isSignUpSucceed == false){
+                    followerEmailOrTeamNameSurname = user.email;
+                }
+                if(user.isSignUpSucceed == true){
+                    followerEmailOrTeamNameSurname = user.nameSurname;
+                }
+                System.out.println(thisEmailSubject);
+                this.abstractEmail = AbstractEmail.builder()
+                        .emailSubject(thisEmailSubject)
+                        .emailTitle("A <strong>Pekama Conversation</strong> between <strong>"+inviterUser.nameSurname+"</strong>, <strong>"+followerEmailOrTeamNameSurname+"</strong>.")
+                        .emailText("Lorem ipsum dolor sit amet")
+                        .emailButtonLinkText("Reply in Pekama")
+                        .emailLinkBackToPekama("sendgrid.net/wf/click?")
                         .build();
                 break;
             case REPORT:

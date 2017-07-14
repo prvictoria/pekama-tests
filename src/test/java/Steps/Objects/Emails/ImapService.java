@@ -2,6 +2,7 @@ package Steps.Objects.Emails;
 
 
 import Steps.ObjectUser;
+import com.sun.xml.xsom.impl.scd.Iterators;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
@@ -10,9 +11,12 @@ import javax.mail.*;
 import javax.mail.search.FlagTerm;
 import javax.mail.search.SearchTerm;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Properties;
 import java.util.regex.Pattern;
 
+import static Steps.ObjectUser.Users.*;
+import static Steps.ObjectUser.newBuilder;
 import static Utils.Utils.formatDateToString;
 import static javax.mail.Flags.*;
 import static javax.mail.Message.RecipientType.CC;
@@ -221,6 +225,46 @@ public class ImapService {
                 }
             }
         }
+        return this;
+    }
+
+    public ImapService emailAllEmailsCleaner() throws MessagingException, InterruptedException {
+        ObjectUser user1 = new ObjectUser(newBuilder()).buildUser(USER_01);
+        ObjectUser user2 = new ObjectUser(newBuilder()).buildUser(USER_02);
+        ObjectUser user3 = new ObjectUser(newBuilder()).buildUser(USER_03);
+        ObjectUser user4 = new ObjectUser(newBuilder()).buildUser(USER_04);
+        ObjectUser user5 = new ObjectUser(newBuilder()).buildUser(USER_05);
+        ObjectUser user6 = new ObjectUser(newBuilder()).buildUser(USER_06);
+        ObjectUser user8 = new ObjectUser(newBuilder()).buildUser(USER_08);
+        ObjectUser[] users = {user1, user2, user3, user4, user5, user6, user8};
+        int i = users.length;
+        do {
+            new ImapService()
+                    .setProperties()
+                    .connectStore(users[i-1])
+                    .openFolder()
+                    .markEmailsForDeletion()
+                    .clearFolder()
+                    .closeStore();
+            i--;
+        }
+        while (i>0);
+        return this;
+    }
+    public ImapService emailEmailCleaner(ObjectUser user) throws MessagingException, InterruptedException {
+        ObjectUser[] users = {user};
+        int i = users.length;
+        do {
+            new ImapService()
+                    .setProperties()
+                    .connectStore(users[i-1])
+                    .openFolder()
+                    .markEmailsForDeletion()
+                    .clearFolder()
+                    .closeStore();
+            i--;
+        }
+        while (i>0);
         return this;
     }
 }

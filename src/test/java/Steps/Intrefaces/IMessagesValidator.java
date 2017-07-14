@@ -18,7 +18,7 @@ public interface IMessagesValidator {
     static final Logger rootLogger = LogManager.getRootLogger();
     boolean validationEmail(String...strings);
     String validateLink(String html, Integer index);
-    //}
+
     class ValidationNotificationCaseConfirmed implements IMessagesValidator {
         private String html = null;
         public static String userEmail = null;

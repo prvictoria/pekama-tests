@@ -2,8 +2,6 @@ package Tests;
 import Steps.*;
 import Steps.Objects.Emails.ImapService;
 import Steps.Objects.Emails.ValidatorEmailReport;
-import Steps.Objects.Emails.ValidatorEmailSignUp;
-import com.codeborne.selenide.SelenideElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
@@ -13,7 +11,6 @@ import org.junit.runners.MethodSorters;
 import javax.mail.MessagingException;
 import java.io.IOException;
 
-import static Pages.Emails.*;
 import static Pages.ModalWindows.*;
 import static Pages.PekamaReports.*;
 import static Pages.DataCredentials.Countries.*;
@@ -21,11 +18,10 @@ import static Pages.DataCredentials.Countries.PITCAIRN_ISLANDS;
 import static Pages.DataStrings.*;
 import static Pages.UrlConfiguration.setEnvironment;
 import static Pages.UrlStrings.*;
-import static Steps.Intrefaces.IMessagesValidator.ValidationReport.*;
 import static Steps.ObjectContact.contactType.COMPANY;
 import static Steps.ObjectContact.contactType.PERSON;
 import static Steps.ObjectContact.enterPoint.*;
-import static Steps.ObjectUser.Users.USER_01;
+import static Steps.ObjectUser.Users.*;
 import static Steps.ObjectUser.newBuilder;
 import static Steps.StepsModalWindows.*;
 import static Steps.StepsPekama.*;
@@ -55,13 +51,7 @@ public class TestsPekamaReports {
         setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
-        new ImapService()
-                .setProperties()
-                .connectStore(user)
-                .openFolder()
-                .markEmailsForDeletion()
-                .clearFolder()
-                .closeStore();
+        new ImapService().emailAllEmailsCleaner();
     }
 
     @Before

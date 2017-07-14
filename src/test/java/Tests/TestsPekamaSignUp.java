@@ -286,7 +286,7 @@ public class TestsPekamaSignUp {
 
         rootLogger.info("Submit SignUp with valid but fake user");
         rootLogger.info("BUG https://www.pivotaltracker.com/n/projects/1239770/stories/142325561");
-        ObjectUser fakeUser = ObjectUser.newBuilder().build();
+        ObjectUser fakeUser = ObjectUser.newBuilder().email("email@email.com").build();
         fakeUser.submitSignUp(
                 fakeUser.email,
                 VALID_SURNAME,
@@ -309,7 +309,7 @@ public class TestsPekamaSignUp {
         rootLogger.info("Avatar uploaded");
 
         rootLogger.info("Submit SignUp with valid but fake user");
-        ObjectUser fakeUser = ObjectUser.newBuilder().build();
+        ObjectUser fakeUser = ObjectUser.newBuilder().email("email@email.com").build();
         fakeUser.submitSignUp(
                 fakeUser.email,
                 VALID_SURNAME,

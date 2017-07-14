@@ -9,7 +9,6 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        MessagesIMAP.class,
         TestsPekamaReports.class,
         TestsPekamaReportsFiltersProjects.class,
         TestsPekamaReportsFiltersTasks.class,

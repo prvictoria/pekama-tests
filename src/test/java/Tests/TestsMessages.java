@@ -5,7 +5,10 @@ package Tests;
  */
 import Steps.*;
 import Steps.Intrefaces.IMessagesValidator;
+import Steps.Objects.Emails.ImapService;
+import Steps.Objects.Emails.ValidatorEmailFromMessage;
 import Steps.Objects.Emails.ValidatorEmailInviteInProject;
+import Steps.Objects.Emails.ValidatorEmailSignUp;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
@@ -43,35 +46,25 @@ public class TestsMessages {
     static final Logger rootLogger = LogManager.getRootLogger();
     private final static ObjectUser collaborator = new ObjectUser(newBuilder()).buildUser(USER_01);
     private final static ObjectUser guest = new ObjectUser(newBuilder()).buildUser(USER_05);
-    private final static ObjectUser invited = new ObjectUser(newBuilder()).buildUser(USER_05);
+    private final static ObjectUser invited = guest;
     private static ObjectUser owner = new ObjectUser(newBuilder()).buildUser(USER_03);
 
     private static String subjectLineExample = null;
     private static String testProjectName = null;
     private static String testProjectUrl = null;
     private static String repryLink = null;
-    private static boolean skipBefore = false;
-    private static boolean debug = false;
+    private static boolean skipBefore = true;
+    private static boolean debug = true;
     @Rule
     public Timeout tests = Timeout.seconds(600);
     @BeforeClass
-    public static void beforeClass() throws IOException, MessagingException {
-//        skipBefore = true;
-//        debug =true;
+    public static void beforeClass() throws IOException, MessagingException, InterruptedException {
+
         setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
         if(debug==false) {
-            MessagesIMAP emailTask = new MessagesIMAP();
-            emailTask.imapSearchEmailDeleteAll(
-                    owner.email,
-                    owner.passwordEmail);
-            emailTask.imapSearchEmailDeleteAll(
-                    invited.email,
-                    invited.passwordEmail);
-            emailTask.imapSearchEmailDeleteAll(
-                    collaborator.email,
-                    collaborator.passwordEmail);
+            new ImapService().emailAllEmailsCleaner();
             owner.login();
             deleteAllMembers();
             getWebDriver().quit();
@@ -216,22 +209,30 @@ public class TestsMessages {
         postMessage(LOREM_IPSUM_SHORT);
     }
     @Test @Category({AllImapTests.class})
-    public void checkEmailParametersModal_A2_CheckEmailSubject() throws IOException, MessagingException {
+    public void checkEmailParametersModal_A2_CheckEmailSubject() throws IOException, MessagingException, InterruptedException {
         skipBefore = false;
         rootLogger.info("Check follower-collaborator email");
-        sleep(10000);
-        MessagesIMAP emailTask2 = new MessagesIMAP();
-        Assert.assertTrue(
-                emailTask2.validateEmailMessage(
-                        collaborator.email,
-                        collaborator.passwordEmail,
-                        "CUSTOM",
-                        LOREM_IPSUM_SHORT,
-                        owner.nameSurname,
-                        collaborator.nameSurname,
-                        new IMessagesValidator.ValidationEmailMessage()
-                )
-        );
+
+        new ValidatorEmailFromMessage()
+                .buildReferenceEmail("CUSTOM", collaborator, owner)
+                .getEmailFormInbox()
+                .buildValidator()
+                .checkEmailBody()
+                .assertValidationResult();
+
+
+//        MessagesIMAP emailTask2 = new MessagesIMAP();
+//        Assert.assertTrue(
+//                emailTask2.validateEmailMessage(
+//                        collaborator.email,
+//                        collaborator.passwordEmail,
+//                        "CUSTOM",
+//                        LOREM_IPSUM_SHORT,
+//                        owner.nameSurname,
+//                        collaborator.nameSurname,
+//                        new IMessagesValidator.ValidationEmailMessage()
+//                )
+//        );
     }
 
     @Test

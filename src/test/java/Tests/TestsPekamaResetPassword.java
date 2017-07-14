@@ -49,14 +49,12 @@ public class TestsPekamaResetPassword {
     @Rule
     public Timeout tests = Timeout.seconds(600);
     @BeforeClass
-    public static void beforeClass() throws IOException, MessagingException {
+    public static void beforeClass() throws IOException, MessagingException, InterruptedException {
         setEnvironment();
         setBrowser();
         holdBrowserAfterTest();
         MessagesIMAP emailTask = new MessagesIMAP();
-        emailTask.imapSearchEmailDeleteAll(
-                user.email,
-                user.passwordEmail);
+        new ImapService().emailEmailCleaner(user);
     }
 
     @Test

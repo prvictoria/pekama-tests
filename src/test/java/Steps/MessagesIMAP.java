@@ -370,8 +370,8 @@ public class MessagesIMAP {
         Document doc = Jsoup.parse(html);
         Element link = doc.select("a[href]").first();
         String linkText = link.text(); // "example""
-        System.out.println(linkText);
-        System.out.println("--------------------------------");
+        rootLogger.info(linkText);
+        rootLogger.debug("--------------------------------");
         return linkText;
     }
     public static Document document(String html){
@@ -385,7 +385,7 @@ public class MessagesIMAP {
 
         // Remove all script and style elements and those of class "hidden".
         doc.select("script, style, .hidden").remove();
-        //rootLogger.info(doc);
+        rootLogger.info(doc);
         // Remove all style and event-handler attributes from all elements.
         Elements all = doc.select("*");
         for (Element el : all) {
@@ -396,7 +396,7 @@ public class MessagesIMAP {
                 }
             }
         }
-        //rootLogger.info(doc);
+        rootLogger.info(doc);
         // See also - doc.select("*").removeAttr("style");
         return doc;
     }
@@ -574,29 +574,6 @@ public class MessagesIMAP {
         else return false;
     }
 
-
-    @Test
-    public void clearAllEmails() throws MessagingException, IOException {
-        MessagesIMAP emailTask = new MessagesIMAP();
-        emailTask.imapSearchEmailDeleteAll(
-                User1.GMAIL_EMAIL.getValue(),
-                User1.GMAIL_PASSWORD.getValue());
-        emailTask.imapSearchEmailDeleteAll(
-                User2.GMAIL_EMAIL.getValue(),
-                User2.GMAIL_PASSWORD.getValue());
-        emailTask.imapSearchEmailDeleteAll(
-                User3.GMAIL_EMAIL.getValue(),
-                User3.GMAIL_PASSWORD.getValue());
-        emailTask.imapSearchEmailDeleteAll(
-                User4.GMAIL_EMAIL.getValue(),
-                User4.GMAIL_PASSWORD.getValue());
-        emailTask.imapSearchEmailDeleteAll(
-                User5.GMAIL_EMAIL.getValue(),
-                User5.GMAIL_PASSWORD.getValue());
-        emailTask.imapSearchEmailDeleteAll(
-                User6.GMAIL_EMAIL.getValue(),
-                User6.GMAIL_PASSWORD.getValue());
-    }
 }
 
 
