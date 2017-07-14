@@ -64,7 +64,7 @@ final public class ReferenceEmail {
                 this.abstractEmail = AbstractEmail.builder()
                         .emailSubject("Password Restoration [Pekama]")
                         .emailTitle("Password Restoration")
-                        .emailText("You've received this e-mail because you requested to reset the password for your invitedUser account. Press the button bellow to complete restoration.")
+                        .emailText("You've received this e-mail because you requested to reset the password for your user account. Press the button bellow to complete restoration.")
                         .emailButtonLinkText("Reset Password")
                         .emailButtonText("Reset Password")
                         .emailLinkResetPasswordInButton(EMAIL_RESET_PASSWORD_LINK)
