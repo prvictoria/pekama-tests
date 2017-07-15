@@ -400,6 +400,13 @@ public class MessagesIMAP {
         // See also - doc.select("*").removeAttr("style");
         return doc;
     }
+    public static String parsedEmailToText(String html){
+        Document doc = Jsoup.parse(html);
+        rootLogger.debug(doc);
+        String text = doc.text();
+        rootLogger.info(text);
+        return text;
+    }
     public static String getHtmlElementByTag(Document document, String tagName, int index){
         String element = document.getElementsByTag(tagName).get(index).html();
         return element;

@@ -2,13 +2,17 @@ package Steps.Objects.Emails;
 
 import Steps.ObjectProject;
 import Steps.ObjectUser;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 
+import static Pages.DataStrings.LOREM_IPSUM_SHORT;
 import static Pages.Emails.EMAIL_RESET_PASSWORD_LINK;
 import static Pages.UrlStrings.*;
 
 final public class ReferenceEmail {
+    private final Logger rootLogger = LogManager.getRootLogger();
     private AbstractEmail abstractEmail;
     public AbstractEmail getAbstractEmail() {
         return abstractEmail;
@@ -50,11 +54,12 @@ final public class ReferenceEmail {
                 System.out.println(thisEmailSubject);
                 this.abstractEmail = AbstractEmail.builder()
                         .emailSubject(thisEmailSubject)
-                        .emailTitle("A <strong>Pekama Conversation</strong> between <strong>"+inviterUser.nameSurname+"</strong>, <strong>"+followerEmailOrTeamNameSurname+"</strong>.")
-                        .emailText("Lorem ipsum dolor sit amet")
+                        .emailTitle("A Pekama Conversation between "+inviterUser.nameSurname+", "+followerEmailOrTeamNameSurname+".")
+                        .emailText(LOREM_IPSUM_SHORT)
                         .emailButtonLinkText("Reply in Pekama")
                         .emailLinkBackToPekama("sendgrid.net/wf/click?")
                         .build();
+                rootLogger.debug(this.abstractEmail.emailTitle());
                 break;
             case REPORT:
                 //Pekama only

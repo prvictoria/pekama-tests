@@ -54,7 +54,6 @@ public class TestsMessages {
     private static String testProjectUrl = null;
     private static String repryLink = null;
     private static boolean skipBefore = true;
-    private static boolean debug = true;
     @Rule
     public Timeout tests = Timeout.seconds(600);
     @BeforeClass
@@ -63,7 +62,7 @@ public class TestsMessages {
         setEnvironment ();
         setBrowser();
         holdBrowserAfterTest();
-        if(debug==false) {
+        if(skipBefore==false) {
             new ImapService().emailAllEmailsCleaner();
             owner.login();
             deleteAllMembers();
@@ -219,20 +218,6 @@ public class TestsMessages {
                 .buildValidator()
                 .checkEmailBody()
                 .assertValidationResult();
-
-
-//        MessagesIMAP emailTask2 = new MessagesIMAP();
-//        Assert.assertTrue(
-//                emailTask2.validateEmailMessage(
-//                        collaborator.email,
-//                        collaborator.passwordEmail,
-//                        "CUSTOM",
-//                        LOREM_IPSUM_SHORT,
-//                        owner.nameSurname,
-//                        collaborator.nameSurname,
-//                        new IMessagesValidator.ValidationEmailMessage()
-//                )
-//        );
     }
 
     @Test

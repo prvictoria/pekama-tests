@@ -71,12 +71,10 @@ final public class ValidatorEmailFromMessage {
                     .equals(this.emailValidator.referenceEmail()
                     .getAbstractEmail().emailButtonLinkText()));
 
-            Document document = document(this.html);
-            parseCleanHtml(document); //parse email text
-            Assert.assertEquals(getHtmlElementByTag(document, "p", 0),
-                    this.emailValidator
-                    .referenceEmail().getAbstractEmail()
-                    .emailTitle());
+            Assert.assertTrue(parsedEmailToText(this.html)
+                    .contains(this.emailValidator
+                    .referenceEmail().getAbstractEmail().emailTitle()));
+
             Assert.assertTrue(this.html.contains(this.emailValidator
                     .referenceEmail().getAbstractEmail().emailText()));
             rootLogger.info("Email validation passed");
