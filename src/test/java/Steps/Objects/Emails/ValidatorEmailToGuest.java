@@ -13,7 +13,7 @@ import static Steps.MessagesIMAP.*;
 import static Steps.Objects.Emails.EmailTypes.MESSAGE_TO_REGISTERED;
 import static Steps.Objects.Emails.ReferenceEmail.*;
 
-final public class ValidatorEmailFromMessage {
+final public class ValidatorEmailToGuest {
     private static final Logger rootLogger = LogManager.getRootLogger();
     private EmailValidator emailValidator;
     private String html;
@@ -22,42 +22,26 @@ final public class ValidatorEmailFromMessage {
     private ReferenceEmail referenceEmail;
     private ImapService actualEmail;
 
-    public String getReplyInPekamaBackLink() {
-        return replyInPekamaBackLink;
-    }
-
-    private String replyInPekamaBackLink;
-
-    public ValidatorEmailFromMessage buildReferenceEmailCheckFollower(String emailActualSubject, ObjectUser follower, ObjectUser posterMessage){
+    public ValidatorEmailToGuest buildReferenceEmailCheckFollower(String emailActualSubject, ObjectUser follower, ObjectUser posterMessage){
         //For check email as follower
         this.user = follower;
-        inviterUser = posterMessage;
         thisEmailSubject = emailActualSubject;
-        if(follower.isSignUpSucceed == false){
-            followerEmailOrTeamNameSurname = follower.email;
-        }
-        if(follower.isSignUpSucceed == true){
-            followerEmailOrTeamNameSurname = follower.nameSurname;
-        }
+        inviterUser = posterMessage;
+        followerEmailOrTeamNameSurname = follower.email;
         this.referenceEmail = new ReferenceEmail().buildEmail(MESSAGE_TO_REGISTERED, this.user);
         return this;
     }
-    public ValidatorEmailFromMessage buildReferenceEmailCheckSender(String emailActualSubject, ObjectUser follower, ObjectUser posterMessage){
+    public ValidatorEmailToGuest buildReferenceEmailCheckSender(String emailActualSubject, ObjectUser follower, ObjectUser posterMessage){
         //For check email as sender
         this.user = posterMessage;
-        inviterUser = posterMessage;
         thisEmailSubject = emailActualSubject;
-        if(follower.isSignUpSucceed == false){
-            followerEmailOrTeamNameSurname = follower.email;
-        }
-        if(follower.isSignUpSucceed == true){
-            followerEmailOrTeamNameSurname = follower.nameSurname;
-        }
+        inviterUser = posterMessage;
+        followerEmailOrTeamNameSurname = follower.email;
         this.referenceEmail = new ReferenceEmail().buildEmail(MESSAGE_TO_REGISTERED, this.user);
         return this;
     }
 
-    public ValidatorEmailFromMessage getEmailFormInbox() throws MessagingException, InterruptedException, IOException {
+    public ValidatorEmailToGuest getEmailFormInbox() throws MessagingException, InterruptedException, IOException {
         this.actualEmail = new ImapService()
                 .setProperties()
                 .connectStore(this.user)
@@ -71,8 +55,8 @@ final public class ValidatorEmailFromMessage {
         return this;
     }
 
-    public ValidatorEmailFromMessage buildValidator(){
-        new ValidatorEmailFromMessage();
+    public ValidatorEmailToGuest buildValidator(){
+        new ValidatorEmailToGuest();
         this.emailValidator = EmailValidator.builder()
                 .html(this.actualEmail.getMessageHtmlPart())
                 .actualEmail(this.actualEmail)
@@ -81,22 +65,10 @@ final public class ValidatorEmailFromMessage {
         return this;
     }
 
-    public ValidatorEmailFromMessage checkEmailBody() throws IOException {
+    public ValidatorEmailToGuest checkEmailBody() throws IOException {
         this.html = this.emailValidator.actualEmail().getMessageHtmlPart();
 
         if(emailValidator!=null){
-            Elements links = parseHtmlHrefArray(this.html);
-            if(this.user.isSignUpSucceed == true) {
-                Assert.assertTrue(parseHtmlHrefArray(this.html).size() == 1);
-                Assert.assertTrue(getLink(links, 0)
-                        .contains(this.emailValidator
-                                .referenceEmail().getAbstractEmail()
-                                .emailLinkBackToPekama()));
-            }
-            Assert.assertTrue("Button text check failed", parseHtmlLinkText(this.html)
-                    .equals(this.emailValidator.referenceEmail()
-                    .getAbstractEmail().emailButtonLinkText()));
-
             Assert.assertTrue(parsedEmailToText(this.html)
                     .contains(this.emailValidator
                     .referenceEmail().getAbstractEmail().emailTitle()));
@@ -104,13 +76,12 @@ final public class ValidatorEmailFromMessage {
             Assert.assertTrue(this.html.contains(this.emailValidator
                     .referenceEmail().getAbstractEmail().emailText()));
             rootLogger.info("Email validation passed");
-            this.replyInPekamaBackLink = getLink(links, 0);
             this.isValidationPassed = true;
             return this;
         }
         return this;
     }
-    public ValidatorEmailFromMessage assertValidationResult(){
+    public ValidatorEmailToGuest assertValidationResult(){
         if(isValidationPassed==false){
             Assert.fail("Validation failed");
         }

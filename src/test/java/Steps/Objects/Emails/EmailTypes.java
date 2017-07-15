@@ -2,7 +2,8 @@ package Steps.Objects.Emails;
 
 public enum EmailTypes {
     DEFAULT,
-    MESSAGE_EMAIL,
+    MESSAGE_TO_REGISTERED,
+    MESSAGE_TO_GUEST,
     REPORT,
     SIGN_UP,
     RESET_PASSWORD,

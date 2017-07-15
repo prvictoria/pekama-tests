@@ -43,15 +43,9 @@ final public class ReferenceEmail {
                         .emailLinkConfirmRegistration("")
                         .build();
                 break;
-            case MESSAGE_EMAIL:
+            case MESSAGE_TO_REGISTERED:
                 //Emails from messages
-                if(user.isSignUpSucceed == false){
-                    followerEmailOrTeamNameSurname = user.email;
-                }
-                if(user.isSignUpSucceed == true){
-                    followerEmailOrTeamNameSurname = user.nameSurname;
-                }
-                System.out.println(thisEmailSubject);
+                rootLogger.debug(thisEmailSubject);
                 this.abstractEmail = AbstractEmail.builder()
                         .emailSubject(thisEmailSubject)
                         .emailTitle("A Pekama Conversation between "+inviterUser.nameSurname+", "+followerEmailOrTeamNameSurname+".")
@@ -59,8 +53,19 @@ final public class ReferenceEmail {
                         .emailButtonLinkText("Reply in Pekama")
                         .emailLinkBackToPekama("sendgrid.net/wf/click?")
                         .build();
-                rootLogger.debug(this.abstractEmail.emailTitle());
+                rootLogger.info(this.abstractEmail.emailTitle());
                 break;
+            case MESSAGE_TO_GUEST:
+                //Emails from messages
+                rootLogger.debug(thisEmailSubject);
+                this.abstractEmail = AbstractEmail.builder()
+                        .emailSubject(thisEmailSubject)
+                        .emailTitle("A Pekama Conversation between "+inviterUser.nameSurname+", "+followerEmailOrTeamNameSurname+".")
+                        .emailText(LOREM_IPSUM_SHORT)
+                        .build();
+                rootLogger.info(this.abstractEmail.emailTitle());
+                break;
+
             case REPORT:
                 //Pekama only
                 this.abstractEmail = AbstractEmail.builder()
@@ -70,6 +75,7 @@ final public class ReferenceEmail {
                         .emailLinkUnSubscribe(REPORT_UNSUBSCRIBE_LINK)
                         .build();
                 break;
+
             case SIGN_UP:
                 //Depends on host selection Pekama or Community in tests
                 this.abstractEmail = AbstractEmail.builder()
@@ -83,6 +89,7 @@ final public class ReferenceEmail {
                         .emailLinkMailTo(user.email)
                         .build();
                 break;
+
             case RESET_PASSWORD:
                 //Depends on host selection Pekama or Community in tests
                 this.abstractEmail = AbstractEmail.builder()
@@ -95,6 +102,7 @@ final public class ReferenceEmail {
                         .emailLinkResetPassword(EMAIL_RESET_PASSWORD_LINK)
                         .build();
                 break;
+
             case INVITE_IN_PROJECT:
                 //Pekama only - invite collaborator
                 this.abstractEmail = AbstractEmail.builder()

@@ -5,10 +5,7 @@ package Tests;
  */
 import Steps.*;
 import Steps.Intrefaces.IMessagesValidator;
-import Steps.Objects.Emails.ImapService;
-import Steps.Objects.Emails.ValidatorEmailFromMessage;
-import Steps.Objects.Emails.ValidatorEmailInviteInProject;
-import Steps.Objects.Emails.ValidatorEmailSignUp;
+import Steps.Objects.Emails.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
@@ -26,7 +23,6 @@ import static Pages.DataCredentials.*;
 import static Pages.DataStrings.*;
 import static Pages.UrlConfiguration.*;
 import static Pages.UrlStrings.*;
-import static Steps.Intrefaces.IMessagesValidator.ValidationEmailMessage.*;
 import static Steps.ObjectUser.Users.*;
 import static Steps.ObjectUser.newBuilder;
 import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
@@ -53,7 +49,7 @@ public class TestsMessages {
     private static String testProjectName = null;
     private static String testProjectUrl = null;
     private static String repryLink = null;
-    private static boolean skipBefore = true;
+    private static boolean skipBefore = false;
     @Rule
     public Timeout tests = Timeout.seconds(600);
     @BeforeClass
@@ -213,7 +209,7 @@ public class TestsMessages {
         rootLogger.info("Check follower-collaborator email");
 
         new ValidatorEmailFromMessage()
-                .buildReferenceEmail("CUSTOM", collaborator, owner)
+                .buildReferenceEmailCheckFollower("CUSTOM", collaborator, owner)
                 .getEmailFormInbox()
                 .buildValidator()
                 .checkEmailBody()
@@ -261,22 +257,16 @@ public class TestsMessages {
         postMessage(LOREM_IPSUM_SHORT);
     }
     @Test @Category({AllImapTests.class})
-    public void checkEmailParametersModal_C2_CheckEmailSubject() throws IOException, MessagingException {
+    public void checkEmailParametersModal_C2_CheckEmailSubject() throws IOException, MessagingException, InterruptedException {
         skipBefore = false;
         rootLogger.info("Check follower-collaborator email");
-        sleep(10000);
-        MessagesIMAP emailTask2 = new MessagesIMAP();
-        Assert.assertTrue(
-                emailTask2.validateEmailMessage(
-                        collaborator.email,
-                        collaborator.passwordEmail,
-                        "THREAD SUBJECT",
-                        LOREM_IPSUM_SHORT,
-                        owner.nameSurname,
-                        collaborator.nameSurname,
-                        new IMessagesValidator.ValidationEmailMessage()
-                )
-        );
+
+        new ValidatorEmailFromMessage()
+                .buildReferenceEmailCheckFollower("THREAD SUBJECT", collaborator, owner)
+                .getEmailFormInbox()
+                .buildValidator()
+                .checkEmailBody()
+                .assertValidationResult();
     }
     @Test
     public void checkEmailParametersModal_D1_ProjectTitlePlaceholder(){
@@ -302,23 +292,17 @@ public class TestsMessages {
         postMessage(LOREM_IPSUM_SHORT);
     }
     @Test @Category({AllImapTests.class})
-    public void checkEmailParametersModal_D2_CheckEmailSubject() throws IOException, MessagingException {
+    public void checkEmailParametersModal_D2_CheckEmailSubject() throws IOException, MessagingException, InterruptedException {
         skipBefore = false;
         Assert.assertNotNull(testProjectName);
         rootLogger.info("Check follower-collaborator email");
-        sleep(10000);
-        MessagesIMAP emailTask2 = new MessagesIMAP();
-        Assert.assertTrue(
-                emailTask2.validateEmailMessage(
-                        collaborator.email,
-                        collaborator.passwordEmail,
-                        testProjectName,
-                        LOREM_IPSUM_SHORT,
-                        owner.nameSurname,
-                        collaborator.nameSurname,
-                        new IMessagesValidator.ValidationEmailMessage()
-                )
-        );
+
+        new ValidatorEmailFromMessage()
+                .buildReferenceEmailCheckFollower(testProjectName, collaborator, owner)
+                .getEmailFormInbox()
+                .buildValidator()
+                .checkEmailBody()
+                .assertValidationResult();
     }
     @Test
     public void checkEmailParametersModal_E_ProjectTitlePlaceholderDefault(){
@@ -360,23 +344,17 @@ public class TestsMessages {
         postMessage(LOREM_IPSUM_SHORT);
     }
     @Test @Category({AllImapTests.class})
-    public void checkEmailParametersModal_F2_CheckEmailSubject() throws IOException, MessagingException {
+    public void checkEmailParametersModal_F2_CheckEmailSubject() throws IOException, MessagingException, InterruptedException {
         skipBefore = false;
         Assert.assertNotNull(subjectLineExample);
         rootLogger.info("Check #project-number# subject");
-        sleep(10000);
-        MessagesIMAP emailTask2 = new MessagesIMAP();
-        Assert.assertTrue(
-                emailTask2.validateEmailMessage(
-                        collaborator.email,
-                        collaborator.passwordEmail,
-                        subjectLineExample,
-                        LOREM_IPSUM_SHORT,
-                        owner.nameSurname,
-                        collaborator.nameSurname,
-                        new IMessagesValidator.ValidationEmailMessage()
-                )
-        );
+
+        new ValidatorEmailFromMessage()
+                .buildReferenceEmailCheckFollower(subjectLineExample, collaborator, owner)
+                .getEmailFormInbox()
+                .buildValidator()
+                .checkEmailBody()
+                .assertValidationResult();
     }
     @Test
     public void checkEmailParametersModal_G1_MajorNumberPlaceholder(){
@@ -403,23 +381,17 @@ public class TestsMessages {
         postMessage(LOREM_IPSUM_SHORT);
     }
     @Test @Category({AllImapTests.class})
-    public void checkEmailParametersModal_G2_CheckEmailSubject() throws IOException, MessagingException {
+    public void checkEmailParametersModal_G2_CheckEmailSubject() throws IOException, MessagingException, InterruptedException {
         skipBefore = false;
         Assert.assertNotNull(subjectLineExample);
         rootLogger.info("Check #major-numbers# subject");
-        sleep(10000);
-        MessagesIMAP emailTask2 = new MessagesIMAP();
-        Assert.assertTrue(
-                emailTask2.validateEmailMessage(
-                        collaborator.email,
-                        collaborator.passwordEmail,
-                        subjectLineExample,
-                        LOREM_IPSUM_SHORT,
-                        owner.nameSurname,
-                        collaborator.nameSurname,
-                        new IMessagesValidator.ValidationEmailMessage()
-                )
-        );
+
+        new ValidatorEmailFromMessage()
+                .buildReferenceEmailCheckFollower(subjectLineExample, collaborator, owner)
+                .getEmailFormInbox()
+                .buildValidator()
+                .checkEmailBody()
+                .assertValidationResult();
     }
 //EXTERNAL EM TESTS ==========================================================================
     @Test
@@ -500,7 +472,7 @@ public class TestsMessages {
         );
         validateFollowerTeamChat(collaborator.nameSurname, 2, 1);
     }
-    //TODO Why ?
+
     @Ignore
     @Test
     public void inviteInTeamChatPekamaMemberAsGuest_Dismiss(){
@@ -559,8 +531,6 @@ public class TestsMessages {
                 login, password,
                 inviterNameSurname, inviterName, inviterFullTeamName);
         Assert.assertTrue(validationResult);
-        Assert.assertNotNull(ValidationInviteInTeamUnregistered.teamBackLink);
-        rootLogger.info("Link invite to Team is: "+ValidationInviteInTeamUnregistered.teamBackLink);
         return;
     }
     @Ignore
@@ -602,8 +572,6 @@ public class TestsMessages {
                 login, password,
                 inviterNameSurname, inviterName, inviterFullTeamName);
         Assert.assertTrue(validationResult);
-        Assert.assertNotNull(ValidationInviteInTeamRegistered.teamBackLink);
-        rootLogger.info("Link invite to Team is: "+ValidationInviteInTeamRegistered.teamBackLink);
         return;
     }
     @Test
@@ -686,27 +654,20 @@ public class TestsMessages {
         expandTextEditorInTeamChat();
         postMessage(LOREM_IPSUM_SHORT);
     }
-    @Test @Category({AllImapTests.class})
-    public void checkThatUserGetCopyOwnMessages_B_CheckEmail() throws IOException, MessagingException {
+    @Test
+    public void checkThatUserGetCopyOwnMessages_B_CheckEmail() throws IOException, MessagingException, InterruptedException {
         skipBefore = true;
         rootLogger.info("Check Creator email");
-        sleep(10000);
-        MessagesIMAP emailTask = new MessagesIMAP();
-        Assert.assertTrue(
-                emailTask.validateEmailMessage(
-                        owner.email,
-                        owner.passwordEmail,
-                        "COPY_OF_MY_OWN_MESSAGE",
-                        LOREM_IPSUM_SHORT,
-                        owner.nameSurname,
-                        collaborator.nameSurname,
-                        new IMessagesValidator.ValidationEmailMessage()
-                )
-        );
-        repryLink = ValidationEmailMessage.replyLink;
+        repryLink = new ValidatorEmailFromMessage()
+                .buildReferenceEmailCheckSender("COPY_OF_MY_OWN_MESSAGE", collaborator, owner)
+                .getEmailFormInbox()
+                .buildValidator()
+                .checkEmailBody()
+                .assertValidationResult()
+                .getReplyInPekamaBackLink();
     }
-    @Test @Category({AllImapTests.class})
-    public void checkThatUserGetCopyOwnMessages_C_CheckRedirectReplyLinkFollower() throws IOException, MessagingException {
+    @Test
+    public void checkThatUserGetCopyOwnMessages_C_CheckRedirectReplyLinkFollower() {
         skipBefore = true;
         Assert.assertNotNull(repryLink);
         collaborator.login();
@@ -714,8 +675,8 @@ public class TestsMessages {
         checkTreadTitle("COPY_OF_MY_OWN_MESSAGE");
         rootLogger.info("Test Passed");
     }
-    @Test @Category({AllImapTests.class})
-    public void checkThatUserGetCopyOwnMessages_D_CheckRedirectReplyLinkCreator() throws IOException, MessagingException {
+    @Test
+    public void checkThatUserGetCopyOwnMessages_D_CheckRedirectReplyLinkCreator() {
         skipBefore = false;
         Assert.assertNotNull(repryLink);
         owner.login();
@@ -725,9 +686,7 @@ public class TestsMessages {
 
     }
     @Test 
-    public void checkThatGuestFollowerGetEmail_A_PostMessage() throws IOException, MessagingException {
-        userNameSurname = owner.nameSurname;
-        followerEmailOrTeamNameSurname = guest.email;
+    public void checkThatGuestFollowerGetEmail_A_PostMessage() throws IOException, MessagingException, InterruptedException {
         rootLogger.info("Set email settings");
         openSettingsTabEmails();
         selectReceiveEmailOptions(
@@ -754,41 +713,25 @@ public class TestsMessages {
         postMessage(LOREM_IPSUM_SHORT);
 
         rootLogger.info("Check Creator email");
-        sleep(10000);
-        MessagesIMAP emailTask1 = new MessagesIMAP();
-        Assert.assertTrue(
-                emailTask1.validateEmailMessage(
-                        owner.email,
-                        owner.passwordEmail,
-                        "EMAIL_TO_GUEST_MESSAGE",
-                        LOREM_IPSUM_SHORT,
-                        owner.nameSurname,
-                        guest.email,
-                        new IMessagesValidator.ValidationEmailMessage()
-                )
-        );
+        new ValidatorEmailToGuest()
+                .buildReferenceEmailCheckSender("EMAIL_TO_GUEST_MESSAGE", guest, owner)
+                .getEmailFormInbox()
+                .buildValidator()
+                .checkEmailBody()
+                .assertValidationResult();
+
 
         rootLogger.info("Check guest email");
-        sleep(10000);
-        MessagesIMAP emailTask2 = new MessagesIMAP();
-        Assert.assertTrue(
-                emailTask2.validateEmailMessage(
-                        guest.email,
-                        guest.passwordEmail,
-                        "EMAIL_TO_GUEST_MESSAGE",
-                        LOREM_IPSUM_SHORT,
-                        owner.nameSurname,
-                        guest.email,
-                        new IMessagesValidator.ValidationEmailMessage()
-                )
-        );
+        new ValidatorEmailToGuest()
+                .buildReferenceEmailCheckFollower("EMAIL_TO_GUEST_MESSAGE", guest, owner)
+                .getEmailFormInbox()
+                .buildValidator()
+                .checkEmailBody()
+                .assertValidationResult();
     }
 
     @Test 
-    public void checkThatFollowerGetEmail() throws IOException, MessagingException {
-        userNameSurname = owner.nameSurname;
-        followerEmailOrTeamNameSurname = collaborator.nameSurname;
-
+    public void checkThatFollowerGetEmail() throws IOException, MessagingException, InterruptedException {
         openUrlWithBaseAuth(URL_PEKAMA_LOGOUT);
 
         rootLogger.info("Set FOLLOWER email settings");
@@ -820,18 +763,11 @@ public class TestsMessages {
         postMessage(LOREM_IPSUM_SHORT);
 
         rootLogger.info("Check follower-collaborator email");
-        sleep(10000);
-        MessagesIMAP emailTask2 = new MessagesIMAP();
-        Assert.assertTrue(
-                emailTask2.validateEmailMessage(
-                        collaborator.email,
-                        collaborator.passwordEmail,
-                        "EMAIL_TO_FOLLOWER_MESSAGE",
-                        LOREM_IPSUM_SHORT,
-                        owner.nameSurname,
-                        collaborator.nameSurname,
-                        new IMessagesValidator.ValidationEmailMessage()
-                )
-        );
+        new ValidatorEmailFromMessage()
+                .buildReferenceEmailCheckFollower("EMAIL_TO_FOLLOWER_MESSAGE", collaborator, owner)
+                .getEmailFormInbox()
+                .buildValidator()
+                .checkEmailBody()
+                .assertValidationResult();
     }
 }
