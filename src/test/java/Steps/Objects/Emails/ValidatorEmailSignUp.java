@@ -10,9 +10,9 @@ import javax.mail.MessagingException;
 
 import java.io.IOException;
 
-import static Steps.MessagesIMAP.getLink;
-import static Steps.MessagesIMAP.parseHtmlHrefArray;
-import static Steps.MessagesIMAP.parseHtmlLinkText;
+import static Steps.Objects.Emails.EmailUtils.getLink;
+import static Steps.Objects.Emails.EmailUtils.parseHtmlHrefArray;
+import static Steps.Objects.Emails.EmailUtils.parseHtmlLinkText;
 import static Steps.Objects.Emails.EmailTypes.SIGN_UP;
 
 final public class ValidatorEmailSignUp {

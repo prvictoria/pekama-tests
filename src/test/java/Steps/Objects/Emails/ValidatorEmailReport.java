@@ -9,9 +9,7 @@ import org.junit.Assert;
 import javax.mail.MessagingException;
 import java.io.IOException;
 
-import static Steps.MessagesIMAP.*;
 import static Steps.Objects.Emails.EmailTypes.REPORT;
-import static Steps.Objects.Emails.EmailTypes.SIGN_UP;
 import static Steps.Objects.Emails.ReferenceEmail.reportName;
 import static Steps.Objects.Emails.ReferenceEmail.reportSchedule;
 
@@ -67,13 +65,13 @@ final public class ValidatorEmailReport {
         this.html = this.emailValidator.actualEmail().getMessageHtmlPart();
 
         if(emailValidator!=null){
-            Assert.assertTrue(parseHtmlHrefArray(this.html).size() == 2);
-            Elements links = parseHtmlHrefArray(this.html);
-            Assert.assertTrue(getLink(links, 0)
+            Assert.assertTrue(EmailUtils.parseHtmlHrefArray(this.html).size() == 2);
+            Elements links = EmailUtils.parseHtmlHrefArray(this.html);
+            Assert.assertTrue(EmailUtils.getLink(links, 0)
                             .contains(this.emailValidator
                             .referenceEmail().getAbstractEmail()
                             .emailLinkBackToPekama()));
-            Assert.assertTrue(getLink(links, 1)
+            Assert.assertTrue(EmailUtils.getLink(links, 1)
                     .contains(this.emailValidator
                             .referenceEmail().getAbstractEmail().emailLinkUnSubscribe()));
 
@@ -82,7 +80,7 @@ final public class ValidatorEmailReport {
             Assert.assertTrue(this.html.contains(this.emailValidator
                     .referenceEmail().getAbstractEmail().emailText()));
             rootLogger.info("Email validation passed");
-            this.unSubscribeLink = getLink(links, 1);
+            this.unSubscribeLink = EmailUtils.getLink(links, 1);
             this.isValidationPassed = true;
             return this;
         }

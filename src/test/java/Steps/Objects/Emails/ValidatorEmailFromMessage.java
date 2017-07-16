@@ -9,7 +9,6 @@ import org.junit.Assert;
 import javax.mail.MessagingException;
 import java.io.IOException;
 
-import static Steps.MessagesIMAP.*;
 import static Steps.Objects.Emails.EmailTypes.MESSAGE_TO_REGISTERED;
 import static Steps.Objects.Emails.ReferenceEmail.*;
 
@@ -85,26 +84,26 @@ final public class ValidatorEmailFromMessage {
         this.html = this.emailValidator.actualEmail().getMessageHtmlPart();
 
         if(emailValidator!=null){
-            Elements links = parseHtmlHrefArray(this.html);
+            Elements links = EmailUtils.parseHtmlHrefArray(this.html);
             if(this.user.isSignUpSucceed == true) {
-                Assert.assertTrue(parseHtmlHrefArray(this.html).size() == 1);
-                Assert.assertTrue(getLink(links, 0)
+                Assert.assertTrue(EmailUtils.parseHtmlHrefArray(this.html).size() == 1);
+                Assert.assertTrue(EmailUtils.getLink(links, 0)
                         .contains(this.emailValidator
                                 .referenceEmail().getAbstractEmail()
                                 .emailLinkBackToPekama()));
             }
-            Assert.assertTrue("Button text check failed", parseHtmlLinkText(this.html)
+            Assert.assertTrue("Button text check failed", EmailUtils.parseHtmlLinkText(this.html)
                     .equals(this.emailValidator.referenceEmail()
                     .getAbstractEmail().emailButtonLinkText()));
 
-            Assert.assertTrue(parsedEmailToText(this.html)
+            Assert.assertTrue(EmailUtils.parsedEmailToText(this.html)
                     .contains(this.emailValidator
                     .referenceEmail().getAbstractEmail().emailTitle()));
 
             Assert.assertTrue(this.html.contains(this.emailValidator
                     .referenceEmail().getAbstractEmail().emailText()));
             rootLogger.info("Email validation passed");
-            this.replyInPekamaBackLink = getLink(links, 0);
+            this.replyInPekamaBackLink = EmailUtils.getLink(links, 0);
             this.isValidationPassed = true;
             return this;
         }

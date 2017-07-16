@@ -3,13 +3,11 @@ package Steps.Objects.Emails;
 import Steps.ObjectUser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.jsoup.select.Elements;
 import org.junit.Assert;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
 
-import static Steps.MessagesIMAP.*;
 import static Steps.Objects.Emails.EmailTypes.MESSAGE_TO_REGISTERED;
 import static Steps.Objects.Emails.ReferenceEmail.*;
 
@@ -69,7 +67,7 @@ final public class ValidatorEmailToGuest {
         this.html = this.emailValidator.actualEmail().getMessageHtmlPart();
 
         if(emailValidator!=null){
-            Assert.assertTrue(parsedEmailToText(this.html)
+            Assert.assertTrue(EmailUtils.parsedEmailToText(this.html)
                     .contains(this.emailValidator
                     .referenceEmail().getAbstractEmail().emailTitle()));
 

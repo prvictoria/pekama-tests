@@ -10,7 +10,6 @@ import org.junit.Assert;
 import javax.mail.MessagingException;
 import java.io.IOException;
 
-import static Steps.MessagesIMAP.*;
 import static Steps.Objects.Emails.EmailTypes.INVITE_IN_PROJECT;
 import static Steps.Objects.Emails.ReferenceEmail.*;
 import static Steps.Objects.Emails.ReferenceEmail.projectInEmail;
@@ -74,23 +73,23 @@ final public class ValidatorEmailInviteInProject {
 
         if(emailValidator!=null){
             //Links validation
-            Assert.assertTrue(parseHtmlHrefArray(this.html).size() == 3);
-            Elements links = parseHtmlHrefArray(this.html);
-            Assert.assertTrue(getLink(links, 0)
+            Assert.assertTrue(EmailUtils.parseHtmlHrefArray(this.html).size() == 3);
+            Elements links = EmailUtils.parseHtmlHrefArray(this.html);
+            Assert.assertTrue(EmailUtils.getLink(links, 0)
                             .contains(this.emailValidator
                             .referenceEmail().getAbstractEmail()
                             .emailLinkPathPart1()));
-            Assert.assertTrue(getLink(links, 0)
+            Assert.assertTrue(EmailUtils.getLink(links, 0)
                     .contains(this.emailValidator
                             .referenceEmail().getAbstractEmail().emailLinkPathPart2()));
-            Assert.assertTrue(getLink(links, 1)
+            Assert.assertTrue(EmailUtils.getLink(links, 1)
                     .contains(this.emailValidator
                             .referenceEmail().getAbstractEmail()
                             .emailLinkPathPart1()));
-            Assert.assertTrue(getLink(links, 1)
+            Assert.assertTrue(EmailUtils.getLink(links, 1)
                     .contains(this.emailValidator
                             .referenceEmail().getAbstractEmail().emailLinkPathPart2()));
-            Assert.assertTrue(getLink(links, 2)
+            Assert.assertTrue(EmailUtils.getLink(links, 2)
                     .contains(this.emailValidator
                             .referenceEmail().getAbstractEmail().emailLinkMailTo()));
 
@@ -99,12 +98,12 @@ final public class ValidatorEmailInviteInProject {
                     .referenceEmail().getAbstractEmail().emailTitle()));
             Assert.assertTrue(this.html.contains(this.emailValidator
                     .referenceEmail().getAbstractEmail().emailText()));
-            Assert.assertTrue(parseHtmlLinkText(this.html)
+            Assert.assertTrue(EmailUtils.parseHtmlLinkText(this.html)
                     .equals(this.emailValidator.referenceEmail()
                             .getAbstractEmail().emailButtonLinkText()));
 
             rootLogger.info("Email validation passed");
-            this.inviteLink = getLink(links, 0);
+            this.inviteLink = EmailUtils.getLink(links, 0);
             this.isValidationPassed = true;
             return this;
         }

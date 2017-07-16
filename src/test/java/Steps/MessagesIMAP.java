@@ -1,27 +1,18 @@
 package Steps;
 import Steps.Intrefaces.IMessagesValidator;
-import Steps.Intrefaces.IMessagesValidator.ValidationNotificationCaseConfirmed;
+import Steps.Objects.Emails.EmailUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Attribute;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import org.junit.Assert;
-import org.junit.Test;
 
 import javax.mail.*;
-import javax.mail.internet.InternetAddress;
 import javax.mail.search.FlagTerm;
 import javax.mail.search.SearchTerm;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.regex.Pattern;
 
-import static Pages.DataCredentials.*;
 import static Steps.Messages.*;
-import static Steps.Messages.EMAIL_SUBJECT_YOU_INVITED_IN_COMMUNITY;
 import static Steps.Intrefaces.IMessagesValidator.*;
 import static Steps.Intrefaces.IMessagesValidator.ValidationEmailMessage.replyLink;
 import static Utils.Utils.formatDateToString;
@@ -30,7 +21,6 @@ import static com.codeborne.selenide.Selenide.sleep;
 import static javax.mail.Flags.*;
 import static javax.mail.Message.RecipientType.*;
 
-import javax.mail.Address;
 import javax.mail.Flags;
 import javax.mail.Folder;
 import javax.mail.Message;
@@ -265,28 +255,7 @@ public class MessagesIMAP {
         System.out.println("Text: " + message.getContent().toString());
         return message;
     }
-    private static boolean setReadFlag(Message message) throws MessagingException {
-        message.setFlag(Flag.SEEN, true);
-        return true;
-    }
-    private static SearchTerm searchTermSubject(final String keyword) {
-        // creates a search criterion
-        SearchTerm searchCondition = new SearchTerm() {
-            @Override
-            public boolean match(Message message) {
-                try {
-                    if (message.getSubject().contains(keyword)) {
-                        return true;
-                    }
-                } catch (MessagingException ex) {
-                    ex.printStackTrace();
-                }
-                return false;
-            }
-        };
-        System.out.println(searchCondition);
-        return searchCondition;
-    }
+
     private Message[] messages(Folder folder, SearchTerm searchCondition) throws MessagingException {
         Message[] foundMessages = folder.search(searchCondition);
         if (foundMessages.length < 1) {
@@ -312,105 +281,6 @@ public class MessagesIMAP {
     }
 
 
-    //EMAIL PARSE STEPS
-    public static String parseHtml(String html){
-        Document doc = Jsoup.parse(html);
-        Element link = doc.select("a[href]").first();
-        System.out.println(link);
-        System.out.println("--------------------------------");
-
-        String text = doc.body().text(); // "An example link"
-        String linkHref = link.attr("href"); // "http://example.com/"
-        System.out.println("Link attribute "+linkHref);
-        System.out.println("--------------------------------");
-        String linkText = link.text(); // "example""
-        System.out.println(linkText);
-        System.out.println("--------------------------------");
-
-        String linkOuterH = link.outerHtml();
-        System.out.println(linkOuterH);
-        System.out.println("--------------------------------");
-        // "<a href="http://example.com"><b>example</b></a>"
-        String linkInnerH = link.html(); // "<b>example</b>"
-        System.out.println(linkInnerH);
-        System.out.println("--------------------------------");
-        return linkHref;
-    }
-    public static String parseHtmlHref(String html){
-        Document doc = Jsoup.parse(html);
-        Element link = doc.select("a[href]").first();
-        String linkHref = link.attr("href"); // "http://example.com/"
-        System.out.println("Link attribute "+linkHref);
-        System.out.println("--------------------------------");
-        return linkHref;
-    }
-    public static Elements parseHtmlHrefArray(String html){
-        Document doc = Jsoup.parse(html);
-        Elements link = doc.getElementsByAttribute("href");
-        //printAllLInks(link);
-        return link;
-    }
-    private static void printAllLInks(Elements link){
-        Integer size = link.size();
-        Integer i = 0;
-        while (size>0) {
-            System.out.println("Link attribute " + link.get(i).attr("href"));
-            System.out.println("--------------------------------");
-            size--;
-            i++;
-        }
-    }
-    public static String getLink (Elements links, Integer index){
-        String link = links.get(index).attr("href");
-        rootLogger.info("Link #"+index+": "+link);
-        rootLogger.info("-------------------------------------");
-        return link;
-    }
-    public static String parseHtmlLinkText(String html){
-        Document doc = Jsoup.parse(html);
-        Element link = doc.select("a[href]").first();
-        String linkText = link.text(); // "example""
-        rootLogger.info(linkText);
-        rootLogger.debug("--------------------------------");
-        return linkText;
-    }
-    public static Document document(String html){
-        Document doc = Jsoup.parse(html);
-        return doc;
-    }
-    public static Document parseCleanHtml(Document doc) throws IOException {
-        // Load and parse the document fragment.
-//        File f = new File("myfile.html"); // See also Jsoup#parseBodyFragment(s)
-//        Document doc = Jsoup.parse(f, "UTF-8", "http://example.com");
-
-        // Remove all script and style elements and those of class "hidden".
-        doc.select("script, style, .hidden").remove();
-        rootLogger.info(doc);
-        // Remove all style and event-handler attributes from all elements.
-        Elements all = doc.select("*");
-        for (Element el : all) {
-            for (Attribute attr : el.attributes()) {
-                String attrKey = attr.getKey();
-                if (attrKey.equals("style") || attrKey.startsWith("on")) {
-                    el.removeAttr(attrKey);
-                }
-            }
-        }
-        rootLogger.info(doc);
-        // See also - doc.select("*").removeAttr("style");
-        return doc;
-    }
-    public static String parsedEmailToText(String html){
-        Document doc = Jsoup.parse(html);
-        rootLogger.debug(doc);
-        String text = doc.text();
-        rootLogger.info(text);
-        return text;
-    }
-    public static String getHtmlElementByTag(Document document, String tagName, int index){
-        String element = document.getElementsByTag(tagName).get(index).html();
-        return element;
-    }
     //END TO END IMAP FLOW - need refactor
 
     public Boolean searchEmailBySubject(String userName, String password, final String keyword) {
@@ -423,7 +293,7 @@ public class MessagesIMAP {
             // opens the inbox folder
             Folder folderInbox = store.getFolder("INBOX");
             folderInbox.open(Folder.READ_WRITE);
-            SearchTerm searchCondition = searchTermSubject(keyword);
+            SearchTerm searchCondition = EmailUtils.searchTermSubject(keyword);
 
             // performs search through the folder
             Message[] foundMessages = folderInbox.search(searchCondition);
@@ -457,7 +327,7 @@ public class MessagesIMAP {
             // opens the inbox folder
             Folder folderInbox = store.getFolder("INBOX");
             folderInbox.open(Folder.READ_WRITE);
-            SearchTerm searchCondition = searchTermSubject(keyword);
+            SearchTerm searchCondition = EmailUtils.searchTermSubject(keyword);
 
             // performs search through the folder
             Message[] foundMessages = folderInbox.search(searchCondition);
@@ -495,7 +365,7 @@ public class MessagesIMAP {
         Properties properties = setProperties (IMAP_HOST, IMAP_PORT);
         Store store = store(properties, userName, password);
         Folder folderInbox = folder (store);
-        SearchTerm searchCondition = searchTermSubject(keyword);
+        SearchTerm searchCondition = EmailUtils.searchTermSubject(keyword);
         Boolean result = imapDetectEmail(folderInbox, searchCondition);
         if(result==true){
             Message[] messages = messages(folderInbox, searchCondition);

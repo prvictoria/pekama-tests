@@ -10,7 +10,6 @@ import javax.mail.MessagingException;
 
 import java.io.IOException;
 
-import static Steps.MessagesIMAP.*;
 import static Steps.Objects.Emails.EmailTypes.RESET_PASSWORD;
 
 final public class ValidatorEmailResetPassword {
@@ -65,16 +64,16 @@ final public class ValidatorEmailResetPassword {
         this.html = this.emailValidator.actualEmail().getMessageHtmlPart();
 
         if(emailValidator!=null){
-            Assert.assertTrue(parseHtmlLinkText(this.html)
+            Assert.assertTrue(EmailUtils.parseHtmlLinkText(this.html)
                     .equals(this.emailValidator.referenceEmail()
                             .getAbstractEmail().emailButtonLinkText()));
-            Assert.assertTrue(parseHtmlHrefArray(this.html).size() == 2);
-            Elements links = parseHtmlHrefArray(this.html);
-            Assert.assertTrue(getLink(links, 0)
+            Assert.assertTrue(EmailUtils.parseHtmlHrefArray(this.html).size() == 2);
+            Elements links = EmailUtils.parseHtmlHrefArray(this.html);
+            Assert.assertTrue(EmailUtils.getLink(links, 0)
                     .contains(this.emailValidator
                     .referenceEmail().getAbstractEmail()
                     .emailLinkResetPasswordInButton()));
-            Assert.assertTrue(getLink(links, 1)
+            Assert.assertTrue(EmailUtils.getLink(links, 1)
                     .contains(this.emailValidator
                     .referenceEmail().getAbstractEmail().emailLinkResetPassword()));
 
@@ -86,7 +85,7 @@ final public class ValidatorEmailResetPassword {
             Assert.assertTrue(this.html.contains(this.emailValidator
                     .referenceEmail().getAbstractEmail().emailText()));
             rootLogger.info("Email validation passed");
-            this.resetPasswordLink = getLink(links, 0);
+            this.resetPasswordLink = EmailUtils.getLink(links, 0);
             this.isValidationPassed = true;
             return this;
         }
