@@ -6,6 +6,7 @@ import org.apache.logging.log4j.*;
 import org.junit.*;
 import org.junit.rules.Timeout;
 import org.junit.runners.MethodSorters;
+import org.openqa.selenium.TimeoutException;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
@@ -456,7 +457,7 @@ public class TestsPekamaProjectCharges {
             fillField(extXeroPassword, user.passwordXero);
             submitEnabledButton(extXeroLogin);
             rootLogger.info("Xero login window submitted");}
-        catch (SoftAssertionError e) {
+        catch (TimeoutException e) {
             if (checkPageTitle(PAGE_TITLE_XERO_LOGIN) == false) {
                 rootLogger.info("Xero window NOT found");
             }
@@ -468,7 +469,7 @@ public class TestsPekamaProjectCharges {
             String url = getActualUrl();
             rootLogger.info(url);
         }
-        catch (SoftAssertionError e) {
+        catch (TimeoutException e) {
             if (checkPageTitle(PAGE_TITLE_XERO_BILLING) == false) {
                 rootLogger.info("Window Xero Authorise not found");
             }
