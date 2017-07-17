@@ -120,7 +120,13 @@ public class BrowserConfiguration {
                     case WIN:
                         setPhantomjsDriver();
                         break;
-                }
+                    case WEB:
+                        PhantomJsDriverManager.getInstance().setup();
+                        break;
+                    }
+                rootLogger.info("Tests will performed in PhantomJS");
+                break;
+
             case MARIONETTE:
                 browser = WebDriverRunner.MARIONETTE;
                 startMaximized = true;

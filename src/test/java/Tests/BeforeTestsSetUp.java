@@ -11,6 +11,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.IOException;
 
+import static Tests.BrowserConfiguration.setPhantomjsDriver;
 import static com.codeborne.selenide.Configuration.browser;
 import static com.codeborne.selenide.Configuration.startMaximized;
 import static com.codeborne.selenide.WebDriverRunner.*;
@@ -48,12 +49,9 @@ public class BeforeTestsSetUp {
             case 2:
                 browser = PHANTOMJS;
                 startMaximized = true;
-                if (localDriverPathLinux == true){
-                    setFirefoxDriverPathLinux();
-                    rootLogger.info("Linux Local driver path is selected");}
                 if (localDriverPathWindows == true){
-                    setFirefoxDriverPathWin();
-                    rootLogger.info("Windows Local driver path is selected");}
+                    setPhantomjsDriver();
+                    rootLogger.info("Local driver path is selected");}
                 if (localDriverPathWeb == true){
                     startMaximized = false;
                     PhantomJsDriverManager.getInstance().setup();
