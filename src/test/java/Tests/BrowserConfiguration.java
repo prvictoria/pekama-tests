@@ -6,6 +6,7 @@ import io.github.bonigarcia.wdm.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -120,6 +121,10 @@ public class BrowserConfiguration {
                 switch (pathToDriver) {
                     case WIN:
                         setPhantomjsDriver();
+                        getWebDriver()
+                                .manage()
+                                .window()
+                                .setSize(new Dimension(1800,1000));
                         break;
                     case WEB:
                         PhantomJsDriverManager.getInstance().setup();
@@ -130,7 +135,6 @@ public class BrowserConfiguration {
 
             case MARIONETTE:
                 browser = WebDriverRunner.MARIONETTE;
-                startMaximized = true;
                 switch (pathToDriver) {
                     case WIN:
                         setFirefoxDriverPathWin();

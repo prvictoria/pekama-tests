@@ -28,6 +28,8 @@ public class Configuration {
     public void beforeTest(){}
 
     @AfterTest
-    public void closeBrowser(){}
+    public void closeBrowser(){
+
+    }
 
 }
