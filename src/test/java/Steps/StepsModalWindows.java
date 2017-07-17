@@ -784,6 +784,7 @@ public class StepsModalWindows {
         ObjectFile file = new ObjectFile(ObjectFile.newBuilder())
                 .buildFile(fileType)
                 .uploadFile();
+        sleep(2000);
         MW_DOC_TEMPLATE_UPLOADED_FILE_NAME.shouldHave(text("Uploading: "+file.fileFullName));
         MW_DOC_TEMPLATE_PROGRESS_BAR.shouldHave(text("100%"));
         MW_DOC_TEMPLATE_ABORT_UPLOAD.shouldBe(visible);
