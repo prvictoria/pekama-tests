@@ -116,6 +116,7 @@ public class BrowserConfiguration {
 
             case PHANTOMJS:
                 browser = WebDriverRunner.PHANTOMJS;
+                startMaximized = true;
                 switch (pathToDriver) {
                     case WIN:
                         setPhantomjsDriver();
