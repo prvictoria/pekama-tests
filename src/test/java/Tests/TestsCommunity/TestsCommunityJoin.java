@@ -1,12 +1,9 @@
 package Tests.TestsCommunity;
 
 import Pages.NewCommunity.PageJoin;
-import Steps.MessagesIMAP;
 import Steps.ObjectUser;
-import Steps.Objects.Emails.Email;
-import Steps.Objects.Emails.EmailTypes;
 import Steps.Objects.Emails.ImapService;
-import Steps.Objects.Emails.ValidateEmailSignUp;
+import Steps.Objects.Emails.ValidatorEmailSignUp;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -22,6 +19,7 @@ import static Steps.ObjectUser.Users.USER_05;
 import static Steps.ObjectUser.newBuilder;
 import static Steps.StepsPekama.*;
 import static Tests.BeforeTestsSetUp.holdBrowserAfterTest;
+import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.refresh;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -59,7 +57,6 @@ public class TestsCommunityJoin extends Configuration{
     public void joinSuccess() throws MessagingException, InterruptedException {
         skipBefore = true;
 
-
         new ImapService()
                 .setProperties()
                 .connectStore(invited)
@@ -69,25 +66,20 @@ public class TestsCommunityJoin extends Configuration{
                 .closeStore();
 
         pageJoin.submitSignUp(invited);
+
         Assert.assertTrue(invited.isSignUpSucceed);
     }
     @Test (priority = 202, dependsOnMethods = { "joinSuccess" })
     public void joinGetEmail() throws MessagingException, InterruptedException, IOException {
         skipBefore = false;
 
-        Email referenceEmail = new Email().buildEmail(EmailTypes.SIGN_UP, invited);
-        ImapService actualEmail = new ImapService()
-                .setProperties()
-                .connectStore(invited)
-                .openFolder()
-                .imapDetectEmail(referenceEmail)
-                .getFirstMessage()
-                .setHtmlPart()
-                .closeStore();
-        new ValidateEmailSignUp()
-                .buildValidator(actualEmail, referenceEmail)
+        new ValidatorEmailSignUp()
+                .buildReferenceEmail(invited)
+                .getEmailFormInbox()
+                .buildValidator()
                 .checkEmailBody()
-                .assertValidationResult();
+                .assertValidationResult()
+                .getSignUpLink();
 
         rootLogger.info("Test passed");
     }

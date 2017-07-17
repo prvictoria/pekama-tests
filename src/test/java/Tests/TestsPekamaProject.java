@@ -1,6 +1,8 @@
 package Tests;
 import Pages.PekamaProject;
 import Steps.*;
+import Steps.Objects.Emails.ImapService;
+import Steps.Objects.Emails.ValidatorEmailInviteInProject;
 import com.codeborne.selenide.Condition;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,11 +22,9 @@ import static Pages.DataStrings.*;
 import static Pages.UrlConfiguration.*;
 import static Pages.UrlConfiguration.setEnvironment;
 import static Pages.UrlStrings.*;
-import static Steps.Intrefaces.IMessagesValidator.ValidationInviteInProject.projectBackLink;
 import static Steps.ObjectFile.*;
 import static Steps.ObjectUser.Users.*;
 import static Steps.ObjectUser.newBuilder;
-import static Steps.StepsCommunity.checkCaseNameFirstRow;
 import static Steps.Steps.clickSelector;
 import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static Steps.StepsModalWindows.*;
@@ -51,23 +51,32 @@ public class TestsPekamaProject {
     private final static String INTRODUCER_NAME = "Rand, Kaldor & Zane LLP (RKNZ)";
     private static final ObjectUser owner = new ObjectUser(newBuilder()).buildUser(USER_03);
     private static final ObjectUser collaborator = new ObjectUser(newBuilder()).buildUser(USER_05);
+    private static final ObjectUser invited = new ObjectUser(newBuilder()).buildUser(USER_05);
     private static final ObjectUser expert = new ObjectUser(newBuilder()).buildUser(USER_02);
+    private static ObjectProject project1 = ObjectProject.newBuilder()
+                                                        .projectName("INNER_VALIDATION")
+                                                        .projectMatterType(TEST_CASE_TYPE)
+                                                        .projectDefining(PITCAIRN_ISLANDS.getValue())
+                                                        .build();
 
     @Rule
     public Timeout tests = Timeout.seconds(600);
     private static boolean skipBefore = false;
     private static boolean nextIsImapTest = false;
     @BeforeClass
-    public static void beforeClass() throws IOException, MessagingException {
+    public static void beforeClass() throws IOException, MessagingException, InterruptedException {
         setEnvironment ();
         setBrowser();
         if(nextIsImapTest==false) {
             holdBrowserAfterTest();
             TEST_CASE_TYPE = MATTER_TYPE_TRADEMARK;
-            MessagesIMAP emailTask = new MessagesIMAP();
-            emailTask.imapSearchEmailDeleteAll(
-                    User5.GMAIL_EMAIL.getValue(),
-                    User5.GMAIL_PASSWORD.getValue());
+            new ImapService()
+                    .setProperties()
+                    .connectStore(collaborator)
+                    .openFolder()
+                    .markEmailsForDeletion()
+                    .clearFolder()
+                    .closeStore();
         }
         else {rootLogger.info("Before suite was skipped");}
     }
@@ -83,6 +92,7 @@ public class TestsPekamaProject {
                         PITCAIRN_ISLANDS.getValue(),
                         null,
                         null);
+
                 projectUrl = getActualUrl();
                 rootLogger.info("Project url: " + projectUrl);
                 rootLogger.info("ProjectValues '" + testProjectTitle + "' created");
@@ -180,18 +190,18 @@ public class TestsPekamaProject {
         $$(byText(PekamaProject.COLLABORATOR)).shouldHaveSize(1);
     }
     @Test
-    public void tabContacts_E_inviteCollaborator_ValidationEmail() {
+    public void tabContacts_E_inviteCollaborator_ValidationEmail() throws InterruptedException, MessagingException, IOException {
         nextIsImapTest = false;
         rootLogger.info("Check report email");
-        String login = User5.GMAIL_EMAIL.getValue();
-        String password = User5.GMAIL_PASSWORD.getValue();
-        String inviterNameSurname = owner.nameSurname;
-        String projectName = testProjectTitle;
-        MessagesIMAP validation = new MessagesIMAP();
-        Boolean validationResult = validation.validateEmailInviteInProject(login, password, inviterNameSurname, projectName);
-        Assert.assertTrue(validationResult);
-        Assert.assertNotNull(projectBackLink);
-        rootLogger.info("Link invite to project is: "+projectBackLink);
+
+        ObjectProject project = ObjectProject.newBuilder().projectName(testProjectTitle).build();
+        new ValidatorEmailInviteInProject()
+                .buildReferenceEmail(invited, owner, project)
+                .getEmailFormInbox()
+                .buildValidator()
+                .checkEmailBody()
+                .assertValidationResult()
+                .getInviteLink();
         rootLogger.info("Test passed");
     }
 

@@ -6,39 +6,62 @@ import org.apache.logging.log4j.Logger;
 import org.jsoup.select.Elements;
 import org.junit.Assert;
 
-import static Steps.MessagesIMAP.getLink;
-import static Steps.MessagesIMAP.parseHtmlHrefArray;
-import static Steps.MessagesIMAP.parseHtmlLinkText;
+import javax.mail.MessagingException;
 
-final public class ValidateEmailSignUp {
+import java.io.IOException;
+
+import static Steps.Objects.Emails.EmailUtils.getLink;
+import static Steps.Objects.Emails.EmailUtils.parseHtmlHrefArray;
+import static Steps.Objects.Emails.EmailUtils.parseHtmlLinkText;
+import static Steps.Objects.Emails.EmailTypes.SIGN_UP;
+
+final public class ValidatorEmailSignUp {
     private static final Logger rootLogger = LogManager.getRootLogger();
     private EmailValidator emailValidator;
     private String html;
     private String signUpLink;
-    private ObjectUser recipient;
-    private ObjectUser sender;
-    private ObjectUser other;
     private boolean isValidationPassed = false;
-
+    private ObjectUser user;
+    private ReferenceEmail referenceEmail;
+    private ImapService actualEmail;
 
     public String getSignUpLink() {
+        rootLogger.info(this.signUpLink);
         return signUpLink;
     }
+    public ValidatorEmailSignUp buildReferenceEmail(ObjectUser user){
+        this.user = user;
+        this.referenceEmail = new ReferenceEmail().buildEmail(SIGN_UP, this.user);
+        return this;
+    }
 
-    public ValidateEmailSignUp buildValidator(ImapService actualEmail, Email referenceEmail){
-        new ValidateEmailSignUp();
+    public ValidatorEmailSignUp getEmailFormInbox() throws MessagingException, InterruptedException, IOException {
+        this.actualEmail = new ImapService()
+                .setProperties()
+                .connectStore(this.user)
+                .openFolder()
+                .imapDetectEmail(this.referenceEmail)
+                .getFirstMessage()
+                .setHtmlPart()
+                .markEmailsForDeletion()
+                .clearFolder()
+                .closeStore();
+        return this;
+    }
+
+    public ValidatorEmailSignUp buildValidator(){
+        new ValidatorEmailSignUp();
         this.emailValidator = EmailValidator.builder()
-                .html(actualEmail.getMessageHtmlPart())
-                .actualEmail(actualEmail)
-                .referenceEmail(referenceEmail)
+                .html(this.actualEmail.getMessageHtmlPart())
+                .actualEmail(this.actualEmail)
+                .referenceEmail(this.referenceEmail)
                 .build();
         return this;
     }
 
 
     //@Override
-    public ValidateEmailSignUp checkEmailBody(){
-        //this.recipient = this.emailValidator.users().get(0);
+    public ValidatorEmailSignUp checkEmailBody(){
         this.html = this.emailValidator.actualEmail().getMessageHtmlPart();
 
         if(emailValidator!=null){
@@ -72,7 +95,7 @@ final public class ValidateEmailSignUp {
         }
         return this;
     }
-    public ValidateEmailSignUp assertValidationResult(){
+    public ValidatorEmailSignUp assertValidationResult(){
         if(isValidationPassed==false){
             Assert.fail("Validation failed");
         }

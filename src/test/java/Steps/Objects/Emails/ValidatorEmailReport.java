@@ -7,33 +7,35 @@ import org.jsoup.select.Elements;
 import org.junit.Assert;
 
 import javax.mail.MessagingException;
-
 import java.io.IOException;
 
-import static Steps.Objects.Emails.EmailTypes.RESET_PASSWORD;
+import static Steps.Objects.Emails.EmailTypes.REPORT;
+import static Steps.Objects.Emails.ReferenceEmail.reportName;
+import static Steps.Objects.Emails.ReferenceEmail.reportSchedule;
 
-final public class ValidatorEmailResetPassword {
+final public class ValidatorEmailReport {
     private static final Logger rootLogger = LogManager.getRootLogger();
     private EmailValidator emailValidator;
-    private ReferenceEmail referenceEmail;
     private String html;
-    private String resetPasswordLink;
     private boolean isValidationPassed = false;
     private ObjectUser user;
+    private ReferenceEmail referenceEmail;
     private ImapService actualEmail;
+    private String unSubscribeLink;
 
-    public String getResetPasswordLink() {
-        rootLogger.info(this.resetPasswordLink);
-        return resetPasswordLink;
+    public String getUnSubscribeLink() {
+        rootLogger.info(this.unSubscribeLink);
+        return unSubscribeLink;
     }
-
-    public ValidatorEmailResetPassword buildReferenceEmail(ObjectUser user){
+    public ValidatorEmailReport buildReferenceEmail(ObjectUser user, String reportsInterval, String reportTitle){
         this.user = user;
-        this.referenceEmail = new ReferenceEmail().buildEmail(RESET_PASSWORD, this.user);
+        reportSchedule = reportsInterval;
+        reportName = reportTitle;
+        this.referenceEmail = new ReferenceEmail().buildEmail(REPORT, this.user);
         return this;
     }
 
-    public ValidatorEmailResetPassword getEmailFormInbox() throws MessagingException, InterruptedException, IOException {
+    public ValidatorEmailReport getEmailFormInbox() throws MessagingException, InterruptedException, IOException {
         this.actualEmail = new ImapService()
                 .setProperties()
                 .connectStore(this.user)
@@ -47,8 +49,8 @@ final public class ValidatorEmailResetPassword {
         return this;
     }
 
-    public ValidatorEmailResetPassword buildValidator(){
-        new ValidatorEmailResetPassword();
+    public ValidatorEmailReport buildValidator(){
+        new ValidatorEmailReport();
         this.emailValidator = EmailValidator.builder()
                 .html(this.actualEmail.getMessageHtmlPart())
                 .actualEmail(this.actualEmail)
@@ -59,40 +61,32 @@ final public class ValidatorEmailResetPassword {
 
 
     //@Override
-    public ValidatorEmailResetPassword checkEmailBody(){
-        //this.recipient = this.emailValidator.users().get(0);
+    public ValidatorEmailReport checkEmailBody(){
         this.html = this.emailValidator.actualEmail().getMessageHtmlPart();
 
         if(emailValidator!=null){
-            Assert.assertTrue(EmailUtils.parseHtmlLinkText(this.html)
-                    .equals(this.emailValidator.referenceEmail()
-                            .getAbstractEmail().emailButtonLinkText()));
             Assert.assertTrue(EmailUtils.parseHtmlHrefArray(this.html).size() == 2);
             Elements links = EmailUtils.parseHtmlHrefArray(this.html);
             Assert.assertTrue(EmailUtils.getLink(links, 0)
-                    .contains(this.emailValidator
-                    .referenceEmail().getAbstractEmail()
-                    .emailLinkResetPasswordInButton()));
+                            .contains(this.emailValidator
+                            .referenceEmail().getAbstractEmail()
+                            .emailLinkBackToPekama()));
             Assert.assertTrue(EmailUtils.getLink(links, 1)
                     .contains(this.emailValidator
-                    .referenceEmail().getAbstractEmail().emailLinkResetPassword()));
+                            .referenceEmail().getAbstractEmail().emailLinkUnSubscribe()));
+
 
             //Text asserts
             Assert.assertTrue(this.html.contains(this.emailValidator
-                    .referenceEmail().getAbstractEmail().emailTitle()));
-            Assert.assertTrue(this.html.contains(this.emailValidator
-                    .referenceEmail().getAbstractEmail().emailButtonText()));
-            Assert.assertTrue(this.html.contains(this.emailValidator
                     .referenceEmail().getAbstractEmail().emailText()));
             rootLogger.info("Email validation passed");
-            this.resetPasswordLink = EmailUtils.getLink(links, 0);
+            this.unSubscribeLink = EmailUtils.getLink(links, 1);
             this.isValidationPassed = true;
             return this;
         }
         return this;
     }
-
-    public ValidatorEmailResetPassword assertValidationResult(){
+    public ValidatorEmailReport assertValidationResult(){
         if(isValidationPassed==false){
             Assert.fail("Validation failed");
         }

@@ -49,14 +49,12 @@ public class TestsPekamaResetPassword {
     @Rule
     public Timeout tests = Timeout.seconds(600);
     @BeforeClass
-    public static void beforeClass() throws IOException, MessagingException {
-        setEnvironment ();
+    public static void beforeClass() throws IOException, MessagingException, InterruptedException {
+        setEnvironment();
         setBrowser();
         holdBrowserAfterTest();
         MessagesIMAP emailTask = new MessagesIMAP();
-        emailTask.imapSearchEmailDeleteAll(
-                user.email,
-                user.passwordEmail);
+        new ImapService().emailEmailCleaner(user);
     }
 
     @Test
@@ -86,26 +84,14 @@ public class TestsPekamaResetPassword {
         Steps.checkTextInSelector(RESET_PAGE_SUCCESS, RESET_PAGE_SUCCESS_MSG);
 
         rootLogger.info("Check reset password email");
-        Email referenceEmail = new Email().buildEmail(RESET_PASSWORD, user);
-        rootLogger.info(referenceEmail.getAbstractEmail().emailSubject());
-        ImapService actualEmail = new ImapService()
-                .setProperties()
-                .connectStore(user)
-                .openFolder()
-                .imapDetectEmail(referenceEmail)
-                .getFirstMessage()
-                .setHtmlPart()
-                .markEmailsForDeletion()
-                .clearFolder()
-                .closeStore();
         REDIRECT_LINK = new ValidatorEmailResetPassword()
-                .buildValidator(actualEmail, referenceEmail)
+                .buildReferenceEmail(user)
+                .getEmailFormInbox()
+                .buildValidator()
                 .checkEmailBody()
                 .assertValidationResult()
                 .getResetPasswordLink();
-
         Assert.assertTrue(REDIRECT_LINK!=null);
-        rootLogger.info("Test passed");
     }
     @Test
     public void resetPassword_B_reset_page_gui() {
@@ -311,20 +297,10 @@ public class TestsPekamaResetPassword {
             Steps.checkTextInSelector(RESET_PAGE_SUCCESS, RESET_PAGE_SUCCESS_MSG);
 
             rootLogger.info("Check reset password email");
-            Email referenceEmail = new Email().buildEmail(RESET_PASSWORD, user);
-            rootLogger.info(referenceEmail.getAbstractEmail().emailSubject());
-            ImapService actualEmail = new ImapService()
-                    .setProperties()
-                    .connectStore(user)
-                    .openFolder()
-                    .imapDetectEmail(referenceEmail)
-                    .getFirstMessage()
-                    .setHtmlPart()
-                    .markEmailsForDeletion()
-                    .clearFolder()
-                    .closeStore();
             REDIRECT_LINK = new ValidatorEmailResetPassword()
-                    .buildValidator(actualEmail, referenceEmail)
+                    .buildReferenceEmail(user)
+                    .getEmailFormInbox()
+                    .buildValidator()
                     .checkEmailBody()
                     .assertValidationResult()
                     .getResetPasswordLink();

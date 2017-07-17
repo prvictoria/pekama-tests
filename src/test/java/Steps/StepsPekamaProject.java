@@ -723,21 +723,21 @@ public class StepsPekamaProject extends StepsPekama {
         rootLogger.info("Send mas with custom data");
         if(emailFollowerTo!=null) {
             fillField(CONVERSATION_EXTERNAL_INPUT_TO, emailFollowerTo);
-            sleep(1500);
+            sleep(2000);
             CONVERSATION_EXTERNAL_INPUT_TO.click();
-            sleep(500);
+            sleep(1000);
         }
         if(emailFollowerCc!=null) {
             fillField(CONVERSATION_EXTERNAL_INPUT_CC, emailFollowerCc);
-            sleep(1500);
+            sleep(2000);
             CONVERSATION_EXTERNAL_INPUT_CC.click();
-            sleep(500);
+            sleep(1000);
         }
         if(emailFollowerBcc!=null) {
             fillField(CONVERSATION_EXTERNAL_INPUT_BCC, emailFollowerBcc);
-            sleep(1500);
+            sleep(2000);
             CONVERSATION_EXTERNAL_INPUT_BCC.click();
-            sleep(500);
+            sleep(1000);
         }
         if(emailSubject!=null) {
             fillField(CONVERSATION_EXTERNAL_INPUT_SUBJECT, emailSubject);

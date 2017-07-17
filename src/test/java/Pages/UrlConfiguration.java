@@ -26,7 +26,7 @@ public class UrlConfiguration {
     public static String INTRODUCER_NAME;
 
     public static int environment = 1;
-    @Deprecated
+
     public static void setEnvironment() {
         switch (environment) {
             case 1:

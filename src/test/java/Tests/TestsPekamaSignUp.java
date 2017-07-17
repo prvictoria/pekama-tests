@@ -1,11 +1,8 @@
 package Tests;
-import Steps.MessagesIMAP;
 import Steps.ObjectFile;
 import Steps.ObjectUser;
-import Steps.Objects.Emails.Email;
-import Steps.Objects.Emails.EmailTypes;
 import Steps.Objects.Emails.ImapService;
-import Steps.Objects.Emails.ValidateEmailSignUp;
+import Steps.Objects.Emails.ValidatorEmailSignUp;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
@@ -20,7 +17,6 @@ import static Pages.DataCredentials.*;
 import static Pages.DataStrings.*;
 import static Pages.UrlConfiguration.*;
 import static Pages.UrlStrings.*;
-import static Steps.Intrefaces.IMessagesValidator.*;
 import static Steps.ObjectFile.FileTypes.*;
 import static Steps.ObjectUser.Users.USER_01;
 import static Steps.ObjectUser.Users.USER_05;
@@ -239,6 +235,7 @@ public class TestsPekamaSignUp {
                 VALID_COMPANY, VALID_PASSWORD,
                 "4", "4",
                 VALID_PHONE, "1");
+
         Assert.assertFalse(fakeUser.isSignUpSucceed);
             signupErrorEmail.shouldHaveSize(1);
             checkText(ERROR_MSG_EMAIL_IS_USED);
@@ -250,7 +247,6 @@ public class TestsPekamaSignUp {
         skipBefore = true;
         rootLogger.info("submitSignUp with valid user");
 
-
         invited.submitSignUp(
                 invited.email,
                 VALID_SURNAME,
@@ -260,6 +256,7 @@ public class TestsPekamaSignUp {
                 "1",
                 "1",
                 VALID_PHONE, "1");
+
         Assert.assertTrue(invited.isSignUpSucceed);
         $(byText("Confirm your Account")).shouldBe(visible);
         $(byText("You were sent an email message with the account activation link. Please check your inbox.")).shouldBe(visible);
@@ -268,20 +265,13 @@ public class TestsPekamaSignUp {
     @Test
     public void sendSignUpEmail_A2_CheckEmail() throws MessagingException, InterruptedException, IOException {
         skipBefore = false;
-
-        Email referenceEmail = new Email().buildEmail(EmailTypes.SIGN_UP, invited);
-        ImapService actualEmail = new ImapService()
-                .setProperties()
-                .connectStore(invited)
-                .openFolder()
-                .imapDetectEmail(referenceEmail)
-                .getFirstMessage()
-                .setHtmlPart()
-                .closeStore();
-        new ValidateEmailSignUp()
-                .buildValidator(actualEmail, referenceEmail)
+        new ValidatorEmailSignUp()
+                .buildReferenceEmail(invited)
+                .getEmailFormInbox()
+                .buildValidator()
                 .checkEmailBody()
-                .assertValidationResult();
+                .assertValidationResult()
+                .getSignUpLink();
     }
 
     @Test
@@ -296,7 +286,7 @@ public class TestsPekamaSignUp {
 
         rootLogger.info("Submit SignUp with valid but fake user");
         rootLogger.info("BUG https://www.pivotaltracker.com/n/projects/1239770/stories/142325561");
-        ObjectUser fakeUser = ObjectUser.newBuilder().build();
+        ObjectUser fakeUser = ObjectUser.newBuilder().email("email@email.com").build();
         fakeUser.submitSignUp(
                 fakeUser.email,
                 VALID_SURNAME,
@@ -319,7 +309,7 @@ public class TestsPekamaSignUp {
         rootLogger.info("Avatar uploaded");
 
         rootLogger.info("Submit SignUp with valid but fake user");
-        ObjectUser fakeUser = ObjectUser.newBuilder().build();
+        ObjectUser fakeUser = ObjectUser.newBuilder().email("email@email.com").build();
         fakeUser.submitSignUp(
                 fakeUser.email,
                 VALID_SURNAME,

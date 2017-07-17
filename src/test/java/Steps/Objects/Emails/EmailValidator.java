@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public abstract class EmailValidator {
     abstract String html();
     abstract ImapService actualEmail();
-    abstract Email referenceEmail();
+    abstract ReferenceEmail referenceEmail();
     @Nullable
     abstract ArrayList<ObjectUser> users();
     //1-st user is invited/recipient
@@ -30,7 +30,7 @@ public abstract class EmailValidator {
 
         public abstract Builder actualEmail(ImapService actualEmail);
 
-        public abstract Builder referenceEmail(Email referenceEmail);
+        public abstract Builder referenceEmail(ReferenceEmail referenceEmail);
 
         public abstract Builder users(ArrayList<ObjectUser> users);
 

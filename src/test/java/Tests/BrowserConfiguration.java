@@ -25,6 +25,13 @@ import static com.codeborne.selenide.WebDriverRunner.*;
 public class BrowserConfiguration {
 
     static final Logger rootLogger = LogManager.getRootLogger();
+    //TODO Victory phantom path
+    public static String setPhantomDriverPath() {
+        String path = "src/test/resources/binary/";
+        System.setProperty("..driver", path);
+        rootLogger.info("Local driver path is selected: "+path);
+        return path;
+    }
     public static String setChromeDriverPath() {
         String path = "src/test/resources/binary/chromedriver.exe";
         System.setProperty("webdriver.chrome.driver", path);

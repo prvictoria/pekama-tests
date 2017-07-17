@@ -63,6 +63,18 @@ public class ObjectUser implements ILogin {
     public String teamCountry;
     public Boolean isSignUpSucceed = false;
     public Boolean isLoggedIn = false;
+    ObjectUser[] users;
+
+    public ObjectUser[] getUsers() {
+        return users;
+    }
+
+    public void setUsers(ObjectUser[] users) {
+        this.users = users;
+    }
+
+
+
 
     public ObjectUser(Builder builder) {
         email = builder.email;
@@ -559,6 +571,7 @@ public class ObjectUser implements ILogin {
             case OWNER:
                 user = new ObjectUser(newBuilder())
                         .newBuilder()
+                        .isSignUpSucceed(true)
                         .email(User8.GMAIL_EMAIL.getValue())
                         .passwordPekama(User8.PEKAMA_PASSWORD.getValue())
                         .passwordEmail(User8.GMAIL_PASSWORD.getValue())
@@ -580,7 +593,6 @@ public class ObjectUser implements ILogin {
                         .teamInitials(User8.TEAM_INITIALS.getValue())
                         .teamEmail("team01email")
                         .build();
-                logUserFields(user);
                 break;
             case TEAM_MEMBER:
                 break;
@@ -599,6 +611,7 @@ public class ObjectUser implements ILogin {
             case USER_01:
                 user = new ObjectUser(newBuilder())
                         .newBuilder()
+                        .isSignUpSucceed(true)
                         .email(User1.GMAIL_EMAIL.getValue())
                         .passwordPekama(User1.PEKAMA_PASSWORD.getValue())
                         .passwordEmail(User1.GMAIL_PASSWORD.getValue())
@@ -620,11 +633,11 @@ public class ObjectUser implements ILogin {
                         .teamInitials(User1.TEAM_INITIALS.getValue())
                         .teamEmail("team01email")
                         .build();
-                logUserFields(user);
                 break;
             case USER_02:
                 user = new ObjectUser(newBuilder())
                         .newBuilder()
+                        .isSignUpSucceed(true)
                         .email(User2.GMAIL_EMAIL.getValue())
                         .passwordPekama(User2.PEKAMA_PASSWORD.getValue())
                         .passwordEmail(User2.GMAIL_PASSWORD.getValue())
@@ -645,11 +658,11 @@ public class ObjectUser implements ILogin {
                         .teamInitials(User2.TEAM_INITIALS.getValue())
                         .teamEmail("team02email")
                         .build();
-                logUserFields(user);
                 break;
             case USER_03:
                 user = new ObjectUser(newBuilder())
                         .newBuilder()
+                        .isSignUpSucceed(true)
                         .email(User3.GMAIL_EMAIL.getValue())
                         .passwordPekama(User3.PEKAMA_PASSWORD.getValue())
                         .passwordEmail(User3.GMAIL_PASSWORD.getValue())
@@ -670,11 +683,11 @@ public class ObjectUser implements ILogin {
                         .teamInitials(User3.TEAM_INITIALS.getValue())
                         .teamEmail("team03email")
                         .build();
-                logUserFields(user);
                 break;
             case USER_04:
                 user = new ObjectUser(newBuilder())
                         .newBuilder()
+                        .isSignUpSucceed(true)
                         .email(User4.GMAIL_EMAIL.getValue())
                         .passwordPekama(User4.PEKAMA_PASSWORD.getValue())
                         .passwordEmail(User4.GMAIL_PASSWORD.getValue())
@@ -693,13 +706,13 @@ public class ObjectUser implements ILogin {
                         .teamFullName(User4.FULL_TEAM_NAME.getValue())
                         .teamCode(User4.TEAM_CODE.getValue())
                         .teamInitials(User4.TEAM_INITIALS.getValue())
-                        .teamEmail("team03email")
+                        .teamEmail("team04email")
                         .build();
-                logUserFields(user);
                 break;
             case USER_05:
                 user = new ObjectUser(newBuilder())
                         .newBuilder()
+                        .isSignUpSucceed(false)
                         .email(User5.GMAIL_EMAIL.getValue())
                         .passwordPekama(User5.PEKAMA_PASSWORD.getValue())
                         .passwordEmail(User5.GMAIL_PASSWORD.getValue())
@@ -720,11 +733,11 @@ public class ObjectUser implements ILogin {
                         .teamInitials(User5.TEAM_INITIALS.getValue())
                         .teamEmail("team05email")
                         .build();
-                logUserFields(user);
                 break;
             case USER_06:
                 user = new ObjectUser(newBuilder())
                         .newBuilder()
+                        .isSignUpSucceed(true)
                         .email(User6.GMAIL_EMAIL.getValue())
                         .passwordPekama(User6.PEKAMA_PASSWORD.getValue())
                         .passwordEmail(User6.GMAIL_PASSWORD.getValue())
@@ -751,14 +764,36 @@ public class ObjectUser implements ILogin {
                         .teamInitials(User6.TEAM_INITIALS.getValue())
                         .teamEmail("team06email")
                         .build();
-                logUserFields(user);
                 break;
             case USER_07:
-                
+                user = new ObjectUser(newBuilder())
+                        .newBuilder()
+                        .isSignUpSucceed(false)
+                        .email("testqweeco007@gmail.com")
+                        .passwordPekama("asui67we34Aw!")
+                        .passwordEmail("123456789qasw1")
+                        .passwordBox("")
+                        .passwordLinkedIn("")
+                        .passwordXero("")
+                        .name("")
+                        .surname("")
+                        .nameSurname("")
+                        .company("")
+                        .businessType("")
+                        .role("")
+                        .phone("")
+                        .country("")
+                        .teamName("")
+                        .teamFullName("")
+                        .teamCode("")
+                        .teamInitials("")
+                        .teamEmail("")
+                        .build();
                 break;
             case USER_08:
                 user = new ObjectUser(newBuilder())
                         .newBuilder()
+                        .isSignUpSucceed(true)
                         .email(User8.GMAIL_EMAIL.getValue())
                         .passwordPekama(User8.PEKAMA_PASSWORD.getValue())
                         .passwordEmail(User8.GMAIL_PASSWORD.getValue())
@@ -779,13 +814,35 @@ public class ObjectUser implements ILogin {
                         .teamInitials(User8.TEAM_INITIALS.getValue())
                         .teamEmail("team08email")
                         .build();
-                logUserFields(user);
+
                 break;
             case USER_09:
-                break;
-            case USER_10:
+                user = new ObjectUser(newBuilder())
+                        .newBuilder()
+                        .isSignUpSucceed(false)
+                        .email("testqweeco009@gmail.com")
+                        .passwordPekama("asui67we34Aw!")
+                        .passwordEmail("123456789qasw1")
+                        .passwordBox("")
+                        .passwordLinkedIn("")
+                        .passwordXero("")
+                        .name("")
+                        .surname("")
+                        .nameSurname("")
+                        .company("")
+                        .businessType("")
+                        .role("")
+                        .phone("")
+                        .country("")
+                        .teamName("")
+                        .teamFullName("")
+                        .teamCode("")
+                        .teamInitials("")
+                        .teamEmail("")
+                        .build();
                 break;
         }
+        logUserFields(user);
         return user;
     };
     public void logUserFields(ObjectUser user){

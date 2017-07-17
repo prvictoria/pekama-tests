@@ -6,12 +6,10 @@ import org.apache.logging.log4j.Logger;
 /**
  * Created by VatslauX on 29-May-17.
  */
-public class ObjectEmail {
+public class ObjectReport {
     static final Logger rootLogger = LogManager.getRootLogger();
-
-
-
-    public class Email {}
+    private String reportName;
+    private String reportInterval;
 }
 
 

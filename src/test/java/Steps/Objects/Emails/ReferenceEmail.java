@@ -1,0 +1,121 @@
+package Steps.Objects.Emails;
+
+import Steps.ObjectProject;
+import Steps.ObjectUser;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.util.ArrayList;
+
+import static Pages.DataStrings.LOREM_IPSUM_SHORT;
+import static Pages.Emails.EMAIL_RESET_PASSWORD_LINK;
+import static Pages.UrlStrings.*;
+
+final public class ReferenceEmail {
+    private final Logger rootLogger = LogManager.getRootLogger();
+    private AbstractEmail abstractEmail;
+    public AbstractEmail getAbstractEmail() {
+        return abstractEmail;
+    }
+    public static String reportSchedule;
+    public static String reportName;
+    public static ObjectProject projectInEmail;
+    public static ObjectUser invitedUser;
+    public static ObjectUser inviterUser;
+    public static ArrayList<ObjectUser> usersArrayList;
+    public static String followerEmailOrTeamNameSurname;
+    public static String thisEmailSubject;
+
+
+
+    public ReferenceEmail buildEmail (EmailTypes emailType, ObjectUser user)  {
+        new ReferenceEmail();
+        switch (emailType) {
+            case DEFAULT:
+                //Depends on host selection Pekama or Community in tests
+                this.abstractEmail = AbstractEmail.builder()
+                        .emailSubject("")
+                        .emailTitle("")
+                        .emailText("")
+                        .emailButtonLinkText("")
+                        .emailButtonText("")
+                        .emailLinkConfirmRegistrationInButton("")
+                        .emailLinkConfirmRegistration("")
+                        .build();
+                break;
+            case MESSAGE_TO_REGISTERED:
+                //Emails from messages
+                rootLogger.debug(thisEmailSubject);
+                this.abstractEmail = AbstractEmail.builder()
+                        .emailSubject(thisEmailSubject)
+                        .emailTitle("A Pekama Conversation between "+inviterUser.nameSurname+", "+followerEmailOrTeamNameSurname+".")
+                        .emailText(LOREM_IPSUM_SHORT)
+                        .emailButtonLinkText("Reply in Pekama")
+                        .emailLinkBackToPekama("sendgrid.net/wf/click?")
+                        .build();
+                rootLogger.info(this.abstractEmail.emailTitle());
+                break;
+            case MESSAGE_TO_GUEST:
+                //Emails from messages
+                rootLogger.debug(thisEmailSubject);
+                this.abstractEmail = AbstractEmail.builder()
+                        .emailSubject(thisEmailSubject)
+                        .emailTitle("A Pekama Conversation between "+inviterUser.nameSurname+", "+followerEmailOrTeamNameSurname+".")
+                        .emailText(LOREM_IPSUM_SHORT)
+                        .build();
+                rootLogger.info(this.abstractEmail.emailTitle());
+                break;
+
+            case REPORT:
+                //Pekama only
+                this.abstractEmail = AbstractEmail.builder()
+                        .emailSubject("Pekama Report \""+reportName+"\" - ")
+                        .emailText("This is the report that you configured in Pekama. You will get it every "+reportSchedule+" days.")
+                        .emailLinkBackToPekama(REPORT_BACK_LINK)
+                        .emailLinkUnSubscribe(REPORT_UNSUBSCRIBE_LINK)
+                        .build();
+                break;
+
+            case SIGN_UP:
+                //Depends on host selection Pekama or Community in tests
+                this.abstractEmail = AbstractEmail.builder()
+                        .emailSubject("Welcome to Pekama! Just one more click")
+                        .emailTitle("Almost there...")
+                        .emailText("To finish registration, please confirm your account.")
+                        .emailButtonLinkText("Complete my registration")
+                        .emailButtonText("Complete my registration")
+                        .emailLinkConfirmRegistrationInButton(EMAIL_CONFIRM_REGISTRATION_LINK)
+                        .emailLinkConfirmRegistration(EMAIL_CONFIRM_REGISTRATION_LINK)
+                        .emailLinkMailTo(user.email)
+                        .build();
+                break;
+
+            case RESET_PASSWORD:
+                //Depends on host selection Pekama or Community in tests
+                this.abstractEmail = AbstractEmail.builder()
+                        .emailSubject("Password Restoration [Pekama]")
+                        .emailTitle("Password Restoration")
+                        .emailText("You've received this e-mail because you requested to reset the password for your user account. Press the button bellow to complete restoration.")
+                        .emailButtonLinkText("Reset Password")
+                        .emailButtonText("Reset Password")
+                        .emailLinkResetPasswordInButton(EMAIL_RESET_PASSWORD_LINK)
+                        .emailLinkResetPassword(EMAIL_RESET_PASSWORD_LINK)
+                        .build();
+                break;
+
+            case INVITE_IN_PROJECT:
+                //Pekama only - invite collaborator
+                this.abstractEmail = AbstractEmail.builder()
+                        .emailSubject(this.inviterUser.nameSurname+" invited you to")
+                        .emailTitle(this.inviterUser.nameSurname+" invited you to collaborate")
+                        .emailText(this.inviterUser.nameSurname+" from  created a project for "+this.projectInEmail.projectName.toUpperCase()+" and invites you to join in.")
+                        .emailButtonLinkText("Join Project "+this.projectInEmail.projectName.toUpperCase())
+                        .emailLinkPathPart1(EMAIL_INVITE_IN_PEKAMA_LINK1)
+                        .emailLinkPathPart2(EMAIL_INVITE_IN_PROJECT_LINK2)
+                        .emailLinkMailTo(this.invitedUser.email)
+                        .build();
+                break;
+        }
+        return this;
+    }
+}

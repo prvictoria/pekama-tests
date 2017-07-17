@@ -1,11 +1,7 @@
 package Tests.TestsCommunity;
 
 import Pages.NewCommunity.PageJoin;
-import Steps.Intrefaces.IMessagesValidator;
-import Steps.MessagesIMAP;
 import Steps.ObjectUser;
-import Steps.Objects.Emails.Email;
-import Steps.Objects.Emails.ImapService;
 import Steps.Objects.Emails.ValidatorEmailResetPassword;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,11 +18,8 @@ import static Pages.PekamaResetPassword.*;
 import static Pages.PekamaResetPassword.RESET_PAGE_FINISHED_BTN_LOGIN;
 import static Pages.PekamaSignUp.arrayInvalidPasswords;
 import static Pages.UrlStrings.*;
-import static Steps.Messages.EMAIL_SUBJECT_PASSWORD_REGISTRATION;
-import static Steps.MessagesIMAP.detectEmailIMAP;
 import static Steps.ObjectUser.Users.USER_04;
 import static Steps.ObjectUser.newBuilder;
-import static Steps.Objects.Emails.EmailTypes.RESET_PASSWORD;
 import static Steps.Steps.clickSelector;
 import static Steps.StepsHttpAuth.openUrlWithBaseAuth;
 import static Steps.StepsPekama.*;
@@ -61,20 +54,10 @@ public class TestsCommunityResetPassword extends Configuration{
         pageJoin.validateSubmitResetPassword(true, null);
 
         rootLogger.info("Check reset password email");
-        Email referenceEmail = new Email().buildEmail(RESET_PASSWORD, forgottenPasswordUser);
-        rootLogger.info(referenceEmail.getAbstractEmail().emailSubject());
-        ImapService actualEmail = new ImapService()
-                .setProperties()
-                .connectStore(forgottenPasswordUser)
-                .openFolder()
-                .imapDetectEmail(referenceEmail)
-                .getFirstMessage()
-                .setHtmlPart()
-                .markEmailsForDeletion()
-                .clearFolder()
-                .closeStore();
         resetPasswordLink = new ValidatorEmailResetPassword()
-                .buildValidator(actualEmail, referenceEmail)
+                .buildReferenceEmail(forgottenPasswordUser)
+                .getEmailFormInbox()
+                .buildValidator()
                 .checkEmailBody()
                 .assertValidationResult()
                 .getResetPasswordLink();
