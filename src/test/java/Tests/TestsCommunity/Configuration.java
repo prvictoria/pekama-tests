@@ -7,6 +7,7 @@ import org.testng.annotations.*;
 import java.io.IOException;
 
 import static Tests.BrowserConfiguration.SelectBrowsers.MARIONETTE;
+import static Tests.BrowserConfiguration.SelectBrowsers.PHANTOMJS;
 import static Tests.BrowserConfiguration.SelectPathToDriver.WIN;
 
 
@@ -15,7 +16,7 @@ public class Configuration {
     @BeforeClass
     public void setUp() throws IOException {
         new UrlConfiguration().setEnvironment (2);
-        new BrowserConfiguration().setBrowser(MARIONETTE, WIN, false);
+        new BrowserConfiguration().setBrowser(PHANTOMJS, WIN, false);
 
     }
     @AfterClass

@@ -4,12 +4,14 @@ import com.codeborne.selenide.Configuration;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.FirefoxDriverManager;
 import io.github.bonigarcia.wdm.InternetExplorerDriverManager;
+import io.github.bonigarcia.wdm.PhantomJsDriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.IOException;
 
+import static Tests.BrowserConfiguration.setPhantomjsDriver;
 import static com.codeborne.selenide.Configuration.browser;
 import static com.codeborne.selenide.Configuration.startMaximized;
 import static com.codeborne.selenide.WebDriverRunner.*;
@@ -45,6 +47,18 @@ public class BeforeTestsSetUp {
                 rootLogger.info("Tests will performed in Chrome");
                 break;
             case 2:
+                browser = PHANTOMJS;
+                startMaximized = true;
+                if (localDriverPathWindows == true){
+                    setPhantomjsDriver();
+                    rootLogger.info("Local driver path is selected");}
+                if (localDriverPathWeb == true){
+                    startMaximized = false;
+                    PhantomJsDriverManager.getInstance().setup();
+                }
+                rootLogger.info("Tests will performed in PhantomJS");
+                break;
+            case 3:
                 browser = MARIONETTE;
                 startMaximized = true;
                 if (localDriverPathLinux == true){
@@ -59,13 +73,13 @@ public class BeforeTestsSetUp {
                 }
                 rootLogger.info("Tests will performed in Firefox");
                 break;
-            case 3:
+            case 4:
                 browser = INTERNET_EXPLORER;
                 startMaximized = false;
                 InternetExplorerDriverManager.getInstance().setup();
                 rootLogger.info("Tests will performed in IE");
                 break;
-            case 4:
+            case 5:
                 browser = FIREFOX;
                 String firefox_binary_path = "C:\\FirefoxPortable\\FirefoxPortable.exe";
                 DesiredCapabilities c = DesiredCapabilities.firefox();
@@ -81,7 +95,7 @@ public class BeforeTestsSetUp {
                     FirefoxDriverManager.getInstance().setup();
                 }
                 rootLogger.info("Tests will performed in FF46");
-            case 5:
+            case 6:
                 rootLogger.info("Empty config");
                 break;
         }
