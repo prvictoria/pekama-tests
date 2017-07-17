@@ -89,18 +89,17 @@ public class TestsCommunityGuestFlow extends Configuration{
     }
     @Test
     public void aboutPageVerifyContent1(){
-        PageAbout pageAbout = new PageAbout();
         openUrlIfActualNotEquals(LANDING_URL);
-        pageAbout.clickAboutTab();
-        pageAbout.clickUpperStartButton();
-        Assert.assertEquals(getActualUrl(), "https://communitystaging.pekama.com/grow");
+        new PageAbout().clickAboutTab()
+                       .clickUpperStartButton();
+        Assert.assertEquals(getActualUrl(), "https://communitystaging.pekama.com/");
     }
     @Test
     public void aboutPageVerifyContent2(){
-        PageAbout pageAbout = new PageAbout();
-        openUrlIfActualNotEquals(ABOUT_URL);
-        pageAbout.clickBottomStartButton();
-        Assert.assertEquals(getActualUrl(), "https://communitystaging.pekama.com/grow");
+        new PageAbout()
+                .openAboutPageByUrl()
+                .clickBottomStartButton();
+        Assert.assertEquals(getActualUrl(), "https://communitystaging.pekama.com/");
     }
 
     @Test

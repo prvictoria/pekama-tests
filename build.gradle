@@ -43,37 +43,20 @@ dependencies {
     testCompile 'org.testng:testng:6.10'
 
     testCompile group: 'com.codeborne', name: 'selenide', version: '4.3'
-    // https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager
     testCompile group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '1.6.1'
-    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-firefox-driver
-    // testCompile group: 'org.seleniumhq.selenium', name: 'selenium-firefox-driver', version: '2.53.1'
-    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
     testCompile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.0.1'
-    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-edge-driver
-    //compile group: 'org.seleniumhq.selenium', name: 'selenium-edge-driver', version: '3.4.0'
 
-
-    // https://mvnrepository.com/artifact/javax.mail/mail
     testCompile group: 'javax.mail', name: 'mail', version: '1.4.7'
-
-    // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core
     testCompile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.7'
-    // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api
     testCompile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.7'
-    // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl
     testCompile group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.1'
 
-    // https://mvnrepository.com/artifact/org.jsoup/jsoup
     testCompile group: 'org.jsoup', name: 'jsoup', version: '1.8.3'
-
-    // https://mvnrepository.com/artifact/de.openkeyword/autoit
     testCompile group: 'de.openkeyword', name: 'autoit', version: '0.1.0'
-
-    // https://mvnrepository.com/artifact/com.hynnet/jacob
     testCompile group: 'com.hynnet', name: 'jacob', version: '1.18'
+
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-    // https://mvnrepository.com/artifact/com.google.auto.value/auto-value
     compile group: 'com.google.auto.value', name: 'auto-value', version: '1.4.1'
     apt 'com.google.auto.value:auto-value:1.4.1'
 

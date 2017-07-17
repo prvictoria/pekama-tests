@@ -10,6 +10,6 @@ public class PageBlog extends ModuleHeader {
 
     public Boolean switchToBlog(){
         PageBlog pageBlog = new PageBlog();
-        return pageBlog.switchToWindow("Pekama Blog – Pekama latest news");
+        return pageBlog.switchToWindow("Pekama Blog – News, Information, Help, & Insight Into The Pekama Community");
     }
 }

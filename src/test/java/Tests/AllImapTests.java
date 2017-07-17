@@ -1,14 +1,12 @@
 package Tests;
-
 import org.junit.FixMethodOrder;
+import org.junit.experimental.categories.Categories;
+import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.junit.runners.Suite;
 
-/**
- * Created by VatslauX on 20-Mar-17.
- */
-//    @RunWith(Categories.class)
-//    @Categories.IncludeCategory(Tests.AllImapTests.class)
+    @RunWith(Categories.class)
+    @Categories.IncludeCategory(Tests.AllImapTests.class)
     @Suite.SuiteClasses({
             //TestsIMAP.class
     })
