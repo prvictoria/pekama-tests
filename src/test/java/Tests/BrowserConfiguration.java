@@ -23,6 +23,7 @@ import static com.codeborne.selenide.WebDriverRunner.*;
  * Created by VatslauX on 22-Jun-17.
  */
 public class BrowserConfiguration {
+
     static final Logger rootLogger = LogManager.getRootLogger();
     public static String setChromeDriverPath() {
         String path = "src/test/resources/binary/chromedriver.exe";
@@ -46,6 +47,12 @@ public class BrowserConfiguration {
         String path = "src/test/resources/binary/geckodriver";
         System.setProperty("webdriver.gecko.driver", path);
         rootLogger.info("Linux Local driver path is selected");
+        return path;
+    }
+    public static String setPhantomjsDriver() {
+        String path = "src/test/resources/binary/phantomjs.exe";
+        System.setProperty("phantomjs.binary.path", path);
+        rootLogger.info("Windows Local driver path is selected: "+path);
         return path;
     }
     public static void holdBrowserAfterTest() {
@@ -79,9 +86,8 @@ public class BrowserConfiguration {
     }
 
     public enum SelectPathToDriver {WIN, LINUX, WEB}
-    public enum SelectBrowsers {CHROME, MARIONETTE, EDGE}
+    public enum SelectBrowsers {CHROME, PHANTOMJS, MARIONETTE, EDGE}
     public BrowserConfiguration setBrowser(SelectBrowsers browsers, SelectPathToDriver pathToDriver, boolean holdBrowserAfterTest) throws IOException {
-
         holdBrowserAfterTest(holdBrowserAfterTest);
         switch (browsers) {
             case CHROME:
@@ -101,6 +107,13 @@ public class BrowserConfiguration {
                 rootLogger.info("Tests will performed in Chrome");
                 break;
 
+            case PHANTOMJS:
+                browser = WebDriverRunner.PHANTOMJS;
+                switch (pathToDriver) {
+                    case WIN:
+                        setPhantomjsDriver();
+                        break;
+                }
             case MARIONETTE:
                 browser = WebDriverRunner.MARIONETTE;
                 startMaximized = true;
