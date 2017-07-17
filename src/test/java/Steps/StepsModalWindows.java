@@ -653,11 +653,12 @@ public class StepsModalWindows {
         return title;
     }
     public static boolean deleteTemplate(){
+        int ii = 0;
         rootLogger.info("Delete template");
         refresh();
-        sleep(3000);
-        if(!SETTINGS_DELETE_X.isDisplayed()){
-            sleep(6000);
+        while (!SETTINGS_DELETE_X.isDisplayed() && ii<15){
+            sleep(1000);
+            ii++;
         }
         if (SETTINGS_DELETE_X.isDisplayed()==false){
             Assert.fail("Template not created");

@@ -67,6 +67,7 @@ On the project used
   - Long call back from setver could leads timeout errors
   - Sometimes - socket exceptions by connect to emails by IMAP (actual hadled with loop)
   - Switch to window with base auth impossible - Webdriver issue
+  - AutoIt script will failed if browser is in background
   
 ### Project structure
  - Todo /////

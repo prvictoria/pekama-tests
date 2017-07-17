@@ -417,6 +417,7 @@ public class TestsPekamaSettingsPersonal {
         $$(byText(ERROR_MSG_REQUIRED_FIELD)).shouldHaveSize(1);
         rootLogger.info("Validation error present");
     }
+    //TODO Old password rule is obsolete?
     @Test
     public void tabSecurity_PasswordValidations_G() {
         rootLogger.info("Change Password - not Old can be new passwordPekama");

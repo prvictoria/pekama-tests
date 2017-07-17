@@ -727,6 +727,7 @@ public class TestsPekamaTemplates {
     }
     @Test
     public void templateDoc_A4_CreatePdfAutodeploy() throws IOException {
+        ObjectFile file = new ObjectFile(ObjectFile.newBuilder()).buildFile(PDF);
         try{
             templateName = null;
             openPageWithSpinner(URL_TEMPLATES_DOC_TRADEMARK);
@@ -736,7 +737,7 @@ public class TestsPekamaTemplates {
             submitEnabledButton(DASHBOARD_BTN_NEW_PROJECT);
             submitMwNewProject("Doc auto-deploy test");
             clickSelector(PROJECT_TAB_DOCS);
-            checkText(StepsModalWindows.fileName);
+            checkText(file.fileFullName);
         }
         finally {
             openPageWithSpinner(URL_TEMPLATES_DOC_TRADEMARK);
