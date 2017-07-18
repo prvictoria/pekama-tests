@@ -47,18 +47,6 @@ public class BeforeTestsSetUp {
                 rootLogger.info("Tests will performed in Chrome");
                 break;
             case 2:
-                browser = PHANTOMJS;
-                startMaximized = true;
-                if (localDriverPathWindows == true){
-                    setPhantomjsDriver();
-                    rootLogger.info("Local driver path is selected");}
-                if (localDriverPathWeb == true){
-                    startMaximized = false;
-                    PhantomJsDriverManager.getInstance().setup();
-                }
-                rootLogger.info("Tests will performed in PhantomJS");
-                break;
-            case 3:
                 browser = MARIONETTE;
                 startMaximized = true;
                 if (localDriverPathLinux == true){
@@ -73,6 +61,18 @@ public class BeforeTestsSetUp {
                 }
                 rootLogger.info("Tests will performed in Firefox");
                 break;
+            case 3:
+                browser = PHANTOMJS;
+                startMaximized = true;
+                if (localDriverPathWindows == true){
+                    setPhantomjsDriver();
+                    rootLogger.info("Local driver path is selected");}
+                if (localDriverPathWeb == true){
+                    startMaximized = false;
+                    PhantomJsDriverManager.getInstance().setup();
+                }
+                rootLogger.info("Tests will performed in PhantomJS");
+            break;
             case 4:
                 browser = INTERNET_EXPLORER;
                 startMaximized = false;

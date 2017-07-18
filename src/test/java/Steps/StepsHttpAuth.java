@@ -32,28 +32,18 @@ public class StepsHttpAuth {
                 sleep(250);
                 rootLogger.info(url + " URL opened");
             }
+            if(testBrowser==3) {
+                Selenide.open(url,
+                        "",
+                        "qweeco",
+                        "qw33coStudi0");
+                sleep(250);
+                rootLogger.info(url + " URL opened");
+            }
         }
         catch (TimeoutException exception){
              rootLogger.info("Timeout error");
-             refresh();
-             sleep(5000);
-                if(testBrowser==1){
-                    getWebDriver().manage().window().maximize();
-                    Selenide.open(url,
-                            "",
-                            "qweeco",
-                            "qw33coStudi0");
-                    sleep(250);
-                    rootLogger.info(url+" URL opened");
-                }
-                if(testBrowser==2) {
-                    Selenide.open(url,
-                            "",
-                            "qweeco",
-                            "qw33coStudi0");
-                    sleep(250);
-                    rootLogger.info(url + " URL opened");
-                }
         }
+
    }
 }
