@@ -3,6 +3,7 @@
     <extensionMap>
       <mapping ext="exe" type="Native" />
       <mapping ext="propertiesgmail" type="PLAIN_TEXT" />
+      <mapping pattern="AllSmokeTestsRunner" type="XML" />
     </extensionMap>
   </component>
 </application>
